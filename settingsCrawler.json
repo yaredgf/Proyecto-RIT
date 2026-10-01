@@ -1,0 +1,38 @@
+{
+  "user_agent": "ProyectoRITCrawler/1.0",
+  "descarga": {
+    "concurrencia_total": 4,
+    "concurrencia_por_host": 1,
+    "intervalo_segundos": 3,
+    "timeout_segundos": 30,
+    "max_bytes": 10000000,
+    "max_redirecciones": 5,
+    "intentos_totales": 3,
+    "espera_ultimo_intento_segundos": 60
+  },
+  "robots": {
+    "respetar": true,
+    "revision_horas": 24,
+    "crawl_delay_reemplaza_intervalo": true
+  },
+  "coleccion": {
+    "idioma": "en",
+    "duracion_segundos": 21600,
+    "versiones_maximas": 3,
+    "revision_documentos_meses": 1,
+    "revision_fichas_meses": 2
+  },
+  "rutas": {
+    "semillas": "semillas.txt",
+    "cola": "datos/cola.txt",
+    "html": "datos/html",
+    "texto": "datos/texto",
+    "indice": "datos/indice",
+    "logs": "logs"
+  },
+  "postgres": {
+    "host": "localhost",
+    "port": 5432,
+    "dbname": "rit_librerias"
+  }
+}
