@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Searcher</title>
+</head>
+<!-- Así es, voy a hacer el código spaghetti más asqueroso que va a ver en este proyecto -->
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+    body {
+        padding: 0px;
+        margin: 0px;
+        height: auto;
+        width: auto;
+    }
+    
+    .cont-principal {
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #2E2735;
+        background: linear-gradient(90deg,rgba(46, 39, 53, 1) 51%, rgba(67, 56, 76, 1) 100%);
+
+        
+        font-family: "Roboto", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+        font-variation-settings: "wdth" 100;
+        color: #f0f0f0;
+    }
+    .cont-logo{
+        display:inline;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    .barra {
+        transition: ease-in-out 0.2s;
+        border-radius: 2vmin;
+        border: solid 1px #ffffff79;
+        overflow: hidden;
+        height: 3.5vh;
+        width: auto;
+        background-color: #272727;
+        display: flex;
+    }
+    .barra input
+    {
+        width: 80%;
+        height: 100%;
+        border: none;
+        outline: none;
+        background-color: transparent;
+        color: #f0f0f0;
+        margin-left: 1.5vmin;
+    }
+    .barra input:focus
+    {
+        outline: none;
+        border: none;
+    }
+
+    
+    .barra:has(input:focus){
+        background-color: #3f3f3f;
+    }
+
+    .btn-buscar{
+        transition: ease-in-out 0.2s;
+        background-color: #f0f0f020;
+        width: calc(20% - 1vmin);
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .btn-buscar:hover{
+        background-color: #f0f0f046;
+    }
+
+    .img-logo {
+        height: 30vmin;
+    }
+    .img-lupa{
+        height: 3vh;
+    }
+    .oculto{
+        display: none;
+    }
+
+    .cont-resultados{
+        transition: ease-in-out 0.4s;
+        width: 100vw;
+        height: 100vh;
+        background-color: #00000050;
+
+    }
+    .navbar{
+        width: calc(100vw - 2vmin);
+        height: 7.5vh;
+        background-color: #00000020;
+        display: flex;
+        padding-left: 2vmin;
+        justify-content: left;
+        align-items: center;
+    }
+    .cont-enlaces{
+        width: 100vw;
+        height: 92.5vh;
+        overflow-y: auto;
+    }
+    .cont-respuesta{
+        border-bottom: solid 1px #00000020;
+        padding: 2vmin;
+
+    }
+    .cont-respuesta a{
+        text-decoration: none;
+        color: #9f8cb3;
+    }
+    .a-titulo{
+        font-size: 2em;
+    }
+</style>
+<body>
+    <div class="cont-principal">
+        <div class="cont-busqueda">
+            <div class="cont-logo">
+                <img class="img-logo" src="./media/logo.png" alt="" draggable="false">
+                <h1>The Searcher</h1>
+            </div>
+            <div class="cont-opc">
+                <div class="barra">
+                    <input id="inputPrompt" type="text">
+                    <div class="btn-buscar" id="btnBuscar">
+                        <img class="img-lupa" src="https://cdn-icons-png.flaticon.com/512/785/785979.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cont-resultados oculto">
+            <div class="navbar">
+                <h3 id="tituloBusqueda" style="margin: 0px;">Resultados de:</h3>
+            </div>
+            <div class="cont-enlaces">
+                <div class="cont-respuesta">
+                    <a class="a-titulo" href="https://es.wikipedia.org/wiki/Wikipedia">boslo</a>
+                    <p>enlace original: <a href="https://es.wikipedia.org/wiki/Wikipedia">boslo</a></p>
+                </div>  
+            </div>
+        </div>
+    </div>
+        
+
+    <script>
+        let prueba =
+            [
+                {
+                    titulo:"Linux ganador",
+                    urlArchivo: "https://es.wikipedia.org/wiki/Wikipedia",
+                    urlOriginal: "https://es.wikipedia.org/wiki/Wikipedia"
+                },
+                {
+                    titulo:"Hola soy un enlace",
+                    urlArchivo: "https://es.wikipedia.org/wiki/Vandalismo",
+                    urlOriginal: "https://es.wikipedia.org/wiki/Vandalismo"
+                }
+            ]
+        
+        // Esto para quitarme vrete de encima SHDHSD
+        HTMLElement.prototype.removeClass = function(clase) {
+            var newClassName = "";
+            var i;
+            var classes = this.className.split(" ");
+            for(i = 0; i < classes.length; i++) {
+                if(classes[i] !== clase) {
+                    newClassName += classes[i] + " ";
+                }
+            }
+            this.className = newClassName;
+        }
+
+        HTMLElement.prototype.addClass = function(clase) {
+            var classes = this.className.split(" ");
+            var newClassName =  clase + " ";
+            for(let i = 0; i < classes.length; i++) {
+                if(classes[i] !== clase) {
+                    newClassName += classes[i] + " ";
+                }
+            }
+            this.className = newClassName;
+        }
+
+        document.getElementById("btnBuscar").onclick = function () {
+            let prompt = document.getElementById("inputPrompt").value;
+            if (prompt.trim() != "") console.log("Se buscará: "+prompt)
+            // LLamar al indexador
+            VerResultados(prompt, prueba)
+        }
+
+        function VerResultados(prompt, resultados)
+        {
+            const contBusqueda = document.getElementsByClassName("cont-busqueda")[0]
+            const contResultados = document.getElementsByClassName("cont-resultados")[0]
+            contBusqueda.addClass("oculto")
+            contResultados.removeClass("oculto")
+            document.getElementById("tituloBusqueda").textContent = "Resultados de: "+prompt
+            let enlaces = ""
+            for (let i=0;i<resultados.length;i++)
+            {
+                enlaces += '<div class="cont-respuesta">'
+                    +'<a class="a-titulo" href="'+resultados[i].urlArchivo+'">'+resultados[i].titulo+'</a>'
+                    +'<p>enlace original: <a href="'+resultados[i].urlOriginal+'">'+resultados[i].urlOriginal+'</a></p>'
+                    +'</div>'
+            }
+            document.getElementsByClassName("cont-enlaces")[0].innerHTML = enlaces;
+        }
+        function VolverACasa()
+        {
+            const contBusqueda = document.getElementsByClassName("cont-busqueda")[0]
+            const contResultados = document.getElementsByClassName("cont-resultados")[0]
+            contResultados.addClass("oculto")
+            contBusqueda.removeClass("oculto")
+            document.getElementsByClassName("cont-enlaces")[0].innerHTML = "";
+        }
+    </script>
+</body>
+</html>
