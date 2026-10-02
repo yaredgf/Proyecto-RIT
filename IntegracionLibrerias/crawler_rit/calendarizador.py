@@ -114,16 +114,22 @@ class Calendarizador:
                     """
                     UPDATE documentos
                     SET estado = 'en_proceso',
-                        id_ciclo = %s
+                        id_ciclo = %s,
+                        intentos = intentos + 1
                     WHERE id = %s
                       AND estado = 'pendiente'
+                      AND intentos < %s
                       AND (
                           proximo_intento IS NULL
                           OR proximo_intento <= CURRENT_TIMESTAMP
                       )
                     RETURNING id
                     """,
-                    (self.id_ciclo, candidata["id"]),
+                    (
+                        self.id_ciclo,
+                        candidata["id"],
+                        RIT_CONFIG["descarga"]["intentos_totales"],
+                    ),
                 ).fetchone()
 
             if fila is None:

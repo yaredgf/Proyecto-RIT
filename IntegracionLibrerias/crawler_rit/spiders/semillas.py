@@ -10,6 +10,7 @@ from crawler_rit.descubrimiento import registrar_descubrimientos
 from crawler_rit.extractor import extraer
 from crawler_rit.inicializar import normalizar_url
 from crawler_rit.settings import RIT_CONFIG
+from crawler_rit.idioma import detectar_idioma
 
 
 class SemillasSpider(scrapy.Spider):
@@ -67,12 +68,56 @@ class SemillasSpider(scrapy.Spider):
                 },
             )
 
-    def dejar_pendiente(self, id_doc, mensaje):
-        espera = RIT_CONFIG["descarga"][
+    def dejar_pendiente(self, id_doc, mensaje, espera_minima=0):
+        limite = RIT_CONFIG["descarga"]["intentos_totales"]
+        espera_final = RIT_CONFIG["descarga"][
             "espera_ultimo_intento_segundos"
         ]
 
         with conectar() as conexion:
+            documento = conexion.execute(
+                """
+                SELECT intentos
+                FROM documentos
+                WHERE id = %s
+                FOR UPDATE
+                """,
+                (id_doc,),
+            ).fetchone()
+
+            if documento is None:
+                raise ValueError(f"No existe el documento {id_doc}.")
+
+            intentos = documento["intentos"]
+
+            if intentos >= limite:
+                conexion.execute(
+                    """
+                    UPDATE documentos
+                    SET estado = 'fallida',
+                        ultimo_error = %s,
+                        proximo_intento = NULL
+                    WHERE id = %s
+                    """,
+                    (str(mensaje)[:1000], id_doc),
+                )
+
+                self.logger.error(
+                    "Documento %s fallido tras %s intentos: %s",
+                    id_doc,
+                    intentos,
+                    mensaje,
+                )
+                return
+
+            # Antes del último intento, esperar al menos 60 segundos.
+            espera = (
+                espera_final
+                if intentos == limite - 1
+                else 0
+            )
+            espera = max(espera, espera_minima)
+
             conexion.execute(
                 """
                 UPDATE documentos
@@ -85,7 +130,14 @@ class SemillasSpider(scrapy.Spider):
                 (str(mensaje)[:1000], espera, id_doc),
             )
 
-        self.logger.warning("Documento %s: %s", id_doc, mensaje)
+        self.logger.warning(
+            "Documento %s: intento %s/%s; espera mínima %s s; %s",
+            id_doc,
+            intentos,
+            limite,
+            espera,
+            mensaje,
+        )
 
     def descartar(self, id_doc, motivo, resultado=None):
         idioma = None
@@ -243,10 +295,16 @@ class SemillasSpider(scrapy.Spider):
                     ),
                 )
 
-            if response.status != 200:
+            if response.status in (408, 429, 500, 502, 503, 504):
                 self.dejar_pendiente(
                     id_doc,
-                    f"Prueba detenida por HTTP {response.status}",
+                    f"Error HTTP temporal: {response.status}",
+                )
+
+            elif response.status != 200:
+                self.descartar(
+                    id_doc,
+                    f"Respuesta HTTP no admitida: {response.status}",
                 )
 
             elif contenido not in (
@@ -318,19 +376,28 @@ class SemillasSpider(scrapy.Spider):
             )
             return
 
-        # Filtro provisional basado en el idioma declarado.
-        idioma = (
-            resultado["idioma_declarado"] or ""
-        ).split("-")[0]
-
+        idioma = detectar_idioma(resultado["texto"])
         idioma_objetivo = RIT_CONFIG["coleccion"]["idioma"]
 
         if idioma != idioma_objetivo:
-            self.dejar_pendiente(
-                id_doc,
-                "Idioma pendiente de verificar: "
-                f"HTML sin lang={idioma_objetivo}.",
+            motivo = (
+                f"Idioma no admitido: {idioma}"
+                if idioma
+                else "No se pudo determinar el idioma."
             )
+
+            self.descartar(id_doc, motivo, resultado)
+
+            with conectar() as conexion:
+                conexion.execute(
+                    """
+                    UPDATE documentos
+                    SET idioma_detectado = %s
+                    WHERE id = %s
+                    """,
+                    (idioma, id_doc),
+                )
+
             return
 
         guardado = guardar_documento(
