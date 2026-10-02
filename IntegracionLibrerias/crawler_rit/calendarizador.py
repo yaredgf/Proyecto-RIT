@@ -25,13 +25,20 @@ class Calendarizador:
             raise RuntimeError("El calendarizador ya fue iniciado.")
 
         with conectar() as conexion:
-            fila = conexion.execute(
+            conexion.execute(
                 """
-                INSERT INTO ciclos (implementacion, estado)
-                VALUES ('librerias', 'recopilando')
-                RETURNING id
-                """
-            ).fetchone()
+                UPDATE documentos
+                SET estado = 'fallida',
+                    ultimo_error = COALESCE(
+                        ultimo_error,
+                        'Se agotaron los intentos de la tarea.'
+                    ),
+                    proximo_intento = NULL
+                WHERE estado = 'pendiente'
+                  AND intentos >= %s
+                """,
+                (RIT_CONFIG["descarga"]["intentos_totales"],),
+            )
 
         self.id_ciclo = fila["id"]
         self.inicio = time.monotonic()

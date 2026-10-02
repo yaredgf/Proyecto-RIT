@@ -1,6 +1,7 @@
 from urllib.parse import urljoin
 
 import scrapy
+import math
 
 from crawler_rit.almacenamiento import guardar_documento
 from crawler_rit.calendarizador import Calendarizador
@@ -11,6 +12,11 @@ from crawler_rit.extractor import extraer
 from crawler_rit.inicializar import normalizar_url
 from crawler_rit.settings import RIT_CONFIG
 from crawler_rit.idioma import detectar_idioma
+from datetime import datetime, timezone
+from email.utils import parsedate_to_datetime
+from urllib.parse import urlsplit
+from scrapy import signals
+from scrapy.exceptions import DontCloseSpider
 
 
 class SemillasSpider(scrapy.Spider):
@@ -26,7 +32,17 @@ class SemillasSpider(scrapy.Spider):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.calendarizador = Calendarizador()
-        self.probadas = set()
+
+    @classmethod
+    def from_crawler(cls, crawler, *args, **kwargs):
+        spider = super().from_crawler(crawler, *args, **kwargs)
+
+        crawler.signals.connect(
+            spider.al_quedar_inactivo,
+            signal=signals.spider_idle,
+        )
+
+        return spider
 
     async def start(self):
         self.calendarizador.iniciar()
@@ -35,34 +51,25 @@ class SemillasSpider(scrapy.Spider):
             yield solicitud
 
     def siguientes(self):
+        if self.calendarizador.tiempo_agotado():
+            return
+
+        # Incorporar nuevos documentos y reintentos pendientes.
+        self.calendarizador.cola.sincronizar()
+
         while True:
             tarea = self.calendarizador.reservar()
 
             if tarea is None:
                 return
 
-            id_doc = tarea["id"]
-
-            if id_doc in self.probadas:
-                # Evitar dejar una reserva sin solicitud asociada.
-                try:
-                    self.dejar_pendiente(
-                        id_doc,
-                        "Documento ya consultado en esta prueba.",
-                    )
-                finally:
-                    self.calendarizador.liberar(id_doc)
-
-                continue
-
-            self.probadas.add(id_doc)
-
             yield scrapy.Request(
                 url=tarea["url"],
                 callback=self.procesar,
                 errback=self.error_descarga,
+                dont_filter=True,
                 meta={
-                    "id_documento": id_doc,
+                    "id_documento": tarea["id"],
                     "handle_httpstatus_all": True,
                     "recorrido": [tarea["url"]],
                 },
@@ -296,9 +303,12 @@ class SemillasSpider(scrapy.Spider):
                 )
 
             if response.status in (408, 429, 500, 502, 503, 504):
+                espera = self.aplicar_retry_after(response)
+
                 self.dejar_pendiente(
                     id_doc,
                     f"Error HTTP temporal: {response.status}",
+                    espera_minima=espera,
                 )
 
             elif response.status != 200:
@@ -466,3 +476,103 @@ class SemillasSpider(scrapy.Spider):
             )
 
         self.calendarizador.cola.sincronizar()
+    
+    def hay_pendientes_autorizadas(self):
+        limite = RIT_CONFIG["descarga"]["intentos_totales"]
+
+        with conectar() as conexion:
+            hosts = {
+                fila["host"]
+                for fila in conexion.execute(
+                    "SELECT host FROM sitios WHERE permitido = TRUE"
+                ).fetchall()
+            }
+
+            with conexion.cursor() as cursor:
+                cursor.execute(
+                    """
+                    SELECT url_normalizada
+                    FROM documentos
+                    WHERE estado = 'pendiente'
+                      AND intentos < %s
+                    """,
+                    (limite,),
+                )
+
+                for fila in cursor:
+                    host = urlsplit(fila["url_normalizada"]).hostname
+
+                    if host in hosts:
+                        return True
+
+        return False
+
+    def al_quedar_inactivo(self):
+        if self.calendarizador.id_ciclo is None:
+            return
+
+        if self.calendarizador.tiempo_agotado():
+            return
+
+        enviadas = False
+
+        for solicitud in self.siguientes():
+            self.crawler.engine.crawl(solicitud)
+            enviadas = True
+
+        if enviadas or self.hay_pendientes_autorizadas():
+            # Mantener el spider abierto cuando las tareas están
+            # esperando su próximo intento o la pausa del host.
+            raise DontCloseSpider
+
+    def aplicar_retry_after(self, response):
+        cabecera = response.headers.get(b"Retry-After")
+
+        if not cabecera:
+            return 0
+
+        valor = cabecera.decode("latin-1").strip()
+        ahora = datetime.now(timezone.utc)
+
+        try:
+            if valor.isdigit():
+                segundos = int(valor)
+            else:
+                fecha = parsedate_to_datetime(valor)
+
+                if fecha.tzinfo is None:
+                    fecha = fecha.replace(tzinfo=timezone.utc)
+
+                segundos = max(
+                    0,
+                    math.ceil((fecha - ahora).total_seconds()),
+                )
+
+        except (ValueError, TypeError, OverflowError):
+            self.logger.warning(
+                "Retry-After inválido en %s: %s",
+                response.url,
+                valor,
+            )
+            return 0
+
+        host = urlsplit(response.url).hostname
+
+        with conectar() as conexion:
+            conexion.execute(
+                """
+                UPDATE sitios
+                SET proxima_solicitud_permitida = GREATEST(
+                    COALESCE(
+                        proxima_solicitud_permitida,
+                        CURRENT_TIMESTAMP
+                    ),
+                    CURRENT_TIMESTAMP
+                        + (%s * INTERVAL '1 second')
+                )
+                WHERE host = %s
+                """,
+                (segundos, host),
+            )
+
+        return segundos
