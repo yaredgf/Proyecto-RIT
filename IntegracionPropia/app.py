@@ -1,20 +1,9 @@
- # pip install requests
+# pip install requests
 # pip install beautifulsoup4
 
 import requests
 
 from bs4 import BeautifulSoup 
-
-
-# 1. Define la URL del sitio web que quieres descargar
-url = "https://www.cisa.gov/news-events/cybersecurity-advisories"
-url = "https://www.cisa.gov/news-events/alerts/2026/10/01/cisa-adds-one-known-exploited-vulnerability-catalog"
-
-# 2. Realiza la petición GET a la página
-
-
-
-
 
 
 enlacesBuscados = []
