@@ -1,0 +1,2835 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+<meta name="description" content="Core Dump and Hunt Guidance for Cisco DevicesOriginal Issuance Date: September 25, 2025Updated April 24, 2026Note: CISA updated this Supplemental Direction on" />
+<link rel="canonical" href="https://www.cisa.gov/news-events/directives/supplemental-direction-ed-25-03-core-dump-and-hunt-instructions" />
+<meta property="og:site_name" content="Cybersecurity and Infrastructure Security Agency CISA" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.cisa.gov/news-events/directives/supplemental-direction-ed-25-03-core-dump-and-hunt-instructions" />
+<meta property="og:title" content="Supplemental Direction ED 25-03: Core Dump and Hunt Instructions | CISA" />
+<meta name="Generator" content="Drupal 11 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="/profiles/cisad8_gov/themes/custom/gesso/favicon.png" type="image/png" />
+
+    <title>Supplemental Direction ED 25-03: Core Dump and Hunt Instructions | CISA</title>
+    <link rel="stylesheet" media="all" href="/sites/default/files/css/css_yJogXOPwV1rdKyfiEJQevT9FJDDSb6Yfut48yWccCWQ.css?delta=0&amp;language=en&amp;theme=guswds&amp;include=eJxFjlGOwzAIRC9E4yNZ2KaJN8RYgJv29mtt2u0P4j1pRpPInTSa5IocbUOtbY1puEuzYP7iyZB3KtVFI-YsWqq08P8td5Xm1ApMQaHo6MgL_uAT6Okzvn_cG2EddhYLK0tChmNWY7hXnjuWjN1nJ3RUXBX7Zp_w1yyj9ZG42kYFlKzPpfVB0TExWbyawkV43i4Ge5nTERIagYtwQp0J2y28CR6VTgt_dzmkDKZfDg5wlQ" />
+<link rel="stylesheet" media="all" href="//fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;family=Public+Sans:wght@400;500;600;700&amp;display=swap" />
+<link rel="stylesheet" media="all" href="/sites/default/files/css/css_rBU9QGVlQMXTA3Z5vlkgnXhoxMsC-IMfGaAssmK4QSE.css?delta=2&amp;language=en&amp;theme=guswds&amp;include=eJxFjlGOwzAIRC9E4yNZ2KaJN8RYgJv29mtt2u0P4j1pRpPInTSa5IocbUOtbY1puEuzYP7iyZB3KtVFI-YsWqq08P8td5Xm1ApMQaHo6MgL_uAT6Okzvn_cG2EddhYLK0tChmNWY7hXnjuWjN1nJ3RUXBX7Zp_w1yyj9ZG42kYFlKzPpfVB0TExWbyawkV43i4Ge5nTERIagYtwQp0J2y28CR6VTgt_dzmkDKZfDg5wlQ" />
+
+    <script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/24006","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"gtag":{"tagId":"","consentMode":false,"otherIds":[],"events":[],"additionalConfigInfo":[]},"ajaxPageState":{"libraries":"eJx1kFFuxCAMBS9E4UjIgENoAEe2SXZvX9psWrVSfyzmAWZMQFVkLxQLVC8rcOnZh6FKXZzos042ccNUlNhDjMSpUHffK7swdcWeDD50nt5c4rFDtS80mShX9ArZ5Vn-soV3ePwOm8lDziQuMEKKPFq4k1wpQL2pYR9eSsIAfGeKIMimTWNwS6lzPBth16lqdmDIDPsqt-RPYkffR6hFVkyGUfb5AeX4VAoVxV-d3EVwvl1s5CmKzYX5plGiOkXmDdmmx0VmyIIp0-FfI0KH-tQSxf27Y2Pq5ih4ivuqtlEaFT8AaeSo6w","theme":"guswds","theme_token":null},"ajaxTrustedUrl":[],"gtm":{"tagId":null,"settings":{"data_layer":"dataLayer","include_classes":false,"allowlist_classes":"","blocklist_classes":"","include_environment":false,"environment_id":"","environment_token":""},"tagIds":["GTM-53QLXSL9"]},"data":{"extlink":{"extTarget":false,"extTargetAppendNewWindowDisplay":false,"extTargetAppendNewWindowLabel":"(opens in a new window)","extTargetNoOverride":false,"extNofollow":false,"extTitleNoOverride":false,"extNoreferrer":false,"extFollowNoOverride":false,"extClass":"ext","extLabel":"(link is external)","extImgClass":false,"extSubdomains":true,"extExclude":"(.\\.gov$)|(.\\.mil$)|(.\\.mil\/)|(.\\.gov\/)","extInclude":"","extCssExclude":".c-menu--social,.c-menu--footer,.c-social-links,.c-text-cta--button,.usa-footer__contact-info","extCssInclude":"","extCssExplicit":"","extAlert":true,"extAlertText":"You are now leaving an official website of the United State Government (USG), the Department of Homeland Security (DHS) and the Cybersecurity and Infrastructure Security Agency (CISA). Links to non-USG, non-DHS and non-CISA sites are provided for the visitor\u0027s convenience and do not represent an endorsement by USG, DHS or CISA of any commercial or private issues, products or services. Note that the privacy policy of the linked site may differ from that of USG, DHS and CISA.","extHideIcons":false,"mailtoClass":"mailto","telClass":"0","mailtoLabel":"(link sends email)","telLabel":"(link is a phone number)","extUseFontAwesome":false,"extIconPlacement":"append","extPreventOrphan":false,"extFaLinkClasses":"fa fa-external-link","extFaMailtoClasses":"fa fa-envelope-o","extAdditionalLinkClasses":"","extAdditionalMailtoClasses":"","extAdditionalTelClasses":"","extFaTelClasses":"fa fa-phone","allowedDomains":[],"extExcludeNoreferrer":""}},"ckeditorAccordion":{"accordionStyle":{"collapseAll":1,"keepRowsOpen":0,"animateAccordionOpenAndClose":1,"openTabsWithHash":1,"allowHtmlInTitles":0}},"user":{"uid":0,"permissionsHash":"0f75d40308887aebba0d5b0d2671305b73c9431902f86e672380a6dc6ab97d07"}}</script>
+<script src="/sites/default/files/js/js_-qrpQ60iJz4Q0gMhQpnii1g0csLmfqpu0tW0UzzRnBU.js?scope=header&amp;delta=0&amp;language=en&amp;theme=guswds&amp;include=eJx1jtEKgzAMRX-os59U0iaWzppI0qr7-22ogw32Eu45Fy5JE2FpogFSEsUi7D9pGFW4EaOjvdXCk0ftC9ThRJdFcqXQIPv8Or88wB32bzm73G1D81EJMGmf42VylQj1opm4BytIEfRyjcBInZItwlbW92isZGEstZH6g2C7Hey6jYRZ1nC-AAz10Uoy_7cZEvITH99scA"></script>
+<script src="/modules/contrib/google_tag/js/gtag.js?tm8x4j"></script>
+<script src="/modules/contrib/google_tag/js/gtm.js?tm8x4j"></script>
+<script src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=DHS&amp;subagency=CISA&amp;siteplatform=Drupal&amp;yt=true" id="_fed_an_ua_tag" async></script>
+
+  </head>
+  <body  class="path-node not-front node-page node-page--node-type-directive" id="top">
+    
+<div  class="c-skiplinks">
+  <a href="#main" class="c-skiplinks__link u-visually-hidden u-focusable">Skip to main content</a>
+</div>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53QLXSL9"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+
+<div  class="l-site-container">
+    
+      
+<section  class="usa-banner" aria-label="Official government website">
+  <div class="usa-accordion">  <header class="usa-banner__header">
+    <div class="usa-banner__inner">
+      <div class="grid-col-auto">
+        <img class="usa-banner__header-flag" src="/profiles/cisad8_gov/themes/custom/gesso/dist/images/us_flag_small.png" alt="U.S. flag" />
+      </div>
+      <div class="grid-col-fill tablet:grid-col-auto">
+        <p class="usa-banner__header-text">An official website of the United States government</p>
+              <p class="usa-banner__header-action" aria-hidden="true">Here’s how you know</p></div>
+        <button class="usa-accordion__button usa-banner__button" aria-expanded="false" aria-controls="gov-banner">
+          <span class="usa-banner__button-text">Here’s how you know</span>
+        </button>
+          </div>
+  </header>
+      <div class="usa-banner__content usa-accordion__content" id="gov-banner">
+      <div class="grid-row grid-gap-lg">
+                  <div class="usa-banner__guidance tablet:grid-col-6">
+            <img class="usa-banner__icon usa-media-block__img" src="/profiles/cisad8_gov/themes/custom/gesso/dist/images/icon-dot-gov.svg" alt="Dot gov">
+            <div class="usa-media-block__body">
+              <p>
+                <strong>Official websites use .gov</strong>
+                <br> A <strong>.gov</strong> website belongs to an official government organization in the United States.
+              </p>
+            </div>
+          </div>
+                  <div class="usa-banner__guidance tablet:grid-col-6">
+            <img class="usa-banner__icon usa-media-block__img" src="/profiles/cisad8_gov/themes/custom/gesso/dist/images/icon-https.svg" alt="HTTPS">
+            <div class="usa-media-block__body">
+              <p>
+                <strong>Secure .gov websites use HTTPS</strong>
+                <br> A <strong>lock</strong> (<span class="icon-lock"><svg xmlns="http://www.w3.org/2000/svg" width="52" height="64" viewBox="0 0 52 64" class="usa-banner__lock-image" role="img" aria-labelledby="banner-lock-title banner-lock-description"><title id="banner-lock-title">Lock</title><desc id="banner-lock-description">A locked padlock</desc><path fill="#000000" fill-rule="evenodd" d="M26 0c10.493 0 19 8.507 19 19v9h3a4 4 0 0 1 4 4v28a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V32a4 4 0 0 1 4-4h3v-9C7 8.507 15.507 0 26 0zm0 8c-5.979 0-10.843 4.77-10.996 10.712L15 19v9h22v-9c0-6.075-4.925-11-11-11z"/></svg></span>) or <strong>https://</strong> means you’ve safely connected to the .gov website. Share sensitive information only on official, secure websites.
+              </p>
+            </div>
+          </div>
+              </div>
+    </div>
+  </div>
+  </section>
+    
+
+
+<div class="usa-overlay"></div>
+<header  class="usa-header usa-header--extended" role="banner">
+    		
+
+
+
+
+
+  <div  id="block-globalbuttons" class="c-global-header-btns c-global-btns c-block c-block--provider-block-content c-block--id-block-content83069f9f-34fc-4d54-86ec-936a204f8088">
+
+  
+  
+    
+
+      <div  class="l-constrain c-block__content">
+  
+      
+
+
+
+
+<div  class="c-field c-field--name-body c-field--type-text-with-summary c-field--label-hidden">
+  <div class="c-field__content"><p><a class="c-button c-button--basic c-button--gray" href="/staying-secure-large-scale-events">Staying Secure at Events</a><a class="c-button c-button--basic c-button--blue" href="/resources-tools/resources/free-cybersecurity-services-and-tools" title="Free Cyber Services">no-cost Cyber Services</a><a class="c-button c-button--basic c-button--green60" href="/cybersecurity-awareness-month">Cybersecurity Awareness Month</a><a class="c-button c-button--basic c-button--teal" href="/kev">KEV Catalog</a><a class="c-button c-button--report" href="/report">Report A Cyber Issue</a>&nbsp;</p></div></div>
+
+  
+      </div>
+  
+  
+  </div>
+
+	  </header>
+
+	
+<div  class="usa-navbar">
+  <div class="l-constrain">
+    <div class="usa-navbar__row">
+                                    
+
+
+
+  <div  class="c-block c-site-header">
+
+      <div  class="l-constrain">
+  
+  
+    
+
+      <div  class="c-block__content">
+  
+      
+
+
+
+
+
+  <div  id="block-guswds-cisaheaderblock" class="c-block c-block--provider-block-content c-block--id-block-contentbc4e6844-86b4-4e20-b163-a73bda3d1d76">
+
+  
+  
+    
+
+      <div  class="c-block__content">
+  
+      
+
+
+
+
+<div  class="c-field c-field--name-body c-field--type-text-with-summary c-field--label-hidden">
+  <div class="c-field__content"><a href="/"><img src = "/sites/default/files/images/SVG/header_logo_tagline_update.svg" alt="Cybersecurity & Infrastructure Security Agency logo America’s Cyber Security Defense Agency National Coordinator For Critical Infrastructure Security and Resilience"/><img class="print-only" src = "/sites/default/files/images/SVG/header_logo_tagline_update.png" alt="Cybersecurity & Infrastructure Security Agency logo America’s Cyber Security Defense Agency National Coordinator For Critical Infrastructure Security and Resilience"/></a></div></div>
+
+  
+      </div>
+  
+  
+  </div>
+
+  
+      </div>
+  
+      </div>
+  
+  </div>
+
+        
+
+
+
+  <div  class="c-block c-site-header-mobile">
+
+      <div  class="l-constrain">
+  
+  
+    
+
+      <div  class="c-block__content">
+  
+      
+
+
+
+
+
+  <div  id="block-guswds-cisaheaderblockmobile" class="c-block c-block--provider-block-content c-block--id-block-content283396c9-cd36-4ce3-b1e2-9b5576ab4f50">
+
+  
+  
+    
+
+      <div  class="c-block__content">
+  
+      
+
+
+
+
+<div  class="c-field c-field--name-body c-field--type-text-with-summary c-field--label-hidden">
+  <div class="c-field__content"><a href="/"><img src = "/sites/default/files/images/SVG/mobile_logo_wordmark.svg" alt="CISA Logo"/></a></div></div>
+
+  
+      </div>
+  
+  
+  </div>
+
+  
+      </div>
+  
+      </div>
+  
+  </div>
+            <div class="usa-navbar__search">
+        <div class="usa-navbar__search-header">
+          <p>Search</p>
+        </div>
+        
+<div  class="usa-search">
+  <script async src=https://cse.google.com/cse.js?cx=ffc4c79e29d5b3a8c></script>
+  <div class="gcse-searchbox-only" data-resultsurl="/search">&nbsp;</div>
+</div>
+      </div>
+      <button class="mobile-menu-button usa-menu-btn">Menu</button>
+    </div>
+  </div>
+</div>
+    
+
+
+
+  <div  class="c-block c-tagline-mobile">
+
+      <div  class="l-constrain">
+  
+  
+    
+
+      <div  class="c-block__content">
+  
+      
+
+
+
+
+
+  <div  id="block-guswds-mobiletaglinecontainer" class="c-block c-block--provider-block-content c-block--id-block-contentc8d12e9d-7e48-4708-90c1-563609c4b566">
+
+  
+  
+    
+
+      <div  class="c-block__content">
+  
+      
+
+
+
+
+<div  class="c-field c-field--name-body c-field--type-text-with-summary c-field--label-hidden">
+  <div class="c-field__content"><p><center><img src = "/sites/default/files/images/SVG/header_tagline_mobile_update.svg" alt = "America's Cyber Defense Agency" /></center></div></div>
+
+  
+      </div>
+  
+  
+  </div>
+
+  
+      </div>
+  
+      </div>
+  
+  </div>
+	
+
+<nav  class="usa-nav" role="navigation" aria-label="Primary navigation">
+  <div class="usa-nav__inner l-constrain">
+    <div class="usa-nav__row">
+      <button class="usa-nav__close">Close</button>
+      
+<div  class="usa-search">
+  <script async src=https://cse.google.com/cse.js?cx=ffc4c79e29d5b3a8c></script>
+  <div class="gcse-searchbox-only" data-resultsurl="/search">&nbsp;</div>
+</div>
+                
+  
+          <ul class="usa-nav__primary usa-accordion">
+    
+    
+              <li class="usa-nav__primary-item topics">
+      
+              <button class="usa-accordion__button usa-nav__link " aria-expanded="false" aria-controls="basic-mega-nav-section-1">
+          <span>Topics</span>
+        </button>
+      
+                
+  
+          <div id="basic-mega-nav-section-1" class="usa-nav__submenu usa-megamenu" hidden="">
+
+              <div class="usa-megamenu__parent-link">
+          <a href="/topics">Topics</a>
+        </div>
+              <div class="usa-megamenu__menu-items">
+    
+    
+              <div class="usa-col">
+
+              
+      
+                        <div class="usa-nav__submenu-item">
+                <a href="/topics/cybersecurity-best-practices">
+          <span>Cybersecurity Best Practices</span>
+        </a>
+                  </div>
+              
+              </div>
+          
+              <div class="usa-col">
+
+              
+      
+                        <div class="usa-nav__submenu-item">
+                <a href="/topics/cyber-threats-and-response">
+          <span>Cyber Threats and Response</span>
+        </a>
+                  </div>
+              
+              </div>
+          
+              <div class="usa-col">
+
+              
+      
+                        <div class="usa-nav__submenu-item">
+                <a href="/topics/critical-infrastructure-security-and-resilience">
+          <span>Critical Infrastructure Security and Resilience</span>
+        </a>
+                  </div>
+              
+              </div>
+          
+              <div class="usa-col">
+
+              
+      
+                        <div class="usa-nav__submenu-item">
+                <a href="/topics/election-security">
+          <span>Election Security</span>
+        </a>
+                  </div>
+              
+              </div>
+          
+              <div class="usa-col">
+
+              
+      
+                        <div class="usa-nav__submenu-item">
+                <a href="/topics/emergency-communications">
+          <span>Emergency Communications</span>
+        </a>
+                  </div>
+              
+              </div>
+          
+              <div class="usa-col">
+
+              
+      
+                        <div class="usa-nav__submenu-item">
+                <a href="/topics/industrial-control-systems">
+          <span>Industrial Control Systems</span>
+        </a>
+                  </div>
+              
+              </div>
+          
+              <div class="usa-col">
+
+              
+      
+                        <div class="usa-nav__submenu-item">
+                <a href="/topics/information-communications-technology-supply-chain-security">
+          <span>Information and Communications Technology Supply Chain Security</span>
+        </a>
+                  </div>
+              
+              </div>
+          
+              <div class="usa-col">
+
+              
+      
+                        <div class="usa-nav__submenu-item">
+                <a href="/topics/partnerships-and-collaboration">
+          <span>Partnerships and Collaboration</span>
+        </a>
+                  </div>
+              
+              </div>
+          
+              <div class="usa-col">
+
+              
+      
+                        <div class="usa-nav__submenu-item">
+                <a href="/topics/physical-security">
+          <span>Physical Security</span>
+        </a>
+                  </div>
+              
+              </div>
+          
+              <div class="usa-col">
+
+              
+      
+                        <div class="usa-nav__submenu-item">
+                <a href="/topics/risk-management">
+          <span>Risk Management</span>
+        </a>
+                  </div>
+              
+              </div>
+          
+            </div>
+                          
+
+<div  class="c-menu-feature-links">
+      <div class="c-menu-feature-links__title">
+      <a href="/audiences">        How can we help?
+      </a>    </div>
+        <div class="c-menu-feature-links__content"><a href="/topics/government">Government</a><a href="/topics/educational-institutions">Educational Institutions</a><a href="/topics/industry">Industry</a><a href="/topics/state-local-tribal-and-territorial">State, Local, Tribal, and Territorial</a><a href="/topics/individuals-and-families">Individuals and Families</a><a href="/topics/small-and-medium-businesses">Small and Medium Businesses</a><a href="/audiences/find-help-locally">Find Help Locally</a><a href="/audiences/faith-based-community">Faith-Based Community</a><a href="/audiences/executives">Executives</a><a href="/audiences/high-risk-communities">High-Risk Communities</a></div>
+  </div>
+
+              </div>
+    
+  
+      
+              </li>
+          
+              <li class="usa-nav__primary-item spotlight">
+      
+      
+                      <a href="/spotlight" class="usa-nav__link" >
+          <span>Spotlight</span>
+        </a>
+              
+              </li>
+          
+              <li class="usa-nav__primary-item resources--tools">
+      
+              <button class="usa-accordion__button usa-nav__link " aria-expanded="false" aria-controls="basic-mega-nav-section-3">
+          <span>Resources &amp; Tools</span>
+        </button>
+      
+                
+  
+          <div id="basic-mega-nav-section-3" class="usa-nav__submenu usa-megamenu" hidden="">
+
+              <div class="usa-megamenu__parent-link">
+          <a href="/resources-tools">Resources &amp; Tools</a>
+        </div>
+              <div class="usa-megamenu__menu-items">
+    
+    
+              <div class="usa-col">
+
+              
+      
+                        <div class="usa-nav__submenu-item">
+                <a href="/resources-tools/all-resources-tools">
+          <span>All Resources &amp; Tools</span>
+        </a>
+                  </div>
+              
+              </div>
+          
+              <div class="usa-col">
+
+              
+      
+                        <div class="usa-nav__submenu-item">
+                <a href="/resources-tools/services">
+          <span>Services</span>
+        </a>
+                  </div>
+              
+              </div>
+          
+              <div class="usa-col">
+
+              
+      
+                        <div class="usa-nav__submenu-item">
+                <a href="/resources-tools/programs">
+          <span>Programs</span>
+        </a>
+                  </div>
+              
+              </div>
+          
+              <div class="usa-col">
+
+              
+      
+                        <div class="usa-nav__submenu-item">
+                <a href="/resources-tools/resources">
+          <span>Resources</span>
+        </a>
+                  </div>
+              
+              </div>
+          
+              <div class="usa-col">
+
+              
+      
+                        <div class="usa-nav__submenu-item">
+                <a href="/resources-tools/training">
+          <span>Training</span>
+        </a>
+                  </div>
+              
+              </div>
+          
+              <div class="usa-col">
+
+              
+      
+                        <div class="usa-nav__submenu-item">
+                <a href="/resources-tools/groups">
+          <span>Groups</span>
+        </a>
+                  </div>
+              
+              </div>
+          
+            </div>
+                          
+              </div>
+    
+  
+      
+              </li>
+          
+              <li class="usa-nav__primary-item news--events">
+      
+              <button class="usa-accordion__button usa-nav__link usa-current" aria-expanded="false" aria-controls="basic-mega-nav-section-4">
+          <span>News &amp; Events</span>
+        </button>
+      
+                
+  
+          <div id="basic-mega-nav-section-4" class="usa-nav__submenu usa-megamenu" hidden="">
+
+              <div class="usa-megamenu__parent-link">
+          <a href="/news-events">News &amp; Events</a>
+        </div>
+              <div class="usa-megamenu__menu-items">
+    
+    
+              <div class="usa-col">
+
+              
+      
+                        <div class="usa-nav__submenu-item">
+                <a href="/news-events/directives">
+          <span>Directives</span>
+        </a>
+                  </div>
+              
+              </div>
+          
+              <div class="usa-col">
+
+              
+      
+                        <div class="usa-nav__submenu-item">
+                <a href="/news-events/news">
+          <span>News</span>
+        </a>
+                  </div>
+              
+              </div>
+          
+              <div class="usa-col">
+
+              
+      
+                        <div class="usa-nav__submenu-item">
+                <a href="/news-events/events">
+          <span>Events</span>
+        </a>
+                  </div>
+              
+              </div>
+          
+              <div class="usa-col">
+
+              
+      
+                        <div class="usa-nav__submenu-item">
+                <a href="/news-events/cybersecurity-advisories">
+          <span>Cybersecurity Alerts &amp; Advisories</span>
+        </a>
+                  </div>
+              
+              </div>
+          
+              <div class="usa-col">
+
+              
+      
+                        <div class="usa-nav__submenu-item">
+                <a href="/news-events/request-speaker">
+          <span>Request a CISA Speaker</span>
+        </a>
+                  </div>
+              
+              </div>
+          
+              <div class="usa-col">
+
+              
+      
+                        <div class="usa-nav__submenu-item">
+                <a href="/news-events/congressional-testimony">
+          <span>Congressional Testimony</span>
+        </a>
+                  </div>
+              
+              </div>
+          
+              <div class="usa-col">
+
+              
+      
+                        <div class="usa-nav__submenu-item">
+                <a href="/news-events/cisa-conferences">
+          <span>CISA Conferences</span>
+        </a>
+                  </div>
+              
+              </div>
+          
+              <div class="usa-col">
+
+              
+      
+                        <div class="usa-nav__submenu-item">
+                <a href="/cisa-live">
+          <span>CISA Live!</span>
+        </a>
+                  </div>
+              
+              </div>
+          
+            </div>
+                          
+              </div>
+    
+  
+      
+              </li>
+          
+              <li class="usa-nav__primary-item careers">
+      
+              <button class="usa-accordion__button usa-nav__link " aria-expanded="false" aria-controls="basic-mega-nav-section-5">
+          <span>Careers</span>
+        </button>
+      
+                
+  
+          <div id="basic-mega-nav-section-5" class="usa-nav__submenu usa-megamenu" hidden="">
+
+              <div class="usa-megamenu__parent-link">
+          <a href="/careers">Careers</a>
+        </div>
+              <div class="usa-megamenu__menu-items">
+    
+    
+              <div class="usa-col">
+
+              
+      
+                        <div class="usa-nav__submenu-item">
+                <a href="/careers/benefits-perks">
+          <span>Benefits &amp; Perks</span>
+        </a>
+                  </div>
+              
+              </div>
+          
+              <div class="usa-col">
+
+              
+      
+                        <div class="usa-nav__submenu-item">
+                <a href="/careers/hiring-and-recruitment">
+          <span>Hiring and Recruitment</span>
+        </a>
+                  </div>
+              
+              </div>
+          
+              <div class="usa-col">
+
+              
+      
+                        <div class="usa-nav__submenu-item">
+                <a href="/careers/new-employee-orientation-and-onboarding">
+          <span>New Employee Orientation &amp; Onboarding</span>
+        </a>
+                  </div>
+              
+              </div>
+          
+              <div class="usa-col">
+
+              
+      
+                        <div class="usa-nav__submenu-item">
+                <a href="/careers/students-recent-graduates-employment-opportunities">
+          <span>Students &amp; Recent Graduates</span>
+        </a>
+                  </div>
+              
+              </div>
+          
+              <div class="usa-col">
+
+              
+      
+                        <div class="usa-nav__submenu-item">
+                <a href="/careers/veteran-and-military-spouse-employment-opportunities">
+          <span>Veteran and Military Spouses</span>
+        </a>
+                  </div>
+              
+              </div>
+          
+            </div>
+                          
+              </div>
+    
+  
+      
+              </li>
+          
+              <li class="usa-nav__primary-item about">
+      
+              <button class="usa-accordion__button usa-nav__link " aria-expanded="false" aria-controls="basic-mega-nav-section-6">
+          <span>About</span>
+        </button>
+      
+                
+  
+          <div id="basic-mega-nav-section-6" class="usa-nav__submenu usa-megamenu" hidden="">
+
+              <div class="usa-megamenu__parent-link">
+          <a href="/about">About</a>
+        </div>
+              <div class="usa-megamenu__menu-items">
+    
+    
+              <div class="usa-col">
+
+              
+      
+                        <div class="usa-nav__submenu-item">
+                <a href="/about/divisions-offices">
+          <span>Divisions &amp; Offices</span>
+        </a>
+                  </div>
+              
+              </div>
+          
+              <div class="usa-col">
+
+              
+      
+                        <div class="usa-nav__submenu-item">
+                <a href="/about/regions">
+          <span>Regions</span>
+        </a>
+                  </div>
+              
+              </div>
+          
+              <div class="usa-col">
+
+              
+      
+                        <div class="usa-nav__submenu-item">
+                <a href="/about/leadership">
+          <span>Leadership</span>
+        </a>
+                  </div>
+              
+              </div>
+          
+              <div class="usa-col">
+
+              
+      
+                        <div class="usa-nav__submenu-item">
+                <a href="/about/doing-business-cisa">
+          <span>Doing Business with CISA</span>
+        </a>
+                  </div>
+              
+              </div>
+          
+              <div class="usa-col">
+
+              
+      
+                        <div class="usa-nav__submenu-item">
+                <a href="/site-links">
+          <span>Site Links</span>
+        </a>
+                  </div>
+              
+              </div>
+          
+              <div class="usa-col">
+
+              
+      
+                        <div class="usa-nav__submenu-item">
+                <a href="/cisa-github">
+          <span>CISA GitHub</span>
+        </a>
+                  </div>
+              
+              </div>
+          
+              <div class="usa-col">
+
+              
+      
+                        <div class="usa-nav__submenu-item">
+                <a href="/about/cisa-central">
+          <span>CISA Central</span>
+        </a>
+                  </div>
+              
+              </div>
+          
+              <div class="usa-col">
+
+              
+      
+                        <div class="usa-nav__submenu-item">
+                <a href="/about/contact-us">
+          <span>Contact Us </span>
+        </a>
+                  </div>
+              
+              </div>
+          
+              <div class="usa-col">
+
+              
+      
+                        <div class="usa-nav__submenu-item">
+                <a href="/about/contact-us/subscribe-updates-cisa">
+          <span>Subscribe</span>
+        </a>
+                  </div>
+              
+              </div>
+          
+              <div class="usa-col">
+
+              
+      
+                        <div class="usa-nav__submenu-item">
+                <a href="/about/transparency-and-accountability">
+          <span>Transparency and Accountability</span>
+        </a>
+                  </div>
+              
+              </div>
+          
+              <div class="usa-col">
+
+              
+      
+                        <div class="usa-nav__submenu-item">
+                <a href="/about/policies-plans">
+          <span>Policies &amp; Plans</span>
+        </a>
+                  </div>
+              
+              </div>
+          
+            </div>
+                          
+              </div>
+    
+  
+      
+              </li>
+          
+    
+      </ul>
+    
+  
+
+
+            
+
+
+
+  <div  class="c-block c-global-menu-btns c-global-btns">
+
+  
+  
+    
+
+      <div  class="c-block__content">
+  
+      
+
+
+
+
+<div  class="c-field c-field--name-body c-field--type-text-with-summary c-field--label-hidden">
+  <div class="c-field__content"><p><a class="c-button c-button--basic c-button--gray" href="/staying-secure-large-scale-events">Staying Secure at Events</a><a class="c-button c-button--basic c-button--blue" href="/resources-tools/resources/free-cybersecurity-services-and-tools" title="Free Cyber Services">no-cost Cyber Services</a><a class="c-button c-button--basic c-button--green60" href="/cybersecurity-awareness-month">Cybersecurity Awareness Month</a><a class="c-button c-button--basic c-button--teal" href="/kev">KEV Catalog</a><a class="c-button c-button--report" href="/report">Report A Cyber Issue</a>&nbsp;</p></div></div>
+
+  
+      </div>
+  
+  
+  </div>
+    </div>
+  </div>
+</nav>
+
+
+  
+  
+  
+<div  class="l-breadcrumb">
+  <div class="l-constrain">
+    <div class="l-breadcrumb__row">
+      
+
+
+
+
+
+
+
+  
+  
+    
+
+  
+              
+
+
+
+
+<nav  aria-labelledby="breadcrumb-label" class="c-breadcrumb" role="navigation">
+  <div class="l-constrain">
+    <div
+       id="breadcrumb-label" class="c-breadcrumb__title  u-visually-hidden">Breadcrumb</div>
+    <ol class="c-breadcrumb__list">
+              <li class="c-breadcrumb__item">
+                      <a class="c-breadcrumb__link" href="/">Home</a>
+                  </li>
+              <li class="c-breadcrumb__item">
+                      <a class="c-breadcrumb__link" href="/news-events">News &amp; Events</a>
+                  </li>
+              <li class="c-breadcrumb__item">
+                      <a class="c-breadcrumb__link" href="/news-events/directives">Cybersecurity Directives</a>
+                  </li>
+              <li class="c-breadcrumb__item">
+                      <span aria-current="page">
+              Supplemental Direction ED 25-03: Core Dump and Hunt Instructions
+            </span>
+                  </li>
+          </ol>
+  </div>
+</nav>
+
+  
+  
+  
+  
+
+
+
+
+
+
+  <div  id="block-bettersocialsharingbuttons" class="c-block c-block--social-share c-block--provider-better-social-sharing-buttons c-block--id-social-sharing-buttons-block">
+
+  
+  
+    
+
+      <div  class="c-block__content">
+  
+      <div class="c-block__row">
+      <span>Share:</span>
+      
+<div style="display: none"><link href="/modules/contrib/better_social_sharing_buttons/assets/dist/sprites/social-icons--no-color.svg" as="image" type="image/svg+xml" crossorigin="anonymous" /></div>
+
+<div class="social-sharing-buttons">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.cisa.gov/news-events/directives/supplemental-direction-ed-25-03-core-dump-and-hunt-instructions&amp;title=Supplemental%20Direction%20ED%2025-03%3A%20Core%20Dump%20and%20Hunt%20Instructions"
+   target="_blank"
+   title="Share to Facebook"
+   aria-label="Share to Facebook (opens in a new window)"
+   class="social-sharing-buttons-button share-facebook"
+   rel="noopener">
+  <svg aria-hidden="true" width="18px" height="18px" style="border-radius:3px;">
+    <use href="/modules/contrib/better_social_sharing_buttons/assets/dist/sprites/social-icons--no-color.svg#facebook" />
+  </svg>
+  <span class="social-sharing-buttons-visually-hidden">
+    Opens in a new window
+  </span>
+</a>
+                <a href="https://twitter.com/intent/tweet?text=Supplemental%20Direction%20ED%2025-03%3A%20Core%20Dump%20and%20Hunt%20Instructions+https://www.cisa.gov/news-events/directives/supplemental-direction-ed-25-03-core-dump-and-hunt-instructions"
+   target="_blank"
+   title="Share to X"
+   aria-label="Share to X (opens in a new window)"
+   class="social-sharing-buttons-button share-x"
+   rel="noopener">
+  <svg aria-hidden="true" width="18px" height="18px" style="border-radius:3px;">
+    <use href="/modules/contrib/better_social_sharing_buttons/assets/dist/sprites/social-icons--no-color.svg#x" />
+  </svg>
+  <span class="social-sharing-buttons-visually-hidden">
+    Opens in a new window
+  </span>
+</a>
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.cisa.gov/news-events/directives/supplemental-direction-ed-25-03-core-dump-and-hunt-instructions"
+   target="_blank"
+   title="Share to LinkedIn"
+   aria-label="Share to LinkedIn (opens in a new window)"
+   class="social-sharing-buttons-button share-linkedin"
+   rel="noopener">
+  <svg aria-hidden="true" width="18px" height="18px" style="border-radius:3px;">
+    <use href="/modules/contrib/better_social_sharing_buttons/assets/dist/sprites/social-icons--no-color.svg#linkedin" />
+  </svg>
+  <span class="social-sharing-buttons-visually-hidden">
+    Opens in a new window
+  </span>
+</a>
+                <a href="mailto:?subject=Supplemental%20Direction%20ED%2025-03%3A%20Core%20Dump%20and%20Hunt%20Instructions&amp;body=https://www.cisa.gov/news-events/directives/supplemental-direction-ed-25-03-core-dump-and-hunt-instructions"
+   title="Share by email"
+   aria-label="Share by email"
+   class="social-sharing-buttons-button share-email"
+   target="_blank"
+   rel="noopener">
+  <svg aria-hidden="true" width="18px" height="18px" style="border-radius:3px;">
+    <use href="/modules/contrib/better_social_sharing_buttons/assets/dist/sprites/social-icons--no-color.svg#email" />
+  </svg>
+</a>
+                                                                        </div>
+
+    </div>
+  
+      </div>
+  
+  
+  </div>
+
+    </div>
+  </div>
+</div>
+
+  
+  
+
+  <main id="main" class="c-main" role="main" tabindex="-1">
+        
+      
+    
+
+
+<div  class="l-content">
+          
+
+
+
+
+
+
+
+  
+  
+    
+
+  
+            
+
+
+
+
+<div  class="c-page-title">
+	<div class="c-page-title__inner l-constrain">
+		<div class="c-page-title__row">
+			<div>
+				<div class="c-page-title__content">
+											<div class="c-page-title__meta">Emergency Directives</div>
+										<h1 class="c-page-title__title">
+<span>Supplemental Direction ED 25-03: Core Dump and Hunt Instructions</span>
+</h1>
+																<div class="c-page-title__date"><time datetime="2025-09-25T12:00:00Z">September 25, 2025</time>
+</div>
+																																														<div class="c-page-title__topic">
+							<div class="c-topic__label">
+								Related topics:
+							</div>
+							<div class="c-top__topics">
+																																												<a href="/topics/cybersecurity-best-practices">Cybersecurity Best Practices</a>
+																																		</div>
+						</div>
+									</div>
+				<div class="c-page-title__decoration"></div>
+			</div>
+					</div>
+	</div>
+</div>
+
+
+
+
+<div  class="l-sidebar has-aside-left">
+
+  
+  <div class="l-sidebar__row">
+          <aside class="l-sidebar__left">
+                  
+
+
+
+
+
+
+
+  <div  id="block-sidenavigation" class="c-block c-block--sidenav c-block--provider-menu-block c-block--id-menu-blockmain">
+
+  
+  
+      <h2  class="c-block__title"><a href="/news-events" class="menu-item--active-trail" data-drupal-link-system-path="node/7332">News &amp; Events</a></h2>
+    
+
+      <div  class="c-block__content">
+  
+        
+  
+          <ul class="usa-nav__primary usa-accordion">
+    
+    
+              <li class="usa-nav__primary-item directives">
+      
+      
+                      <a href="/news-events/directives" class="usa-nav__link usa-current" >
+          <span>Directives</span>
+        </a>
+              
+              </li>
+          
+              <li class="usa-nav__primary-item news">
+      
+      
+                      <a href="/news-events/news" class="usa-nav__link" >
+          <span>News</span>
+        </a>
+              
+              </li>
+          
+              <li class="usa-nav__primary-item events">
+      
+      
+                      <a href="/news-events/events" class="usa-nav__link" >
+          <span>Events</span>
+        </a>
+              
+              </li>
+          
+              <li class="usa-nav__primary-item cybersecurity-alerts--advisories">
+      
+      
+                      <a href="/news-events/cybersecurity-advisories" class="usa-nav__link" >
+          <span>Cybersecurity Alerts &amp; Advisories</span>
+        </a>
+              
+              </li>
+          
+              <li class="usa-nav__primary-item request-a-cisa-speaker">
+      
+      
+                      <a href="/news-events/request-speaker" class="usa-nav__link" >
+          <span>Request a CISA Speaker</span>
+        </a>
+              
+              </li>
+          
+              <li class="usa-nav__primary-item congressional-testimony">
+      
+      
+                      <a href="/news-events/congressional-testimony" class="usa-nav__link" >
+          <span>Congressional Testimony</span>
+        </a>
+              
+              </li>
+          
+              <li class="usa-nav__primary-item cisa-conferences">
+      
+      
+                      <a href="/news-events/cisa-conferences" class="usa-nav__link" >
+          <span>CISA Conferences</span>
+        </a>
+              
+              </li>
+          
+              <li class="usa-nav__primary-item cisa-live">
+      
+      
+                      <a href="/cisa-live" class="usa-nav__link" >
+          <span>CISA Live!</span>
+        </a>
+              
+              </li>
+          
+    
+      </ul>
+    
+  
+
+
+  
+      </div>
+  
+  
+  </div>
+
+              </aside>
+    
+    <div class="l-sidebar__main">
+      
+							
+
+<div  class="l-page-section l-page-section--rich-text">
+      <div class="l-constrain">
+  
+  
+  <div class="l-page-section__content">
+            
+  
+  
+  
+<figure class="c-figure c-figure--large c-figure--image" role="group">
+  
+  <div class="c-figure__media">  <img loading="lazy" src="/sites/default/files/styles/large/public/2026-04/ED%2025-03%20Update.jpg?itok=spUsEnoZ" width="1024" height="576" alt="Emergency Directive 25-03 Update: Identify and Mitigate Potential Compromise of Cisco Devices">
+
+
+</div>
+  </figure>
+<h2 class="text-align-center"><strong>Core Dump and Hunt Guidance for Cisco Devices</strong></h2>
+<p>Original Issuance Date: September 25, 2025</p>
+<p>Updated April 24, 2026</p>
+<p class="text-align-center"><em>Note: CISA updated this Supplemental Direction on April 23, 2026, to accommodate instructions for Cisco Firepower and Secure Firewall devices.</em></p>
+<div class="OutlineElement Ltr SCXW211440980 BCX8">
+<p><a href="/news-events/directives/ed-25-03-identify-and-mitigate-potential-compromise-cisco-devices" target="_blank" title="ED 25-03: Identify and Mitigate Potential Compromise of Cisco Devices"><u>Emergency Directive (ED) 25-03: Identify and Mitigate Potential Compromise of Cisco Devices</u></a> directs Federal Civilian Executive Branch (FCEB) agencies to identify, hunt for, update, and remediate in‑scope Cisco Adaptive Security Appliance (ASA), Cisco Firepower, and Cisco Secure Firewall devices. Exploitation activities linked to <a href="https://www.cve.org/CVERecord?id=CVE-2025-20333" target="_blank" title="CVE-2025-20333"><u>CVE-2025-20333</u></a> (remote code execution), <a href="https://www.cve.org/CVERecord?id=CVE-2025-20362" target="_blank" title="CVE-2025-20362"><u>CVE-2025-20362</u></a> (privilege escalation), and observed persistence mechanisms pose an unacceptable risk to FCEB information systems, necessitating immediate action to mitigate remote code execution, privilege escalation, and long‑term unauthorized access.</p>
+<p>CISA is providing this Supplemental Direction to help organizations detect and eradicate persistence and harden affected Cisco devices. ED 25-03 requires FCEB agencies to implement the measures below—including core dump collection and analysis, patching, hard resets, and reporting—and to report any indications of compromise or unusual activity to CISA. Though Emergency Directives apply only to federal agencies, CISA strongly encourages all organizations to use this guidance to reduce the risk surface of their networks.</p>
+</div>
+<h2><strong>Background</strong></h2>
+<p>CISA is aware of an ongoing campaign by a sophisticated threat actor exploiting Cisco products exposed via web services, specifically:</p>
+<ul>
+<li>Cisco ASA</li>
+<li>Cisco Firepower products with ASA or Firepower Threat Defense (FTD) software</li>
+<li>Cisco Secure Firewall products with ASA or FTD software</li>
+</ul>
+<p><strong>Note</strong>: CISA did not initially have evidence that the threat actor exploited Firepower and Secure Firewall devices when ED 25-03 was released in September 2025; however, this updated Supplemental Direction accompanies the updated ED due to evidence that now suggests exploitation of these devices.</p>
+<p>The threat actor gains initial access to these devices by exploiting <a href="https://www.cve.org/CVERecord?id=CVE-2025-20333" title="CVE-2025-20333">CVE-2025-20333</a> [<a href="https://cwe.mitre.org/data/definitions/862.html" title="CWE-862: Missing Authorization">CWE-862: Missing Authorization</a>] and/or <a href="https://www.cve.org/CVERecord?id=CVE-2025-20362" title="CVE-2025-20362">CVE-2025-20362</a> [<a href="https://cwe.mitre.org/data/definitions/120.html" title="CWE-120: Classic Buffer Overflow">CWE-120: Classic Buffer Overflow</a>]. Cisco has released updates to address both CVEs, and the updates specific to these CVEs appear to successfully prevent initial compromise. However, CISA is aware of an advanced persistence mechanism—referred to as “FIRESTARTER” —that the threat actor uses on Cisco Firepower and Secure Firewall devices to persist through these updates. This mechanism remains on affected devices, enabling continued exploitation. The below guidance provides mitigations to address the FIRESTARTER persistence mechanism, as well as links to Cisco’s latest software release that also aims to mitigate the persistence.</p>
+<p>Cisco ASA devices are not vulnerable to the FIRESTARTER persistence mechanism; however, they remain vulnerable to initial exploitation if unpatched.</p>
+<p>Additionally, software versions after 9.17.1.40, 9.18.4.41, 9.19.1.32, and 9.20+ are not vulnerable to the overflow because the handler was removed. <strong>However, if a device previously ran a software version that predates these releases, it may still be compromised, even if it has since been updated.</strong></p>
+<div class="OutlineElement Ltr SCXW263896476 BCX8">
+<p>This Supplemental Direction contains three main sections:</p>
+</div>
+<div class="ListContainerWrapper SCXW263896476 BCX8">
+<ol>
+<li><a href="#FTDsoftware">Guidance for Cisco Firepower and Secure Firewall Devices With FTD Software</a></li>
+<li><a href="#ASAsoftware">Guidance for Cisco Firepower and Secure Firewall Devices With ASA Software</a></li>
+<li><a href="#ASAdevices">Guidance for Cisco ASA Devices</a></li>
+</ol>
+</div>
+<div class="OutlineElement Ltr SCXW263896476 BCX8">
+<p>It is imperative that organizations follow the correct guidance for each device category, as instructions and commands vary. If your device does not fall into these categories, no further artifact collection is required; proceed with the remaining steps in <a href="/news-events/directives/ed-25-03-identify-and-mitigate-potential-compromise-cisco-devices" target="_blank" title="ED 25-03: Identify and Mitigate Potential Compromise of Cisco Devices"><u>ED 25-03</u></a>. If you are unsure about the hardware or software version of your device, use the “show version” command to determine the version.</p>
+<div class="OutlineElement Ltr SCXW137247145 BCX8">
+<p>Within each section, complete the steps in the exact order listed. Any deviation may trigger threat actor anti-forensics measures, which will destroy forensic data and disrupt ongoing investigations. To avoid activating threat actor anti-forensics measures:</p>
+</div>
+<div class="ListContainerWrapper SCXW137247145 BCX8">
+<ul>
+<li><strong>Do NOT use the “tab” autocomplete </strong>or any other autocomplete function. The threat actor has hooked these commands to crash the device.</li>
+</ul>
+</div>
+<div class="ListContainerWrapper SCXW137247145 BCX8">
+<ul>
+<li><strong>Do NOT take any remediation actions beyond what is described below </strong>(i.e., blocking IPs) without consulting with CISA first. The threat actor is closely monitoring for changes and can pivot rapidly to new infrastructure.</li>
+</ul>
+<p>According to recent reporting,<strong> malicious activity likely began before or as early as 2024.</strong> For additional information related to this malicious activity, see:</p>
+<ul>
+<li>CISA’s <a href="/news-events/analysis-reports/ar26-113a" target="_blank" title="FIRESTARTER Backdoor Malware Analysis Report"><u>FIRESTARTER Backdoor Malware Analysis Report</u></a></li>
+<li>United Kingdom National Cyber Security Centre’s <a href="https://www.ncsc.gov.uk/static-assets/documents/malware-analysis-reports/RayInitiator-LINE-VIPER/ncsc-mar-rayinitiator-line-viper.pdf" target="_blank" title="RayInitiator &amp; LINE VIPER Malware Analysis Report"><u>RayInitiator &amp; LINE VIPER Malware Analysis Report</u></a></li>
+<li>The <a href="https://blog.talosintelligence.com/uat-4356-firestarter/" target="_blank"><u>Cisco Talos Blog: FIRESTARTER</u></a></li>
+</ul>
+<p><strong>Note: This guidance reflects CISA’s current understanding of the threat. </strong>Related investigations are ongoing, and there are still unknown elements to the malicious activity. CISA encourages all organizations to report findings to CISA, especially if new malicious activity or detection methods are observed.</p>
+</div>
+</div>
+<h2 class="text-align-center"><a class="ck-anchor" id="FTDsoftware"></a><strong>Guidance for Cisco Firepower and Secure Firewall Devices With FTD Software</strong></h2>
+<p><strong>The guidance in this section is specific to Cisco Firepower and Secure Firewall devices with FTD software</strong>. In conjunction with Cisco’s released guidance, use the steps below to collect artifacts, obtain and submit a core dump to CISA’s Malware Next Generation (MNG) platform, apply Cisco’s latest software updates, perform a hard restart, and conduct follow-on threat hunting.</p>
+<dl class="ckeditor-accordion">
+<dt><strong>A: Collect Device Artifacts</strong></dt>
+<dd>
+<div class="ListContainerWrapper SCXW61645370 BCX8">
+<ol>
+<li>
+<h5>Confirm Device Information</h5>
+<p>Identify and document device model type, serial number, and firmware version.</p>
+</li>
+</ol>
+</div>
+<div class="ListContainerWrapper SCXW61645370 BCX8">
+<ol start="2">
+<li>
+<h5>Run Initial Commands and Collect Output</h5>
+<p>Before collecting a core dump, run the below commands in the FTD Command Line Interface (CLI). The output is crucial for analysis; CISA may request it at a later date. Save the output in a location off the device. If your device crashes as a result of running any command in this step (excluding the expected reload during core dump collection), stop all actions and contact CISA immediately.</p>
+<ol>
+<li>
+<p>Access the FTD CLI.</p>
+<p><strong>Note</strong>: FTD CLI access method varies by product and channel (Secure Shell [SSH] vs console).</p>
+<ol>
+<li>From the FTD CLI, execute the following commands:
+<ol>
+<li><em>system support diagnostic-cli</em></li>
+<li><em>enable</em></li>
+</ol>
+</li>
+</ol>
+</li>
+<li>Run “<em>show checkheaps</em>” command.
+<ol>
+<li>Record the time of the last successful <em>checkheaps</em> command shown in the output.</li>
+<li>Copy and save the full output off the device<strong> </strong>(preferably to an isolated system).</li>
+<li>Wait at least five minutes, then run “show checkheaps” again. Review the last row for “Total number of runs.”
+<ol>
+<li>Expect an increase of approximately one per 60 seconds elapsed (i.e., if the command is executed five minutes apart, the number should increase by approximately five).</li>
+<li>Note the value and whether it increased.</li>
+</ol>
+</li>
+<li>
+<p>If there is no positive change in “Total number of runs,” this is evidence of a potential compromise.</p>
+<table>
+<tbody>
+<tr>
+<td>
+<p><strong>Note: </strong>The command output displays the following:</p>
+  
+  
+  
+  
+<figure class="c-figure c-figure--large c-figure--image" role="group">
+  
+  <div class="c-figure__media">  <img loading="lazy" src="/sites/default/files/styles/large/public/2025-09/ED%2025-03%20SG%20show_checkheaps.png?itok=5iczAkQ1" width="314" height="157" alt="ED 25-03 Show Cheakheaps Command Output">
+
+
+</div>
+  </figure>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+</li>
+<li>Run “<em>show tech-support detail</em>” command.
+<ol>
+<li>This command aggregates device information by running a broad set of show commands. From this output, make sure to capture:
+<ol>
+<li>Uptime</li>
+<li>ROMMON version</li>
+<li>Firmware version</li>
+<li>Last crashinfo</li>
+</ol>
+</li>
+<li>Save the full output off the device (preferably to an isolated system).</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<h5><strong>Collect Core Dump</strong></h5>
+<p><strong>Note: </strong>The steps below trigger an immediate reload of the device and may cause network degradation or outages.</p>
+<ol>
+<li>Soft reboot the device to maximize the likelihood of a clean core dump.</li>
+<li>Collect a core dump and save a copy.
+<ol>
+<li>
+<p>Follow model-specific instructions:</p>
+<ol>
+<li>For Firepower 1000/2100 and Secure Firewalls (all models), follow step 6 in the <a href="https://sec.cloudapps.cisco.com/security/center/resources/forensic_guides/firepower1000_2100_forensic_investigation.html" title="Cisco Firepower 1000/2100 Series Forensic Data Collection Procedures">Cisco Firepower 1000/2100 Series Forensic Data Collection Procedures</a></li>
+<li>Firepower 4100/9300 follow step 7 in the <a href="https://sec.cloudapps.cisco.com/security/center/resources/forensic_guides/firepower4100_9300_forensic_investigation.html" title="Cisco Firepower 4100 Series and 9300 Series Appliances Forensic Data Collection Procedures">Cisco Firepower 4100 Series and 9300 Series Appliances Forensic Data Collection Procedures</a></li>
+</ol>
+<p><strong>Note: </strong>FCEB agencies should contact CISA if they encounter any issues.</p>
+</li>
+</ol>
+</li>
+<li>If nothing is written (i.e., no file appears in the file system):
+<ol>
+<li>Record this condition.</li>
+<li>Review the command output for errors (i.e., “disk0: free space is too full to write a coredump.”)</li>
+<li>
+<p>Run the commands again.</p>
+<ol>
+<li>If successful on the second attempt, inform CISA.</li>
+<li>If there is still no output, document and inform CISA; this may indicate an error or possible compromise.</li>
+</ol>
+<p><strong>Note</strong>: Core dump files typically follow a naming pattern similar to: <em>“core_1756308546_firepower_lina_11.3692.gz”</em></p>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</div>
+</dd>
+<dt><strong>B. Upload Core Dump in CISA’s Malware Next Generation (MNG) Platform</strong></dt>
+<dd>
+<p>To upload a core dump to CISA’s MNG platform, see the <a href="#annex"><strong>Annex</strong></a><strong> </strong>below.</p>
+</dd>
+<dt><strong>C. Apply Patch per CISA’s ED 25-03 and Cisco’s Security Advisory</strong></dt>
+<dd>
+<div class="OutlineElement Ltr SCXW130542163 BCX8">
+<p>After device artifact and core dump collection, apply Cisco’s latest software updates and consult the instructions in <a href="/news-events/directives/ed-25-03-identify-and-mitigate-potential-compromise-cisco-devices" title="ED 25-03: Identify and Mitigate Potential Compromise of Cisco Devices"><u>ED 25-03</u></a> and Cisco’s <a class="Hyperlink SCXW7394068 BCX8" href="https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-asaftd-persist-CISAED25-03" target="_blank" rel="noreferrer noopener"><u>Security Advisory</u></a>. These updates address:</p>
+<div class="ListContainerWrapper SCXW248106217 BCX8">
+<ul>
+<li>CVE-2025-20333</li>
+<li>CVE-2025-20362</li>
+<li>FIRESTARTER persistence mechanism</li>
+</ul>
+<div class="OutlineElement Ltr SCXW159100902 BCX8">
+<div class="OutlineElement Ltr SCXW85352255 BCX8">
+<p>To confirm the correct updated version (with the relevant hotfix), review the software tables included in Cisco’s <a class="Hyperlink SCXW7394068 BCX8" href="https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-asaftd-persist-CISAED25-03" target="_blank" rel="noreferrer noopener"><u>Security Advisory</u></a>. Ensure you notate which version you upgrade to, as this will need to be reported to CISA.</p>
+<p>Note:</p>
+<ul>
+<li>For Firepower 4100 and 9300 devices, entities must upgrade the Firepower eXtensible Operating System (FXOS) before upgrading the FTD software.</li>
+<li>For Secure Firewall 3100 and 4200 devices in multi-instance mode, entities should consult Cisco’s Firewall Management Center, which provides guidance on upgrading FXOS and the FTD software.</li>
+</ul>
+</div>
+<div class="OutlineElement Ltr SCXW139574822 BCX8">
+<p>After implementing the latest software updates:</p>
+</div>
+<div class="ListContainerWrapper SCXW139574822 BCX8">
+<ul>
+<li>If core dump results do not indicate compromise, proceed to step D (Perform a Hard Restart of Cisco Firepower and Cisco Secure Firewall Devices).</li>
+<li>If core dump results indicate compromise, keep the device powered on, immediately disconnect the device from the network, and contact CISA for further guidance. <strong>Do not take any additional actions without coordinating with CISA.</strong></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</dd>
+<dt><strong>D. Perform a Hard Restart of Cisco Firepower and Cisco Secure Firewall Devices</strong></dt>
+<dd>
+<div class="OutlineElement Ltr SCXW217568469 BCX8">
+<p><strong>Note</strong>: If the core dump analysis indicates potential compromise, <strong>do not proceed with this section or take any additional action until coordinating with CISA</strong>.</p>
+</div>
+<div class="OutlineElement Ltr SCXW217568469 BCX8">
+<p>CISA has determined that the only method to confidently remove the FIRESTARTER persistence mechanism is to physically unplug the device from its power source, forcing a hard restart. As a precaution, all organizations should take the below steps immediately after implementing the latest software updates, even if the core dump analysis does not indicate compromise. If an organization patches a device but cannot perform a hard restart immediately after, CISA recommends obtaining a new core dump and analyzing it for compromise before hard restarting.</p>
+</div>
+<div class="OutlineElement Ltr SCXW217568469 BCX8">
+<p>To perform a hard restart:</p>
+</div>
+<div class="ListContainerWrapper SCXW217568469 BCX8">
+<ol>
+<li>Locate physical device.</li>
+</ol>
+</div>
+<div class="ListContainerWrapper SCXW217568469 BCX8">
+<ol start="2">
+<li>
+<p>While the device is running, physically unplug it from all power sources.</p>
+<p><strong>Note</strong>: A standard reboot is insufficient. Fully remove power, including any redundant power sources.</p>
+</li>
+</ol>
+</div>
+<div class="ListContainerWrapper SCXW217568469 BCX8">
+<ol start="3">
+<li>Leave the device fully disconnected from power for one minute.</li>
+</ol>
+</div>
+<div class="ListContainerWrapper SCXW217568469 BCX8">
+<ol start="4">
+<li>Reconnect power and allow device to boot.</li>
+</ol>
+</div>
+</dd>
+<dt><strong>E. Conduct Further Threat Hunting</strong></dt>
+<dd>
+<div class="OutlineElement Ltr SCXW28674185 BCX8">
+<p>If CISA’s MNG platform results show malicious indicators of compromise:</p>
+</div>
+<div class="ListContainerWrapper SCXW28674185 BCX8">
+<ul>
+<li>FCEB agencies should follow <a href="/news-events/directives/ed-25-03-identify-and-mitigate-potential-compromise-cisco-devices" title="ED 25-03: Identify and Mitigate Potential Compromise of Cisco Devices"><u>ED 25-03</u></a> and contact CISA immediately.</li>
+<li>Other U.S. organizations should contact CISA via the <a href="https://myservices.cisa.gov/irf" target="_blank" title="CISA's Incident Reporting System"><u>Incident Reporting System</u></a> or through CISA’s 24/7 Operations Center (<a href="mailto:contact@cisa.dhs.gov" target="_blank" title="Email CISA’s Operations Center"><u>contact@cisa.dhs.gov</u></a> or 888-282-0870).</li>
+<li>Cisco customers should open a <a href="https://mycase.cloudapps.cisco.com/case" target="_blank" title="Cisco Technical Assistance Center"><u>Cisco Technical Assistance Center (TAC) case</u></a> and include the output of the “<em>show tech-support detail</em>” command.</li>
+</ul>
+</div>
+<div class="OutlineElement Ltr SCXW28674185 BCX8">
+<p>In conjunction with Cisco’s released guidance, use the steps below to detect additional malicious activity, as the threat actor may have pivoted from the compromised device to other areas of the network. Organizations do not need to complete these steps strictly in order; however, begin with identifying compromised user accounts, which has proven the most reliable starting point.</p>
+<div class="ListContainerWrapper SCXW61645370 BCX8">
+<ol>
+<li>
+<h5><strong>Identify Compromised Accounts</strong></h5>
+<p>Begin by identifying potentially compromised accounts. Based on current investigations, one reliable method is monitoring and searching for impossible-travel logins; scrutinize all logins traversing the compromised device.</p>
+<ol>
+<li>Monitor and search for impossible-travel logins.
+<ol>
+<li>
+<p>Detect suspicious logins from geographically distant IP addresses using the following Splunk Search Processing Language (SPL) query (tailor it to the security information and event management [SIEM] solution in place):</p>
+<p>index=&lt;NDR/Appliance&gt; sourcetype=&lt;log_source&gt;</p>
+<p>| search event_type="authentication"</p>
+<p>| iplocation src_ip</p>
+<p>| stats earliest(_time) AS first_login latest(_time) AS last_login by user, src_ip, City, Country</p>
+<p>| where first_login != last_login AND distance_between(first_login_location, last_login_location) &gt; 1000</p>
+<p>| table user, src_ip, first_login, last_login, City, Country</p>
+</li>
+</ol>
+</li>
+<li>Review syslog message IDs.
+<ol>
+<li>Informational level:
+<ol>
+<li>WebVPN session terminated: Idle Timeout : %FTD-6-716002</li>
+</ol>
+</li>
+<li>
+<p>Debug level:</p>
+<ol>
+<li>SVC Service Termination: %FTD-7-722029</li>
+<li>SVC Service Termination: %FTD-7-722030</li>
+<li>SVC Service Termination: %FTD-7-722031</li>
+</ol>
+<p><strong>Note</strong>: Informational-level syslogs should be enabled by default; enable if disabled. Debug-level syslogs are not enabled by default; enable if feasible.</p>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</div>
+<div class="ListContainerWrapper SCXW61645370 BCX8">
+<ol start="2">
+<li>
+<h5><strong>Review Compromised Account Activity</strong></h5>
+<p>Monitor and search for the below known threat actor activities conducted after obtaining account access.</p>
+<ol>
+<li>Check for credential reuse.
+<ol>
+<li>If a compromised device contains user or service account credentials (i.e., usernames and passwords), assess those accounts for lateral movement, especially where credentials are reused across the enterprise or follow predictable patterns (e.g., “Password12 &gt; Password23”).</li>
+<li>If only account names (no passwords) are present, enable enhanced monitoring (i.e., login sources, actions performed) and review for suspicious activity.</li>
+<li>If a compromised device provides virtual private network (VPN) access, search for login attempts from the assigned VPN pool address and compare against all authentication sources, regardless of the account used.</li>
+</ol>
+</li>
+<li>Check for credential harvesting.
+<ol>
+<li>Run a “<em>show capture</em>” command to check for evidence of unauthorized packet captures configured to target:
+<ol>
+<li>Terminal Access Controller Access-Control System Plus (TACACS+)</li>
+<li>Remote Authentication Dial-In User Service (RADIUS)</li>
+<li>Lightweight Directory Access Protocol (LDAP)</li>
+<li>Server Message Block (SMB)</li>
+</ol>
+</li>
+<li>Determine whether shared keys between the compromised device and the centralized authentication server could enable decryption of captured traffic; if so, monitor for unauthorized use of any exposed service, network administrator, or other account credentials.</li>
+</ol>
+</li>
+<li>Look for widespread scans of printers, largely across TCP port 443, after the threat actor establishes a foothold.</li>
+<li>Review for LDAP queries attempting to enumerate domain controller objects and services, including:
+<ol>
+<li>servicePrincipalName=*cert*</li>
+<li>servicePrincipalName=*pki*</li>
+<li>servicePrincipalName=*public*</li>
+<li>objectclass=*</li>
+</ol>
+</li>
+<li>Review for tampering with informational syslogs.
+<ol>
+<li>Review for tampering or suppression of the following informational syslogs:
+<ol>
+<li>302013 (VPN connection established)</li>
+<li>302014 (VPN connection terminated)</li>
+<li>710005</li>
+<li>609002</li>
+</ol>
+</li>
+<li>If 302013 and 302014 are absent when expecting VPN activity, treat this as suspicious and investigate for potential threat actor malware.</li>
+<li>Examine historical trends for 302013 and 302014 (i.e., sudden gaps or cessation) to establish a potential tampering timeline.</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</div>
+</div>
+</dd>
+</dl>
+<h2 class="text-align-center"><a class="ck-anchor" id="ASAsoftware"></a><strong>Guidance for Cisco Firepower and Secure Firewall Devices</strong>&nbsp;<strong>With ASA Software</strong></h2>
+<p><strong>The guidance in this section is specific to Cisco Firepower and Cisco Secure Firewall devices with ASA software</strong>. In conjunction with Cisco’s released guidance, use the steps below to collect artifacts, obtain and submit a core dump to CISA’s Malware Next Generation (MNG) platform, apply Cisco’s latest software updates, perform a hard restart, and conduct follow-on threat hunting.</p>
+<dl class="ckeditor-accordion">
+<dt><strong>A. Collect Device Artifacts</strong></dt>
+<dd>
+<div class="ListContainerWrapper SCXW61645370 BCX8">
+<ol>
+<li>
+<h5>Confirm Device Information</h5>
+<p>Identify and document device model type, serial number, and firmware version.</p>
+</li>
+</ol>
+</div>
+<div class="ListContainerWrapper SCXW61645370 BCX8">
+<ol start="2">
+<li>
+<h5>Run Initial Commands and Collect Output</h5>
+<p>Before<em> </em>collecting<em> </em>a core dump, run the below commands. The output is crucial for analysis; CISA may request it at a later date. Save the output in a location off the device. If your device crashes as a result of running any command in this step (excluding the expected reload during core dump collection), stop all actions and contact CISA immediately.</p>
+<ol>
+<li>Run “<em>show checkheaps</em>” command.
+<ol>
+<li>Confirm and notate the time of the last successful <em>checkheaps</em> command.</li>
+<li>Copy and save the full output and off the device<strong> </strong>(preferably to an isolated system).</li>
+<li>Wait at least five minutes, then run “show checkheaps” again. Review the last row for “Total number of runs.”
+<ol>
+<li>Expect an increase of approximately one per 60 seconds elapsed (i.e., if the command is executed five minutes apart, the number should increase by approximately five).</li>
+<li>Note the value and whether it increased.</li>
+</ol>
+</li>
+<li>
+<p>If there is no positive change in “Total number of runs,” this is evidence of a potential compromise.</p>
+<table>
+<tbody>
+<tr>
+<td>
+<p><strong>Note: </strong>The command output displays the following:</p>
+  
+  
+  
+  
+<figure class="c-figure c-figure--large c-figure--image" role="group">
+  
+  <div class="c-figure__media">  <img loading="lazy" src="/sites/default/files/styles/large/public/2025-09/ED%2025-03%20SG%20show_checkheaps.png?itok=5iczAkQ1" width="314" height="157" alt="ED 25-03 Show Cheakheaps Command Output">
+
+
+</div>
+  </figure>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+</li>
+<li>Run “<em>show tech-support detail</em>” command.
+<ol>
+<li>This command aggregates device information by running a broad set of show commands. From this output, make sure to capture:
+<ol>
+<li>Uptime</li>
+<li>ROMMON version</li>
+<li>Firmware version</li>
+<li>Last crashinfo</li>
+</ol>
+</li>
+<li>Save the full output off the device (preferably to an isolated system).</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<h5><strong>Collect Core Dump</strong></h5>
+<p><strong>Note: </strong>The steps below trigger an immediate reload of the device and may cause network degradation or outages.</p>
+<ol>
+<li>Soft reboot the device to maximize the likelihood of a clean core dump.</li>
+<li>Prepare to collect a core dump.
+<ol>
+<li>Run the following commands to configure the device to generate a core dump:
+<ol>
+<li><em>config t</em></li>
+<li>
+<p><em>coredump enable filesystem &lt;filesystem&gt;</em></p>
+<p><strong>Note: </strong>&lt;filesystem&gt; is typically “disk0:”</p>
+<p>However, not all Firepower devices will have the ability to run the <em>coredump enable filesystem </em>command. In those cases, entities should skip and proceed to the next step.</p>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>Collect a core dump and save a copy.
+<ol>
+<li>
+<p>See Appendix A in the <a href="https://sec.cloudapps.cisco.com/security/center/resources/forensic_guides/firepower1000_2100_forensic_investigation.html" title="Cisco Firepower 1000/2100 Series Forensic Data Collection Procedures">Cisco Firepower 1000/2100 Series Forensic Data Collection Procedures</a> for consistent, model-agnostic instructions to obtain a core dump from Firepower 1000/2100/4100/9300 and Secure Firewall devices with ASA software.</p>
+<p><strong>Note: </strong>FCEB agencies should contact CISA with any issues; for Firepower 4100/9300 devices removed from the network, coordinate with CISA to obtain the core dump.</p>
+</li>
+</ol>
+</li>
+<li>If nothing is written (i.e., no file appears in the file system):
+<ol>
+<li>Record this condition.</li>
+<li>Review the command output for errors (i.e., “disk0: free space is too full to write a coredump.”)</li>
+<li>
+<p>Run the commands again.</p>
+<ol>
+<li>If successful on the second attempt, inform CISA.</li>
+<li>If there is still no output, document and inform CISA; this may indicate an error or possible compromise.</li>
+</ol>
+<p><strong>Note</strong>: Core dump files typically follow a naming pattern similar to:&nbsp;</p>
+<ol>
+<li><em>“core_smp.2025Sep16_165718.1575.11.gz</em>”</li>
+<li><em>“core.lina.16412.1756344191.gz”</em></li>
+</ol>
+<p>A “<em>coredumpfsysimage.bin</em>” file may also appear; however, this is <strong>not</strong> a core dump. It is a binary used during the process of dumping the memory out to a file and should not be uploaded.</p>
+</li>
+</ol>
+</li>
+<li>Run the following commands to capture the text segment memory dump, compute its SHA-512 hash, and transfer it off the device:
+<ol>
+<li><em>show version | inc Version</em></li>
+<li><em>verify /sha-512 system:memory/text</em></li>
+<li><em>copy system:memory/text ftp</em></li>
+</ol>
+</li>
+<li>After transferring the file from the device, CISA recommends recalculating the SHA-512 hash and comparing it to the value generated by command ii (<em>verify /sha-512 system:memory/text</em>).</li>
+<li>If the device crashes after running these commands, document the incident and inform CISA, as this behavior could be an indicator of compromise.</li>
+</ol>
+</li>
+</ol>
+</div>
+</dd>
+<dt><strong>B. Upload Core Dump in CISA’s Malware Next Generation (MNG) Platform</strong></dt>
+<dd>
+<p>To upload a core dump to CISA’s MNG platform, see the <a href="#annex"><strong>Annex</strong></a><strong> </strong>below.</p>
+</dd>
+<dt><strong>C. Apply Patch per CISA’s ED 25-03 and Cisco’s Security Advisory</strong></dt>
+<dd>
+<p>After device artifact and core dump collection, apply Cisco’s latest software updates and consult the instructions in <a href="/news-events/directives/ed-25-03-identify-and-mitigate-potential-compromise-cisco-devices" title="ED 25-03: Identify and Mitigate Potential Compromise of Cisco Devices"><u>ED 25-03</u></a> and Cisco’s <a class="Hyperlink SCXW7394068 BCX8" href="https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-asaftd-persist-CISAED25-03" target="_blank" rel="noreferrer noopener"><u>Security Advisory</u></a>. These updates address:</p>
+<div class="ListContainerWrapper SCXW248106217 BCX8">
+<ul>
+<li>CVE-2025-20333</li>
+<li>CVE-2025-20362</li>
+<li>FIRESTARTER persistence mechanism</li>
+</ul>
+<div class="OutlineElement Ltr SCXW159100902 BCX8">
+<p>To confirm the correct updated version (with the relevant hotfix), review the software tables included in Cisco’s <a class="Hyperlink SCXW7394068 BCX8" href="https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-asaftd-persist-CISAED25-03" target="_blank" rel="noreferrer noopener"><u>Security Advisory</u></a>. Ensure you notate which version you upgrade to, as this will need to be reported to CISA.</p>
+<p>Note:</p>
+<ul>
+<li>For Firepower 4100 and 9300 devices, entities must upgrade the FXOS before upgrading the ASA software.</li>
+<li>For Secure Firewall 3100 and 4200 devices in multi-instance mode, entities should consult Cisco’s Firewall Management Center, which provides guidance on upgrading FXOS and the ASA software.</li>
+</ul>
+<div class="OutlineElement Ltr SCXW139574822 BCX8">
+<p>After implementing the latest software updates:</p>
+</div>
+<div class="ListContainerWrapper SCXW139574822 BCX8">
+<ul>
+<li>If core dump results do not indicate compromise, proceed to step D (Perform a Hard Restart of Cisco Firepower and Secure Firewall Devices).</li>
+<li>If core dump results indicate compromise, keep the device powered on, immediately disconnect the device from the network, and contact CISA for further guidance. <strong>Do not take any additional actions without coordinating with CISA.</strong></li>
+</ul>
+</div>
+</div>
+</div>
+</dd>
+<dt><strong>D. Perform a Hard Restart of Cisco Firepower and Secure Firewall Devices</strong></dt>
+<dd>
+<div class="OutlineElement Ltr SCXW217568469 BCX8">
+<p><strong>Note</strong>: If the core dump analysis indicates potential compromise, <strong>do not proceed with this section or take any additional action until coordinating with CISA</strong>.</p>
+</div>
+<div class="OutlineElement Ltr SCXW217568469 BCX8">
+<p>CISA determined that the only method to confidently remove the FIRESTARTER persistence mechanism is to physically unplug the device from its power source, forcing a hard restart. As a precaution, all organizations should take the below steps immediately after implementing the latest software updates, even if the core dump analysis does not indicate compromise. If an organization patches a device but cannot perform a hard restart immediately after, CISA recommends obtaining a new core dump and analyzing it for compromise before hard restarting.</p>
+</div>
+<div class="OutlineElement Ltr SCXW217568469 BCX8">
+<p>To perform a hard restart:</p>
+</div>
+<div class="ListContainerWrapper SCXW217568469 BCX8">
+<ol>
+<li>Locate physical device.</li>
+</ol>
+</div>
+<div class="ListContainerWrapper SCXW217568469 BCX8">
+<ol start="2">
+<li>
+<p>While the device is running, physically unplug it from all power sources.</p>
+<p><strong>Note</strong>: A standard reboot is insufficient. Fully remove power, including any redundant power sources.</p>
+</li>
+</ol>
+</div>
+<div class="ListContainerWrapper SCXW217568469 BCX8">
+<ol start="3">
+<li>Leave the device fully disconnected from power for one minute.</li>
+</ol>
+</div>
+<div class="ListContainerWrapper SCXW217568469 BCX8">
+<ol start="4">
+<li>Reconnect power and allow device to boot.</li>
+</ol>
+</div>
+</dd>
+<dt><strong>E. Conduct Further Threat Hunting</strong></dt>
+<dd>
+<div class="OutlineElement Ltr SCXW28674185 BCX8">
+<div class="OutlineElement Ltr SCXW28674185 BCX8">
+<p>If CISA’s MNG platform results show malicious indicators of compromise:</p>
+</div>
+<div class="ListContainerWrapper SCXW28674185 BCX8">
+<ul>
+<li>FCEB agencies should follow <a href="/news-events/directives/ed-25-03-identify-and-mitigate-potential-compromise-cisco-devices" title="ED 25-03: Identify and Mitigate Potential Compromise of Cisco Devices"><u>ED 25-03</u></a> and contact CISA immediately.</li>
+<li>Other U.S. organizations should contact CISA via the <a href="https://myservices.cisa.gov/irf" target="_blank" title="CISA's Incident Reporting System"><u>Incident Reporting System</u></a> or through CISA’s 24/7 Operations Center (<a href="mailto:contact@cisa.dhs.gov" target="_blank" title="Email CISA’s Operations Center"><u>contact@cisa.dhs.gov</u></a> or 888-282-0870).</li>
+<li>Cisco customers should open a <a href="https://mycase.cloudapps.cisco.com/case" target="_blank" title="Cisco Technical Assistance Center"><u>Cisco Technical Assistance Center (TAC) case</u></a> and include the output of the “<em>show tech-support detail</em>” command.</li>
+</ul>
+</div>
+<div class="OutlineElement Ltr SCXW28674185 BCX8">
+<p>In conjunction with Cisco’s released guidance, use the steps below to detect additional malicious activity, as the threat actor may have pivoted from the compromised device to other areas of the network. Organizations do not need to complete these steps strictly in order; however, begin with identifying compromised user accounts, which has proven the most reliable starting point.</p>
+<div class="ListContainerWrapper SCXW61645370 BCX8">
+<ol>
+<li>
+<h5><strong>Identify Compromised Accounts</strong></h5>
+<p>Begin by identifying potentially compromised accounts. Based on current investigations, one reliable method is monitoring and searching for impossible-travel logins; scrutinize all logins traversing the compromised device.</p>
+<ol>
+<li>Monitor and search for impossible-travel logins.
+<ol>
+<li>
+<p>Detect suspicious logins from geographically distant IP addresses using the following Splunk Search Processing Language (SPL) query (tailor it to the security information and event management [SIEM] solution in place):</p>
+<p>index=&lt;NDR/Appliance&gt; sourcetype=&lt;log_source&gt;</p>
+<p>| search event_type="authentication"</p>
+<p>| iplocation src_ip</p>
+<p>| stats earliest(_time) AS first_login latest(_time) AS last_login by user, src_ip, City, Country</p>
+<p>| where first_login != last_login AND distance_between(first_login_location, last_login_location) &gt; 1000</p>
+<p>| table user, src_ip, first_login, last_login, City, Country</p>
+</li>
+</ol>
+</li>
+<li>Review syslog message IDs.
+<ol>
+<li>Informational level:
+<ol>
+<li>WebVPN session terminated: Idle Timeout : %ASA-6-716002</li>
+</ol>
+</li>
+<li>
+<p>Debug level:</p>
+<ol>
+<li>SVC Service Termination: %ASA-7-722029</li>
+<li>SVC Service Termination: %ASA-7-722030</li>
+<li>SVC Service Termination: %ASA-7-722031</li>
+</ol>
+<p><strong>Note</strong>: Informational-level syslogs should be enabled by default; enable if disabled. Debug-level syslogs are not enabled by default; enable if feasible.</p>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</div>
+<div class="ListContainerWrapper SCXW61645370 BCX8">
+<ol start="2">
+<li>
+<h5><strong>Review Compromised Account Activity</strong></h5>
+<p>Monitor and search for the below known threat actor activities conducted after obtaining account access.</p>
+<ol>
+<li>Check for credential reuse.
+<ol>
+<li>If a compromised device contains user or service account credentials (i.e., usernames and passwords), assess those accounts for lateral movement, especially where credentials are reused across the enterprise or follow predictable patterns (e.g., “Password12 &gt; Password23”).</li>
+<li>If only account names (no passwords) are present, enable enhanced monitoring (i.e., login sources, actions performed) and review for suspicious activity.</li>
+<li>If a compromised device provides virtual private network (VPN) access, search for login attempts from the assigned VPN pool address and compare against all authentication sources, regardless of the account used.</li>
+</ol>
+</li>
+<li>Check for credential harvesting.
+<ol>
+<li>Run a “<em>show capture</em>” command to check for evidence of unauthorized packet captures configured to target:
+<ol>
+<li>Terminal Access Controller Access-Control System Plus (TACACS+)</li>
+<li>Remote Authentication Dial-In User Service (RADIUS)</li>
+<li>Lightweight Directory Access Protocol (LDAP)</li>
+<li>Server Message Block (SMB)</li>
+</ol>
+</li>
+<li>Determine whether shared keys between the compromised device and the centralized authentication server could enable decryption of captured traffic; if so, monitor for unauthorized use of any exposed service, network administrator, or other account credentials.</li>
+</ol>
+</li>
+<li>Look for widespread scans of printers, largely across TCP port 443, after the threat actor establishes a foothold.</li>
+<li>Review for LDAP queries attempting to enumerate domain controller objects and services, including:
+<ol>
+<li>servicePrincipalName=*cert*</li>
+<li>servicePrincipalName=*pki*</li>
+<li>servicePrincipalName=*public*</li>
+<li>objectclass=*</li>
+</ol>
+</li>
+<li>Review for tampering with informational syslogs.
+<ol>
+<li>Review for tampering or suppression of the following informational syslogs:
+<ol>
+<li>302013 (VPN connection established)</li>
+<li>302014 (VPN connection terminated)</li>
+<li>710005</li>
+<li>609002</li>
+</ol>
+</li>
+<li>If 302013 and 302014 are absent when expecting VPN activity, treat this as suspicious and investigate for potential threat actor malware.</li>
+<li>Examine historical trends for 302013 and 302014 (i.e., sudden gaps or cessation) to establish a potential tampering timeline.</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+<div class="OutlineElement Ltr SCXW113652959 BCX8">
+<h2 class="text-align-center"><a class="ck-anchor" id="ASAdevices"></a><strong>Guidance for Cisco ASA Devices</strong></h2>
+<p><strong>The guidance in this section is specific to Cisco ASA devices</strong>. In conjunction with Cisco’s released guidance, use the steps below to collect artifacts, obtain and submit a core dump to CISA’s Malware Next Generation (MNG) platform, apply Cisco’s latest software updates, perform a hard restart, and conduct follow-on threat hunting.</p>
+</div>
+<dl class="ckeditor-accordion">
+<dt><strong>A. Collect Device Artifacts</strong></dt>
+<dd>
+<div class="ListContainerWrapper SCXW61645370 BCX8">
+<ol>
+<li>
+<h5>Confirm Device Information</h5>
+<p>Identify and document device model type, serial number, and firmware version.</p>
+</li>
+</ol>
+</div>
+<div class="ListContainerWrapper SCXW61645370 BCX8">
+<ol start="2">
+<li>
+<h5>Run Initial Commands and Collect Output</h5>
+<p>Before<em> </em>collecting<em> </em>a core dump, run the below commands. The output is crucial for analysis; CISA may request it at a later date. Save the output in a location off of the device. If your device crashes as a result of running any command in this step (excluding the expected reload during core dump collection), stop all actions and contact CISA immediately.</p>
+<ol>
+<li>Run “<em>show checkheaps</em>” command.
+<ol>
+<li>Confirm and notate the time of the last successful <em>checkheaps</em> command.</li>
+<li>Copy and save the full output off the device (preferably to an isolated system).</li>
+<li>Wait at least five minutes, then run “show checkheaps” again. Review the last row for “Total number of runs.”
+<ol>
+<li>Expect an increase of approximately one per 60 seconds elapsed (i.e., if the command is executed five minutes apart, the number should increase by approximately five).</li>
+<li>Note the value and whether it increased.</li>
+</ol>
+</li>
+<li>
+<p>If there is no positive change in “Total number of runs,” this is evidence of a potential compromise.</p>
+<table>
+<tbody>
+<tr>
+<td>
+<p><strong>Note: </strong>The command output displays the following:</p>
+  
+  
+  
+  
+<figure class="c-figure c-figure--large c-figure--image" role="group">
+  
+  <div class="c-figure__media">  <img loading="lazy" src="/sites/default/files/styles/large/public/2025-09/ED%2025-03%20SG%20show_checkheaps.png?itok=5iczAkQ1" width="314" height="157" alt="ED 25-03 Show Cheakheaps Command Output">
+
+
+</div>
+  </figure>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+</li>
+<li>Run “<em>show tech-support detail</em>” command.
+<ol>
+<li>This command aggregates device information by running a broad set of show commands. From this output, make sure to capture:
+<ol>
+<li>Uptime</li>
+<li>ROMMON version</li>
+<li>Firmware version</li>
+<li>Last crashinfo</li>
+</ol>
+</li>
+<li>Save the full output off the device (preferably to an isolated system).</li>
+</ol>
+</li>
+<li>Check for the presence of the threat actor’s implant by running the following command:<em> more /binary system:/text | grep 55534154 41554156 41575756 488bb3a0.</em>
+<ol>
+<li>Copy and save the full output off the device<strong> </strong>(preferably to an isolated system).</li>
+<li>Any output from this command is an indicator of<strong> </strong>compromise.</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<h5><strong>Collect Core Dump</strong></h5>
+<p><strong>Note: </strong>The steps below trigger an immediate reload of the device and may cause network degradation or outages.</p>
+<ol>
+<li>Soft reboot the device to maximize the likelihood of a clean core dump.</li>
+<li>Prepare to collect a core dump.
+<ol>
+<li>Run the following commands to configure the device to generate a core dump:
+<ol>
+<li><em>config t</em></li>
+<li>
+<p><em>coredump enable filesystem &lt;filesystem&gt;</em></p>
+<p><strong>Note: </strong>&lt;filesystem&gt; is typically “disk0:”</p>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>Collect a core dump and save a copy.
+<ol>
+<li>Initiate a core dump using the following command:
+<ol>
+<li><em>crashinfo force page-fault</em></li>
+</ol>
+</li>
+<li>Once the device reboots, transfer the zipped core dump file from the system to an external storage using one of the below commands.
+<ol>
+<li>
+<p>If the device is still connected to the network, use:</p>
+<p><em>copy disk0:/coredumpfsys/&lt;filename.gz&gt; [scp:/ftp:/tftp:]</em></p>
+</li>
+<li>If the device has been disconnected or isolated from the network, save on a removable storage device or external laptop or device.
+<ol>
+<li>
+<p>To save on a removable storage device, use:</p>
+<p><em>copy disk0:/coredumpfsys/&lt;filename.gz&gt;disk1:/&lt;filename.gz&gt;</em>&nbsp;</p>
+<p><strong>Note</strong>: The storage device must be FAT32 formatted for the Cisco device to utilize it properly.</p>
+</li>
+<li>
+<p>To save on an external laptop or device, use: </p>
+<p><em>copy disk0:/coredumpfsys/&lt;filename.gz&gt; scp://username@192.168.0.1/path/to/file/&lt;filename.gz&gt;</em>&nbsp;</p>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>If nothing is written (i.e., no file appears in the file system):
+<ol>
+<li>Record this condition.</li>
+<li>Review the command output for errors (i.e., “disk0: free space is too full to write a coredump.”)</li>
+<li>
+<p>Run the commands again.</p>
+<ol>
+<li>If successful on the second attempt, inform CISA.</li>
+<li>If there is still no output, document and inform CISA; this may indicate an error or possible compromise.</li>
+</ol>
+<p><strong>Note</strong>: Core dump files typically follow a naming pattern similar to:&nbsp;</p>
+<ol>
+<li><em>“core_smp.2025Sep16_165718.1575.11.gz</em>”</li>
+<li><em>“core.lina.16412.1756344191.gz”&nbsp;</em></li>
+</ol>
+<p>A “<em>coredumpfsysimage.bin</em>” file may also appear; however, this is <strong>not</strong> a core dump. It is a binary used during the process of dumping the memory out to a file and should not be uploaded.</p>
+</li>
+</ol>
+</li>
+<li>
+<p>Run the following commands to capture the text segment memory dump, compute its SHA-512 hash, and transfer it off the device:</p>
+<ol>
+<li><em>show version | inc Version</em></li>
+<li><em>verify /sha-512 system:memory/text</em></li>
+<li><em>copy system:memory/text ftp</em></li>
+</ol>
+<p><strong>Note</strong>: After transferring the file from the device, CISA recommends recalculating the SHA-512 hash and comparing it to the value generated by command ii (<em>verify /sha-512 system:memory/text</em>). If the device crashes after running these commands, document the incident and inform CISA, as this behavior could be an indicator of compromise.</p>
+</li>
+</ol>
+</li>
+</ol>
+</div>
+</dd>
+<dt><strong>B. Upload Core Dump in CISA’s Malware Next Generation (MNG) Platform</strong></dt>
+<dd>
+<p>To upload a core dump to CISA’s MNG platform, see the <a href="#annex"><strong>Annex</strong></a><strong> </strong>below.</p>
+</dd>
+<dt><strong>C. Apply Patch per CISA’s ED 25-03 and Cisco’s Public Release and Security Advisory</strong></dt>
+<dd>
+<div class="OutlineElement Ltr SCXW130542163 BCX8">
+<p>After device artifact and core dump collection, apply Cisco’s latest software updates and consult the instructions in <a href="/news-events/directives/ed-25-03-identify-and-mitigate-potential-compromise-cisco-devices" title="ED 25-03: Identify and Mitigate Potential Compromise of Cisco Devices"><u>ED 25-03</u></a>, Cisco's previous <a href="https://sec.cloudapps.cisco.com/security/center/resources/asa_ftd_continued_attacks" title="Cisco Event Response: Continued Attacks Against Cisco Firewalls"><u>Public Release</u></a>, and latest <a class="Hyperlink SCXW146313118 BCX8" href="https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-asaftd-persist-CISAED25-03" target="_blank" rel="noreferrer noopener"><u>Security Advisory</u></a>.</p>
+</div>
+<div class="OutlineElement Ltr SCXW130542163 BCX8">
+<div class="OutlineElement Ltr SCXW144728465 BCX8">
+<div class="OutlineElement Ltr SCXW222482523 BCX8">
+<p>In alignment with Cisco’s guidance, organizations applying the patch to Cisco ASA devices should take the following actions:&nbsp;</p>
+</div>
+<div class="ListContainerWrapper SCXW222482523 BCX8">
+<ol>
+<li>Monitor console output during the device’s initial boot (as part of the update).
+<ol>
+<li>
+<p>Expected messages:</p>
+<table>
+<tbody>
+<tr>
+<td>Message #113 : Verifying bootloader: Message #114 : .Message<br>#115 : .Message #116 : .Message #117 :<br><strong>Bootloader verification succeeded.</strong><br>Message #118 : Verifying ROMMON: Message #119 : .Message #120 :<br>.Message #121 :<br>.Message #122 : .Message #123 :<br><strong>ROMMON verification succeeded.</strong></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>If the expected “verification succeeded” messages appear, the persistence mechanism associated with this threat activity is likely not present.</li>
+<li>If the messages differ (i.e., “Bootloader verification failed at address” or “ROMMON verification failed at address”), this may indicate the persistence mechanism is present.</li>
+</ol>
+</li>
+<li>Conduct a post-update check.
+<ol>
+<li>For ASA 5512-X, 5515-X, 5525-X, 5545-X, 5555-X, or 5585-X devices updated to ASA 9.12.4.72 or 9.14.4.28, check disk0:<strong> </strong>for a file named <em>firmware_update.log</em>.</li>
+<li>The presence of <em>firmware_update.log</em> may indicate the threat actor compromised the device prior to the update.</li>
+</ol>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</dd>
+<dt><strong>D. Conduct Further Threat Hunting</strong></dt>
+<dd>
+<div class="OutlineElement Ltr SCXW28674185 BCX8">
+<p>If CISA’s MNG platform results show malicious indicators of compromise, disk0: contains the<em><strong> </strong>firmware_update.log </em>file, or device messages during the update varied from the expected messages:</p>
+</div>
+<div class="ListContainerWrapper SCXW28674185 BCX8">
+<ul>
+<li>FCEB agencies should follow <a href="/news-events/directives/ed-25-03-identify-and-mitigate-potential-compromise-cisco-devices" title="ED 25-03: Identify and Mitigate Potential Compromise of Cisco Devices"><u>ED 25-03</u></a> and contact CISA immediately.</li>
+<li>Other U.S. organizations should contact CISA via the <a href="https://myservices.cisa.gov/irf" target="_blank" title="CISA's Incident Reporting System"><u>Incident Reporting System</u></a> or through CISA’s 24/7 Operations Center (<a href="mailto:contact@cisa.dhs.gov" target="_blank" title="Email CISA’s Operations Center"><u>contact@cisa.dhs.gov</u></a> or 888-282-0870).</li>
+<li>Cisco customers should open a <a href="https://mycase.cloudapps.cisco.com/case" target="_blank" title="Cisco Technical Assistance Center"><u>Cisco Technical Assistance Center (TAC) case</u></a> and include the output of the “<em>show tech-support detail</em>” command and the content of the <em><strong>firmware_update.log </strong></em>file.</li>
+</ul>
+</div>
+<div class="OutlineElement Ltr SCXW28674185 BCX8">
+<p>In conjunction with Cisco’s released guidance, use the steps below to detect additional malicious activity, as the threat actor may have pivoted from the compromised device to other areas of the network. Organizations do not need to complete these steps strictly in order; however, begin with identifying compromised user accounts, which has proven the most reliable starting point.</p>
+<div class="ListContainerWrapper SCXW61645370 BCX8">
+<ol>
+<li>
+<h5><strong>Identify Compromised Accounts</strong></h5>
+<p>Begin by identifying potentially compromised accounts. Based on current investigations, one reliable method is monitoring and searching for impossible-travel logins; scrutinize all logins traversing the compromised device.</p>
+<ol>
+<li>Monitor and search for impossible-travel logins.
+<ol>
+<li>
+<p>Detect suspicious logins from geographically distant IP addresses using the following Splunk Search Processing Language (SPL) query (tailor it to the security information and event management [SIEM] solution in place):</p>
+<p>index=&lt;NDR/Appliance&gt; sourcetype=&lt;log_source&gt;</p>
+<p>| search event_type="authentication"</p>
+<p>| iplocation src_ip</p>
+<p>| stats earliest(_time) AS first_login latest(_time) AS last_login by user, src_ip, City, Country</p>
+<p>| where first_login != last_login AND distance_between(first_login_location, last_login_location) &gt; 1000</p>
+<p>| table user, src_ip, first_login, last_login, City, Country</p>
+</li>
+</ol>
+</li>
+<li>Review syslog message IDs.
+<ol>
+<li>Informational level:
+<ol>
+<li>WebVPN session terminated: Idle Timeout : %ASA-6-716002</li>
+</ol>
+</li>
+<li>
+<p>Debug level:</p>
+<ol>
+<li>SVC Service Termination: %ASA-7-722029</li>
+<li>SVC Service Termination: %ASA-7-722030</li>
+<li>SVC Service Termination: %ASA-7-722031</li>
+</ol>
+<p><strong>Note</strong>: Informational-level syslogs should be enabled by default; enable if disabled. Debug-level syslogs are not enabled by default; enable if feasible.</p>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</div>
+<div class="ListContainerWrapper SCXW61645370 BCX8">
+<ol start="2">
+<li>
+<h5><strong>Review Compromised Account Activity</strong></h5>
+<p>Monitor and search for the below known threat actor activities conducted after obtaining account access.</p>
+<ol>
+<li>Check for credential reuse.
+<ol>
+<li>If a compromised device contains user or service account credentials (i.e., usernames and passwords), assess those accounts for lateral movement, especially where credentials are reused across the enterprise or follow predictable patterns (e.g., “Password12 &gt; Password23”).</li>
+<li>If only account names (no passwords) are present, enable enhanced monitoring (i.e., login sources, actions performed) and review for suspicious activity.</li>
+<li>If a compromised device provides virtual private network (VPN) access, search for login attempts from the assigned VPN pool address and compare against all authentication sources, regardless of the account used.</li>
+</ol>
+</li>
+<li>Check for credential harvesting.
+<ol>
+<li>Run a “<em>show capture</em>” command to check for evidence of unauthorized packet captures configured to target:
+<ol>
+<li>Terminal Access Controller Access-Control System Plus (TACACS+)</li>
+<li>Remote Authentication Dial-In User Service (RADIUS)</li>
+<li>Lightweight Directory Access Protocol (LDAP)</li>
+<li>Server Message Block (SMB)</li>
+</ol>
+</li>
+<li>Determine whether shared keys between the compromised device and the centralized authentication server could enable decryption of captured traffic; if so, monitor for unauthorized use of any exposed service, network administrator, or other account credentials.</li>
+</ol>
+</li>
+<li>Look for widespread scans of printers, largely across TCP port 443, after the threat actor establishes a foothold.</li>
+<li>Review for LDAP queries attempting to enumerate domain controller objects and services, including:
+<ol>
+<li>servicePrincipalName=*cert*</li>
+<li>servicePrincipalName=*pki*</li>
+<li>servicePrincipalName=*public*</li>
+<li>objectclass=*</li>
+</ol>
+</li>
+<li>Review for tampering with informational syslogs.
+<ol>
+<li>Review for tampering or suppression of the following informational syslogs:
+<ol>
+<li>302013 (VPN connection established)</li>
+<li>302014 (VPN connection terminated)</li>
+<li>710005</li>
+<li>609002</li>
+</ol>
+</li>
+<li>If 302013 and 302014 are absent when expecting VPN activity, treat this as suspicious and investigate for potential threat actor malware.</li>
+<li>Examine historical trends for 302013 and 302014 (i.e., sudden gaps or cessation) to establish a potential tampering timeline.</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</div>
+</div>
+</dd>
+</dl>
+<h2 class="text-align-center"><a class="ck-anchor" id="annex"></a><strong>Annex: CISA MNG Platform Submission Instructions</strong></h2>
+<dl class="ckeditor-accordion">
+<dt><strong>MNG Submission Instructions</strong></dt>
+<dd>
+<p>To upload a core dump to CISA’s Malware Next Generation (MNG) platform, you must have a login.gov account and MNG account.</p>
+<div class="OutlineElement Ltr SCXW156348320 BCX8">
+<p><strong>User Types</strong>&nbsp;</p>
+</div>
+<div class="ListContainerWrapper SCXW156348320 BCX8">
+<ul>
+<li>Government users: registering with an email ending in .gov or .mil.</li>
+<li>Non-government users: registering with an email not ending in .gov or .mil.&nbsp;</li>
+</ul>
+</div>
+<div class="OutlineElement Ltr SCXW156348320 BCX8">
+<p>If you do not have a login.gov account, complete <strong>Create Your MNG Account</strong> below. If you are an existing MNG user,<strong> </strong>proceed to <strong>Submit a Core Dump Sample for Analysis</strong>.</p>
+</div>
+<h4>Create Your MNG Account</h4>
+<ol>
+<li>Using a web browser, go to&nbsp;<a href="https://malware.cisa.gov/" title="Malware Next Gen portal">https://malware.cisa.gov</a>.</li>
+<li>Select “Create an Account” and follow instructions to create a login.gov account.<strong> </strong>Your login.gov account is used to access MNG and submit core dump samples for analysis.</li>
+<li>After creating your login.gov account, the webpage will redirect you to the MNG registration page. Provide your contact information.<strong> </strong>CISA uses this information only to provide support, if needed. It will not be shared outside of CISA.</li>
+<li>
+<div class="ListContainerWrapper SCXW78308847 BCX8">
+<p>After registration, the webpage will redirect you to the MNG homepage, where you can view submissions and submit samples.<strong> </strong>It may take a moment for the system to assign permissions to your account. If you see a message stating you do not have permission to access the webpage, wait briefly and refresh.</p>
+</div>
+</li>
+</ol>
+<h4>Submit a Core Dump Sample for Analysis</h4>
+<ol start="5">
+<li>Click “Submit” in the blue banner at the top of the page.</li>
+<li>In “Upload Type,” select “File.”</li>
+<li>Click “Browse,” navigate to the saved core dump file, and select it.
+<ol>
+<li>Core dumps from Firepower or Secure Firewall devices <strong>must</strong> remain in compressed GZ file format to avoid exceeding file size limits.</li>
+<li>Do not package the core dump in additional archive formats.</li>
+<li>Submit one core dump per submission. To submit multiple core dumps, repeat these steps for each file.</li>
+</ol>
+</li>
+<li>Verify the selected file name appears next to the file selector.</li>
+<li>If you are registered with .gov or .mil account, check the “Core dump” box.
+<ol>
+<li>Non-government users can only submit core dumps and will not see a sample-type selection.</li>
+</ol>
+</li>
+<li>Select the device type (ASA or Firepower/Secure Firewall) from “Select Device Type.”</li>
+<li>Select the model series from “Model Series #.”</li>
+<li>For government users, select the appropriate Traffic Light Protocol (TLP) category.
+<ol>
+<li>CISA treats all non-government submissions as TLP:AMBER+STRICT and will not share the submissions outside of CISA.</li>
+</ol>
+</li>
+<li>In the “Comments Section,” include:
+<ol>
+<li>Device serial number.</li>
+<li>Any errors or issues encountered during core dump collection.</li>
+<li>Any additional relevant comments.</li>
+</ol>
+</li>
+<li>Check the box to agree to the MNG Terms of Service, Privacy Act Statement, and CISA’s Privacy Policy.</li>
+<li>Check the box to acknowledge submission agreement.</li>
+<li>Click “<strong>Submit.</strong>” Upload time will vary with file size and network speed. Upon completion, you will receive an on-screen confirmation:</li>
+</ol>
+  
+  
+  
+  
+<figure class="c-figure c-figure--large c-figure--image u-align-center" role="group">
+  
+  <div class="c-figure__media">  <img loading="lazy" src="/sites/default/files/styles/large/public/2025-09/ED%2025-03%20SG%20submit_sample.png?itok=DrP1kW8-" width="329" height="242" alt="ED 25-03 Submit Core Dump Sample">
+
+
+</div>
+  </figure>
+<div class="OutlineElement Ltr SCXW228495750 BCX8">
+<p>Once submitted, analysis may take several minutes to complete.</p>
+</div>
+<div class="OutlineElement Ltr SCXW228495750 BCX8">
+<p>To submit another core dump, select “Submit Another” and repeat the process. To review submissions, select “View all Samples” to return to the homepage and see analysis results.</p>
+</div>
+<h4>Viewing Analysis Results</h4>
+<ol start="17">
+<li>The MNG homepage lists each submission with the date and time of submission.</li>
+<li>For valid core dumps, the “Verdict” column will display “Clean” or “Malicious.”
+<ol>
+<li>If the scan failed, the “Status” column will display “Failed” and the “Verdict” column will display an “N/A” result.</li>
+</ol>
+</li>
+<li>For detailed results, expand the entry (arrow to the left of the timestamp) and click the Transaction ID (TID).</li>
+<li>Under “Download Reports,” review the COREANALYSIS_RESULT file.
+<ol>
+<li>If the report indicates<strong> </strong>“<strong>CLEAN: 1</strong>,” FCEB agencies should refer back to the relevant section and CISA’s ED 25-03.</li>
+<li>If the report indicates “DETECTED RAYINITIATOR: 1” or “DETECTED FIRESTARTER: 1,” contact CISA immediately. Do not proceed or take further action until you receive guidance from CISA Threat Hunting.</li>
+<li>If the report indicates “FAILED: 1,” results are inconclusive. FCEB agencies should contact CISA for assistance. Users can find additional details on failed scans in the COREANALYSIS_LOG file.</li>
+</ol>
+</li>
+</ol>
+<p>After completing MNG submissions, refer to the relevant sections of this document based on your device type(s).</p>
+</dd>
+</dl>
+<table>
+<tbody>
+<tr>
+<td>
+<h2><strong>Disclaimer</strong></h2>
+<p>The information in this report is being provided “as is” for informational purposes only. CISA does not endorse any commercial entity, product, company, or service, including any entities, products, or services linked within this document. Any reference to specific commercial entities, products, processes, or services by service mark, trademark, manufacturer, or otherwise, does not constitute or imply endorsement, recommendation, or favoring by CISA.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+      </div>
+
+  
+      </div>
+  </div>
+									
+
+<div  class="l-page-section l-page-section--tags l-page-section--rich-text">
+      <div class="l-constrain">
+  
+  
+  <div class="l-page-section__content">
+    					<h3>Tags</h3>
+					  
+        
+  
+        <div class="c-field">
+        <strong>Topics</strong>:
+                                                                                                                                                                                                                                                                                                                                                <a href="/topics/cybersecurity-best-practices">Cybersecurity Best Practices</a>
+                        </div>
+    
+
+				  </div>
+
+  
+      </div>
+  </div>
+			    </div>
+
+      </div>
+
+  </div>
+
+  
+  
+  
+  
+
+
+
+
+
+
+  <div  id="block-guswds-views-block-detail-page-related-content-block-3" class="c-block c-block--view c-block--provider-views c-block--id-views-blockdetail-page-related-content-block-3">
+
+  
+  
+    
+
+      <div  class="c-block__content">
+  
+  
+    
+    
+    
+
+  
+
+<div  class="c-view c-view--detail-page-related-content c-view--display-block_3 view js-view-dom-id-e76e33e01d94684aa8c0946af49796fa97ca3b8100e6d39dc83c0c06996293a6 c-collection c-collection--blue c-collection--two-column">
+  <div class="l-constrain">
+    <div class="c-collection__row">
+              <div class="c-collection__content">
+                      <h2 class="c-collection__title"><span class="c-collection__title-wrap">Related Directives</span></h2>
+                                        	        </div>
+                  <div class="c-collection__cards">
+        
+
+
+
+      
+
+
+
+
+
+<article  class="c-teaser c-teaser--horizontal" role="article">
+  <div class="c-teaser__row">
+        <div class="c-teaser__content">
+              <div class="c-teaser__eyebrow">
+                      <div class="c-teaser__date"><time datetime="2026-04-23T12:00:00Z">Apr 23, 2026</time>
+</div>
+                                <div class="c-teaser__meta">Emergency Directive</div>
+                  </div>
+            <h3 class="c-teaser__title">
+        <a href="/news-events/directives/v1-ed-25-03-identify-and-mitigate-potential-compromise-cisco-devices" target="_self">          
+<span>V1: ED 25-03: Identify and Mitigate Potential Compromise of Cisco Devices</span>
+
+        </a>      </h3>
+                    
+                      </div>
+  </div>
+</article>
+
+
+        
+
+
+
+
+
+<article  class="c-teaser c-teaser--horizontal" role="article">
+  <div class="c-teaser__row">
+        <div class="c-teaser__content">
+              <div class="c-teaser__eyebrow">
+                      <div class="c-teaser__date"><time datetime="2026-03-11T12:00:00Z">Mar 11, 2026</time>
+</div>
+                                <div class="c-teaser__meta">Emergency Directive</div>
+                  </div>
+            <h3 class="c-teaser__title">
+        <a href="/news-events/directives/v1-ed-26-03-mitigate-vulnerabilities-cisco-sd-wan-systems" target="_self">          
+<span>V1: ED 26-03: Mitigate Vulnerabilities in Cisco SD-WAN Systems</span>
+
+        </a>      </h3>
+                    
+                      </div>
+  </div>
+</article>
+
+
+        
+
+
+
+
+
+<article  class="c-teaser c-teaser--horizontal" role="article">
+  <div class="c-teaser__row">
+        <div class="c-teaser__content">
+              <div class="c-teaser__eyebrow">
+                      <div class="c-teaser__date"><time datetime="2026-02-25T12:00:00Z">Feb 25, 2026</time>
+</div>
+                                <div class="c-teaser__meta">Emergency Directive</div>
+                  </div>
+            <h3 class="c-teaser__title">
+        <a href="/news-events/directives/supplemental-direction-ed-26-03-hunt-and-hardening-guidance-cisco-sd-wan-systems" target="_self">          
+<span>Supplemental Direction ED 26-03: Hunt and Hardening Guidance for Cisco SD-WAN Systems</span>
+
+        </a>      </h3>
+                    
+                      </div>
+  </div>
+</article>
+
+
+        
+
+
+
+
+
+<article  class="c-teaser c-teaser--horizontal" role="article">
+  <div class="c-teaser__row">
+        <div class="c-teaser__content">
+              <div class="c-teaser__eyebrow">
+                      <div class="c-teaser__date"><time datetime="2026-02-25T12:00:00Z">Feb 25, 2026</time>
+</div>
+                                <div class="c-teaser__meta">Emergency Directive</div>
+                  </div>
+            <h3 class="c-teaser__title">
+        <a href="/news-events/directives/ed-26-03-mitigate-vulnerabilities-cisco-sd-wan-systems" target="_self">          
+<span>ED 26-03: Mitigate Vulnerabilities in Cisco SD-WAN Systems</span>
+
+        </a>      </h3>
+                    
+                      </div>
+  </div>
+</article>
+
+
+  
+      </div>
+    </div>
+          </div>
+</div>
+
+
+  
+      </div>
+  
+  
+  </div>
+
+      </div>
+
+  
+  </main>
+
+  
+<footer  class="usa-footer usa-footer--slim" role="contentinfo">
+    <div class="usa-footer__return-to-top">
+    <div class="l-constrain">
+      <a href="#top">Return to top</a>
+    </div>
+  </div>
+    <div class="usa-footer__upper">
+    <div class="l-constrain">
+      
+
+
+
+
+
+
+
+  
+  
+    
+
+  
+            
+
+                                <ul  class="c-menu c-menu--footer-main">
+        
+                                            
+                              
+      
+      
+      <li  class="c-menu__item">
+                              <a href="/topics" class="c-menu__link js-top-level" aria-current="false" data-drupal-link-system-path="node/7329">Topics</a>
+                        </li>
+    
+                                            
+                              
+      
+      
+      <li  class="c-menu__item">
+                              <a href="/spotlight" class="c-menu__link js-top-level" aria-current="false" data-drupal-link-system-path="node/7330">Spotlight</a>
+                        </li>
+    
+                                            
+                              
+      
+      
+      <li  class="c-menu__item">
+                              <a href="/resources-tools" class="c-menu__link js-top-level" aria-current="false" data-drupal-link-system-path="node/7331">Resources &amp; Tools</a>
+                        </li>
+    
+                                            
+                                                    
+      
+      
+      <li  class="c-menu__item is-active-trail">
+                              <a href="/news-events" class="c-menu__link js-top-level is-active-trail" aria-current="false" data-drupal-link-system-path="node/7332">News &amp; Events</a>
+                        </li>
+    
+                                            
+                              
+      
+      
+      <li  class="c-menu__item">
+                              <a href="/careers" class="c-menu__link js-top-level" aria-current="false" data-drupal-link-system-path="node/7323">Careers</a>
+                        </li>
+    
+                                            
+                              
+      
+      
+      <li  class="c-menu__item">
+                              <a href="/about" class="c-menu__link js-top-level" aria-current="false" data-drupal-link-system-path="node/6944">About</a>
+                        </li>
+        </ul>
+  
+
+  
+  
+  
+  
+
+    </div>
+  </div>
+    <div class="usa-footer__main">
+    <div class="l-constrain">
+      <div class="usa-footer__main-row">
+        <div class="usa-footer__brand">
+          
+<a  class="c-site-name c-site-name--footer" href="/" rel="home" title="Go to the Cybersecurity & Infrastructure Security Agency homepage">
+  <span class="c-site-name__text">Cybersecurity &amp; Infrastructure Security Agency</span>
+</a>        </div>
+        <div class="usa-footer__contact">
+                      
+
+                                <ul  class="c-menu c-menu--social">
+        
+                                            
+                                                            
+      
+      
+      <li  class="c-menu__item">
+                              <a href="https://www.facebook.com/CISA" class="c-menu__link--facebook c-menu__link js-top-level" aria-current="false">Facebook</a>
+                        </li>
+    
+                                            
+                                                            
+      
+      
+      <li  class="c-menu__item">
+                              <a href="https://x.com/CISAgov" class="c-menu__link--twitter c-menu__link js-top-level" aria-current="false">X</a>
+                        </li>
+    
+                                            
+                                                            
+      
+      
+      <li  class="c-menu__item">
+                              <a href="https://www.linkedin.com/company/cybersecurity-and-infrastructure-security-agency" class="c-menu__link--linkedin c-menu__link js-top-level" aria-current="false">LinkedIn</a>
+                        </li>
+    
+                                            
+                                                            
+      
+      
+      <li  class="c-menu__item">
+                              <a href="https://www.youtube.com/@cisagov" class="c-menu__link--youtube c-menu__link js-top-level" aria-current="false">YouTube</a>
+                        </li>
+    
+                                            
+                                                            
+      
+      
+      <li  class="c-menu__item">
+                              <a href="https://www.instagram.com/cisagov" class="c-menu__link--instagram c-menu__link js-top-level" aria-current="false">Instagram</a>
+                        </li>
+    
+                                            
+                                                            
+      
+      
+      <li  class="c-menu__item">
+                              <a href="/subscribe-updates-cisa" class="c-menu__link--rss c-menu__link js-top-level" aria-current="false">RSS</a>
+                        </li>
+        </ul>
+  
+
+                    <div class="usa-footer__contact-info">
+            <span>CISA Central</span>
+            <a href="tel:1-844-Say-CISA">1-844-Say-CISA</a>
+            <a href="mailto:contact@cisa.dhs.gov">contact@cisa.dhs.gov</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="usa-footer__lower">
+    <div class="l-constrain">
+      <div class="usa-footer__lower-row">
+        <div class="usa-footer__lower-left">
+          
+<div  class="c-dhs-logo">
+  <div class="c-dhs-logo__seal">DHS Seal</div>
+  <div class="c-dhs-logo__content">
+    <div class="c-dhs-logo__url">CISA.gov</div>
+    <div class="c-dhs-logo__text">An official website of the U.S. Department of Homeland Security</div>
+  </div>
+</div>                      
+
+
+                                <ul  class="c-menu c-menu--footer">
+        
+                                            
+                              
+      
+      
+      <li  class="c-menu__item">
+                              <a href="/about" title="About CISA" class="c-menu__link js-top-level" aria-current="false" data-drupal-link-system-path="node/6944">About CISA</a>
+                        </li>
+    
+                                            
+                              
+      
+      
+      <li  class="c-menu__item">
+                              <a href="https://www.dhs.gov/performance-financial-reports" class="c-menu__link js-top-level" title="Budget and Performance" aria-current="false">Budget and Performance</a>
+                        </li>
+    
+                                            
+                              
+      
+      
+      <li  class="c-menu__item">
+                              <a href="https://www.dhs.gov" title="Department of Homeland Security" class="c-menu__link js-top-level" aria-current="false">DHS.gov</a>
+                        </li>
+    
+                                            
+                              
+      
+      
+      <li  class="c-menu__item">
+                              <a href="https://www.dhs.gov/foia" class="c-menu__link js-top-level" title="FOIA Requests" aria-current="false">FOIA Requests</a>
+                        </li>
+    
+                                            
+                              
+      
+      
+      <li  class="c-menu__item">
+                              <a href="/no-fear-act" title="No FEAR Act Reporting" class="c-menu__link js-top-level" aria-current="false">No FEAR Act</a>
+                        </li>
+    
+                                            
+                              
+      
+      
+      <li  class="c-menu__item">
+                              <a href="https://www.oig.dhs.gov/" class="c-menu__link js-top-level" title="Office of Inspector General" aria-current="false">Office of Inspector General</a>
+                        </li>
+    
+                                            
+                              
+      
+      
+      <li  class="c-menu__item">
+                              <a href="/privacy-policy" title="Privacy Policy" class="c-menu__link js-top-level" aria-current="false" data-drupal-link-system-path="node/16115">Privacy Policy</a>
+                        </li>
+    
+                                            
+                              
+      
+      
+      <li  class="c-menu__item">
+                              <a href="https://public.govdelivery.com/accounts/USDHSCISA/subscriber/new?topic_id=USDHSCISA_138" title="Subscribe to Email Updates" class="c-menu__link js-top-level" aria-current="false">Subscribe</a>
+                        </li>
+    
+                                            
+                              
+      
+      
+      <li  class="c-menu__item">
+                              <a href="https://www.whitehouse.gov/" class="c-menu__link js-top-level" title="The White House" aria-current="false">The White House</a>
+                        </li>
+    
+                                            
+                              
+      
+      
+      <li  class="c-menu__item">
+                              <a href="https://www.usa.gov/" class="c-menu__link js-top-level" title="USA.gov" aria-current="false">USA.gov</a>
+                        </li>
+    
+                                            
+                              
+      
+      
+      <li  class="c-menu__item">
+                              <a href="/forms/feedback" title="Website Feedback" class="c-menu__link js-top-level" aria-current="false" data-drupal-link-system-path="forms/feedback">Website Feedback</a>
+                        </li>
+        </ul>
+  
+
+                  </div>
+        <div class="usa-footer__lower-right">
+          <iframe
+            src="https://www.dhs.gov/ntas/"
+            name="National Terrorism Advisory System"
+            title="National Terrorism Advisory System"
+            width="170"
+            height="180"
+            scrolling="no"
+            frameborder="0"
+            seamless border="0"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+  <script async src="https://siteimproveanalytics.com/js/siteanalyze_6342107.js"></script> 
+
+  
+
+</div>
+
+  </div>
+
+    
+        <script src="/core/assets/vendor/jquery/jquery.min.js?v=4.0.0"></script>
+<script src="/sites/default/files/js/js_iCv-Cymnyz6tb3aaiZ5bWJnoDDzc45KBo4dVihw-hdQ.js?scope=footer&amp;delta=1&amp;language=en&amp;theme=guswds&amp;include=eJx1jtEKgzAMRX-os59U0iaWzppI0qr7-22ogw32Eu45Fy5JE2FpogFSEsUi7D9pGFW4EaOjvdXCk0ftC9ThRJdFcqXQIPv8Or88wB32bzm73G1D81EJMGmf42VylQj1opm4BytIEfRyjcBInZItwlbW92isZGEstZH6g2C7Hey6jYRZ1nC-AAz10Uoy_7cZEvITH99scA"></script>
+<script src="/modules/contrib/ckeditor_accordion/js/accordion.frontend.min.js?tm8x4j"></script>
+<script src="/sites/default/files/js/js_XSGsxJZ8zT9i_wYxcCCONJnCOF7v6JE_5ndnX7o5EfI.js?scope=footer&amp;delta=3&amp;language=en&amp;theme=guswds&amp;include=eJx1jtEKgzAMRX-os59U0iaWzppI0qr7-22ogw32Eu45Fy5JE2FpogFSEsUi7D9pGFW4EaOjvdXCk0ftC9ThRJdFcqXQIPv8Or88wB32bzm73G1D81EJMGmf42VylQj1opm4BytIEfRyjcBInZItwlbW92isZGEstZH6g2C7Hey6jYRZ1nC-AAz10Uoy_7cZEvITH99scA"></script>
+<script src="/profiles/cisad8_gov/themes/custom/gesso/dist/js/uswds.es6.js?tm8x4j"></script>
+<script src="/sites/default/files/js/js_S_reBgHEN5xiDZh8aZaPJfiJxPwpuwt0hhkr-HJ3ZU4.js?scope=footer&amp;delta=5&amp;language=en&amp;theme=guswds&amp;include=eJx1jtEKgzAMRX-os59U0iaWzppI0qr7-22ogw32Eu45Fy5JE2FpogFSEsUi7D9pGFW4EaOjvdXCk0ftC9ThRJdFcqXQIPv8Or88wB32bzm73G1D81EJMGmf42VylQj1opm4BytIEfRyjcBInZItwlbW92isZGEstZH6g2C7Hey6jYRZ1nC-AAz10Uoy_7cZEvITH99scA"></script>
+
+  </body>
+</html>

@@ -1,0 +1,856 @@
+
+
+
+Quarterly Report: Incident Response Trends in Q4 2022
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Quarterly Report: Incident Response Trends in Q4 2022
+
+
+By 
+Caitlin Huey
+
+
+
+            Thursday, January 26, 2023 04:00
+        
+
+
+                                Talos IR trends
+                            
+
+                                ransomware
+                            
+
+
+
+
+Syncro, a remote management and monitoring tool, emerges as an increasingly common tool for adversaries.Ransomware continued to be a top threat Cisco Talos Incident Response (Talos IR) responded to this quarter, with appearances from both previously seen and newly observed ransomware families. However, IR also observed a significant number of cases in which post-exploitation activities occurred where the actor’s motivation could not be determined. For example, phishing campaigns, our top initial-access vector this quarter, were equally as common and featured a variety of post-exploitation activities, including command execution to perform credential harvesting, red-teaming framework deployment and remote access tooling installation. This quarter also featured several engagements where adversaries leveraged Syncro, a legitimate and full-featured remote access platform. Syncro was among many other remote access and management tools, including AnyDesk and SplashTop, that adversaries leveraged to establish and maintain remote access to compromised hosts. The use of Syncro to support a number of operations is consistent with a key finding from the Talos’ 2022 Year in Review, which reported that adversaries are increasingly relying on dual-use tools to stay undetected in victim environments.TargetingThe telecommunications sector was the most targeted this quarter, closely followed by the education and manufacturing sectors, respectively. Telecommunications was a consistently top-targeted vertical in Talos IR engagements in 2022, apart from Q3, in which organizations in the education sector were most targeted.RansomwareTalos IR observed the BlackCat (ALPHV) ransomware, a ransomware family consistently seen in incidents throughout 2022, in a few engagements this quarter. This quarter also featured Royal ransomware, which had not previously been observed in Talos IR engagements. First emerging in early 2022 as a suspected Conti rebrand, Royal has been increasingly observed in attacks since September, according to public reporting.This quarter Talos IR responded to an incident involving Royal ransomware. The group did not start posting victim data, which has been used as a means of extortion for over 50 companies globally spanning multiple business verticals, to their Tor leaks site until September 2022. In one Royal ransomware incident, Talos IR identified the affiliate(s) using red team frameworks such as Cobalt Strike and Mimikatz, and by performing mass uninstallation of security software across the environment. Talos IR also observed both the legitimate utility PsExec executing a shell on a remote share on one host, as well as AnyDesk service’s creation for persistence. The actor also used batch script files for persistence to perform various actions such as adding admin accounts using the “net user /add” command, executing commands to boot in Safe Mode and modifying the registry.The emergence of Royal ransomware, as a suspected rebrand of Conti, which shut down its operations in June 2022, highlights the resilience of ransomware actors following the shut down and/or rebrand of high-profile groups. Royal’s appearance in an engagement this quarter coincided with increased public reporting on a malware downloader, dubbed BatLoader, which has delivered Cobalt Strike Beacon implants that distributed Royal ransomware. Researchers identified several attributes within the BatLoader attack chain that are similar to activity linked to Conti. The overlaps between the two include shared indicators of compromise (IOCs) and tactics, techniques and procedures (TTPs) such as the use of the Atera agent for remote access, as well as an IP address used by Conti affiliates in a campaign leveraging Log4j. While the exact relationship between Conti and BatLoader is still unknown, this nexus may suggest BatLoader’s potential for adoption by multiple ransomware operators/affiliates. Additionally, BatLoader’s incorporation of Royal as a primary ransomware payload likely indicates Royal rising in prominence as operators look to incorporate new threats and techniques to carry out financially motivated operations that will help them remain effective.Adversaries increasingly relying on Syncro Talos IR observed the Syncro remote management and monitoring (RMM) tool used in nearly 30 percent of engagements, a significant increase compared to previous quarters. Syncro is a commercially available RMM solution that advertises remote desktop access, remote registry editor, remote event viewer and more. Talos IR observed Syncro used as part of attack chains supporting multiple threats this quarter, including BatLoader. Syncro was also distributed in phishing campaigns to gain access to newly-compromised accounts. While the reason for Syncro’s increased usage is unknown, its use as a full-featured remote access platform for managed service providers (MSPs) and its ubiquity across enterprise environments likely makes it an attractive option.First discovered in February 2022, BatLoader uses legitimate tools, like Syncro and the Atera remote access software, to maintain access to infected systems. Since October 2022, Talos has observed a general uptick in our endpoint telemetry and Talos IR investigations associated with BatLoader, which deploys a variety of secondary malware payloads including the Vidar information stealer and the commodity loader Ursnif/Gozi. In one BatLoader engagement, the initial access vector relied on phishing and/or search engine optimization (SEO) poisoning to lure users to download the malware from attacker-created websites. This is consistent with public reporting on typical BatLoader infections. After initial access was established, the BatLoader infection chain leveraged multiple PowerShell and batch scripts to download tools and components needed for subsequent stages of the attack.In another incident, Talos IR identified legitimate accounts sending phishing emails with email subjects that translated from Arabic to “Staff Promotion.” The emails contained OneDrive and OneHub phishing links with a compressed Microsoft Windows Installer (MSI) file that would install Syncro. The adversary attempted to use Syncro to stay connected to the targeted user’s workstation. During analysis of the MSI file, multiple Syncro services were installed, including SyncroRecovery (SyncroLive) and SyncroOvermind. The adversary’s tactics appeared to focus on maintaining initial access through installation of Syncro. The lack of two-factor authentication (2FA) for email access allowed the adversary to perform phishing attacks, highlighting the need to ensure multi-factor authentication (MFA) across all critical assets.Talos IR also observed Syncro installed as part of post-compromise behavior after successful phishing attacks established initial access. In a Qakbot engagement, a phishing email contained a malicious password-protected ZIP file that, when opened, contained an ISO file detected as Qakbot. The adversary was able to crack a weak password for a service account, then used the compromised account to deploy installers for remote access tools Syncro and SplashTop. Active Directory (AD) mapping tools such as ADFind and SharpHound were also identified when a compromised host attempted to access “SharpHound.exe” in the Downloads folder. Shortly after, the adversary created a new folder for the purpose of placing and staging additional tooling.Initial vectorsThis quarter, nearly 40 percent of engagements featured phishing emails used as a means to establish initial access, followed by user execution of a malicious document or link. In many engagements, valid accounts and/or accounts with weak passwords also helped facilitate initial access whereby the adversary leveraged compromised credentials. It is important to note that for the majority of incidents, Talos IR could not reasonably determine the initial vector because of logging deficiencies or a lack of visibility into the affected environment.Talos IR continues to observe threats consistently seen across quarters, including attempts to take advantage of weaknesses or vulnerabilities in public-facing applications. In one engagement, the adversary entered the environment through an exposed Microsoft Remote Desktop Services (RDS) web application. After gaining access, the adversary took over service accounts via a successful Kerberoasting attack. Talos IR identified several script files that contained credentials for various user accounts, many of which had been hard-coded into the scripts themselves. ZIP files were also created shortly after the scripts, suggesting possible data staging activity. Talos IR believes the adversary was able to enter the environment using stolen credentials obtained through a previous phishing campaign against a user account, highlighting the need for user training and password reset policies, especially following suspected phishing attacks.Security weaknessesLack of MFA remains one of the biggest impediments for enterprise security. Nearly 30 percent of engagements either had no MFA or only had it enabled on a handful of accounts and critical services. Talos IR frequently observes ransomware and phishing incidents that could have been prevented if MFA had been properly enabled on critical services, such as endpoint detection response (EDR) solutions or VPNs. To help minimize initial access vectors, Talos IR recommends disabling VPN access for all accounts that are not using two-factor authentication.In all of the ransomware engagements that closed out this quarter, PsExec was used to facilitate lateral movement or execute the final ransomware executable. Talos IR recommends that organizations disable PsExec, as well as access to administrative shares, to limit lateral movement. Additionally, organizations should consider use of Microsoft AppLocker to block tools and files that have been consistently leveraged by adversaries. This helps to create another layer of enforcement for any known malicious or often-misused files.Top-observed MITRE ATT&CK techniquesThe table below represents the MITRE ATT&CK techniques observed in this quarter’s Talos IR engagement. Given that some techniques can fall under multiple tactics, we grouped them under the most relevant tactic in which they were leveraged. Please note, this is not an exhaustive list.Key findings from the MITRE ATT&CK appendix include:Legitimate remote access and management software, such as AnyDesk and TeamViewer, were leveraged in over 35 percent of engagements this quarter.In every ransomware engagement this quarter, PsExec was used to facilitate lateral movement or execute the ransomware executable.Phishing emails with malicious links and/or attachments were the top initial access vector this quarter, seen in nearly 40 percent of engagements. User execution of a malicious file or link would subsequently lead to a variety of malicious threats, including execution of commodity malware such as Qakbot.
+
+
+
+Tactic 
+
+
+Technique 
+
+
+Example 
+
+
+
+
+Initial Access (TA0001) 
+
+
+T1078 Valid Accounts  
+
+
+Adversary leveraged stolen or compromised credentials  
+
+
+
+
+Reconnaissance (TA0043) 
+
+
+T1592 Gather Victim Host Information 
+
+
+Text file contains details about host 
+
+
+
+
+Persistence (TA0003) 
+
+
+T1136 Create Account 
+
+
+Created a user to add to the local administrator’s group 
+
+
+
+
+Execution (TA0002) 
+
+
+T1059.001 Command and Scripting Interpreter: PowerShell  
+
+
+Executes PowerShell code to retrieve information about the client's Active Directory environment 
+
+
+
+
+Discovery (TA0007) 
+
+
+T1046 Network Service Scanning   
+
+
+Use a network or port scanner utility  
+
+
+
+
+Credential Access (TA0006) 
+
+
+T1003 OS Credential Dumping 
+
+
+Deploy Mimikatz and publicly available password lookup utilities 
+
+
+
+
+Privilege Escalation (TA0004)  
+
+
+T1484 Domain Policy Modification   
+
+
+Modify GPOs to execute malicious files  
+
+
+
+
+Lateral Movement (TA0008) 
+
+
+T1021.001 Remote Desktop Protocol  
+
+
+Adversary made attempts to move laterally using Windows Remote Desktop 
+
+
+
+
+Defense Evasion (TA0005) 
+
+
+T1027 Obfuscated Files or Information 
+
+
+Use base64-encoded PowerShell scripts 
+
+
+
+
+Command and Control (TA0011) 
+
+
+T1219 Remote Access Software   
+
+
+Remote access tools found on the compromised system   
+
+
+
+
+Impact (TA0040) 
+
+
+T1486 Data Encrypted for Impact  
+
+
+Deploy Hive ransomware and encrypt critical systems 
+
+
+
+
+Exfiltration (TA0010) 
+
+
+T1048.003 Exfiltration Over Alternative Protocol: Exfiltration Over Unencrypted Non-C2 Protocol  
+
+
+Use WinSCP for potential exfiltration of system information   
+
+
+
+
+Collection (TA0009) 
+
+
+T1560.001 Archive Collected Data: Archive via Utility  
+
+
+Adversary leveraged xcopy on Windows to copy files  
+
+
+
+
+Software/Tool 
+
+
+S0002 Mimikatz 
+
+
+Use Mimikatz to obtain account logins and passwords 
+
+
+
+
+
+
+
+Share this post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Content
+
+
+IR Trends Q2 2026: Phishing and weaponized remote management tools drive attack chains
+July 28, 2026 06:00
+Talos IR's Q2 report highlights a significant surge in phishing-based initial access and the weaponization of legitimate remote management tools. Learn how to sharpen your defenses.
+
+
+
+
+IR Trends Q1 2026: Phishing reemerges as top initial access vector, as attacks targeting public administration persist
+April 22, 2026 06:00
+Phishing reemerged as the most observed means of gaining initial access, accounting for over a third of the engagements where initial access could be determined. Phishing has not been the top vertical for initial access since Q2 2025.
+
+
+
+
+IR Trends Q4 2025: Exploitation remains dominant, phishing campaign targets Native American tribal organizations
+January 29, 2026 06:00
+A drop in exploitation and ransomware, but a spike in phishing and credential abuse, show why timely patching and robust MFA matter more than ever.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

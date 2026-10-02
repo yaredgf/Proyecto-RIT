@@ -1,0 +1,861 @@
+
+
+
+Craig Williams - Cisco Talos Blog (Page 3)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Craig Williams
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+July 14, 2015 07:40
+Microsoft Patch Tuesday – July 2015
+Today, Microsoft has released their monthly set of security bulletins designed to address security vulnerabilities within their products. This month’s release sees a total of 14 bulletins being released which address 57 CVEs. Four of the bulletins are listed as Critical and addre
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+July 8, 2015 06:49
+Ding! Your RAT has been delivered
+This post was authored by Nick Biasini
+
+Talos is constantly observing malicious spam campaigns delivering various different types of payloads. Common payloads include things like Dridex, Upatre, and various versions of Ransomware. One less common payload that Talos analyzes perio
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+June 24, 2015 07:46
+Hook, Line & Sinker: Catching Unsuspecting Users Off Guard
+This post was authored by Earl Carter.
+
+Attackers are constantly looking for ways to monetize their malicious activity. In many instances this involves targeting user data and accounts. Talos continues to see phishing attacks targeting customers of multiple high profile financial
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+June 16, 2015 05:57
+Domain Shadowing Goes Nuclear: A Story in Failed Sophistication
+This post was authored by Nick Biasini
+
+Exploit Kits are constantly altering their techniques to compromise additional users while also evading detection. Talos sees various campaigns start and stop for different exploit kits all the time. Lately a lot of focus has been put on An
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+June 9, 2015 06:49
+Microsoft Patch Tuesday - June 2015
+Today, Microsoft has released their monthly set of security bulletins designed to address security vulnerabilities within their products. This month’s release sees a total of 8 bulletins being released which address 45 CVE. Two of the bulletins are listed as Critical and address
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+June 5, 2015 06:00
+My Resume Protects All Your Files
+This post was authored by Nick Biasini
+
+Talos has found a new spam campaign that is using multiple layers of obfuscation to attempt to evade detection.  spammers are always evolving to get their messages to the end users by bypassing spam filters while still appearing convincing
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+June 5, 2015 01:05
+Angler EK: More Obfuscation, Fake Extensions, and Other Nonsense
+This post was authored by Nick Biasini
+
+Late last week Talos researchers noticed a drastic uptick in Angler Exploit Kit activity. We have covered Angler previously, such as the discussion of domain shadowing. This exploit kit evolves on an almost constant basis. However, the rece
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+May 20, 2015 05:38
+Little Links, Big Headaches
+This post was authored by Earl Carter & Jaeson Schultz.
+
+Talos is always fascinated by the endless creativity of those who send spam. Miscreants who automate sending spam using botnets are of particular interest. Talos has been tracking a spam botnet that over the past severa
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+May 12, 2015 09:12
+Microsoft Patch Tuesday - May 2015
+Today, Microsoft has released their monthly set of security bulletins designed to address security vulnerabilities within their products.  This month’s release sees a total of 13 bulletins being released which address 48 CVEs. Three of the bulletins are listed as Critical and add
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+← Prev
+
+
+Next →
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,747 @@
+
+
+
+Beers with Talos Ep. #54: Patch after listening, RDP and wild 0-days
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Listen on: 
+
+                                        Apple Podcasts
+                                    
+
+                                        Google Podcasts
+                                    
+
+                                        Spotify
+                                    
+
+                                        Stitcher
+                                    
+
+                                        RSS Feed
+                                    
+
+
+
+
+
+
+
+
+
+Beers with Talos Ep. #54: Patch after listening, RDP and wild 0-days
+
+
+By 
+Mitch Neff
+
+
+
+            Wednesday, May 29, 2019 15:19
+        
+
+
+                            Beers with Talos
+                        
+
+
+
+
+
+
+
+Share this post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Content
+
+
+Beers with Talos, Ep. #120: How attackers are finding ways around MFA
+April 21, 2022 12:00
+Beers with Talos (BWT) Podcast episode No. 120 is now available. Download this episode and subscribe to Beers with Talos:
+
+ * Apple Podcasts
+ * Google Podcasts
+ * Spotify
+ * Stitcher
+
+Recorded April 6, 2022
+
+If iTunes and Google Play aren't your thing, click here.
+
+The trend of special guests continues, this time
+
+
+
+
+Beers with Talos, Ep. #119: If it walks like a BlackCat, smells like a BlackCat...
+April 1, 2022 10:04
+Beers with Talos (BWT) Podcast episode No. 119 is now available. Download this episode and subscribe to Beers with Talos:
+
+ * Apple Podcasts
+ * Google Podcasts
+ * Spotify
+ * Stitcher
+
+Recorded March 25, 2022.
+
+If iTunes and Google Play aren't your thing, click here.
+
+We're still dealing with everything going
+
+
+
+
+Beers with Talos, Ep. #118: Reflecting on the current situation in Ukraine
+March 14, 2022 15:20
+Beers with Talos (BWT) Podcast episode No. 118 is now available. Download this episode and subscribe to Beers with Talos:
+
+ * Apple Podcasts
+ * Google Podcasts
+ * Spotify
+ * Stitcher
+
+Recorded March 7, 2022.
+
+If iTunes and Google Play aren't your thing, click here.
+
+This was admittedly a tough one to record.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

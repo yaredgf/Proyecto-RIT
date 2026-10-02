@@ -1,0 +1,871 @@
+
+
+
+Craig Williams - Cisco Talos Blog (Page 6)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Craig Williams
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+January 28, 2015 10:30
+CVE-2015-0235: A GHOST in the Machine
+This post was authored by Nick Biasini, Earl Carter, Alex Chiu and Jaeson Schultz
+
+On Tuesday January 27, 2015, security researchers from Qualys published information concerning a 0-day vulnerability in the GNU C library. The vulnerability, known as “GHOST” (a.k.a. CVE-2015-0235)
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+January 23, 2015 10:21
+Flash 0-day Exploited by Angler Exploit Kit
+This post was authored by Nick Biasini, Earl Carter and Jaeson Schultz
+
+Flash has long been a favorite target among Exploit Kits (EK). In October 2014 the Angler EK was believed to be targeting a new Flash vulnerability. The bug that the Angler exploit kit was attempting to explo
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+January 13, 2015 06:51
+Microsoft Update Tuesday January 2015: Another Light Month, No IE
+Bulletins, More Changes to Reporting
+This post was written by Yves Younan.
+
+Microsoft’s first Update Tuesday of 2015 is pretty light, there’s a total of eight bulletins, all covering a single vulnerability. Seven of these bulletins are rated as important and just one is rated critical. No bulletin for IE is being re
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+January 6, 2015 02:14
+Ransomware on Steroids: Cryptowall 2.0
+This post was authored by Andrea Allievi and Earl Carter.
+
+Ransomware holds a user’s data hostage. The latest ransomware variants encrypt the user’s data, thus making it unusable until a ransom is paid to retrieve the decryption key. The latest Cryptowall 2.0, utilizes TOR to obf
+
+
+                    By
+                
+Craig Williams
+
+
+
+                            ransomware
+                        
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+December 17, 2014 04:57
+Wiper Malware - A Detection Deep Dive
+This post was authored by Christopher Marczewski with contributions from Craig WIlliams
+
+A new piece of wiper malware has received quite a bit of media attention. Despite all the recent press, Cisco's Talos team has historic examples of this type of malware going back to the
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+December 15, 2014 05:24
+Ancient Mac Site Harbors Botnet that Exploits IE Vulnerability
+This post was authored by Alex Chiu and Shaun Hurley.
+
+Last month, Microsoft released a security bulletin to patch CVE-2014-6332, a vulnerability within Windows Object Linking and Embedding (OLE) that could result in remote code execution if a user views a maliciously crafted web
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+December 9, 2014 05:31
+Dridex Is Back, then it's gone again
+This post was authored by Armin Pelkmann and Earl Carter.
+
+Talos Security Intelligence and Research Group noticed a reappearance of several Dridex email campaigns, starting last week and continuing into this week as well. Dridex is in a nutshell, malware designed to steal your fi
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+December 9, 2014 05:30
+Microsoft Patch Tuesday for December 2014: Light Month, Some Changes
+This post was authored by Yves Younan.
+
+Today, Microsoft is releasing their final Update Tuesday of 2014. Last year, the end of year update was relatively large. This time, it’s relatively light with a total of seven bulletins, covering 24 CVEs. Three of those bulletins are rated
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+November 30, 2014 21:01
+MS14-063 A Potential XP Exploit
+This post was written by Marcin Noga with contributions by Earl Carter and Martin Lee.
+
+New vulnerabilities for old operating systems may not seem particularly interesting, until you consider the large number of legacy machines running outdated versions of Windows. Windows XP has
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+← Prev
+
+
+Next →
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

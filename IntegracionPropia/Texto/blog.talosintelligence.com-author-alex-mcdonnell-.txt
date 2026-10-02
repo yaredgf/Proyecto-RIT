@@ -1,0 +1,886 @@
+
+
+
+Alex McDonnell - Cisco Talos Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Alex McDonnell
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+December 9, 2025 06:00
+New in Snort3: Enhanced rule grouping for greater flexibility and control
+Today, Cisco Talos is introducing new capabilities for Snort3 users within Cisco Secure Firewall to give you greater flexibility in how you manage, organize, and prioritize detection rules.
+
+
+                    By
+                
+Alex McDonnell
+
+
+
+                            Snort
+                        
+
+                            On The Radar
+                        
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+April 20, 2016 12:04
+Threat Spotlight: Exploit Kit Goes International Hits 150+ Countries
+Overview
+
+Talos is constantly monitoring the threat landscape and exploit kits are a constantly evolving component of it. An ongoing goal of Talos is to expose and disrupt these kits to protect the average internet user being targeted and compromised. We were able to gain unprece
+
+
+                    By
+                
+Nick Biasini, 
+                    Erick Galinkin, 
+                    Alex McDonnell
+
+
+
+                            Threat Spotlight
+                        
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+May 2, 2014 13:23
+Anatomy of an exploit: CVE 2014-1776
+This post is co-authored by Alex McDonnell, Brandon Stultz, Joel Esler, Patrick Mullen, Armin Pelkmann, and Craig Williams
+
+When the Internet Explorer 0-day CVE 2014-1776 was announced, we turned to our intelligence feeds for more information. In the course of taking it apart we
+
+
+                    By
+                
+Alex McDonnell
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+April 8, 2014 09:26
+CVE-2014-1761, Oh did you mean CVE-2012-2539?
+When the VRT first received word of a new Microsoft Word 0-day I anxiously awaited details and the ever important hash of the in-the-wild exploit to be able to research it and provide coverage through Snort, ClamAV and the FireAmp suite of products. I was especially interested wh
+
+
+                    By
+                
+Alex McDonnell
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+May 15, 2013 17:35
+Java Web Start or as it should be called "Sure go ahead and run what you like"
+Late last month, Immunity published a blog post concerning a new way to escape the Java security warnings using a novel and simple method, by using the convenient Java Web Start framework. The Immunity team discovered a parameter called __applet_ssv_validated that sets whether yo
+
+
+                    By
+                
+Alex McDonnell
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+January 10, 2013 14:32
+The Ruby on Rails vulnerability that made Metasploit release a patch
+This post on the Ruby on Rails Security group January 8th contained a few phrases that cause alarm when used together: "inject arbitrary SQL", "inject and execute arbitrary code" and "perform a DoS attack on a Rails application". Without going into d
+
+
+                    By
+                
+Alex McDonnell
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+August 28, 2012 15:52
+CVE-2012-4681: bypassing built-in java security
+A new Java 0-day is running rampant around the internet this week. With a code paste Sunday night and a Metasploit module coming in early yesterday morning, along with myriad research and blog posts, this Java vuln is sure to be the topic of the week. Based on information in the
+
+
+                    By
+                
+Alex McDonnell
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+July 11, 2012 16:36
+It's not the Dalai Lama's birthday, oh and you got owned
+A number of recent targeted attack campaigns have centered around the Dalai Lama, including purported plans for his birthday and calls to action for democracy in Tibet. These attacks use several popular exploits and even include attacks on Mac OS X. While investigating samples of
+
+
+                    By
+                
+Alex McDonnell
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+March 20, 2012 18:50
+MIDI Karaoke Background or Malware Vector?
+MD5's of samples found in the wild up to now:
+
+- 6249ac0674574c7df2f81801a41b85a5
+
+- 9d63609e49e18f87973e66bdbc4236b4
+
+- d3410dd27ba25c780abcd5c4df573303
+
+- 1a4c84227cbf6da8724699b9b6fbb71b
+
+- bbc2d8cb3f8ed9a3a5292408d476af14
+
+- c91703bc8d5509003c1d0a634dcbbd06
+
+- 2b988374bb9
+
+
+                    By
+                
+Alex McDonnell
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

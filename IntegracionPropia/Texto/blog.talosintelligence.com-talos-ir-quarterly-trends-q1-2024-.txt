@@ -1,0 +1,697 @@
+
+
+
+Talos IR trends: BEC attacks surge, while weaknesses in MFA persist
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Talos IR trends: BEC attacks surge, while weaknesses in MFA persist
+
+
+By 
+Nicole Hoffman
+
+
+
+            Thursday, April 25, 2024 08:00
+        
+
+
+                            Talos IR trends
+                        
+
+                            Cisco Talos Incident Response
+                        
+
+
+
+
+Business email compromise (BEC) was the top threat observed by Cisco Talos Incident Response (Talos IR) in the first quarter of 2024, accounting for nearly half of engagements, which is more than double what was observed in the previous quarter.  The most observed means of gaining initial access was the use of compromised credentials on valid accounts, which accounted for 29 percent of engagements. The high number of BEC attacks likely played a significant role in valid accounts being the top attack vector this quarter. Weaknesses involving multi-factor authentication (MFA) were observed within nearly half of engagements this quarter, with the top observed weakness being users accepting unauthorized push notifications, occurring within 25 percent of engagements.  Talos IR Quarterly Trends Report (Q1 2024)An overview of the top attacker trends, malware and the most-targeted industries.Talos IR Trends (Q1 2024).pdf174 KBdownload-circleThere was a slight decrease in ransomware this quarter, accounting for 17 percent of engagements. Talos IR responded to new variants of Phobos and Akira ransomware for the first time this quarter. Manufacturing was the most targeted vertical this quarter, closely followed by education, a continuation from Q4 2024 where manufacturing and education were also two of the most targeted verticals. There was a 20 percent increase in manufacturing engagements from the previous quarter. The manufacturing sector faces unique challenges due to its inherently low tolerance for operational downtime. This quarter, Talos IR observed a wide range of threat activity targeting manufacturing organizations including financially motivated attacks, such as BEC and ransomware, and some brute force activity targeting virtual private network (VPN) infrastructure. The use of compromised credentials on valid accounts was the top observed attack vector within attacks targeting the manufacturing sector this quarter, which represents a change from the previous quarter when the top attack vector observed in these types of engagements was exploiting vulnerabilities in public-facing applications.   Watch discussion on the report's biggest trendsSurge in BEC Within BEC attacks, adversaries will send phishing emails appearing to be from a known or reputable source making a valid request, such as updating payroll direct deposit information. BEC attacks can have many motivations, often financially driven, aimed at tricking organizations into transferring funds or sensitive information to malicious actors.  BEC offers adversaries the advantage of impersonating trusted contacts to facilitate internal spearphishing attacks that can bypass traditional external defenses and increase the likelihood of deception, widespread malware infections and data theft. In one engagement, adversaries performed a password-spraying attack and MFA exhaustion attacks against several employee accounts. There was a lack of proper MFA implementation across all the impacted accounts, leading to the adversaries gaining access to at least two accounts using single-factor authentication. The organization detected and disrupted the attack before adversaries could further their access or perform additional post-compromise activities.    In another cluster of activity, several employees received spear-phishing emails that contained links that, when clicked, led to a redirection chain of web pages ultimately landing on a legitimate single sign-on (SSO) prompt that was pre-populated with each victim’s email address. The attack was unsuccessful because none of the employees interacted with the email, which was likely due to multiple red flags. For example, the email was unexpected and sent from an external email address, and there was small text within the email that referred to the email as a fax, which was all indicators of a phishing attempt. Ransomware trends Ransomware accounted for 17 percent of engagements this quarter, an 11 percent decrease from the previous quarter. Talos IR observed new variants of Akira and Phobos ransomware for the first time this quarter. Akira Talos IR responded to an Akira ransomware attack for the first time this quarter in an engagement where affiliates deployed the latest ESXi version, “Akira_v2,” as well as a Windows-based variant of Akira named “Megazord.” These new Akira variants are written in the Rust programming language, which is a notable change from the previously used C++ and Crypto++ programming languages.  Talos IR could not determine how initial access was gained, which is common because ransomware attacks often involve multi-stage attack strategies that add additional complexity during the investigation process. Once inside the network, the adversaries began collecting credentials from the memory of the Local Security Authority Subsystem Service (LSASS) and the New Technology Directory Services Directory Information Tree (NTDS.dit) database, where Active Directory data is stored, and leveraged Remote Desktop Protocol (RDP) for lateral movement. Prior to encryption, Megazord ransomware began executing several commands to disable tools and impair defenses, including “net stop” and “taskkill.” Akira_v2 appended the file extension “.akiranew” during encryption, while Megazord ransomware appended the file extension “.powerranges”.   First discovered in early 2023, Akira operates as a ransomware-as-a-service (RaaS) model and employs a double extortion scheme that involves exfiltrating data before encryption. Akira affiliates are known to heavily target small- to medium-sized businesses within several verticals primarily located within the U.S. but have targeted organizations within the U.K., Canada, Iceland, Australia and South Korea. Akira affiliates are notorious for leveraging compromised credentials and exploiting vulnerabilities as a means of gaining initial access, such as the SQL injection vulnerability, tracked as CVE-2021-27876, affecting certain versions of Zoho ManageEngine ADSelfService Plus, and the vulnerability, tracked as CVE-2023-27532, affecting certain versions of Veeam’s Backup & Replication (VBS) software.    Phobos Talos IR has previously observed variants of Phobos ransomware, such as “Faust,” but this quarter, Talos IR responded to an engagement with the “BackMyData” variant of Phobos ransomware. The adversaries leveraged Mimikatz to dump credentials from Active Directory. The adversary also installed several tools in the NirSoft product suite designed to recover passwords, such as PasswordFox and ChromePass, for additional credential enumeration. The adversaries used PsExec to access the domain controller before setting a registry key to permit remote desktop connections. Shortly after, the adversaries also modified the firewall to allow remote desktop connections using the Windows scripting utility, netsh. The remote access tool AnyDesk was downloaded to enable remote access as a means of persistence in the environment. Talos IR assessed with high confidence that Windows Secure Copy (WinSCP) and Secure Shell (SSH) were likely used to exfiltrate staged data. Adversaries also relied on PsExec to execute commands, such as deleting volume shadow copies, as a precursor to deploying the ransomware executable. After encryption, the ransomware appended the file extension “.fastbackdata”.   A notable finding was the persistent use of the “Users/[username]/Music” directory as a staging area for data exfiltration to host malicious scripts, tools and malware, a common technique used by numerous ransomware affiliates to evade detection and remain persistent in the environment. Talos IR also identified a digitally signed executable, “HRSword,” developed by Beijing Huorong Network Technology. It is a tool the affiliate used during the attack for potential secure file deletion and as a defensive measure to disable endpoint protection tools, which Phobos affiliates were previously using, according to public reporting.   Phobos ransomware first emerged in late 2018 and shared many similarities with the Crysis and Dharma ransomware families. Unlike other ransomware families, there are many variants of Phobos ransomware, such as Eking, Eight, Elbie, Devos and Faust. There is little information known about the business model leveraged by the Phobos ransomware operation. In November 2023, Cisco Talos analyzed over a thousand samples of Phobos ransomware to learn more about the affiliate structure and activity, which revealed that Phobos may operate a RaaS model due to the hundreds of contact emails and IDs associated with Phobos campaigns, indicating the malware has a dispersed affiliate base. Talos assessed with moderate confidence that the Phobos ransomware operation is actively managed by a central authority, as there is only one private key capable of decryption in all observed campaigns. Other observed threats  Talos IR responded to an attack where adversaries were attempting to brute force several Cisco Adaptive Security Appliances (ASAs). Although the adversaries were unsuccessful in their attack, this activity is in line with the recently observed trend affecting VPN services. Cisco Talos has recently seen an increase in malicious activity targeting VPN services, web application authentication interfaces, and Secure Shell (SSH) globally. Since at least March 18, Cisco has observed scanning and brute force activity sourcing from The Onion Router (TOR) exit nodes and other anonymous tunnels and proxies. Depending on the target environment, a successful attack could result in unauthorized access to a target network, possibly leading to account lockouts and denial-of-service (DoS) conditions. The brute force attempts include a combination of generic usernames and valid usernames unique to specific organizations. The activity seems indiscriminate and has been observed across multiple industry verticals and geographic regions. Initial vectors The most observed means of gaining initial access was the use of compromised credentials on valid accounts, accounting for 29 percent of engagements, a continuation of a trend from the previous quarter when valid accounts were also a top attack vector. Security weaknesses For the first time, users accepting unauthorized MFA push notifications was the top observed security weakness, accounting for 25 percent of engagements this quarter. The lack of proper MFA implementation closely followed, accounting for 21 percent of engagements, a 44 percent decrease from the previous quarter. Users must have a clear understanding of the appropriate business response protocols when their devices are overwhelmed with an excessive volume of push notifications. Talos IR recommends organizations educate their employees about the specific channels and points of contact for reporting these incidents. Prompt and accurate reporting enables security teams to quickly identify the nature of the issue and implement the necessary measures to address the situation effectively. Organizations should also consider implementing number-matching in MFA applications to provide an additional layer of security to prevent users from accepting malicious MFA push notifications. Talos IR recommends implementing MFA on all critical services including all remote access and identity access management (IAM) services. MFA will be the most effective method for the prevention of remote-based compromises. It also prevents lateral movement by requiring all administrative users to provide a second form of authentication. Organizations can set up alerting for single-factor authentication to quickly identify potential gaps. Top observed MITRE ATT&CK techniques The table below represents the MITRE ATT&CK techniques observed in this quarter’s IR engagements. Given that some techniques can fall under multiple tactics, we grouped them under the most relevant tactic based on the way they were leveraged. Please note, this is not an exhaustive list. Key findings from the MITRE ATT&CK framework include:  Remote access software, such as SplashTop and AnyDesk, were used in 17 percent of engagements this quarter, a 20 percent decrease from the previous quarter.  The use of email hiding rules was the top observed defense evasion technique, accounting for 21 percent of engagements this quarter.   Scheduled tasks were leveraged by adversaries the most this quarter for persistence, accounting for 17 percent of engagements this quarter, a 33 percent increase from the previous quarter.  The abuse of remote services, such as RDP, SSH, SMB and WinRM, more than doubled this quarter compared to the previous quarter, accounting for nearly 60 percent of engagements. 
+
+Reconnaissance Example T1589.001 Gather Victim Identity Information: Credentials Adversaries may gather credentials that can be used during their attack.  T1598.003 Phishing for Information: Spearphishing Link Adversaries may send a spearphishing email with a link to a credential harvesting page to collect credentials for their attack. Resource Development Example T1586.002 Compromise Accounts: Email Accounts Adversaries may compromise email accounts that can be used during their attack for malicious activities, such as internal spearphishing. T1583.001 Acquire Infrastructure: Domains Adversaries may acquire domains that can be used for malicious activities, such as hosting malware. T1608.001 Stage Capabilities: Upload Malware Adversaries may upload malware to compromised domains to make it accessible during their attack.  T1583.008 Acquire Infrastructure: Malvertising Adversaries may purchase online advertisements, such as Google ads, that can be used distribute malware to victims. T1608.004 Stage Capabilities: Drive-by Target Adversaries may prepare a website for drive-by compromise by inserting malicious JavaScript.  Initial Access Example T1078 Valid Accounts Adversaries may use compromised credentials to access valid accounts during their attack. T1566 Phishing Adversaries may send phishing messages to gain access to target systems. T1189 Drive-by Compromise Victims may infect their systems with malware over browsing, providing an adversary with access.  T1190 Exploit in Public-Facing Application Adversaries may exploit a vulnerability to gain access to a target system. T1566.002 Phishing: Spearphishing Link Adversaries may send phishing emails with malicious links to lure victims into installing malware.  Execution Example T1059.001 Command and Scripting Interpreter: PowerShell Adversaries may abuse PowerShell to execute commands or scripts throughout their attack. T1059.003 Command and Scripting Interpreter: Windows Command Shell Adversaries may abuse Windows Command Shell to execute commands or scripts throughout their attack. T1569.002 System Services: Service Execution Adversaries may abuse Windows service control manager to execute commands or payloads during their attack. Persistence Example T1053.005 Scheduled Task / Job: Scheduled Task Adversaries may abuse the Windows Task Scheduler to perform task scheduling for recurring execution of malware or malicious commands. T1574.002 Hijack Execution: DLL Side-Loading Adversaries may execute their own malicious code by side-loading DLL files into legitimate programs.  Privilege Escalation Example T1548.002 Abuse Elevation Control Mechanism: Bypass User Account Control Adversaries may bypass UAC mechanisms to elevate their permissions on a system. Defense Evasion Example T1564.008 Hide Artifacts: Email Hiding Rules Adversaries may create inbox rules to forward certain incoming emails to a folder to hide them from the inbox owner. T1070.004 Indicator Removal: File Deletion Adversaries may delete files to cover their tracks during the attack.  T1218.011 System Signed Binary Proxy Execution: Rundll32 Adversaries may abuse the Windows utility rundll32.exe to execute malware.  T1112 Modify Registry Adversaries may modify the registry to maintain persistence on a target system.  T1562.010 Impair Defenses: Downgrade Attack Adversaries may downgrade a program, such as PowerShell, to a version that is vulnerable to exploits. Credential Access Example T1621 Multi-Factor Authentication Request Generation Adversaries may generate MFA push notifications causing an MFA exhaustion attack. T1003.005 OS Credential Dumping: NTDS Adversaries may dump the contents of the NTDS.dit file to access credentials that can be used for lateral movement. T1003.001 OS Credential Dumping: LSASS Adversaries may dump the contents of LSASS to access credentials that can be used for lateral movement T1003.002 OS Credential Dumping: Service Account Manager Adversaries may dump the contents of the service account manager to access credentials that can be used for lateral movement. T1110.002 Brute Force: Password Cracking Adversaries may use brute force account passwords to compromise accounts. Discovery Example T1069.001 Permission Groups Discovery: Local Groups Adversaries may attempt to discover local permissions groups with commands, such as “net localgroup.”  T1069.002 Permission Groups Discovery: Domain Groups Adversaries may attempt to discover domain groups with commands, such as “net group /domain.” T1201 Password Policy Discovery Adversaries may attempt to discover information about the password policy within a compromised network with commands, such as “net accounts.” Lateral Movement Example T1021.001 Remote Services: Remote Desktop Protocol Adversaries may abuse valid accounts using RDP to move laterally in a target environment.  T1534 Internal Spearphishing Adversaries may abuse a compromised email account to send internal spearphishing emails to move laterally. T1021.002 Remote Services: SMB / Windows Admin Shares Adversaries may abuse valid accounts using SMB to move laterally in a target environment. T1021.004 Remote Services: SSH Adversaries may abuse valid accounts using SSH to move laterally in a target environment. T1021.001 Remote Services: Windows Remote Management Adversaries may abuse valid accounts using WinRM to move laterally in a target environment. Collection Example T1114.002 Email Collection: Remote Email Collection Adversaries may target a Microsoft Exchange server to collect information.  T1074.001 Data Staged: Local Data Staging Adversaries may stage collected data in preparation for exfiltration. T1074 Data Staged Adversaries may stage collected data in preparation for exfiltration. Command and Control Example T1105 Ingress Tool Transfer Adversaries may transfer tools from an external system to a compromised system. T1219 Remote Access Software  Adversaries may abuse remote access software, such as AnyDesk, to establish an interactive C2 channel during their attack.  Exfiltration Example T1567.002 Exfiltration Over Web Service: Exfiltration to Cloud Storage Adversaries may exfiltrate data to a cloud storage provider, such as Dropbox.  Impact Example T1486 Data Encrypted for Impact Adversaries may use ransomware to encrypt data on a target system.  T1490 Inhibit System Recovery Adversaries may disable system recovery features, such as volume shadow copies.  T1657 Financial Theft Adversaries may commit financial fraud during the attack. 
+
+
+
+
+Share this post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Content
+
+
+IR Trends Q2 2026: Phishing and weaponized remote management tools drive attack chains
+July 28, 2026 06:00
+Talos IR's Q2 report highlights a significant surge in phishing-based initial access and the weaponization of legitimate remote management tools. Learn how to sharpen your defenses.
+
+
+
+
+IR Trends Q1 2026: Phishing reemerges as top initial access vector, as attacks targeting public administration persist
+April 22, 2026 06:00
+Phishing reemerged as the most observed means of gaining initial access, accounting for over a third of the engagements where initial access could be determined. Phishing has not been the top vertical for initial access since Q2 2025.
+
+
+
+
+IR Trends Q4 2025: Exploitation remains dominant, phishing campaign targets Native American tribal organizations
+January 29, 2026 06:00
+A drop in exploitation and ransomware, but a spike in phishing and credential abuse, show why timely patching and robust MFA matter more than ever.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

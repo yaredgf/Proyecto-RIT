@@ -1,0 +1,920 @@
+
+
+
+Matt Olney - Cisco Talos Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Matt Olney
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+April 18, 2023 11:02
+State-sponsored campaigns target global network infrastructure
+This campaign, dubbed "Jaguar Tooth," is an example of a much broader trend of sophisticated adversaries targeting networking infrastructure to advance espionage objectives or pre-position for future destructive activity.
+
+
+                    By
+                
+Matt Olney
+
+
+
+                            Threats
+                        
+
+                            SecureX
+                        
+
+                            Threat Advisory
+                        
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+February 24, 2023 08:00
+February 24th
+Today marks one year since Russia invaded Ukraine.  While there is much we could say, we will simply reiterate our unwavering support of our colleagues, partners, and the people of Ukraine as they defend their country and our hope that peace and comfort come quickly to them.
+
+
+                    By
+                
+Matt Olney
+
+
+
+                            Ukraine
+                        
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+March 1, 2022 19:34
+Crowd-sourced attacks present new risk of crisis escalation
+This post is also available in:
+
+日本語 (Japanese)
+
+ * An unpredictable and largely unknown set of actors present a threat to organizations, despite their sometimes unsophisticated techniques. Customers who are typically focused on top-tier, state-sponsored attacks should remain awa
+
+
+                    By
+                
+Matt Olney
+
+
+
+                            Threat Advisory
+                        
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+July 16, 2020 09:00
+What to expect when you’re electing: Talos’ 2020 election security primer
+Editor's note: Related reading on Talos election security research:
+
+ * /what-to-expect-when-youre-electing
+ * /election-roundtable-video
+ * /what-to-expect-electing-disinformation-building-blocks After the 2016 General Election, the talk was all around foreign meddling. Rumo
+
+
+                    By
+                
+Jonathan Munshaw, 
+                    Matt Olney
+
+
+
+                            Headlines
+                        
+
+                            Threats
+                        
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+September 20, 2017 17:57
+CCleaner Command and Control Causes Concern
+Introduction
+
+Talos recently published a technical analysis of a backdoor which was included with version 5.33 of the CCleaner application. During our investigation we were provided an archive containing files that were stored on the C2 server. Initially, we had concerns about th
+
+
+                    By
+                
+Edmund Brumaghin, 
+                    Earl Carter, 
+                    Warren Mercer, 
+                    Matt Olney, 
+                    Paul Rascagneres, 
+                    Craig Williams
+
+
+
+                            Threat Advisory
+                        
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+July 5, 2017 14:22
+The MeDoc Connection
+Summary
+
+The Nyetya attack was a destructive ransomware variant that affected many organizations inside of Ukraine and multinational corporations with operations in Ukraine. In cooperation with Cisco Advanced Services Incident Response, Talos identified several key aspects of the
+
+
+                    By
+                
+David Maynor, 
+                    Matt Olney, 
+                    Yves Younan
+
+
+
+                            ransomware
+                        
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+April 9, 2015 03:30
+Threat Spotlight: SSHPsychos
+Introduction
+
+Talos has been monitoring a persistent threat for quite some time, a group we refer to as SSHPsychos or Group 93. This group is well known for creating significant amounts of scanning traffic across the Internet. Although our research efforts help inform and protect
+
+
+                    By
+                
+Nick Biasini, 
+                    Matt Olney, 
+                    Craig Williams
+
+
+
+                            Threat Spotlight
+                        
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+August 16, 2012 18:03
+New Threat:  DistTrack
+Sourcefire is aware of at least one ongoing incident in the energy vertical involving a threat named "DistTrack".  This is a new, destructive threat that has not perviously been seen in the wild.  At this time, the earliest known sightings were on 8/14.  Preliminary ind
+
+
+                    By
+                
+Matt Olney
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+April 12, 2012 17:06
+Special Delivery -- Phoenix Exploit Kit
+You would think that spam masquerading as a delivery company would be getting a little long in the tooth, but that isn't the case.Last week the winner was "DHL Attention 846698", which looks something like this:
+
+
+
+Good day!
+
+
+Dear Consumer , Recipient's address
+
+
+                    By
+                
+Matt Olney
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+Next →
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

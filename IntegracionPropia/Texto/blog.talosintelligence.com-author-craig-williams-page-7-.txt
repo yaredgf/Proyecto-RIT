@@ -1,0 +1,889 @@
+
+
+
+Craig Williams - Cisco Talos Blog (Page 7)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Craig Williams
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+November 24, 2014 10:00
+Cisco Coverage for 'Regin' Campaign
+This post was authored by Alex Chiu with contributions from Joel Esler.
+
+
+Advanced persistent threats are a problem that many companies and organizations of all sizes face. In the past two days, information regarding a highly targeted campaign known as ‘Regin’ has been publicly d
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+November 18, 2014 04:03
+Reversing Multilayer .NET Malware
+This post was authored by Dave McDaniel with contributions from Jaeson Schultz.
+
+Recently, we came across a malware sample that has been traversing the Internet disguised as an image of a woman. The malware sample uses several layers of obfuscation to hide its payload, including
+
+
+                    By
+                
+Craig Williams
+
+
+
+                            Threats
+                        
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+November 11, 2014 06:38
+Microsoft Update Tuesday November 2014: Fixes for 3 0-day
+Vulnerabilities
+This month Microsoft is releasing 14 security bulletins. Originally they had planned to release 16, but due to issues that emerged in late testing, two bulletins that were announced in the Advance Security Notification, MS14-068 and MS14-075, have been postponed. Of the 14 bullet
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+November 7, 2014 04:46
+Talos Discovered Three More Vulnerabilities in Pidgin
+This post was authored by Yves Younan and edited by Armin Pelkmann.
+
+Table of contents
+
+
+CVE-2014-3697, VRT-2014-0205
+
+CVE-2014-3696, VRT-2014-0204
+CVE-2014-3695, VRT-2014-0203
+
+
+
+
+Cisco Talos is announcing the discovery and patching of another three 3 CVE vulnerabilities in Pidg
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+October 28, 2014 11:10
+Threat Spotlight: Group 72, Opening the ZxShell
+This post was authored by Andrea Allievi, Douglas Goddard, Shaun Hurley, and Alain Zidouemba.
+
+Recently, there was a blog post on the takedown of a botnet used by threat actor group known as Group 72 and their involvement in Operation SMN.  This group is sophisticated, well funde
+
+
+                    By
+                
+Craig Williams
+
+
+
+                            Threats
+                        
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+October 16, 2014 02:51
+Weaponized Powerpoint in the Wild
+This post was written by Jaeson Schultz.
+ 
+On October 14th information related to a new Windows vulnerability, CVE-2014-4114, was published. This new vulnerability affects all supported versions of Microsoft Windows. Windows XP, however, is not affected by this vulnerability. The
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+October 15, 2014 04:24
+POODLE and The Curse of Backwards Compatibility
+This post was written by Martin Lee
+ 
+Old protocol versions are a fact of life. When a new improved protocol is released, products still need to support the old version for backwards compatibility. If previous versions contain weaknesses in security, yet their continued support i
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+October 14, 2014 06:42
+Microsoft Update Tuesday October 2014: Fixes for 4 0-day Vulnerabilities
+This post was authored by Yves Younan
+
+Microsoft Tuesday is here once again and this month they are releasing a total of eight bulletins. Three of which are rated as critical, while the remaining five are rated as important. There’s a total of 24 CVEs this month, 20 of which were
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+October 14, 2014 05:08
+Threat Spotlight: Group 72
+This post is co-authored by Joel Esler, Martin Lee and Craig Williams.
+Everyone has certain characteristics that can be recognised. This may be a way of walking, an accent, a turn of phrase or a style of dressing. If you know what to look for you can easily spot a friend or acqua
+
+
+                    By
+                
+Craig Williams
+
+
+
+                            Threats
+                        
+
+
+
+ 
+
+
+
+
+
+
+← Prev
+
+
+Next →
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

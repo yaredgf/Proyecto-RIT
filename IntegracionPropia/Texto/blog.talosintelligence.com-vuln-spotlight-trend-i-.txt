@@ -1,0 +1,683 @@
+
+
+
+Vulnerability Spotlight: Multiple vulnerabilities in Trend Micro Home Network Security Station
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Spotlight: Multiple vulnerabilities in Trend Micro Home Network Security Station
+
+
+By 
+Jonathan Munshaw
+
+
+
+            Monday, May 24, 2021 12:47
+        
+
+
+                                SecureX
+                            
+
+
+
+
+Carl Hurd and Kelly Leuschner of Cisco Talos discovered this vulnerability. Blog by Jon Munshaw.Cisco Talos recently discovered multiple vulnerabilities in Trend Micro’s Home Network Security Station.The Home Network Security Station is a device that monitors and protects home networks from security threats and provides other network management features. The Security Station can scan for vulnerabilities, detect and prevent possible intrusions and allow the user to control access settings for all devices on the network. TALOS-2021-1230 (CVE-2021-32457) and TALOS-2021-1231 (CVE-2021-32458) are elevation of privilege vulnerabilities that could allow an attacker to elevate their permissions on the targeted device. Another vulnerability, TALOS-2021-1241 (CVE-2021-32459), exists within a set of hardcoded credentials on the device. An attacker could exploit these to create files, change permissions on files, and upload arbitrary data to an SFTP server.Cisco Talos worked with Trend Micro to ensure that these issues are resolved and an update is available for affected customers, all in adherence to Cisco’s vulnerability disclosure policy.Users are encouraged to update these affected products as soon as possible: Trend Micro Inc. Home Network Security, version 6.1.567. Talos tested and confirmed these versions of the Security Station could be exploited by this vulnerability.The following SNORTⓇ rules will detect exploitation attempts against this vulnerability: 51719 - 57122. Additional rules may be released in the future and current rules are subject to change, pending additional vulnerability information. For the most current rule information, please refer to your Firepower Management Center or Snort.org.
+
+
+
+Share this post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Content
+
+
+The Trojan horse of cybercrime: Weaponizing SaaS notification pipelines
+April 7, 2026 06:00
+Cisco Talos has recently observed an increase in activity that is leveraging notification pipelines in popular collaboration platforms to deliver spam and phishing emails.
+
+
+
+
+BeaverTail and OtterCookie evolve with a new Javascript module
+October 16, 2025 06:00
+Cisco Talos has uncovered a new attack linked to Famous Chollima, a threat group aligned with North Korea (DPRK).
+
+
+
+
+UAT-8099: Chinese-speaking cybercrime group targets high-value IIS for SEO fraud
+October 2, 2025 06:00
+Cisco Talos is disclosing details on UAT-8099, a Chinese-speaking cybercrime group mainly involved in SEO fraud and theft of high-value credentials, configuration files, and certificate data.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

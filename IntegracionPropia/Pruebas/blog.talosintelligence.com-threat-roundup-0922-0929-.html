@@ -1,0 +1,915 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Threat Roundup for September 22 to September 29</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/bootstrap.min.css?v=-xdjtZ-fV2QpS1r5">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/navigation.css?v=PhzoiGnw4ldwozL1">
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/footer.css?v=sVEdldiwj6rF6gHP">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/pagination.css?v=HruyeF1JUFuoy6Wu">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/banners.css?v=vI3KT68RWE95HKDs">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/style.css?v=idjnUZoOumC94rdj">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/prism.css?v=jqyaOB6z6CqMaOT4">
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/prism-vsc-dark-plus.css?v=xoEFwaYF1JkH_sqf">
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/prism-talos.css?v=kn8aYcNhO045nXac">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/landing-page.css?v=EPtrK0eJwYLqD25v">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/coverage-block.css?v=vBgCqINSTHrSh9PX">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/ghost-theme-utils@latest/dist/css/style.min.css" rel="stylesheet">
+
+
+    <link rel="icon" href="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w256h256/2022/07/talos_o_square.png" type="image/png">
+    <link rel="canonical" href="https://blog.talosintelligence.com/threat-roundup-0922-0929/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta property="og:site_name" content="Cisco Talos Blog">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Threat Roundup for September 22 to September 29">
+    <meta property="og:description" content="Today, Talos is publishing a glimpse into the most prevalent threats we&#x27;ve observed between Sept. 22 and Sept. 29. As with previous roundups, this post isn&#x27;t meant to be an in-depth analysis. Instead, this post will summarize the threats we&#x27;ve observed by highlighting key behavioral characteristics,">
+    <meta property="og:url" content="https://blog.talosintelligence.com/threat-roundup-0922-0929/">
+    <meta property="og:image" content="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/09/threat-roundup.jpg">
+    <meta property="article:published_time" content="2023-09-29T16:40:35.000Z">
+    <meta property="article:modified_time" content="2023-10-20T15:09:49.000Z">
+    <meta property="article:tag" content="Threat Roundup">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Threat Roundup for September 22 to September 29">
+    <meta name="twitter:description" content="Today, Talos is publishing a glimpse into the most prevalent threats we&#x27;ve observed between Sept. 22 and Sept. 29. As with previous roundups, this post isn&#x27;t meant to be an in-depth analysis. Instead, this post will summarize the threats we&#x27;ve observed by highlighting key behavioral characteristics,">
+    <meta name="twitter:url" content="https://blog.talosintelligence.com/threat-roundup-0922-0929/">
+    <meta name="twitter:image" content="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/09/threat-roundup.jpg">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="William Largent">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="Threat Roundup">
+    <meta name="twitter:site" content="@TalosSecurity">
+    <meta property="og:image:width" content="1001">
+    <meta property="og:image:height" content="501">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Cisco Talos Blog",
+        "url": "https://blog.talosintelligence.com/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/11/TalosBrand_ukraine.svg"
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "William Largent",
+        "url": "https://blog.talosintelligence.com/author/william-largent/",
+        "sameAs": []
+    },
+    "headline": "Threat Roundup for September 22 to September 29",
+    "url": "https://blog.talosintelligence.com/threat-roundup-0922-0929/",
+    "datePublished": "2023-09-29T16:40:35.000Z",
+    "dateModified": "2023-10-20T15:09:49.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/09/threat-roundup.jpg",
+        "width": 1001,
+        "height": 501
+    },
+    "keywords": "Threat Roundup",
+    "description": "Today, Talos is publishing a glimpse into the most prevalent threats we've observed between Sept. 22 and Sept. 29. As with previous roundups, this post isn't meant to be an in-depth analysis. Instead, this post will summarize the threats we've observed by highlighting key behavioral characteristics, indicators of compromise, and discussing how our customers are automatically protected from these threats.\n\nAs a reminder, the information provided for the following threats in this post is non-exhau",
+    "mainEntityOfPage": "https://blog.talosintelligence.com/threat-roundup-0922-0929/"
+}
+    </script>
+
+    <meta name="generator" content="Ghost 6.68">
+    <link rel="alternate" type="application/rss+xml" title="Cisco Talos Blog" href="https://blog.talosintelligence.com/rss/">
+    
+    <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/sodo-search.min.js" data-key="4ffb0139d74ada998f4b141e4d" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/main.css" data-sodo-search="https://cisco-talos-blog.ghost.io/" data-locale="en" crossorigin="anonymous"></script>
+    
+    <link href="https://blog.talosintelligence.com/webmentions/receive/" rel="webmention">
+    <script defer src="/public/cards.min.js?v=ShRHxgy4po8zN-Wf"></script>
+    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=WwnU9jw5ancNC8Gc">
+    <script defer src="/public/ghost-stats.min.js?v=vFcCUf6ZQ0Hyhc8h" data-stringify-payload="false" data-datasource="analytics_events" data-storage="localStorage" data-host="https://blog.talosintelligence.com/.ghost/analytics/api/v1/page_hit"  tb_site_uuid="afa04ee3-414f-4481-8d23-7e7c146f192e" tb_post_uuid="24e1480e-85ad-4d44-a633-a5db3c60ec70" tb_post_type="post" tb_member_uuid="undefined" tb_member_status="undefined" tb_gift_link=""></script><style>:root {--ghost-accent-color: #006db6;}</style>
+    <style type='text/css'>
+    img[src*="icon_check_white.svg"] { width: 20px; margin-left: 0px; margin-right: auto; }
+    
+    #ghost-portal-root { display: none; }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F45RVJG3BK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-F45RVJG3BK');
+</script>
+</head>
+
+<body class="post-template tag-threat-roundup">
+
+    <div id="mobile-page-header" class="desktop-hide mobile-page-header">
+    <a class="mobile-nav-home-link" href="/">
+        <div class="mobile-logo-wrapper">
+        </div>
+        <div class="mobile-home-title">Blog</div>
+    </a>
+    <div id="mobile-search-wrapper">
+        <button class="search-button mobile-search-button" data-ghost-search>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        </button>
+    </div>
+</div>
+
+<nav id="nav">
+    <input id="nav-trigger" class="nav-trigger" type="checkbox"/>
+    <label for="nav-trigger">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="22px" height="16px" viewBox="0 0 22 16">
+            <g id="menu-icon">
+                <path fill="#FFFFFF" d="M20.5,3h-19C0.672,3,0,2.329,0,1.5S0.672,0,1.5,0h19C21.328,0,22,0.671,22,1.5S21.328,3,20.5,3z"></path>
+                <path fill="#FFFFFF" d="M20.5,9.5h-19C0.672,9.5,0,8.828,0,8c0-0.829,0.672-1.5,1.5-1.5h19C21.328,6.5,22,7.171,22,8   C22,8.828,21.328,9.5,20.5,9.5z"></path>
+                <path fill="#FFFFFF" d="M20.5,16h-19C0.672,16,0,15.328,0,14.5S0.672,13,1.5,13h19c0.828,0,1.5,0.672,1.5,1.5S21.328,16,20.5,16z"></path>
+            </g>
+        </svg>
+    </label>
+    <div id="top-nav-bar">
+    </div>
+
+    <div id="navigation">
+        <div class="navigation-logos-wrapper">
+            <div id="talos-logo-wrapper">
+                <a class="navbar-brand" href="https://talosintelligence.com">
+                </a>
+            </div>
+        </div>
+        <div class="navigation-links-wrapper">
+            <ul class="main-nav-list">
+                <li class="nav-item">
+                    <div class="primary-link-wrapper">
+                        <a class="primary_nav_link" href="https://talosintelligence.com/reputation">
+                            <div class="mobile-nav-icon"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" height="20px" width="20px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                            <style type="text/css">
+                                .white{fill:#FFFFFF;}
+                            </style>
+                            <g>
+                                <path class="white" d="M19.5,9.5h-1.1c-0.3-4.2-3.6-7.6-7.8-7.8V0.5C10.5,0.2,10.3,0,10,0l0,0C9.7,0,9.5,0.2,9.5,0.5l0,0v1.1   C5.3,1.9,1.9,5.3,1.6,9.5H0.5C0.2,9.5,0,9.7,0,10s0.2,0.5,0.5,0.5l0,0h1.1c0.3,4.2,3.6,7.6,7.8,7.8v1.1c0,0.3,0.2,0.5,0.5,0.5l0,0   c0.3,0,0.5-0.2,0.5-0.5l0,0v-1.1c4.2-0.3,7.6-3.6,7.8-7.8h1.1c0.3,0,0.5-0.2,0.5-0.5C20,9.7,19.8,9.5,19.5,9.5 M16.6,10.5h0.7   c-0.3,3.6-3.2,6.5-6.8,6.8v-0.8c0-0.3-0.2-0.5-0.5-0.5l0,0c-0.3,0-0.5,0.2-0.5,0.5v0.8C5.8,17,3,14.2,2.7,10.5h0.8   C3.8,10.5,4,10.3,4,10S3.8,9.5,3.5,9.5l0,0H2.7C3,5.8,5.8,3,9.5,2.7v0.8C9.5,3.7,9.7,4,10,4l0,0c0.3,0,0.5-0.2,0.5-0.5V2.7   C14.2,3,17,5.8,17.3,9.5h-0.7c-0.3,0-0.5,0.2-0.5,0.5C16.1,10.3,16.3,10.5,16.6,10.5L16.6,10.5"></path>
+                                                            <circle class="white" cx="10" cy="10" r="3.2"></circle>
+                            </g>
+                            </svg>
+                            </div>
+                            <span class="top-nav-link-text">
+                                Intelligence Center
+                            </span>
+                        </a>
+                    </div>
+                    <input class="sub-nav-trigger" id="intelligence-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="intelligence-sub-trigger">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+
+                    </label>
+                    <ul class="sub-nav sub-nav-single-list">
+                        <li class="desktop-hide">
+                            <a class="mobile_nav_link" href="https://talosintelligence.com/reputation"><h1>Intelligence Center</h1>
+                            </a></li>
+                        <li class="desktop-hide">
+                            <label class="subnav-back-button" for="intelligence-sub-trigger">BACK</label>
+                        </li>
+                        <li><a class="secondary_nav_link" href="https://talosintelligence.com/reputation_center">Intelligence Search</a></li>
+                        <li><a class="secondary_nav_link" href="https://talosintelligence.com/reputation_center/email_rep">Email &amp; Spam Trends</a></li>
+                    </ul>
+                    <div class="desktop-hide subnav-overlay"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" height="20px" width="20px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                        <style type="text/css">
+                            .white{fill:#FFFFFF;}
+                        </style>
+                                                <g>
+                            <path class="white" d="M19.5,9.5h-1.1c-0.3-4.2-3.6-7.6-7.8-7.8V0.5C10.5,0.2,10.3,0,10,0l0,0C9.7,0,9.5,0.2,9.5,0.5l0,0v1.1   C5.3,1.9,1.9,5.3,1.6,9.5H0.5C0.2,9.5,0,9.7,0,10s0.2,0.5,0.5,0.5l0,0h1.1c0.3,4.2,3.6,7.6,7.8,7.8v1.1c0,0.3,0.2,0.5,0.5,0.5l0,0   c0.3,0,0.5-0.2,0.5-0.5l0,0v-1.1c4.2-0.3,7.6-3.6,7.8-7.8h1.1c0.3,0,0.5-0.2,0.5-0.5C20,9.7,19.8,9.5,19.5,9.5 M16.6,10.5h0.7   c-0.3,3.6-3.2,6.5-6.8,6.8v-0.8c0-0.3-0.2-0.5-0.5-0.5l0,0c-0.3,0-0.5,0.2-0.5,0.5v0.8C5.8,17,3,14.2,2.7,10.5h0.8   C3.8,10.5,4,10.3,4,10S3.8,9.5,3.5,9.5l0,0H2.7C3,5.8,5.8,3,9.5,2.7v0.8C9.5,3.7,9.7,4,10,4l0,0c0.3,0,0.5-0.2,0.5-0.5V2.7   C14.2,3,17,5.8,17.3,9.5h-0.7c-0.3,0-0.5,0.2-0.5,0.5C16.1,10.3,16.3,10.5,16.6,10.5L16.6,10.5"></path>
+                                                    <circle class="white" cx="10" cy="10" r="3.2"></circle>
+                        </g>
+                        </svg>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="primary-link-wrapper">
+                        <a class="primary_nav_link" href="https://talosintelligence.com/vulnerability_info"><div class="mobile-nav-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px" height="20px" viewBox="0 0 26 20">
+                            <g id="vuln-icon" class="nav-icon">
+                                <path fill="#FFFFFF" d="M24.256,18.49L13.872,0.503C13.692,0.192,13.36,0,13,0c-0.359,0-0.692,0.192-0.872,0.503L1.744,18.49  c-0.18,0.312-0.18,0.695,0,1.006C1.924,19.809,2.257,20,2.616,20h20.769c0.359,0,0.691-0.191,0.871-0.504  C24.436,19.186,24.436,18.803,24.256,18.49 M14.268,18.215h-2.533v-1.85h2.533V18.215z M14.268,15.441h-2.533L10.89,6.515h4.222  L14.268,15.441z"></path>
+                            </g>
+                        </svg>
+                        </div>
+                            <span class="top-nav-link-text">
+                            Vulnerability Research
+                            </span>
+                        </a></div>
+                    <input class="sub-nav-trigger" id="vuln-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="vuln-sub-trigger">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+                        </div>
+                    </label>
+                    <ul class="sub-nav sub-nav-single-list">
+                        <li class="desktop-hide">
+                            <a href="https://talosintelligence.com/vulnerability_info"><h1>Vulnerability Research</h1>
+                            </a></li>
+                        <li class="desktop-hide">
+                            <label class="subnav-back-button" for="vuln-sub-trigger">BACK</label>
+                        </li>
+                        <li><a class="vulnerabilty-info-nav-link" href="https://talosintelligence.com/vulnerability_reports">Vulnerability Reports</a></li>
+                        <li><a class="vulnerabilty-info-nav-link" href="https://talosintelligence.com/ms_advisories">Microsoft Advisories</a></li>
+                    </ul>
+                    <div class="desktop-hide subnav-overlay">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px" height="20px" viewBox="0 0 26 20">
+                        <g id="vuln-icon" class="nav-icon">
+                            <path fill="#FFFFFF" d="M24.256,18.49L13.872,0.503C13.692,0.192,13.36,0,13,0c-0.359,0-0.692,0.192-0.872,0.503L1.744,18.49  c-0.18,0.312-0.18,0.695,0,1.006C1.924,19.809,2.257,20,2.616,20h20.769c0.359,0,0.691-0.191,0.871-0.504  C24.436,19.186,24.436,18.803,24.256,18.49 M14.268,18.215h-2.533v-1.85h2.533V18.215z M14.268,15.441h-2.533L10.89,6.515h4.222  L14.268,15.441z"></path>
+                        </g>
+                        </svg>
+                    </div>
+                </li>
+
+
+               <li class="nav-item">
+                   <div class="primary-link-wrapper">
+                        <a class="primary_nav_link" href="https://talosintelligence.com/incident_response">
+                           <div class="mobile-nav-icon">
+                               <svg xmlns="http://www.w3.org/2000/svg" width="111.588" height="148.311" viewBox="0 0 111.588 148.311">
+                                    <path d="M1.181,128.446v15.7a4.167,4.167,0,0,0,4.167,4.167h100.9a4.167,4.167,0,0,0,4.167-4.167v-15.7a4.167,4.167,0,0,0-4.167-4.167H5.348a4.167,4.167,0,0,0-4.167,4.166M55.8,63.109a3.277,3.277,0,1,1,0,6.553c-10.344,0-20.755,8.578-20.755,18.57a3.277,3.277,0,1,1-6.554,0C28.489,73.947,41.93,63.109,55.8,63.109Zm0-12.016c-21.787,0-39.325,17.81-39.325,39.937v26.7H95.122V91.03c0-22.128-17.537-39.937-39.324-39.937m52.365-38.3a3.291,3.291,0,0,0-2.254,1.024L88.432,31.294a3.283,3.283,0,0,0,4.642,4.644l17.478-17.479a3.278,3.278,0,0,0-2.389-5.666m-105.138,0a3.276,3.276,0,0,0-1.98,5.666L18.522,35.938a3.283,3.283,0,0,0,4.643-4.644L5.687,13.817A3.255,3.255,0,0,0,3.025,12.793ZM55.389.026a3.276,3.276,0,0,0-2.867,3.345V19.642a3.277,3.277,0,1,0,6.554,0V3.371A3.283,3.283,0,0,0,55.389.026Z" fill="#fff"></path>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text">
+                                Incident Response
+                            </span>
+                       </a>
+                   </div>
+                   <input class="sub-nav-trigger" id="ir-sub-trigger" type="checkbox">
+                   <label class="sub-nav-trigger-label" for="ir-sub-trigger">
+                       <div class="mobile-nav-icon">
+                           <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                                <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                               <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                               </g>
+                           </svg>
+                       </div>
+                   </label>
+                   <ul class="sub-nav sub-nav-single-list">
+                       <li class="desktop-hide">
+                           <a href="/incident_response">
+                               <h1>Incident Response</h1>
+                           </a>
+                        </li>
+                       <li class="desktop-hide">
+                           <label class="subnav-back-button" for="ir-sub-trigger">BACK</label>
+                       </li>
+                       <li>
+                           <a class="secondary_nav_link" href="https://talosintelligence.com/incident_response/services#reactive-services">Reactive Services</a>
+                       </li>
+                       <li>
+                           <a class="secondary_nav_link" href="https://talosintelligence.com/incident_response/services#proactive-services">Proactive Services</a></li>
+                       <li>
+                           <a href="https://talosintelligence.com/incident_response/contact">Emergency Support</a>
+                        </li>
+                   </ul>
+                   <div class="desktop-hide subnav-overlay"><svg xmlns="http://www.w3.org/2000/svg" width="111.588" height="148.311" viewBox="0 0 111.588 148.311">
+                     <path d="M1.181,128.446v15.7a4.167,4.167,0,0,0,4.167,4.167h100.9a4.167,4.167,0,0,0,4.167-4.167v-15.7a4.167,4.167,0,0,0-4.167-4.167H5.348a4.167,4.167,0,0,0-4.167,4.166M55.8,63.109a3.277,3.277,0,1,1,0,6.553c-10.344,0-20.755,8.578-20.755,18.57a3.277,3.277,0,1,1-6.554,0C28.489,73.947,41.93,63.109,55.8,63.109Zm0-12.016c-21.787,0-39.325,17.81-39.325,39.937v26.7H95.122V91.03c0-22.128-17.537-39.937-39.324-39.937m52.365-38.3a3.291,3.291,0,0,0-2.254,1.024L88.432,31.294a3.283,3.283,0,0,0,4.642,4.644l17.478-17.479a3.278,3.278,0,0,0-2.389-5.666m-105.138,0a3.276,3.276,0,0,0-1.98,5.666L18.522,35.938a3.283,3.283,0,0,0,4.643-4.644L5.687,13.817A3.255,3.255,0,0,0,3.025,12.793ZM55.389.026a3.276,3.276,0,0,0-2.867,3.345V19.642a3.277,3.277,0,1,0,6.554,0V3.371A3.283,3.283,0,0,0,55.389.026Z" fill="#fff"></path>
+                   </svg>
+                </div>
+               </li>
+
+
+
+
+
+                <li class="nav-item">
+                    <a class="primary_nav_link" href="https://blog.talosintelligence.com">
+                        <div class="mobile-nav-icon">
+                        <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="260px" height="296.5px" viewBox="0 0 260 296.5" enable-background="new 0 0 260 296.5" xml:space="preserve">
+                        <path fill="#FFFFFF" d="M243.586,42.404h-14.448c-0.943-4.513-3.143-8.813-6.616-12.33L201.793,9.098  c-4.7-4.757-10.972-7.377-17.66-7.377c-6.578,0-12.777,2.547-17.457,7.173l-33.875,33.511H17.586c-6.6,0-12,5.399-12,12V226.28  c0,6.6,5.4,12,12,12H153.83l84.21,56.278l-27.448-56.278h32.994c6.6,0,12-5.4,12-12V54.404  C255.586,47.804,250.186,42.404,243.586,42.404z M214.662,48.045c-0.01,0.2-0.021,0.399-0.044,0.599  c-0.008,0.069-0.021,0.139-0.031,0.207c-0.046,0.345-0.113,0.688-0.196,1.026c-0.034,0.137-0.063,0.273-0.103,0.408  c-0.039,0.135-0.087,0.267-0.133,0.399c-0.051,0.151-0.102,0.302-0.16,0.45c-0.049,0.126-0.105,0.249-0.16,0.373  c-0.068,0.153-0.139,0.307-0.216,0.457c-0.059,0.116-0.12,0.23-0.184,0.345c-0.088,0.157-0.181,0.312-0.278,0.465  c-0.065,0.104-0.13,0.206-0.2,0.308c-0.115,0.168-0.239,0.33-0.366,0.492c-0.064,0.081-0.124,0.165-0.19,0.244  c-0.199,0.238-0.409,0.472-0.635,0.694L82.458,182.308l-47.932,12.871l13.427-47.74L177.223,19.561  c1.917-1.895,4.414-2.84,6.911-2.84c2.534,0,5.068,0.975,6.99,2.92l20.726,20.974c0.545,0.552,1.002,1.156,1.39,1.79  c0.574,0.938,0.975,1.951,1.206,2.993c0.004,0.021,0.01,0.04,0.014,0.06c0.049,0.226,0.086,0.453,0.119,0.682  c0.008,0.06,0.017,0.118,0.024,0.178c0.026,0.211,0.045,0.424,0.058,0.636c0.004,0.077,0.007,0.153,0.009,0.23  c0.007,0.203,0.011,0.407,0.005,0.61C214.673,47.877,214.666,47.961,214.662,48.045z"></path>
+                        </svg>
+                    </div>
+                        <span class="top-nav-link-text">Blog</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="primary_nav_link" href="https://support.talosintelligence.com">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26px" height="20px" viewBox="0 0 123.17 159.292">
+                            <path d="M61.59,0,0,17.069v85.32c0,23.472,61.59,56.9,61.59,56.9s61.58-36.288,61.58-56.9V17.069Zm-.433,149.746C38.314,136.662,8.128,114.3,8.128,102.389V23.239l53.029-14.7Z" fill="#fff"></path>
+                        </svg>
+                        </div>
+                        <span class="top-nav-link-text">Support</span>
+                    </a>
+                </li>
+            </ul>
+
+
+<!--                <li class="nav-item desktop-hide">-->
+<!--                    <button class="search-button" data-ghost-search><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg> <span>Search Blog</span></button>-->
+<!--                </li>-->
+
+            <ul class="secondary-nav-list">
+                <div class="more-desktop-link">
+                    <div class="more-link-wrapper">
+                        <span class="more-nav-link">
+                            <div class="desktop-nav-icon more-menu-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="22px" height="16px" viewBox="0 0 22 16">
+                                <g id="menu-icon">
+                                    <path fill="#FFFFFF" d="M20.5,3h-19C0.672,3,0,2.329,0,1.5S0.672,0,1.5,0h19C21.328,0,22,0.671,22,1.5S21.328,3,20.5,3z"></path>
+                                    <path fill="#FFFFFF" d="M20.5,9.5h-19C0.672,9.5,0,8.828,0,8c0-0.829,0.672-1.5,1.5-1.5h19C21.328,6.5,22,7.171,22,8   C22,8.828,21.328,9.5,20.5,9.5z"></path>
+                                    <path fill="#FFFFFF" d="M20.5,16h-19C0.672,16,0,15.328,0,14.5S0.672,13,1.5,13h19c0.828,0,1.5,0.672,1.5,1.5S21.328,16,20.5,16z"></path>
+                                </g>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            More
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <li class="nav-item more-text-link">
+                    <div class="more-link-wrapper more-link-wrapper-mobile">
+                        <span class="more-nav-link">
+                            <div class="mobile-nav-icon"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" style="enable-background:new 0 0 20 20;" width="25px" height="25px" xml:space="preserve">
+                                <style type="text/css">
+                                    .white{fill:#FFFFFF;}
+                                </style>
+                                <path class="white" d="M19.4,17.1c0,0.1-0.1,0-0.2,0c0,0-1.3-0.9-2-1.4c-0.2-0.1-0.5-0.1-0.6,0.1c-0.3,0.3-0.6,0.8-0.9,1.3  c-0.1,0.2-0.1,0.5,0.1,0.6l2,1.5c0.1,0,0,0.1,0.1,0.2c0,0.1,0,0.1-0.1,0.2c-1.2,0.5-2.6,0.2-3.5-0.7c-0.8-0.9-1-2-0.7-3.1L4.5,6.5  c-1,0.3-2.3,0-3-0.9c-0.8-0.9-1.1-1.7-1-2.7c0-0.1,0-0.1,0.1-0.2c0.1,0,0.2,0.1,0.2,0.1l2,1.5C3,4.4,3.3,4.5,3.4,4.2  c0,0,0.5-0.8,0.9-1.3c0.1-0.2,0.1-0.5-0.1-0.6L2.3,0.9c-0.1,0,0-0.1-0.1-0.3c0-0.1,0-0.1,0.1-0.2C3.5-0.1,5,0.2,5.8,1.1  c0.8,0.9,1,2,0.7,3.1l9.1,9.3c1-0.3,2.3,0,3,0.9c0.7,0.7,0.9,1.5,0.9,2.5C19.5,16.9,19.5,17,19.4,17.1z"></path>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            Security Resources
+                            </span>
+                        </span>
+                    </div>
+                    <input class="sub-nav-trigger" id="security-resources-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="security-resources-sub-trigger">
+                        <div class="mobile-nav-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+                        </div>
+                    </label>
+                    <div class="sub-nav sub-nav-multiple-list sub-nav-multiple-list-left">
+                        <div class="sub-nav-multiple-wrapper">
+                            <div class="sub-nav-list-top-of-mobile-wrapper">
+                                <h1 class="sub-nav-list-header sub-nav-list-top-of-mobile">Security Resources</h1>
+                                <ul class="sub-nav-list">
+                                    <li class="desktop-hide">
+                                        <label class="subnav-back-button" for="security-resources-sub-trigger">BACK</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sub-nav-list-item-wrapper">
+                                <span class="sub-nav-desktop-header uppercase">Security Resources</span>
+                                <ul class="sub-nav-list">
+                                    <li>
+                                        <a href="https://talosintelligence.com/software"><span>Open Source Security Tools</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/categories"><span>Intelligence Categories Reference</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/secure-endpoint-naming"><span>Secure Endpoint Naming Reference</span>
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="desktop-hide subnav-overlay"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" style="enable-background:new 0 0 20 20;" width="25px" height="25px" xml:space="preserve">
+                        <style type="text/css">
+                            .white{fill:#FFFFFF;}
+                        </style>
+                                                <path class="white" d="M19.4,17.1c0,0.1-0.1,0-0.2,0c0,0-1.3-0.9-2-1.4c-0.2-0.1-0.5-0.1-0.6,0.1c-0.3,0.3-0.6,0.8-0.9,1.3  c-0.1,0.2-0.1,0.5,0.1,0.6l2,1.5c0.1,0,0,0.1,0.1,0.2c0,0.1,0,0.1-0.1,0.2c-1.2,0.5-2.6,0.2-3.5-0.7c-0.8-0.9-1-2-0.7-3.1L4.5,6.5  c-1,0.3-2.3,0-3-0.9c-0.8-0.9-1.1-1.7-1-2.7c0-0.1,0-0.1,0.1-0.2c0.1,0,0.2,0.1,0.2,0.1l2,1.5C3,4.4,3.3,4.5,3.4,4.2  c0,0,0.5-0.8,0.9-1.3c0.1-0.2,0.1-0.5-0.1-0.6L2.3,0.9c-0.1,0,0-0.1-0.1-0.3c0-0.1,0-0.1,0.1-0.2C3.5-0.1,5,0.2,5.8,1.1  c0.8,0.9,1,2,0.7,3.1l9.1,9.3c1-0.3,2.3,0,3,0.9c0.7,0.7,0.9,1.5,0.9,2.5C19.5,16.9,19.5,17,19.4,17.1z"></path>
+                        </svg>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="more-link-wrapper more-link-wrapper-mobile">
+                        <span class="more-nav-link">
+                            <div class="mobile-nav-icon"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" width="25px" height="25px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                                <style type="text/css">
+                                    .sticoncomment{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+                                </style>
+                                <path class="sticoncomment" d="M13.6,7.1H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,6.8,13.9,7.1,13.6,7.1L13.6,7.1z M13.6,9.4H6.4c-0.3,0-0.6-0.3-0.6-0.6s0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,9.2,13.9,9.4,13.6,9.4L13.6,9.4z M11.5,11.7H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6h5.1c0.3,0,0.6,0.3,0.6,0.6  C12.1,11.5,11.8,11.7,11.5,11.7z M15.8,3H4.2C3.5,3,3,3.5,3,4.2V17l2.8-2.3h10c0.6,0,1.2-0.5,1.2-1.2V4.2C17,3.5,16.5,3,15.8,3  L15.8,3z"></path>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            Media
+                            </span>
+                        </span>
+                    </div>
+                    <input class="sub-nav-trigger" id="media-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="media-sub-trigger">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                            </svg>
+                        </div>
+                    </label>
+                    <div class="sub-nav sub-nav-multiple-list sub-nav-multiple-list-middle">
+                        <div class="sub-nav-multiple-wrapper">
+                            <div class="sub-nav-list-top-of-mobile-wrapper">
+                                <h1 class="sub-nav-list-header sub-nav-list-top-of-mobile">Media</h1>
+                                <ul class="sub-nav-list">
+                                    <li class="desktop-hide">
+                                        <label class="subnav-back-button" for="media-sub-trigger">BACK</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sub-nav-list-item-wrapper">
+                                <span class="sub-nav-desktop-header uppercase">Media</span>
+                                <ul class="sub-nav-list">
+                                    <li>
+                                        <a href="https://blog.talosintelligence.com"><span>Talos Intelligence Blog</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://blog.talosintelligence.com/category/threat-source-newsletter/"><span>Threat Source Newsletter</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/podcasts/shows/beers_with_talos"><span>Beers with Talos Podcast</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/podcasts/shows/talos_takes"><span>Talos Takes Podcast</span>
+                                        </a></li>
+                                    <li>
+                                        <a target="_blank" href="https://www.youtube.com/channel/UCPZ1DtzQkStYBSG3GTNoyfg/featured"><span>Talos Videos</span>
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="desktop-hide subnav-overlay"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" width="25px" height="25px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                        <style type="text/css">
+                            .sticoncomment{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+                        </style>
+                        <path class="sticoncomment" d="M13.6,7.1H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,6.8,13.9,7.1,13.6,7.1L13.6,7.1z M13.6,9.4H6.4c-0.3,0-0.6-0.3-0.6-0.6s0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,9.2,13.9,9.4,13.6,9.4L13.6,9.4z M11.5,11.7H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6h5.1c0.3,0,0.6,0.3,0.6,0.6  C12.1,11.5,11.8,11.7,11.5,11.7z M15.8,3H4.2C3.5,3,3,3.5,3,4.2V17l2.8-2.3h10c0.6,0,1.2-0.5,1.2-1.2V4.2C17,3.5,16.5,3,15.8,3  L15.8,3z"></path>
+                        </svg>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="more-link-wrapper more-link-wrapper-mobile">
+                        <span class="more-nav-link">
+                            <div class="mobile-nav-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="25px" viewBox="0 0 55 55">
+                                <g>
+                                    <g class="mobile-nav-home">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M45.201,12.343c0.378,0.48,0.758,0.925,1.096,1.401    c2.975,4.207,4.543,8.876,4.494,14.044c-0.05,5.452-1.643,10.386-5.186,14.593c-3.484,4.133-7.929,6.73-13.182,7.895    c-6.313,1.398-12.216,0.275-17.695-3.131c-0.441-0.273-0.847-0.6-1.266-0.904c-0.11-0.078-0.208-0.174-0.337-0.287    c0.127-0.141,0.246-0.27,0.366-0.398c0.887-0.949,1.765-1.904,2.663-2.844c0.114-0.119,0.321-0.217,0.485-0.217    c3.658-0.006,7.318,0,10.975,0.008c3.458,0.006,6.913,0.02,10.369,0.02c0.957,0,1.871-0.193,2.62-0.844    c0.797-0.693,1.157-1.596,1.157-2.643c0.001-7.533,0.003-15.067-0.005-22.601c-0.002-0.309,0.088-0.524,0.3-0.743    C43.098,14.598,44.127,13.49,45.201,12.343"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M41.402,8.822c-0.99,1.027-1.994,2.021-2.935,3.072    c-0.312,0.35-0.616,0.416-1.036,0.415c-6.98-0.009-13.957-0.007-20.938-0.007c-2.039,0-3.561,1.514-3.561,3.557    c0,6.504,0.002,13.008,0.006,19.512c0.002,0.973,0.011,1.943,0.004,2.914c0,0.133-0.04,0.301-0.127,0.393    c-1.069,1.162-2.15,2.314-3.229,3.469c-0.021,0.023-0.052,0.039-0.109,0.08c-0.159-0.188-0.323-0.369-0.471-0.562    c-2.535-3.348-4.119-7.102-4.605-11.268c-0.61-5.229,0.194-10.229,2.835-14.839c2.669-4.664,6.655-7.805,11.618-9.75    c3.205-1.257,6.533-1.852,9.977-1.621c4.478,0.298,8.553,1.754,12.227,4.325c0.101,0.072,0.197,0.151,0.291,0.229    C41.364,8.755,41.374,8.778,41.402,8.822"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M39.799,12.47c0.873-0.911,1.749-1.829,2.676-2.797    c0.605,0.564,1.195,1.112,1.816,1.691c-0.941,0.985-1.817,1.903-2.703,2.83c-0.276-0.339-0.511-0.688-0.807-0.975    C40.492,12.941,40.145,12.728,39.799,12.47"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M10.35,43.279c0.969-1.016,1.885-1.977,2.76-2.893    c0.213,0.369,0.376,0.762,0.639,1.072c0.265,0.312,0.627,0.539,0.98,0.832c-0.853,0.891-1.713,1.791-2.624,2.746    C11.513,44.445,10.939,43.869,10.35,43.279"></path>
+                                    </g>
+                                </g>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            Company
+                            </span>
+                        </span>
+                    </div>
+                    <input class="sub-nav-trigger" id="company-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="company-sub-trigger">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+                        </div>
+                    </label>
+                    <div class="sub-nav sub-nav-multiple-list sub-nav-multiple-list-right">
+                        <div class="sub-nav-multiple-wrapper">
+                            <div class="sub-nav-list-top-of-mobile-wrapper">
+                                <h1 class="sub-nav-list-header sub-nav-list-top-of-mobile">Company</h1>
+                                <ul class="sub-nav-list">
+                                    <li class="desktop-hide">
+                                        <label class="subnav-back-button" for="company-sub-trigger">BACK</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sub-nav-list-item-wrapper">
+                                <span class="sub-nav-desktop-header uppercase">Company</span>
+                                <ul class="sub-nav-list">
+                                    <li>
+                                        <a href="https://talosintelligence.com/about"><span>About Talos</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/careers"><span>Careers</span>
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="desktop-hide subnav-overlay"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="25px" viewBox="0 0 55 55">
+                        <g>
+                            <g class="mobile-nav-home">
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M45.201,12.343c0.378,0.48,0.758,0.925,1.096,1.401    c2.975,4.207,4.543,8.876,4.494,14.044c-0.05,5.452-1.643,10.386-5.186,14.593c-3.484,4.133-7.929,6.73-13.182,7.895    c-6.313,1.398-12.216,0.275-17.695-3.131c-0.441-0.273-0.847-0.6-1.266-0.904c-0.11-0.078-0.208-0.174-0.337-0.287    c0.127-0.141,0.246-0.27,0.366-0.398c0.887-0.949,1.765-1.904,2.663-2.844c0.114-0.119,0.321-0.217,0.485-0.217    c3.658-0.006,7.318,0,10.975,0.008c3.458,0.006,6.913,0.02,10.369,0.02c0.957,0,1.871-0.193,2.62-0.844    c0.797-0.693,1.157-1.596,1.157-2.643c0.001-7.533,0.003-15.067-0.005-22.601c-0.002-0.309,0.088-0.524,0.3-0.743    C43.098,14.598,44.127,13.49,45.201,12.343"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M41.402,8.822c-0.99,1.027-1.994,2.021-2.935,3.072    c-0.312,0.35-0.616,0.416-1.036,0.415c-6.98-0.009-13.957-0.007-20.938-0.007c-2.039,0-3.561,1.514-3.561,3.557    c0,6.504,0.002,13.008,0.006,19.512c0.002,0.973,0.011,1.943,0.004,2.914c0,0.133-0.04,0.301-0.127,0.393    c-1.069,1.162-2.15,2.314-3.229,3.469c-0.021,0.023-0.052,0.039-0.109,0.08c-0.159-0.188-0.323-0.369-0.471-0.562    c-2.535-3.348-4.119-7.102-4.605-11.268c-0.61-5.229,0.194-10.229,2.835-14.839c2.669-4.664,6.655-7.805,11.618-9.75    c3.205-1.257,6.533-1.852,9.977-1.621c4.478,0.298,8.553,1.754,12.227,4.325c0.101,0.072,0.197,0.151,0.291,0.229    C41.364,8.755,41.374,8.778,41.402,8.822"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M39.799,12.47c0.873-0.911,1.749-1.829,2.676-2.797    c0.605,0.564,1.195,1.112,1.816,1.691c-0.941,0.985-1.817,1.903-2.703,2.83c-0.276-0.339-0.511-0.688-0.807-0.975    C40.492,12.941,40.145,12.728,39.799,12.47"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M10.35,43.279c0.969-1.016,1.885-1.977,2.76-2.893    c0.213,0.369,0.376,0.762,0.639,1.072c0.265,0.312,0.627,0.539,0.98,0.832c-0.853,0.891-1.713,1.791-2.624,2.746    C11.513,44.445,10.939,43.869,10.35,43.279"></path>
+                            </g>
+                        </g>
+                    </svg>
+                    </div>
+                </li>
+            </ul>
+            <div class="nav-search-wrapper" id="desktop-search-wrapper">
+                <button class="search-button desktop-search-button" data-ghost-search>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </button>
+            </div>
+        </div>
+
+
+
+    </div>
+</nav>
+
+    
+
+    <main id="site-main">
+
+            <div class="banner-content-wrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col threat-roundup-graphic banner-post-graphic"></div>
+                    </div>
+                </div>
+            </div>
+                <div class="container-fluid">
+                    <div class="row banner-bg-container banner-bg-4">
+                    </div>
+                </div>
+
+
+        <div class="container-fluid px-0">
+            <div class="main-content-row">
+                <div class="main-content-col px-0">
+                    <div class="post-full-content">
+                        
+<article class="post tag-threat-roundup  blog-series-article">
+
+    <h1 class="text-center">Threat Roundup for September 22 to September 29</h1>
+
+    <div class="text-center m-1">
+        <div class="post-author">
+            <span>By </span>
+                <a href="https://blog.talosintelligence.com/author/william-largent/">William Largent</a>
+        </div>
+
+        <br/>
+        <time class="post-datetime" datetime="September 29, 2023 12:40">
+            Friday, September 29, 2023 12:40
+        </time>
+
+        <div class="m-3">
+                        <a href="https://blog.talosintelligence.com/category/threat-roundup/" class="category primary-category">
+                            Threat Roundup
+                        </a>
+                            </div>
+    </div>
+
+    <section class="post-content-wrapper mt-5">
+        <div class="post-content" id="post-content">
+            <p>Today, Talos is publishing a glimpse into the most prevalent threats we've observed between Sept. 22 and Sept. 29. As with previous roundups, this post isn't meant to be an in-depth analysis. Instead, this post will summarize the threats we've observed by highlighting key behavioral characteristics, indicators of compromise, and discussing how our customers are automatically protected from these threats.</p><p>As a reminder, the information provided for the following threats in this post is non-exhaustive and current as of the date of publication. Additionally, please keep in mind that IOC searching is only one part of threat hunting. Spotting a single IOC does not necessarily indicate maliciousness. Detection and coverage for the following threats is subject to updates, pending additional threat or vulnerability analysis. For the most current information, please refer to your Firepower Management Center, <a href="https://www.snort.org">Snort.org</a>, or <a href="https://www.clamav.net">ClamAV.net</a>.</p><p>For each threat described below, this blog post only lists 25 of the associated file hashes and up to 25 IOCs for each category. An accompanying JSON file can be found <a href="https://raw.githubusercontent.com/Cisco-Talos/Threat-Round-Up/master/2023/0929.json">here</a> that includes the complete list of file hashes, as well as all other IOCs from this post. A visual depiction of the MITRE ATT&amp;CK techniques associated with each threat is also shown. In these images, the brightness of the technique indicates how prevalent it is across all threat files where dynamic analysis was conducted.  There are five distinct shades that are used, with the darkest indicating that no files exhibited technique behavior and the brightest indicating that technique behavior was observed from 75 percent or more of the files.</p><p>The most prevalent threats highlighted in this roundup are:</p><!--kg-card-begin: html--><table class="threats-table">
+<thead>
+<tr>
+    <th width="160px">Threat Name</th>
+    <th width="80px">Type</th>
+    <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="threat-name-col">
+  Win.Packed.Zusy-10008867-0
+</td>
+<td>
+    Packed
+</td>
+<td>
+    Zusy, also known as TinyBanker or Tinba, is a trojan that uses man-in-the-middle attacks to steal banking information. When executed, it injects itself into legitimate Windows processes such as "explorer.exe" and "winver.exe." When the user accesses a banking website, it displays a form to trick the user into submitting personal information.
+</td>
+</tr>
+<tr>
+<td class="threat-name-col">
+  Win.Dropper.Tofsee-10008793-0
+</td>
+<td>
+    Dropper
+</td>
+<td>
+    Tofsee is multi-purpose malware that features a number of modules used to carry out various activities such as sending spam messages, conducting click fraud, mining cryptocurrency, and more. Infected systems become part of the Tofsee spam botnet and are used to send large volumes of spam messages in an effort to infect additional systems and increase the overall size of the botnet under the operator's control.
+</td>
+</tr>
+<tr>
+<td class="threat-name-col">
+  Win.Trojan.Fareit-10009186-1
+</td>
+<td>
+    Trojan
+</td>
+<td>
+    The Fareit trojan is primarily an information stealer with functionality to download and install other malware.
+</td>
+</tr>
+<tr>
+<td class="threat-name-col">
+  Win.Worm.Gh0stRAT-10009166-0
+</td>
+<td>
+    Worm
+</td>
+<td>
+    Gh0stRAT is a well-known family of remote access trojans designed to provide an attacker with complete control over an infected system. Capabilities include monitoring keystrokes, collecting video footage from the webcam, and uploading/executing follow-on malware. The source code for Gh0stRAT has been publicly available on the Internet for years, significantly lowering the barrier for actors to modify and reuse the code in new attacks.
+</td>
+</tr>
+<tr>
+<td class="threat-name-col">
+  Win.Dropper.Zeus-10008893-0
+</td>
+<td>
+    Dropper
+</td>
+<td>
+    Zeus is a trojan that steals information such as banking credentials using methods such as key-logging and form-grabbing.
+</td>
+</tr>
+<tr>
+<td class="threat-name-col">
+  Win.Malware.Generickdz-10009245-0
+</td>
+<td>
+    Malware
+</td>
+<td>
+    This is a BobSoft Delphi application that wraps malware. The malware uses process-hollowing to hide from detection and achieves persistence across reboots by leveraging an autostart key in the Windows registry.
+</td>
+</tr>
+</tbody>
+</table><!--kg-card-end: html--><h3 id="winpackedzusy-10008867-0">Win.Packed.Zusy-10008867-0</h3><h4 id="indicators-of-compromise">Indicators of Compromise</h4><ul><li>IOCs collected from dynamic analysis of 29 samples</li></ul><!--kg-card-begin: html--><table class="threat-breakdown-table" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><thead><tr><th style="width: 600px;">Registry Keys</th><th class="text-center">Occurrences</th></tr></thead><tbody><tr><td><code>&lt;HKCU&gt;\SOFTWARE\MICROSOFT\INTERNET EXPLORER\SEARCHSCOPES\{0633EE93-D776-472F-A0FF-E1416B8B2E3A}<br><span style="padding-left: 20px;">Value Name: FaviconPath</span></code></td><td class="text-center">8</td></tr><tr><td><code>&lt;HKCU&gt;\SOFTWARE\MICROSOFT\INTERNET EXPLORER\SEARCHSCOPES\{0633EE93-D776-472F-A0FF-E1416B8B2E3A}<br><span style="padding-left: 20px;">Value Name: Deleted</span></code></td><td class="text-center">8</td></tr><tr><td><code>&lt;HKCU&gt;\SOFTWARE\MICROSOFT\INTERNET EXPLORER\SEARCHSCOPES<br><span style="padding-left: 20px;">Value Name: DefaultScope</span></code></td><td class="text-center">8</td></tr><tr><td><code>&lt;HKCU&gt;\SOFTWARE\MICROSOFT\WINDOWS\CURRENTVERSION\EXT\STATS\{761497BB-D6F0-462C-B6EB-D4DAF1D92D43}</code></td><td class="text-center">8</td></tr><tr><td><code>&lt;HKLM&gt;\SYSTEM\CONTROLSET001\SERVICES\ASP.NET_4.0.30319\NAMES<br><span style="padding-left: 20px;">Value Name: 1ZMejMG5DSKz4xyByFqV1GRMlS8HZQ6Yn1KIiSgrJp9d0orZV6hiWgaq32NtiiZG5uFkfMsmAD26oLZAmfrIDz3o8KCTgcuPBQ7GdIftHeaRqLswFjiJgA</span></code></td><td class="text-center">1</td></tr></tbody></table><!--kg-card-end: html--><!--kg-card-begin: html--><table class="threat-breakdown-table" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><thead><tr><th style="width: 600px;">IP Addresses contacted by malware. Does not indicate maliciousness</th><th class="text-center">Occurrences</th></tr></thead><tbody><tr><td><code>192[.]229[.]211[.]108</code></td><td class="text-center">8</td></tr><tr><td><code>13[.]107[.]21[.]200</code></td><td class="text-center">6</td></tr><tr><td><code>5[.]42[.]65[.]101</code></td><td class="text-center">6</td></tr><tr><td><code>94[.]142[.]138[.]4</code></td><td class="text-center">5</td></tr><tr><td><code>91[.]103[.]252[.]48</code></td><td class="text-center">4</td></tr><tr><td><code>23[.]66[.]172[.]122</code></td><td class="text-center">4</td></tr><tr><td><code>23[.]33[.]182[.]75</code></td><td class="text-center">4</td></tr><tr><td><code>172[.]67[.]75[.]172</code></td><td class="text-center">3</td></tr><tr><td><code>176[.]123[.]9[.]142</code></td><td class="text-center">3</td></tr><tr><td><code>23[.]49[.]102[.]168</code></td><td class="text-center">2</td></tr><tr><td><code>104[.]26[.]13[.]31</code></td><td class="text-center">1</td></tr><tr><td><code>104[.]26[.]12[.]31</code></td><td class="text-center">1</td></tr><tr><td><code>172[.]67[.]34[.]170</code></td><td class="text-center">1</td></tr><tr><td><code>23[.]5[.]148[.]218</code></td><td class="text-center">1</td></tr><tr><td><code>23[.]7[.]109[.]223</code></td><td class="text-center">1</td></tr><tr><td><code>194[.]169[.]175[.]232</code></td><td class="text-center">1</td></tr><tr><td><code>104[.]87[.]86[.]90</code></td><td class="text-center">1</td></tr><tr><td><code>23[.]200[.]226[.]142</code></td><td class="text-center">1</td></tr><tr><td><code>23[.]220[.]114[.]168</code></td><td class="text-center">1</td></tr><tr><td><code>95[.]214[.]24[.]103</code></td><td class="text-center">1</td></tr><tr><td><code>65[.]109[.]240[.]180</code></td><td class="text-center">1</td></tr><tr><td><code>23[.]214[.]126[.]151</code></td><td class="text-center">1</td></tr></tbody></table><!--kg-card-end: html--><!--kg-card-begin: html--><table class="threat-breakdown-table" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><thead><tr><th style="width: 600px;">Domain Names contacted by malware. Does not indicate maliciousness</th><th class="text-center">Occurrences</th></tr></thead><tbody><tr><td><code>go[.]microsoft[.]com</code></td><td class="text-center">8</td></tr><tr><td><code>www[.]bing[.]com</code></td><td class="text-center">8</td></tr><tr><td><code>cacerts[.]digicert[.]com</code></td><td class="text-center">8</td></tr><tr><td><code>learn[.]microsoft[.]com</code></td><td class="text-center">8</td></tr><tr><td><code>api[.]ip[.]sb</code></td><td class="text-center">5</td></tr><tr><td><code>pastebin[.]com</code></td><td class="text-center">1</td></tr><tr><td><code>dob[.]boggy[.]top</code></td><td class="text-center">1</td></tr></tbody></table><!--kg-card-end: html--><!--kg-card-begin: html--><table class="threat-breakdown-table" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><thead><tr><th style="width: 600px;">Files and or directories created</th><th class="text-center">Occurrences</th></tr></thead><tbody><tr><td><code>%LOCALAPPDATA%\SystemCache</code></td><td class="text-center">12</td></tr><tr><td><code>%LOCALAPPDATA%\ElevatedDiagnostics</code></td><td class="text-center">5</td></tr><tr><td><code>%LOCALAPPDATA%\ElevatedDiagnostics\Reports</code></td><td class="text-center">5</td></tr><tr><td><code>\x5c\x55\x73\x65\x72\x73\x5c\x41\x64\x6d\x69\x6e\x69\x73\x74\x72\x61\x74\x6f\x72\x5c\x41\x70\x70\x44\x61\x74\x61\x5c\x4c\x6f\x63\x61\x6c\x5c\x4d\x69\x63\x72\x6f\x73\x6f\x66\x74\x5c\x57\x69\x6e\x64\x43e\x77\x73</code></td><td class="text-center">1</td></tr></tbody></table><!--kg-card-end: html--><h4 id="file-hashes">File Hashes</h4><p><code>0428e12f7bace624928c34073f5312473bf71c82de6a2f253306def471a4adf1</code><br><code>0900e88d7d4150623fa82b4d24ab4ff6d5a8951487c29238366c6bd881927b8e</code><br><code>0e8b8b16107a20aad175f56412f5d6620d2c1a807d86a452082cdd3f6dbb8011</code><br><code>1a6e21b399560930b061631c4ff475ee8408d28bbd4e385f23e6398ec96ef405</code><br><code>23ade5f024786791ff66513652970a54c43ea4a7be24a638cba66691c8cb71ee</code><br><code>25d4e6d9964c37115bc7210fec766438fb6380f314e7466405da59cefeb047ce</code><br><code>3e4d1ba7a3b90eb25289789f3be0e147d1c76b1566f3a0d02f84705a5b5468bc</code><br><code>4b2a69fe45e67b60fd162e588d09cf12a4958593a47ab03dca6279ccde674b21</code><br><code>70d1f6b40bc0008f5d818d3ab52bf91510298e84c09e806b1e37a128bc702a8e</code><br><code>7e8b3ca776836d299d6d906a9fc0e2ecb4471441be88cb6a0ad0f7eaaf483dd6</code><br><code>845f60706e697966f4812673a45f102db1d7f6c3c16ffaf57ca473ebcc30e855</code><br><code>84dbe000b9f0052541eed920de12d1d342cfa44662eda0f64684907d9b931ce6</code><br><code>880593452289c2ecbe0ea3e2896b7da917b52e0e152da71f92acea768ce9ba28</code><br><code>8cc83360e1e67b5d073dc82fd4b4ef08d2fc6f2fa222110ff3bbe2bac80c8381</code><br><code>90f286fd48d1d6d5a5377a3b3d2f79f13db0368c7001a4c43ec92aa34ffd850a</code><br><code>af6db888f95d5021a2c5ea9d41ebc43ef2b77ad1163822a456d67e6ce78c4b3b</code><br><code>b0431ddbf3ba31cfb4313e9ce7de5189c8eacd9069e25691f5769ccd6edb23b6</code><br><code>b509ab0ecf5e7b08f5b5b5726f0ea7030fa3470d4b6e484ba397067f403a83ec</code><br><code>b691cd89916ca4986ed42aa690138ff98a47300942b19720e7906418a2c22a3a</code><br><code>c1dfa3ab3ad30bea5ec4e3291f5000889bb69f1ed27cea11a212f768bf8e750b</code><br><code>ce59592235d7804211f5faf26152cb19bd7934a0dafe2cbdf0ba9d4102f5870a</code><br><code>cfc1f7b4d3b617aac9c76c038a51d87b78745a5d54d8daf05c43c2ebbdf81c44</code><br><code>d4665f9b5fc920f707f412bd41c99d1ae5b91b70e68d26c65acb976025586f91</code><br><code>d6cc7d0c6a10eedc5f21492af7d85c1b6313dc1f7020059179108cff938f4af4</code><br><code>d92eecac9866dd9f42f2f8850c445997b16aae7db08ddcf6f078e13fa1c4c549</code><br>*See JSON for more IOCs</p><h4 id="coverage">Coverage</h4><!--kg-card-begin: html--><table class="threat-coverage-table" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><thead><tr><th>Product</th><th class="text-center">Protection</th></tr></thead><tbody><tr><td>Secure Endpoint</td><td class="text-center"><span class="coverage-check"><img alt="This has coverage" src="https://www.talosintelligence.com/assets/icon_check_white.svg"></span></td></tr><tr><td>Cloudlock</td><td class="text-center"><span class="coverage-check">N/A</span></td></tr><tr><td>CWS</td><td class="text-center"><span class="coverage-check"><img alt="This has coverage" src="https://www.talosintelligence.com/assets/icon_check_white.svg"></span></td></tr><tr><td>Email Security</td><td class="text-center"><span class="coverage-check"><img alt="This has coverage" src="https://www.talosintelligence.com/assets/icon_check_white.svg"></span></td></tr><tr><td>Network Security</td><td class="text-center"><span class="coverage-check"><img alt="This has coverage" src="https://www.talosintelligence.com/assets/icon_check_white.svg"></span></td></tr><tr><td>Stealthwatch</td><td class="text-center"><span class="coverage-check">N/A</span></td></tr><tr><td>Stealthwatch Cloud</td><td class="text-center"><span class="coverage-check">N/A</span></td></tr><tr><td>Secure Malware Analytics</td><td class="text-center"><span class="coverage-check"><img alt="This has coverage" src="https://www.talosintelligence.com/assets/icon_check_white.svg"></span></td></tr><tr><td>Umbrella</td><td class="text-center"><span class="coverage-check">N/A</span></td></tr><tr><td>WSA</td><td class="text-center"><span class="coverage-check">N/A</span></td></tr></tbody></table><!--kg-card-end: html--><h4 id="screenshots-of-detection">Screenshots of Detection</h4><h4 id="secure-endpoint">Secure Endpoint</h4><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/09/amp_e5c0cb54eabcb880741d21716d10b0f021e0942baa556ec483c6a12e5b9c1161_20230923.png" class="kg-image" alt loading="lazy" width="702" height="480" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2023/09/amp_e5c0cb54eabcb880741d21716d10b0f021e0942baa556ec483c6a12e5b9c1161_20230923.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/09/amp_e5c0cb54eabcb880741d21716d10b0f021e0942baa556ec483c6a12e5b9c1161_20230923.png 702w"></figure><h4 id="secure-malware-analytics">Secure Malware Analytics</h4><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/09/tg_cfc1f7b4d3b617aac9c76c038a51d87b78745a5d54d8daf05c43c2ebbdf81c44_20230923.png" class="kg-image" alt loading="lazy" width="962" height="610" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2023/09/tg_cfc1f7b4d3b617aac9c76c038a51d87b78745a5d54d8daf05c43c2ebbdf81c44_20230923.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/09/tg_cfc1f7b4d3b617aac9c76c038a51d87b78745a5d54d8daf05c43c2ebbdf81c44_20230923.png 962w" sizes="(min-width: 720px) 720px"></figure><h4 id="mitre-attck">MITRE ATT&amp;CK</h4><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/09/mitre_attack_34176.png" class="kg-image" alt loading="lazy" width="2000" height="1247" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2023/09/mitre_attack_34176.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2023/09/mitre_attack_34176.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1600/2023/09/mitre_attack_34176.png 1600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/09/mitre_attack_34176.png 2020w" sizes="(min-width: 720px) 720px"></figure><hr><h3 id="windroppertofsee-10008793-0">Win.Dropper.Tofsee-10008793-0</h3><h4 id="indicators-of-compromise-1">Indicators of Compromise</h4><ul><li>IOCs collected from dynamic analysis of 21 samples</li></ul><!--kg-card-begin: html--><table class="threat-breakdown-table" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><thead><tr><th style="width: 600px;">Registry Keys</th><th class="text-center">Occurrences</th></tr></thead><tbody><tr><td><code>&lt;HKU&gt;\.DEFAULT\CONTROL PANEL\BUSES</code></td><td class="text-center">3</td></tr><tr><td><code>&lt;HKU&gt;\.DEFAULT\CONTROL PANEL\BUSES<br><span style="padding-left: 20px;">Value Name: Config2</span></code></td><td class="text-center">3</td></tr><tr><td><code>&lt;HKU&gt;\.DEFAULT\CONTROL PANEL\BUSES<br><span style="padding-left: 20px;">Value Name: Config0</span></code></td><td class="text-center">3</td></tr><tr><td><code>&lt;HKU&gt;\.DEFAULT\CONTROL PANEL\BUSES<br><span style="padding-left: 20px;">Value Name: Config1</span></code></td><td class="text-center">3</td></tr><tr><td><code>&lt;HKLM&gt;\SYSTEM\CONTROLSET001\SERVICES\FPRMIAZV<br><span style="padding-left: 20px;">Value Name: Type</span></code></td><td class="text-center">1</td></tr><tr><td><code>&lt;HKLM&gt;\SYSTEM\CONTROLSET001\SERVICES\FPRMIAZV<br><span style="padding-left: 20px;">Value Name: Start</span></code></td><td class="text-center">1</td></tr><tr><td><code>&lt;HKLM&gt;\SYSTEM\CONTROLSET001\SERVICES\FPRMIAZV<br><span style="padding-left: 20px;">Value Name: ErrorControl</span></code></td><td class="text-center">1</td></tr><tr><td><code>&lt;HKLM&gt;\SYSTEM\CONTROLSET001\SERVICES\FPRMIAZV<br><span style="padding-left: 20px;">Value Name: DisplayName</span></code></td><td class="text-center">1</td></tr><tr><td><code>&lt;HKLM&gt;\SYSTEM\CONTROLSET001\SERVICES\FPRMIAZV<br><span style="padding-left: 20px;">Value Name: WOW64</span></code></td><td class="text-center">1</td></tr><tr><td><code>&lt;HKLM&gt;\SYSTEM\CONTROLSET001\SERVICES\FPRMIAZV<br><span style="padding-left: 20px;">Value Name: ObjectName</span></code></td><td class="text-center">1</td></tr><tr><td><code>&lt;HKLM&gt;\SYSTEM\CONTROLSET001\SERVICES\FPRMIAZV<br><span style="padding-left: 20px;">Value Name: Description</span></code></td><td class="text-center">1</td></tr><tr><td><code>&lt;HKLM&gt;\SOFTWARE\MICROSOFT\WINDOWS DEFENDER\EXCLUSIONS\PATHS<br><span style="padding-left: 20px;">Value Name: C:\Windows\SysWOW64\fprmiazv</span></code></td><td class="text-center">1</td></tr><tr><td><code>&lt;HKLM&gt;\SYSTEM\CONTROLSET001\SERVICES\SCEZVNMI</code></td><td class="text-center">1</td></tr><tr><td><code>&lt;HKLM&gt;\SYSTEM\CONTROLSET001\SERVICES\SCEZVNMI<br><span style="padding-left: 20px;">Value Name: Type</span></code></td><td class="text-center">1</td></tr><tr><td><code>&lt;HKLM&gt;\SYSTEM\CONTROLSET001\SERVICES\SCEZVNMI<br><span style="padding-left: 20px;">Value Name: Start</span></code></td><td class="text-center">1</td></tr><tr><td><code>&lt;HKLM&gt;\SYSTEM\CONTROLSET001\SERVICES\SCEZVNMI<br><span style="padding-left: 20px;">Value Name: ErrorControl</span></code></td><td class="text-center">1</td></tr><tr><td><code>&lt;HKLM&gt;\SYSTEM\CONTROLSET001\SERVICES\SCEZVNMI<br><span style="padding-left: 20px;">Value Name: DisplayName</span></code></td><td class="text-center">1</td></tr><tr><td><code>&lt;HKLM&gt;\SYSTEM\CONTROLSET001\SERVICES\SCEZVNMI<br><span style="padding-left: 20px;">Value Name: WOW64</span></code></td><td class="text-center">1</td></tr><tr><td><code>&lt;HKLM&gt;\SYSTEM\CONTROLSET001\SERVICES\SCEZVNMI<br><span style="padding-left: 20px;">Value Name: ObjectName</span></code></td><td class="text-center">1</td></tr><tr><td><code>&lt;HKLM&gt;\SYSTEM\CONTROLSET001\SERVICES\SCEZVNMI<br><span style="padding-left: 20px;">Value Name: Description</span></code></td><td class="text-center">1</td></tr><tr><td><code>&lt;HKLM&gt;\SOFTWARE\MICROSOFT\WINDOWS DEFENDER\EXCLUSIONS\PATHS<br><span style="padding-left: 20px;">Value Name: C:\Windows\SysWOW64\scezvnmi</span></code></td><td class="text-center">1</td></tr><tr><td><code>&lt;HKLM&gt;\SYSTEM\CONTROLSET001\SERVICES\HRTOKCBX</code></td><td class="text-center">1</td></tr><tr><td><code>&lt;HKLM&gt;\SYSTEM\CONTROLSET001\SERVICES\HRTOKCBX<br><span style="padding-left: 20px;">Value Name: Type</span></code></td><td class="text-center">1</td></tr><tr><td><code>&lt;HKLM&gt;\SYSTEM\CONTROLSET001\SERVICES\HRTOKCBX<br><span style="padding-left: 20px;">Value Name: Start</span></code></td><td class="text-center">1</td></tr><tr><td><code>&lt;HKLM&gt;\SYSTEM\CONTROLSET001\SERVICES\HRTOKCBX<br><span style="padding-left: 20px;">Value Name: ErrorControl</span></code></td><td class="text-center">1</td></tr></tbody></table><!--kg-card-end: html--><!--kg-card-begin: html--><table class="threat-breakdown-table" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><thead><tr><th style="width: 600px;">Mutexes</th><th class="text-center">Occurrences</th></tr></thead><tbody><tr><td><code>Global\&lt;random guid&gt;</code></td><td class="text-center">9</td></tr></tbody></table><!--kg-card-end: html--><!--kg-card-begin: html--><table class="threat-breakdown-table" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><thead><tr><th style="width: 600px;">IP Addresses contacted by malware. Does not indicate maliciousness</th><th class="text-center">Occurrences</th></tr></thead><tbody><tr><td><code>142[.]250[.]176[.]196</code></td><td class="text-center">3</td></tr><tr><td><code>176[.]113[.]115[.]136</code></td><td class="text-center">3</td></tr><tr><td><code>80[.]66[.]75[.]4</code></td><td class="text-center">3</td></tr><tr><td><code>176[.]113[.]115[.]135</code></td><td class="text-center">3</td></tr><tr><td><code>104[.]127[.]87[.]210</code></td><td class="text-center">3</td></tr><tr><td><code>45[.]143[.]201[.]238</code></td><td class="text-center">3</td></tr><tr><td><code>62[.]122[.]184[.]92</code></td><td class="text-center">3</td></tr><tr><td><code>176[.]113[.]115[.]84/31</code></td><td class="text-center">3</td></tr><tr><td><code>62[.]122[.]184[.]58</code></td><td class="text-center">3</td></tr><tr><td><code>46[.]173[.]215[.]145</code></td><td class="text-center">3</td></tr><tr><td><code>34[.]120[.]241[.]214</code></td><td class="text-center">3</td></tr><tr><td><code>149[.]154[.]167[.]99</code></td><td class="text-center">2</td></tr><tr><td><code>31[.]13[.]65[.]52</code></td><td class="text-center">2</td></tr><tr><td><code>37[.]1[.]217[.]172</code></td><td class="text-center">2</td></tr><tr><td><code>142[.]250[.]65[.]163</code></td><td class="text-center">2</td></tr><tr><td><code>52[.]101[.]40[.]29</code></td><td class="text-center">2</td></tr><tr><td><code>93[.]115[.]25[.]13</code></td><td class="text-center">1</td></tr><tr><td><code>93[.]115[.]25[.]10</code></td><td class="text-center">1</td></tr><tr><td><code>93[.]115[.]25[.]73</code></td><td class="text-center">1</td></tr><tr><td><code>93[.]115[.]25[.]110</code></td><td class="text-center">1</td></tr><tr><td><code>66[.]254[.]114[.]62</code></td><td class="text-center">1</td></tr><tr><td><code>142[.]250[.]179[.]164</code></td><td class="text-center">1</td></tr><tr><td><code>104[.]26[.]0[.]70</code></td><td class="text-center">1</td></tr><tr><td><code>20[.]70[.]246[.]20</code></td><td class="text-center">1</td></tr><tr><td><code>20[.]112[.]250[.]133</code></td><td class="text-center">1</td></tr></tbody></table><!--kg-card-end: html--><p>*See JSON for more IOCs</p><!--kg-card-begin: html--><table class="threat-breakdown-table" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><thead><tr><th style="width: 600px;">Domain Names contacted by malware. Does not indicate maliciousness</th><th class="text-center">Occurrences</th></tr></thead><tbody><tr><td><code>249[.]5[.]55[.]69[.]bl[.]spamcop[.]net</code></td><td class="text-center">3</td></tr><tr><td><code>249[.]5[.]55[.]69[.]cbl[.]abuseat[.]org</code></td><td class="text-center">3</td></tr><tr><td><code>249[.]5[.]55[.]69[.]dnsbl[.]sorbs[.]net</code></td><td class="text-center">3</td></tr><tr><td><code>249[.]5[.]55[.]69[.]in-addr[.]arpa</code></td><td class="text-center">3</td></tr><tr><td><code>249[.]5[.]55[.]69[.]sbl-xbl[.]spamhaus[.]org</code></td><td class="text-center">3</td></tr><tr><td><code>249[.]5[.]55[.]69[.]zen[.]spamhaus[.]org</code></td><td class="text-center">3</td></tr><tr><td><code>microsoft-com[.]mail[.]protection[.]outlook[.]com</code></td><td class="text-center">3</td></tr><tr><td><code>microsoft[.]com</code></td><td class="text-center">3</td></tr><tr><td><code>www[.]google[.]com</code></td><td class="text-center">3</td></tr><tr><td><code>www[.]evernote[.]com</code></td><td class="text-center">3</td></tr><tr><td><code>steamcommunity[.]com</code></td><td class="text-center">3</td></tr><tr><td><code>vanaheim[.]cn</code></td><td class="text-center">3</td></tr><tr><td><code>i[.]instagram[.]com</code></td><td class="text-center">2</td></tr><tr><td><code>work[.]a-poster[.]info</code></td><td class="text-center">2</td></tr><tr><td><code>t[.]me</code></td><td class="text-center">2</td></tr><tr><td><code>ag-filmwissenschaft[.]de</code></td><td class="text-center">1</td></tr><tr><td><code>escolanacionalbrasil[.]com[.]br</code></td><td class="text-center">1</td></tr><tr><td><code>smtp[.]mqmatt[.]demon[.]co[.]uk</code></td><td class="text-center">1</td></tr><tr><td><code>goldorbit[.]co</code></td><td class="text-center">1</td></tr><tr><td><code>wallet[.]moonstake[.]io</code></td><td class="text-center">1</td></tr><tr><td><code>droneattitude[.]fr</code></td><td class="text-center">1</td></tr><tr><td><code>xn--bro-365-n2a[.]de</code></td><td class="text-center">1</td></tr><tr><td><code>leakmaster[.]fr</code></td><td class="text-center">1</td></tr><tr><td><code>mx[.]mqmatt[.]demon[.]co[.]uk</code></td><td class="text-center">1</td></tr><tr><td><code>tcmferramentas[.]com[.]br</code></td><td class="text-center">1</td></tr></tbody></table><!--kg-card-end: html--><p>*See JSON for more IOCs</p><!--kg-card-begin: html--><table class="threat-breakdown-table" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><thead><tr><th style="width: 600px;">Files and or directories created</th><th class="text-center">Occurrences</th></tr></thead><tbody><tr><td><code>%SystemRoot%\SysWOW64\config\systemprofile</code></td><td class="text-center">3</td></tr><tr><td><code>%SystemRoot%\SysWOW64\config\systemprofile:.repos</code></td><td class="text-center">3</td></tr><tr><td><code>%SystemRoot%\SysWOW64\fprmiazv</code></td><td class="text-center">1</td></tr><tr><td><code>%SystemRoot%\SysWOW64\scezvnmi</code></td><td class="text-center">1</td></tr><tr><td><code>%TEMP%\gaasvfjv.exe</code></td><td class="text-center">1</td></tr><tr><td><code>%TEMP%\gnqlkeey.exe</code></td><td class="text-center">1</td></tr><tr><td><code>%TEMP%\dkrujxqa.exe</code></td><td class="text-center">1</td></tr></tbody></table><!--kg-card-end: html--><h4 id="file-hashes-1">File Hashes</h4><p><code>08b22534479c02d68776f0b14885fd872bb4666359d37b56a6b1aedcc27797e6</code><br><code>1367edc7f74e64673a5830587675e887e34a7700807ebb1c2371a3d24fc2addc</code><br><code>250afa052b2263e2bebbe9f5e6a287ab5b7a0808ca4fa86088e8b2075164aa22</code><br><code>2a09c52ae8195a193d47ddd1100405179556ded2d99118284628bb382aa41b74</code><br><code>2a50355afa176ee2e9df2c239eb2a7031b4a674bcba68f14e594e8ae210999a6</code><br><code>2f7fa2a61e045a13f998be5d5d55b8af50014588db55555252acbcd6edec8516</code><br><code>78bdff74a9d805e9f9f579ce0de101bf2deb8f341ea1cf90315528a8abe30bf9</code><br><code>84a27a78f530ce50649de7add12e861c8c6818828dd91e64902a97a937bce4ea</code><br><code>84e81e9664ffc778584fbd651a53a3aef26711a3c4dd2a573fae32be878f9366</code><br><code>8f75785c6aa933e61a3aceb62a5b9dfe3d569c141aa0d168d0ad93c07bcd0c35</code><br><code>a8dd148fa85d239fb47f6524a1706ae783a2a2e47448fdb1aa3be18315f36ce9</code><br><code>b275b321ed913cfe34adf9d7ae2dd4ada69dd10ec11781773c4b505e56f62bb6</code><br><code>bc483dbde3ef5f491f2c038214df13c647f35736c43fd617731dac507e62cd68</code><br><code>c5712973eff5fedc221c4783a457e6ecf8a652cb8b213beecdc1e7439913bb86</code><br><code>d239a96a2b15b78ab70b93fd103c76293eb4490593992d6b35c1ae7d7956ae15</code><br><code>d3441f161efcc0c004c8e80dca94e94c6969a95a442dad688b48e1074b16ef09</code><br><code>da0bd2568e010e954f29b03512d733e3f6756110fcef569c25f368442020a1ac</code><br><code>e3c0bb8a0376793171773f5c272b9b09ca4489d197c104be767414238748eb0a</code><br><code>e927fd151315c9390936af55690f5d476e373ff61ff061b24597cffc3f118f01</code><br><code>f7cc06c095125901a06356eababa0371605f8d8371c7b904c472e38067831b90</code><br><code>fff95abee8aeffff4bda634857a079f0c537725a4d1ee77b8f64d52cff44600e</code><br></p><h4 id="coverage-1">Coverage</h4><!--kg-card-begin: html--><table class="threat-coverage-table" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><thead><tr><th>Product</th><th class="text-center">Protection</th></tr></thead><tbody><tr><td>Secure Endpoint</td><td class="text-center"><span class="coverage-check"><img alt="This has coverage" src="https://www.talosintelligence.com/assets/icon_check_white.svg"></span></td></tr><tr><td>Cloudlock</td><td class="text-center"><span class="coverage-check">N/A</span></td></tr><tr><td>CWS</td><td class="text-center"><span class="coverage-check"><img alt="This has coverage" src="https://www.talosintelligence.com/assets/icon_check_white.svg"></span></td></tr><tr><td>Email Security</td><td class="text-center"><span class="coverage-check"><img alt="This has coverage" src="https://www.talosintelligence.com/assets/icon_check_white.svg"></span></td></tr><tr><td>Network Security</td><td class="text-center"><span class="coverage-check"><img alt="This has coverage" src="https://www.talosintelligence.com/assets/icon_check_white.svg"></span></td></tr><tr><td>Stealthwatch</td><td class="text-center"><span class="coverage-check">N/A</span></td></tr><tr><td>Stealthwatch Cloud</td><td class="text-center"><span class="coverage-check">N/A</span></td></tr><tr><td>Secure Malware Analytics</td><td class="text-center"><span class="coverage-check"><img alt="This has coverage" src="https://www.talosintelligence.com/assets/icon_check_white.svg"></span></td></tr><tr><td>Umbrella</td><td class="text-center"><span class="coverage-check"><img alt="This has coverage" src="https://www.talosintelligence.com/assets/icon_check_white.svg"></span></td></tr><tr><td>WSA</td><td class="text-center"><span class="coverage-check"><img alt="This has coverage" src="https://www.talosintelligence.com/assets/icon_check_white.svg"></span></td></tr></tbody></table><!--kg-card-end: html--><h4 id="screenshots-of-detection-1">Screenshots of Detection</h4><h4 id="secure-endpoint-1">Secure Endpoint</h4><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/09/amp_8f75785c6aa933e61a3aceb62a5b9dfe3d569c141aa0d168d0ad93c07bcd0c35_20230922.png" class="kg-image" alt loading="lazy" width="702" height="480" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2023/09/amp_8f75785c6aa933e61a3aceb62a5b9dfe3d569c141aa0d168d0ad93c07bcd0c35_20230922.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/09/amp_8f75785c6aa933e61a3aceb62a5b9dfe3d569c141aa0d168d0ad93c07bcd0c35_20230922.png 702w"></figure><h4 id="secure-malware-analytics-1">Secure Malware Analytics</h4><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/09/tg_8f75785c6aa933e61a3aceb62a5b9dfe3d569c141aa0d168d0ad93c07bcd0c35_20230922.png" class="kg-image" alt loading="lazy" width="962" height="800" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2023/09/tg_8f75785c6aa933e61a3aceb62a5b9dfe3d569c141aa0d168d0ad93c07bcd0c35_20230922.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/09/tg_8f75785c6aa933e61a3aceb62a5b9dfe3d569c141aa0d168d0ad93c07bcd0c35_20230922.png 962w" sizes="(min-width: 720px) 720px"></figure><h4 id="mitre-attck-1">MITRE ATT&amp;CK</h4><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/09/mitre_attack_34198.png" class="kg-image" alt loading="lazy" width="2000" height="1247" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2023/09/mitre_attack_34198.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2023/09/mitre_attack_34198.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1600/2023/09/mitre_attack_34198.png 1600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/09/mitre_attack_34198.png 2020w" sizes="(min-width: 720px) 720px"></figure><hr><h3 id="wintrojanfareit-10009186-1">Win.Trojan.Fareit-10009186-1</h3><h4 id="indicators-of-compromise-2">Indicators of Compromise</h4><ul><li>IOCs collected from dynamic analysis of 24 samples</li></ul><!--kg-card-begin: html--><table class="threat-breakdown-table" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><thead><tr><th style="width: 600px;">Registry Keys</th><th class="text-center">Occurrences</th></tr></thead><tbody><tr><td><code>&lt;HKCU&gt;\SOFTWARE\LOCAL APPWIZARD-GENERATED APPLICATIONS</code></td><td class="text-center">18</td></tr><tr><td><code>&lt;HKLM&gt;\SYSTEM\CONTROLSET001\SERVICES\SCHEDULE<br><span style="padding-left: 20px;">Value Name: NextAtJobId</span></code></td><td class="text-center">6</td></tr><tr><td><code>&lt;HKCU&gt;\SOFTWARE\WINRAR</code></td><td class="text-center">6</td></tr><tr><td><code>&lt;HKLM&gt;\SAM\SAM\DOMAINS\ACCOUNT\USERS\000003E9<br><span style="padding-left: 20px;">Value Name: F</span></code></td><td class="text-center">6</td></tr><tr><td><code>&lt;HKLM&gt;\SAM\SAM\DOMAINS\ACCOUNT\USERS\000001F5<br><span style="padding-left: 20px;">Value Name: F</span></code></td><td class="text-center">6</td></tr><tr><td><code>&lt;HKLM&gt;\SAM\SAM\DOMAINS\ACCOUNT\USERS\000003EC<br><span style="padding-left: 20px;">Value Name: F</span></code></td><td class="text-center">6</td></tr><tr><td><code>&lt;HKCU&gt;\SOFTWARE\WINRAR<br><span style="padding-left: 20px;">Value Name: HWID</span></code></td><td class="text-center">6</td></tr><tr><td><code>&lt;HKLM&gt;\SOFTWARE\WOW6432NODE\PWRKXXZKWU</code></td><td class="text-center">5</td></tr><tr><td><code>&lt;HKCU&gt;\SOFTWARE\PWRKXXZKWU</code></td><td class="text-center">5</td></tr><tr><td><code>&lt;HKCU&gt;\SOFTWARE\NVIDIA CORPORATION</code></td><td class="text-center">2</td></tr><tr><td><code>&lt;HKCU&gt;\SOFTWARE\NVIDIA CORPORATION\GLOBAL</code></td><td class="text-center">2</td></tr><tr><td><code>&lt;HKCU&gt;\SOFTWARE\NVIDIA CORPORATION\GLOBAL\NVUPDSRV</code></td><td class="text-center">2</td></tr><tr><td><code>&lt;HKCU&gt;\SOFTWARE\NVIDIA CORPORATION\GLOBAL\NVUPDSRV<br><span style="padding-left: 20px;">Value Name: value</span></code></td><td class="text-center">2</td></tr><tr><td><code>&lt;HKCU&gt;\SOFTWARE\NVIDIA CORPORATION\GLOBAL\NVUPDSRV<br><span style="padding-left: 20px;">Value Name: GUID</span></code></td><td class="text-center">2</td></tr><tr><td><code>&lt;HKLM&gt;\SOFTWARE\CLASSES\M1.DOCUMENT\DEFAULTICON</code></td><td class="text-center">1</td></tr><tr><td><code>&lt;HKLM&gt;\SOFTWARE\CLASSES\M1.DOCUMENT\SHELL\OPEN\DDEEXEC</code></td><td class="text-center">1</td></tr><tr><td><code>&lt;HKLM&gt;\SOFTWARE\CLASSES\M1.DOCUMENT\SHELL\PRINT\DDEEXEC</code></td><td class="text-center">1</td></tr><tr><td><code>&lt;HKLM&gt;\SOFTWARE\CLASSES\M1.DOCUMENT\SHELL\PRINTTO\DDEEXEC</code></td><td class="text-center">1</td></tr><tr><td><code>&lt;HKLM&gt;\SOFTWARE\CLASSES\M1.DOCUMENT\SHELL\OPEN\COMMAND</code></td><td class="text-center">1</td></tr><tr><td><code>&lt;HKLM&gt;\SOFTWARE\CLASSES\M1.DOCUMENT\SHELL\PRINT\COMMAND</code></td><td class="text-center">1</td></tr><tr><td><code>&lt;HKLM&gt;\SOFTWARE\CLASSES\M1.DOCUMENT\SHELL\PRINTTO\COMMAND</code></td><td class="text-center">1</td></tr><tr><td><code>&lt;HKLM&gt;\SOFTWARE\CLASSES\.EWRWER</code></td><td class="text-center">1</td></tr><tr><td><code>&lt;HKLM&gt;\SOFTWARE\CLASSES\.EWRWER\SHELLNEW<br><span style="padding-left: 20px;">Value Name: NullFile</span></code></td><td class="text-center">1</td></tr><tr><td><code>&lt;HKLM&gt;\SOFTWARE\CLASSES\M1.DOCUMENT\INSERTABLE</code></td><td class="text-center">1</td></tr><tr><td><code>&lt;HKLM&gt;\SOFTWARE\CLASSES\M1.DOCUMENT\PROTOCOL\STDFILEEDITING\VERB\0</code></td><td class="text-center">1</td></tr></tbody></table><!--kg-card-end: html--><!--kg-card-begin: html--><table class="threat-breakdown-table" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><thead><tr><th style="width: 600px;">Mutexes</th><th class="text-center">Occurrences</th></tr></thead><tbody><tr><td><code>85485515</code></td><td class="text-center">23</td></tr><tr><td><code>Global\MD7H82HHF7EH2D73</code></td><td class="text-center">2</td></tr><tr><td><code>SQCIK-B9ZAV-QTJCA</code></td><td class="text-center">1</td></tr><tr><td><code>GLOBAL\{&lt;random GUID&gt;}</code></td><td class="text-center">1</td></tr><tr><td><code>Global\dc1806a1-5c3b-11ee-9660-00151739c869</code></td><td class="text-center">1</td></tr><tr><td><code>Local\{&lt;random GUID&gt;}</code></td><td class="text-center">1</td></tr></tbody></table><!--kg-card-end: html--><!--kg-card-begin: html--><table class="threat-breakdown-table" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><thead><tr><th style="width: 600px;">IP Addresses contacted by malware. Does not indicate maliciousness</th><th class="text-center">Occurrences</th></tr></thead><tbody><tr><td><code>212[.]47[.]210[.]141</code></td><td class="text-center">2</td></tr><tr><td><code>85[.]234[.]129[.]33</code></td><td class="text-center">1</td></tr><tr><td><code>62[.]212[.]132[.]148</code></td><td class="text-center">1</td></tr><tr><td><code>77[.]72[.]24[.]240</code></td><td class="text-center">1</td></tr><tr><td><code>81[.]169[.]154[.]37</code></td><td class="text-center">1</td></tr><tr><td><code>83[.]142[.]191[.]37</code></td><td class="text-center">1</td></tr><tr><td><code>178[.]32[.]62[.]1</code></td><td class="text-center">1</td></tr><tr><td><code>81[.]169[.]187[.]148</code></td><td class="text-center">1</td></tr><tr><td><code>87[.]106[.]69[.]18</code></td><td class="text-center">1</td></tr></tbody></table><!--kg-card-end: html--><!--kg-card-begin: html--><table class="threat-breakdown-table" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><thead><tr><th style="width: 600px;">Domain Names contacted by malware. Does not indicate maliciousness</th><th class="text-center">Occurrences</th></tr></thead><tbody><tr><td><code>volwsak[.]pw</code></td><td class="text-center">6</td></tr><tr><td><code>volekas[.]pw</code></td><td class="text-center">6</td></tr><tr><td><code>discover-lang[.]com</code></td><td class="text-center">5</td></tr><tr><td><code>net-forwarding[.]com</code></td><td class="text-center">5</td></tr><tr><td><code>t14qb[.]mrbasic[.]com</code></td><td class="text-center">2</td></tr><tr><td><code>tkpt[.]fvgd[.]biz</code></td><td class="text-center">2</td></tr><tr><td><code>vbqq[.]fvgd[.]biz</code></td><td class="text-center">2</td></tr><tr><td><code>ztnf[.]axvf[.]biz</code></td><td class="text-center">2</td></tr><tr><td><code>aaej[.]axvf[.]biz</code></td><td class="text-center">1</td></tr><tr><td><code>bhtd[.]fvgd[.]biz</code></td><td class="text-center">1</td></tr><tr><td><code>bkzb[.]ethv[.]biz</code></td><td class="text-center">1</td></tr><tr><td><code>fmwz[.]fvgd[.]biz</code></td><td class="text-center">1</td></tr><tr><td><code>mtid[.]ethv[.]biz</code></td><td class="text-center">1</td></tr><tr><td><code>tycy[.]axvf[.]biz</code></td><td class="text-center">1</td></tr><tr><td><code>frgodogcat[.]com</code></td><td class="text-center">1</td></tr><tr><td><code>ns9[.]ildepizza[.]com</code></td><td class="text-center">1</td></tr><tr><td><code>u8x26[.]mrbasic[.]com</code></td><td class="text-center">1</td></tr><tr><td><code>fmwz[.]axvf[.]biz</code></td><td class="text-center">1</td></tr><tr><td><code>xdfv[.]fvgd[.]biz</code></td><td class="text-center">1</td></tr><tr><td><code>tycy[.]ethv[.]biz</code></td><td class="text-center">1</td></tr><tr><td><code>xdfv[.]ethv[.]biz</code></td><td class="text-center">1</td></tr><tr><td><code>bkzb[.]fvgd[.]biz</code></td><td class="text-center">1</td></tr><tr><td><code>vbqq[.]ethv[.]biz</code></td><td class="text-center">1</td></tr><tr><td><code>hrvv[.]ethv[.]biz</code></td><td class="text-center">1</td></tr><tr><td><code>vyic[.]axvf[.]biz</code></td><td class="text-center">1</td></tr></tbody></table><!--kg-card-end: html--><p>*See JSON for more IOCs</p><!--kg-card-begin: html--><table class="threat-breakdown-table" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><thead><tr><th style="width: 600px;">Files and or directories created</th><th class="text-center">Occurrences</th></tr></thead><tbody><tr><td><code>%System32%\Tasks\At1</code></td><td class="text-center">6</td></tr><tr><td><code>%SystemRoot%\Tasks\At1.job</code></td><td class="text-center">6</td></tr><tr><td><code>%SystemRoot%\calc2.exe</code></td><td class="text-center">6</td></tr><tr><td><code>%TEMP%\st1m.bat</code></td><td class="text-center">3</td></tr><tr><td><code>%APPDATA%\Ymak</code></td><td class="text-center">1</td></tr><tr><td><code>%LOCALAPPDATA%\hjakeri.dll</code></td><td class="text-center">1</td></tr><tr><td><code>%TEMP%\FB_20CD.tmp</code></td><td class="text-center">1</td></tr><tr><td><code>%TEMP%\FB_20CD.tmp.exe</code></td><td class="text-center">1</td></tr><tr><td><code>%TEMP%\FB_257F.tmp</code></td><td class="text-center">1</td></tr><tr><td><code>%TEMP%\FB_257F.tmp.exe</code></td><td class="text-center">1</td></tr><tr><td><code>%TEMP%\tmpc254a5e1.bat</code></td><td class="text-center">1</td></tr><tr><td><code>%APPDATA%\Uzyz</code></td><td class="text-center">1</td></tr><tr><td><code>%APPDATA%\Uzyz\ebesa.fye</code></td><td class="text-center">1</td></tr><tr><td><code>%APPDATA%\Ymak\udvyn.exe</code></td><td class="text-center">1</td></tr><tr><td><code>%APPDATA%\Yqociv</code></td><td class="text-center">1</td></tr><tr><td><code>%APPDATA%\Yqociv\qivu.zys</code></td><td class="text-center">1</td></tr></tbody></table><!--kg-card-end: html--><h4 id="file-hashes-2">File Hashes</h4><p><code>149f0a5c052fcefa44483d4eb092e67733d5b057c2f4cee43c0d9f67ef44dcf4</code><br><code>2aa5de88c3038847567d72f08146137a1a3253af5fd7092acb66a0f7531b8b95</code><br><code>2da828b54cc7c85fa25182d55f2ef7690710d8ad22a5df23179dc505d35ac443</code><br><code>38bc47e511476df9f34594d08aad84c0ed42de23ef54dc07b6b0b2095562e15a</code><br><code>451f0e85df2d6d6563dafade3735944b2904ce0275e6d25c4b2e68c56f4258b6</code><br><code>4924cfc70db2c78aaad359f0725bbfcfa513d505393b89ce09722e62c3211270</code><br><code>4a89ae1b868933f4067bfdc29ecca224bb94916f1d155c51f3d3f9861db3c5e9</code><br><code>5ab3200ac96674cdec552e30e0b1c20efe6531621219605860393914e0826a48</code><br><code>69482dfbb7157670fc5bc48dbef2203d056ec6a43dcb10cc8e9941cfec9615c7</code><br><code>7ab0b5bbf4e2347d5eaaf6cf275f4e814bafc3d4d98da746182183c7f283838c</code><br><code>81bd4325fc6e369edbf665bab10cf79f867bb77f29f7215a54de9812d8af8ae4</code><br><code>8225702ed0e77339a45faf1e3f239ed93076ffe5ae01940f92f3a385133f141a</code><br><code>928aa0d0d3d37622d96a5c5357f4430e0e484e525ef756372249fbe217ed5543</code><br><code>92fa5602d38ba61961c7965c9fa12478bb0bd427edb538b23e230e2e0e1219d5</code><br><code>b689e59a9c4e500548d09999d9561ecc71e5c719ba84709434eb830d8212d3f9</code><br><code>be079a5ac45f04bbde4a697842c14955e58fe4e554c0c88df7ee135e5190ce38</code><br><code>c9c6ee55e3ed58e2c8ff1b471bd907e3d39cd1d0fb576ff5e61095fc2b820017</code><br><code>cebc360fec7b2e32daea22ed2c8bb052c13595f6b647751e209984ed47e06d67</code><br><code>de16d96171677328d47f8cd7854ff942a326bd3d7e0fc2a9e3444c00b34be4c9</code><br><code>de2094b490797bef79d9e976680173bcdb5b19fc6fcd21e1cf2435ca12ea2327</code><br><code>e2c1ec487b0b78aa02e1b39d17d9ae2f4b2442682eb709090752852ea5587c0e</code><br><code>e76fb7c6053a4de38f4cc4c3f27d9d7a1754ddcb8376c5ae168271aa0f8ef59f</code><br><code>ec239276079bb23a5240f77ce4e47aafef0bb3159b1c8c0073734d927e1ad058</code><br><code>f7fb0f7e722e5bd82c5d399aefe6fa472ddf1884906bf21a94d5f15c460cc86e</code><br></p><h4 id="coverage-2">Coverage</h4><!--kg-card-begin: html--><table class="threat-coverage-table" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><thead><tr><th>Product</th><th class="text-center">Protection</th></tr></thead><tbody><tr><td>Secure Endpoint</td><td class="text-center"><span class="coverage-check"><img alt="This has coverage" src="https://www.talosintelligence.com/assets/icon_check_white.svg"></span></td></tr><tr><td>Cloudlock</td><td class="text-center"><span class="coverage-check">N/A</span></td></tr><tr><td>CWS</td><td class="text-center"><span class="coverage-check"><img alt="This has coverage" src="https://www.talosintelligence.com/assets/icon_check_white.svg"></span></td></tr><tr><td>Email Security</td><td class="text-center"><span class="coverage-check"><img alt="This has coverage" src="https://www.talosintelligence.com/assets/icon_check_white.svg"></span></td></tr><tr><td>Network Security</td><td class="text-center"><span class="coverage-check"><img alt="This has coverage" src="https://www.talosintelligence.com/assets/icon_check_white.svg"></span></td></tr><tr><td>Stealthwatch</td><td class="text-center"><span class="coverage-check">N/A</span></td></tr><tr><td>Stealthwatch Cloud</td><td class="text-center"><span class="coverage-check">N/A</span></td></tr><tr><td>Secure Malware Analytics</td><td class="text-center"><span class="coverage-check"><img alt="This has coverage" src="https://www.talosintelligence.com/assets/icon_check_white.svg"></span></td></tr><tr><td>Umbrella</td><td class="text-center"><span class="coverage-check">N/A</span></td></tr><tr><td>WSA</td><td class="text-center"><span class="coverage-check">N/A</span></td></tr></tbody></table><!--kg-card-end: html--><h4 id="screenshots-of-detection-2">Screenshots of Detection</h4><h4 id="secure-endpoint-2">Secure Endpoint</h4><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/09/amp_2da828b54cc7c85fa25182d55f2ef7690710d8ad22a5df23179dc505d35ac443_20230926.png" class="kg-image" alt loading="lazy" width="702" height="480" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2023/09/amp_2da828b54cc7c85fa25182d55f2ef7690710d8ad22a5df23179dc505d35ac443_20230926.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/09/amp_2da828b54cc7c85fa25182d55f2ef7690710d8ad22a5df23179dc505d35ac443_20230926.png 702w"></figure><h4 id="secure-malware-analytics-2">Secure Malware Analytics</h4><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/09/tg_cebc360fec7b2e32daea22ed2c8bb052c13595f6b647751e209984ed47e06d67_20230926.png" class="kg-image" alt loading="lazy" width="962" height="800" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2023/09/tg_cebc360fec7b2e32daea22ed2c8bb052c13595f6b647751e209984ed47e06d67_20230926.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/09/tg_cebc360fec7b2e32daea22ed2c8bb052c13595f6b647751e209984ed47e06d67_20230926.png 962w" sizes="(min-width: 720px) 720px"></figure><h4 id="mitre-attck-2">MITRE ATT&amp;CK</h4><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/09/mitre_attack_34184.png" class="kg-image" alt loading="lazy" width="2000" height="1247" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2023/09/mitre_attack_34184.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2023/09/mitre_attack_34184.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1600/2023/09/mitre_attack_34184.png 1600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/09/mitre_attack_34184.png 2020w" sizes="(min-width: 720px) 720px"></figure><hr><h3 id="winwormgh0strat-10009166-0">Win.Worm.Gh0stRAT-10009166-0</h3><h4 id="indicators-of-compromise-3">Indicators of Compromise</h4><ul><li>IOCs collected from dynamic analysis of 31 samples</li></ul><!--kg-card-begin: html--><table class="threat-breakdown-table" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><thead><tr><th style="width: 600px;">Registry Keys</th><th class="text-center">Occurrences</th></tr></thead><tbody><tr><td><code>&lt;HKCU&gt;\SOFTWARE\MICROSOFT\WINDOWS\CURRENTVERSION\RUN<br><span style="padding-left: 20px;">Value Name: EvtMgr</span></code></td><td class="text-center">31</td></tr></tbody></table><!--kg-card-end: html--><!--kg-card-begin: html--><table class="threat-breakdown-table" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><thead><tr><th style="width: 600px;">Mutexes</th><th class="text-center">Occurrences</th></tr></thead><tbody><tr><td><code>174.139.65.202:8760</code></td><td class="text-center">31</td></tr><tr><td><code>M174.139.65.202:8760</code></td><td class="text-center">31</td></tr><tr><td><code>Global\&lt;random guid&gt;</code></td><td class="text-center">31</td></tr></tbody></table><!--kg-card-end: html--><!--kg-card-begin: html--><table class="threat-breakdown-table" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><thead><tr><th style="width: 600px;">IP Addresses contacted by malware. Does not indicate maliciousness</th><th class="text-center">Occurrences</th></tr></thead><tbody><tr><td><code>174[.]139[.]65[.]205</code></td><td class="text-center">31</td></tr><tr><td><code>174[.]139[.]65[.]202/31</code></td><td class="text-center">31</td></tr></tbody></table><!--kg-card-end: html--><!--kg-card-begin: html--><table class="threat-breakdown-table" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><thead><tr><th style="width: 600px;">Files and or directories created</th><th class="text-center">Occurrences</th></tr></thead><tbody><tr><td><code>\1.txt</code></td><td class="text-center">31</td></tr><tr><td><code>%TEMP%\&lt;random, matching '[a-z]{4,9}'&gt;.exe</code></td><td class="text-center">31</td></tr><tr><td><code>\&lt;random, matching [a-z]{7,15}&gt;</code></td><td class="text-center">6</td></tr><tr><td><code>\lrcmq</code></td><td class="text-center">2</td></tr><tr><td><code>\lrcmq\wybmh.ymw</code></td><td class="text-center">2</td></tr><tr><td><code>\lrcmq\ReadMe.txt</code></td><td class="text-center">2</td></tr><tr><td><code>\fejyf\svamaxhsy.vms</code></td><td class="text-center">1</td></tr><tr><td><code>\efjqqprp\abtvmh.bva</code></td><td class="text-center">1</td></tr><tr><td><code>\svqpd\pcgdt.cdp</code></td><td class="text-center">1</td></tr><tr><td><code>\vjrfw\idvsblp.dsi</code></td><td class="text-center">1</td></tr><tr><td><code>\bguta\vzihmd.zhv</code></td><td class="text-center">1</td></tr><tr><td><code>\imzbs\lgccxccv.gcl</code></td><td class="text-center">1</td></tr><tr><td><code>\udbstlvp\idbat.dai</code></td><td class="text-center">1</td></tr><tr><td><code>\xihzc\otojrb.tjo</code></td><td class="text-center">1</td></tr><tr><td><code>\dzsvfx\ixzyo.xyi</code></td><td class="text-center">1</td></tr><tr><td><code>\yfahi\qbifb.bfq</code></td><td class="text-center">1</td></tr><tr><td><code>\ymcmn\oklllrus.klo</code></td><td class="text-center">1</td></tr><tr><td><code>\lhjdg\kmsxaybss.mxk</code></td><td class="text-center">1</td></tr><tr><td><code>\qultury\xpjhq.phx</code></td><td class="text-center">1</td></tr><tr><td><code>\opawz\dzsvfx.zvd</code></td><td class="text-center">1</td></tr><tr><td><code>\lmvot\wgqdg.gdw</code></td><td class="text-center">1</td></tr><tr><td><code>\lwajlifh\wfijai.fjw</code></td><td class="text-center">1</td></tr><tr><td><code>\ffrycfmqw\kilqo.iqk</code></td><td class="text-center">1</td></tr><tr><td><code>\lyonu\ywprw.wry</code></td><td class="text-center">1</td></tr><tr><td><code>\cvszt\vgixf.gxv</code></td><td class="text-center">1</td></tr></tbody></table><!--kg-card-end: html--><p>*See JSON for more IOCs</p><h4 id="file-hashes-3">File Hashes</h4><p><code>0928b208eda785ce3b6dd30394b6b90dbdea76a0f2fd65fdae8915714ac13e14</code><br><code>0b207e4f2eaa00a98bc87cf51827b730e4d823f46c492a759873b63564e7953a</code><br><code>0b8d9ab9cef9788c0aeedc4e3e97d0beb97ceb0e7c12eabf1c60565943dd9003</code><br><code>0c323607d2da2b037f653f7b4bdf0449af06dfaafb5305419e16d343659f59a0</code><br><code>0d82fb3fe78d96cbd43233f7f934d14b57b32e2e885efd51585e35bd1375f6eb</code><br><code>0e83bb6a294b29cb16272f8394ca2db4225a98f35ef047647bcd5c3b36109ea7</code><br><code>0ebe5ed6048caa21385ac2b5e55f9df4c61e942f494cac696ffdc2e3a377a5b2</code><br><code>13b58a0b9e0299384d974dbc4659259f5dec852e113f538aecb8fabbad5ec0bc</code><br><code>14678d3fbb856dfea61b3e81cf7607deb8588850ca6c9cb38441241b38287681</code><br><code>1487215671dcd51736ad33700aec2b2149cc51625d8cb3ac011b10c42e532fb7</code><br><code>1d0596d38545b9c1a60eabcc671f03e075d8e2e8f5f2547c960a2ef5609505fb</code><br><code>1e576f6acadc56500830da6ae13861345775bb6b7941f73b61ce885ba37aaa1a</code><br><code>2092d97a4a9f1fd85b589960ee3f0c98a457686f237490285437fbed10d35dc3</code><br><code>29d27a8107d83363420d8d45f5c340e629163deed591ea3625247d0bf9c40693</code><br><code>2bc8ebf57281a0805dbc07347251f686a5418a420c394208b94674d6d57990b4</code><br><code>2c9d9989e7267ae8f3dfc01116b41aad1124888912df5187746abba0b6f50807</code><br><code>37130b59f87c43ca300a79298a047e791aba826f3cc1d7461e63f2a80d8e812b</code><br><code>3b6ba0f4ce75517a2d69d92e1da04853e6cd9fa773ec7d3039e93beee6a0b429</code><br><code>3c50f19863bc5f1023fec8b5e03262d0a6d4a76685aee1474df098d2934f6203</code><br><code>3e4fb27f34fd0b6d2a01662f55f58ff22c0d5cb887f35adbefd369e08705eaf4</code><br><code>461c3d315e4b725d3425c9417ccb0bb47d01dcb80f52f14460d32aa58af9c7bc</code><br><code>46c699d350e35220ef6efa1b58cb85646b1ef785f902bab0f5ec9b10ac2b1a59</code><br><code>46f1585ff31eee85dd9b5c63a98815f41fd95e165d1421f2fdcb1bcf3ae5be0f</code><br><code>4989909a5677404429a257a199d2f1efbb8d6d54d88e85ee4fe93fa55e77b806</code><br><code>4ccf0760f8e7502b9a57b00b38df835ecf61d3689d573755b5eb20f1bc6d43b2</code><br>*See JSON for more IOCs</p><h4 id="coverage-3">Coverage</h4><!--kg-card-begin: html--><table class="threat-coverage-table" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><thead><tr><th>Product</th><th class="text-center">Protection</th></tr></thead><tbody><tr><td>Secure Endpoint</td><td class="text-center"><span class="coverage-check"><img alt="This has coverage" src="https://www.talosintelligence.com/assets/icon_check_white.svg"></span></td></tr><tr><td>Cloudlock</td><td class="text-center"><span class="coverage-check">N/A</span></td></tr><tr><td>CWS</td><td class="text-center"><span class="coverage-check"><img alt="This has coverage" src="https://www.talosintelligence.com/assets/icon_check_white.svg"></span></td></tr><tr><td>Email Security</td><td class="text-center"><span class="coverage-check"><img alt="This has coverage" src="https://www.talosintelligence.com/assets/icon_check_white.svg"></span></td></tr><tr><td>Network Security</td><td class="text-center"><span class="coverage-check">N/A</span></td></tr><tr><td>Stealthwatch</td><td class="text-center"><span class="coverage-check">N/A</span></td></tr><tr><td>Stealthwatch Cloud</td><td class="text-center"><span class="coverage-check">N/A</span></td></tr><tr><td>Secure Malware Analytics</td><td class="text-center"><span class="coverage-check"><img alt="This has coverage" src="https://www.talosintelligence.com/assets/icon_check_white.svg"></span></td></tr><tr><td>Umbrella</td><td class="text-center"><span class="coverage-check">N/A</span></td></tr><tr><td>WSA</td><td class="text-center"><span class="coverage-check">N/A</span></td></tr></tbody></table><!--kg-card-end: html--><h4 id="screenshots-of-detection-3">Screenshots of Detection</h4><h4 id="secure-endpoint-3">Secure Endpoint</h4><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/09/amp_0e83bb6a294b29cb16272f8394ca2db4225a98f35ef047647bcd5c3b36109ea7_20230925.png" class="kg-image" alt loading="lazy" width="702" height="480" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2023/09/amp_0e83bb6a294b29cb16272f8394ca2db4225a98f35ef047647bcd5c3b36109ea7_20230925.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/09/amp_0e83bb6a294b29cb16272f8394ca2db4225a98f35ef047647bcd5c3b36109ea7_20230925.png 702w"></figure><h4 id="secure-malware-analytics-3">Secure Malware Analytics</h4><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/09/tg_0e83bb6a294b29cb16272f8394ca2db4225a98f35ef047647bcd5c3b36109ea7_20230925.png" class="kg-image" alt loading="lazy" width="962" height="800" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2023/09/tg_0e83bb6a294b29cb16272f8394ca2db4225a98f35ef047647bcd5c3b36109ea7_20230925.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/09/tg_0e83bb6a294b29cb16272f8394ca2db4225a98f35ef047647bcd5c3b36109ea7_20230925.png 962w" sizes="(min-width: 720px) 720px"></figure><h4 id="mitre-attck-3">MITRE ATT&amp;CK</h4><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/09/mitre_attack_34178.png" class="kg-image" alt loading="lazy" width="2000" height="1247" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2023/09/mitre_attack_34178.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2023/09/mitre_attack_34178.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1600/2023/09/mitre_attack_34178.png 1600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/09/mitre_attack_34178.png 2020w" sizes="(min-width: 720px) 720px"></figure><hr><h3 id="windropperzeus-10008893-0">Win.Dropper.Zeus-10008893-0</h3><h4 id="indicators-of-compromise-4">Indicators of Compromise</h4><ul><li>IOCs collected from dynamic analysis of 12 samples</li></ul><!--kg-card-begin: html--><table class="threat-breakdown-table" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><thead><tr><th style="width: 600px;">Registry Keys</th><th class="text-center">Occurrences</th></tr></thead><tbody><tr><td><code>&lt;HKCU&gt;\SOFTWARE\MICROSOFT\INTERNET EXPLORER\PRIVACY<br><span style="padding-left: 20px;">Value Name: CleanCookies</span></code></td><td class="text-center">1</td></tr><tr><td><code>&lt;HKCU&gt;\SOFTWARE\MICROSOFT\WINDOWS\CURRENTVERSION\ACTION CENTER\CHECKS\{E8433B72-5842-4D43-8645-BC2C35960837}.CHECK.101<br><span style="padding-left: 20px;">Value Name: CheckSetting</span></code></td><td class="text-center">1</td></tr><tr><td><code>&lt;HKCU&gt;\SOFTWARE\MICROSOFT\WINDOWS\CURRENTVERSION\ACTION CENTER\CHECKS\{E8433B72-5842-4D43-8645-BC2C35960837}.CHECK.103<br><span style="padding-left: 20px;">Value Name: CheckSetting</span></code></td><td class="text-center">1</td></tr><tr><td><code>&lt;HKCU&gt;\SOFTWARE\MICROSOFT\WINDOWS\CURRENTVERSION\ACTION CENTER\CHECKS\{E8433B72-5842-4D43-8645-BC2C35960837}.CHECK.100<br><span style="padding-left: 20px;">Value Name: CheckSetting</span></code></td><td class="text-center">1</td></tr><tr><td><code>&lt;HKCU&gt;\SOFTWARE\MICROSOFT\WINDOWS\CURRENTVERSION\ACTION CENTER\CHECKS\{E8433B72-5842-4D43-8645-BC2C35960837}.CHECK.102<br><span style="padding-left: 20px;">Value Name: CheckSetting</span></code></td><td class="text-center">1</td></tr><tr><td><code>&lt;HKCU&gt;\SOFTWARE\MICROSOFT\WINDOWS\CURRENTVERSION\ACTION CENTER\CHECKS\{E8433B72-5842-4D43-8645-BC2C35960837}.CHECK.104<br><span style="padding-left: 20px;">Value Name: CheckSetting</span></code></td><td class="text-center">1</td></tr><tr><td><code>&lt;HKCU&gt;\SOFTWARE\MICROSOFT\GOACAK</code></td><td class="text-center">1</td></tr><tr><td><code>&lt;HKCU&gt;\SOFTWARE\MICROSOFT\WINDOWS\CURRENTVERSION\RUN<br><span style="padding-left: 20px;">Value Name: {738044C7-06CF-34DA-23BD-3CA69922D313}</span></code></td><td class="text-center">1</td></tr><tr><td><code>&lt;HKCU&gt;\SOFTWARE\MICROSOFT\GOACAK<br><span style="padding-left: 20px;">Value Name: Hosa</span></code></td><td class="text-center">1</td></tr></tbody></table><!--kg-card-end: html--><!--kg-card-begin: html--><table class="threat-breakdown-table" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><thead><tr><th style="width: 600px;">Mutexes</th><th class="text-center">Occurrences</th></tr></thead><tbody><tr><td><code>Local\{959438EF-7AE7-D2CE-23BD-3CA69922D313}</code></td><td class="text-center">1</td></tr><tr><td><code>Local\{959438EC-7AE4-D2CE-23BD-3CA69922D313}</code></td><td class="text-center">1</td></tr><tr><td><code>Local\{BE325DDE-1FD6-F968-23BD-3CA69922D313}</code></td><td class="text-center">1</td></tr><tr><td><code>GLOBAL\{&lt;random GUID&gt;}</code></td><td class="text-center">1</td></tr></tbody></table><!--kg-card-end: html--><!--kg-card-begin: html--><table class="threat-breakdown-table" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><thead><tr><th style="width: 600px;">Domain Names contacted by malware. Does not indicate maliciousness</th><th class="text-center">Occurrences</th></tr></thead><tbody><tr><td><code>sauti[.]com[.]ua</code></td><td class="text-center">1</td></tr></tbody></table><!--kg-card-end: html--><!--kg-card-begin: html--><table class="threat-breakdown-table" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><thead><tr><th style="width: 600px;">Files and or directories created</th><th class="text-center">Occurrences</th></tr></thead><tbody><tr><td><code>%TEMP%\tmp0aabb930.bat</code></td><td class="text-center">1</td></tr><tr><td><code>%APPDATA%\Syefa</code></td><td class="text-center">1</td></tr><tr><td><code>%APPDATA%\Syefa\hapa.exe</code></td><td class="text-center">1</td></tr><tr><td><code>%APPDATA%\Yqly</code></td><td class="text-center">1</td></tr><tr><td><code>%APPDATA%\Yqly\ixyc.nuk</code></td><td class="text-center">1</td></tr></tbody></table><!--kg-card-end: html--><h4 id="file-hashes-4">File Hashes</h4><p><code>299b13d4abf4778c8aee767664199ae66ad8b5272b7d03154e0d67177d45f782</code><br><code>47c4de16f346d43f1d01e891545099538d195fc92bb153bbbd19cf8c61c447f4</code><br><code>5d70499ee878a0967ff397c09451afdd9f37b411532a1c1ee4f3069ea99058f2</code><br><code>5db027d44698ce496cf23eb5dd9b227898edb7b54bd65528218e4795205a1c9c</code><br><code>6ae6bb2ba9196186c7014b5bfd97f0e2971e540a97fe680bec37274e879577fb</code><br><code>6ec59e9586a5e1d8ded53176e8e324e2dbd0b24455e16cedf850d696c7b89fea</code><br><code>b9e9380a9ce7ad925d002999811482323df4d8472d39426f67ef117800f83539</code><br><code>bc7ccda17dc399f52e02c98009e0353835574e575c89247873f3cb99747b161f</code><br><code>bed77c67f4d93e31843ba750f2c6774a9a10c2ae6a99019dc8a1a7140f68bd6f</code><br><code>d48b70b404041e1e3a62d838e02c574b98d31d3fdb589f4bf9a2b470894a195b</code><br><code>dfb679e2b49952f5dac9182daa68ea3121dd8afc582a0d7e620941c61a96b744</code><br><code>dffff68e9e9b25c181829bd68f64c21d8679a21b2d00f7eaead8335e4b3f4f02</code><br></p><h4 id="coverage-4">Coverage</h4><!--kg-card-begin: html--><table class="threat-coverage-table" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><thead><tr><th>Product</th><th class="text-center">Protection</th></tr></thead><tbody><tr><td>Secure Endpoint</td><td class="text-center"><span class="coverage-check"><img alt="This has coverage" src="https://www.talosintelligence.com/assets/icon_check_white.svg"></span></td></tr><tr><td>Cloudlock</td><td class="text-center"><span class="coverage-check">N/A</span></td></tr><tr><td>CWS</td><td class="text-center"><span class="coverage-check"><img alt="This has coverage" src="https://www.talosintelligence.com/assets/icon_check_white.svg"></span></td></tr><tr><td>Email Security</td><td class="text-center"><span class="coverage-check"><img alt="This has coverage" src="https://www.talosintelligence.com/assets/icon_check_white.svg"></span></td></tr><tr><td>Network Security</td><td class="text-center"><span class="coverage-check">N/A</span></td></tr><tr><td>Stealthwatch</td><td class="text-center"><span class="coverage-check">N/A</span></td></tr><tr><td>Stealthwatch Cloud</td><td class="text-center"><span class="coverage-check">N/A</span></td></tr><tr><td>Secure Malware Analytics</td><td class="text-center"><span class="coverage-check"><img alt="This has coverage" src="https://www.talosintelligence.com/assets/icon_check_white.svg"></span></td></tr><tr><td>Umbrella</td><td class="text-center"><span class="coverage-check">N/A</span></td></tr><tr><td>WSA</td><td class="text-center"><span class="coverage-check">N/A</span></td></tr></tbody></table><!--kg-card-end: html--><h4 id="screenshots-of-detection-4">Screenshots of Detection</h4><h4 id="secure-endpoint-4">Secure Endpoint</h4><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/09/amp_6ae6bb2ba9196186c7014b5bfd97f0e2971e540a97fe680bec37274e879577fb_20230923.png" class="kg-image" alt loading="lazy" width="702" height="480" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2023/09/amp_6ae6bb2ba9196186c7014b5bfd97f0e2971e540a97fe680bec37274e879577fb_20230923.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/09/amp_6ae6bb2ba9196186c7014b5bfd97f0e2971e540a97fe680bec37274e879577fb_20230923.png 702w"></figure><h4 id="secure-malware-analytics-4">Secure Malware Analytics</h4><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/09/tg_6ae6bb2ba9196186c7014b5bfd97f0e2971e540a97fe680bec37274e879577fb_20230923.png" class="kg-image" alt loading="lazy" width="962" height="800" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2023/09/tg_6ae6bb2ba9196186c7014b5bfd97f0e2971e540a97fe680bec37274e879577fb_20230923.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/09/tg_6ae6bb2ba9196186c7014b5bfd97f0e2971e540a97fe680bec37274e879577fb_20230923.png 962w" sizes="(min-width: 720px) 720px"></figure><h4 id="mitre-attck-4">MITRE ATT&amp;CK</h4><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/09/mitre_attack_34194.png" class="kg-image" alt loading="lazy" width="2000" height="1247" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2023/09/mitre_attack_34194.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2023/09/mitre_attack_34194.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1600/2023/09/mitre_attack_34194.png 1600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/09/mitre_attack_34194.png 2020w" sizes="(min-width: 720px) 720px"></figure><hr><h3 id="winmalwaregenerickdz-10009245-0">Win.Malware.Generickdz-10009245-0</h3><h4 id="indicators-of-compromise-5">Indicators of Compromise</h4><ul><li>IOCs collected from dynamic analysis of 37 samples</li></ul><!--kg-card-begin: html--><table class="threat-breakdown-table" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><thead><tr><th style="width: 600px;">Registry Keys</th><th class="text-center">Occurrences</th></tr></thead><tbody><tr><td><code>&lt;HKCU&gt;\SOFTWARE\MICROSOFT\CITYDAYMUXBDTZQMCTPQF</code></td><td class="text-center">37</td></tr><tr><td><code>&lt;HKCU&gt;\SOFTWARE\MICROSOFT\CITYDAYMUXBDTZQMCTPQF<br><span style="padding-left: 20px;">Value Name: fQptCmQZtDBxUm</span></code></td><td class="text-center">37</td></tr></tbody></table><!--kg-card-end: html--><!--kg-card-begin: html--><table class="threat-breakdown-table" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><thead><tr><th style="width: 600px;">IP Addresses contacted by malware. Does not indicate maliciousness</th><th class="text-center">Occurrences</th></tr></thead><tbody><tr><td><code>23[.]221[.]227[.]169</code></td><td class="text-center">13</td></tr><tr><td><code>204[.]8[.]99[.]144</code></td><td class="text-center">11</td></tr><tr><td><code>116[.]202[.]120[.]165</code></td><td class="text-center">10</td></tr><tr><td><code>23[.]221[.]227[.]172</code></td><td class="text-center">10</td></tr><tr><td><code>116[.]202[.]120[.]166</code></td><td class="text-center">9</td></tr><tr><td><code>204[.]8[.]99[.]146</code></td><td class="text-center">7</td></tr><tr><td><code>23[.]12[.]144[.]141</code></td><td class="text-center">4</td></tr><tr><td><code>23[.]207[.]202[.]25</code></td><td class="text-center">3</td></tr><tr><td><code>23[.]207[.]202[.]50</code></td><td class="text-center">2</td></tr><tr><td><code>23[.]207[.]202[.]61</code></td><td class="text-center">2</td></tr><tr><td><code>23[.]12[.]144[.]134</code></td><td class="text-center">2</td></tr><tr><td><code>23[.]207[.]202[.]8</code></td><td class="text-center">1</td></tr></tbody></table><!--kg-card-end: html--><!--kg-card-begin: html--><table class="threat-breakdown-table" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><thead><tr><th style="width: 600px;">Domain Names contacted by malware. Does not indicate maliciousness</th><th class="text-center">Occurrences</th></tr></thead><tbody><tr><td><code>dist[.]torproject[.]org</code></td><td class="text-center">37</td></tr><tr><td><code>apps[.]identrust[.]com</code></td><td class="text-center">37</td></tr></tbody></table><!--kg-card-end: html--><!--kg-card-begin: html--><table class="threat-breakdown-table" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><thead><tr><th style="width: 600px;">Files and or directories created</th><th class="text-center">Occurrences</th></tr></thead><tbody><tr><td><code>%APPDATA%\tor</code></td><td class="text-center">37</td></tr><tr><td><code>%APPDATA%\tor\lock</code></td><td class="text-center">37</td></tr><tr><td><code>%APPDATA%\tor\state.tmp</code></td><td class="text-center">37</td></tr><tr><td><code>%APPDATA%\tor\keys</code></td><td class="text-center">37</td></tr><tr><td><code>%ProgramFiles%\MicrosoftEdgeUpdateTaskMachinUA\LXofuCuCRy</code></td><td class="text-center">37</td></tr><tr><td><code>%ProgramFiles%\MicrosoftEdgeUpdateTaskMachinUA\LXofuCuCRy\LXofuCuCRybdyb</code></td><td class="text-center">37</td></tr><tr><td><code>%ProgramFiles%\MicrosoftEdgeUpdateTaskMachinUA\LXofuCuCRy\data</code></td><td class="text-center">37</td></tr><tr><td><code>%ProgramFiles%\MicrosoftEdgeUpdateTaskMachinUA\LXofuCuCRy\data\geoip</code></td><td class="text-center">37</td></tr><tr><td><code>%ProgramFiles%\MicrosoftEdgeUpdateTaskMachinUA\LXofuCuCRy\data\geoip6</code></td><td class="text-center">37</td></tr><tr><td><code>%ProgramFiles%\MicrosoftEdgeUpdateTaskMachinUA\LXofuCuCRy\tor</code></td><td class="text-center">37</td></tr><tr><td><code>%ProgramFiles%\MicrosoftEdgeUpdateTaskMachinUA\LXofuCuCRy\tor\pluggable_transports</code></td><td class="text-center">37</td></tr><tr><td><code>%ProgramFiles%\MicrosoftEdgeUpdateTaskMachinUA\LXofuCuCRy\tor\pluggable_transports\lyrebird.exe</code></td><td class="text-center">37</td></tr><tr><td><code>%ProgramFiles%\MicrosoftEdgeUpdateTaskMachinUA\LXofuCuCRy\tor\tor.exe</code></td><td class="text-center">37</td></tr><tr><td><code>%ProgramFiles%\MicrosoftEdgeUpdateTaskMachinUA\LXofuCuCRy\authorized_clients</code></td><td class="text-center">37</td></tr><tr><td><code>%ProgramFiles%\MicrosoftEdgeUpdateTaskMachinUA\LXofuCuCRy\hostname.tmp</code></td><td class="text-center">37</td></tr><tr><td><code>%ProgramFiles%\MicrosoftEdgeUpdateTaskMachinUA\LXofuCuCRy\hs_ed25519_public_key.tmp</code></td><td class="text-center">37</td></tr><tr><td><code>%ProgramFiles%\MicrosoftEdgeUpdateTaskMachinUA\LXofuCuCRy\hs_ed25519_secret_key.tmp</code></td><td class="text-center">37</td></tr><tr><td><code>%ProgramFiles%\MicrosoftEdgeUpdateTaskMachinUA</code></td><td class="text-center">37</td></tr><tr><td><code>%ProgramFiles%\MicrosoftEdgeUpdateTaskMachinUA\MicrosoftEdgeUpdateTaskMachinUA.exe</code></td><td class="text-center">37</td></tr><tr><td><code>%TEMP%\rICllE</code></td><td class="text-center">37</td></tr><tr><td><code>%CommonProgramFiles%\SSL\openssl.cnf</code></td><td class="text-center">36</td></tr><tr><td><code>%System32%\Tasks\MicrosoftEdgeUpdateTaskMachinUA</code></td><td class="text-center">34</td></tr></tbody></table><!--kg-card-end: html--><h4 id="file-hashes-5">File Hashes</h4><p><code>02769490efc0cb7b5ed1a83b9aa02238f17aef0760b3325cec45ae78e419d15a</code><br><code>03808a21b1a8a83063c624cb0e633e77c9093bd9faecb8a8fa2129b936e89632</code><br><code>0523dee85aa0cc35c43c3f8ad796d58ff0d3e9414015b2caa4c4c95568e824ea</code><br><code>052df1d155296a89e866fab15d4473f7307eb918ff50f14ccbc91f9d6e6d10af</code><br><code>059fe29a97f02fa143dfd4a5762acc418dc6a5b2981e1f683b6e6da2cf9705ba</code><br><code>05de62f6b0c8ad346af017806e7834041cc7ff8cbf9fdcb362fcfad29fd4ae03</code><br><code>07cc8f8907868d7ee923cc5cee7c9e79f724c74729e6014a7ff40a6835b2d946</code><br><code>095e3a58f05b29cbc0b2202547c8e828247f16066f26f9d76e685dba3c686b56</code><br><code>0979a6857b1b9965e0fd83de30d869b72518a7edb14fb78f0b7f1e7e4acbee08</code><br><code>0a94afef69eeebc8954fbc92872fcbfe7b76bbf2398f3ec0452bf6a09c4edaff</code><br><code>0cfa38e42e694e57f68fc80ed40b834daccb94d1f2cd5ddaaee2ba799eee9585</code><br><code>12df71269d1963f3859c77f9844a6605be71e1900ed49e53c94838c1e6a47154</code><br><code>1346bd898581af58abc6e0995420b45202e27f4cdb19b95ed7c8a2482054a312</code><br><code>14e135d2c7a891ddc08e35da42a25cda594466f4fe8526bdadebc3d6a41ec3c3</code><br><code>153586b588209aaa5c2bdee017ce70c94a42da0264e03eb5d035b59992f80ca3</code><br><code>1568f660187f7259d92797e7d4025395b50d32a6471b4f4a540a323831f978c0</code><br><code>177f19e6a5142a3465e349df54172d7601829cd42b8402e22b80a83c82f20af4</code><br><code>17abbb02b397162183ef69e19f8195e8b81652473767c4c459839a70068719db</code><br><code>1c8be8d6f7a92b9d14dffcf065355cb4ac65b2964b8fcafdab34ce049fa7ab0c</code><br><code>1ee6e62bde271ba12b8d045f6e7f2f6603d58559646567537e4dd04a8739bed1</code><br><code>1fae9a748f566849e7cab3ae10cbcca39fe3d3a725e08383541931e37c05e1ab</code><br><code>2111d666ae58c22d079607327c56931f0fd157aa27429bda9e2d4a385d33876d</code><br><code>22576786f9126b34ae165bef359ddab889830c11cb2269c322115c29660917ea</code><br><code>2dc3bf58513518e673ffffb0973a195ca97b2536380302cc676fe6e26d3390fb</code><br><code>32154e45815bbc8037a6dcc6284d01df82ac1f78298a6b7bbeead166bdbf9798</code><br>*See JSON for more IOCs</p><h4 id="coverage-5">Coverage</h4><!--kg-card-begin: html--><table class="threat-coverage-table" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><thead><tr><th>Product</th><th class="text-center">Protection</th></tr></thead><tbody><tr><td>Secure Endpoint</td><td class="text-center"><span class="coverage-check"><img alt="This has coverage" src="https://www.talosintelligence.com/assets/icon_check_white.svg"></span></td></tr><tr><td>Cloudlock</td><td class="text-center"><span class="coverage-check">N/A</span></td></tr><tr><td>CWS</td><td class="text-center"><span class="coverage-check"><img alt="This has coverage" src="https://www.talosintelligence.com/assets/icon_check_white.svg"></span></td></tr><tr><td>Email Security</td><td class="text-center"><span class="coverage-check"><img alt="This has coverage" src="https://www.talosintelligence.com/assets/icon_check_white.svg"></span></td></tr><tr><td>Network Security</td><td class="text-center"><span class="coverage-check"><img alt="This has coverage" src="https://www.talosintelligence.com/assets/icon_check_white.svg"></span></td></tr><tr><td>Stealthwatch</td><td class="text-center"><span class="coverage-check">N/A</span></td></tr><tr><td>Stealthwatch Cloud</td><td class="text-center"><span class="coverage-check">N/A</span></td></tr><tr><td>Secure Malware Analytics</td><td class="text-center"><span class="coverage-check"><img alt="This has coverage" src="https://www.talosintelligence.com/assets/icon_check_white.svg"></span></td></tr><tr><td>Umbrella</td><td class="text-center"><span class="coverage-check">N/A</span></td></tr><tr><td>WSA</td><td class="text-center"><span class="coverage-check">N/A</span></td></tr></tbody></table><!--kg-card-end: html--><h4 id="screenshots-of-detection-5">Screenshots of Detection</h4><h4 id="secure-endpoint-5">Secure Endpoint</h4><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/09/amp_22576786f9126b34ae165bef359ddab889830c11cb2269c322115c29660917ea_20230926.png" class="kg-image" alt loading="lazy" width="702" height="480" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2023/09/amp_22576786f9126b34ae165bef359ddab889830c11cb2269c322115c29660917ea_20230926.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/09/amp_22576786f9126b34ae165bef359ddab889830c11cb2269c322115c29660917ea_20230926.png 702w"></figure><h4 id="secure-malware-analytics-5">Secure Malware Analytics</h4><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/09/tg_55ef2acdf7825b1759329e33cff9f079cc4c0fb7def918baefddad5b107f9cc3_20230926.png" class="kg-image" alt loading="lazy" width="962" height="800" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2023/09/tg_55ef2acdf7825b1759329e33cff9f079cc4c0fb7def918baefddad5b107f9cc3_20230926.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/09/tg_55ef2acdf7825b1759329e33cff9f079cc4c0fb7def918baefddad5b107f9cc3_20230926.png 962w" sizes="(min-width: 720px) 720px"></figure><h4 id="mitre-attck-5">MITRE ATT&amp;CK</h4><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/09/mitre_attack_34188.png" class="kg-image" alt loading="lazy" width="2000" height="1247" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2023/09/mitre_attack_34188.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2023/09/mitre_attack_34188.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1600/2023/09/mitre_attack_34188.png 1600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/09/mitre_attack_34188.png 2020w" sizes="(min-width: 720px) 720px"></figure>
+            
+                    </div>
+    </section>
+    <div class="social-media-wrapper">
+    <h5>Share this post</h5>
+    <ul class="social-media-share-list">
+        <li>
+            <a class="share-facebook" title="Share this on Facebook" data-text="Threat Roundup for September 22 to September 29" data-href="https://blog.talosintelligence.com/threat-roundup-0922-0929/" rel="nofollow" target="_blank" href="https://www.facebook.com/sharer.php?u=https://blog.talosintelligence.com/threat-roundup-0922-0929/"></a>
+        </li>
+        <li>
+            <a class="share-x" title="Post This" data-text="Threat Roundup for September 22 to September 29" data-href="https://blog.talosintelligence.com/threat-roundup-0922-0929/" rel="nofollow" target="_blank" href="https://x.com/share?url=https://blog.talosintelligence.com/threat-roundup-0922-0929/"></a>
+        </li>
+        <li>
+            <a class="share-linkedin" title="Share this on LinkedIn" data-text="Threat Roundup for September 22 to September 29" data-href="https://blog.talosintelligence.com/threat-roundup-0922-0929/" rel="nofollow" target="_blank" href="https://www.linkedin.com/sharing/share-offsite/?url=https://blog.talosintelligence.com/threat-roundup-0922-0929/"></a>
+        </li>
+        <li>
+            <a class="share-reddit" title="Reddit This" data-text="Threat Roundup for September 22 to September 29" data-href="https://blog.talosintelligence.com/threat-roundup-0922-0929/" rel="nofollow" target="_blank" href="https://www.reddit/submit?url=https://blog.talosintelligence.com/threat-roundup-0922-0929/"></a>
+        </li>
+        <li>
+            <a class="share-email" title="Email This" href="mailto:?body=Threat Roundup for September 22 to September 29https://blog.talosintelligence.com/threat-roundup-0922-0929/"></a>
+        </li>
+    </ul>
+</div></article>
+                    </div>
+                </div>
+                <div class="alt-layout-row-dk sidebar" id="side-bar">
+
+
+                            <h4>Related Content</h4>
+                                <div class="sidebar-snippet-wrapper">
+                                    <a href="/threat-roundup-1103-1110/">
+                                        <h3>Threat Roundup for November 3 to November 10</h3>
+                                        <span  class="preview-attributes">November 9, 2023 13:32</span>
+                                        <p>Today, Talos is publishing a glimpse into the most prevalent threats we&#39;ve observed between Nov. 3 and Nov. 10. As with previous roundups, this post isn&#39;t meant to be an in-depth analysis. Instead, this post will summarize the threats we&#39;ve observed by highlighting</p>
+                                    </a>
+                                </div>
+                                <div class="sidebar-snippet-wrapper">
+                                    <a href="/threat-roundup-1027-1103/">
+                                        <h3>Threat Roundup for October 27 to November 3</h3>
+                                        <span  class="preview-attributes">November 3, 2023 17:15</span>
+                                        <p>Today, Talos is publishing a glimpse into the most prevalent threats we&#39;ve observed between Oct. 27 and Nov. 3. As with previous roundups, this post isn&#39;t meant to be an in-depth analysis. Instead, this post will summarize the threats we&#39;ve observed by highlighting</p>
+                                    </a>
+                                </div>
+                                <div class="sidebar-snippet-wrapper">
+                                    <a href="/threat-roundup-1013-1020/">
+                                        <h3>Threat Roundup for October 13 to October 20</h3>
+                                        <span  class="preview-attributes">October 20, 2023 15:38</span>
+                                        <p>Today, Talos is publishing a glimpse into the most prevalent threats we&#39;ve observed between Oct. 13 and Oct. 20. As with previous roundups, this post isn&#39;t meant to be an in-depth analysis. Instead, this post will summarize the threats we&#39;ve observed by highlighting</p>
+                                    </a>
+                                </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+    <footer id="footer">
+    <div class="container-fluid px-0">
+        <div class="row footer_nav_wrapper mx-0">
+            <div class="col-xl-10 col-12">
+                <div class="multi-col-list-wrapper">
+                    <ul class="footer-parent-list">
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6><a href="https://talosintelligence.com/reputation">Intelligence Center</a></h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/reputation_center">Intelligence Search</a></li>
+                                <li><a href="https://talosintelligence.com/reputation_center/email_rep">Email &amp; Spam Trends</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6><a href="https://talosintelligence.com/vulnerability_info">Vulnerability Research</a></h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/vulnerability_reports">Vulnerability Reports</a></li>
+                                <li><a href="https://talosintelligence.com/ms_advisories">Microsoft Advisories</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                             <ul>
+                                <li>
+                                    <h6><a href="https://talosintelligence.com/incident_response">Incident Response</a></h6>
+                                </li>
+                                <li>
+                                    <a href="https://talosintelligence.com/incident_response/services#reactive-services">Reactive Services</a>
+                                </li>
+                                <li>
+                                    <a href="https://talosintelligence.com/incident_response/services#proactive-services">Proactive Services</a>
+                                </li>
+                                <li>
+                                    <a href="https://talosintelligence.com/incident_response/contact">Emergency Support</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Security Resources</h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/software">Open Source Security Tools</a></li>
+                                <li><a href="https://talosintelligence.com/categories">Intelligence Categories Reference</a></li>
+                                <li><a href="https://talosintelligence.com/secure-endpoint-naming">Secure Endpoint Naming Reference</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Media</h6>
+                                </li>
+                                <li><a href="https://blog.talosintelligence.com">Talos Intelligence Blog</a></li>
+                                <li><a href="https://blog.talosintelligence.com/category/threat-source-newsletter/">Threat Source Newsletter</a></li>
+                                <li><a href="https://talosintelligence.com/podcasts/shows/beers_with_talos">Beers with Talos Podcast</a></li>
+                                <li><a href="https://talosintelligence.com/podcasts/shows/talos_takes">Talos Takes Podcast</a></li>
+                                <li><a target="_blank" href="https://www.youtube.com/channel/UCPZ1DtzQkStYBSG3GTNoyfg/featured">Talos Videos</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Support</h6>
+                                </li>
+                                <li><a href="https://support.talosintelligence.com">Support Documentation</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Company</h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/about">About Talos</a></li>
+                                <li><a href="https://talosintelligence.com/careers">Careers</a></li>
+                                <li><a target="_blank" href="https://www.cisco.com/c/en/us/products/security/product-listing.html">Cisco Security</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xl-2 col-12 connect_social">
+                <div class="connect-footer-section-wrapper">
+                    <h6>Follow us</h6>
+                    <ul>
+                        <li>
+                            <a target="_blank" href="https://x.com/talossecurity"><div class="footer-media-icon" id="footer-media-icon-x"></div>
+                            </a></li>
+                        <li>
+                            <a target="_blank" href="https://www.youtube.com/channel/UCPZ1DtzQkStYBSG3GTNoyfg/featured"><div class="footer-media-icon" id="footer-media-icon-youtube"></div>
+                            </a></li>
+                        <li>
+                            <a target="_blank" href="https://www.linkedin.com/company/cisco-talos-intelligence-group/"><div class="footer-media-icon" id="footer-media-icon-linkedin"></div>
+                            </a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row mx-0">
+            <div class="col-12 footer_corporate">
+                <a target="_blank" href="http://tools.cisco.com/security/center/home.x"><img alt="Cisco" src="https://blog.talosintelligence.com/assets/images/logo_cisco_white.svg">
+                </a><p class="copyright">
+                ©
+                <span id='current-year'></span>
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                <a target="_blank" class="underline" href="http://www.cisco.com/web/siteassets/legal/privacy_full.html">Privacy Policy.</a>
+            </p>
+            </div>
+        </div>
+    </div>
+</footer>
+    <script>
+  function coverageView() {
+    const coverageTable = document.getElementById('coverage-block');
+    const sidebar = document.getElementById('side-bar');
+    const postContent = document.getElementById('post-content');
+    const currentWidth = window.innerWidth;  
+  
+    if (coverageTable && sidebar && postContent) {
+      if (currentWidth < 1000) {
+        // For viewport less than 1000px, append to post content
+        postContent.appendChild(coverageTable);
+      } else {
+        // For viewport 1000px and wider, check for subscribe button
+        const subscribeButton = sidebar.querySelector('.subscribe-button');
+        
+        if (subscribeButton) {
+          // Insert coverage block after the subscribe button
+          subscribeButton.insertAdjacentElement('afterend', coverageTable);
+        } else {
+          // No subscribe button found, prepend to top of sidebar
+          sidebar.prepend(coverageTable);
+        }
+      }
+    }
+  }
+  
+  window.addEventListener("resize", coverageView);
+  window.addEventListener("load", coverageView);
+
+
+  (function() {
+    Array.from(document.querySelectorAll("a")).filter(a => {
+        return a.hostname && a.hostname !== location.hostname
+    }).forEach(a => a.setAttribute('target', '_blank'))
+})();
+</script>
+
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://blog.talosintelligence.com/assets/js/jquery-3.6.0.min.js?v=_xUj-3OJU5yExlq6"></script>
+<script src="https://blog.talosintelligence.com/assets/js/popper.min.js?v=ZvOgfh-ptkpoa2Y4"></script>
+<script src="https://blog.talosintelligence.com/assets/js/resize-styles.js?v=iB-0rQKwd6f_Dllp"></script>
+<script src="https://blog.talosintelligence.com/assets/js/bootstrap.bundle.min.js?v=JRXjfu4x9e89ZZsh"></script>
+<script src="https://blog.talosintelligence.com/assets/js/date.js?v=TlJWK1qtzFQeV9lL"></script>
+<script src="https://blog.talosintelligence.com/assets/js/prism.js?v=roQly8fYXhzQ4Osd"></script>
+<script src="https://cdn.jsdelivr.net/npm/ghost-theme-utils@latest/dist/js/ghost-theme-utils.min.js" async defer></script>
+<script src="https://blog.talosintelligence.com/assets/js/chart.min.js?v=dEAdc43T4D7l37O2"></script>
+<script src="https://blog.talosintelligence.com/assets/js/x-scroll.js?v=DuV8f5nlfWlGIAUr"></script>
+<script src="https://blog.talosintelligence.com/assets/js/2025_yir_chart.js?v=OSqUj45x6XXKWbZW"></script>
+
+
+</body>
+
+</html>

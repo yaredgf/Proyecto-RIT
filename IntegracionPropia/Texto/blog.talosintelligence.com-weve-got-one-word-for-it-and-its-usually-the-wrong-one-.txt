@@ -1,0 +1,691 @@
+
+
+
+We've got one word for it, and it's usually the wrong one
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+We've got one word for it, and it's usually the wrong one
+
+
+By 
+Joe Marshall
+
+
+
+            Thursday, September 10, 2026 14:00
+        
+
+
+                            Threat Source newsletter
+                        
+
+
+
+
+Welcome to this week’s edition of the Threat Source newsletter. Ask anybody in this industry what the work does to the health of the people who do it and you get one word back: burnout. It's a fine word, in and of itself. It’s easy to reach for, understandable to everyone… and it's the wrong one, most of the time. So, story time. Last year I gave an interview with the amazing Hazel Burton about VPNFilter, and my run-in with burnout. I was a manager during that time, and it took a toll on me and on the people around me, and when it was over I didn't have language for what had happened. Neither did my peers. Neither did my leadership. Nobody was withholding help from me… we just didn't have the words.  Enter this summer, and I was afforded a unique opportunity to mentor some MBA students on burnout in cybersecurity. I know a thing or two about it, so I leapt at a chance to share and help grow future leaders. But I decided I was going to do more than share and relieve my experiences in this industry – I wanted to give back to them and the security industry. So, I fell down a fascinating and revealing research hole and learned better words to describe my experiences over my career. I spent my summer reviewing trauma case studies, clinical and academic literature on trauma in career fields like first responders, doctors, social workers, and the military. There are many decades of research focusing on trauma in those fields. Subsequently, my brain is packed full of better words! For example, burnout is exhaustion from chronic workload, and it eases when the load eases. We know this one well. Secondary traumatic stress is what absorbing somebody else's trauma does to you, and it looks like trauma. Think the CTI analyst exposed to horrible things on the dark web. Vicarious trauma is what years of other people's worst days do to how you see the world. It changes your beliefs, not your mood. Work in cybersecurity long enough, and it can pile up on your views. Moral injury is the damage from being made to act against your own values, or stopped from doing what you knew was right. This one can affect anyone who’s ever owned an outcome, but not the decision, and that’s common in this industry. One word, four injuries, and four different fixes. All of them are present in the industry that is cybersecurity. The problem? We’re just a young industry. Compared to medical, helping professions, or social workers, we’re incredibly immature with understanding the consequences of the work and the toll it takes on us. Next week I’ll be revealing my research and a peer-deployable framework to help others process, cope, and respond in healthy ways to keep us all in a better mental space, and staying in this good fight of protecting others.  I'm still not good at this. I'm writing it all down because I was bad at it in a way that cost me something. There's more of this in my talk at CYBR.SEC.CON next week if you're in Houston. Go ask somebody how they're doing and wait for the answer. Be present for them. It matters.  Take care of yourselves, and take care of each other. The one big thing  Cisco Talos is disclosing a complex WebDAV infection chain discovered after investigating an incident at a Ukrainian government organization. Attributed to a Russian threat actor tracked as UAT-10820, the campaign delivers the Amatera stealer alongside secondary payloads like ZigCryptoStealer and NetSupport Manager. Despite the high-profile initial victim, we assess with moderate confidence that this is an opportunistic, broad-based cryptocurrency and credential-stealing operation rather than a highly targeted attack. Why do I care? Threat actors are getting really creative with their delivery mechanisms and evasion tactics. By abusing legitimate infrastructure like the BNB Smart Chain for bulletproof hosting and leveraging fake CAPTCHA prompts, attackers can easily bypass traditional web filters. Additionally, the secondary payloads pack a serious punch. The inclusion of a vulnerable driver to terminate EDR software and the deployment of unauthorized remote access tools give attackers deep, persistent control over infected systems. So now what? Security teams should monitor for unusual WebDAV activity and the execution of disguised DLLs through "rundll32.exe" using suspicious ordinal calls. Make sure to educate your users on the dangers of copying and pasting commands from fake verification prompts. Since the Amatera payload often resides entirely in memory, defenders should also ensure their endpoint solutions are configured for robust memory scanning. Finally, you can find a comprehensive list of indicators of compromise (IOCs) in the full blog. Top security headlines of the week New Microsoft Defender 'ShieldCrash' zero-day grants SYSTEM access An anonymous security researcher known as Nightmare Eclipse has released a new Microsoft Defender zero-day exploit named "ShieldCrash" right after Microsoft rolled out its September 2026 Patch Tuesday security updates. (Bleeping Computer) North Korean hackers deploy new Linux espionage toolkit The stealthy toolkit embeds a backdoor in HAProxy and targets automotive and media organizations in South Korea for long-term surveillance. The toolkit supports remote command execution, credential harvesting, and script injection into web traffic. (SecurityWeek) Attackers use multi-hop Google redirects for phishing campaign What sets this campaign apart is that in order to bypass gateways, email filters, and other security tools, the link relies on a chain of redirects across Google domains, intending for link inspectors to see multiple Google domains and let the URL through. (DarkReading) OpenAI agents took over Wiki site before Hugging Face attack A team of independent researchers revealed the parallel incident on Sept. 4, which was first reported by Reuters, affecting a largely defunct German language wiki for programmers called “DeutschesSoftwareEntwickler wiki.” (DarkReading) Can’t get enough Talos? Patch Tuesday for September 2026 Microsoft has released its monthly security update for September 2026, which includes 973 vulnerabilities affecting a range of products, including 113 that Microsoft marked as "critical." Active exploitation of Cisco Secure Firewall Management Center vulnerabilities Cisco Talos is actively tracking the exploitation of two vulnerabilities in Cisco’s Secure Firewall Management Center (FMC) Software: CVE-2026-20079 and CVE-2026-20316. Customers are strongly advised to apply hotfixes for affected software versions already released by Cisco. ClickFix moves into the browser: Cryptocurrency theft with Google-hosted C2 Cisco Talos is tracking a cryptocurrency-stealing campaign that abuses the Google Visualization API for command and control (C2), retrieving obfuscated JavaScript from a publicly published Google Sheets document and injecting it into the victim's browser session. Browser betrayal: When your tabs turn against you Security Engineer Sean Gallagher joins Amy to break down a scam where threat actors are weaponizing greed to turn amateur cybercriminals against themselves. While this current operation mostly targets the amateur dark-web circuit, the underlying use of the Google Visualization API as a command-and-control channel is a red flag for the future of web security. Upcoming events where you can find Talos .conf26 (Sept. 14 – 17) Denver, CO CYBR.SEC.CON. (Sept. 15 – 16) Houston, TX LABSCon (Sept. 16 – 19) Scottsdale, AZ VB (Oct. 14 – 16) Seville, Spain CAMLIS (Oct. 21 – 23) Arlington, VA Most prevalent malware files from Talos telemetry over the past week SHA256: 9f1f11a708d393e0a4109ae189bc64f1f3e312653dcf317a2bd406f18ffcc507  MD5: 2915b3f8b703eb744fc54c81f4a9c67f  Talos Rep: https://talosintelligence.com/talos_file_reputation?s=9f1f11a708d393e0a4109ae189bc64f1f3e312653dcf317a2bd406f18ffcc507 Example Filename: VID001.exe  Detection Name: W32.9F1F11A708-100.SBX.TG** SHA256: 90b1456cdbe6bc2779ea0b4736ed9a998a71ae37390331b6ba87e389a49d3d59  MD5: c2efb2dcacba6d3ccc175b6ce1b7ed0a  Talos Rep: https://talosintelligence.com/talos_file_reputation?s=90b1456cdbe6bc2779ea0b4736ed9a998a71ae37390331b6ba87e389a49d3d59 Example Filename: tmp00055df5.dll  Detection Name: Auto.90B145.282358.in02 SHA256: c4dd71e347a076ba24bdd2d0ee532ef991c1ef25a2431a19f850942ba2ab16b2 MD5: 9a47c4d379998ade2f8f99e23a630c06  Talos Rep: https://talosintelligence.com/talos_file_reputation?s=c4dd71e347a076ba24bdd2d0ee532ef991c1ef25a2431a19f850942ba2ab16b2 Example Filename: sample.exe Detection Name: W32.C4DD71E347-95.SBX.TG SHA256: 9896a6fcb9bb5ac1ec5297b4a65be3f647589adf7c37b45f3f7466decd6a4a7f MD5: 38de5b216c33833af710e88f7f64fc98 Talos Rep: https://talosintelligence.com/talos_file_reputation?s=9896a6fcb9bb5ac1ec5297b4a65be3f647589adf7c37b45f3f7466decd6a4a7f Example Filename: SECOH-QAD.exe  Detection Name: Win.Tool.Procpatcher::1201 SHA256: 5bb86c1cd08fe5e1516cba35c85fc03e503bd1b5469113ffa1f1b9e10897f811  MD5: f3e82419a43220a7a222fc01b7607adc Talos Rep: https://talosintelligence.com/talos_file_reputation?s=5bb86c1cd08fe5e1516cba35c85fc03e503bd1b5469113ffa1f1b9e10897f811 Example Filename: 5bb86c1cd08fe5e1516cba35c85fc03e503bd1b5469113ffa1f1b9e10897f811.exe  Detection Name: Win.Dropper.Suloc::1201 
+
+
+
+Share this post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Subscribe to Threat Source
+Related Content
+
+
+Give yourself room to be human
+October 1, 2026 14:00
+In this week’s edition, Amy reflects on the importance of prioritizing family and personal well-being over the pressure to remain constantly productive.
+
+
+
+
+Trust and the enticing consultancy offer
+September 24, 2026 14:00
+In this week’s newsletter Martin muses over a very suspicious elicitation over social media and the true value of trust within the cyber ecosystem. Hubris might be the real vulnerability that the cyber industry must worry about.
+
+
+
+
+Should you care about an “AI slowdown?”
+September 17, 2026 14:00
+In this week's Threat Source, David talks about why focusing on your security basics is still your best bet, even in a world with rapid AI advancements.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

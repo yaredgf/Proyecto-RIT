@@ -1,0 +1,855 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Files Cannot Be Decrypted? Challenge Accepted. Talos Releases ThanatosDecryptor</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/bootstrap.min.css?v=-xdjtZ-fV2QpS1r5">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/navigation.css?v=PhzoiGnw4ldwozL1">
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/footer.css?v=sVEdldiwj6rF6gHP">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/pagination.css?v=HruyeF1JUFuoy6Wu">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/banners.css?v=vI3KT68RWE95HKDs">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/style.css?v=idjnUZoOumC94rdj">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/prism.css?v=jqyaOB6z6CqMaOT4">
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/prism-vsc-dark-plus.css?v=xoEFwaYF1JkH_sqf">
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/prism-talos.css?v=kn8aYcNhO045nXac">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/landing-page.css?v=EPtrK0eJwYLqD25v">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/coverage-block.css?v=vBgCqINSTHrSh9PX">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/ghost-theme-utils@latest/dist/css/style.min.css" rel="stylesheet">
+
+
+    <link rel="icon" href="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w256h256/2022/07/talos_o_square.png" type="image/png">
+    <link rel="canonical" href="https://blog.talosintelligence.com/thanatosdecryptor/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta property="og:site_name" content="Cisco Talos Blog">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Files Cannot Be Decrypted? Challenge Accepted. Talos Releases ThanatosDecryptor">
+    <meta property="og:description" content="This blog post was authored by Edmund Brumaghin, Earl Carter and Andrew Williams.
+
+
+Executive summary
+Cisco Talos has analyzed Thanatos, a ransomware variant that is being distributed via multiple malware campaigns that have been conducted over the past few months. As a result of our research, we have released a">
+    <meta property="og:url" content="https://blog.talosintelligence.com/thanatosdecryptor/">
+    <meta property="og:image" content="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-yZhVHjIw95U/WzJOmC62I4I/AAAAAAAAArU/cL_GqFtX8IcEKAT0z22FE_st8zUEBBN5QCLcBGAs/w1200-h630-p-k-no-nu/image10.jpg">
+    <meta property="article:published_time" content="2018-06-26T15:00:00.000Z">
+    <meta property="article:modified_time" content="2022-08-24T15:20:48.000Z">
+    <meta property="article:tag" content="ransomware">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Files Cannot Be Decrypted? Challenge Accepted. Talos Releases ThanatosDecryptor">
+    <meta name="twitter:description" content="This blog post was authored by Edmund Brumaghin, Earl Carter and Andrew Williams.
+
+
+Executive summary
+Cisco Talos has analyzed Thanatos, a ransomware variant that is being distributed via multiple malware campaigns that have been conducted over the past few months. As a result of our research, we have released a">
+    <meta name="twitter:url" content="https://blog.talosintelligence.com/thanatosdecryptor/">
+    <meta name="twitter:image" content="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-yZhVHjIw95U/WzJOmC62I4I/AAAAAAAAArU/cL_GqFtX8IcEKAT0z22FE_st8zUEBBN5QCLcBGAs/w1200-h630-p-k-no-nu/image10.jpg">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Edmund Brumaghin">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="ransomware">
+    <meta name="twitter:site" content="@TalosSecurity">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Cisco Talos Blog",
+        "url": "https://blog.talosintelligence.com/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/11/TalosBrand_ukraine.svg"
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Edmund Brumaghin",
+        "url": "https://blog.talosintelligence.com/author/edmund-brumaghin/",
+        "sameAs": []
+    },
+    "headline": "Files Cannot Be Decrypted? Challenge Accepted. Talos Releases ThanatosDecryptor",
+    "url": "https://blog.talosintelligence.com/thanatosdecryptor/",
+    "datePublished": "2018-06-26T15:00:00.000Z",
+    "dateModified": "2022-08-24T15:20:48.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-yZhVHjIw95U/WzJOmC62I4I/AAAAAAAAArU/cL_GqFtX8IcEKAT0z22FE_st8zUEBBN5QCLcBGAs/w1200-h630-p-k-no-nu/image10.jpg",
+        "width": 1200,
+        "height": 630
+    },
+    "keywords": "ransomware",
+    "description": "This blog post was authored by Edmund Brumaghin, Earl Carter and Andrew Williams.\n\n\nExecutive summary\nCisco Talos has analyzed Thanatos, a ransomware variant that is being distributed via multiple malware campaigns that have been conducted over the past few months. As a result of our research, we have released a new, free decryption tool to help victims recover from this malware. Multiple versions of Thanatos have been leveraged by attackers, indicating that this is an evolving threat that conti",
+    "mainEntityOfPage": "https://blog.talosintelligence.com/thanatosdecryptor/"
+}
+    </script>
+
+    <meta name="generator" content="Ghost 6.68">
+    <link rel="alternate" type="application/rss+xml" title="Cisco Talos Blog" href="https://blog.talosintelligence.com/rss/">
+    
+    <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/sodo-search.min.js" data-key="4ffb0139d74ada998f4b141e4d" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/main.css" data-sodo-search="https://cisco-talos-blog.ghost.io/" data-locale="en" crossorigin="anonymous"></script>
+    
+    <link href="https://blog.talosintelligence.com/webmentions/receive/" rel="webmention">
+    <script defer src="/public/cards.min.js?v=ShRHxgy4po8zN-Wf"></script>
+    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=WwnU9jw5ancNC8Gc">
+    <script defer src="/public/ghost-stats.min.js?v=vFcCUf6ZQ0Hyhc8h" data-stringify-payload="false" data-datasource="analytics_events" data-storage="localStorage" data-host="https://blog.talosintelligence.com/.ghost/analytics/api/v1/page_hit"  tb_site_uuid="afa04ee3-414f-4481-8d23-7e7c146f192e" tb_post_uuid="6417d293-18eb-4e80-b896-3d9e9c5b77f3" tb_post_type="post" tb_member_uuid="undefined" tb_member_status="undefined" tb_gift_link=""></script><style>:root {--ghost-accent-color: #006db6;}</style>
+    <style type='text/css'>
+    img[src*="icon_check_white.svg"] { width: 20px; margin-left: 0px; margin-right: auto; }
+    
+    #ghost-portal-root { display: none; }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F45RVJG3BK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-F45RVJG3BK');
+</script>
+</head>
+
+<body class="post-template tag-ransomware">
+
+    <div id="mobile-page-header" class="desktop-hide mobile-page-header">
+    <a class="mobile-nav-home-link" href="/">
+        <div class="mobile-logo-wrapper">
+        </div>
+        <div class="mobile-home-title">Blog</div>
+    </a>
+    <div id="mobile-search-wrapper">
+        <button class="search-button mobile-search-button" data-ghost-search>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        </button>
+    </div>
+</div>
+
+<nav id="nav">
+    <input id="nav-trigger" class="nav-trigger" type="checkbox"/>
+    <label for="nav-trigger">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="22px" height="16px" viewBox="0 0 22 16">
+            <g id="menu-icon">
+                <path fill="#FFFFFF" d="M20.5,3h-19C0.672,3,0,2.329,0,1.5S0.672,0,1.5,0h19C21.328,0,22,0.671,22,1.5S21.328,3,20.5,3z"></path>
+                <path fill="#FFFFFF" d="M20.5,9.5h-19C0.672,9.5,0,8.828,0,8c0-0.829,0.672-1.5,1.5-1.5h19C21.328,6.5,22,7.171,22,8   C22,8.828,21.328,9.5,20.5,9.5z"></path>
+                <path fill="#FFFFFF" d="M20.5,16h-19C0.672,16,0,15.328,0,14.5S0.672,13,1.5,13h19c0.828,0,1.5,0.672,1.5,1.5S21.328,16,20.5,16z"></path>
+            </g>
+        </svg>
+    </label>
+    <div id="top-nav-bar">
+    </div>
+
+    <div id="navigation">
+        <div class="navigation-logos-wrapper">
+            <div id="talos-logo-wrapper">
+                <a class="navbar-brand" href="https://talosintelligence.com">
+                </a>
+            </div>
+        </div>
+        <div class="navigation-links-wrapper">
+            <ul class="main-nav-list">
+                <li class="nav-item">
+                    <div class="primary-link-wrapper">
+                        <a class="primary_nav_link" href="https://talosintelligence.com/reputation">
+                            <div class="mobile-nav-icon"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" height="20px" width="20px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                            <style type="text/css">
+                                .white{fill:#FFFFFF;}
+                            </style>
+                            <g>
+                                <path class="white" d="M19.5,9.5h-1.1c-0.3-4.2-3.6-7.6-7.8-7.8V0.5C10.5,0.2,10.3,0,10,0l0,0C9.7,0,9.5,0.2,9.5,0.5l0,0v1.1   C5.3,1.9,1.9,5.3,1.6,9.5H0.5C0.2,9.5,0,9.7,0,10s0.2,0.5,0.5,0.5l0,0h1.1c0.3,4.2,3.6,7.6,7.8,7.8v1.1c0,0.3,0.2,0.5,0.5,0.5l0,0   c0.3,0,0.5-0.2,0.5-0.5l0,0v-1.1c4.2-0.3,7.6-3.6,7.8-7.8h1.1c0.3,0,0.5-0.2,0.5-0.5C20,9.7,19.8,9.5,19.5,9.5 M16.6,10.5h0.7   c-0.3,3.6-3.2,6.5-6.8,6.8v-0.8c0-0.3-0.2-0.5-0.5-0.5l0,0c-0.3,0-0.5,0.2-0.5,0.5v0.8C5.8,17,3,14.2,2.7,10.5h0.8   C3.8,10.5,4,10.3,4,10S3.8,9.5,3.5,9.5l0,0H2.7C3,5.8,5.8,3,9.5,2.7v0.8C9.5,3.7,9.7,4,10,4l0,0c0.3,0,0.5-0.2,0.5-0.5V2.7   C14.2,3,17,5.8,17.3,9.5h-0.7c-0.3,0-0.5,0.2-0.5,0.5C16.1,10.3,16.3,10.5,16.6,10.5L16.6,10.5"></path>
+                                                            <circle class="white" cx="10" cy="10" r="3.2"></circle>
+                            </g>
+                            </svg>
+                            </div>
+                            <span class="top-nav-link-text">
+                                Intelligence Center
+                            </span>
+                        </a>
+                    </div>
+                    <input class="sub-nav-trigger" id="intelligence-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="intelligence-sub-trigger">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+
+                    </label>
+                    <ul class="sub-nav sub-nav-single-list">
+                        <li class="desktop-hide">
+                            <a class="mobile_nav_link" href="https://talosintelligence.com/reputation"><h1>Intelligence Center</h1>
+                            </a></li>
+                        <li class="desktop-hide">
+                            <label class="subnav-back-button" for="intelligence-sub-trigger">BACK</label>
+                        </li>
+                        <li><a class="secondary_nav_link" href="https://talosintelligence.com/reputation_center">Intelligence Search</a></li>
+                        <li><a class="secondary_nav_link" href="https://talosintelligence.com/reputation_center/email_rep">Email &amp; Spam Trends</a></li>
+                    </ul>
+                    <div class="desktop-hide subnav-overlay"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" height="20px" width="20px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                        <style type="text/css">
+                            .white{fill:#FFFFFF;}
+                        </style>
+                                                <g>
+                            <path class="white" d="M19.5,9.5h-1.1c-0.3-4.2-3.6-7.6-7.8-7.8V0.5C10.5,0.2,10.3,0,10,0l0,0C9.7,0,9.5,0.2,9.5,0.5l0,0v1.1   C5.3,1.9,1.9,5.3,1.6,9.5H0.5C0.2,9.5,0,9.7,0,10s0.2,0.5,0.5,0.5l0,0h1.1c0.3,4.2,3.6,7.6,7.8,7.8v1.1c0,0.3,0.2,0.5,0.5,0.5l0,0   c0.3,0,0.5-0.2,0.5-0.5l0,0v-1.1c4.2-0.3,7.6-3.6,7.8-7.8h1.1c0.3,0,0.5-0.2,0.5-0.5C20,9.7,19.8,9.5,19.5,9.5 M16.6,10.5h0.7   c-0.3,3.6-3.2,6.5-6.8,6.8v-0.8c0-0.3-0.2-0.5-0.5-0.5l0,0c-0.3,0-0.5,0.2-0.5,0.5v0.8C5.8,17,3,14.2,2.7,10.5h0.8   C3.8,10.5,4,10.3,4,10S3.8,9.5,3.5,9.5l0,0H2.7C3,5.8,5.8,3,9.5,2.7v0.8C9.5,3.7,9.7,4,10,4l0,0c0.3,0,0.5-0.2,0.5-0.5V2.7   C14.2,3,17,5.8,17.3,9.5h-0.7c-0.3,0-0.5,0.2-0.5,0.5C16.1,10.3,16.3,10.5,16.6,10.5L16.6,10.5"></path>
+                                                    <circle class="white" cx="10" cy="10" r="3.2"></circle>
+                        </g>
+                        </svg>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="primary-link-wrapper">
+                        <a class="primary_nav_link" href="https://talosintelligence.com/vulnerability_info"><div class="mobile-nav-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px" height="20px" viewBox="0 0 26 20">
+                            <g id="vuln-icon" class="nav-icon">
+                                <path fill="#FFFFFF" d="M24.256,18.49L13.872,0.503C13.692,0.192,13.36,0,13,0c-0.359,0-0.692,0.192-0.872,0.503L1.744,18.49  c-0.18,0.312-0.18,0.695,0,1.006C1.924,19.809,2.257,20,2.616,20h20.769c0.359,0,0.691-0.191,0.871-0.504  C24.436,19.186,24.436,18.803,24.256,18.49 M14.268,18.215h-2.533v-1.85h2.533V18.215z M14.268,15.441h-2.533L10.89,6.515h4.222  L14.268,15.441z"></path>
+                            </g>
+                        </svg>
+                        </div>
+                            <span class="top-nav-link-text">
+                            Vulnerability Research
+                            </span>
+                        </a></div>
+                    <input class="sub-nav-trigger" id="vuln-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="vuln-sub-trigger">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+                        </div>
+                    </label>
+                    <ul class="sub-nav sub-nav-single-list">
+                        <li class="desktop-hide">
+                            <a href="https://talosintelligence.com/vulnerability_info"><h1>Vulnerability Research</h1>
+                            </a></li>
+                        <li class="desktop-hide">
+                            <label class="subnav-back-button" for="vuln-sub-trigger">BACK</label>
+                        </li>
+                        <li><a class="vulnerabilty-info-nav-link" href="https://talosintelligence.com/vulnerability_reports">Vulnerability Reports</a></li>
+                        <li><a class="vulnerabilty-info-nav-link" href="https://talosintelligence.com/ms_advisories">Microsoft Advisories</a></li>
+                    </ul>
+                    <div class="desktop-hide subnav-overlay">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px" height="20px" viewBox="0 0 26 20">
+                        <g id="vuln-icon" class="nav-icon">
+                            <path fill="#FFFFFF" d="M24.256,18.49L13.872,0.503C13.692,0.192,13.36,0,13,0c-0.359,0-0.692,0.192-0.872,0.503L1.744,18.49  c-0.18,0.312-0.18,0.695,0,1.006C1.924,19.809,2.257,20,2.616,20h20.769c0.359,0,0.691-0.191,0.871-0.504  C24.436,19.186,24.436,18.803,24.256,18.49 M14.268,18.215h-2.533v-1.85h2.533V18.215z M14.268,15.441h-2.533L10.89,6.515h4.222  L14.268,15.441z"></path>
+                        </g>
+                        </svg>
+                    </div>
+                </li>
+
+
+               <li class="nav-item">
+                   <div class="primary-link-wrapper">
+                        <a class="primary_nav_link" href="https://talosintelligence.com/incident_response">
+                           <div class="mobile-nav-icon">
+                               <svg xmlns="http://www.w3.org/2000/svg" width="111.588" height="148.311" viewBox="0 0 111.588 148.311">
+                                    <path d="M1.181,128.446v15.7a4.167,4.167,0,0,0,4.167,4.167h100.9a4.167,4.167,0,0,0,4.167-4.167v-15.7a4.167,4.167,0,0,0-4.167-4.167H5.348a4.167,4.167,0,0,0-4.167,4.166M55.8,63.109a3.277,3.277,0,1,1,0,6.553c-10.344,0-20.755,8.578-20.755,18.57a3.277,3.277,0,1,1-6.554,0C28.489,73.947,41.93,63.109,55.8,63.109Zm0-12.016c-21.787,0-39.325,17.81-39.325,39.937v26.7H95.122V91.03c0-22.128-17.537-39.937-39.324-39.937m52.365-38.3a3.291,3.291,0,0,0-2.254,1.024L88.432,31.294a3.283,3.283,0,0,0,4.642,4.644l17.478-17.479a3.278,3.278,0,0,0-2.389-5.666m-105.138,0a3.276,3.276,0,0,0-1.98,5.666L18.522,35.938a3.283,3.283,0,0,0,4.643-4.644L5.687,13.817A3.255,3.255,0,0,0,3.025,12.793ZM55.389.026a3.276,3.276,0,0,0-2.867,3.345V19.642a3.277,3.277,0,1,0,6.554,0V3.371A3.283,3.283,0,0,0,55.389.026Z" fill="#fff"></path>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text">
+                                Incident Response
+                            </span>
+                       </a>
+                   </div>
+                   <input class="sub-nav-trigger" id="ir-sub-trigger" type="checkbox">
+                   <label class="sub-nav-trigger-label" for="ir-sub-trigger">
+                       <div class="mobile-nav-icon">
+                           <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                                <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                               <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                               </g>
+                           </svg>
+                       </div>
+                   </label>
+                   <ul class="sub-nav sub-nav-single-list">
+                       <li class="desktop-hide">
+                           <a href="/incident_response">
+                               <h1>Incident Response</h1>
+                           </a>
+                        </li>
+                       <li class="desktop-hide">
+                           <label class="subnav-back-button" for="ir-sub-trigger">BACK</label>
+                       </li>
+                       <li>
+                           <a class="secondary_nav_link" href="https://talosintelligence.com/incident_response/services#reactive-services">Reactive Services</a>
+                       </li>
+                       <li>
+                           <a class="secondary_nav_link" href="https://talosintelligence.com/incident_response/services#proactive-services">Proactive Services</a></li>
+                       <li>
+                           <a href="https://talosintelligence.com/incident_response/contact">Emergency Support</a>
+                        </li>
+                   </ul>
+                   <div class="desktop-hide subnav-overlay"><svg xmlns="http://www.w3.org/2000/svg" width="111.588" height="148.311" viewBox="0 0 111.588 148.311">
+                     <path d="M1.181,128.446v15.7a4.167,4.167,0,0,0,4.167,4.167h100.9a4.167,4.167,0,0,0,4.167-4.167v-15.7a4.167,4.167,0,0,0-4.167-4.167H5.348a4.167,4.167,0,0,0-4.167,4.166M55.8,63.109a3.277,3.277,0,1,1,0,6.553c-10.344,0-20.755,8.578-20.755,18.57a3.277,3.277,0,1,1-6.554,0C28.489,73.947,41.93,63.109,55.8,63.109Zm0-12.016c-21.787,0-39.325,17.81-39.325,39.937v26.7H95.122V91.03c0-22.128-17.537-39.937-39.324-39.937m52.365-38.3a3.291,3.291,0,0,0-2.254,1.024L88.432,31.294a3.283,3.283,0,0,0,4.642,4.644l17.478-17.479a3.278,3.278,0,0,0-2.389-5.666m-105.138,0a3.276,3.276,0,0,0-1.98,5.666L18.522,35.938a3.283,3.283,0,0,0,4.643-4.644L5.687,13.817A3.255,3.255,0,0,0,3.025,12.793ZM55.389.026a3.276,3.276,0,0,0-2.867,3.345V19.642a3.277,3.277,0,1,0,6.554,0V3.371A3.283,3.283,0,0,0,55.389.026Z" fill="#fff"></path>
+                   </svg>
+                </div>
+               </li>
+
+
+
+
+
+                <li class="nav-item">
+                    <a class="primary_nav_link" href="https://blog.talosintelligence.com">
+                        <div class="mobile-nav-icon">
+                        <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="260px" height="296.5px" viewBox="0 0 260 296.5" enable-background="new 0 0 260 296.5" xml:space="preserve">
+                        <path fill="#FFFFFF" d="M243.586,42.404h-14.448c-0.943-4.513-3.143-8.813-6.616-12.33L201.793,9.098  c-4.7-4.757-10.972-7.377-17.66-7.377c-6.578,0-12.777,2.547-17.457,7.173l-33.875,33.511H17.586c-6.6,0-12,5.399-12,12V226.28  c0,6.6,5.4,12,12,12H153.83l84.21,56.278l-27.448-56.278h32.994c6.6,0,12-5.4,12-12V54.404  C255.586,47.804,250.186,42.404,243.586,42.404z M214.662,48.045c-0.01,0.2-0.021,0.399-0.044,0.599  c-0.008,0.069-0.021,0.139-0.031,0.207c-0.046,0.345-0.113,0.688-0.196,1.026c-0.034,0.137-0.063,0.273-0.103,0.408  c-0.039,0.135-0.087,0.267-0.133,0.399c-0.051,0.151-0.102,0.302-0.16,0.45c-0.049,0.126-0.105,0.249-0.16,0.373  c-0.068,0.153-0.139,0.307-0.216,0.457c-0.059,0.116-0.12,0.23-0.184,0.345c-0.088,0.157-0.181,0.312-0.278,0.465  c-0.065,0.104-0.13,0.206-0.2,0.308c-0.115,0.168-0.239,0.33-0.366,0.492c-0.064,0.081-0.124,0.165-0.19,0.244  c-0.199,0.238-0.409,0.472-0.635,0.694L82.458,182.308l-47.932,12.871l13.427-47.74L177.223,19.561  c1.917-1.895,4.414-2.84,6.911-2.84c2.534,0,5.068,0.975,6.99,2.92l20.726,20.974c0.545,0.552,1.002,1.156,1.39,1.79  c0.574,0.938,0.975,1.951,1.206,2.993c0.004,0.021,0.01,0.04,0.014,0.06c0.049,0.226,0.086,0.453,0.119,0.682  c0.008,0.06,0.017,0.118,0.024,0.178c0.026,0.211,0.045,0.424,0.058,0.636c0.004,0.077,0.007,0.153,0.009,0.23  c0.007,0.203,0.011,0.407,0.005,0.61C214.673,47.877,214.666,47.961,214.662,48.045z"></path>
+                        </svg>
+                    </div>
+                        <span class="top-nav-link-text">Blog</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="primary_nav_link" href="https://support.talosintelligence.com">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26px" height="20px" viewBox="0 0 123.17 159.292">
+                            <path d="M61.59,0,0,17.069v85.32c0,23.472,61.59,56.9,61.59,56.9s61.58-36.288,61.58-56.9V17.069Zm-.433,149.746C38.314,136.662,8.128,114.3,8.128,102.389V23.239l53.029-14.7Z" fill="#fff"></path>
+                        </svg>
+                        </div>
+                        <span class="top-nav-link-text">Support</span>
+                    </a>
+                </li>
+            </ul>
+
+
+<!--                <li class="nav-item desktop-hide">-->
+<!--                    <button class="search-button" data-ghost-search><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg> <span>Search Blog</span></button>-->
+<!--                </li>-->
+
+            <ul class="secondary-nav-list">
+                <div class="more-desktop-link">
+                    <div class="more-link-wrapper">
+                        <span class="more-nav-link">
+                            <div class="desktop-nav-icon more-menu-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="22px" height="16px" viewBox="0 0 22 16">
+                                <g id="menu-icon">
+                                    <path fill="#FFFFFF" d="M20.5,3h-19C0.672,3,0,2.329,0,1.5S0.672,0,1.5,0h19C21.328,0,22,0.671,22,1.5S21.328,3,20.5,3z"></path>
+                                    <path fill="#FFFFFF" d="M20.5,9.5h-19C0.672,9.5,0,8.828,0,8c0-0.829,0.672-1.5,1.5-1.5h19C21.328,6.5,22,7.171,22,8   C22,8.828,21.328,9.5,20.5,9.5z"></path>
+                                    <path fill="#FFFFFF" d="M20.5,16h-19C0.672,16,0,15.328,0,14.5S0.672,13,1.5,13h19c0.828,0,1.5,0.672,1.5,1.5S21.328,16,20.5,16z"></path>
+                                </g>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            More
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <li class="nav-item more-text-link">
+                    <div class="more-link-wrapper more-link-wrapper-mobile">
+                        <span class="more-nav-link">
+                            <div class="mobile-nav-icon"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" style="enable-background:new 0 0 20 20;" width="25px" height="25px" xml:space="preserve">
+                                <style type="text/css">
+                                    .white{fill:#FFFFFF;}
+                                </style>
+                                <path class="white" d="M19.4,17.1c0,0.1-0.1,0-0.2,0c0,0-1.3-0.9-2-1.4c-0.2-0.1-0.5-0.1-0.6,0.1c-0.3,0.3-0.6,0.8-0.9,1.3  c-0.1,0.2-0.1,0.5,0.1,0.6l2,1.5c0.1,0,0,0.1,0.1,0.2c0,0.1,0,0.1-0.1,0.2c-1.2,0.5-2.6,0.2-3.5-0.7c-0.8-0.9-1-2-0.7-3.1L4.5,6.5  c-1,0.3-2.3,0-3-0.9c-0.8-0.9-1.1-1.7-1-2.7c0-0.1,0-0.1,0.1-0.2c0.1,0,0.2,0.1,0.2,0.1l2,1.5C3,4.4,3.3,4.5,3.4,4.2  c0,0,0.5-0.8,0.9-1.3c0.1-0.2,0.1-0.5-0.1-0.6L2.3,0.9c-0.1,0,0-0.1-0.1-0.3c0-0.1,0-0.1,0.1-0.2C3.5-0.1,5,0.2,5.8,1.1  c0.8,0.9,1,2,0.7,3.1l9.1,9.3c1-0.3,2.3,0,3,0.9c0.7,0.7,0.9,1.5,0.9,2.5C19.5,16.9,19.5,17,19.4,17.1z"></path>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            Security Resources
+                            </span>
+                        </span>
+                    </div>
+                    <input class="sub-nav-trigger" id="security-resources-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="security-resources-sub-trigger">
+                        <div class="mobile-nav-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+                        </div>
+                    </label>
+                    <div class="sub-nav sub-nav-multiple-list sub-nav-multiple-list-left">
+                        <div class="sub-nav-multiple-wrapper">
+                            <div class="sub-nav-list-top-of-mobile-wrapper">
+                                <h1 class="sub-nav-list-header sub-nav-list-top-of-mobile">Security Resources</h1>
+                                <ul class="sub-nav-list">
+                                    <li class="desktop-hide">
+                                        <label class="subnav-back-button" for="security-resources-sub-trigger">BACK</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sub-nav-list-item-wrapper">
+                                <span class="sub-nav-desktop-header uppercase">Security Resources</span>
+                                <ul class="sub-nav-list">
+                                    <li>
+                                        <a href="https://talosintelligence.com/software"><span>Open Source Security Tools</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/categories"><span>Intelligence Categories Reference</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/secure-endpoint-naming"><span>Secure Endpoint Naming Reference</span>
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="desktop-hide subnav-overlay"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" style="enable-background:new 0 0 20 20;" width="25px" height="25px" xml:space="preserve">
+                        <style type="text/css">
+                            .white{fill:#FFFFFF;}
+                        </style>
+                                                <path class="white" d="M19.4,17.1c0,0.1-0.1,0-0.2,0c0,0-1.3-0.9-2-1.4c-0.2-0.1-0.5-0.1-0.6,0.1c-0.3,0.3-0.6,0.8-0.9,1.3  c-0.1,0.2-0.1,0.5,0.1,0.6l2,1.5c0.1,0,0,0.1,0.1,0.2c0,0.1,0,0.1-0.1,0.2c-1.2,0.5-2.6,0.2-3.5-0.7c-0.8-0.9-1-2-0.7-3.1L4.5,6.5  c-1,0.3-2.3,0-3-0.9c-0.8-0.9-1.1-1.7-1-2.7c0-0.1,0-0.1,0.1-0.2c0.1,0,0.2,0.1,0.2,0.1l2,1.5C3,4.4,3.3,4.5,3.4,4.2  c0,0,0.5-0.8,0.9-1.3c0.1-0.2,0.1-0.5-0.1-0.6L2.3,0.9c-0.1,0,0-0.1-0.1-0.3c0-0.1,0-0.1,0.1-0.2C3.5-0.1,5,0.2,5.8,1.1  c0.8,0.9,1,2,0.7,3.1l9.1,9.3c1-0.3,2.3,0,3,0.9c0.7,0.7,0.9,1.5,0.9,2.5C19.5,16.9,19.5,17,19.4,17.1z"></path>
+                        </svg>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="more-link-wrapper more-link-wrapper-mobile">
+                        <span class="more-nav-link">
+                            <div class="mobile-nav-icon"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" width="25px" height="25px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                                <style type="text/css">
+                                    .sticoncomment{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+                                </style>
+                                <path class="sticoncomment" d="M13.6,7.1H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,6.8,13.9,7.1,13.6,7.1L13.6,7.1z M13.6,9.4H6.4c-0.3,0-0.6-0.3-0.6-0.6s0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,9.2,13.9,9.4,13.6,9.4L13.6,9.4z M11.5,11.7H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6h5.1c0.3,0,0.6,0.3,0.6,0.6  C12.1,11.5,11.8,11.7,11.5,11.7z M15.8,3H4.2C3.5,3,3,3.5,3,4.2V17l2.8-2.3h10c0.6,0,1.2-0.5,1.2-1.2V4.2C17,3.5,16.5,3,15.8,3  L15.8,3z"></path>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            Media
+                            </span>
+                        </span>
+                    </div>
+                    <input class="sub-nav-trigger" id="media-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="media-sub-trigger">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                            </svg>
+                        </div>
+                    </label>
+                    <div class="sub-nav sub-nav-multiple-list sub-nav-multiple-list-middle">
+                        <div class="sub-nav-multiple-wrapper">
+                            <div class="sub-nav-list-top-of-mobile-wrapper">
+                                <h1 class="sub-nav-list-header sub-nav-list-top-of-mobile">Media</h1>
+                                <ul class="sub-nav-list">
+                                    <li class="desktop-hide">
+                                        <label class="subnav-back-button" for="media-sub-trigger">BACK</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sub-nav-list-item-wrapper">
+                                <span class="sub-nav-desktop-header uppercase">Media</span>
+                                <ul class="sub-nav-list">
+                                    <li>
+                                        <a href="https://blog.talosintelligence.com"><span>Talos Intelligence Blog</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://blog.talosintelligence.com/category/threat-source-newsletter/"><span>Threat Source Newsletter</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/podcasts/shows/beers_with_talos"><span>Beers with Talos Podcast</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/podcasts/shows/talos_takes"><span>Talos Takes Podcast</span>
+                                        </a></li>
+                                    <li>
+                                        <a target="_blank" href="https://www.youtube.com/channel/UCPZ1DtzQkStYBSG3GTNoyfg/featured"><span>Talos Videos</span>
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="desktop-hide subnav-overlay"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" width="25px" height="25px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                        <style type="text/css">
+                            .sticoncomment{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+                        </style>
+                        <path class="sticoncomment" d="M13.6,7.1H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,6.8,13.9,7.1,13.6,7.1L13.6,7.1z M13.6,9.4H6.4c-0.3,0-0.6-0.3-0.6-0.6s0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,9.2,13.9,9.4,13.6,9.4L13.6,9.4z M11.5,11.7H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6h5.1c0.3,0,0.6,0.3,0.6,0.6  C12.1,11.5,11.8,11.7,11.5,11.7z M15.8,3H4.2C3.5,3,3,3.5,3,4.2V17l2.8-2.3h10c0.6,0,1.2-0.5,1.2-1.2V4.2C17,3.5,16.5,3,15.8,3  L15.8,3z"></path>
+                        </svg>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="more-link-wrapper more-link-wrapper-mobile">
+                        <span class="more-nav-link">
+                            <div class="mobile-nav-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="25px" viewBox="0 0 55 55">
+                                <g>
+                                    <g class="mobile-nav-home">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M45.201,12.343c0.378,0.48,0.758,0.925,1.096,1.401    c2.975,4.207,4.543,8.876,4.494,14.044c-0.05,5.452-1.643,10.386-5.186,14.593c-3.484,4.133-7.929,6.73-13.182,7.895    c-6.313,1.398-12.216,0.275-17.695-3.131c-0.441-0.273-0.847-0.6-1.266-0.904c-0.11-0.078-0.208-0.174-0.337-0.287    c0.127-0.141,0.246-0.27,0.366-0.398c0.887-0.949,1.765-1.904,2.663-2.844c0.114-0.119,0.321-0.217,0.485-0.217    c3.658-0.006,7.318,0,10.975,0.008c3.458,0.006,6.913,0.02,10.369,0.02c0.957,0,1.871-0.193,2.62-0.844    c0.797-0.693,1.157-1.596,1.157-2.643c0.001-7.533,0.003-15.067-0.005-22.601c-0.002-0.309,0.088-0.524,0.3-0.743    C43.098,14.598,44.127,13.49,45.201,12.343"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M41.402,8.822c-0.99,1.027-1.994,2.021-2.935,3.072    c-0.312,0.35-0.616,0.416-1.036,0.415c-6.98-0.009-13.957-0.007-20.938-0.007c-2.039,0-3.561,1.514-3.561,3.557    c0,6.504,0.002,13.008,0.006,19.512c0.002,0.973,0.011,1.943,0.004,2.914c0,0.133-0.04,0.301-0.127,0.393    c-1.069,1.162-2.15,2.314-3.229,3.469c-0.021,0.023-0.052,0.039-0.109,0.08c-0.159-0.188-0.323-0.369-0.471-0.562    c-2.535-3.348-4.119-7.102-4.605-11.268c-0.61-5.229,0.194-10.229,2.835-14.839c2.669-4.664,6.655-7.805,11.618-9.75    c3.205-1.257,6.533-1.852,9.977-1.621c4.478,0.298,8.553,1.754,12.227,4.325c0.101,0.072,0.197,0.151,0.291,0.229    C41.364,8.755,41.374,8.778,41.402,8.822"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M39.799,12.47c0.873-0.911,1.749-1.829,2.676-2.797    c0.605,0.564,1.195,1.112,1.816,1.691c-0.941,0.985-1.817,1.903-2.703,2.83c-0.276-0.339-0.511-0.688-0.807-0.975    C40.492,12.941,40.145,12.728,39.799,12.47"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M10.35,43.279c0.969-1.016,1.885-1.977,2.76-2.893    c0.213,0.369,0.376,0.762,0.639,1.072c0.265,0.312,0.627,0.539,0.98,0.832c-0.853,0.891-1.713,1.791-2.624,2.746    C11.513,44.445,10.939,43.869,10.35,43.279"></path>
+                                    </g>
+                                </g>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            Company
+                            </span>
+                        </span>
+                    </div>
+                    <input class="sub-nav-trigger" id="company-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="company-sub-trigger">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+                        </div>
+                    </label>
+                    <div class="sub-nav sub-nav-multiple-list sub-nav-multiple-list-right">
+                        <div class="sub-nav-multiple-wrapper">
+                            <div class="sub-nav-list-top-of-mobile-wrapper">
+                                <h1 class="sub-nav-list-header sub-nav-list-top-of-mobile">Company</h1>
+                                <ul class="sub-nav-list">
+                                    <li class="desktop-hide">
+                                        <label class="subnav-back-button" for="company-sub-trigger">BACK</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sub-nav-list-item-wrapper">
+                                <span class="sub-nav-desktop-header uppercase">Company</span>
+                                <ul class="sub-nav-list">
+                                    <li>
+                                        <a href="https://talosintelligence.com/about"><span>About Talos</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/careers"><span>Careers</span>
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="desktop-hide subnav-overlay"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="25px" viewBox="0 0 55 55">
+                        <g>
+                            <g class="mobile-nav-home">
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M45.201,12.343c0.378,0.48,0.758,0.925,1.096,1.401    c2.975,4.207,4.543,8.876,4.494,14.044c-0.05,5.452-1.643,10.386-5.186,14.593c-3.484,4.133-7.929,6.73-13.182,7.895    c-6.313,1.398-12.216,0.275-17.695-3.131c-0.441-0.273-0.847-0.6-1.266-0.904c-0.11-0.078-0.208-0.174-0.337-0.287    c0.127-0.141,0.246-0.27,0.366-0.398c0.887-0.949,1.765-1.904,2.663-2.844c0.114-0.119,0.321-0.217,0.485-0.217    c3.658-0.006,7.318,0,10.975,0.008c3.458,0.006,6.913,0.02,10.369,0.02c0.957,0,1.871-0.193,2.62-0.844    c0.797-0.693,1.157-1.596,1.157-2.643c0.001-7.533,0.003-15.067-0.005-22.601c-0.002-0.309,0.088-0.524,0.3-0.743    C43.098,14.598,44.127,13.49,45.201,12.343"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M41.402,8.822c-0.99,1.027-1.994,2.021-2.935,3.072    c-0.312,0.35-0.616,0.416-1.036,0.415c-6.98-0.009-13.957-0.007-20.938-0.007c-2.039,0-3.561,1.514-3.561,3.557    c0,6.504,0.002,13.008,0.006,19.512c0.002,0.973,0.011,1.943,0.004,2.914c0,0.133-0.04,0.301-0.127,0.393    c-1.069,1.162-2.15,2.314-3.229,3.469c-0.021,0.023-0.052,0.039-0.109,0.08c-0.159-0.188-0.323-0.369-0.471-0.562    c-2.535-3.348-4.119-7.102-4.605-11.268c-0.61-5.229,0.194-10.229,2.835-14.839c2.669-4.664,6.655-7.805,11.618-9.75    c3.205-1.257,6.533-1.852,9.977-1.621c4.478,0.298,8.553,1.754,12.227,4.325c0.101,0.072,0.197,0.151,0.291,0.229    C41.364,8.755,41.374,8.778,41.402,8.822"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M39.799,12.47c0.873-0.911,1.749-1.829,2.676-2.797    c0.605,0.564,1.195,1.112,1.816,1.691c-0.941,0.985-1.817,1.903-2.703,2.83c-0.276-0.339-0.511-0.688-0.807-0.975    C40.492,12.941,40.145,12.728,39.799,12.47"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M10.35,43.279c0.969-1.016,1.885-1.977,2.76-2.893    c0.213,0.369,0.376,0.762,0.639,1.072c0.265,0.312,0.627,0.539,0.98,0.832c-0.853,0.891-1.713,1.791-2.624,2.746    C11.513,44.445,10.939,43.869,10.35,43.279"></path>
+                            </g>
+                        </g>
+                    </svg>
+                    </div>
+                </li>
+            </ul>
+            <div class="nav-search-wrapper" id="desktop-search-wrapper">
+                <button class="search-button desktop-search-button" data-ghost-search>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </button>
+            </div>
+        </div>
+
+
+
+    </div>
+</nav>
+
+    
+
+    <main id="site-main">
+        <div class="container-fluid px-0">
+            <div class="main-content-row">
+                <div class="main-content-col px-0">
+                    <div class="post-full-content">
+                        
+<article class="post tag-ransomware ">
+        <div class="feature-image-wrapper my-5">
+            <figure>
+                <img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-yZhVHjIw95U/WzJOmC62I4I/AAAAAAAAArU/cL_GqFtX8IcEKAT0z22FE_st8zUEBBN5QCLcBGAs/w1200-h630-p-k-no-nu/image10.jpg" alt="" class="img-fluid" />
+            </figure>
+        </div>
+
+    <h1 class="text-center">Files Cannot Be Decrypted? Challenge Accepted. Talos Releases ThanatosDecryptor</h1>
+
+    <div class="text-center m-1">
+        <div class="post-author">
+            <span>By </span>
+                <a href="https://blog.talosintelligence.com/author/edmund-brumaghin/">Edmund Brumaghin</a>
+        </div>
+
+        <br/>
+        <time class="post-datetime" datetime="June 26, 2018 11:00">
+            Tuesday, June 26, 2018 11:00
+        </time>
+
+        <div class="m-3">
+                            <a href="/category/ransomware/" class="category primary-category">
+                                ransomware
+                            </a>
+                                </div>
+    </div>
+
+    <section class="post-content-wrapper mt-5">
+        <div class="post-content" id="post-content">
+            <p><i>This blog post was authored by <a href="https://www.blogger.com/profile/10442669663667294759">Edmund Brumaghin</a>, <a href="https://www.blogger.com/profile/07833323932899203321">Earl Carter</a> and <a href="https://twitter.com/SmugYeti">Andrew Williams</a>.</i></p><h2 id="executive-summary-cisco-talos-has-analyzed-thanatos-a-ransomware-variant-that-is-being-distributed-via-multiple-malware-campaigns-that-have-been-conducted-over-the-past-few-months-as-a-result-of-our-research-we-have-released-a-new-free-decryption-tool-to-help-victims-recover-from-this-malware-multiple-versions-of-thanatos-have-been-leveraged-by-attackers-indicating-that-this-is-an-evolving-threat-that-continues-to-be-actively-developed-by-threat-actors-with-multiple-versions-having-been-distributed-in-the-wild-unlike-other-ransomware-commonly-being-distributed-thanatos-does-not-demand-ransom-payments-to-be-made-using-a-single-cryptocurrency-like-bitcoin-instead-it-has-been-observed-supporting-ransom-payments-in-the-form-of-bitcoin-cash-bch-zcash-zec-ethereum-eth-and-others-">Executive summary <br> Cisco Talos has analyzed Thanatos, a ransomware variant that is being distributed via multiple malware campaigns that have been conducted over the past few months. As a result of our research, we have released a new, free decryption tool to help victims recover from this malware. Multiple versions of Thanatos have been leveraged by attackers, indicating that this is an evolving threat that continues to be actively developed by threat actors with multiple versions having been distributed in the wild. Unlike other ransomware commonly being distributed, Thanatos does not demand ransom payments to be made using a single cryptocurrency like bitcoin. Instead, it has been observed supporting ransom payments in the form of Bitcoin Cash (BCH), Zcash (ZEC), Ethereum (ETH) and others.</h2><p>Additionally, due to issues present within the encryption process leveraged by this ransomware, the malware authors are unable to return the data to the victim, even if he or she pays the ransom. While previous reports seem to indicate this is accidental, specific campaigns appear to demonstrate that in some cases, this is intentional on the part of the distributor. In response to this threat, Talos is releasing <a href="https://github.com/Cisco-Talos/ThanatosDecryptor">ThanatosDecryptor</a>, a free decryption tool that exploits weaknesses in the design of the file encryption methodology used by Thanatos. This utility can be used by victims to regain access to their data if infected by this ransomware. <br></p><h2 id="technical-details">Technical details</h2><h3 id="ongoing-evolution-of-thanatos-while-tracking-and-analyzing-the-various-campaigns-being-used-to-distribute-the-thanatos-ransomware-talos-identified-multiple-distinct-versions-of-this-malware-indicating-that-it-is-continuing-to-be-actively-developed-by-the-malware-author-the-main-differences-can-be-directly-observed-within-the-ransom-note-being-used-to-inform-victims-that-they-have-been-infected-and-provide-instructions-for-paying-a-ransom-to-the-attacker-version-1-of-thanatos-which-was-being-distributed-in-mid-february-of-this-year-featured-a-very-primitive-ransom-note-that-is-stored-on-the-victim-s-desktop-as-readme-txt-">Ongoing evolution of Thanatos <br> While tracking and analyzing the various campaigns being used to distribute the Thanatos ransomware, Talos identified multiple distinct versions of this malware, indicating that it is continuing to be actively developed by the malware author. The main differences can be directly observed within the ransom note being used to inform victims that they have been infected and provide instructions for paying a ransom to the attacker. Version 1 of Thanatos, which was being distributed in mid-February of this year, featured a very primitive ransom note that is stored on the victim's desktop as README.txt.</h3><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-yZhVHjIw95U/WzJOmC62I4I/AAAAAAAAArU/cL_GqFtX8IcEKAT0z22FE_st8zUEBBN5QCLcBGAs/s640/image10.jpg" class="kg-image" alt loading="lazy"></figure><p>In this version of Thanatos, the ransom note simply informs the user that their files have been encrypted and instructs them to pay a ransom amount of 0.01 bitcoin (BTC) to the specified bitcoin wallet. Rather than using different wallet addresses across samples, the same hardcoded wallet address is present in all samples of this version of Thanatos that Talos analyzed. Payment processing appears to be manual and email-based, which is indicative of an attacker with limited resources and knowledge of ransomware creation and distribution techniques used by other more well-known ransomware families such as <a href="https://blog.talosintelligence.com/necurs-locky-campaign">Locky</a>, <a href="https://blog.talosintelligence.com/cerber-spam-tor">Cerber</a>, etc.</p><p>Shortly after Version 1 was observed being distributed, malware distribution campaigns began distributing Thanatos Version 1.1 with the majority of the distribution of Version 1.1 occurring between February and April 2018. This updated version of Thanatos featured several key differences related to the type of cryptocurrencies that victims could pay with.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-Sv9lDb9K348/WzJOsXzSexI/AAAAAAAAArY/qFqOCRhQGm0Kmj5fxjFISA7fAoSV3lkfQCLcBGAs/s640/image12.jpg" class="kg-image" alt loading="lazy"></figure><p>As can be seen in the screenshot of the ransom note above, Thanatos Version 1.1 supports payment of the ransom demand using BTC, ETH, and BCH. Additionally, the malware also now includes a unique MachineID that the victim is instructed to send to the attacker via email.</p><p>Interestingly, the ransom notes changed several times across samples that Talos analyzed. Below is another example of one of the ransom notes used by this malware. Note that the attacker had changed the email address being used to communicate with victims. The attacker was also purporting to process ransom payments in the form of Zcash versus the other cryptocurrencies listed in the other ransom notes.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-6o-rF1br8oA/WzJOxkbzILI/AAAAAAAAArc/xi9faoPTVMkQ8aklSg4sTly1Eq6ri1tdwCLcBGAs/s640/image9.png" class="kg-image" alt loading="lazy"></figure><p>In investigating the distribution mechanisms being used by the attacker to infect victims and remove their ability to access data on their system, we identified an interesting campaign that indicated that at least in this particular case, the attacker had no intention of providing any sort of data decryption to the victim. The malware appears to have been delivered to the victim as an attachment to a chat message sent to the victim using the Discord chat platform. Discord is a voice and text chatting platform that allows direct communications between two or more participants. The URL hosting the attached malware is below:</p><p><i>hxxps://cdn[.]discordapp[.]com/attachments/230687913581477889/424941165339475968/fastleafdecay.exe</i></p><p>The filename used in this case was "fastleafdecay.exe" which may indicate that the victim was tricked into executing the malware as it was posing as a <a href="https://minecraft.curseforge.com/projects/fast-leaf-decay">mod</a> of the same name in the video game Minecraft. When executed, this sample displayed the following ransom note to victims:</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-UJYRxWRS5Pg/WzJO2v7GdXI/AAAAAAAAArk/DweDBMw11P8kjBeCzcn9RPF4RjL3MEcWgCLcBGAs/s640/image6.jpg" class="kg-image" alt loading="lazy"></figure><p>As can be seen in the above screenshot, the malware author did not include any instructions for paying a ransom, instead stating that decryption was not available, indicating that this particular case was not financially motivated, and instead was used to destroy data on the victim's system. Interestingly, the PDB path that was intact on this sample differed from the other samples that Talos analyzed. In this case, the PDB path was:</p><p><i>        C:\Users\Artur\Desktop\csharp - js\косте пизда\Release\Thanatos.pdb</i></p><p>Most of the other samples contained the following PDB path:</p><p><i>        D:\Work\Thanatos\Release\Thanatos.pdb</i></p><p>Talos also observed a sample that had been compiled in debug mode that contained the following PDB path:</p><p><i>        D:\Работа\Локер шифровчик\Thanatos-master\Debug\Thanatos.pdb</i></p><h3 id="thanatos-operations-and-encryption-process-when-executed-on-victim-systems-thanatos-copies-itself-into-a-subdirectory-that-it-creates-within-appdata-roaming-the-subdirectory-name-and-executable-file-name-are-randomly-generated-based-on-system-uptime-and-changes-each-time-the-malware-executes-">Thanatos operations and encryption process <br> When executed on victim systems, Thanatos copies itself into a subdirectory that it creates within %APPDATA%/Roaming. The subdirectory name and executable file name are randomly generated based on system uptime and changes each time the malware executes.</h3><p>Thanatos recursively scans the following directories within the current user's profile to identify files to encrypt:</p><p>Desktop<br>         Documents<br>         Downloads<br>         Favourites<br>         Music<br> OneDrive<br>         Pictures<br>         Videos</p><p>While many ransomware families have a specific list of file extensions that are supported for encryption, Thanatos supports encryption of any file that has an extension. For each file that the malware locates, it derives an encryption key based on the number of milliseconds that the infected system has been running via a call to <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/ms724408">GetTickCount</a>. The malware then encrypts the file using Advanced Encryption Standard (AES)-256 and discards the encryption key. The process of discarding the encryption key precludes the attacker from being able to provide access to the decrypted data, even if a ransom demand is paid. Encrypted files are then written to the filesystem with the .THANATOS file extension and the original files are deleted.</p><p>The malware also leverages an external website called iplogger. This website provides customized URLs that can be used to track information about systems that access the URL. By making HTTP GET requests using these hardcoded URLs, the attacker can obtain information about all of the different systems that have been infected with Thanatos.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-X86GVyazmLM/WzJPWddlmUI/AAAAAAAAAr0/RmH2l8nhj6YZLz6BPXG7usSs8bq-z10vgCLcBGAs/s640/image1.jpg" class="kg-image" alt loading="lazy"></figure><p>The HTTP GET request are all made using the following user agent:</p><p><i>Mozilla/5.0 (Windows NT 6.1) Thanatos/1.1</i></p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-QVXnYQjhVSI/WzJPd9T-0WI/AAAAAAAAAr4/9ZR9kV9PcE4SdW0x0fYpzZ9uwwYns2cXgCLcBGAs/s640/image8.jpg" class="kg-image" alt loading="lazy"></figure><p>Talos has observed the following iplogger URLs hardcoded into various Thanatos samples that were analyzed:</p><p><i> hxxp://iplogger[.]com:80/1CUTM6</i><br>  <i>        hxxp://iplogger[.]com:80/1t3i37</i></p><p>The ransom note associated with Thanatos is saved to the infected user's desktop using the filename README.txt. A registry entry is created so that each time the system boots, the ransom note is displayed using the Notepad application. This registry key is located in:</p><p><i>HKCU\Software\Microsoft\Windows\CurrentVersion\Run</i></p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-D6QeiZd4OCw/WzJPoJbQoQI/AAAAAAAAAr8/AlY4ScvHg3gJkNv2-t7EQsekurU5Iic-gCLcBGAs/s640/image11.jpg" class="kg-image" alt loading="lazy"></figure><p>Aside from this, the malware does not obtain persistence for the executable itself.</p><h3 id="thanatosdecryptor-as-previously-described-the-encryption-keys-used-to-encrypt-files-on-victims-systems-are-derived-based-upon-the-number-of-milliseconds-since-the-system-last-booted-this-value-is-a-32-bit-number-meaning-that-the-encryption-key-is-effectively-32-bits-as-well-additionally-the-maximum-number-of-milliseconds-that-can-be-stored-in-a-32-bit-value-is-roughly-49-7-days-worth-which-is-higher-than-the-average-amount-of-uptime-on-many-systems-due-to-patch-installation-system-reboots-and-other-factors-this-makes-brute-forcing-the-key-values-significantly-cheaper-from-a-time-perspective-">ThanatosDecryptor <br> As previously described, the encryption keys used to encrypt files on victims' systems are derived based upon the number of milliseconds since the system last booted. This value is a 32-bit number, meaning that the encryption key is effectively 32 bits as well. Additionally, the maximum number of milliseconds that can be stored in a 32-bit value is roughly 49.7 days' worth, which is higher than the average amount of uptime on many systems due to patch installation, system reboots, and other factors. This makes brute-forcing the key values significantly cheaper from a time perspective.</h3><p>Another optimization can be made based on the fact that the system uptime is written to the Windows Event Log roughly once per day. Since Thanatos does not modify the file creation dates on encrypted files, the key search space can be further reduced to approximately the number of milliseconds within the 24-hour period leading up to the infection. At an average of 100,000 brute-force attempts per second (which was the baseline in a virtual machine used for testing), it would take roughly 14 minutes to successfully recover the encryption key in these conditions.</p><p>Talos is releasing a decryption <a href="https://github.com/Cisco-Talos/ThanatosDecryptor">utility</a> that can be leveraged by victims of Thanatos to attempt to regain access to data and files stored on the infected system. It has been tested on Versions 1 and 1.1 of the Thanatos ransomware and on all currently known Thanatos samples Talos has observed.</p><p><b><i><u>Note: In order to decrypt files as quickly as possible, ThanatosDecryptor should be executed on the original machine that was infected and against the original encrypted files that the malware created.</u></i></b></p><p>This decryption utility currently supports decryption of the following types of files:</p><p><b>Image:</b> .gif, .tif, .tiff, .jpg, .jpeg, .png<br> <b>Video:</b> .mpg, .mpeg, .mp4, .avi<br> <b>Audio:</b> .wav<br> <b>Document:</b> .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pdf, .odt, .ods, .odp, .rtf<br> <b>Other:</b> .zip, .7z, .vmdk, .psd, .lnk</p><p>The decryptor first searches the same directories as the ransomware to identify files that contain the .THANATOS file extension. For files that contain the .THANATOS file extension, the decryptor will then obtain the original file extension, which is left intact during infection, and compare it to the list of supported file types. If the file type is supported, the decryptor will then queue that file for decryption.</p><p>ThanatosDecryptor also parses the Windows Event Log for uptime messages and uses the encrypted file creation time metadata to determine a starting value for decryption. This value is used to derive an encryption key, and an AES decryption operation is performed against the file contents. The resulting bytes are then compared against values known to be valid file headers for the specific file type. If they do not match, meaning the decryption process was unsuccessful, the seed value for the encryption key is then incremented, and the process is repeated. Once successful, the original file is written to the file system, and the original filename is restored. Once one file has been successfully decrypted, ThanatosDecryptor uses the seed value from that decryption attempt as the starting point for decryption attempts against additional files since they are likely to be very similar.</p><p>To execute ThanatosDecryptor, simply download the ThanatosDecryptor project <a href="https://github.com/Cisco-Talos/ThanatosDecryptor">here</a> and execute ThanatosDecryptor.exe, which can be found in the release directory. Additional information and example output can be obtained here.</p><h3 id="following-the-money-or-lack-thereof-as-previously-mentioned-throughout-the-various-thanatos-campaigns-and-associated-samples-the-attacker-behind-this-threat-made-changes-to-the-types-of-cryptocurrencies-that-they-claim-are-supported-for-paying-the-ransom-demand-analysis-of-these-various-wallets-and-associated-cryptocurrency-transactions-revealed-some-interesting-information-about-the-size-and-success-of-these-malware-campaigns-over-time-across-all-of-the-samples-the-following-cryptocurrency-wallets-were-listed-along-with-instructions-for-paying-the-ransom-on-the-ransom-note-accompanying-the-malware-">Following the money … or lack thereof <br> As previously mentioned, throughout the various Thanatos campaigns and associated samples, the attacker behind this threat made changes to the types of cryptocurrencies that they claim are supported for paying the ransom demand. Analysis of these various wallets and associated cryptocurrency transactions revealed some interesting information about the size and success of these malware campaigns over time. Across all of the samples, the following cryptocurrency wallets were listed along with instructions for paying the ransom on the ransom note accompanying the malware.</h3><p><b>Bitcoin ($BTC):</b><br> 1HVEZ1jZ7BWgBYPxqCVWtKja3a9hsNa9Eh<br> 1DRAsxW4cKAD1BCS9m2dutduHi3FKqQnZF</p><p><b>Ethereum ($ETH):</b><br> 0x92420e4D96E5A2EbC617f1225E92cA82E24B03ef</p><p><b>Bitcoin Cash ($BCH):</b><br> Qzuexhcqmkzcdazq6jjk69hkhgnme25c35s9tamz6f</p><p><b>ZCash ($ZEC):</b><br> t1JBenujX2WsYEZnzxSJDsQBzDquMCf8kbZ</p><p>In analyzing the bitcoin wallets, we identified that the attacker had not received a single ransom payment from victims. In fact, the wallet listed most frequently across the samples analyzed (1HVEZ1jZ7BWgBYPxqCVWtKja3a9hsNa9Eh) was not even a valid bitcoin wallet. This means that even if a victim tried to pay using bitcoin, they would have been unable to. The second wallet (1DRAsxW4cKAD1BCS9m2dutduHi3FKqQnZF) did not have a single transaction to or from it.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-2nWpeH3-rZk/WzJP52Xs6_I/AAAAAAAAAsI/SZcYYLZ2nH0fE0cQ_uNst2IrVIHb5d1QQCLcBGAs/s640/image2.jpg" class="kg-image" alt loading="lazy"></figure><p>Likewise, the Bitcoin Cash wallet that was listed has also never seen a single transaction.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-fRm76vgcVZ0/WzJP-tI1ffI/AAAAAAAAAsM/GZcvsS6LdbYzmjPW1tK7pUdQxJJIkThzgCLcBGAs/s640/image5.jpg" class="kg-image" alt loading="lazy"></figure><p>When analyzing the Zcash wallet that was seen listed on one of the ransom notes associated with Thanatos, we identified that while it had seen several transactions, the total amount of ZEC received by this wallet was 2.24767084, which equals approximately $450 USD.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-YkVttf3axVo/WzJQDtM3mfI/AAAAAAAAAsQ/E9p-A4KKRjcCvpH1IRvdCG0t1vx8HbiaQCLcBGAs/s640/image4.jpg" class="kg-image" alt loading="lazy"></figure><p>Finally, the Ethereum wallet used by the attacker also saw several transactions. However, the total amount was also low compared to some of the more successful ransomware campaigns we regularly observe across the threat landscape. The total amount of ETH received in this wallet was 0.52087597, which equals approximately $270 USD.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-a7yrbUZviZg/WzJQJo0yEmI/AAAAAAAAAsU/8rkb6oMhouUqQexrNLg4C_tY4Ou0ortlACLcBGAs/s640/image3.jpg" class="kg-image" alt loading="lazy"></figure><p>This means that across all of the samples seen in the wild, the attacker's wallets had only received a total of $720 USD. If the incoming cryptocurrency was directly related to victims paying a ransom as a result of Thanatos infections, this clearly did not generate significant revenue for the attacker when compared to other financially motivated cybercrime <a href="https://www.talosintelligence.com/angler-exposed">operations</a>.</p><h2 id="conclusion-whether-for-monetary-gains-or-to-destroy-data-attackers-are-continuously-targeting-end-users-this-malware-proves-how-easy-it-has-become-for-anyone-to-target-users-you-do-not-have-to-be-a-sophisticated-attacker-to-cause-havoc-there-are-also-an-endless-supply-of-attack-vectors-available-in-this-case-for-instance-the-attacker-took-advantage-of-the-discord-chat-platform-therefore-it-is-important-to-take-security-seriously-and-take-steps-to-secure-your-systems-whether-they-are-used-for-personal-or-business-purposes-since-many-of-these-attacks-take-advantage-of-users-you-also-need-to-be-careful-when-opening-attachments-from-unknown-sources-or-clicking-on-unknown-links-">Conclusion <br> Whether for monetary gains or to destroy data, attackers are continuously targeting end users. This malware proves how easy it has become for anyone to target users. You do not have to be a sophisticated attacker to cause havoc. There are also an endless supply of attack vectors available. In this case, for instance, the attacker took advantage of the Discord chat platform. Therefore, it is important to take security seriously and take steps to secure your systems, whether they are used for personal or business purposes. Since many of these attacks take advantage of users, you also need to be careful when opening attachments from unknown sources or clicking on unknown links.</h2><h2 id="coverage-additional-ways-our-customers-can-detect-and-block-this-threat-are-listed-below-">Coverage <br> Additional ways our customers can detect and block this threat are listed below.</h2><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-mlMbcYQ3qsI/Wyn1AySpA-I/AAAAAAAAAZ4/nZhPWCs28ZcGmAw112w9dm8l47WVleUbwCLcBGAs/s1600/image1.png" class="kg-image" alt loading="lazy"></figure><p>Advanced Malware Protection (<a href="https://www.cisco.com/c/en/us/products/security/advanced-malware-protection">AMP</a>) is ideally suited to prevent the execution of the malware used by these threat actors.</p><p>Cisco Cloud Web Security (<a href="https://www.cisco.com/c/en/us/products/security/cloud-web-security/index.html">CWS</a>) or<a href="https://www.cisco.com/c/en/us/products/security/web-security-appliance/index.html"> Web Security Appliance (WSA</a>) web scanning prevents access to malicious websites and detects malware used in these attacks.</p><p><a href="https://www.cisco.com/c/en/us/products/security/email-security-appliance/index.html">Email Security</a> can block malicious emails sent by threat actors as part of their campaign.</p><p>Network Security appliances such as<a href="https://www.cisco.com/c/en/us/products/security/firewalls/index.html"> Next-Generation Firewall (</a><a href="https://www.cisco.com/c/en/us/products/security/firewalls/index.html">NGFW</a>),<a href="https://www.cisco.com/c/en/us/products/security/intrusion-prevention-system-ips/index.html"> Next-Generation Intrusion Prevention System (</a><a href="https://www.cisco.com/c/en/us/products/security/intrusion-prevention-system-ips/index.html">NGIPS</a>), and<a href="https://meraki.cisco.com/products/appliances"> </a><a href="https://meraki.cisco.com/products/appliances">Meraki MX</a> can detect malicious activity associated with this threat.</p><p><a href="https://www.cisco.com/c/en/us/solutions/enterprise-networks/amp-threat-grid/index.html">AMP Threat Grid</a> helps identify malicious binaries and build protection into all Cisco Security products.</p><p><a href="https://umbrella.cisco.com/">Umbrella</a>, our secure internet gateway (SIG), blocks users from connecting to malicious domains, IPs, and URLs, whether users are on or off the corporate network.</p><p>Open Source Snort Subscriber Rule Set customers can stay up to date by downloading the latest rule pack available for purchase on <a href="https://www.snort.org/products">Snort.org</a>.</p><h2 id="yara-signatures-talos-is-also-providing-the-following-yara-signature-that-can-be-used-to-identify-samples-associated-with-the-thanatos-ransomware-family-">YARA Signatures <br> Talos is also providing the following <a href="https://yara.readthedocs.io/en/v3.7.0/">YARA</a> signature that can be used to identify samples associated with the Thanatos ransomware family.</h2><pre><code>rule Thanatos
+
+{
+        strings:
+
+        $s1 = ".THANATOS\x00" ascii
+        $s2 = "\\Desktop\\README.txt" ascii
+        $s3 = "C:\\Windows\\System32\\notepad.exe C:\\Users\\" ascii
+        $s4 = "AppData\\Roaming" ascii
+        $s5 = "\\Desktop\x00" ascii
+        $s6 = "\\Favourites\x00" ascii
+        $s7 = "\\OneDrive\x00" ascii
+        $s8 = "\\x00.exe\x00" ascii
+        $s9 = "/c taskkill /im" ascii
+        $s10 = "Software\\Microsoft\\Windows\\CurrentVersion\\Run" ascii
+
+        condition:
+        6 of ($s1, $s2, $s3, $s4, $s5, $s6, $s7, $s8, $s9, $s10)
+}</code></pre><h2 id="indicators-of-compromise-ioc-">Indicators of Compromise (IOC) <br></h2><h3 id="file-hashes-sha256-bad7b8d2086ac934c01d3d59af4d70450b0c08a24bc384ec61f40e25b7fbfeb5-fe1eafb8e31a84c14ad5638d5fd15ab18505efe4f1becaa36eb0c1d75cd1d5a9-8df0cb230eeb16ffa70c984ece6b7445a5e2287a55d24e72796e63d96fc5d401-97d4145285c80d757229228d13897820d0dc79ab7aa3624f40310098c167ae7e55aa55229ea26121048b8c5f63a8b6921f134d425fba1eabd754281ca6466b70-02b9e3f24c84fdb8ab67985400056e436b18e5f946549ef534a364dff4a84085-241f67ece26c9e6047bb1a9fc60bf7c45a23ea1a2bb08a1617a385c71d008d79-0bea985f6c0876f1c3f9967d96abd2a6c739de910e7d7025ae271981e9493204-42748e1504f668977c0a0b6ac285b9f2935334c0400d0a1df91673c8e3761312">File Hashes (SHA256) <br> bad7b8d2086ac934c01d3d59af4d70450b0c08a24bc384ec61f40e25b7fbfeb5<br> fe1eafb8e31a84c14ad5638d5fd15ab18505efe4f1becaa36eb0c1d75cd1d5a9<br> 8df0cb230eeb16ffa70c984ece6b7445a5e2287a55d24e72796e63d96fc5d401<br> 97d4145285c80d757229228d13897820d0dc79ab7aa3624f40310098c167ae7e<br>55aa55229ea26121048b8c5f63a8b6921f134d425fba1eabd754281ca6466b70<br> 02b9e3f24c84fdb8ab67985400056e436b18e5f946549ef534a364dff4a84085<br> 241f67ece26c9e6047bb1a9fc60bf7c45a23ea1a2bb08a1617a385c71d008d79<br> 0bea985f6c0876f1c3f9967d96abd2a6c739de910e7d7025ae271981e9493204<br> 42748e1504f668977c0a0b6ac285b9f2935334c0400d0a1df91673c8e3761312</h3><h3 id="urls-hxxps-cdn-discordapp-com-attachments-230687913581477889-424941165339475968-fastleafdecay-exehxxp-iplogger-com-80-1cutm6-hxxp-iplogger-com-80-1t3i37">URLs <br> hXXps://cdn[.]discordapp[.]com/attachments/230687913581477889/424941165339475968/fastleafdecay.exe<br>hXXp://iplogger[.]com:80/1CUTM6<br> hXXp://iplogger[.]com:80/1t3i37</h3><h3 id="user-agents-mozilla-5-0-windows-nt-6-1-thanatos-1-1">User Agents <br> Mozilla/5.0 (Windows NT 6.1) Thanatos/1.1</h3>
+
+            
+        </div>
+    </section>
+    <div class="social-media-wrapper">
+    <h5>Share this post</h5>
+    <ul class="social-media-share-list">
+        <li>
+            <a class="share-facebook" title="Share this on Facebook" data-text="Files Cannot Be Decrypted? Challenge Accepted. Talos Releases ThanatosDecryptor" data-href="https://blog.talosintelligence.com/thanatosdecryptor/" rel="nofollow" target="_blank" href="https://www.facebook.com/sharer.php?u=https://blog.talosintelligence.com/thanatosdecryptor/"></a>
+        </li>
+        <li>
+            <a class="share-x" title="Post This" data-text="Files Cannot Be Decrypted? Challenge Accepted. Talos Releases ThanatosDecryptor" data-href="https://blog.talosintelligence.com/thanatosdecryptor/" rel="nofollow" target="_blank" href="https://x.com/share?url=https://blog.talosintelligence.com/thanatosdecryptor/"></a>
+        </li>
+        <li>
+            <a class="share-linkedin" title="Share this on LinkedIn" data-text="Files Cannot Be Decrypted? Challenge Accepted. Talos Releases ThanatosDecryptor" data-href="https://blog.talosintelligence.com/thanatosdecryptor/" rel="nofollow" target="_blank" href="https://www.linkedin.com/sharing/share-offsite/?url=https://blog.talosintelligence.com/thanatosdecryptor/"></a>
+        </li>
+        <li>
+            <a class="share-reddit" title="Reddit This" data-text="Files Cannot Be Decrypted? Challenge Accepted. Talos Releases ThanatosDecryptor" data-href="https://blog.talosintelligence.com/thanatosdecryptor/" rel="nofollow" target="_blank" href="https://www.reddit/submit?url=https://blog.talosintelligence.com/thanatosdecryptor/"></a>
+        </li>
+        <li>
+            <a class="share-email" title="Email This" href="mailto:?body=Files Cannot Be Decrypted? Challenge Accepted. Talos Releases ThanatosDecryptorhttps://blog.talosintelligence.com/thanatosdecryptor/"></a>
+        </li>
+    </ul>
+</div></article>
+                    </div>
+                </div>
+                <div class="alt-layout-row-dk sidebar" id="side-bar">
+                            <h4>Related Content</h4>
+
+                                <div class="sidebar-snippet-wrapper">
+                                    <a href="/ransomware-incidents-in-japan-in-the-first-half-of-2026/">
+                                        <h3>Ransomware incidents in Japan in the first half of 2026: Investigation of The Gentlemen’s infrastructure and evidence of Qilin&#x27;s AI use</h3>
+                                        <span  class="preview-attributes">September 17, 2026 06:00</span>
+                                        <p>Ransomware incidents in Japan rose 4.7% year over year. The Gentlemen was the most active group, with leak-site listings more than doubling from January to July. Qilin ranked second and appeared to use AI, while SMEs with capital under JPY 1 billion represented 80% of victims.</p>
+                                    </a>
+                                </div>
+                                <div class="sidebar-snippet-wrapper">
+                                    <a href="/chaos-msarat-living-off-the-browser-to-build-covert-c2-channel/">
+                                        <h3>Chaos ransomware&#x27;s msaRAT: Living off the browser to build a covert C2 channel</h3>
+                                        <span  class="preview-attributes">July 23, 2026 06:00</span>
+                                        <p>The Chaos ransomware group uses new malware &quot;msaRAT&quot; that hijacks browsers. The malware doesn&#39;t communicate directly with C2 but connects through the browser. It enables arbitrary command execution while hiding the attacker&#39;s IP from victims via WebRTC over TURN.</p>
+                                    </a>
+                                </div>
+                                <div class="sidebar-snippet-wrapper">
+                                    <a href="/an-overview-of-ransomware-threats-in-japan-in-2025-and-early-detection-insights-from-qilin-cases/">
+                                        <h3>An overview of ransomware threats in Japan in 2025 and early detection insights from Qilin cases</h3>
+                                        <span  class="preview-attributes">April 2, 2026 06:00</span>
+                                        <p>There were 134 ransomware incidents reported in Japan in 2025, representing a 17.5% year-over-year increase from 2024.</p>
+                                    </a>
+                                </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <footer id="footer">
+    <div class="container-fluid px-0">
+        <div class="row footer_nav_wrapper mx-0">
+            <div class="col-xl-10 col-12">
+                <div class="multi-col-list-wrapper">
+                    <ul class="footer-parent-list">
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6><a href="https://talosintelligence.com/reputation">Intelligence Center</a></h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/reputation_center">Intelligence Search</a></li>
+                                <li><a href="https://talosintelligence.com/reputation_center/email_rep">Email &amp; Spam Trends</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6><a href="https://talosintelligence.com/vulnerability_info">Vulnerability Research</a></h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/vulnerability_reports">Vulnerability Reports</a></li>
+                                <li><a href="https://talosintelligence.com/ms_advisories">Microsoft Advisories</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                             <ul>
+                                <li>
+                                    <h6><a href="https://talosintelligence.com/incident_response">Incident Response</a></h6>
+                                </li>
+                                <li>
+                                    <a href="https://talosintelligence.com/incident_response/services#reactive-services">Reactive Services</a>
+                                </li>
+                                <li>
+                                    <a href="https://talosintelligence.com/incident_response/services#proactive-services">Proactive Services</a>
+                                </li>
+                                <li>
+                                    <a href="https://talosintelligence.com/incident_response/contact">Emergency Support</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Security Resources</h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/software">Open Source Security Tools</a></li>
+                                <li><a href="https://talosintelligence.com/categories">Intelligence Categories Reference</a></li>
+                                <li><a href="https://talosintelligence.com/secure-endpoint-naming">Secure Endpoint Naming Reference</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Media</h6>
+                                </li>
+                                <li><a href="https://blog.talosintelligence.com">Talos Intelligence Blog</a></li>
+                                <li><a href="https://blog.talosintelligence.com/category/threat-source-newsletter/">Threat Source Newsletter</a></li>
+                                <li><a href="https://talosintelligence.com/podcasts/shows/beers_with_talos">Beers with Talos Podcast</a></li>
+                                <li><a href="https://talosintelligence.com/podcasts/shows/talos_takes">Talos Takes Podcast</a></li>
+                                <li><a target="_blank" href="https://www.youtube.com/channel/UCPZ1DtzQkStYBSG3GTNoyfg/featured">Talos Videos</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Support</h6>
+                                </li>
+                                <li><a href="https://support.talosintelligence.com">Support Documentation</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Company</h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/about">About Talos</a></li>
+                                <li><a href="https://talosintelligence.com/careers">Careers</a></li>
+                                <li><a target="_blank" href="https://www.cisco.com/c/en/us/products/security/product-listing.html">Cisco Security</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xl-2 col-12 connect_social">
+                <div class="connect-footer-section-wrapper">
+                    <h6>Follow us</h6>
+                    <ul>
+                        <li>
+                            <a target="_blank" href="https://x.com/talossecurity"><div class="footer-media-icon" id="footer-media-icon-x"></div>
+                            </a></li>
+                        <li>
+                            <a target="_blank" href="https://www.youtube.com/channel/UCPZ1DtzQkStYBSG3GTNoyfg/featured"><div class="footer-media-icon" id="footer-media-icon-youtube"></div>
+                            </a></li>
+                        <li>
+                            <a target="_blank" href="https://www.linkedin.com/company/cisco-talos-intelligence-group/"><div class="footer-media-icon" id="footer-media-icon-linkedin"></div>
+                            </a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row mx-0">
+            <div class="col-12 footer_corporate">
+                <a target="_blank" href="http://tools.cisco.com/security/center/home.x"><img alt="Cisco" src="https://blog.talosintelligence.com/assets/images/logo_cisco_white.svg">
+                </a><p class="copyright">
+                ©
+                <span id='current-year'></span>
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                <a target="_blank" class="underline" href="http://www.cisco.com/web/siteassets/legal/privacy_full.html">Privacy Policy.</a>
+            </p>
+            </div>
+        </div>
+    </div>
+</footer>
+    <script>
+  function coverageView() {
+    const coverageTable = document.getElementById('coverage-block');
+    const sidebar = document.getElementById('side-bar');
+    const postContent = document.getElementById('post-content');
+    const currentWidth = window.innerWidth;  
+  
+    if (coverageTable && sidebar && postContent) {
+      if (currentWidth < 1000) {
+        // For viewport less than 1000px, append to post content
+        postContent.appendChild(coverageTable);
+      } else {
+        // For viewport 1000px and wider, check for subscribe button
+        const subscribeButton = sidebar.querySelector('.subscribe-button');
+        
+        if (subscribeButton) {
+          // Insert coverage block after the subscribe button
+          subscribeButton.insertAdjacentElement('afterend', coverageTable);
+        } else {
+          // No subscribe button found, prepend to top of sidebar
+          sidebar.prepend(coverageTable);
+        }
+      }
+    }
+  }
+  
+  window.addEventListener("resize", coverageView);
+  window.addEventListener("load", coverageView);
+
+
+  (function() {
+    Array.from(document.querySelectorAll("a")).filter(a => {
+        return a.hostname && a.hostname !== location.hostname
+    }).forEach(a => a.setAttribute('target', '_blank'))
+})();
+</script>
+
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://blog.talosintelligence.com/assets/js/jquery-3.6.0.min.js?v=_xUj-3OJU5yExlq6"></script>
+<script src="https://blog.talosintelligence.com/assets/js/popper.min.js?v=ZvOgfh-ptkpoa2Y4"></script>
+<script src="https://blog.talosintelligence.com/assets/js/resize-styles.js?v=iB-0rQKwd6f_Dllp"></script>
+<script src="https://blog.talosintelligence.com/assets/js/bootstrap.bundle.min.js?v=JRXjfu4x9e89ZZsh"></script>
+<script src="https://blog.talosintelligence.com/assets/js/date.js?v=TlJWK1qtzFQeV9lL"></script>
+<script src="https://blog.talosintelligence.com/assets/js/prism.js?v=roQly8fYXhzQ4Osd"></script>
+<script src="https://cdn.jsdelivr.net/npm/ghost-theme-utils@latest/dist/js/ghost-theme-utils.min.js" async defer></script>
+<script src="https://blog.talosintelligence.com/assets/js/chart.min.js?v=dEAdc43T4D7l37O2"></script>
+<script src="https://blog.talosintelligence.com/assets/js/x-scroll.js?v=DuV8f5nlfWlGIAUr"></script>
+<script src="https://blog.talosintelligence.com/assets/js/2025_yir_chart.js?v=OSqUj45x6XXKWbZW"></script>
+
+
+</body>
+
+</html>

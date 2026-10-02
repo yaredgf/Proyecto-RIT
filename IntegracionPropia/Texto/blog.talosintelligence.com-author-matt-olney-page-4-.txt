@@ -1,0 +1,837 @@
+
+
+
+Matt Olney - Cisco Talos Blog (Page 4)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Matt Olney
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+January 1, 2010 00:30
+New Year, New Snort
+(I'm doing this now mainly to bump the bosses post down a slot... :))
+
+Hey folks, we have some updated Snort information for you. Here is some information ofon the latest production build of Snort, and our first beta build of Snort 2.8.6.
+
+Snort 2.8.5.2 Update:
+
+A quick note
+
+
+                    By
+                
+Matt Olney
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+December 30, 2009 12:56
+Matt's Guide to Vendor Response
+Well...it's that weird period between Christmas and New Years, and I've realized that I hadn't gotten anything for those wonderful people that keep the VRT employed.So as a gift to you, software vendor, I present Matt's Guide to Vendor Response.Now...this is a com
+
+
+                    By
+                
+Matt Olney
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+December 14, 2009 13:52
+Operation: Don't Tell Lurene We're Working On This
+If you've been following this blog for a while, you might have noticed that Lurene only shows up when there is evil to be done. This is why she is here; she's really, really good at it. She is also the analyst team lead and makes sure we are all keeping the fuzzers runnin
+
+
+                    By
+                
+Matt Olney
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+December 11, 2009 09:30
+I hope you're happy Bejtlich...you cost me a ton of sleep
+So after two days of getting up at the crack of dawn, having to deal with other VRT folks before they've had their coffee and then driving through commuter traffic and getting on the Metro, I came home from the SANS Incident Detection Summit completely exhausted. But as my he
+
+
+                    By
+                
+Matt Olney
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+December 2, 2009 13:56
+Hand Parsing Packets for False Negative Glory
+Yesterday, on the Snort-Sigs mailing list, we had a report of a potential false-negative in an older Snort rule. While he was unable to provide a full packet capture at the time, the author of the email was able to provide a copy-paste of the packet data. A lot of times, Alex Kir
+
+
+                    By
+                
+Matt Olney
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+December 1, 2009 16:29
+require_3whs and the Mystery of the Four-Way Handshake
+So, Tod Beardsley over at Breakingpoint Labs decided to kick around RFC793 some, and came across the "simultaneous connection". You can read the RFC at http://www.faqs.org/rfcs/rfc793.html, check around page 32 or look for the phrase "Simultaneous initiation".
+
+
+                    By
+                
+Matt Olney
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+July 14, 2009 17:00
+Why I'd Dress LIke a Cheerleader
+Twitter, the Internet’s biggest game of telephone, occasionally yields some interesting material. Yesterday, as an example, Lurene got a tweet that someone was upset about the Saphead’s write up of their work in this year’s DefCon CTF qualifier. The imagery they used to convey th
+
+
+                    By
+                
+Matt Olney
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+July 8, 2009 13:45
+Rule Performance Part One:  Content Matches
+One of the many things that occupy the time of the VRT is reviewing rule performance data, whether that data is internally generated from one of our test environments or received from customer reports. In the “Rule Performance” series of blog posts, we’ll look at the set of issue
+
+
+                    By
+                
+Matt Olney
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+March 10, 2009 15:43
+Behold the Glory of Mattland
+Like many other groups, the VRT has a morning routine. Generally it involves comparing kill board stats or raiding tips on whatever game is hot, a quick run down on the work of the day (sometimes as broad as “go break something”, sometimes more specific), and then some time set a
+
+
+                    By
+                
+Matt Olney
+
+
+
+
+
+ 
+
+
+
+
+
+
+← Prev
+
+
+Next →
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

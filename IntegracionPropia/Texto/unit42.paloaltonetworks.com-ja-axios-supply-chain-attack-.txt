@@ -1,0 +1,1596 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+脅威概要:Axiosサプライ チェーン攻撃で広範に及ぶ影響
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Menu
+
+
+
+
+
+
+セキュリティ コンサルティング
+現在、攻撃を受けていますか?
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Japanese
+
+
+
+
+
+English
+
+
+Spanish (LATAM)
+
+
+French
+
+
+Japanese
+
+
+
+
+
+  Threat Research Center主なサイバー脅威マルウェア 
+ 
+マルウェア
+脅威概要:Axiosサプライ チェーン攻撃で広範に及ぶ影響
+
+
+  3  分で読めます              
+
+
+Related ProductsAdvanced DNS SecurityAdvanced Threat PreventionAdvanced URL FilteringAdvanced WildFireCloud-Delivered Security ServicesCortexCortex CloudCortex XDRCortex XSIAMUnit 42 Incident Response 
+
+
+
+
+
+
+
+
+著者:Unit 42 
+
+公開日:2026年4月1日 カテゴリーマルウェア主なサイバー脅威
+ タグ:API attacksJavaScriptPowershellSupply chainTrojanVBScript
+ 
+
+
+ 
+ 
+
+
+共有
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+エグゼクティブ サマリー
+Unit 42のリサーチャーは、AxiosのJavaScriptライブラリを標的とした重大なサプライ チェーン攻撃による広範囲に及ぶ影響を観察しました。この攻撃は、Axiosメンテナーのnpmアカウントが乗っ取られ、悪意のあるアップデート(バージョンv1.14.1とv0.30.4)が公開された後に発生しました。
+これらの侵害されたバージョンでは、plain-crypto-jsと呼ばれる隠れた依存関係が導入されました。この依存性は、Windows、macOS、およびLinuxの各システムに影響を与えることのできるクロスプラットフォームのリモートアクセス型トロイの木馬(RAT)です。このマルウェアは、偵察を行って、持続性を確立する設計になっており、検出回避のための自己破壊機能が追加されています。
+Axiosは、JavaScript用のプロミス ベースのHTTPクライアント ライブラリとして人気があり、ブラウザやNode.jsでAPIリクエストを行うために使用されています。JSONデータの自動変換、リクエスト/レスポンスの傍受、リクエスト キャンセルなどの機能を備えており、フロントエンド アプリとバックエンド サービスを接続するための標準的なツールになっています。
+攻撃者が使用したマルウェアの分析結果は、以前報告された朝鮮民主主義人民共和国(DPRK)が関与していることが以前報告されたオペレーションと重複しています。
+このキャンペーンは、アメリカ、ヨーロッパ、中東、南アジア、オーストラリアの以下のセクターに影響を与えました:
+
+ビジネス サービス
+カスタマー サービス
+金融サービス
+ハイテク
+高等教育
+保険
+メディア エンターテインメント
+医療機器
+専門的サービスや法務サービス
+小売サービス
+
+この記事では、多くの攻撃緩和策を推奨しています。
+パロアルトネットワークスのお客様は、以下の製品を通じて、本書で取り上げるツールに対する確実な保護を構築いただけます:
+
+Advanced URL FilteringおよびAdvanced DNS Security
+Advanced Threat Prevention
+Advanced WildFire
+Cortex AgentiX
+Cortex Cloud
+Cortex XDRおよびXSIAM
+
+Unit 42インシデント レスポンスチームは、お客様のリスクを低減するために、侵害の際の支援や、プロアクティブな評価の提供にも取り組んでいます。
+
+
+
+議論された脆弱性
+サプライ チェーン、ハイ プロファイル スレット
+
+
+
+Axiosサプライ チェーン攻撃の詳細
+攻撃者によって、2つの侵害されたバージョンのAxios(v1.14.1とv0.30.4)が公開されましたが、Axiosのソースコードには一切手は加えられていません。代わりに、plain-crypto-js@4.2.1が、package.jsonファイルに実行時依存関係として注入されました。
+ポストインストール ドロッパー
+侵害されたAxiosのバージョンでは、開発者がnpm install axiosを実行すると、npmによって依存関係ツリーが自動的に解決され、plain-crypto-jsがインストールされます。これで、npmのポストインストール ライフサイクル フックにトリガーがかかり、バックグラウンドでsetup.jsという強度に難読化されたNode.jsドロッパー スクリプトが実行されます。
+オペレーションを難読化するために、setup.jsは文字列の反転、Base64デコード、OrDeR_7077キーを使ったXORサイファーを含む2層のエンコーディングスキームを使用します。
+プラットフォーム固有のペイロードのフェッチ
+ドロッパーはオペレーティング システムに問い合わせ、sfrclak[.]com:8000にあるコマンド&コントロール(C2)サーバーにHTTP POSTリクエストを送信します。このアウトバウンド トラフィックを、無害なnpmレジストリ リクエストのように見せるために、ドロッパーはプラットフォーム固有のパスを付加します:
+
+macOS用packages.npm[.]org/product0
+Windows用packages.npm[.]org/product1
+Linux用packages.npm[.]org/product2
+
+図1は、この第1段階のダウンロードのコマンドを示しています。
+図1.プラットフォームごとの第1段階のダウンロード。
+RATの実行
+C2サーバーは、被害者のオペレーティング システムに応じて異なるペイロードを配信します:
+
+macOS:ドロッパーは、C++でコンパイルされたMach-OバイナリをAppleScriptでダウンロードし、それを/Library/Caches/com.apple.act.mondに保存して実行可能にし、/bin/zsh経由でサイレントに起動します。
+Windows:ドロッパーは Windows PowerShell のバイナリを検索し、%PROGRAMDATA%\wt.exe にコピーします。次に、VBScript を使用して二次的な PowerShell RAT スクリプトを取得して実行し、続いてそのスクリプトが wt.exe によって実行されます。また、レジストリの Run キーを介して永続性を確立します。
+Linux:ドロッパーは、Node.jsのexecSyncコマンドでPythonのRATスクリプトを/tmp/ld.pyにダウンロードし、nohupコマンドでそれをバックグラウンドで実行します。
+
+統合型RATアーキテクチャ
+3つの異なる言語(C++、PowerShell、Python)で書かれていますが、3つのペイロードはすべて同じRATフレームワークの実装として機能します。
+これらはすべて同じC2プロトコルを使用し、HTTP POSTリクエストに対してBase64エンコードされたJSONデータを送信し、60秒ごとにサーバーにビーコンを送ります。C2サーバーは攻撃者から同じ4つのコマンドを受け取ります:
+
+kill(セルフターミネート)
+runscript(シェルを実行/スクリプト コマンド)
+peinject(バイナリペイロードをドロップして実行)
+rundir(ディレクトリ列挙)
+
+RATバリアントはすべて、Windows XP上のInternet Explorer 8になりすます、ハードコードされた非常に時代錯誤なユーザーエージェント文字列を使用します: mozilla/4.0 (compatible; msie 8.0; windows nt 5.1; trident/4.0.
+WAVESHAPERとのオーバーラップ
+ペイロードの初期分析では、WAVESHAPERとの重大なオーバーラップが確認されています。WAVESHAPERは、コマンドライン引数で指定されたHTTPまたはHTTPSのいずれかを使用し、curlライブラリでC2サーバーと通信するC++バックドアです。
+C2サーバーのアドレスもコマンドライン パラメーターで提供されるため、バックドアでは、敵対者のインフラから任意のペイロードをダウンロードして実行することができます。
+WAVESHAPERは、親セッションから切り離されたバックグラウンドで実行される子プロセスに自分自身をフォークして、デーモンとしても実行されます。WAVESHAPERは、HTTP POSTリクエストでC2サーバーに送信される返されたシステム情報を収集します。
+フォレンジック クリーンアップ 
+インストールから侵害までの全プロセスにかかる時間はおよそ15秒。ペイロードの起動に成功すると、Node.jsドロッパーは攻撃的なアンチフォレンジック クリーンアップを実行します。Node.jsドロッパーはsetup.jsファイルを削除し、postinstallフックを削除し、改ざんされたpackage.jsonをpackage.mdという名前のクリーンなおとりファイルに置き換えます。これにより、開発者がインストール後にnode_modulesフォルダを検査しても、悪意のあるコードの明白な兆候は見つかりません。
+Unit 42マネージド脅威ハンティング用クエリ
+Unit 42のマネージド スレット ハンティング チームは、Cortex XDRと以下のXQLクエリで、顧客全体でこの状況を悪用しようとする試みを追跡し続けています。Cortex XDRの顧客は、これらのXQLクエリで、悪用の兆候を検索することもできます。
+
+
+
+
+
+// Title: Compromised Axios npm package version (1.14.1 and 0.30.4) C2 on Command Line
+
+// Description: First stage of activity once a compromised endpoint runs the affected axios package is for the dropper scripts to call out to their C2 domain sfrclak[.]com
+
+// MITRE ATT&CK TTP ID: T1105
+
+config case_sensitive = false
+
+| dataset = xdr_data
+
+| fields _time, event_type, event_sub_type, event_id, agent_hostname, agent_id, action_process_image_command_line, actor_process_command_line
+
+| filter event_type = ENUM.PROCESS and event_sub_type = ENUM.PROCESS_START and action_process_image_command_line ~= "(?:\bsfrclak\.com\b)"
+
+| comp values(action_process_image_command_line) as action_process_image_command_line, values(actor_process_command_line) as actor_process_command_line by _time, agent_hostname, agent_id
+
+
+
+
+123456789101112131415
+
+// Title: Compromised Axios npm package version (1.14.1 and 0.30.4) C2 on Command Line // Description: First stage of activity once a compromised endpoint runs the affected axios package is for the dropper scripts to call out to their C2 domain sfrclak[.]com // MITRE ATT&CK TTP ID: T1105 config case_sensitive = false | dataset = xdr_data | fields _time, event_type, event_sub_type, event_id, agent_hostname, agent_id, action_process_image_command_line, actor_process_command_line | filter event_type = ENUM.PROCESS and event_sub_type = ENUM.PROCESS_START and action_process_image_command_line ~= "(?:\bsfrclak\.com\b)" | comp values(action_process_image_command_line) as action_process_image_command_line, values(actor_process_command_line) as actor_process_command_line by _time, agent_hostname, agent_id
+
+
+
+
+
+
+
+
+
+
+
+// Title: Compromised Axios npm package version (1.14.1 and 0.30.4) Malicious plain-crypto-js package directory
+
+// Description: The malicious package is actually plain-crypto-js, this looks for directory creation events for that package name within a node_modules folder
+
+// MITRE ATT&CK TTP ID: T1204.005
+
+config case_sensitive = false
+
+| dataset = xdr_data
+
+| fields _time, event_type, event_sub_type, event_id, agent_hostname, agent_id, action_file_path, actor_process_command_line
+
+| filter event_type = ENUM.FILE and event_sub_type in (ENUM.FILE_DIR_CREATE, ENUM.FILE_DIR_WRITE, ENUM.FILE_DIR_RENAME) and lowercase(action_file_path) ~= "(?:\bnode_modules[\\\/]plain-crypto-js\b)"
+
+| comp values(action_file_path) as action_file_path, values(actor_process_command_line) as actor_process_command_line by _time, agent_hostname, agent_id
+
+
+
+
+123456789101112131415
+
+// Title: Compromised Axios npm package version (1.14.1 and 0.30.4) Malicious plain-crypto-js package directory // Description: The malicious package is actually plain-crypto-js, this looks for directory creation events for that package name within a node_modules folder // MITRE ATT&CK TTP ID: T1204.005 config case_sensitive = false | dataset = xdr_data | fields _time, event_type, event_sub_type, event_id, agent_hostname, agent_id, action_file_path, actor_process_command_line | filter event_type = ENUM.FILE and event_sub_type in (ENUM.FILE_DIR_CREATE, ENUM.FILE_DIR_WRITE, ENUM.FILE_DIR_RENAME) and lowercase(action_file_path) ~= "(?:\bnode_modules[\\\/]plain-crypto-js\b)" | comp values(action_file_path) as action_file_path, values(actor_process_command_line) as actor_process_command_line by _time, agent_hostname, agent_id
+
+
+
+
+
+
+
+
+
+
+
+// Title: Compromised Axios npm package version (1.14.1 and 0.30.4) File Indicators
+
+// Description: Upon installation of the compromised axios package via npm, the postinstall script deploys dropper scripts to download and install a remote access trojan on Mac, Linux, or Windows endpoints.
+
+// MITRE ATT&CK TTP ID: T1105 & T1219
+
+config case_sensitive = false
+
+| dataset = xdr_data
+
+| fields _time, event_type, event_sub_type, event_id, agent_hostname, agent_id, action_file_path, actor_process_command_line
+
+| filter event_type = ENUM.FILE and event_sub_type in (FILE_CREATE_NEW, FILE_WRITE, FILE_RENAME) and lowercase(action_file_path) ~= "(?:library\/caches\/com\.apple\.act\.mond|\/tmp\/ld\.py|c:\\programdata\\wt\.exe|appdata\\local\\temp\\6202033\.(?:ps1|vbs)|c:\\programdata\\system\.bat)"
+
+| comp values(action_file_path) as action_file_path, values(actor_process_command_line) as actor_process_command_line by _time, agent_hostname, agent_id
+
+
+
+
+123456789101112131415
+
+// Title: Compromised Axios npm package version (1.14.1 and 0.30.4) File Indicators // Description: Upon installation of the compromised axios package via npm, the postinstall script deploys dropper scripts to download and install a remote access trojan on Mac, Linux, or Windows endpoints. // MITRE ATT&CK TTP ID: T1105 & T1219 config case_sensitive = false | dataset = xdr_data | fields _time, event_type, event_sub_type, event_id, agent_hostname, agent_id, action_file_path, actor_process_command_line | filter event_type = ENUM.FILE and event_sub_type in (FILE_CREATE_NEW, FILE_WRITE, FILE_RENAME) and lowercase(action_file_path) ~= "(?:library\/caches\/com\.apple\.act\.mond|\/tmp\/ld\.py|c:\\programdata\\wt\.exe|appdata\\local\\temp\\6202033\.(?:ps1|vbs)|c:\\programdata\\system\.bat)" | comp values(action_file_path) as action_file_path, values(actor_process_command_line) as actor_process_command_line by _time, agent_hostname, agent_id
+
+
+
+
+
+
+
+
+
+
+
+// Title: Compromised Axios npm package version (1.14.1 and 0.30.4) C2 NGFW Traffic
+
+// Description: First stage of activity once a compromised endpoint runs the affected axios package is for the dropper scripts to call out to their C2 domain sfrclak[.]com
+
+// MITRE ATT&CK TTP ID: T1105
+
+config case_sensitive = false
+
+| dataset = panw_ngfw_url_raw
+
+| filter url_domain ~= "(?:\bsfrclak\.com\b)"
+
+| join type = left (
+
+dataset = panw_ngfw_traffic_raw
+
+| fields session_id, source_ip, dest_ip, source_port, dest_port, action_source, bytes_received, bytes_sent, bytes_total, packets_received, packets_sent, packets_total, chunks_received, chunks_sent, chunks_total, session_end_reason
+
+) as trafficraw trafficraw.session_id = session_id and trafficraw.source_ip = source_ip and trafficraw.dest_ip = dest_ip and trafficraw.source_port = source_port and trafficraw.dest_port = dest_port
+
+| fields _time, _reporting_device_name, action, action_source, source_ip, source_port, source_user, source_location, dest_ip, dest_port, dest_location, http_method, http_headers, uri, url_category, url_category_list, url_domain, app, app_category, app_sub_category, bytes_received, bytes_sent, bytes_total, packets_received, packets_sent, packets_total, chunks_received, chunks_sent, chunks_total, protocol, inbound_if, outbound_if, from_zone, to_zone, referer, referer_fqdn, referer_port, referer_protocol, referer_url_path, rule_matched, session_id, session_end_reason, severity, sub_type, technology_of_app, tunneled_app, vsys
+
+| sort desc _time
+
+
+
+
+1234567891011121314151617181920212223
+
+// Title: Compromised Axios npm package version (1.14.1 and 0.30.4) C2 NGFW Traffic // Description: First stage of activity once a compromised endpoint runs the affected axios package is for the dropper scripts to call out to their C2 domain sfrclak[.]com // MITRE ATT&CK TTP ID: T1105 config case_sensitive = false | dataset = panw_ngfw_url_raw | filter url_domain ~= "(?:\bsfrclak\.com\b)" | join type = left ( dataset = panw_ngfw_traffic_raw | fields session_id, source_ip, dest_ip, source_port, dest_port, action_source, bytes_received, bytes_sent, bytes_total, packets_received, packets_sent, packets_total, chunks_received, chunks_sent, chunks_total, session_end_reason ) as trafficraw trafficraw.session_id = session_id and trafficraw.source_ip = source_ip and trafficraw.dest_ip = dest_ip and trafficraw.source_port = source_port and trafficraw.dest_port = dest_port | fields _time, _reporting_device_name, action, action_source, source_ip, source_port, source_user, source_location, dest_ip, dest_port, dest_location, http_method, http_headers, uri, url_category, url_category_list, url_domain, app, app_category, app_sub_category, bytes_received, bytes_sent, bytes_total, packets_received, packets_sent, packets_total, chunks_received, chunks_sent, chunks_total, protocol, inbound_if, outbound_if, from_zone, to_zone, referer, referer_fqdn, referer_port, referer_protocol, referer_url_path, rule_matched, session_id, session_end_reason, severity, sub_type, technology_of_app, tunneled_app, vsys | sort desc _time
+
+
+
+
+
+
+まとめ
+攻撃者は2026年初頭から、npmのサプライ チェーン オペレーションの頻度と規模を拡大しています。継続的インテグレーション/継続的デプロイメント(CI/CD)パイプラインのセキュリティ確保は、どの組織にとっても、この増大する脅威を緩和するための最優先事項になるはずです。
+利用できる情報量に基づいて、以下の行動を強く推奨します:
+即時評価と隔離
+
+悪意のあるパッケージを監査する:プロジェクトとnode_modulesディレクトリで、侵害されたAxiosバージョン(1.14.1と0.30.4)と注入されたplain-crypto-jsパッケージ(バージョン4.2.0と4.2.1)を検索してください。
+マルウェアのアーティファクトをチェックする: Library/Caches/com.apple.act.mond (macOS)、%PROGRAMDATA%wt.exe (Windows)、/tmp/ld.py (Linux)など、プラットフォーム固有の侵害のインジケーターがないかシステムを検査します。
+影響を受けるシステムを隔離する:悪意のあるパッケージやRATアーティファクトを発見したら、システムをネットワークからすみやかに隔離します。
+
+修復と再建
+
+ゼロから作り直す:環境が侵害された場合、マルウェアがまだ残っている間は、その駆除を試みないでください。その代わりに、既知の良好な状態から環境を完全に再構築します。
+キャッシュを消去する:すべてのワークステーションとビルドサーバーで、ローカルと共有のパッケージ マネージャーのキャッシュ(npm、yarn、pnpm)をクリアして、今後のインストール時の再感染を防ぎます。
+
+認証情報の包括的ローテーション
+
+侵害を想定する:悪意のあるパッケージが実行された場合、そのマシンでアクセス可能なすべての秘密が盗まれたと考える必要があります。
+すべての秘密をローテーションする:npmトークン、AWSアクセス キー、SSHプライベート キー、クラウド環境認証情報(Google Cloud、Azure)、CI/CDシークレット、.envファイルに保存されている機密値など、公開された認証情報をすみやかにローテーションします。
+
+バージョン管理と依存関係のピンニング
+
+Axiosをダウングレードする:Axiosの安全な最新バージョンにすみやかにダウングレードします:1.14.0または0.30.3。
+依存関係をピンニングする:誤ってアップグレードされないように、package-lock.jsonファイル内でAxiosをこれらの安全なバージョンに固定します。
+オーバーライドを使用する:パッケージの設定にオーバーライド ブロックを追加して、悪意のあるバージョンが他のパッケージによって推移的に解決されるのを防いでください。
+企業リポジトリを制限する:Axiosの既知の正当なバージョンのみが厳密に提供されるように、企業が管理するnpmリポジトリを設定します。
+
+ネットワーク防御と監視
+
+C2トラフィックをブロックする:攻撃者のC2ドメイン(sfrclak[.]com)とIPアドレス(142.11.206[.]73)へのすべてのegressトラフィックをブロックします。
+ログを監視する:ポート8000を介した不審なアウトバウンド接続、ビーコン動作、異常なHTTP POSTリクエストをネットワーク ログで監視します。
+
+CI/CDパイプラインのハードニング
+
+CI/CDパイプラインを監査する:自動ビルド ログを確認し、最近実行されたランの間に、影響を受けるバージョンがインストールされたかどうかを確認します。すべてのシークレットを実行したワークフローをローテーションします。
+デプロイメントを一時停止し、検証する: Axiosに依存しているプロジェクトのCI/CDデプロイメントを一時停止し、ビルドが汚染された「最新」バージョンを自動的にプルしていないかどうかを検証します。
+ライフサイクル スクリプトを無効にする: CI/CDインストール時に--ignore-scriptsフラグを使用し、自動ビルド時にnpmポストインストール フックの実行を明示的に防ぎます。
+
+長期的な開発者セキュリティ
+
+サンドボックス環境:コンテナやサンドボックスを使って開発環境を隔離し、ホストのファイル システムへのアクセスを制限します。
+Vaultシークレット:悪意のあるスクリプトがプログラムでスクレイピングできないように、プレーン テキスト シークレットを開発者のマシンから安全なVaultやOSキーチェーンに移行します(aws-vaultのようなツールを使用)。
+endpoint detection and response (EDR)をデプロイする:Node.jsアプリケーションから生成される不審なプロセスを監視するために、開発者のワークステーションにEDRソリューションをデプロイします。
+
+パロアルトネットワークスは、本調査結果をサイバー脅威アライアンス(CTA)のメンバーと共有しています。CTAの会員は、このインテリジェンス情報を利用して、その顧客に対して迅速に保護をデプロイし、悪意のあるサイバー アクターを体系的に阻止しています。サイバー脅威アライアンスについて詳細を見る。
+パロアルトネットワークスのお客様は、以下に示す当社製品により保護されています。新たな関連情報が明らかになり次第、本脅威概要は更新されます。
+Axiosサプライ チェーン攻撃に対するパロアルトネットワークス製品の保護機能
+パロアルトネットワークスのお客様は、さまざまな製品保護、アップデートを活用して、本脅威を特定し組織を保護いただけます。
+情報漏えいの可能性がある場合、または緊急の案件がある場合はUnit 42インシデント レスポンス チームにアクセスするか電話でご連絡ください:
+
+北米:フリーダイヤル: +1 (866) 486-4842 (866.4.UNIT42)
+英国: +44.20.3743.3660
+ヨーロッパおよび中東: +31.20.299.3130
+アジア: +65.6983.8730
+日本: +81.50.1790.0200
+オーストラリア: +61.2.4062.7950
+インド: 000 800 050 45107
+韓国: +82.080.467.8774
+
+Advanced WildFire
+Advanced WildFireの機械学習モデルと分析技術は、本研究で共有されたインジケーターを考慮してレビューされ、更新されています。
+Advanced Threat Prevention を備えた次世代ファイアウォール
+Advanced Threat Prevention セキュリティサブスクリプションを適用したNext-Generation Firewallは、以下のスレット プリベンション シグネチャを介して攻撃をブロックするのに役立ちます：87121。
+Cortex AgentiX
+セキュリティ アナリストは、自然言語を使用して Cortex AgentiX Threat Intel エージェントに指示（プロンプト）を出し、この脅威ブリーフからファイルの侵害指標（IoC）を抽出できます。その後、それらの情報をエンリッチメントし、自身の Cortex テナント内での検知状況（sightings）や関連するアラートを確認した上で、組織への影響に関する簡潔な要約を提供する必要があります。
+次世代ファイアウォール向けクラウド提供型セキュリティ サービス
+Advanced URL FilteringとAdvanced DNS Securityは、この活動に関連する既知のIPアドレスとドメインを悪意のあるものとして識別することが可能です。
+Cortex XDRおよびXSIAM
+Cortex XDRとXSIAMは、この記事で説明した初期アクセス、C2、潜在的なラテラル ムーブメントから保護するための多層防御を備えています。この多層防御には、Behavioral Threat Protection(BTP)、Advanced WildFire、Cortex Analyticsが含まれます。
+具体的には、WindowsとmacOS上における、この攻撃の第2段階に対するAdvanced WildFireとBTPを介したout-of-the-box(OotB)防御を確認しました。以下の記事の説明にあるように、Cortex Analyticsは、当社のカスタマイズされたディテクターを使用して、C2活動や疑わしいサプライ チェーン活動を検出するのに役立ちます:
+
+動作分析によるLinux C2と認証情報盗難の阻止方法 - Palo Alto Networks Blog
+Cortex XDR Global Analyticsによるサプライ チェーン攻撃の防御方法 - Palo Alto Networks Blog
+
+最高の保護措置を受けるために、サポートされるバージョンと最新のコンテンツ アップデートにエージェントをアップグレードすることをお勧めします。
+Cortex Cloud
+Cortex Cloudプラットフォームは、Axios攻撃チェーンの第1段階と第2段階の両方に対して、検知オペレーションと防御オペレーションを提供します。これには、ソフトウェア サプライ チェーン セキュリティ、アプリケーション セキュリティ(AppSec)、クラウド ワークロード プロテクション(CWP)、Cortex XDR、およびXSIAMが含まれます。
+CI/CDの信頼できるパブリッシャー検証オペレーションから、ランタイムのインストール後のモニタリングやエンドポイントの永続性検知まで、攻撃のあらゆる段階を、その防止や検知を支援するCortex Cloudの機能にマッピングすることができます。
+侵害のインジケーター
+SHA256ハッシュ
+
+ad8ba560ae5c4af4758bc68cc6dcf43bae0e0bbf9da680a8dc60a9ef78e22ff7
+fcb81618bb15edfdedfb638b4c08a2af9cac9ecfa551af135a8402bf980375cf
+cdc05cd30eb53315dadb081a7b942bb876f0d252d20e8ed4d2f36be79ee691fa
+8449341ddc3f7fcc2547639e21e704400ca6a8a6841ae74e57c04445b1276a10
+01c9484abc948daa525516464785009d1e7a63ffd6012b9e85b56477acc3e624
+7b47ed28e84437aee64ffe9770d315c1b984135105f7f608a8b9579517bc0695
+526ab39d1f56732e4e926715aaa797feb13b1ae86882ec570a4d292e7fdc3699
+a98e04dec3a7fe507eb30c72da808bad60bc14d9d80f9770ec99c438faa85a1a
+0d83030ab8bfba675fc1661f0756b6770be7dd80b1b718de3d68a01f2e79a5f4
+92ff08773995ebc8d55ec4b8e1a225d0d1e51efa4ef88b8849d0071230c9645a
+58401c195fe0a6204b42f5f90995ece5fab74ce7c69c67a24c61a057325af668
+fcb81618bb15edfdedfb638b4c08a2af9cac9ecfa551af135a8402bf980375cf
+e10b1fa84f1d6481625f741b69892780140d4e0e7769e7491e5f4d894c2e0e09
+f7d335205b8d7b20208fb3ef93ee6dc817905dc3ae0c10a0b164f4e7d07121cd
+617b67a8e1210e4fc87c92d1d1da45a2f311c08d26e89b12307cf583c900d101
+e49c2732fb9861548208a78e72996b9c3c470b6b562576924bcc3a9fb75bf9ff
+92ff08773995ebc8d55ec4b8e1a225d0d1e51efa4ef88b8849d0071230c9645a
+506690fcbd10fbe6f2b85b49a1fffa9d984c376c25ef6b73f764f670e932cab4
+4465bdeaddc8c049a67a3d5ec105b2f07dae72fa080166e51b8f487516eb8d07
+fcb81618bb15edfdedfb638b4c08a2af9cac9ecfa551af135a8402bf980375cf
+58401c195fe0a6204b42f5f90995ece5fab74ce7c69c67a24c61a057325af668
+5bb67e88846096f1f8d42a0f0350c9c46260591567612ff9af46f98d1b7571cd
+59336a964f110c25c112bcc5adca7090296b54ab33fa95c0744b94f8a0d80c0f
+a224dd73b7ed33e0bf6a2ea340c8f8859dfa9ec5736afa8baea6225bf066b248
+5e2ab672c3f98f21925bd26d9a9bba036b67d84fde0dfdbe2cf9b85b170cab71
+20df0909a3a0ef26d74ae139763a380e49f77207aa1108d4640d8b6f14cab8ca
+5b5fbc627502c5797d97b206b6dcf537889e6bea6d4e81a835e103e311690e22
+506690fcbd10fbe6f2b85b49a1fffa9d984c376c25ef6b73f764f670e932cab4
+4465bdeaddc8c049a67a3d5ec105b2f07dae72fa080166e51b8f487516eb8d07
+9c64f1c7eba080b4e5ff17369ddcd00b9fe2d47dacdc61444b4cbfebb23a166c
+
+IPアドレスとドメイン
+
+142.11.206[.]73
+sfrclak[.]com
+callnrwise[.]com
+hxxp://sfrclak[.]com:8000
+hxxp://sfrclak[.]com:8000/6202033
+
+2026年4月1日午後1時15分更新Advanced WildFireのカバレッジを追加するPT。
+2026年4月9日 午前8時50分（太平洋標準時）更新：Advanced Threat Prevention のカバレッジを追加しました。
+2026年4月13日 午後12時50分（太平洋標準時）更新：Windows 版における RAT の実行方法を明確化しました。Cortex AgentiX のカバレッジを追加しました。
+
+
+トップに戻る
+
+タグAPI attacksJavaScriptPowershellSupply chainTrojanVBScript
+
+
+
+Threat Research Center
+
+
+次ページ:プロテクターを武器として利用する:セキュリティ インフラにおけるTeamPCPの多段階サプライ チェーン攻撃
+
+
+
+
+
+
+
+目次
+
+
+
+
+
+
+関連記事
+
+
+
+                      npmの脅威の状況: アタックサーフェスと緩和策(6月2日更新)                  
+
+
+
+                      プロテクターを武器として利用する:セキュリティ インフラにおけるTeamPCPの多段階サプライ チェーン攻撃                  
+
+
+
+                      BeyondTrustの深刻な脆弱性（CVE-2026-1731）の悪用においてVShellおよびSparkRATを確認                  
+
+
+
+
+
+
+
+
+
+関連項目 マルウェア リソース
+
+
+
+
+ 
+
+
+
+主なサイバー脅威 2026年8月6日
+
+ChainDropの脅威の概要:自己増殖型npmワームの内部
+
+
+
+Blockchain
+
+
+ChainDrop
+
+
+Claude code
+ 
+
+
+                    今すぐ読む                    
+
+
+
+
+
+
+
+ 
+
+
+
+主なサイバー脅威 2026年6月2日
+
+npmの脅威の状況: アタックサーフェスと緩和策(6月2日更新)
+
+
+
+Credential Harvesting
+
+
+GitHub
+
+
+Npm packages
+ 
+
+
+                    今すぐ読む                    
+
+
+
+
+
+
+
+ 
+
+
+
+脅威アクター グループ 2026年5月22日
+
+イランAPT Screening Serpensによる2026年スパイ キャンペーンの追跡
+
+
+
+Advanced Persistent Threat
+
+
+AppDomainManager
+
+
+DLL Sideloading
+ 
+
+
+                    今すぐ読む                    
+
+
+
+
+
+
+
+ 
+
+
+
+主なサイバー脅威 2026年4月17日
+
+脅威情報: 2026年イランに関するサイバー リスクの激化(4月17日更新)
+
+
+
+APK
+
+
+DDoS attacks
+
+
+GenAI
+ 
+
+
+                    今すぐ読む                    
+
+
+
+
+
+
+
+ 
+
+
+
+主なサイバー脅威 2026年3月31日
+
+プロテクターを武器として利用する:セキュリティ インフラにおけるTeamPCPの多段階サプライ チェーン攻撃
+
+
+
+CVE-2025-55182
+
+
+GitHub
+
+
+Infostealer
+ 
+
+
+                    今すぐ読む                    
+
+
+
+
+
+
+
+ 
+
+
+
+脅威リサーチ 2026年3月24日
+
+脅威情報: パロアルトネットワークスの人材獲得チームになりすました採用スキーム
+
+
+
+Email scam
+
+
+Lure
+
+
+Phishing
+ 
+
+
+                    今すぐ読む                    
+
+
+
+
+
+
+
+ 
+
+
+
+主なサイバー脅威 2026年2月11日
+
+国家支援型の脅威アクターがNotepad++のサプライチェーンを悪用
+
+
+
+Backdoor
+
+
+Cobalt Strike
+
+
+DLL Sideloading
+ 
+
+
+                    今すぐ読む                    
+
+
+
+
+
+
+
+ 
+
+
+
+脅威リサーチ 2026年1月22日
+
+ランタイムアセンブリ攻撃の新たなフロンティア：LLMを活用したフィッシング用JavaScriptのリアルタイム生成
+
+
+
+API
+
+
+Google
+
+
+JavaScript
+ 
+
+
+                    今すぐ読む                    
+
+
+
+
+
+
+
+ 
+
+
+
+脅威リサーチ 2026年1月2日
+
+Pyarmorを利用して難読化と検知回避を行うVVS Discord Stealer
+
+
+
+Discord
+
+
+Infostealer
+
+
+Python
+ 
+
+
+                    今すぐ読む                    
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
+				Unit 42 からの最新情報を取得			
+進化する脅威の状況を常に先取り
+
+
+
+
+
+
+
+
+
+
+メール アドレス
+
+
+本フォームを送信することにより、利用規約に同意し、プライバシー ポリシーを承認したことになります。
+
+                     本サイトは reCAPTCHA で保護されており、Googleのプライバシー ポリシー とサービス利用規約が適用されます。                            
+  
+
+Invalid captcha!
+ 
+					サブスクライブ					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+最新ニュース、イベント情報、脅威アラートを配信
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+登録にはメールアドレスをご入力ください。
+
+
+
+
+
+お申込み 
+
+
+
+
+                                
+                                
+                                
+                                    
+                                    
+                                        
+                                        このフォームを送信することにより、個人情報がパロアルトネットワークスのプライバシーポリシーおよび利用規約に従って処理されることを理解します。
+                                    
+                                
+
+                                
+                                
+
+
+お申込み 
+
+
+
+
+
+
+
+
+
+
+
+
+製品とサービス
+
+
+
+
+
+                                    AI利用ネットワーク セキュリティ プラットフォーム
+                                
+
+
+
+                                    AIのセキュア バイ デザイン
+                                
+
+
+
+                                    Prisma AIRS
+                                
+
+
+
+                                    AI Access Security
+                                
+
+
+
+                                    クラウド提供型セキュリティ サービス
+                                
+
+
+
+                                    Advanced Threat Prevention
+                                
+
+
+
+                                    Advanced URL Filtering
+                                
+
+
+
+                                    Advanced WildFire
+                                
+
+
+
+                                    Advanced DNS Security
+                                
+
+
+
+                                    Enterprise Data Loss Prevention
+                                
+
+
+
+                                    Enterprise IoT Security
+                                
+
+
+
+                                    Medical IoT Security
+                                
+
+
+
+                                    Industrial OT Security
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    次世代ファイアウォール
+                                
+
+
+
+                                    ハードウェア ファイアウォール
+                                
+
+
+
+                                    ソフトウェア ファイアウォール
+                                
+
+
+
+                                    Strata Cloud Manager
+                                
+
+
+
+                                    SD-WAN for NGFW
+                                
+
+
+
+                                    PAN-OS
+                                
+
+
+
+                                    Panorama
+                                
+
+
+
+                                    セキュア アクセス サービス エッジ
+                                
+
+
+
+                                    Prisma SASE
+                                
+
+
+
+                                    App Acceleration
+                                
+
+
+
+                                    自律型デジタルエクスペリエンス管理
+                                
+
+
+
+                                    Enterprise DLP
+                                
+
+
+
+                                    Prisma Access
+                                
+
+
+
+                                    Prisma Browser
+                                
+
+
+
+                                    Prisma SD-WAN 
+                                
+
+
+
+                                    リモート ブラウザ分離
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    AI駆動型セキュリティ運用プラットフォーム
+                                
+
+
+
+                                    Cloud Security
+                                
+
+
+
+                                    Cortex Cloud
+                                
+
+
+
+                                    Application Security
+                                
+
+
+
+                                    Cloud Posture Security
+                                
+
+
+
+                                    Cloud Runtime Security
+                                
+
+
+
+                                    Prisma Cloud 
+                                
+
+
+
+                                    AI駆動型SOC
+                                
+
+
+
+                                    Cortex XSIAM
+                                
+
+
+
+                                    Cortex XDR
+                                
+
+
+
+                                    Cortex XSOAR
+                                
+
+
+
+                                    Cortex Xpanse
+                                
+
+
+
+                                    Unit 42マネージド ディテクション&レスポンス
+                                
+
+
+
+                                    マネージドXSIAM
+                                
+
+
+
+
+
+                                    次世代のアイデンティティ セキュリティ
+                                
+
+
+
+                                    特権アクセス管理
+                                
+
+
+
+                                    アイデンティティ管理とアクセス管理
+                                
+
+
+
+                                    Endpoint Privilege Manager
+                                
+
+
+
+                                    アイデンティティ ガバナンス
+                                
+
+
+
+                                    従業員パスワード管理
+                                
+
+
+
+                                    エージェンティック アイデンティティ
+                                
+
+
+
+                                    シークレット管理
+                                
+
+
+
+                                    統合型シークレット ガバナンス
+                                
+
+
+
+                                    アプリケーションの認証情報配信
+                                
+
+
+
+                                    ベンダーの特権アクセス
+                                
+
+
+
+                                    脅威インテリジェンス&インシデント レスポンス サービス
+                                
+
+
+
+                                    予防評価
+                                
+
+
+
+                                    インシデント レスポンス
+                                
+
+
+
+                                    セキュリティ戦略を変革
+                                
+
+
+
+                                    脅威インテリジェンスについて
+                                
+
+
+
+
+
+
+会社名
+
+
+
+
+
+                                    パロアルトネットワークスについて
+                                
+
+
+
+                                    採用情報
+                                
+
+
+
+                                    お問合せ
+                                
+
+
+
+                                    企業責任
+                                
+
+
+
+                                    お客様向け
+                                
+
+
+
+                                    IR
+                                
+
+
+
+                                    拠点
+                                
+
+
+
+                                    ニュースルーム
+                                
+
+
+
+
+
+
+人気のあるリンク
+
+
+
+
+
+                                    ブログ
+                                
+
+
+
+                                    コミュニティ
+                                
+
+
+
+                                    コンテンツライブラリ
+                                
+
+
+
+                                    Cyberpedia
+                                
+
+
+
+                                    イベントセンター
+                                
+
+
+
+                                    電子メール設定の管理
+                                
+
+
+
+                                    製品A〜Z
+                                
+
+
+
+                                    製品認証
+                                
+
+
+
+                                    脆弱性の報告
+                                
+
+
+
+                                    サイトマップ
+                                
+
+
+
+                                    テクニカル ドキュメント
+                                
+
+
+
+                                    Unit 42
+                                
+
+
+
+                                    個人情報の販売および共有禁止
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                プライバシー
+                            
+
+
+
+                                トラスト センター
+                            
+
+
+
+                                利用規約
+                            
+
+
+
+                                ドキュメント
+                            
+
+
+Copyright © 2026 Palo Alto Networks. All Rights Reserved
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+JP
+
+
+
+Select your language
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Your browser does not support the video tag.
+          
+
+Default Heading
+Read the article
+              
+
+
+
+
+Seekbar
+
+
+
+
+
+
+
+
+
+
+
+
+
+Volume
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

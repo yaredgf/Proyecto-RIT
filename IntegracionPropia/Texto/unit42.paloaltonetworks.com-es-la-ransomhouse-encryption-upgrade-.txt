@@ -1,0 +1,1406 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+De lo lineal a lo complejo: una actualización del cifrado de RansomHouse
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Menu
+
+
+
+
+
+
+ATOMs
+Security Consulting
+Under Attack?
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Spanish (LATAM)
+
+
+
+
+
+English
+
+
+Spanish (LATAM)
+
+
+French
+
+
+Japanese
+
+
+
+
+
+  Threat Research CenterInvestigación de amenazasRansomware 
+ 
+Ransomware
+De lo lineal a lo complejo: una actualización del cifrado de RansomHouse
+
+
+  16  lectura mínima              
+
+
+Related ProductsAdvanced WildFireCloud-Delivered Security ServicesCortexCortex XpanseCortex XSIAMUnit 42 Incident ResponseUnit 42 Ransomware Readiness Assessment 
+
+
+
+
+
+
+
+
+Por:Anmol MauryaJingwen Shi 
+
+Publicado:17 de Diciembre de 2025 CategoríasGrupos de actores de amenazasInvestigación de amenazasRansomware
+ Etiquetas:ESXiJolly ScorpiusRansomHouse
+ 
+
+
+ 
+ 
+
+
+Compartir
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+Resumen ejecutivo
+RansomHouse es una operación de ransomware como servicio (RaaS) dirigida por un grupo que rastreamos con el nombre de Jolly Scorpius. Muestras recientes de los binarios asociados que se usan en las operaciones de RansomHouse revelan una actualización significativa del cifrado. En este artículo, se explora la actualización del cifrado de RansomHouse y el impacto potencial para los defensores.
+Jolly Scorpius utiliza una estrategia de extorsión doble. Esta estrategia combina el robo y el cifrado de los datos de la víctima con la amenaza de filtrar los datos robados.
+La escala de las operaciones del grupo es significativa. Cuando se redactó este artículo, al menos 123 víctimas figuraban en el sitio de filtración de datos de RansomHouse como víctimas de la divulgación o la venta de sus datos desde diciembre de 2021.
+Este grupo ha perturbado sectores críticos como la sanidad, las finanzas, el transporte y la administración pública. Las consecuencias de estas intrusiones incluyen importantes pérdidas financieras, grandes vulneraciones de datos y la erosión de la confianza pública en las organizaciones afectadas.
+Con el propósito de entender mejor las operaciones de RansomHouse, revisamos su cadena de ataque. También examinamos la actualización del cifrado de este ransomware, que cambió de una simple técnica lineal de una sola fase a un método más complejo de varias capas.
+Los clientes de Palo Alto Networks están mejor protegidos frente a las amenazas descritas en este artículo por medio de los siguientes productos y servicios:
+
+Advanced WildFire
+Cortex Xpanse y el complemento ASM para XSIAM
+
+Si cree que puede haber resultado vulnerado o tiene un problema urgente, póngase en contacto con el equipo de respuesta ante incidentes de Unit 42.
+
+
+
+Temas relacionados con Unit 42
+Ransomware, ESXi
+
+
+
+Roles de los actores y la cadena de ataque
+A pesar de que Jolly Scorpius se posiciona como un grupo que expone las vulnerabilidades de las empresas, sus acciones revelan un negocio directo de extorsión. A fin de comprender mejor las operaciones de RansomHouse, deberíamos identificar los roles específicos de los actores, discernir las distintas fases de la cadena de ataque y determinar cómo se relacionan entre sí los roles y las fases.
+En la Figura 1, se ilustran estos roles y sus posiciones en la cadena de ataque.
+Figura 1. Roles de los actores y su relación con las fases de la cadena de ataque de RansomHouse.
+La cadena de ataque de RansomHouse implica tres roles distintos:
+
+Operador: opera el RaaS
+Atacante: implementa el ransomware
+Víctima: objetivo del atacante
+
+Los operadores son responsables de establecer y mantener el RaaS, incluido el desarrollo de herramientas para el cifrado de datos y otras funciones. Las personas que desempeñan este rol gestionan el sitio de fuga de datos y la arquitectura para que las víctimas negocien el pago de los rescates. Esto incluye la gestión de las carteras de criptomonedas para el cobro y el blanqueo del dinero de los rescates.
+Los atacantes suelen denominarse afiliados porque son actores de amenazas distintos de los operadores. A medida que los servicios de ransomware surgen y dejan de operar, los atacantes pueden cambiar su afiliación a diferentes grupos de RaaS. Los atacantes son responsables de obtener el acceso inicial, moverse lateralmente, exfiltrar datos e implementar el ransomware.
+Los atacantes de RansomHouse son conocidos por atacar la infraestructura ESXi de VMware, una plataforma de hipervisor de uso común en las empresas. Los atacantes de RansomHouse atacan específicamente ESXi porque la vulneración de esta plataforma les permite cifrar docenas o cientos de máquinas virtuales a la vez, causando la máxima interrupción operativa.
+La cadena de ataque refleja una estrategia multifacética para presionar a las víctimas de RansomHouse. Esta estrategia consiste en recopilar información confidencial, cifrar datos seleccionados, publicar las identidades de las víctimas y amenazarlas con divulgar sus datos confidenciales. La cadena de ataque de RansomHouse puede dividirse en cuatro fases:
+
+Desarrollar
+Infiltrar
+Exfiltrar e implementar
+Extorsionar
+
+Cada fase implica al menos uno de los tres roles.
+Fase 1: desarrollar
+En esta fase, los operadores de RansomHouse funcionan como proveedores backend y son responsables de desarrollar todos los aspectos del RaaS. Lo más importante es que los operadores no suelen llevar a cabo las intrusiones iniciales. En cambio, confían en que sus afiliados (es decir, los atacantes) aprovecharán los servicios RaaS desarrollados en esta fase.
+Fase 2: infiltrar
+En esta fase, los atacantes comprometen a las víctimas a través de correos electrónicos de phishing selectivo u otras técnicas de ingeniería social. Además del correo electrónico, los vectores de acceso inicial incluyen sistemas vulnerables en el entorno de la víctima que los atacantes pueden comprometer con exploits de día cero o de otro tipo.
+Tras conseguir el acceso inicial, los atacantes suelen utilizar herramientas y marcos de terceros para explorar la red de la víctima. El resto de la fase de infiltración incluye el reconocimiento para mapear el entorno, la escalada de privilegios, el movimiento lateral y la identificación de información valiosa o confidencial.
+Fase 3: exfiltrar e implementar
+Una vez que los atacantes afiliados a RansomHouse se infiltran en el entorno de la víctima, extraen datos confidenciales e implementan el ransomware. Las técnicas típicas de exfiltración de datos implican la compresión de archivos y utilidades de transferencia de archivos, y los atacantes suelen enviar los datos a servidores que están bajo su control.
+El RaaS de RansomHouse utiliza una arquitectura modular que consta de los dos componentes siguientes:
+
+Herramienta de gestión
+Cifrador
+
+RansomHouse usa una herramienta de gestión llamada MrAgent, que se diseñó para automatizar y rastrear las implementaciones de ransomware en diferentes sistemas hipervisores en un entorno ESXi.
+RansomHouse utiliza un cifrador conocido como Mario. Después de cifrar los archivos, Mario envía una nota de rescate que contiene instrucciones sobre cómo las víctimas pueden recuperar sus datos.
+Fase 4: extorsionar
+Una vez que los datos de la víctima han sido robados y cifrados, la cadena de ataque pasa a la fase de extorsión. Los operadores de RaaS suelen encargarse de esta fase, que a menudo implica negociaciones en salas de chat específicas. Los operadores validan sus amenazas mediante la divulgación estratégica de información en plataformas como Telegram y el sitio de filtración de datos de RansomHouse.
+Ahora que sabemos más sobre la cadena de ataque de RansomHouse, repasemos cómo se utilizan los componentes de este ransomware en los ataques.
+Los componentes de RansomHouse utilizados en los ataques
+Los dos componentes de este ransomware (MrAgent y Mario) están diseñados específicamente para comprometer entornos virtualizados. En la Figura 2, se ilustra cómo se utilizan estas herramientas en un ataque de RansomHouse en una red ESXi.
+Figura 2. Diagrama de flujo de cómo se utilizan los componentes de RansomHouse en un entorno ESXi.
+Después de infiltrarse en el entorno, un atacante implementa MrAgent en el hipervisor ESXi de la víctima. MrAgent establece una conexión persistente con el servidor de comando y control (C2) del atacante.
+Luego, los atacantes envían comandos desde el servidor C2 a MrAgent para realizar otras operaciones, como la exfiltración de datos. Después de exfiltrar los datos, los atacantes ordenan a MrAgent que descargue y ejecute el cifrador Mario, que se ejecuta directamente en el hipervisor para cifrar los archivos de la máquina virtual.
+Dado que MrAgent es el primer componente del ataque, repasemos cómo funciona.
+MrAgent: una herramienta de implementación de RansomHouse
+Como la herramienta principal para las operaciones de RansomHouse, MrAgent proporciona a los atacantes acceso persistente al entorno de la víctima y simplifica la gestión a escala de los hosts comprometidos. Esta gestión se realiza a través de varias funciones de la herramienta.
+Funciones
+Las principales funciones de MrAgent son las siguientes:
+
+Adquirir los identificadores de host
+Adquirir la dirección IP del host
+Desactivar el firewall
+Comunicarse con el servidor C2 del atacante
+
+Aunque un análisis de Trellix documentó los comandos que MrAgent utiliza para estas funciones, podemos revisarlos para comprender mejor las operaciones.
+Los comandos para adquirir identificadores de host son los siguientes:
+
+Para el nombre de host: uname -a
+Para la dirección MAC: esxcli --formatter=csv network nic list
+
+El comando para adquirir la dirección IP del host es el siguiente:
+
+esxcli --formatter=csv network ip interface ipv4 get
+
+El comando para desactivar el firewall es el siguiente:
+
+esxcli network firewall set --enabled false
+
+La función de MrAgent para comprobar la conectividad con el servidor C2 se ejecuta en un bucle infinito. Durante estas comprobaciones de la conectividad, MrAgent puede recibir varias instrucciones del servidor C2. En la Tabla 1, se enumeran ejemplos de estas instrucciones y su función.
+
+
+
+Instrucción
+Función
+
+
+Abort
+Aborta el inicio del cifrado si el hipervisor se encuentra en la fase de espera después de un reinicio
+
+
+Abort_f
+Elimina los hilos iniciados por MrAgent
+
+
+Config
+Sobrescribe la configuración local usada para la implementación del ransomware
+
+
+Exec
+Inicia la implementación del ransomware cambiando la contraseña de root, desactivando la gestión remota de vCenter mediante /etc/init.d/vpxa stop e iniciando el cifrado de las máquinas virtuales
+
+
+Info
+Recupera información del host ESXi
+
+
+Run
+Ejecuta comandos arbitrarios en el host ESXi al escribir en el archivo ./shmv
+
+
+Remove
+Elimina el contenido del host ESXi al ejecutar el comando rm-rf [nombre de archivo o ruta]
+
+
+Quit
+Mata y elimina el binario de MrAgent con rm -f
+
+
+Welcome
+Establece el mensaje de bienvenida de ESXi en el host mediante esxcli system welcomemesg set -m="[texto del mensaje]"
+
+
+
+Tabla 1. Ejemplos de instrucciones de MrAgent desde el servidor C2 de un atacante.
+Estas funciones permiten a MrAgent implementar el cifrador Mario.
+Características
+Con el propósito de impedir la ingeniería inversa, el binario de MrAgent a veces se modifica con código basura, pero esta ofuscación básica no altera las operaciones fundamentales. Para gestionar el estado del entorno comprometido, MrAgent utiliza dos estructuras JSON internas para almacenar su configuración y estado en tiempo de ejecución, con acceso sincronizado por un mutex.
+Mario: el cifrador de RansomHouse
+MrAgent implementa Mario para llevar a cabo la función principal de la operación: cifrar los archivos críticos de las máquinas virtuales en el hipervisor ESXi. Nuestra investigación descubrió dos versiones distintas de Mario que revelan una evolución en los métodos de cifrado.
+Ambas versiones siguen el mismo flujo de ejecución general:
+
+Crear la nota de rescate
+Atacar las extensiones de los archivos
+Cifrar los archivos
+Informar las estadísticas
+
+Creación de la nota de rescate
+El primer paso en el flujo de ejecución de Mario es crear una nota de rescate. La nota de rescate se llama How To Restore Your Files.txt “Cómo restaurar sus archivos.txt” y se encuentra en el directorio de los archivos que Mario encripta.
+Mario abre la nota de rescate en modo de escritura y guarda en el archivo un texto con instrucciones para que las víctimas puedan recuperar sus archivos. En la Figura 3, se muestra un ejemplo de esta nota.
+Figura 3. Ejemplo de una nota de rescate generada por una muestra de Mario.
+Ataque a las extensiones de los archivos
+El siguiente paso es el cruce de directorios y la selección de extensiones. Mario requiere que los atacantes especifiquen la ruta del directorio de los archivos a cifrar. Dentro del directorio especificado, Mario busca archivos de virtualización según las extensiones de nombre de archivo listadas en la Tabla 2.
+
+
+
+Extensión
+Descripción del archivo
+
+
+ova
+Dispositivo de virtualización abierta (OVA): distribución de un solo archivo del paquete de archivos OVF
+
+
+ovf
+Formato de virtualización abierto (OVF): un estándar abierto para empaquetar y distribuir software virtual
+
+
+vbk
+Archivo de respaldo Veeam (VBK): almacena copias de seguridad de los datos de una máquina virtual en un momento determinado
+
+
+vbm
+Archivo de respaldo Veeam con metadatos (VBM): almacena metadatos sobre un archivo VBK
+
+
+vib
+Paquete de instalación de VMware (VIB): un archivo de paquete para instalar o actualizar hosts ESXi
+
+
+vmdk
+Archivo de disco de máquina virtual (VMDK): se usa en máquinas virtuales como VMware y VirtualBox
+
+
+vmem
+Archivo de memoria de VMware (VMEM): una copia de seguridad del contenido de la memoria RAM de una máquina virtual desde el sistema host
+
+
+vmsd
+Archivo de metadatos de instantáneas de VMware (VMSD): almacena metadatos sobre cada instantánea de la máquina virtual
+
+
+vmsn
+Archivo del estado de la instantánea de VMware (VMSN): almacena el estado de ejecución de una máquina virtual en el momento de la instantánea
+
+
+vswp
+Archivo de intercambio de VMware (VSWP): intercambia páginas de la memoria con el disco duro cuando un host tiene poca memoria física
+
+
+
+Tabla 2. Extensiones de archivo atacadas por Mario.
+Mario recorre cada uno de los archivos de la ruta de directorio especificada buscando las extensiones deseadas. Durante este proceso de iteración, Mario ignora varias entradas del directorio, como . (directorio actual) y .. (directorio padre).
+El cifrador también ignora los archivos con las siguientes cadenas en cualquier parte del nombre de archivo, incluso si el nombre de archivo tiene una extensión objetivo:
+
+.marion
+.emario
+.lmario
+.nmario
+.mmario
+.wmario
+
+Es probable que esta exclusión evite el cifrado de archivos doble para que los archivos no se corrompan y se vuelvan irrecuperables.
+En la Figura 4, se muestran las extensiones de la Tabla 2 cuando analizamos una muestra de Mario descubierta a principios de este año.
+Figura 4. Muestra de Mario dirigida a las extensiones de archivos asociadas a la virtualización.
+El ataque a la infraestructura virtual y las copias de seguridad de una organización es una táctica conocida de RansomHouse. Ambos métodos pretenden impedir la recuperación de los datos si la víctima no paga el rescate.
+Cifrado de los archivos
+Mientras encripta los archivos objetivo, Mario muestra su progreso, como se puede ver en la Figura 4. Los archivos cifrados se renombran y se añade al nombre existente una extensión que incluye la cadena mario. En la Figura 5, se muestra un ejemplo de .emario como extensión de los archivos cifrados tras ejecutar una muestra de Mario.
+Figura 5. Al listar el contenido del directorio, se revelan los archivos encriptados con la extensión .emario.
+Informe de las estadísticas
+Una vez que Mario termina de cifrar los archivos objetivo, muestra estadísticas de los resultados del cifrado. Estas estadísticas, en orden, son las siguientes:
+
+La cantidad de archivos que no fue posible cifrar
+La cantidad de archivos cifrados
+La cantidad de archivos omitidos
+La cantidad total de archivos
+La cantidad de datos cifrados
+
+En la Figura 6, se muestra un ejemplo de informe estadístico luego de ejecutar una muestra de Mario.
+Figura 6. Ejemplo de una muestra de Mario que informa sus estadísticas de cifrado.
+Si bien todas las muestras conocidas de Mario siguen el mismo flujo de ejecución, el proceso se vuelve más complejo en las muestras recientes. En la siguiente sección, se revisan las diferencias entre las muestras anteriores y posteriores de Mario, lo que revela una actualización en los métodos de cifrado de Mario.
+Cifrado actualizado de Mario
+Identificamos dos versiones de Mario basándonos en las diferencias en las rutinas de cifrado entre las muestras conocidas actualmente. La comparación de estas dos versiones revela que los desarrolladores actualizaron Mario para utilizar un método de cifrado sustancialmente más complejo. Nos referimos a estas dos versiones de la siguiente manera:
+
+Versión original
+Versión actualizada
+
+Si comparamos bloques de código desensamblado para la rutina de cifrado, hay un bloque de funciones notablemente más complejo en la versión actualizada. En la Figura 7, se comparan los bloques de código de cifrado de estas dos versiones, donde claramente podemos ver más secciones en la versión actualizada a la derecha que en la versión original a la izquierda.
+Figura 7. Comparación de los bloques de código de cifrado entre la versión original y la versión actualizada de Mario.
+Para demostrar la actualización en el cifrado de Mario, comparamos el código de muestras de las dos versiones teniendo en cuenta las siguientes funciones:
+
+Cifrado
+Disposición de la memoria y gestión de los búferes
+Procesamiento de archivos
+Formato de salida
+
+Las mejoras en estas funciones permiten que la versión actualizada de Mario sea mucho más eficaz y resistente a los análisis que la versión original.
+Cifrado
+La versión original de Mario tiene una rutina de cifrado sencilla y básica. En la Figura 8, se muestra el código desensamblado de la versión original. Este código realiza una única pasada para transformar los datos de un archivo de datos no cifrados a datos cifrados.
+Figura 8. Código desensamblado para la transformación de archivos de visualización única de la versión original.
+En cambio, la versión actualizada de Mario incorpora una transformación de archivos en dos fases que incluye una clave de cifrado secundaria. En la Figura 9, se muestra el código desensamblado de una muestra de la versión actualizada de Mario, que revela este proceso de cifrado más complejo.
+Figura 9. Código desensamblado que revela la transformación de archivos más compleja de la versión actualizada.
+El código de la versión actualizada revela un esquema de cifrado de dos factores en el que el archivo se cifra con una clave principal y otra secundaria. El cifrado de datos se procesa por separado para cada clave. Esto aumenta significativamente la dificultad de descifrar los datos sin ambas claves.
+En la Figura 10, se muestra que la versión actualizada de Mario utiliza valores aleatorios para generar una clave de cifrado primaria de 32 bytes y una clave de cifrado secundaria de 8 bytes.
+Figura 10. Código desensamblado que muestra la generación de claves utilizada por la versión actualizada de Mario.
+Estos cambios representan una actualización significativa del cifrado de Mario.
+Disposición de la memoria y gestión de los búferes
+Al hablar de la disposición de la memoria y la gestión de los búferes, debemos comprender los marcos de pila y los búferes. En este caso, los búferes son porciones del marco de pila especificadas por un valor de desplazamiento.
+La versión original de Mario utiliza los siguientes valores de marco de pila y de búfer durante su proceso de cifrado:
+
+Tamaño del marco de pila en la versión actualizada: 0x1408 bytes
+Desplazamientos clave del búfer: var_1400 (primario), var_130 (transformación)
+Tamaño del bloque: fijado en 0xA00000 sin ajustes dinámicos
+
+Esto indica que transformar archivos a un estado cifrado es un proceso relativamente directo y simple. En cambio, los valores de marco de pila y de búfer de la versión actualizada de Mario muestran una estructura más compleja, pequeña y eficiente:
+
+Tamaño del marco de pila en la versión actualizada: 0x1268 bytes
+Desplazamientos múltiples del búfer:
+
+var_1150: contexto de cifrado primario
+var_A0: búfer de transformación intermedio
+var_20: almacenamiento de clave secundaria (8 bytes)
+var_40: almacenamiento de cabecera para archivos cifrados
+
+
+
+Estos valores de marco de pila y de búfer se utilizan en un proceso en el que:
+
+Los datos iniciales se leen en el búfer primario (ptr)
+Los datos se transforman utilizando la clave primaria en var_1150
+Se sigue procesando con la clave secundaria en var_20
+Los datos cifrados finales incluyen un encabezado de var_40
+
+La cuidadosa organización de estos búferes confirma el enfoque por capas de la versión actualizada de Mario.
+Procesamiento de archivos
+La versión original de Mario utiliza un enfoque directo para el procesamiento de archivos. Es un proceso lineal que cifra los archivos como segmentos secuenciales de tamaño fijo en un bucle. Luego de cifrar cada segmento, el código comprueba si el tamaño combinado de los segmentos procesados supera un umbral especificado. Cuando se supera ese umbral, el código salta del bucle a una función diferente.
+En la Figura 11, se ilustra este proceso lineal en el código desensamblado.
+Figura 11. Código desensamblado que muestra un proceso lineal de cifrado en la versión original de Mario.
+El código de la versión actualizada de Mario revela un método de cifrado que utiliza el procesamiento en bloques con tamaño dinámico. En la Figura 12, se muestra un ejemplo.
+Figura 12. Código desensamblado que muestra el procesamiento segmentado con cifrado dinámico en la versión actualizada de Mario.
+Si comparamos la lógica de procesamiento de estas dos versiones, encontramos diferencias significativas.
+La versión original de Mario usa un bucle de programación más sencillo que procesa los archivos en longitudes de segmento fijas hasta un umbral de 536,870,911 bytes, como se indica en la Figura 11. Esta versión simplemente informa cuando se completó el cifrado sin mostrar ningún progreso.
+En comparación, la versión actualizada de Mario implementa un esquema de procesamiento de archivos más robusto para el cifrado, que utiliza lo siguiente:
+
+Longitudes de segmento variables, con un umbral de tamaño de 8 GB
+Cálculos para determinar el tamaño de los bloques y los desplazamientos
+Una técnica de cifrado disperso que solo cifra determinados bloques de un archivo en desplazamientos específicos
+
+Además, la versión actualizada de Mario muestra el progreso del cifrado de bloques de cada archivo, como se muestra a continuación en la Figura 13.
+Figura 13. Código desensamblado en la versión actualizada de Mario para mostrar el progreso del procesamiento de bloques.
+El procesamiento por bloques de la versión actualizada de Mario dificulta el análisis estático por los siguientes motivos:
+
+Procesa los archivos de forma no lineal
+Utiliza fórmulas matemáticas complejas para determinar el orden de procesamiento
+Emplea diferentes estrategias en función del tamaño del archivo
+
+Formato de salida
+Además de mostrar los bloques de archivos procesados al cifrarlos, la versión actualizada de Mario también brinda un resumen más detallado cuando finaliza el cifrado de cada archivo.
+Como se indicó anteriormente, la versión original simplemente informa que finalizó el cifrado de un archivo. En la Figura 14, se muestra esto en el código desensamblado.
+Figura 14. Código de la versión original de Mario para informar cuándo se terminó de procesar un archivo.
+La versión actualizada de Mario incluye más información cuando se termina de procesar cada archivo, como se muestra en el código desensamblado en la Figura 15.
+Figura 15. Código de la versión actualizada de Mario para informar cuándo se terminó de procesar un archivo.
+En última instancia, la funcionalidad básica de estas dos muestras de Mario (la versión original y la versión actualizada) sigue siendo la misma. Ambas muestras cifran los archivos y los renombran con la extensión “.emario”. Sin embargo, la versión actualizada implementa una metodología de cifrado más compleja y potencialmente más segura con el procesamiento selectivo de archivos.
+Conclusión
+La actualización del cifrado usada por el RaaS de RansomHouse, que pasa de un modelo lineal simple a un enfoque más complejo de varias capas, marca una trayectoria preocupante en el desarrollo del ransomware. Esto demuestra cómo los actores de amenazas están actualizando las técnicas para aumentar la eficacia.
+Esta actualización se basa en varias mejoras técnicas clave:
+
+Un esquema de cifrado de dos factores que aumenta significativamente la dificultad de descifrado si no se tienen las dos claves
+Un procesamiento de archivos en bloques con tamaño dinámico, en lugar de un método más sencillo
+Más dificultad en el análisis estático y la ingeniería inversa debido al nuevo procesamiento de archivos
+
+Los actores de amenazas podrían considerarlo un camino útil para futuras variantes de ransomware. A medida que otros grupos de ransomware adopten estos métodos más sofisticados, el panorama de las amenazas de ransomware se volverá más resistente a los controles de seguridad. Esta actualización destaca la necesidad de adoptar estrategias más dinámicas y adaptables, capaces de contrarrestar la próxima generación de amenazas complejas y evasivas.
+Los clientes de Palo Alto Networks están mejor protegidos frente a las amenazas mencionadas gracias a los siguientes productos:
+
+Los modelos de aprendizaje automático y las técnicas de análisis de Advanced WildFire se han revisado y actualizado a la luz de los indicadores compartidos en esta investigación.
+Cortex Xpanse y el complemento ASM para XSIAM proporcionan detección de la infraestructura ESXi de VMware que está expuesta al Internet público mediante las reglas de superficie de ataque “ESXi de VMware” y “ESXi de VMware inseguro”. Además de estas, también hay una regla de superficie de ataque de detección posterior a la vulneración para “Infección por ransomware ESXiArgs”. Puede detectar notas de rescate inyectadas por actores maliciosos, así como otros indicadores de infección por ransomware que afectan los servidores ESXi expuestos a Internet.
+
+Si cree que puede haber resultado vulnerado o tiene un problema urgente, póngase en contacto con el equipo de respuesta ante incidentes de Unit 42 o llame al:
+
+Norteamérica: llamada gratuita: +1 (866) 486-4842 (866.4.UNIT42)
+Reino Unido: +44.20.3743.3660
+Europa y Oriente Medio: +31.20.299.3130
+Asia: +65.6983.8730
+Japón: +81.50.1790.0200
+Australia: +61.2.4062.7950
+India: 00080005045107
+
+Palo Alto Networks ha compartido estos resultados con nuestros compañeros de Cyber Threat Alliance (CTA). Los miembros de CTA utilizan esta inteligencia para implementar rápidamente medidas de protección para sus clientes y desarticular sistemáticamente a los ciberdelincuentes. Obtenga más información sobre Cyber Threat Alliance.
+Indicadores de vulneración (IoC)
+
+SHA256 hash: 0fe7fcc66726f8f2daed29b807d1da3c531ec004925625855f8889950d0d24d8
+Descripción del archivo: Muestra de la versión actualizada de Mario
+SHA256 hash: ​​d36afcfe1ae2c3e6669878e6f9310a04fb6c8af525d17c4ffa8b510459d7dd4d
+Descripción del archivo: Muestra de la versión original de Mario
+SHA256 hash: 26b3c1269064ba1bf2bfdcf2d3d069e939f0e54fc4189e5a5263a49e17872f2a
+Descripción del archivo: Muestra de MrAgent
+SHA256 hash: 8189c708706eb7302d7598aeee8cd6bdb048bf1a6dbe29c59e50f0a39fd53973
+Descripción del archivo: Muestra de MrAgent
+
+Recursos adicionales
+
+New RansomHouse group sets up extortion market, adds first victims (El nuevo grupo RansomHouse crea un mercado de extorsión y suma sus primeras víctimas), BleepingComputer
+RansomHouse am See, Trellix
+RansomHouse: Stolen Data Market, Influence Operations & Other Tricks Up the Sleeve (RansomHouse: Mercado de datos robados, operaciones de influencia y otros trucos bajo la manga), Analyst1
+
+
+
+Volver al principio
+
+EtiquetasESXiJolly ScorpiusRansomHouse
+
+
+
+Threat Research Center
+
+
+Siguiente:Explotación de Vulnerabilidad Crítica en React Server Components (Actualizado el 12 de diciembre)
+
+
+
+
+
+
+
+ÍNDICE
+
+
+
+
+
+
+Artículos relacionados
+
+
+
+
+
+
+
+
+
+Relacionados Ransomware Recursos
+
+
+
+
+ 
+
+
+
+Amenazas sofisticadas 17 de Abril de 2026
+
+Resumen sobre amenazas: aumento del riesgo cibernético relacionado con Irán en 2026 (actualizado el 17 de abril)
+
+
+
+APK
+
+
+DDoS attacks
+
+
+GenAI
+ 
+
+
+                    Leer ahora                    
+
+
+
+
+
+
+
+ 
+
+
+
+Investigación de amenazas 10 de Diciembre de 2025
+
+01flip: ransomware multiplataforma escrito en Rust
+
+
+
+Bitcoin
+
+
+CL-CRI-103
+
+
+Cryptocurrency
+ 
+
+
+                    Leer ahora                    
+
+
+
+
+
+
+
+ 
+
+
+
+Investigación de amenazas 25 de Noviembre de 2025
+
+El dilema del doble uso de la IA: LLMs maliciosos
+
+
+
+Credential Harvesting
+
+
+Data exfiltration
+
+
+LLM
+ 
+
+
+                    Leer ahora                    
+
+
+
+
+
+
+
+ 
+
+
+
+Grupos de actores de amenazas 31 de Julio de 2025
+
+Presentamos el marco de atribución de Unit 42
+
+
+
+Advanced Persistent Threat
+
+
+Bookworm
+
+
+Nomenclature
+ 
+
+
+                    Leer ahora                    
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
+				Obtener actualizaciones de Unit 42			
+Manténgase un paso adelante de las amenazas para estar tranquilo. Comuníquese con nosotros hoy mismo.
+
+
+
+
+
+
+
+
+
+
+Your Email
+
+
+Suscribirse para recibir actualizaciones por correo electrónico de todas las investigaciones de amenazas de Unit 42.Cuando envía este formulario, acepta nuestras Condiciones de uso y confirma nuestra Declaración de privacidad
+
+                    Este sitio está protegido por reCAPTCHA y se aplican la Política de privacidad y los Términos de servicio de Google.                            
+  
+
+Invalid captcha!
+ 
+					Suscribirse					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Obtenga las últimas noticias, invitaciones a eventos y alertas de amenazas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Introduzca su correo electrónico...
+
+
+
+
+
+Regístrese  
+
+
+
+
+                                
+                                
+                                
+                                    
+                                    
+                                        
+                                        Al enviar este formulario, comprendo que mis datos personales se procesarán de acuerdo con la Política de privacidad de Palo Alto Networks y las Condiciones de uso.
+                                    
+                                
+
+                                
+                                
+
+
+Regístrese  
+
+
+
+
+
+
+
+
+
+
+
+
+Productos y servicios
+
+
+
+
+
+                                     Plataforma de seguridad de la red con tecnología de IA 
+                                
+
+
+
+                                     IA segura por diseño 
+                                
+
+
+
+                                     Prisma AIRS 
+                                
+
+
+
+                                    Seguridad de AI Access
+                                
+
+
+
+                                    Servicios de seguridad entregados en la nube
+                                
+
+
+
+                                    Threat Prevention avanzada
+                                
+
+
+
+                                    URL Filtering avanzado
+                                
+
+
+
+                                     WildFire avanzado 
+                                
+
+
+
+                                     Seguridad de DNS avanzada 
+                                
+
+
+
+                                    Prevención de pérdida de datos empresariales
+                                
+
+
+
+                                    Seguridad de IoT empresarial
+                                
+
+
+
+                                    Seguridad de IoT para dispositivos médicos
+                                
+
+
+
+                                    Seguridad de OT industrial
+                                
+
+
+
+                                    Seguridad de SaaS
+                                
+
+
+
+
+
+                                     Firewalls de nueva generación 
+                                
+
+
+
+                                     Firewalls de hardware 
+                                
+
+
+
+                                     Firewalls de software 
+                                
+
+
+
+                                    Strata Cloud Manager 
+                                
+
+
+
+                                     SD-WAN para NGFW 
+                                
+
+
+
+                                     PAN-OS 
+                                
+
+
+
+                                     Panorama 
+                                
+
+
+
+                                     Perímetro de servicio de acceso seguro 
+                                
+
+
+
+                                     Prisma SASE 
+                                
+
+
+
+                                    Aceleración de aplicaciones
+                                
+
+
+
+                                     Gestión autónoma de la experiencia digital 
+                                
+
+
+
+                                    Enterprise DLP
+                                
+
+
+
+                                     Prisma Access 
+                                
+
+
+
+                                    Prisma Browser 
+                                
+
+
+
+                                     Prisma SD-WAN 
+                                
+
+
+
+                                     Aislamiento del explorador remoto 
+                                
+
+
+
+                                     Seguridad de SaaS 
+                                
+
+
+
+
+
+                                    Plataforma de operaciones de seguridad dirigida por IA
+                                
+
+
+
+                                     Seguridad de nube 
+                                
+
+
+
+                                     Cortex Cloud 
+                                
+
+
+
+                                     Seguridad de las aplicaciones 
+                                
+
+
+
+                                     Postura de seguridad en la nube 
+                                
+
+
+
+                                     Seguridad en tiempo de ejecución en la nube 
+                                
+
+
+
+                                     Prisma Cloud 
+                                
+
+
+
+                                     SOC impulsado por IA 
+                                
+
+
+
+                                     Cortex XSIAM 
+                                
+
+
+
+                                     Cortex XDR 
+                                
+
+
+
+                                     Cortex XSOAR 
+                                
+
+
+
+                                     Cortex Xpanse 
+                                
+
+
+
+                                     Detección y respuesta gestionadas de Unit 42 
+                                
+
+
+
+                                     XSIAM gestionado 
+                                
+
+
+
+
+
+                                     Inteligencia de amenazas y respuesta ante incidentes 
+                                
+
+
+
+                                    Evaluaciones proactivas
+                                
+
+
+
+                                    Respuesta ante incidentes
+                                
+
+
+
+                                    Transforme su estrategia de seguridad
+                                
+
+
+
+                                    Descubra la inteligencia de amenazas
+                                
+
+
+
+
+
+
+Empresa
+
+
+
+
+
+                                    Acerca de nosotros
+                                
+
+
+
+                                    Carreras
+                                
+
+
+
+                                    Contáctenos
+                                
+
+
+
+                                    Responsabilidad corporativa
+                                
+
+
+
+                                    Clientes
+                                
+
+
+
+                                    Relaciones con inversionistas
+                                
+
+
+
+                                    Ubicación
+                                
+
+
+
+                                    Sala de prensa
+                                
+
+
+
+
+
+
+Enlaces populares
+
+
+
+
+
+                                    Blog
+                                
+
+
+
+                                    Comunidades
+                                
+
+
+
+                                    Biblioteca de contenido
+                                
+
+
+
+                                    Cyberpedia
+                                
+
+
+
+                                    Centro de eventos
+                                
+
+
+
+                                     Administrar preferencias de correo electrónico 
+                                
+
+
+
+                                    Productos A-Z
+                                
+
+
+
+                                    Certificaciones de productos
+                                
+
+
+
+                                     Informar sobre una vulnerabilidad 
+                                
+
+
+
+                                    Mapa del sitio
+                                
+
+
+
+                                    Documentos técnicos
+                                
+
+
+
+                                    Unit 42
+                                
+
+
+
+                                    No vender ni compartir mi información personal
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Privacidad
+                            
+
+
+
+                                Centro de confianza
+                            
+
+
+
+                                Condiciones de uso
+                            
+
+
+
+                                Documentación
+                            
+
+
+Copyright © 2026 Palo Alto Networks. Todos los derechos reservados
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+LA
+
+
+
+Select your language
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Your browser does not support the video tag.
+          
+
+Default Heading
+Read the article
+              
+
+
+
+
+Seekbar
+
+
+
+
+
+
+
+
+
+
+
+
+
+Volume
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

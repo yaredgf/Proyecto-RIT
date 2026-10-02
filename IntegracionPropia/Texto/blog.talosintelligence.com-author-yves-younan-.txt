@@ -1,0 +1,874 @@
+
+
+
+Yves Younan - Cisco Talos Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Yves Younan
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+July 5, 2017 14:22
+The MeDoc Connection
+Summary
+
+The Nyetya attack was a destructive ransomware variant that affected many organizations inside of Ukraine and multinational corporations with operations in Ukraine. In cooperation with Cisco Advanced Services Incident Response, Talos identified several key aspects of the
+
+
+                    By
+                
+David Maynor, 
+                    Matt Olney, 
+                    Yves Younan
+
+
+
+                            ransomware
+                        
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+October 19, 2016 14:41
+MBRFilter - Can't Touch This!
+Update: 10/20/2016 - MBRFilter has been intentionally made difficult to remove to prevent malware from simply disabling or removing this protection during the infection process. Test thoroughly before deploying within production environments.
+
+
+Summary
+
+Ransomware has become incr
+
+
+                    By
+                
+Edmund Brumaghin, 
+                    Yves Younan
+
+
+
+                            ransomware
+                        
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+October 8, 2013 16:49
+Microsoft Update Tuesday October 2013: Another IE 0-day release
+This month's Microsoft Tuesday Update brings us 8 bulletins for a total of 26 CVEs. Four of these bulletins are marked as critical, while the rest are marked as important.
+
+First, let's take a look at the 4 critical bulletins:
+
+The most important update this month is a cu
+
+
+                    By
+                
+Yves Younan
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+August 13, 2013 13:26
+Microsoft Update Tuesday August 2013: More font issues, some interesting DoSes
+It's a pretty standard month for Update Tuesday this time around. There's a total of 8 bulletins, covering 23 CVE issues. This bulletin addresses the final 2 issues reported during CanSecWest's Pwn2Own.
+
+As usual, there's the requisite IE bulletin (MS13-059), whic
+
+
+                    By
+                
+Yves Younan
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+July 9, 2013 22:20
+Microsoft Update Tuesday: July 2013: an issue of TrueType fonts
+This month's Update Tuesday looks pretty interesting. As usual, there's quite a few CVEs covered and most of them are once again in IE: there's a total of 7 bulletins, covering 34 CVE issues. However, one CVE is shared between 3 bulletins.
+
+MS13-052 covers the .NET fr
+
+
+                    By
+                
+Yves Younan
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+June 11, 2013 13:36
+Microsoft Update Tuesday, June 2013: mostly about Internet Explorer
+Another month brings us another Update Tuesday. This month is pretty light with respect to the updates that Microsoft is releasing. They're releasing a total of 5 bulletins, covering 23 CVEs.
+
+First and foremost are the critical updates for Internet Explorer (MS13-047). They
+
+
+                    By
+                
+Yves Younan
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+May 14, 2013 15:13
+Microsoft Update Tuesday: Update for IE8 0-day and More
+Today is Update Tuesday and Microsoft is releasing updates for 33 CVEs across 10 bulletins. We'll be discussing some of the highlights here.
+
+One of the most important updates (MS13-038) that is being released is for the recent 0-day in Internet Explorer, which was used in a
+
+
+                    By
+                
+Yves Younan
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+March 4, 2013 11:50
+25 years of vulnerabilities: 1988-2012, the report
+We here at the VRT are all about backing up opinions with facts, and there are a lot of opinions about the nature of the vulnerability landscape out there. That in mind, we decided recently to study the numbers, and put conventional wisdom to the test.
+
+At a high level, the numbe
+
+
+                    By
+                
+Yves Younan
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+February 20, 2013 12:03
+25 years of vulnerabilities: 1988-2012
+While the answers to some of these questions are predictable, others are surprising.
+
+We will be presenting the answers to these questions in a talk at RSA Conference San Francisco 2013. If you're attending RSA and are interested in the answers to these questions, please join
+
+
+                    By
+                
+Yves Younan
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

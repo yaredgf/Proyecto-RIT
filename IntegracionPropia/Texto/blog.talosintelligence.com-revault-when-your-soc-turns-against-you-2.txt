@@ -1,0 +1,985 @@
+
+
+
+ReVault! When your SoC turns against you… deep dive edition
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ReVault! When your SoC turns against you… deep dive edition
+
+
+By 
+Philippe Laulheret
+
+
+
+            Saturday, August 9, 2025 09:00
+        
+
+
+                            Vulnerability Deep Dive
+                        
+
+
+
+
+For a high-level overview of this research, you can refer to our Vulnerability Spotlight. This is the in-depth version that shares many more technical details. In this post, we’ll be covering the entire research process as well as providing technical explanations of the exploits behind the attack scenarios.Dell ControlVault is “a hardware-based security solution that provides a secure bank that stores your passwords, biometric templates, and security codes within the firmware.” A daughter board provides this functionality and performs these security features in firmware. Dell refers to the daughter board as a Unified Security Hub (USH), as it is used as a hub to run ControlVault (CV), connecting various security peripherals such as a fingerprint reader, smart card reader and NFC reader.Why target ControlVault3?Hindsight is 20/20 and in retrospect, there are plenty of valid reasons to look at it: There is no public research on this device. It is used for security and enhanced logins and thus is used for sensitive functions. It is found in countless Dell laptops and, in particular, places that seek this extra layer of security (e.g., finance, healthcare, government, etc.) are more likely to have it in their environment. But what really kickstarted this research project was spotting this target that seemed “promising.” What first caught our attention is that most of the Windows services involved with ControlVault3 are not Address Space Layout Randomization (ASLR)-enabled. This means easier exploitation, and possible technical debt in the codebase. Further, the setup bundle comes with multiple drivers and what appears to be a mix of clear text and encrypted firmware. This makes for an exciting challenge that calls for further investigation.Making a planWhen starting a vulnerability research project, it is good to have some ideas of what we’re trying to achieve. Let’s make a plan that will act as our North Star and guide our steps along the way:The main application is encrypted, and we want to see what this firmware hides. One of our first tasks should be to find a way to decrypt the application firmware.This is a vulnerability research project and, as such, we need to understand how to interact with Control Vault, understand its attack surface, and look for vulnerabilities.The Windows services run without ASLR and have SYSTEM privileges. Those could be standalone targets for local escalation of privilege (EoP) and/or may have interesting exploitation paths.Gathering informationInformation gathering occurred throughout the project. However, to clarify this discussion, we’ll now summarize some of the early findings.ControlVault is made by Broadcom and leverages their 5820X chip series. Technically, we are only talking about ControlVault3 (or ControlVault3+), but there was a ControlVault2 and a ControlVault (1 being implied) that were using different hardware. The first mentions of ControlVault date back to 2009-2011.Online research for the BCM5820X chip series yields minimal results, with this NIST certification being the only notable finding. This document clarifies the security posture of the chip and gives some insight into the operations of its cryptographic module.Other useful resources are forum posts where power users talk about Control Vault, particularly when the power users discuss making it work on Linux. One post eventually lead to a repository providing official (but limited) Linux support. It is worth noting that one of the shared objects in this repository, “libfprint-2-tod-1-broadcom.so”, ships with debug symbols. This can help when reversing the ControlVault ecosystem.Finally, for a physical representation, the USH board that connects to the laptop and runs the ControlVault firmware is shown below:Figure 1: Picture of a USH Board running ControlVault.When connected inside the laptop, it looks like this (battery removed to show the board):Figure 2: USH board (highlighted in orange) inside a Dell Latitude laptop.Interesting files in ControlVault3 bundleControlVault comes with a lot of files. We cannot look at all of them at once, but there are a few that stick out, mainly the “bin” and “firmware” folders. The former contains the main services used to communicate with ControlVault and the associated shared objects, while the latter is used to push data to the device.Figure 3: Bin and firmware folders from the ControlVault3 installer.The firmware folder is also particularly interesting as it contains what we can presume is the code running on the ControlVault device. If we look at the content of these files by running the “strings” command or by opening them in a hex editor, we find that the ones with “SBI” in their names are in plaintext, while the ones named “bcmCitadelXXX” appear to be either compressed or encrypted. From the information we gathered earlier, we know that “SBI” stands for “Secure Boot Image” and is part of the early stage of the device’s boot process; we can then guess the “bcmCitadelXXX” files are the main application firmware that gets started by the SBI.Reversing the bootloaderAs the SBI files are in plaintext and we know from the Broadcom’s documentation that they are ARM code, we can have a look at one of them in our favorite disassembler/decompiler, which might help us figure out how to handle the application firmware itself.Identifying the SBI load addressThe usual first step is to identify the load address of this blob of data which, in our case, is 0x2400CC00. The data starts with a 0x400 bytes header, thus leading to a more reasonable 0x2400D000 base address for the actual start of the code.To find this value, the trick is to first load the code at an arbitrary address and then look for absolute addresses (e.g., pointers to strings, addresses of functions, etc.) and play the guessing game while rebasing the firmware until everything lines up. The SBI firmware includes a lot of strings, so it’s fairly easy to spot when they are referenced properly. Alternatively, function pointers can also be useful and, conveniently, some can be found close to the start of the code, as an ARM vector table is placed there. This gives away the load address.Figure 4: Vector table and beginning of the code inside the SBI.Determining the software architectureHere, we need to make a choice of what to focus on first. We can either try to map out the general architecture of the SBI and understand how it works or instead keep our eyes on the ball and look for how the application firmware is being decrypted. In practice, we did the latter, but let’s provide a few spoilers to make this easier to follow.Functions and parameters namesThe firmware relies heavily on logging, which can leak function names, variables and some details about the logic of the code itself.The firmware appears to be running a custom real-time operating system (RTOS) called Citadel RTOS. We can also find debug strings referring to OpenRTOS, which was likely used as a base to CitadelRTOS.And as mentioned previously, the Linux implementation comes with debug symbols for the host API, which provides lots of data structures and enum values used by ControlVault.Communication with the firmwareBefore going too far into reversing the SBI, let’s have a high-level overview of how communication occurs between host (Windows) and firmware.Essentially, the USH board is connected to the laptop’s motherboard and appears as a USB device in the device manager. A driver, “cvusbdrv.sys”, creates a device file that can be opened from userland. Various DeviceIoControl commands can be used to manage and communicate with the device:{
+  IOCTL_SUBMIT = 0x5500E004,  // sends CV Command
+  IOCTL_RESULT = 0x5500E008,  // result from CV Command
+  IOCTL_HSREQ = 0x5500E00C, // Host Storage Request, used by bcmHostStorageService
+  IOCTL_HCREQ = 0x5500E01C,  // Host Control Request, used by bcmHostControlService
+  IOCTL_FPREQ = 0x5500E024,  // Fingerprint Request 
+  IOCTL_CACHE_VER = 0x5500E028,  // Returned cached version string
+  IOCTL_CLREQ = 0x5500E030, // Contactless Request (NFC)
+};
+Communicating with the driver can be made easier by using userland APIs. In particular, the “bcmbipdll.dll” file implements more than 160 high-level functions that can be used to send specific commands to the firmware. These functions are prefixed with “cv_” (e.g., “cv_open”, “cv_close”, “cv_create_object”, etc.) and are referenced as “CV Commands”. Behind the scenes, when invoking one of these commands, IOCTL_SUBMIT / IOCTL_RESULT is issued, and the relevant data is sent over USB to the firmware.Upon receiving data from the USB endpoints, the firmware will process the data packets and route them to dedicated code paths. For CV commands, the data is passed to a function called “CvManager /CvManager_SBI” that dispatches the command to the function implementing it.Example: Manual communication with ControlVaultA simple Python script can be used to load “bcmbipdll.dll” and invoke its functions.For instance, the following will retrieve the version string of the firmware:Figure 5: Python snippet to retrieve CV's version string.The return value:Figure 6: Version string obtained from cv_get_ush_ver.As a reminder, the Linux implementation of the host APIs (libfprint-2-tod1-broadcom/usr/lib/x86_64-linux-gnu/libfprint-2/tod-1/ libfprint-2-tod-1-broadcom.so) comes with debug symbols and thus can be used to identify the various structures and parameters involved in the invocation of each CV command.We will revisit the communication mechanism in the “Exploiting a SYSTEM service” section, but for now, we can return to our original goal of figuring out how to decrypt the application firmware.Finding the firmware decryption mechanismWe can search the strings inside the SBI to see if anything mentions decryption:Figure 7: Strings from the SBI firmware mentioning decryption.As seen in the screenshot above, the USH_UPGRADE functionality mentions decryption failures. And indeed, this functionality is related to application firmware decryption. The USH_UPGRADE functionality is implemented by three CV commands:CV_CMD_FW_UPGRADE_STARTCV_CMD_FW_UPGRADE_UPDATE CV_CMD_FW_UPGRADE_COMPLETEThose commands are issued by the “cv_firmware_upgrade” function in “bcmbipdll.dll”.The firmware update process is a little convoluted:
+
+
+The host will first flash a file called “bcm_cv_clear_scd.otp” solely composed of “0123456789abcdef” repeated many times. For that, it will use the “cv_flash_update” function.
+The host will call “cv_reboot_to_sbi” to restart in SBI mode.
+The host will send the CV_CMD_FW_UPGRADE_START command handled in the SBI by “ushFieldUpgradeStart”:
+
+The SBI will try to load from Flash something called a Secure Code Descriptor (SCD) that contains key material (e.g., decryption key, IV, and RSA - public key) but will revert to hardcoded default if no SCD is available. This is what got flashed/erased during step 1.
+
+
+
+Figure 8 Using hardcoded defaults during ushFieldUpgradeStart.Figure 9 Calling the decryption function.
+
+
+
+The host will send the first 0x2B0 bytes of the encrypted application firmware. This is an encrypted header defining the parameters of the soon-to-be installed firmware.
+The SBI will try to decrypt (AES-CBC), validate, and cryptographically verify
+the header using key material from the SCD or the hardcoded defaults.
+Upon success, the SBI will generate new key material to be stored in a
+different section of the SCD and used to store the firmware in an encrypted
+form. This is because the SoC used by ControlVault can execute in place
+(XIP) encrypted code thanks to its Secure Memory Access Unit (SMAU).
+
+
+
+Then, the host will send the rest of the firmware split into chunks of 0x100 bytes via the CV_CMD_FW_UPGRADE_UPDATE command handled in the SBI by the “ushFieldUpgradeUpdate” function.
+
+The firmware chunks are decrypted using the same method, but instead of
+using a default IV, the code relies on a custom function from the SMAU
+device to generate an IV based upon the address of the memory block being
+decrypted. Note: The base address of this application firmware can be guessed from
+reversing and is 0x63030000.
+
+
+
+Figure 10 Computation of address-based IV.
+
+
+
+A rolling hash (SHA256) of the decrypted blocks is kept for further validation.
+
+
+
+When done sending the encrypted firmware, the host will send the
+CV_CMD_FW_UPGRADE_COMPLETE command handled in the SBI by the
+“ushFieldUpgradeComplete” function.
+
+The SBI will verify the signature of the firmware received based upon the
+already verified header and the rolling hash that was computed while
+decrypting firmware pages.
+Upon success, the new SCD will be encrypted and committed to flash using
+a per-device AES key stored in the chip OTP fuses. 
+
+
+
+Luckily, the hardcoded keys in the “bcmsbiCitadelA0_1.otp” file are the ones that were used to encrypt the application firmware, and by re-implementing the algorithm described above, we can successfully decrypt the application firmware and move on to our second objective: looking for vulnerabilities.Attack surface mapping and vulnerability researchWith a freshly decrypted firmware image, it’s easy to jump the gun and start reversing everything, but before we get into the deep end, we should stop and strategize. So, let’s have a look at the architecture of the system and the potential areas of interest:Figure 11: System architecture.There are a few angles we can consider:From the host, could we send malicious data to corrupt the application firmware or the SBI code?Could we tamper with the firmware itself and make it misbehave? Could a malicious firmware image compromise the host? What about the hardware peripherals? Could they be compromised or used to compromise the firmware?The research we’ve conducted explores the first three questions. The fourth one is a potential future research project. Answering the first question will help achieve the next two, so let’s start with this first one.Finding vulnerabilities in the application firmwareThe application firmware accepts more than150 CV commands. This is a massive attack surface and there is a lot to look at. Most of these commands expect a “session” to be already established using the “cv_open” command.  When the interaction is over, the “cv_close” function is used to terminate the session. Let’s look at how these two operate.cv_open and cv_closeThe prototype of “cv_open” is as such:int __fastcall cv_open(cv_session_flags a1, cv_app_id *appId, cv_user_id *userId, int
+*pHandle)
+Its implementation is below:Figure 12: Call to cv_open.We can see that memory is allocated (line 29), then a tag “SeSs” is written (line 36) as the first four bytes of the session object. After some more processing, the pointer to the session is returned as a handle (line 44) back to the host. The choice of using a pointer as a handle is already a little questionable as it leaks a heap address to the host, but let’s continue.The prototype for “cv_close” is as follows:int __fastcall cv_close(cv_session *)The function takes the pointer to the session we’ve obtained from “cv_open” and attempts to close it by doing the following:Validate the session (see below)Erase the “SeSs” tagFree the memoryFigure 13: Implementation of cv_close.Meanwhile, the “validate_session” function will:Verify the pointer provided is within the CV_HEAPVerify the first 4 bytes match the “SeSs” tagExtra checks irrelevant for usFigure 14: Session validation.This is particularly interesting because, assuming one can place some arbitrary data on the heap, it then becomes easy to forge a fake session and free it, corrupting heap memory in the process. This issue was reported as CVE-2025-25215.As expected, it is indeed possible to place attacker-controlled data on the heap using functions like “cv_create_object” or “cv_set_object”. Locating said data is a little trickier, as the handles returned by “cv_create_object” are random rather than heap addresses. However, it is possible to create a “session oracle” to help locate real and forged sessions alike. To do so, we can leverage one of the many CV functions that require a session handle but will return a unique error code if the session is invalid. For instance, “cv_get_random” can be used as such:Figure 15: Implementation of cv_get_random.If the session fails the “validate_session” check, “cv_get_random” will return CV_INVALID_HANDLE, otherwise it will either return CV_SUCCESS or CV_INVALID_OUTPUT_PARAMETER_LENGTH. This gives a way to identify valid-looking sessions without any side effect.Debug strings in the application firmware indicate that the heap implementation used is “heap_4.c” from OpenRTOS. At this point, we could use standard heap exploitation techniques to try and corrupt memory, but instead, we chose to look for more vulnerabilities that may be easier to exploit.securebio_identifyThis function is one of the few that does not have “cv” in its names but is called via “cv_identify_feature_set_authenticated”. It is part of the implementation of the WinBio framework used by Windows Hello during fingerprint handling.The function expects a handle to an object, retrieves it, and copies some of its content:Figure 16: ”securebio_identify” retrieves and copies object content.The data is copied from one of the object’s properties into the “data2” stack buffer. To copy the data, “memcpy” is using the property’s size assuming it will fit inside the “data2” buffer. This can be a dangerous assumption: If this property was to be larger than expected, it would lead to a stack overflow.In practice, objects allocated with “cv_create_object” cannot be used this way as there are checks in place to limit the size of this property. However, because we can corrupt heap data, it is possible to forge a malicious object that will trigger the bug. Alternatively, there might be other legitimate avenues to load a malicious object. For instance, “cv_import_object” is a good candidate. Due to the complexity of the function, we focused on the heap corruption approach instead. Regardless, this bug was reported as CVE-2025-24922.The general approach to exploiting “securebio_identify” is as follows:Create a large object on the heap containing fake heap metadata followed by the “SeSs” tag.Locate the fake session and free it is using “cv_close”. This will mark a chunk of heap memory as freed even though it is still being used by the large object we’ve created.Allocate a smaller object that will end up being allocated inside the hole we’ve poked inside the large object from step 1.Use “cv_set_object” to modify the data of the large object and thus corrupt the fields of the small object.Use the corrupted small object to trigger the stack overflow inside “securebio_identify”. Because the firmware doesn’t have ASLR, it’s easy to find gadgets to fully exploit the function and gain arbitrary code execution inside the firmware.Optional: Use the large object as an output buffer to store data produced by our exploit and retrieve its content from the hostFigure 17. Overlapping two objects to exploit securebio_identify.An example of this attack will be used in the next section.More firmware vulnerabilitiesWhile looking at the application firmware, we also found an out-of-bound read in the “cv_send_blockdata” and an out-of-bound write in “cv_upgrade_sensor_firmware”. Those were reported respectively as CVE-2025-24311 and CVE-2025-25050. We did not use these vulnerabilities for further exploitation.Arbitrary code execution in the application firmware: What’s next?If we circle back to our list of goals, now that we have gained code execution in the firmware, we can try to attack the host from this vantage point. To have a stronger and more meaningful case, it would be more interesting to first find a way to permanently modify the firmware. So, let’s do that!Figure 18: Secure boot process.This diagram showcases the ControlVault boot process:The Bootrom verifies the SBIs.The SBI retrieves keys from the OTP memory to decrypt the SCD.From the decrypted SCD, the SBI loads the required key material and sets up the SMAU to execute the encrypted firmware in place.The application firmware is executed.Surprisingly, at boot time, there’s no cryptographic verification of the application firmware. Cryptographic verification only happens during the firmware update process. The security of the application firmware mostly relies on the security of the OTP keys and the key material stored in the SCD. But now that we have code execution on the firmware, can we leak this key material?sotp_read_keyThe “sotp_read_key” is an internal (i.e., non CV) function that can be used to read key material from the OTP memory of the Broadcom chip. In particular, it is possible to retrieve the AES and HMAC keys that are used to encrypt and authenticate the SCD:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+0:00
+
+                            /0:18
+
+
+1×
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Figure 19: Demo of dumping OTP keys.
+By obtaining the device OTP keys, it becomes possible to decrypt its SCD blob and/or forge a new one. This is particularly interesting as we can write an arbitrary SCD blob to flash using the “cv_flash_update” function.We can create our own RSA public/private keypair and replace the SCD’s public key with the one we’ve just created. Upon firmware update, the new RSA public key will be used for firmware verification. This way, we can modify a firmware file and install it on our device.To confirm the process works, we modify a firmware to make it send an arbitrary message when Windows requests its USB descriptor:Figure 20: Malicious USB descriptor returned by a tampered ControlVault.Firmware modificationPatching “cv_fingerprint_identify”With the ability to tamper with the firmware, a new attack vector gets unlocked: we can now modify the behaviors of certain functions. In particular, “cv_fingerprint_identify” is used by Windows Hello when a user tries to login with their fingerprint. The host will send a list of handles to check if any of the CV stored fingerprint templates match the fingerprint currently touching the reader. This pseudo matching-in-sensor is done to avoid storing fingerprints templates on the host itself as it could lead to privacy concerns. This creates an interesting opportunity: what if “cv_fingerprint_identify” were to always return true, and thus make Windows Hello accept any fingerprint.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+0:00
+
+                            /0:07
+
+
+1×
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Figure 21: Demo of bypassing Windows Hello.
+Exploiting a SYSTEM serviceAnother consequence of being able to modify the firmware running on our device is that now we can explore the question of whether a malicious ControlVault device can compromise its host.Primer on host-FW communicationLet’s consider what happens when calling one of the CV Commands, for example “cv_get_random”:Figure 22: Calling cv_get_random.
+
+
+The “InitParam_List” function is called to populate two separate arrays of objects: “out_param_list_entry” and “in_param_list_entry”. The former is used to specify the arguments going to the firmware while the latter is used to prepare for the return values expected from the command.
+
+The first parameter of “InitParam_List” is the type of data encapsulation: 
+
+
+
+cv_param_type_e::CV_ENCAP_STRUC = 0x0, 
+cv_param_type_e::CV_ENCAP_LENVAL_STRUC = 0x1, 
+cv_param_type_e::CV_ENCAP_LENVAL_PAIR = 0x2,
+cv_param_type_e::CV_ENCAP_INOUT_LENVAL_PAIR = 0x3
+
+
+
+Depending on the encapsulation type, the parameters will be
+encapsulated/decapsulated slightly differently: 
+
+STRUC will result in a regular buffer being decapsulated
+LENVAL_STRUC will result in a length-prefixed buffer (i.e., the first four
+bytes is the size of the data followed by the actual data)
+LENVAL_PAIR will be decapsulated as two separate parameters (size and
+buffer)
+
+INOUT_LENVAL_PAIR will be initialized without data but will get
+decapsulated as two parameters like LENVAL_PAIR
+
+
+“cvhManagerCVAPICall” is called to perform the command and retrieve its result.
+
+From a high-level perspective, when this function is called, the data we are
+sending gets serialized in the appropriate format and an IOCTL_SUBMIT call
+is issued; the data is sent to the firmware eventually.
+Once the execution of the command is complete, data is returned and
+deserialized to be populated into the “in_param_list_entry array” that was
+prepared in the previous step
+
+Finally, the function “cvhSaveReturnValues” is used to parse the
+“in_param_list_entry array” and extract these values into a caller-provided array of
+objects. 
+
+For instance, in the screenshot above (figure 22), there is one parameter in the
+“in_param_list_entry” and its type is CV_ENCAP_INOUT_LENVAL_PAIR. As
+such, upon calling the “cvhSaveReturnValues”, two parameters will be
+produced: the first one being the size of the data returned by
+“cv_get_random” and the second being the actual data. 
+
+
+
+On the firmware side, when handling the CV commands, the return values are re-defined, which is surprising:Figure 23: CvManager handling the cv_get_random command (firmware-side).It turns out that the way this data is processed leads to an unsafe deserialization. We cover the root-cause analysis of this issue in CVE-2025-24919. In short, the redefinition of the firmware-to-host parameters firmware-side can lead to invalid decapsulation of the data on the host. For instance, if a malicious firmware image were to change the return type of “cv_get_random” to be CV_ENCAP_STRUC instead of being CV_INOUT_LENVAL_PAIR, the “pLen” argument that is meant to receive the size of the produced data would instead be filled with the data itself. In figure 22, the “pLen” variable is a stack variable meant to receive a size value as an integer; any data larger than four bytes would thus overflow the stack, possibly leading to arbitrary code execution.Exploitation constraints“bcmbipdll.dll” file and some of the ControlVault services are not ASLR enabled, which makes exploitation much easier, as it is possible to hardcode offsets which removes the need of finding an information leak that could be leveraged by a malicious ControlVault device. Data Execution Prevention (DEP) is in place, so it is still necessary to perform a ROP chain attack for further exploitation. Surprisingly, another common mitigation is only partially implemented; stack canaries are only occasionally present in the ControlVault services and DLLs. For instance, in the case of “cv_get_random”, even though “pLen” is a stack variable, no stack cookie is included to protect this function. This leads to the side-quest of identifying CV commands that are easy to exploit but also are used in a high privilege context.In practice, we have these constraints for our ideal CV command to target:It needs to be used (directly or inside a call-chain) by a high-privilege service.One of the variables fed to the CV Command needs to be a stack variable that can be corrupted using the bug reported in CVE-2025-24919 (e.g., like the “pLen” variable in “cv_get_random”).No stack cookie must be present between the to-be-corrupted stack variable and the return address being the target of the stack overflow.Finding what to targetThe “cv_get_random” function would be an ideal candidate, but unfortunately it’s hard to find code that is using this function reliably.After investigating most of the CV commands, we found the following:Figure 24: WBFUSH_ExistsCVObject calling CSS_GetObject.The first argument to this function, “cvHandle”, is a handle to an object. It is passed to “CSS_GetObject”, which will populate the stack variable “objHeader” with the header of the object tied to this handle. Down the call-stack, “cv_get_object” is called with both the “cvHandle” and the “objHeader” variables. Due to these functions’ stack layout, it is possible to leverage CVE-2025-24919 to corrupt the “objHeader” variable and trigger a stack overflow in its parent function.Exploitation detailsThe “WBFUSH_ExistCVObject” function is used by the “BCMStorageAdapter.dll” to verify if an object handle is tied to a real object stored in the ControlVault firmware. Meanwhile, “BCMStorageAdapter” is part of Broadcom’s implementation of the adapters required to interface with the Windows Biometric Framework (WBF). These adapters are necessary to interface a fingerprint reader with WBF to be used with Windows Hello (fingerprint login) or other biometric-enabled scenarios. Here is the call stack to reach the vulnerable function:StorageAdapterControlUnit 
+  -> WBFUSH_ExistsCVObject 
+    -> CSS_GetObject
+      -> cv_get_objectThe “StorageAdapterControlUnit” function can be reached by a regular user opening the proper adapter with “WinBioOpenSession” and then issuing a “WinBioControlUnit” command with the “WINBIO_COMPONENT_STORAGE” component.Figure 25: WinBioControlUnit prototype.The “ControlCode” parameter specifies which adapter’s function to invoke.Figure 26: StorageAdapterControlUnit with ControlCode=2.By reversing “BCMStorageAdapter !StorageAdapterControlUnit”, we find that using “ControlCode=2” will lead to calling the “WBFUSH_ExistsCVObject” with caller provided handle. Specifically, the first four bytes of the “SendBuffer” argument passed to “WinBioControlUnit” are cast into the expected object handle.With this in mind, the exploitation process is as follows:Achieve code execution on the firmware to leak the device keys and gain the ability to forge a firmware file that will be accepted by this specific device.Forge a malicious firmware update with a modified “cv_get_object” function.The “cv_get_object” function will be backdoored: if the object handle matches a specific magic value (e.g., 0x1337) it will return the stack-overflow payload and tamper with the encapsulation parameters to trigger CVE-2025-24919. If the handle is not 0x1337, “cv_get_object” will execute normally to avoid unintended side-effects from the backdoor.The stack-overflow payload will be a ROP chain that will eventually lead to the execution of a reverse-shell.Install the malicious firmware update.Invoke the “WinBioControlUnit” function with “ControlCode=2” and “b”\x37\x13\x00\x00”” as the “SendBuffer” (little-endian representation of 0x1337 as a DWORD).Connect to the reverse shell and observe having obtained SYSTEM privileges.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+0:00
+
+                            /0:22
+
+
+1×
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Figure 27: Demo SYSTEM service exploit.
+Going furtherImplantThe process described above could be seen as one of the most convoluted ways to perform an elevation of privileges to SYSTEM on Windows. However, this should be considered in context. There are other services and functions that could be used instead. In our example here, we picked functions that were easy to build a demo with. In practice, other functions could be leveraged so that no user interaction would be required to trigger the vulnerabilities. This would make sense for a standalone implant that could lay dormant and trigger from time to time in order to call home. Development of a weaponized implant is of course beyond the scope of our research.Physical attacksAnother promising angle that we have yet to mention is physical access. The USH board is an internal USB device. It is possible to open the laptop that contains the board and connect to it directly provided the proper connector. There are mitigations against physical access (e.g., chassis intrusion alerts), but those are generally opt-in. As such, an attacker with 10-20 minutes of physical access could perform the same attacks described in this deep dive, but without any of the other requirements (e.g., no need to be able to log in as user; disk encryption would not protect against this, etc.).The following video is a short demo of the feasibility of connecting directly to a USH board over USB.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+0:00
+
+                            /0:19
+
+
+1×
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Figure 28: Demo physical attack.
+Please note that in the video above, a ControlVault device is already present but disabled. This is because the machine used already had a ControlVault device built in. The relevant driver/dll were also already installed. Upon connecting the USB cable, a new ControlVault device pops up and this is the one that is being interacted with.ImpactAttack scenarioThe risks we’ve explored in this article can be summarized in the following diagram:Figure 29: Attack scenarios.The ability to modify the firmware running on one of the USH boards can be used by a local attacker to either gain privileges, bypass fingerprint login and/or compromise Windows. A threat actor could also leverage this in a post-compromise situation. If a user’s workstation is compromised, one could tamper with the ControlVault firmware running on their machine to act as an implant that could remain present even after a full system reinstall.DetectionDetecting a compromised ControlVault device can be tricky. An implant could ignore new firmware updates. This is why verifying that a legitimate firmware update can be successfully installed and then returns the expected version string is a good first check to perform. This can be done with the Python code provided at the beginning of this article (figure 5). Alternatively, a second way is to look at the properties of the ControlVault device in the - device manager. The “Versioning” panel will show the ControlVault firmware version as reported by the device.Indication of local exploitation of the ControlVault device can be detected by monitoring unexpected processes loading “bcmbipdll.dll” or those trying to open a handle to the ControlVault device itself. The path for the device may depend on the laptop model and its internal USB connections. The full path can be retrieved using “SetupDiGetClassDevsW / SetupDiEnumDeviceInterfaces” with the InterfaceGuid: {79D2E5E9-8883-4E9D-91CBA14D2B145A41}.Cisco customers using Cisco Secure Endpoint can be made aware of potential risks with the signature definition “bcmbipdll.dll Loaded by Abnormal Process”. Finally, unexpected crashes in “WinBioSvc”, “bcmHostStorageService”, “bcmHostControlService” or “bcmUshUpgradeService” could be signs of something being amiss.ConclusionControlVault is a surprisingly complex attack surface spanning the whole gamut from hardware to firmware and software. Multiple peripherals, frameworks and drivers are involved as well. It has a legacy codebase that can be traced back to the early 2010s and various first party software has interacted with it over the years. This deep dive has barely scratched the surface of ControlVault’s complexity and yet we showed how far reaching the consequences of a compromise could lead to. The most surprising thing could be that our work appears to be the first public research on the subject. Firmware security isn’t a new topic, but still, how many other ControlVault-like devices are yet to be found and assessed for the unexpected risk they may bring?
+
+
+
+Share this post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Content
+
+
+DICOM, Pydicom, GDCM, and Orthanc: A technical tour of what really happens in the heap
+May 28, 2026 06:00
+This white paper presents a concrete case study demonstrating the creation of a heap overflow vulnerability through the exploitation of the DICOM file format.
+
+
+
+
+“Good enough” emulation: Fuzzing a single thread to uncover vulnerabilities
+February 18, 2026 06:00
+A Talos researcher used targeted emulation of the Socomec DIRIS M-70 gateway’s Modbus thread to uncover six patched vulnerabilities, showcasing efficient tools and methods for IoT security testing.
+
+
+
+
+Decrement by one to rule them all: AsIO3.sys driver exploitation
+June 26, 2025 06:00
+Cisco Talos uncovered and analyzed two critical vulnerabilities in ASUS' AsIO3.sys driver, highlighting serious security risks and the importance of robust driver design.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

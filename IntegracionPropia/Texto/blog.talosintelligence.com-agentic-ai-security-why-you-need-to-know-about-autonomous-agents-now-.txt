@@ -1,0 +1,696 @@
+
+
+
+Agentic AI security: Why you need to know about autonomous agents now
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Agentic AI security: Why you need to know about autonomous agents now
+
+
+By 
+Nick Biasini, 
+                Vitor Ventura
+
+
+
+            Wednesday, March 11, 2026 06:00
+        
+
+
+                            The Need to Know
+                        
+
+                            AI
+                        
+
+
+
+
+Agentic AI is making headlines worldwide for its potential force-multiplying capabilities, and organizations are understandably intrigued by how it can improve throughput and capabilities. However, as with any technological revolution, unforeseen issues are inevitable, and agentic AI is no exception. In organizations, these issues often arise from deploying personal assistants like OpenClaw or AI agents designed to optimize business and IT processes. Additionally, when personal assistants interact with “social networks” such as Moltbook, they introduce many hidden threats for organizations. These specific risks fall beyond the scope of this article, and will be addressed in a future blog.This article will concentrate on agentic AI’s use within organizations and explore how these systems could potentially be used against them. There are two perspectives that must be taken into consideration when thinking about agentic AI: The perspective of organizations deploying agentic AI technologies to streamline their business and organizational processes The perspective focused on potential impacts of malicious agentic AI in the futureBoth perspectives will be addressed, but let’s start with the first, which encompasses cybersecurity defense processes already in place, as well as the ways agentic AI can enhance those defenses.What is agentic AI, how can it benefit organizations, and what are the dangers?At its core, agentic AI is an autonomous system tasked with an objective, equipped with specific tools and resources. This system is typically powered by large language models (LLMs) with advanced reasoning capabilities. These capabilities allow the agent to plan how to achieve its objective, implement that plan, and, most importantly, verify results and try different approaches if errors occur. There are four questions an organization must ask when delegating a task to an AI agent:Traceability: Can I track all agent actions, regardless of whether the outcomes are global or intermediate? Auditability: Is the task subject to regulatory oversight? Who is accountable for the outcomes produced by the agent? Business risk management: Have I conducted a business risk assessment on the AI agent’s possible actions? Cybersecurity threat management: Does the agent have guardrails to prevent malicious or disruptive actions during execution, regardless of its intent? AI agents can be incredibly powerful and task-oriented, so their actions must be scrutinized independently of intent. An agent may inadvertently destroy or expose data, while still successfully completing its task.  An AI agent needs to adhere to basic cybersecurity and risk management principles. Just as you wouldn’t hand a new employee keys to all the data in your enterprise, AI agent access should be tailored for its specific role. Following good practices like threat modeling and risk management provides a solid foundation for successfully deploying AI agents. The optimal approach is to apply existing organizational roles to AI agents and adjust the data access accordingly.  The goal should be to ensure that the exposure from a compromised AI agent is no greater than from a compromised user; this is achievable only through strong access control. AI agents are not immune to external interference or direct attacks. Agents can search the internet to determine the best actions to achieve their goals. These actions could be manipulated, leading the agent to run a tool with an undesired consequence. At the same time, the act of making queries to the internet can result in information leaks.When addressing these kinds of issues, it’s important to recognize that LLMs are not deterministic in nature, meaning that the execution of an agent to solve a task may vary each time, even if the task is consistently completed. This means that the traditional allow/deny approach may not be enough to provide the necessary safety and security boundaries. It is crucial to evaluate the potential outcomes of an action before execution — not from the perspective of the task at hand, but from a safety and security standpoint, free from goal-related bias. This oversight can be performed by a human operator, who authorizes critical steps in task resolution. It can also be provided by a separate model/agent tasked with evaluating the consequences of actions without regard to the overall objective. These evaluations can even be scored, triggering human review if a certain threshold is met. There may also be compliance requirements to track and log the actions agent actions, similar to those required for a user. Just as no system is 100% secure, no agent is 100% safe, especially given their non-deterministic and try-error reasoning features. However, this is not a new challenge. This is a threat modeling and risk management problem, which organizations have been facing for several years now.  Organizations with mature cybersecurity practices model threat scenarios and prepare for incident response. They conduct business, information security, and cybersecurity risk evaluations for these scenarios and determine how each risk is managed. Using agentic AI should follow the same process: First, model threats based on agent privileges and capabilities, then evaluate the risks, and finally determine how to mitigate them.Ultimately, we need to apply what we already know to this new context, drawing the appropriate parallels.Near and not-so-far impacts of malicious agentic AI Agentic AI is already being used by malicious actors, as seen in cases like VoidLink. Nevertheless, this is just the tip of the iceberg, and defenders should be prepared for much more.Agentic AI integration with attack frameworks is inevitable, and likely already underway; we just haven’t seen it yet. It may provide malicious operators with capabilities that could outpace defenders unless defenders also leverage agentic AI. Our tracking of attack frameworks and their evolution provides clues on what the next steps may look like.The next stage for these attack frameworks could easily be an agent that runs on the backend, awaiting operator requests. These requests might include searching for, compiling, and locally testing exploits for software the operator found on the target system.But this is just the beginning. The list below illustrates other developments likely to be adopted by malicious operators:To accelerate operations, an agent may analyze the operator’s console and suggest actions based on console inputs. This would both allow the agent to infer the operator’s preferences and retain memories of the target environment — details the operator could otherwise miss.More efficient use of an agent would involve the delegation of routine tasks, like environment exploration, system role recognition, and data exfiltration.Eventually, an agent could be deployed directly in the victim environment to handle specific tasks, contacting the backend for inference. In this scenario, the operator simply assigns the agent a task and waits for a result, with the agent using covert channels, that don’t need to be synchronous.The ultimate threat is a fully autonomous agent deployed and assigned a specific objective, using local inference and only contacting the backend upon task completion. Local inference reduces the risk of detection, as backend communications are kept to a minimum. Additionally, in long-term operations, the agent can perform tasks slowly, adapt its tactics from system to system, and even be instructed to use only living-off-the-land binaries (LOLBins).These scenarios can be adapted by defenders to automate threat hunting and response, but all strategies must account for the risks and guardrails discussed earlier.
+
+
+
+Share this post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Content
+
+
+[Video] Where protection starts: Cisco Talos Intelligence Integrations
+July 14, 2026 06:47
+Every day, defenders make high-consequence decisions with incomplete information. Learn how Cisco Talos Intelligence Integrations help reduce uncertainty by turning the latest threat intelligence into proactive protections across Cisco technologies.
+
+
+
+
+How Cisco Talos powers the solutions protecting your organization
+January 7, 2026 06:00
+What happens under the hood of Cisco's security portfolio? Our reputation and detection services apply Talos' real-time intelligence to detect and block threats. Here's how.
+
+
+
+
+Cybersecurity on a budget: Strategies for an economic downturn
+October 29, 2025 06:00
+This blog offers practical strategies, creative defenses, and talent management advice to help your business stay secure when every dollar counts.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,1125 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>RATs and stealers rush through “Heaven’s Gate” with new loader</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/bootstrap.min.css?v=-xdjtZ-fV2QpS1r5">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/navigation.css?v=PhzoiGnw4ldwozL1">
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/footer.css?v=sVEdldiwj6rF6gHP">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/pagination.css?v=HruyeF1JUFuoy6Wu">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/banners.css?v=vI3KT68RWE95HKDs">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/style.css?v=idjnUZoOumC94rdj">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/prism.css?v=jqyaOB6z6CqMaOT4">
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/prism-vsc-dark-plus.css?v=xoEFwaYF1JkH_sqf">
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/prism-talos.css?v=kn8aYcNhO045nXac">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/landing-page.css?v=EPtrK0eJwYLqD25v">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/coverage-block.css?v=vBgCqINSTHrSh9PX">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/ghost-theme-utils@latest/dist/css/style.min.css" rel="stylesheet">
+
+
+    <link rel="icon" href="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w256h256/2022/07/talos_o_square.png" type="image/png">
+    <link rel="canonical" href="https://blog.talosintelligence.com/rats-and-stealers-rush-through-heavens/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta property="og:site_name" content="Cisco Talos Blog">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="RATs and stealers rush through “Heaven’s Gate” with new loader">
+    <meta property="og:description" content="By Holger Unterbrink and Edmund Brumaghin.
+
+
+Executive summary
+
+Malware is constantly finding new ways to avoid detection. This doesn&#x27;t mean that some will never be detected, but it does allow adversaries to increase the period of time between initial release and detection. Flying under the radar for just a">
+    <meta property="og:url" content="https://blog.talosintelligence.com/rats-and-stealers-rush-through-heavens/">
+    <meta property="og:image" content="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-c7kamiZL-b4/XRoRMVHHNGI/AAAAAAAABO4/GRhRUivEtJEUDQCARhyAJt-QTktGgTkXgCEwYBhgL/w1200-h630-p-k-no-nu/image3.jpg">
+    <meta property="article:published_time" content="2019-07-01T15:20:00.000Z">
+    <meta property="article:modified_time" content="2022-12-13T17:51:27.000Z">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="RATs and stealers rush through “Heaven’s Gate” with new loader">
+    <meta name="twitter:description" content="By Holger Unterbrink and Edmund Brumaghin.
+
+
+Executive summary
+
+Malware is constantly finding new ways to avoid detection. This doesn&#x27;t mean that some will never be detected, but it does allow adversaries to increase the period of time between initial release and detection. Flying under the radar for just a">
+    <meta name="twitter:url" content="https://blog.talosintelligence.com/rats-and-stealers-rush-through-heavens/">
+    <meta name="twitter:image" content="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-c7kamiZL-b4/XRoRMVHHNGI/AAAAAAAABO4/GRhRUivEtJEUDQCARhyAJt-QTktGgTkXgCEwYBhgL/w1200-h630-p-k-no-nu/image3.jpg">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Holger Unterbrink">
+    <meta name="twitter:site" content="@TalosSecurity">
+    <meta property="og:image:width" content="955">
+    <meta property="og:image:height" content="501">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Cisco Talos Blog",
+        "url": "https://blog.talosintelligence.com/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/11/TalosBrand_ukraine.svg"
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Holger Unterbrink",
+        "url": "https://blog.talosintelligence.com/author/holger-unterbrink/",
+        "sameAs": []
+    },
+    "headline": "RATs and stealers rush through “Heaven’s Gate” with new loader",
+    "url": "https://blog.talosintelligence.com/rats-and-stealers-rush-through-heavens/",
+    "datePublished": "2019-07-01T15:20:00.000Z",
+    "dateModified": "2022-12-13T17:51:27.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-c7kamiZL-b4/XRoRMVHHNGI/AAAAAAAABO4/GRhRUivEtJEUDQCARhyAJt-QTktGgTkXgCEwYBhgL/w1200-h630-p-k-no-nu/image3.jpg",
+        "width": 955,
+        "height": 501
+    },
+    "description": "By Holger Unterbrink and Edmund Brumaghin.\n\n\nExecutive summary\n\nMalware is constantly finding new ways to avoid detection. This doesn't mean that some will never be detected, but it does allow adversaries to increase the period of time between initial release and detection. Flying under the radar for just a few days is enough to infect sufficient machines to earn a decent amount of revenue for an attack. Cisco Talos recently discovered a new campaign delivering the HawkEye Reborn keylogger and o",
+    "mainEntityOfPage": "https://blog.talosintelligence.com/rats-and-stealers-rush-through-heavens/"
+}
+    </script>
+
+    <meta name="generator" content="Ghost 6.68">
+    <link rel="alternate" type="application/rss+xml" title="Cisco Talos Blog" href="https://blog.talosintelligence.com/rss/">
+    
+    <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/sodo-search.min.js" data-key="4ffb0139d74ada998f4b141e4d" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/main.css" data-sodo-search="https://cisco-talos-blog.ghost.io/" data-locale="en" crossorigin="anonymous"></script>
+    
+    <link href="https://blog.talosintelligence.com/webmentions/receive/" rel="webmention">
+    <script defer src="/public/cards.min.js?v=ShRHxgy4po8zN-Wf"></script>
+    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=WwnU9jw5ancNC8Gc">
+    <script defer src="/public/ghost-stats.min.js?v=vFcCUf6ZQ0Hyhc8h" data-stringify-payload="false" data-datasource="analytics_events" data-storage="localStorage" data-host="https://blog.talosintelligence.com/.ghost/analytics/api/v1/page_hit"  tb_site_uuid="afa04ee3-414f-4481-8d23-7e7c146f192e" tb_post_uuid="b4fdc061-8a84-4abd-9cab-2d6449dd1fb0" tb_post_type="post" tb_member_uuid="undefined" tb_member_status="undefined" tb_gift_link=""></script><style>:root {--ghost-accent-color: #006db6;}</style>
+    <style type='text/css'>
+    img[src*="icon_check_white.svg"] { width: 20px; margin-left: 0px; margin-right: auto; }
+    
+    #ghost-portal-root { display: none; }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F45RVJG3BK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-F45RVJG3BK');
+</script>
+</head>
+
+<body class="post-template">
+
+    <div id="mobile-page-header" class="desktop-hide mobile-page-header">
+    <a class="mobile-nav-home-link" href="/">
+        <div class="mobile-logo-wrapper">
+        </div>
+        <div class="mobile-home-title">Blog</div>
+    </a>
+    <div id="mobile-search-wrapper">
+        <button class="search-button mobile-search-button" data-ghost-search>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        </button>
+    </div>
+</div>
+
+<nav id="nav">
+    <input id="nav-trigger" class="nav-trigger" type="checkbox"/>
+    <label for="nav-trigger">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="22px" height="16px" viewBox="0 0 22 16">
+            <g id="menu-icon">
+                <path fill="#FFFFFF" d="M20.5,3h-19C0.672,3,0,2.329,0,1.5S0.672,0,1.5,0h19C21.328,0,22,0.671,22,1.5S21.328,3,20.5,3z"></path>
+                <path fill="#FFFFFF" d="M20.5,9.5h-19C0.672,9.5,0,8.828,0,8c0-0.829,0.672-1.5,1.5-1.5h19C21.328,6.5,22,7.171,22,8   C22,8.828,21.328,9.5,20.5,9.5z"></path>
+                <path fill="#FFFFFF" d="M20.5,16h-19C0.672,16,0,15.328,0,14.5S0.672,13,1.5,13h19c0.828,0,1.5,0.672,1.5,1.5S21.328,16,20.5,16z"></path>
+            </g>
+        </svg>
+    </label>
+    <div id="top-nav-bar">
+    </div>
+
+    <div id="navigation">
+        <div class="navigation-logos-wrapper">
+            <div id="talos-logo-wrapper">
+                <a class="navbar-brand" href="https://talosintelligence.com">
+                </a>
+            </div>
+        </div>
+        <div class="navigation-links-wrapper">
+            <ul class="main-nav-list">
+                <li class="nav-item">
+                    <div class="primary-link-wrapper">
+                        <a class="primary_nav_link" href="https://talosintelligence.com/reputation">
+                            <div class="mobile-nav-icon"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" height="20px" width="20px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                            <style type="text/css">
+                                .white{fill:#FFFFFF;}
+                            </style>
+                            <g>
+                                <path class="white" d="M19.5,9.5h-1.1c-0.3-4.2-3.6-7.6-7.8-7.8V0.5C10.5,0.2,10.3,0,10,0l0,0C9.7,0,9.5,0.2,9.5,0.5l0,0v1.1   C5.3,1.9,1.9,5.3,1.6,9.5H0.5C0.2,9.5,0,9.7,0,10s0.2,0.5,0.5,0.5l0,0h1.1c0.3,4.2,3.6,7.6,7.8,7.8v1.1c0,0.3,0.2,0.5,0.5,0.5l0,0   c0.3,0,0.5-0.2,0.5-0.5l0,0v-1.1c4.2-0.3,7.6-3.6,7.8-7.8h1.1c0.3,0,0.5-0.2,0.5-0.5C20,9.7,19.8,9.5,19.5,9.5 M16.6,10.5h0.7   c-0.3,3.6-3.2,6.5-6.8,6.8v-0.8c0-0.3-0.2-0.5-0.5-0.5l0,0c-0.3,0-0.5,0.2-0.5,0.5v0.8C5.8,17,3,14.2,2.7,10.5h0.8   C3.8,10.5,4,10.3,4,10S3.8,9.5,3.5,9.5l0,0H2.7C3,5.8,5.8,3,9.5,2.7v0.8C9.5,3.7,9.7,4,10,4l0,0c0.3,0,0.5-0.2,0.5-0.5V2.7   C14.2,3,17,5.8,17.3,9.5h-0.7c-0.3,0-0.5,0.2-0.5,0.5C16.1,10.3,16.3,10.5,16.6,10.5L16.6,10.5"></path>
+                                                            <circle class="white" cx="10" cy="10" r="3.2"></circle>
+                            </g>
+                            </svg>
+                            </div>
+                            <span class="top-nav-link-text">
+                                Intelligence Center
+                            </span>
+                        </a>
+                    </div>
+                    <input class="sub-nav-trigger" id="intelligence-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="intelligence-sub-trigger">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+
+                    </label>
+                    <ul class="sub-nav sub-nav-single-list">
+                        <li class="desktop-hide">
+                            <a class="mobile_nav_link" href="https://talosintelligence.com/reputation"><h1>Intelligence Center</h1>
+                            </a></li>
+                        <li class="desktop-hide">
+                            <label class="subnav-back-button" for="intelligence-sub-trigger">BACK</label>
+                        </li>
+                        <li><a class="secondary_nav_link" href="https://talosintelligence.com/reputation_center">Intelligence Search</a></li>
+                        <li><a class="secondary_nav_link" href="https://talosintelligence.com/reputation_center/email_rep">Email &amp; Spam Trends</a></li>
+                    </ul>
+                    <div class="desktop-hide subnav-overlay"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" height="20px" width="20px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                        <style type="text/css">
+                            .white{fill:#FFFFFF;}
+                        </style>
+                                                <g>
+                            <path class="white" d="M19.5,9.5h-1.1c-0.3-4.2-3.6-7.6-7.8-7.8V0.5C10.5,0.2,10.3,0,10,0l0,0C9.7,0,9.5,0.2,9.5,0.5l0,0v1.1   C5.3,1.9,1.9,5.3,1.6,9.5H0.5C0.2,9.5,0,9.7,0,10s0.2,0.5,0.5,0.5l0,0h1.1c0.3,4.2,3.6,7.6,7.8,7.8v1.1c0,0.3,0.2,0.5,0.5,0.5l0,0   c0.3,0,0.5-0.2,0.5-0.5l0,0v-1.1c4.2-0.3,7.6-3.6,7.8-7.8h1.1c0.3,0,0.5-0.2,0.5-0.5C20,9.7,19.8,9.5,19.5,9.5 M16.6,10.5h0.7   c-0.3,3.6-3.2,6.5-6.8,6.8v-0.8c0-0.3-0.2-0.5-0.5-0.5l0,0c-0.3,0-0.5,0.2-0.5,0.5v0.8C5.8,17,3,14.2,2.7,10.5h0.8   C3.8,10.5,4,10.3,4,10S3.8,9.5,3.5,9.5l0,0H2.7C3,5.8,5.8,3,9.5,2.7v0.8C9.5,3.7,9.7,4,10,4l0,0c0.3,0,0.5-0.2,0.5-0.5V2.7   C14.2,3,17,5.8,17.3,9.5h-0.7c-0.3,0-0.5,0.2-0.5,0.5C16.1,10.3,16.3,10.5,16.6,10.5L16.6,10.5"></path>
+                                                    <circle class="white" cx="10" cy="10" r="3.2"></circle>
+                        </g>
+                        </svg>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="primary-link-wrapper">
+                        <a class="primary_nav_link" href="https://talosintelligence.com/vulnerability_info"><div class="mobile-nav-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px" height="20px" viewBox="0 0 26 20">
+                            <g id="vuln-icon" class="nav-icon">
+                                <path fill="#FFFFFF" d="M24.256,18.49L13.872,0.503C13.692,0.192,13.36,0,13,0c-0.359,0-0.692,0.192-0.872,0.503L1.744,18.49  c-0.18,0.312-0.18,0.695,0,1.006C1.924,19.809,2.257,20,2.616,20h20.769c0.359,0,0.691-0.191,0.871-0.504  C24.436,19.186,24.436,18.803,24.256,18.49 M14.268,18.215h-2.533v-1.85h2.533V18.215z M14.268,15.441h-2.533L10.89,6.515h4.222  L14.268,15.441z"></path>
+                            </g>
+                        </svg>
+                        </div>
+                            <span class="top-nav-link-text">
+                            Vulnerability Research
+                            </span>
+                        </a></div>
+                    <input class="sub-nav-trigger" id="vuln-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="vuln-sub-trigger">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+                        </div>
+                    </label>
+                    <ul class="sub-nav sub-nav-single-list">
+                        <li class="desktop-hide">
+                            <a href="https://talosintelligence.com/vulnerability_info"><h1>Vulnerability Research</h1>
+                            </a></li>
+                        <li class="desktop-hide">
+                            <label class="subnav-back-button" for="vuln-sub-trigger">BACK</label>
+                        </li>
+                        <li><a class="vulnerabilty-info-nav-link" href="https://talosintelligence.com/vulnerability_reports">Vulnerability Reports</a></li>
+                        <li><a class="vulnerabilty-info-nav-link" href="https://talosintelligence.com/ms_advisories">Microsoft Advisories</a></li>
+                    </ul>
+                    <div class="desktop-hide subnav-overlay">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px" height="20px" viewBox="0 0 26 20">
+                        <g id="vuln-icon" class="nav-icon">
+                            <path fill="#FFFFFF" d="M24.256,18.49L13.872,0.503C13.692,0.192,13.36,0,13,0c-0.359,0-0.692,0.192-0.872,0.503L1.744,18.49  c-0.18,0.312-0.18,0.695,0,1.006C1.924,19.809,2.257,20,2.616,20h20.769c0.359,0,0.691-0.191,0.871-0.504  C24.436,19.186,24.436,18.803,24.256,18.49 M14.268,18.215h-2.533v-1.85h2.533V18.215z M14.268,15.441h-2.533L10.89,6.515h4.222  L14.268,15.441z"></path>
+                        </g>
+                        </svg>
+                    </div>
+                </li>
+
+
+               <li class="nav-item">
+                   <div class="primary-link-wrapper">
+                        <a class="primary_nav_link" href="https://talosintelligence.com/incident_response">
+                           <div class="mobile-nav-icon">
+                               <svg xmlns="http://www.w3.org/2000/svg" width="111.588" height="148.311" viewBox="0 0 111.588 148.311">
+                                    <path d="M1.181,128.446v15.7a4.167,4.167,0,0,0,4.167,4.167h100.9a4.167,4.167,0,0,0,4.167-4.167v-15.7a4.167,4.167,0,0,0-4.167-4.167H5.348a4.167,4.167,0,0,0-4.167,4.166M55.8,63.109a3.277,3.277,0,1,1,0,6.553c-10.344,0-20.755,8.578-20.755,18.57a3.277,3.277,0,1,1-6.554,0C28.489,73.947,41.93,63.109,55.8,63.109Zm0-12.016c-21.787,0-39.325,17.81-39.325,39.937v26.7H95.122V91.03c0-22.128-17.537-39.937-39.324-39.937m52.365-38.3a3.291,3.291,0,0,0-2.254,1.024L88.432,31.294a3.283,3.283,0,0,0,4.642,4.644l17.478-17.479a3.278,3.278,0,0,0-2.389-5.666m-105.138,0a3.276,3.276,0,0,0-1.98,5.666L18.522,35.938a3.283,3.283,0,0,0,4.643-4.644L5.687,13.817A3.255,3.255,0,0,0,3.025,12.793ZM55.389.026a3.276,3.276,0,0,0-2.867,3.345V19.642a3.277,3.277,0,1,0,6.554,0V3.371A3.283,3.283,0,0,0,55.389.026Z" fill="#fff"></path>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text">
+                                Incident Response
+                            </span>
+                       </a>
+                   </div>
+                   <input class="sub-nav-trigger" id="ir-sub-trigger" type="checkbox">
+                   <label class="sub-nav-trigger-label" for="ir-sub-trigger">
+                       <div class="mobile-nav-icon">
+                           <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                                <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                               <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                               </g>
+                           </svg>
+                       </div>
+                   </label>
+                   <ul class="sub-nav sub-nav-single-list">
+                       <li class="desktop-hide">
+                           <a href="/incident_response">
+                               <h1>Incident Response</h1>
+                           </a>
+                        </li>
+                       <li class="desktop-hide">
+                           <label class="subnav-back-button" for="ir-sub-trigger">BACK</label>
+                       </li>
+                       <li>
+                           <a class="secondary_nav_link" href="https://talosintelligence.com/incident_response/services#reactive-services">Reactive Services</a>
+                       </li>
+                       <li>
+                           <a class="secondary_nav_link" href="https://talosintelligence.com/incident_response/services#proactive-services">Proactive Services</a></li>
+                       <li>
+                           <a href="https://talosintelligence.com/incident_response/contact">Emergency Support</a>
+                        </li>
+                   </ul>
+                   <div class="desktop-hide subnav-overlay"><svg xmlns="http://www.w3.org/2000/svg" width="111.588" height="148.311" viewBox="0 0 111.588 148.311">
+                     <path d="M1.181,128.446v15.7a4.167,4.167,0,0,0,4.167,4.167h100.9a4.167,4.167,0,0,0,4.167-4.167v-15.7a4.167,4.167,0,0,0-4.167-4.167H5.348a4.167,4.167,0,0,0-4.167,4.166M55.8,63.109a3.277,3.277,0,1,1,0,6.553c-10.344,0-20.755,8.578-20.755,18.57a3.277,3.277,0,1,1-6.554,0C28.489,73.947,41.93,63.109,55.8,63.109Zm0-12.016c-21.787,0-39.325,17.81-39.325,39.937v26.7H95.122V91.03c0-22.128-17.537-39.937-39.324-39.937m52.365-38.3a3.291,3.291,0,0,0-2.254,1.024L88.432,31.294a3.283,3.283,0,0,0,4.642,4.644l17.478-17.479a3.278,3.278,0,0,0-2.389-5.666m-105.138,0a3.276,3.276,0,0,0-1.98,5.666L18.522,35.938a3.283,3.283,0,0,0,4.643-4.644L5.687,13.817A3.255,3.255,0,0,0,3.025,12.793ZM55.389.026a3.276,3.276,0,0,0-2.867,3.345V19.642a3.277,3.277,0,1,0,6.554,0V3.371A3.283,3.283,0,0,0,55.389.026Z" fill="#fff"></path>
+                   </svg>
+                </div>
+               </li>
+
+
+
+
+
+                <li class="nav-item">
+                    <a class="primary_nav_link" href="https://blog.talosintelligence.com">
+                        <div class="mobile-nav-icon">
+                        <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="260px" height="296.5px" viewBox="0 0 260 296.5" enable-background="new 0 0 260 296.5" xml:space="preserve">
+                        <path fill="#FFFFFF" d="M243.586,42.404h-14.448c-0.943-4.513-3.143-8.813-6.616-12.33L201.793,9.098  c-4.7-4.757-10.972-7.377-17.66-7.377c-6.578,0-12.777,2.547-17.457,7.173l-33.875,33.511H17.586c-6.6,0-12,5.399-12,12V226.28  c0,6.6,5.4,12,12,12H153.83l84.21,56.278l-27.448-56.278h32.994c6.6,0,12-5.4,12-12V54.404  C255.586,47.804,250.186,42.404,243.586,42.404z M214.662,48.045c-0.01,0.2-0.021,0.399-0.044,0.599  c-0.008,0.069-0.021,0.139-0.031,0.207c-0.046,0.345-0.113,0.688-0.196,1.026c-0.034,0.137-0.063,0.273-0.103,0.408  c-0.039,0.135-0.087,0.267-0.133,0.399c-0.051,0.151-0.102,0.302-0.16,0.45c-0.049,0.126-0.105,0.249-0.16,0.373  c-0.068,0.153-0.139,0.307-0.216,0.457c-0.059,0.116-0.12,0.23-0.184,0.345c-0.088,0.157-0.181,0.312-0.278,0.465  c-0.065,0.104-0.13,0.206-0.2,0.308c-0.115,0.168-0.239,0.33-0.366,0.492c-0.064,0.081-0.124,0.165-0.19,0.244  c-0.199,0.238-0.409,0.472-0.635,0.694L82.458,182.308l-47.932,12.871l13.427-47.74L177.223,19.561  c1.917-1.895,4.414-2.84,6.911-2.84c2.534,0,5.068,0.975,6.99,2.92l20.726,20.974c0.545,0.552,1.002,1.156,1.39,1.79  c0.574,0.938,0.975,1.951,1.206,2.993c0.004,0.021,0.01,0.04,0.014,0.06c0.049,0.226,0.086,0.453,0.119,0.682  c0.008,0.06,0.017,0.118,0.024,0.178c0.026,0.211,0.045,0.424,0.058,0.636c0.004,0.077,0.007,0.153,0.009,0.23  c0.007,0.203,0.011,0.407,0.005,0.61C214.673,47.877,214.666,47.961,214.662,48.045z"></path>
+                        </svg>
+                    </div>
+                        <span class="top-nav-link-text">Blog</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="primary_nav_link" href="https://support.talosintelligence.com">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26px" height="20px" viewBox="0 0 123.17 159.292">
+                            <path d="M61.59,0,0,17.069v85.32c0,23.472,61.59,56.9,61.59,56.9s61.58-36.288,61.58-56.9V17.069Zm-.433,149.746C38.314,136.662,8.128,114.3,8.128,102.389V23.239l53.029-14.7Z" fill="#fff"></path>
+                        </svg>
+                        </div>
+                        <span class="top-nav-link-text">Support</span>
+                    </a>
+                </li>
+            </ul>
+
+
+<!--                <li class="nav-item desktop-hide">-->
+<!--                    <button class="search-button" data-ghost-search><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg> <span>Search Blog</span></button>-->
+<!--                </li>-->
+
+            <ul class="secondary-nav-list">
+                <div class="more-desktop-link">
+                    <div class="more-link-wrapper">
+                        <span class="more-nav-link">
+                            <div class="desktop-nav-icon more-menu-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="22px" height="16px" viewBox="0 0 22 16">
+                                <g id="menu-icon">
+                                    <path fill="#FFFFFF" d="M20.5,3h-19C0.672,3,0,2.329,0,1.5S0.672,0,1.5,0h19C21.328,0,22,0.671,22,1.5S21.328,3,20.5,3z"></path>
+                                    <path fill="#FFFFFF" d="M20.5,9.5h-19C0.672,9.5,0,8.828,0,8c0-0.829,0.672-1.5,1.5-1.5h19C21.328,6.5,22,7.171,22,8   C22,8.828,21.328,9.5,20.5,9.5z"></path>
+                                    <path fill="#FFFFFF" d="M20.5,16h-19C0.672,16,0,15.328,0,14.5S0.672,13,1.5,13h19c0.828,0,1.5,0.672,1.5,1.5S21.328,16,20.5,16z"></path>
+                                </g>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            More
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <li class="nav-item more-text-link">
+                    <div class="more-link-wrapper more-link-wrapper-mobile">
+                        <span class="more-nav-link">
+                            <div class="mobile-nav-icon"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" style="enable-background:new 0 0 20 20;" width="25px" height="25px" xml:space="preserve">
+                                <style type="text/css">
+                                    .white{fill:#FFFFFF;}
+                                </style>
+                                <path class="white" d="M19.4,17.1c0,0.1-0.1,0-0.2,0c0,0-1.3-0.9-2-1.4c-0.2-0.1-0.5-0.1-0.6,0.1c-0.3,0.3-0.6,0.8-0.9,1.3  c-0.1,0.2-0.1,0.5,0.1,0.6l2,1.5c0.1,0,0,0.1,0.1,0.2c0,0.1,0,0.1-0.1,0.2c-1.2,0.5-2.6,0.2-3.5-0.7c-0.8-0.9-1-2-0.7-3.1L4.5,6.5  c-1,0.3-2.3,0-3-0.9c-0.8-0.9-1.1-1.7-1-2.7c0-0.1,0-0.1,0.1-0.2c0.1,0,0.2,0.1,0.2,0.1l2,1.5C3,4.4,3.3,4.5,3.4,4.2  c0,0,0.5-0.8,0.9-1.3c0.1-0.2,0.1-0.5-0.1-0.6L2.3,0.9c-0.1,0,0-0.1-0.1-0.3c0-0.1,0-0.1,0.1-0.2C3.5-0.1,5,0.2,5.8,1.1  c0.8,0.9,1,2,0.7,3.1l9.1,9.3c1-0.3,2.3,0,3,0.9c0.7,0.7,0.9,1.5,0.9,2.5C19.5,16.9,19.5,17,19.4,17.1z"></path>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            Security Resources
+                            </span>
+                        </span>
+                    </div>
+                    <input class="sub-nav-trigger" id="security-resources-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="security-resources-sub-trigger">
+                        <div class="mobile-nav-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+                        </div>
+                    </label>
+                    <div class="sub-nav sub-nav-multiple-list sub-nav-multiple-list-left">
+                        <div class="sub-nav-multiple-wrapper">
+                            <div class="sub-nav-list-top-of-mobile-wrapper">
+                                <h1 class="sub-nav-list-header sub-nav-list-top-of-mobile">Security Resources</h1>
+                                <ul class="sub-nav-list">
+                                    <li class="desktop-hide">
+                                        <label class="subnav-back-button" for="security-resources-sub-trigger">BACK</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sub-nav-list-item-wrapper">
+                                <span class="sub-nav-desktop-header uppercase">Security Resources</span>
+                                <ul class="sub-nav-list">
+                                    <li>
+                                        <a href="https://talosintelligence.com/software"><span>Open Source Security Tools</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/categories"><span>Intelligence Categories Reference</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/secure-endpoint-naming"><span>Secure Endpoint Naming Reference</span>
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="desktop-hide subnav-overlay"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" style="enable-background:new 0 0 20 20;" width="25px" height="25px" xml:space="preserve">
+                        <style type="text/css">
+                            .white{fill:#FFFFFF;}
+                        </style>
+                                                <path class="white" d="M19.4,17.1c0,0.1-0.1,0-0.2,0c0,0-1.3-0.9-2-1.4c-0.2-0.1-0.5-0.1-0.6,0.1c-0.3,0.3-0.6,0.8-0.9,1.3  c-0.1,0.2-0.1,0.5,0.1,0.6l2,1.5c0.1,0,0,0.1,0.1,0.2c0,0.1,0,0.1-0.1,0.2c-1.2,0.5-2.6,0.2-3.5-0.7c-0.8-0.9-1-2-0.7-3.1L4.5,6.5  c-1,0.3-2.3,0-3-0.9c-0.8-0.9-1.1-1.7-1-2.7c0-0.1,0-0.1,0.1-0.2c0.1,0,0.2,0.1,0.2,0.1l2,1.5C3,4.4,3.3,4.5,3.4,4.2  c0,0,0.5-0.8,0.9-1.3c0.1-0.2,0.1-0.5-0.1-0.6L2.3,0.9c-0.1,0,0-0.1-0.1-0.3c0-0.1,0-0.1,0.1-0.2C3.5-0.1,5,0.2,5.8,1.1  c0.8,0.9,1,2,0.7,3.1l9.1,9.3c1-0.3,2.3,0,3,0.9c0.7,0.7,0.9,1.5,0.9,2.5C19.5,16.9,19.5,17,19.4,17.1z"></path>
+                        </svg>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="more-link-wrapper more-link-wrapper-mobile">
+                        <span class="more-nav-link">
+                            <div class="mobile-nav-icon"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" width="25px" height="25px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                                <style type="text/css">
+                                    .sticoncomment{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+                                </style>
+                                <path class="sticoncomment" d="M13.6,7.1H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,6.8,13.9,7.1,13.6,7.1L13.6,7.1z M13.6,9.4H6.4c-0.3,0-0.6-0.3-0.6-0.6s0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,9.2,13.9,9.4,13.6,9.4L13.6,9.4z M11.5,11.7H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6h5.1c0.3,0,0.6,0.3,0.6,0.6  C12.1,11.5,11.8,11.7,11.5,11.7z M15.8,3H4.2C3.5,3,3,3.5,3,4.2V17l2.8-2.3h10c0.6,0,1.2-0.5,1.2-1.2V4.2C17,3.5,16.5,3,15.8,3  L15.8,3z"></path>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            Media
+                            </span>
+                        </span>
+                    </div>
+                    <input class="sub-nav-trigger" id="media-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="media-sub-trigger">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                            </svg>
+                        </div>
+                    </label>
+                    <div class="sub-nav sub-nav-multiple-list sub-nav-multiple-list-middle">
+                        <div class="sub-nav-multiple-wrapper">
+                            <div class="sub-nav-list-top-of-mobile-wrapper">
+                                <h1 class="sub-nav-list-header sub-nav-list-top-of-mobile">Media</h1>
+                                <ul class="sub-nav-list">
+                                    <li class="desktop-hide">
+                                        <label class="subnav-back-button" for="media-sub-trigger">BACK</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sub-nav-list-item-wrapper">
+                                <span class="sub-nav-desktop-header uppercase">Media</span>
+                                <ul class="sub-nav-list">
+                                    <li>
+                                        <a href="https://blog.talosintelligence.com"><span>Talos Intelligence Blog</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://blog.talosintelligence.com/category/threat-source-newsletter/"><span>Threat Source Newsletter</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/podcasts/shows/beers_with_talos"><span>Beers with Talos Podcast</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/podcasts/shows/talos_takes"><span>Talos Takes Podcast</span>
+                                        </a></li>
+                                    <li>
+                                        <a target="_blank" href="https://www.youtube.com/channel/UCPZ1DtzQkStYBSG3GTNoyfg/featured"><span>Talos Videos</span>
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="desktop-hide subnav-overlay"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" width="25px" height="25px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                        <style type="text/css">
+                            .sticoncomment{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+                        </style>
+                        <path class="sticoncomment" d="M13.6,7.1H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,6.8,13.9,7.1,13.6,7.1L13.6,7.1z M13.6,9.4H6.4c-0.3,0-0.6-0.3-0.6-0.6s0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,9.2,13.9,9.4,13.6,9.4L13.6,9.4z M11.5,11.7H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6h5.1c0.3,0,0.6,0.3,0.6,0.6  C12.1,11.5,11.8,11.7,11.5,11.7z M15.8,3H4.2C3.5,3,3,3.5,3,4.2V17l2.8-2.3h10c0.6,0,1.2-0.5,1.2-1.2V4.2C17,3.5,16.5,3,15.8,3  L15.8,3z"></path>
+                        </svg>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="more-link-wrapper more-link-wrapper-mobile">
+                        <span class="more-nav-link">
+                            <div class="mobile-nav-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="25px" viewBox="0 0 55 55">
+                                <g>
+                                    <g class="mobile-nav-home">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M45.201,12.343c0.378,0.48,0.758,0.925,1.096,1.401    c2.975,4.207,4.543,8.876,4.494,14.044c-0.05,5.452-1.643,10.386-5.186,14.593c-3.484,4.133-7.929,6.73-13.182,7.895    c-6.313,1.398-12.216,0.275-17.695-3.131c-0.441-0.273-0.847-0.6-1.266-0.904c-0.11-0.078-0.208-0.174-0.337-0.287    c0.127-0.141,0.246-0.27,0.366-0.398c0.887-0.949,1.765-1.904,2.663-2.844c0.114-0.119,0.321-0.217,0.485-0.217    c3.658-0.006,7.318,0,10.975,0.008c3.458,0.006,6.913,0.02,10.369,0.02c0.957,0,1.871-0.193,2.62-0.844    c0.797-0.693,1.157-1.596,1.157-2.643c0.001-7.533,0.003-15.067-0.005-22.601c-0.002-0.309,0.088-0.524,0.3-0.743    C43.098,14.598,44.127,13.49,45.201,12.343"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M41.402,8.822c-0.99,1.027-1.994,2.021-2.935,3.072    c-0.312,0.35-0.616,0.416-1.036,0.415c-6.98-0.009-13.957-0.007-20.938-0.007c-2.039,0-3.561,1.514-3.561,3.557    c0,6.504,0.002,13.008,0.006,19.512c0.002,0.973,0.011,1.943,0.004,2.914c0,0.133-0.04,0.301-0.127,0.393    c-1.069,1.162-2.15,2.314-3.229,3.469c-0.021,0.023-0.052,0.039-0.109,0.08c-0.159-0.188-0.323-0.369-0.471-0.562    c-2.535-3.348-4.119-7.102-4.605-11.268c-0.61-5.229,0.194-10.229,2.835-14.839c2.669-4.664,6.655-7.805,11.618-9.75    c3.205-1.257,6.533-1.852,9.977-1.621c4.478,0.298,8.553,1.754,12.227,4.325c0.101,0.072,0.197,0.151,0.291,0.229    C41.364,8.755,41.374,8.778,41.402,8.822"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M39.799,12.47c0.873-0.911,1.749-1.829,2.676-2.797    c0.605,0.564,1.195,1.112,1.816,1.691c-0.941,0.985-1.817,1.903-2.703,2.83c-0.276-0.339-0.511-0.688-0.807-0.975    C40.492,12.941,40.145,12.728,39.799,12.47"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M10.35,43.279c0.969-1.016,1.885-1.977,2.76-2.893    c0.213,0.369,0.376,0.762,0.639,1.072c0.265,0.312,0.627,0.539,0.98,0.832c-0.853,0.891-1.713,1.791-2.624,2.746    C11.513,44.445,10.939,43.869,10.35,43.279"></path>
+                                    </g>
+                                </g>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            Company
+                            </span>
+                        </span>
+                    </div>
+                    <input class="sub-nav-trigger" id="company-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="company-sub-trigger">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+                        </div>
+                    </label>
+                    <div class="sub-nav sub-nav-multiple-list sub-nav-multiple-list-right">
+                        <div class="sub-nav-multiple-wrapper">
+                            <div class="sub-nav-list-top-of-mobile-wrapper">
+                                <h1 class="sub-nav-list-header sub-nav-list-top-of-mobile">Company</h1>
+                                <ul class="sub-nav-list">
+                                    <li class="desktop-hide">
+                                        <label class="subnav-back-button" for="company-sub-trigger">BACK</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sub-nav-list-item-wrapper">
+                                <span class="sub-nav-desktop-header uppercase">Company</span>
+                                <ul class="sub-nav-list">
+                                    <li>
+                                        <a href="https://talosintelligence.com/about"><span>About Talos</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/careers"><span>Careers</span>
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="desktop-hide subnav-overlay"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="25px" viewBox="0 0 55 55">
+                        <g>
+                            <g class="mobile-nav-home">
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M45.201,12.343c0.378,0.48,0.758,0.925,1.096,1.401    c2.975,4.207,4.543,8.876,4.494,14.044c-0.05,5.452-1.643,10.386-5.186,14.593c-3.484,4.133-7.929,6.73-13.182,7.895    c-6.313,1.398-12.216,0.275-17.695-3.131c-0.441-0.273-0.847-0.6-1.266-0.904c-0.11-0.078-0.208-0.174-0.337-0.287    c0.127-0.141,0.246-0.27,0.366-0.398c0.887-0.949,1.765-1.904,2.663-2.844c0.114-0.119,0.321-0.217,0.485-0.217    c3.658-0.006,7.318,0,10.975,0.008c3.458,0.006,6.913,0.02,10.369,0.02c0.957,0,1.871-0.193,2.62-0.844    c0.797-0.693,1.157-1.596,1.157-2.643c0.001-7.533,0.003-15.067-0.005-22.601c-0.002-0.309,0.088-0.524,0.3-0.743    C43.098,14.598,44.127,13.49,45.201,12.343"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M41.402,8.822c-0.99,1.027-1.994,2.021-2.935,3.072    c-0.312,0.35-0.616,0.416-1.036,0.415c-6.98-0.009-13.957-0.007-20.938-0.007c-2.039,0-3.561,1.514-3.561,3.557    c0,6.504,0.002,13.008,0.006,19.512c0.002,0.973,0.011,1.943,0.004,2.914c0,0.133-0.04,0.301-0.127,0.393    c-1.069,1.162-2.15,2.314-3.229,3.469c-0.021,0.023-0.052,0.039-0.109,0.08c-0.159-0.188-0.323-0.369-0.471-0.562    c-2.535-3.348-4.119-7.102-4.605-11.268c-0.61-5.229,0.194-10.229,2.835-14.839c2.669-4.664,6.655-7.805,11.618-9.75    c3.205-1.257,6.533-1.852,9.977-1.621c4.478,0.298,8.553,1.754,12.227,4.325c0.101,0.072,0.197,0.151,0.291,0.229    C41.364,8.755,41.374,8.778,41.402,8.822"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M39.799,12.47c0.873-0.911,1.749-1.829,2.676-2.797    c0.605,0.564,1.195,1.112,1.816,1.691c-0.941,0.985-1.817,1.903-2.703,2.83c-0.276-0.339-0.511-0.688-0.807-0.975    C40.492,12.941,40.145,12.728,39.799,12.47"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M10.35,43.279c0.969-1.016,1.885-1.977,2.76-2.893    c0.213,0.369,0.376,0.762,0.639,1.072c0.265,0.312,0.627,0.539,0.98,0.832c-0.853,0.891-1.713,1.791-2.624,2.746    C11.513,44.445,10.939,43.869,10.35,43.279"></path>
+                            </g>
+                        </g>
+                    </svg>
+                    </div>
+                </li>
+            </ul>
+            <div class="nav-search-wrapper" id="desktop-search-wrapper">
+                <button class="search-button desktop-search-button" data-ghost-search>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </button>
+            </div>
+        </div>
+
+
+
+    </div>
+</nav>
+
+    
+
+    <main id="site-main">
+        <div class="container-fluid px-0">
+            <div class="main-content-row">
+                <div class="main-content-col px-0">
+                    <div class="post-full-content">
+                        
+<article class="post ">
+        <div class="feature-image-wrapper my-5">
+            <figure>
+                <img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-c7kamiZL-b4/XRoRMVHHNGI/AAAAAAAABO4/GRhRUivEtJEUDQCARhyAJt-QTktGgTkXgCEwYBhgL/w1200-h630-p-k-no-nu/image3.jpg" alt="" class="img-fluid" />
+            </figure>
+        </div>
+
+    <h1 class="text-center">RATs and stealers rush through “Heaven’s Gate” with new loader</h1>
+
+    <div class="text-center m-1">
+        <div class="post-author">
+            <span>By </span>
+                <a href="https://blog.talosintelligence.com/author/holger-unterbrink/">Holger Unterbrink</a>
+        </div>
+
+        <br/>
+        <time class="post-datetime" datetime="July 1, 2019 11:20">
+            Monday, July 1, 2019 11:20
+        </time>
+
+        <div class="m-3">
+        </div>
+    </div>
+
+    <section class="post-content-wrapper mt-5">
+        <div class="post-content" id="post-content">
+            <p><em>By <a href="http://blogs.cisco.com/author/holgerunterbrink">Holger Unterbrink</a> and <a href="https://www.blogger.com/profile/10442669663667294759">Edmund Brumaghin</a>.</em></p><h3 id="executive-summary">Executive summary</h3><p>Malware is constantly finding new ways to avoid detection. This doesn't mean that some will never be detected, but it does allow adversaries to increase the period of time between initial release and detection. Flying under the radar for just a few days is enough to infect sufficient machines to earn a decent amount of revenue for an attack. Cisco Talos recently discovered a new campaign delivering the <a href="https://blog.talosintelligence.com/2019/04/hawkeye-reborn.html">HawkEye Reborn keylogger</a> and other malware that proves attackers are constantly creating new ways to avoid antivirus detection. In this campaign, the attackers built a complex loader to ensure antivirus systems to not detect the payload malware. Among these features is the infamous "Heaven's Gate" technique — a trick that allows 32-bit malware running on 64-bit systems to hide API calls by switching to a 64-bit environment. In this blog, we will show how to analyze this loader quickly, and provide an overview of how these attackers deliver the well-known HawkEye Reborn malware. During our analysis, we also discovered several notable malware families, including <a href="https://blog.talosintelligence.com/2018/08/picking-apart-remcos.html">Remcos</a> and various <a href="https://blog.talosintelligence.com/2018/01/malicious-xmr-mining.html">cryptocurrency mining trojans</a>, leveraging the same loader in an attempt to evade detection and impede analysis.</p><h3 id="technical-overview">Technical overview</h3><p>First, let's go through a high-level overview of the loader that's used to hide and execute HawkEye Reborn. The "technical details" section will describe these stages in detail. Even if the final malware is packed and coming with its own obfuscation, it is never written to the disk. It's always hidden inside the loader, so it's difficult for antivirus systems to detect it.</p><ol><li>Find and resolve some basic API calls by CRC32.</li><li>Decode encoded code from the .data section.</li><li>Jump to this code.</li><li>Perform some anti-debug/anti-analysis checks.</li><li>Load two resources (in this case, UDXCUSCK and SCCJZ) from the loader's PE file.</li><li>Decode the configuration stored in the UDXCUSCK resource.</li><li>Copy loader to %APPDATA% folder and make it persistent via StartUp link.</li><li>Decode the malware payload (in this case HawkEye) stored in SCCJZ resource.</li><li>Start the legitimate RegAsm.exe process.</li><li>Inject and execute malware payload (HawkEye) into this process via process-hollowing.</li><li>Protect injected malware code.</li><li>Exit loader process.</li></ol><p>The majority of API calls are executed by a function we called "Exec_Function":</p><ul><li>This function takes a custom hash value for the wanted API call as one of its arguments.</li><li>It finds the kernel.dll address via its CRC32 checksum.</li><li>Then, it resolves the addresses of basic API calls by name by iterating over the  InMemoryOrderModuleList in the PEB_LDR_DATA structure.</li><li>Next, it resolves the address of the wanted API call by using a custom hash<br>      function.</li><li>Finally, it uses CallWindowProcW to execute the resolved API call.</li></ul><p>Besides the aforementioned obfuscation techniques, some API calls are additionally obfuscated by using direct syscalls via the sysenter instruction on 32-bit systems and the Heaven's Gate technique on x64 systems. The latter means the code switches between 32- and 64-bit systems. Some antivirus applications and debuggers are missing these calls as far as they are not expecting a 32-bit application running under the Microsoft WOW64 technology on a 64-bit system to use 64-bit calls directly.</p><h3 id="technical-details">Technical details</h3><p>The sample starts with some interesting calls to sub_401000.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image10-6.png" class="kg-image" alt loading="lazy" width="847" height="594" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image10-6.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image10-6.png 847w" sizes="(min-width: 720px) 720px"><figcaption>_main - Function</figcaption></figure><p>This function is iterating through the function list names in the export table of the PE header in memory. Then, it generates the CRC32 checksum for the function name string and compares it with the given argument arg_4 (see 1881CADEh above). Finally, it returns the address for the exported API function. We renamed this function "Find_API_Function_by_CRC32."</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image7-6.png" class="kg-image" alt loading="lazy" width="1999" height="1161" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image7-6.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2022/12/image7-6.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1600/2022/12/image7-6.png 1600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image7-6.png 1999w" sizes="(min-width: 720px) 720px"><figcaption>Sub_401000 (Find_API_Function_by_CRC32) function.</figcaption></figure><p>The returned API function address is then stored in a register or local variable, which is called when the sample needs the API function. The sample is using this and similar API call obfuscations for most of its API calls. This makes it more difficult to understand what the sample is actually doing during static analysis. The bad news is, this is the simplest one of the obfuscation techniques the sample is using.   <br><br>After some initialization and decoding of the data at 415DB0 (upper right part of the picture below), the next notable call is 'call eax,' which calls the formerly decoded code at 415DB0 (see below).</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image21-3.png" class="kg-image" alt loading="lazy" width="1683" height="1222" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image21-3.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2022/12/image21-3.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1600/2022/12/image21-3.png 1600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image21-3.png 1683w" sizes="(min-width: 720px) 720px"><figcaption><i>Beginning of the second stage.</i></figcaption></figure><p>The function arguments aUdtizdmfiv and aSccjz are pointing to the names of two resource sections in the PE header of the sample file and DTIZDMFIV is their resource type. This makes it even more interesting. So let's look into this function. Unfortunately, we can't in our static analysis, because the data is encoded and then decoded at runtime.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image19-3.png" class="kg-image" alt loading="lazy" width="939" height="353" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image19-3.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image19-3.png 939w" sizes="(min-width: 720px) 720px"><figcaption>Encoded next stage of the dropper.</figcaption></figure><p><br>We wrote an IDA Python script which decodes this data for us. <br><br><em>addr = 0x415db0</em><br><em>end = 0x5A05</em><br><br><em>magicval = [ 0x34, 0x39, 0x38, 0x37 ]</em><br><br><em>for j in range(0, end):</em><br><em>    a = idc.GetManyBytes(addr+j, 1)</em><br><em>    b = int(a.encode("hex"),16)</em><br><em>    b ^= magicval[j % 4]</em><br><em>    patch_byte(addr+j, b)</em><br><br>The script decodes the bytes and allows us to convert it into code.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image15-5.png" class="kg-image" alt loading="lazy" width="1053" height="373" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image15-5.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2022/12/image15-5.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image15-5.png 1053w" sizes="(min-width: 720px) 720px"><figcaption>Jump to main malware function.</figcaption></figure><p>The code at 415DB0 is actually a jump to the start of the main malware function at 415DF5.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image18-4.png" class="kg-image" alt loading="lazy" width="799" height="1062" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image18-4.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image18-4.png 799w" sizes="(min-width: 720px) 720px"><figcaption>String obfuscation.</figcaption></figure><p>The sample stores all characters of its strings, such as "kernel32.dll" in local variables (see above). It does this in many other locations, too. The next call at 416C74 is also worth breaking down.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image26-1.png" class="kg-image" alt loading="lazy" width="697" height="535" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image26-1.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image26-1.png 697w"><figcaption>Call to sub_41B285 (Exec_Function).</figcaption></figure><p>Following the call into the function, we see another call at the beginning (41B28B).</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image13-5.png" class="kg-image" alt loading="lazy" width="742" height="204" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image13-5.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image13-5.png 742w" sizes="(min-width: 720px) 720px"><figcaption>Call to sub_41AF15 (FindKernel32DLL).</figcaption></figure><p><br>After analysing it, we see it resolves the address of the loaded kernel32.dll. It uses a typical shellcode technique by parsing the PEB and some underlying structures. By finding the InMemoryOrderModuleList in PEB_LDR_DATA, it can iterate through all loaded module names and find kernel32.dll by comparing the generated checksum (6A4ABC5B).</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image6-6.png" class="kg-image" alt loading="lazy" width="1335" height="1095" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image6-6.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2022/12/image6-6.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image6-6.png 1335w" sizes="(min-width: 720px) 720px"><figcaption>FindKernel32DLL function.</figcaption></figure><p><br>Now, let's go back to the upper function, the one which has called "FindKernel32DLL_addr." After storing the kernel32.dll address and initializing more local variables with some strings (not shown in the picture), the code resolves a bunch of API function addresses (ex. LoadLibrary, CallWindowsProcedure, etc.) by using the function Find_API_function_addr_by_name (see below).</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image2-6.png" class="kg-image" alt loading="lazy" width="1754" height="1190" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image2-6.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2022/12/image2-6.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1600/2022/12/image2-6.png 1600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image2-6.png 1754w" sizes="(min-width: 720px) 720px"><figcaption>Exec_Function find API call address.</figcaption></figure><p>Then, it uses the given third argument (arg_8 - 7554284Ch, the custom hash of the API function) to find the corresponding API function address. The used custom hashing function is based on the following pseudocode algorithm:<br><br><em>i = 112186;</em><br><em>while ( *a1 )</em><br><em>    i = (char)*a1++ + 33 * i;</em><br><em>return i;</em><br><br>Finally, it uses CallWindowProcW to execute the resolved API function (see below). The latter is also an old shellcode trick used by many exploits to execute position independent code stored in some buffer. It misuses the CallWindowProcW function and leverages the fact that CallWindowProcW is simply executing the function pointer in the first argument, assuming it is either the address of a window or dialog box procedure. From an obfuscation point, this makes the static analysis more difficult and might also confuse weak antivirus products.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image12-5.png" class="kg-image" alt loading="lazy" width="1298" height="1108" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image12-5.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2022/12/image12-5.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image12-5.png 1298w" sizes="(min-width: 720px) 720px"><figcaption>Exec_Function (sub_41B285).</figcaption></figure><p>We can rename the sub_41B285 function "Exec_Function." The picture below shows how it works. It can be used to execute most of the important Windows API calls. It is no surprise that the sample is leveraging it for most of its API calls.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image1-8.png" class="kg-image" alt loading="lazy" width="1262" height="533" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image1-8.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2022/12/image1-8.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image1-8.png 1262w" sizes="(min-width: 720px) 720px"><figcaption>Exec_Function parameters.</figcaption></figure><p>As far as "call Exec_Function" doesn't tell us which API function is called, we wrote another small IDA Python script, which parses all XREFs to this function, checks arg_8 (e.g. 7554284Ch) and resolves the given hash to an API function call name (e.g. VirtualAlloc). Then it writes a comment to the call Exec_Function, which names the API function name that is going to be executed.<br><br>Next, the sample executes some anti-analysis checks. This includes a function, which is checking for certain processes by parsing the processlist and comparing the names against a CRC32 checksum. We called it "Scan_ProcessList_byCRC32." These checks are not only done at this location, they are distributed all over the sample and looking for the following names: </p><ul><li>0x388f3adb = mple.exe</li><li>0xe84126b8 = sample.exe</li><li>0x6b68c4c6 = avastui.exe</li><li>0x923d5594 = avgui.exe</li><li>0x6b68c4c6 = avastui.exe</li><li>0x923d5594 = avgui.exe</li><li>0x6b68c4c6 = avastui.exe</li><li>0x923d5594 = avgui.exe</li><li>0x958e9b43 = extsszf.exe</li></ul><p>We haven't checked every location, but where we did, the sample kills itself if those processes are found.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image24-3.png" class="kg-image" alt loading="lazy" width="1999" height="1271" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image24-3.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2022/12/image24-3.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1600/2022/12/image24-3.png 1600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image24-3.png 1999w" sizes="(min-width: 720px) 720px"><figcaption>Debug checks.</figcaption></figure><p><br>After the debug checks, the sample is extracting the two resources UDXCUSK and SCCJZ from the PE resource section and stores them in two buffers for later use (see below). Then, it decodes the configuration stored in the UDXCUSK buffer. The function DecodeConfigFromResourceUDXCUSK stores pointers to the decoded data blobs on the stack. It finds them later via dword ptr ss:[ebp+eax-2C8], where eax is the offset to the different data blobs/config parameters. Later on, these parameters help to decrypt the actual final malware embedded in the SCCJZ resource.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image25-3.png" class="kg-image" alt loading="lazy" width="1202" height="720" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image25-3.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2022/12/image25-3.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image25-3.png 1202w" sizes="(min-width: 720px) 720px"><figcaption>Load resources and decode configuration.</figcaption></figure><p>Then, makes itself persistent by copying over to &lt;%APPDATA%&gt;/kgehorzlnr/zqwlnpeijybtmkv.exe and placing a link to the file into the Windows startup folder.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image16-4.png" class="kg-image" alt loading="lazy" width="1030" height="409" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image16-4.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2022/12/image16-4.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image16-4.png 1030w" sizes="(min-width: 720px) 720px"><figcaption>Copy loader and make it persistent.</figcaption></figure><p>CopyFilesAndCreateStartupLink is a complex function with a few sub functions. It is mostly using the obfuscation techniques that we've already seen, but it is also uses Heaven's Gate for some of the API calls, such as CloseFile.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image23-3.png" class="kg-image" alt loading="lazy" width="701" height="200" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image23-3.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image23-3.png 701w"><figcaption>Leveraging syscalls for obfuscation.</figcaption></figure><p>If we dig into the CloseFile_Via_syscall_SysEnter function, we see that it is checking if it is running as a 32-bit process on a 64-bit system under the SysWOW64 technology. Depending on this check, it either uses the 32-bit sysenter instruction or the Heaven's Gate trick to execute the API call directly via the 64-bit syscall instruction. If it is using the 64-bit world, it is getting the syscall number in a similar way to what we've seen before with the API calls. It is parsing ntdll.dll for the hash of the function — such as NtCloseFile =  0D09C750h — and then it finds the corresponding syscall number.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image17-4.png" class="kg-image" alt loading="lazy" width="1680" height="862" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image17-4.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2022/12/image17-4.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1600/2022/12/image17-4.png 1600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image17-4.png 1680w" sizes="(min-width: 720px) 720px"><figcaption>WOW64 check and syscall resolution.</figcaption></figure><p>We can see the switch from 32-bit to 64-bit code inside of the SysCallwrapper_SwitchTox64_HeavensGate function. First, it pushes 33h onto the stack. Then, it performs the call $+5 trick, which means it just calls the next instruction at 419D59, but the call instruction is also pushing the instruction pointer address to the stack (419D54). The 'add' instruction adds five to this value. In other words, we have the values 419D5E and 33h on the stack. If the CPU executes 'retf,' it is jumping to 419D5E and changing the CS register to 33h (far jump). The latter means switching to 64-bit mode. You can read the details <a href="http://www.alex-ionescu.com/?p%3D300">here</a>.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image9-4.png" class="kg-image" alt loading="lazy" width="1510" height="591" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image9-4.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2022/12/image9-4.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image9-4.png 1510w" sizes="(min-width: 720px) 720px"><figcaption>Heaven's Gate</figcaption></figure><p>Unfortunately, this means we need to switch to the 64-bit version of IDA for the code starting at 41D55E. In 64-bit, we can see that it is simply preparing the function arguments and then calling the syscall instruction. The sample uses this for calls listed in the disassembler comments in the picture below.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image20-4.png" class="kg-image" alt loading="lazy" width="899" height="1152" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image20-4.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image20-4.png 899w" sizes="(min-width: 720px) 720px"><figcaption>64-bit code — syscall execution.</figcaption></figure><p>Executing 64-bit calls in a 32-bit application can also cause certain antivirus products to miss these calls, thus missing the real behavior of the application.<br><br>Now we are going back to the main malware routine. Remember that the malware has already extracted the <em>SCCJZ</em> resource into the <em>res_SCCJZ_buffer</em>. It has also already decoded the configuration that includes the "<em>089377328364273...981972063544</em>" string to decode the <em>SCCJZ</em> resource. It is stored in <em>ebp+eax+var_2c8</em>_config_base, where eax is<em> 0x18</em> (-&gt; "<em>089377328364273...981972063544</em>").</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image4-7.png" class="kg-image" alt loading="lazy" width="1264" height="505" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image4-7.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2022/12/image4-7.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image4-7.png 1264w" sizes="(min-width: 720px) 720px"><figcaption>Decoding the dropped malware.</figcaption></figure><p>The next step is starting the legitimate RegAsm.exe process and injecting the decoded data from the resource section via the typical process-hollowing technique. Using the same obfuscation tricks previously described, we called this function "InjectIntoRegAsm" below.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image22-3.png" class="kg-image" alt loading="lazy" width="1529" height="1009" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image22-3.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2022/12/image22-3.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image22-3.png 1529w" sizes="(min-width: 720px) 720px"><figcaption>InjectIntoRegAsm</figcaption></figure><p><br>In this case, the final malware injected into RegAsm.exe is our old information-stealer friend HawkEye Reborn v9, Version=9.0.1.6. As usual, it is obfuscated with ConfuserEx described in our <a href="https://blog.talosintelligence.com/2019/04/hawkeye-reborn.html">previous research</a>. The stolen data is exfiltrated via the email account <em>sartaj@jaguarline.com</em> to the mail server <em>mail.jaguarline.com</em>. The HawkEye Reborn configuration decryption password is: <em>0cd08c62-955c-4bdb-aa2b-a33280e3ddce</em>.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image14-5.png" class="kg-image" alt loading="lazy" width="1104" height="249" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image14-5.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2022/12/image14-5.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image14-5.png 1104w" sizes="(min-width: 720px) 720px"><figcaption>Hawkeye password</figcaption></figure><h3 id="distribution-activity">Distribution activity</h3><p>After analyzing the previously described loader, we began to analyze what malware families may be leveraging it to infect victims. The most widely observed malware family at this time is HawkEye Reborn, version 9.0.1.6. Talos already <a href="https://blog.talosintelligence.com/2019/04/hawkeye-reborn.html">broke down this malware</a> in a previous post. We also observed several other commodity malware distribution campaigns leveraging the same loader to infect victims with <a href="https://blog.talosintelligence.com/2018/08/picking-apart-remcos.html">Remcos</a>, as well as <a href="https://blog.talosintelligence.com/2018/01/malicious-xmr-mining.html">cryptocurrency mining malware</a>. This activity demonstrates how advanced techniques such as Heaven's Gate can be quickly integrated across large portions of the threat landscape. In many cases, the cybercriminals leveraging these kits lack the expertise to implement this type of functionality natively, but can instead leverage available loaders to achieve the same goal. </p><h3 id="email-distribution">Email distribution</h3><p>In all of the malware distribution campaigns we observed, the infection process starts very consistent with what we previously observed from threats like HawkEye Reborn, Remcos, <a href="https://blog.talosintelligence.com/2018/10/old-dog-new-tricks-analysing-new-rtf_15.html">Agent Tesla</a>, and other commodity malware. The attackers send emails to victims disguised as invoices, banking statements and other financial-related topics.<br><br>These emails typically contain Microsoft Excel spreadsheets or Microsoft Word documents that leverage <a href="https://portal.msrc.microsoft.com/en-US/security-guidance/advisory/CVE-2017-11882">CVE-2017-11882</a>, a vulnerability affecting Microsoft Equation Editor. When opened by victims, these malicious documents function as malware downloaders, reaching out to web servers on which the attacker is hosting their malware payload. The contents of the documents varies, but one example is below:</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image11-1.jpg" class="kg-image" alt loading="lazy" width="1021" height="623" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image11-1.jpg 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2022/12/image11-1.jpg 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image11-1.jpg 1021w" sizes="(min-width: 720px) 720px"></figure><p>These campaigns are ongoing, with new binaries being hosted and new emails being sent on a regular basis.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image8-6.png" class="kg-image" alt loading="lazy" width="597" height="704"></figure><p><br><br>Below is a graph showing DNS resolution activity associated with one of the domains that is being used to host the malicious PE32 executables, and is reflective of the consistent, ongoing nature of these campaigns.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image5-6.png" class="kg-image" alt loading="lazy" width="1308" height="575" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image5-6.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2022/12/image5-6.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image5-6.png 1308w" sizes="(min-width: 720px) 720px"></figure><h3 id="conclusion">Conclusion</h3><p>This campaign is the latest example of what modern malware uses to fly under the radar. With the described process, the actors are able to hide the original malware inside the loader. The Malware is only decrypted at runtime and injected into memory — it's never unencrypted on the hard drive. This means, if any antivirus tools scans the malware, it has no chance to identify the malware on the disk. <br><br>The adversaries in this case used sophisticated loaders that leverage several different low-level operating system techniques to make it as hard as possible for antivirus programs to detect the malware. By using these loaders, they can quickly and easily change the final malware or in other words the payload of the loader.  </p><h3 id="coverage">Coverage</h3><p>Additional ways our customers can detect and block this threat are listed below.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/all-selected-except-cloudlock-stealthwatch.png" class="kg-image" alt loading="lazy" width="314" height="320"></figure><p>Advanced Malware Protection (<a href="https://www.cisco.com/c/en/us/products/security/advanced-malware-protection">AMP</a>) is ideally suited to prevent the execution of the malware detailed in this post. Below is a screenshot showing how AMP can protect customers from this threat. Try AMP for free <a href="http://cisco.com/go/tryamp">here.</a><br><br>Cisco Cloud Web Security (<a href="https://www.cisco.com/c/en/us/products/security/cloud-web-security/index.html">CWS</a>) or Web Security Appliance (<a href="https://www.cisco.com/c/en/us/products/security/web-security-appliance/index.html">WSA</a>) web scanning prevents access to malicious websites and detects malware used in these attacks.<br><br>Network Security appliances such as Next-Generation Firewall (<a href="https://www.cisco.com/c/en/us/products/security/firewalls/index.html">NGFW</a>), Next-Generation Intrusion Prevention System (<a href="https://www.cisco.com/c/en/us/products/security/intrusion-prevention-system-ips/index.html">NGIPS</a>), and <a href="https://meraki.cisco.com/products/appliances">Meraki MX</a> can detect malicious activity associated with this threat.<br><br><a href="https://www.cisco.com/c/en/us/solutions/enterprise-networks/amp-threat-grid/index.html">AMP Threat Grid</a> helps identify malicious binaries and build protection into all Cisco Security products.<br><br><a href="https://umbrella.cisco.com/">Umbrella</a>, our secure internet gateway (SIG), blocks users from connecting to malicious domains, IPs, and URLs, whether users are on or off the corporate network.<br><br>Additional protections with context to your specific environment and threat data are available from the <a href="https://www.cisco.com/c/en/us/products/security/firepower-management-center/index.html">Firepower Management Center</a>.<br><br>Open Source Snort Subscriber Rule Set customers can stay up to date by downloading the latest rule pack available for purchase on <a href="https://www.snort.org/products">Snort.org</a>.</p><h3 id="indicators-of-compromise-iocs-">Indicators of Compromise (IOCs)</h3><p>The following indicators of compromise can be used to identify malicious activity associated with these malware distribution campaigns.<br><br><strong>Domains:</strong><br>www[.]kemostarlogistics[.]co[.]ke<br>www[.]terryhill[.]top<br>mail[.]jaguarline[.]com<br><br><strong>IP Addresses:</strong><br>173.254.126[.]115<br>164.160.128[.]110<br><br><strong>Email:</strong><br>Email: sartaj@jaguarline.com<br>Mailserver: mail.jaguarline.com<br><br><strong>Link in Windows Startup folder:</strong><br>L"[InternetShortcut]\nURL=file:///C:\\Users\\Dex Dexter\\AppData\\Roaming\\kgehorzlnr\\zqwlnpeijybtmkv.exe"</p><p><strong>Malicious Document Hashes (SHA256):</strong></p><pre><code>cf0a3dadba03f32d90e84401451c9acc1a1d2378d5bdae8e87fc2ab9c6ff0f12
+e23d16a5b770a04664dd42f8d2153ad62ce5fbf65af2a6dfd791ad70deef61b0</code></pre><p><strong>PE32 Hashes (SHA256) analyzed:</strong></p><pre><code>01349f0b7a30d36f2171145548602451643d670870f8863f8baeec4f76cf83a0
+10149bf87feb3276a7d6bfb864864c655b4e11aa2ed6d677c177353dbffdfc25
+c2e98978063f02f9769d8372d10abc3fe734cd7e686c6ab5dedb08dd57076b17
+fc31b4107bec4352fac3e1a13d91031b6b49969e21abff2301609219c43cd472</code></pre><p><strong>SHA256 of related samples using very likely the same loader:</strong></p><pre><code>b97d550a3d4e5bc0f5f01fb3989f30e0047a8cac56b9e6be4e46ad527c9835df
+53b2eead3c1b8e4652c3ec079dbf0f9cb2e1bbf51a9883b7c5c2c5414e43b54b
+3c1f585dd6df5cc0e0391f2924768da9fb2c9ac2f46af9a1f50325cb362728a6
+5839edf29a8841b66e6da0a821ea1e2be60a4c9c0765c1ab27df03c2d8b3d22a
+c6544c438662421fda4ebb8212526f64588081bf54e233da78a8720b9e0f5532
+d8977770d90fcda7b502db771ca6398ae90601ac8f2eddf1484285c2a7b4a098
+f067364aa4d565aba90d38afca9c21d67253b16fec8a5c36c6cfb84d6295c108
+2b139cdc6423fed45dfb5adfb18e3a141eeb7df9248bf2ac9be1696778851484
+0cfa75e3eebaff86209b51e8647ecd091308a6b0083f59e011c8a8fa21af27b6
+8025eaa9dad0eeecb73f95d4336dbab72d711189846c5196dba37d3846c276d8
+9e25b13c1f12e1e61935b763692c204ccb8427192d83b1e4c248782fc8c6af15
+4c03059b3a796b093a754a767b18f7945357bb410779d8cd3d447ff02e1ea88b
+3fffc31eb23a2838069284a3de74399601cb1b2846b5615c1032232f3c0e5c41
+b51afa3b4cca3020daff7a93ca38060794d5f02e7e1925db17d01e5aa8031492
+1a76083a711946b9a6cf9c8b14985e7ae4872784ec8e16ca3e129aa385243e57
+94392d43e99f605f189219c25d61051b92d3e0089d261226be49a69768fd170f
+e0f293cbdb97cfec3e0307783e0a1065d38745fd80035ba4c04999c2dce0ebe6
+d47f46adfdcc0925ebcd3d29c7ddeb8528a90bf7aa43067c9247713ee3199c45
+fc04f3f5f993e0743cdebfe26820f1a2ae9ab101318577ddcfaf2b5864eb7808
+780b1e40fc5b8a2f3d0cbd5c02455064606281fb2a24ee88633340178e021bae
+254af6d5f33bd179b07dff10836e86574567c5f2bdee0e8e26a90af601d16d0a
+d746ee2369a12c0c37acc3f3812f926e3345cf7edfd736774304e4d3c27c42ad
+e61a9672421d30c721ff58deb54961736bb62bbbc34dd3890edf9062370c48d4
+efa28604a547613b68480f7e8ac59f8d02931f5b8d4be6971ea96aff253d5d1a
+08c4f972f9e712adc66e7b51b4843ddc6399fdfcc64e2b8245b1eca42ff5359d
+e8cc0d6364caf0231c6b48d7eb44a10645b739bb5659d81e31dd5924eed29110
+a3b39af055b7432c7098a01736877b036fd88ffadb54502ef88d517dd5715f33
+d0ab8fa84459da9cfcbe85fc5bfe2ac3e1613aba4272698847d49efaad110587
+ba63feae30f438dac75134670d2f250b4a4154b7d71bbaf793a12b7a7b1227a5
+b3538b49f8d864f30c5f38d1358e7e44e1290193586a0ae4541e06bf8696b70a
+f48d377a6dd312fd8572be77793984db7c0e381243dad5f5a66f5d1444e52af7
+765b183479a088f6dfd2242ddd88e52c44f39f92f0d03edd44b27c22fec0ffac
+813ba89c3dea3342d34b35f56fb27a53c0487d9de9444090448e2904581bac9d
+b08521e9d4c442477c2f67ddc64faddb0ab13f95838b140f80dbe4dbe47ac7f3
+a39ebe0acc9dfc0b22f642fd953d3f729ff976e7076fc788e8cd2be4d0b196e6
+79a91c943baca8578abaddc8e4d5c96d91deb60281e71118e4b1931ff58f8107
+87b0e89cb6cf9d14c36004996558ab6da6e0f8ca4e357674417a4296fd247bc2
+8090fbedfcdfc8e646ff20d1f1405b9e5b9e1223c5a6260cbccf298fdd1e2ff9
+cbfb44b652ca595d4125f81910e29095c679fd9ea031b31068ab85b9b5e268b1
+5eb0c3a8b143b7c96fa61435d8753b6ae6650054d35ad1d0ebc357424e27e472
+c2233de1fba765c99ca87f7d77af842344003291469a9e6333347ce73651939f
+22076a5556127a3f4bddfcc0ac67abf85bcf76d4fdd4df9245a8f90ce41421c7
+8f72b6b45672692941c78f4abc473ef4c7c93c905ccaa13090b4fa8c9ae8a94b
+097e633b34a4a827a2f900bad46831716b8eb1efdc3a48e122f6676786ea3b58
+373ef46e431d3ef483549bed093830ec544c28202bd552d54992a3d9bce6ebc5
+0fa49302f135ddbc06d290dcc4801f87e9249ce9f313b3ebed2e42337171a9c3
+358eecbf97a739a88051c3131a9957c874c86d3bc920daf1b903c7945fd7948d
+00d4d2851bb0b7570b20722a82b2f2d844bcda76d44042382cfe3a7be94804b7
+01349f0b7a30d36f2171145548602451643d670870f8863f8baeec4f76cf83a0
+2228980ef182ccaed184556e2f3347ea5d7877da8eeddd18969df7f0e98474db
+5a5ddd3a9fd0af5628754cfdb2fbcbec80d0e1c09e2e7238eac99ab7c26b850e
+5d70909670129df76288c83041e686b334170b1944e1393354a8a40f8386915d
+4a42df7490d910a91d3ad0d2b22a7386ac89e799ca91755e719d39eb9ce3105f
+bd65e1f2474187ec69980e3bcc237d5eb5953c413e858b57f75bbc1efab13087
+550778509464f5cd5e7be0b21a01fb80cff8857133cff9d65290c1dbb4b13f4b
+c9117b4e20a2f439c2a4a3e9fb8554f1aee832d615666021d5cf5f6a62a15109
+e33066539456b2b4b16ca938cea71ceea097320d8445d7a48d461b65accc4d7c
+8a4d4491deaea94a51586c5098055c335831b37c17f3d8449fba197dfe73a83d
+1191a2a9d100e235358f4b737a1bda17d27731721403d53cb4cba09979987bad
+0f8572fbce7270f8462acf1b3a54d249630f138dea29203f95a35a647a150f92
+78e7eb147b419da410064536a83e8856c50ddd42fefe2f84616d90bc5aa96c9b
+4dc9503ba10fcaa9d2db3e031dc7854a6f7e6815efa24baba670f1f3e3c192f0
+9b811b1b8d88cbb2f6ad92a7ff042c1112520bdcff7e9ce42b801de4bb241979
+057eba3c5e001c212b565f5136119234ebd54f2e652d9092dfb3ba32439e9770
+c217bd6a78e26c783b13d6ef935271758ac81115a7fd86133f8905329168ec7e
+26ecac734753116e6afae428ede31eda76499caa52ed76e54f094b0ab04a24af
+3f512ccc3610441d90a33d7aaaa72303541b57d28e7e98b46d446b99534659fc
+9a4680547af935cc1f5369f60e77d148de3e318ff6b2cbe63e75b8fad051d8b6
+20293acec1ea7c8b3c26b34e4715f8a9796315f3d5a19aeeff86f660bb62a379
+ed01ab2b61aa9a68e7a3a0961ff9e60c3bbba7c944f1a1a7a9bf674c44c97ad2
+c2e98978063f02f9769d8372d10abc3fe734cd7e686c6ab5dedb08dd57076b17
+319d22b549bcbabce103c5d1359ac65f8e8ae49bff6287de21f3f9ef3138646d
+f62e27717a0a9d7c5271697a65c9052362aa7a273ab78aa981b23ffa7f37f569
+e3f6293b7214b9c5d51a12ca7de2ea0b82d909971abaac73143d40de6fb46168
+a278d236c958536e57adf595d742021bf9249f18ec08d89f292a38e4adeecfa3
+923a10cd5a45810a4f50fd88d630835d7476183ff53e2056e7e2b71cbc488684
+f1fc25ceb569ee834f38061b3a0f176f58802e09b2e2987596a1ae843bf50b04
+2bf7904fb0720d95ddf88e68d256f63adbe228a99e65a650faaca64101afce27
+64aebb452f4208ae53a8dda999c4af052ad46030b536b161ceb4ab09a1d1320b
+4687b4ccaee1db427df6649218aec766083cf28345edfb48fb2e5efc0366f0ca
+37034b8e9d3889a7959aa13d99dc7ac3027d03effeb1ccdc62c39f937b303026
+3111c73f9faf4127711feaf94c68cb1e08918c0b3c00b7066e2336ca7a28ae81
+4897c42869fe16f3658f5f75cf0e8632c63ae424524afdce93947a5f03d0f804
+ab8505cfd29a70606abe22e655741412bae9db3f18eee63f5bfa13114655d651
+2b4f00ad30839c2a2c37801bb86dab1ab5df209d58788f840e4dbdd00ad06d4a
+1e73aba842ebacff5998c303e91a7de845d74020fdf951506cd60b658dbaef2e
+96232a85116e9c9fd3a864586055ddd7bd762a321dbc64b3e6daa2cc650eca2d
+ebb8a01f413b16233df797a0d5db5c4d93e91ec5dcd09f42da9a1e367584d0dd
+84d57f57ddb11d8d46db94d3cdfc06593902797833a98a623f267c5d2640823c
+6376344a3e5c38687912533c5d1535173981c10e16d448b76a9deb2e8695e62c
+deb037f991f1ffa4e6e9b48d6f40834fb192c04dec3afe740a4768206255ca65
+9bd4ac435b07d0f7a76dfb17608b1b1027a459b10a5aa9ca5233416d2fce0448
+3644203a80018fd90877d658d18452bc693b046a2a76461851294f44f4fd163f
+291eed0d38fe2a0e08bf8bf207b4e1a521bce442e675fe3621c545ac1223c069
+b19e62bf6617aec9cdc3d7f96fcfc23a63c1587099e632fff025ef51278d7dd4
+1fe03f53fca1151eae46b3026d3b4f54f33dd3f235abb8b613adebe6ff31e385
+3e5685381ca9ecc0fe592a39410b1ce079d069c2642537614852bfb4bd925003
+02c10ef570d587d798c1e996fcec2d60b23be098e77694e4bfcc35818a8c9b20
+7a29eb9a38d43b86698fa5a9e245eb8b27a0a27407e7d1ac8025db93b3926449
+bd7510baa936badee2c828d9e563994e489396baf5538eda224482e54766554c
+433ed1c9ca574cc7d179252d94d1a0b6afe5cfcb6724491c86ae230f0a5c692e
+eecf481a6429117419fba24552a0a2ad690e40fdebfc51b4d83c5560188b32a7
+737b0f10471e7d73ec2227dba9250c5130f16b083bc34773e112d72ded4f9e8b
+8553959c6311aa9d127ada87a60ff1a9b50fe6a90388978ed1edea76277d2191
+750995e29c178cb75e2602a1640276c08f73055a70657dbc274a0a32b81b3f9c
+f0b067ded59292e46d0591dc9e609f0f9ee44d2a20f94613b3055abc525fc5ec
+10149bf87feb3276a7d6bfb864864c655b4e11aa2ed6d677c177353dbffdfc25
+f17863323f4b772be857efe9727d619a678c633b1bb2f97f0d885f584685cb60
+76ddb6dbbbc196bd72f6c243f96cb564e43711d95fe8bef0e0c384d7a2629790
+38e1ff632d9ac836a9f66d5b011ba7bd4ccbe097518135d9c6223b1287eb4711
+e7254c9407d43e354acc21c0758c2cbb55a7cfb505abfff189d81cea5743f3b6
+04971450515772684479fb5287933f0b2c7ad93433e3c69b7f235b57a1e2f128
+f1076ddd97862d36741a916fd6d08ef1397d1c7cb540240a0a11821e65339e27
+a310e24a341bcdee48a8809624b83ea3936109e85781f678faa1e689e79f6987
+ec2c6d2747c6c64d66c84ec2fbfc826d564dbf8d682069ca928a13df4aea19e5
+e9bad189d2ddd095081b8f3021ce208a18b4acab7c91b1b03dac152c8f5d9479
+be072317ffe55b115fe4487d40dbe5540be7ac70f438441c9e04a8cadb15fea4
+4101c74a521ffd0b9b3612fb68463219546bcee5de025e550a107d9b166fb014
+66921675bfb81e0d421558f3040788294c1187facdb6d995c3ff01e07dd90b87
+9000027ab595bd189e817e81d04ac0da6eed31435905186c063fd97d4faf050a
+34409c20c3fa37509b3005ae1ca46b79927668636a596edaa2aba17168620c80
+c27897d027f65dfcf24736f29c833122d336b2f81ce81a7e2ec1f4790ad14a81
+4ed52fa4dcfa57186321211eec23375b7aee513cb3768e7f73d3fdaa56e04711
+15934abb6f87f6524821c1b705e930284294a9d1bf5c82f18f3c85acb97a514a
+295ec383bca0df3673988083545301e787970d770de470b4c95e9e1e071adf5e
+e667a01dcadcc35b8c9c2c995e5e421f308de18f1b7c025dbb119375dc70ff0c
+66c12d55e157dc4a0eb24f766e650daf516553455d789598fbe84e69eeecc7c4
+7fbceb75a87b853c2a654ad50022a7a1d3e6aad60316719a2cc6b1ac20cb4e43
+0836b272ffce3f1b521062ca1c38f748a26d06cec15ea0356638633cbdb2ba53
+b8747a987023ed3f0c2037004cfa79b179e3cb4f45ef867529ee7c803d030e14
+6bb8477fb9fcfb71db0826c700f47ef2d80606b7c9077dbce4b7254ae3db31eb
+68cb2951432abdd01fcc8deab8b532c86a885a28dbb153f0ac3e344f94b0d700
+00648ec07eb8960c8575f4895c7144a60bcc0ae377a7f2cf494461460e8c6e7e
+5c760518415d0bb341c74333c70edd3a2881439a033fac7d4f97aa9d7d67c870
+060ca8f51ea06930057376c297e0ec63228f1f3d7c76b526729d8ddd7abb0882
+1be9bbc42dd8893e2eada6fbc2f6213f76d1500a467ac3ab5f3cc95745509f0e
+2bd52bf833bfdda313e96a734f9860893d4e2f93974b3531faf5af88f10db84b
+1e9fd0235b73788a8501fff71650129a445f4fe2b0ad97a15a63d9f0c19f349d
+b7263ca0af63c8ec330a4ff62d3c2c77aca4092b9c855cfa4b0a934108e43924
+277e472088dead8947e72e03387b670b85b14d73bed01d6de03bb7c42a5cb9ad
+316522e4f97f2d4f6d568093a043624cbb02d46eb5a7e0f6accfdb188cf1528f
+ce49da92395aac3471bce77e49d84c527aaacfadf7b517a192ff9edb02655a06
+b0d0e414f0cfbf44ded2ce467bd483d566aa5aaeab6d1fba75338a9fc04f6fb3
+e1a882a28f8053e96c4b6ab5648956b108cfe79170cb608d396ba455da099ec6
+491a055581260b3b5c639bbec3c6c04bbc0db7d17e0b8b9cc5109c86b6aa3ad1
+277d27828068293d9b9887482f5e77a787f83212289901c485480bfb0fce26bb
+13d17a83959f398a303329eb63317791ed03ae30b15696de9c136cc3d97f953d
+03655588004affd0d5761d961f20648086458a97bf973a9011cae56968c8e96d
+8ace05215d51668fa14ca0ec731e59823d0cb392cf1313868da5750562771651
+e2aed629ae9a752d1ba02149b2225a7cc1ed246131cddcba0f0b0540bf0dc045
+3824d9ec7507fd567da81996592ff8003c8d7041a26f4faae98a901127644bdf
+3c22205d4adc025ea1325fe8879e5d8f2c12270a5fe22da325c297c744826644
+59fc7c8e2c8bed1f381630c6016ecacc4ecd9f1bcbf4b5a6139be9d47083a8ae
+7149d25fe6e1a335322087f7be5494a24e246d43267286b945f4db1307764883
+5e767ab245543fc4edb71cf5a3b54bdbc96ec7e3f84e171ee65ecf59f8884090
+b342bc2b980b2ede862c104224dbb4784df5019b6f338bbd0c6784f27696715f
+f11e2320f00e1737dcb44c433cbda5a7c84a00f547e108a185c21bd350a913a6
+82bb3154f394418dc7664935de651ded32e12e85d289a27c75211d4037b1957f
+6d0606c4fcb65639c8d1ce5e7995268a2a89f21bac9f91096fe00da157517d66
+dae8d642c9911371c9c435e980239d262c179d0797d4dea959002f14e7613a17
+09dd021835938eb6c6ec930950b41815cd4d7702f35c06faccf3b133e4004861
+f0c30f73412470e8411770b12b2d4f6ab917cabce55517ae348a7697e23a2c3f
+fe6e0f82a1f503d5d595691f6bff426fd8381477d21b9d23c4ee103de5e6a6a6
+52bb518a4e7906fa68a4a0bb1813dc4c4ae575a891ae9730573738e032c24c5f
+bf6aeb53a7beb8460e18f5b546fa3ea215837fe6819021e3306dbdfa2dde0789
+62068961c64d65544dcabb5640fcbd50a05694732823b53cadb82cddc0d72c64
+98ece7de8b60e356d6a965c8fecc089b86e67e2c29faa941f7cae0a64537abb9
+39b14c7b01c68dbd67963156b813ff89c3755b4f12643e6bc92f6ff4b14f40ee
+7d7245b0e82b6f570c65da62720f419cbfc11ae4abeb7d062bef1fccb7dd667c
+cc84071ebf2a49ff92f12efec31736d0dfcb8a028d62ed65668c9b6641012d97
+ecd96450a7f835bbd469dfec0e439cb6aa83b45830a6732e622b092e6173514d
+959e75dbe87d962c5e65ad9059f2f73e3f1ce6e4e13cd349adc1bb209cbade5f
+cf83ef20629f4ef2cd3ffe3dd7861e321bc3d2dfe6f6aeaf8447bb0a1ca8b042
+a42fdf3685f82a662136a36099ba05ef38d2282fac999ce29d4dc183f8bfb01a
+b576fa9d8cdc7ff7e788f2cc4b460dfe284c8abf0cbdc16f26704c0e82771bd1
+3357103a936771b6a07ad55ee10d2fba8c3bc287d9a7761bb773f242ef979357
+ccbe1d4c7ad7296788dfca1e0a2f45a3c065defcbd2d639ac98809d5d469c124
+aa024428adc6a1eb38fb1c26a73224f5a9d221b1b0c92de2fedd6fba7322d415
+84919891e03f6de5bce0855627644a13ad5c616bcb654d1509e60308640de678
+4dd4374787c01ce4de4c389b03442e6b0ebed570bfad642d4cf42ce6b30a38e2
+6ec195c71e7f5b2561381e6457ff3c90255cde408d6c2451bc7342c945767161
+ba0c598fb174eb943d66e908065566e7698f0946a368f05135b004761239761f
+2c1d4304c0ac9b2481669e6aefef515aa69f8f8cea4f2cac41dafae8d76ac2a8
+0cfb09396d1891b95710302b0bc2e8031279805510b7b47ee151daaecb79f7fa
+0b84d8793c5362b0d10f238fd2bcf8fc4a1d063ea1c4e767f2d7081872b1a050
+a35863cf5014a3c7c3aeee5f80e59635885c0893b3fb9325869c9a4de8df412f
+7a7be7f6e662a8f7c2039de122ca08da4193d681b8a8a4ac5a25de6223ebcdf4
+be2870dc539c827d85401d865166db981ba2a136629fe25ea466ec0ecbbf6e48
+78e536063c280fadb0a78c24c976cd70c0bc0139908b8ec1805c8faa676a8027
+9e030cd415efb6e040d03a3f69dada5d4f08c0c430cf8400be706c2d254c42ec
+f8e27ad560a6b5a2fe9f156cf8bcf2dd2fc57cb6c620cd1a3159f124e41af8c0
+50d35c2baa8045c6455d26370142942bcc6d7c648250cdeb76f1a771c2ad13e2
+f4c44d4c9f98f0a738837b3bc5965558915522be3f44a9c31fa5560546ff96fc
+f504e794ee3f7f537177a22afdd0a830e4a96e1531734171919c86f96909f334
+f70997b46388f104340a35e901dd3172a4a98b2bc08cf75ea5a9f79831b0f84d
+ea123c9b6299186b1319ec6572bd16fb6a28185f2e9ddb9aa1bf3e52f1911b5d
+76baee103f6d1e0f63a22deefff38e815e53c1f9627f41b9220cc08cd32e5434
+de88e75b519fd4c118e3756b2ca48ebfbbeae1c084603e642022c074676de362
+7ccb34bd9651f6f27d531128d839d8d0c1853f2b6f29fed69b7e19448bfd3024
+faad82acc0652954a8dced1b5b119189be888e897fe7b4378587627d9a1ab0ed
+53bbc252c80c752c62dab6a1c8f9d200c20e1e35789bf87716b866c649401e5f
+2dc6944f17feefdcb4ed6f2faef0abe0af4f3e883c3d1dbed136a7458438398f
+32422502bcdeeea7371d8a17307da010af8d30ae20eb3d6d6c52685448646931
+76229d35d18642da6e365259353937c22b4e2dfb933e6dd9f6e5825c33f39681
+9918d0b4a9d3a2775d8fa813db7d8110b47903c23056a60ce70e200dc33ed019
+66ad5506a0b31b6ad852f2609354d507085b311f6bd67d68ec3f6c7f73b36bf8
+3a8d43e2d37874ed3dfcb68d3f77ffed07e7ba5a0fc91707c9a920427410ed34
+b720c635fcade5e16367ab730b6b7ef09a31d0cf579ffe5bb115b8d3264047bc
+24de434e2c57449c820f49c0c6e49b529964904b2e534edf6d2e92515d9546ee
+44320a15b6bead25ac56454e8ecc65071136d25e55074356bfa9ceabbeb62012
+a8714f23b9805dd8421f2817381fbe1a8d4141ee612a452b954394481ccd19ab
+9f4c4e2f52ef3c30949d2b12e69062a434f3413aff92f6460a9b3151a4850514
+0df480f2bec98324d9a870e5019eb64f4858bcb8daf66163700e0cb6a2937767
+3d3c726175d7b31be7471eb3198861a1642aa1226d9634bf6aa593a4fb9d3bcc
+f71e494c7c028b165f7956fea8144ffc0edaf538c0147e59754f61788c47938a
+35fd7e301a0e78a759cd50414b9d0cfe1b4d6c5c9316bf3f8dc5afb388f0ad7e
+526e70806ea478014016fb49cd9f297d15e3c9d322aae366f9b0a521c8ea0efa
+4f62a36d85afcaf7b6417b60a45f17d5a921aaa5614c83135b29c0419c02e199
+85eb95c03b47f3f5c0f4003a444ee976ebbc1d36a427d9ba576e5b7fe51f23f3
+f3f85da23f46c34b270c1d82c01521586e2130ded1c3b55ae8f5a5a0f59f1001
+813ebe94ed822fc8c2b42904602e62363b1a24ac95d8d0d56990e1d92afdd8c1
+33f54e062132e8846af89f6f6e37ee191a177c6c9eff3cfe1b784e2ad14e8c43
+385827beab7a004fd55ac137b9a19f88829e3f4d4bfbca6b6ffce6d49d1dcd37
+29db21426f77a935c7b82a973ec62f97a3627b5967b0a2a8bb4c4a078c6f02de
+ec8da89ced1ba93ff9e9ad0674cf487b40bc8aa66ef37d52bdb6972d20059886
+bda55e17c599b80c688e93249375fb027754aef373ecf8a05f205f1ff4bbf21d
+07c38e258efe82eae706fa4b53826082e1246188383910e13e7e524d02b8c814
+d6cee6f5c99675818a8a523df6864c6b8cec92729b1e4e5aa5aa1e11b87be528
+81e5f237a9432a1068290a0bf59f5e3e889009ab38c4113ffe587445f452e396
+8992be7dcc77bbe8d2010b49c71b99badf860d4ca064e71005076801ff9fb9fd
+67a823dd0acd8fc0d86e402b90564670b6c88d6872d263f31169acba325a18ba
+1aad661acc01d544c084fa5f1957c1f61480feebc28e0e63c42b9f0324b4b651
+36ba85a2d278fb599de9dd36adbe289c39264055996b764d8979f45bcf123535
+8f241077b523d9db54c5075303fb88e1416804a33fa2575d64650b714c0dc94b
+c082a8a175ffa2d35a93851a8c963224fe29938eac91fbadfe299c7a1e72139c
+5eb5e0022df44e595f2b362f6eb5278a2211d317fed684e584901bf507d5a033
+99cd4d6be9a58331cb148cf0696d60c40ac72c8a46ba592c984bf9bfffb07ede
+c05402a8708719dde5ad315d9e4236c5128ad8cd7ca1fc28228b4836061d7503
+bc0e103c8eae02eba219cfa761eef4924385c7328dd59e6b72f49babf8f3189a
+159d09cdbd90e5ce221f9ca7fd30646268cb2521d4279d707b346602b0eda59d
+d6c67ba1b4a3cfdd48e8f835e12d898b79e5741bab699c3956f615fe6bf28572
+636137367dd6f556f0740e9361edfc2418d3f4cac4fc166f174da18c3e2c7131
+655d514709f31f22ab07b16fbd33c2cffbf8abc1331027a3f144558e09970d4b
+b54b0c73ba7f1b37b7af59ad459aefae4dbc3cc0c7a324ac94ca39bc23580c0c
+2171f379b875969f797ebe9c23bc46d827ff221c5da4ed8cdd65bc4b2855ce7d
+ef80c882447928a079e7d786fd680d6b6c2a1a3751841165a49b00226aebc2ff
+37af5ff460fc62d754829b7ade4ae1e0b6c4881fece1e3f089032d12301c0bb0
+1fa15197c1e9a1fa5dfb1916c6a514778a609889193f9b65f24383a4b7693ec5
+e432256ff7867c4abeb51885011d5f65b09566e11782147a9e2b47d55b8adf8d
+42409f1eb65931970e4063c2ed63a8ee44d2f5c6c5853bf2ec35686d2766e268
+18622af49909851dfdfc7926fd23285784b5efd3adfd4293663003825025d88f
+4dc61ea009d78dfe1399c5c7fc9c60ed6a144378cc51753cf495819c22c247ee
+d21f035e7429a0f801155a1ccb22d8d782867aa46b960b6909b74212749bd821
+64f5687a6b2e99953e18c218fd184883cea7009a10fc680da520ecefda5338c1
+a06e1dc7e077b073bf3b8e616efcf67b8ff9428293fcb89ae6f937a1a0a5b3d8
+ba11b9b4c9e0084e5ae5d0de45761b6bd6ebbb62d41c93c7a23ceeda8461d4b1
+d608b33a3c5695e828b7afec1ff9276b42cf750f7fb42a14079b4b29a7b59c3e
+57baab61c3e3e5af27c22ef7a6c9ebdc6c280cc9ac3840572c76827954656a54
+6f93663fdea32014c733f460385ed3a55cabaafbc798283edf1ec1b1c12203a2
+f091381bb04045479f969e5f5dbcb8325590bf278b29d760bbc9bc08adb97e63
+988316a8842a2be9636a222a8b6f1d22f6587e4f648473d2b9166946c2b2b90f
+1602287d45ea448e91c4605cc8c5301d264cc2785c8ecb0aa3526bcf0e6b74a8
+bfefbd8050f0dfbe1047ddcc07e951967a5b8395190127d97d0c3a4441c919bf
+517dc095b262c6eeb7d80c3b025728278cc251f4e244af1c7eafff135a41ba4a
+f13de5281ef8a3bdec7e6f309870ffe9613da4796baa4ba8a37b748002bc06ab
+9c748ece1010fa49b15faf8e589709381b08e5451c00774b538ad3020e2291bf
+757bdd96c6547a00d13e88c58995fd3d9372bc7ff0fa717402337d9ea7cff513
+dbbc786378fb59ade9c6c99baec054206ac4504328e4be7044a624170a6c1863
+8cd8d977dc8764927c9d7dd24b79c984fa94ef9aa1b309363d61a759ed9ad8e5
+909ffaca9d78ba1e391fa62382770774f37204fdc5de24ec4234d5bc636d38b0
+2c78fce765f51d101fb68e4cc3e98ee2cf949ca8a8d987f4b5d01fa4158239b2
+62f655f3e9766e9923c6241859d567339c643ee5bad7f6ebe43b2ffd94e93d0e
+1f9d3dc21f1f816e5b816d3633ad9ec2696138519d2da972f179a8ccb4689f83
+fc31b4107bec4352fac3e1a13d91031b6b49969e21abff2301609219c43cd472
+7f2413783e24f161a06e13fa1e3ba14d8455e9e6de1bb71eb5082f80251c1e30
+97878c51723426766561d3c3c319cf649d049514b1330c90389c2b5d45cbc759
+74e9408af14a09e5c8af61780dc62112054876ae357da3f6ebf8319799b14d14
+a10486e5696f8585ed7c88e4bcfb440eea7b67ece05e6a871572282916f72d0b
+885bc554e5fc03b250b359afd5a360431bd4768f60772a60a66c65a241909e49
+46fda32fdf5d29190b8315e30e1fd6df3a4aaf43308c8a354a6be203a892e6ab
+c3d4e6bb0c9f22101a14c8455677acf98fdae3e2cb8063c76c5119b92c73e0d7
+243460e5b641862bed80bd004ff280f3ae97fe18415616401ce33988402a14dd
+3eb2472ea1d712d6285ca3a442debdad94575a4d1fb9b9caf67c41dd255e98c0
+4e987f55eabd6f9efd1947dbcdf85af455a1f7087962019f23f66a308a1073c8
+451057e11ab32bd3f6e7d71b8709c287c1d82e4e2036df712d688f7e0afc73b6
+9679abcdadaf4dfb9f3ae2a79b7bbaec08921483ae45e4486397dbd4afcbd462
+9a43f3338818991e28edd5e4be7531bfe2c5dbd4ffb3f55a05969e99141c8001
+6e6b891c5b86dc44cf37398291e01e623408e2bf7c47b88fc557e5fd222e140e
+490ae3ed23b6e40d1e7b6fd8b20ba69d4c20d9cbc5e7a53d9bc3a1824d4c45e9
+1977b89113e160518a917cd3a0da2e1e61c466251a0690464d425c191e3efbe5
+1efb2130e792e899d3fee5b0582e61b54f9bdafd00ae43e727d618d462a64a42
+8772387a55e177ff01fa20b6941dddde054c594eee8098cdf96a57e2ccb78b7d
+abed1f8ff3882e4737125b583f703683c3ac5786c8732832953e4e528d3af5f9
+0484de9ff7c50e22ba4cbc6d9e20fe5d680ee352af1d3a650df0c770848d9b90
+44821f79cf871b34e62aa86ee3e4577a18dca74a39f743081e2a8dec994025e8
+cf830a8c2868b346090401ff03c4ab44b13f50e33534add2c101ee8ff362776e
+28c495032494011c1b70b68ce584a929841ba9ba0d22a83e4084e886f6db2721
+88543e7295c60ecbd0063c71bb6d4a9d2a3397c79cc19c6f3213d88527a4d3bc
+b5ceafde9b29c186afd1a17ab534ccb1f578ff9a3de9d8b20ad55f437fc030cc
+e560a9c1961eff0a0cc1dc309dd03511b43d7bba36571caa6dc2e36132126e65
+f74fec6680f946ad601522ba1f87d58c0fd8c4747ec181083134fc4d353fc0f0
+19782d2daa25113c0d57c2a3e980bc224150055159acfe852e520803a905e908
+5e43116e3b18615353968d8d7acd8f535aa8cb95568e78bb6ad926db6688d37e
+aa54bce71f6e34a0f20f87085150a5060764fa4a594a7f6d91d01779f03023a9
+d55319e0315279969ce264b10da904aaf38fc16ea29b4ea30624a0c2fcf7fc5d
+939aeff288528182c81cbadce24a687fc962fa8c50b1e696169be8f4e7c4fcc9
+195e76b41f7256e146e5b3aedd8dcdb6e15fd40deb8159b46c8e8b2af157aae5
+e287aea0eb69b9b98dda453b22c3defbd00f344b2258ec2fb57677e77571d089
+2238e42e6cd3db765c046bdecb28bab4142f9b9c8df59a1f55bfb93e499e5825
+b9f7c411d951fa455180aa9e293ce1bcc9939b8040b726cb57f9afdf718603b5
+cf8d41d14f7d2ed82b6b0199a0335b15c2956c403607fc92af11378e4c02f577
+37f5b2c50274063c5948e5a425e50528205bb0adfe4d7084b4d756b0de594289
+5aaedf8c7d06cab042b23025ec4c0ab1215009178a6dbd44d1e6edad527356eb
+</code></pre>
+
+            
+        </div>
+    </section>
+    <div class="social-media-wrapper">
+    <h5>Share this post</h5>
+    <ul class="social-media-share-list">
+        <li>
+            <a class="share-facebook" title="Share this on Facebook" data-text="RATs and stealers rush through “Heaven’s Gate” with new loader" data-href="https://blog.talosintelligence.com/rats-and-stealers-rush-through-heavens/" rel="nofollow" target="_blank" href="https://www.facebook.com/sharer.php?u=https://blog.talosintelligence.com/rats-and-stealers-rush-through-heavens/"></a>
+        </li>
+        <li>
+            <a class="share-x" title="Post This" data-text="RATs and stealers rush through “Heaven’s Gate” with new loader" data-href="https://blog.talosintelligence.com/rats-and-stealers-rush-through-heavens/" rel="nofollow" target="_blank" href="https://x.com/share?url=https://blog.talosintelligence.com/rats-and-stealers-rush-through-heavens/"></a>
+        </li>
+        <li>
+            <a class="share-linkedin" title="Share this on LinkedIn" data-text="RATs and stealers rush through “Heaven’s Gate” with new loader" data-href="https://blog.talosintelligence.com/rats-and-stealers-rush-through-heavens/" rel="nofollow" target="_blank" href="https://www.linkedin.com/sharing/share-offsite/?url=https://blog.talosintelligence.com/rats-and-stealers-rush-through-heavens/"></a>
+        </li>
+        <li>
+            <a class="share-reddit" title="Reddit This" data-text="RATs and stealers rush through “Heaven’s Gate” with new loader" data-href="https://blog.talosintelligence.com/rats-and-stealers-rush-through-heavens/" rel="nofollow" target="_blank" href="https://www.reddit/submit?url=https://blog.talosintelligence.com/rats-and-stealers-rush-through-heavens/"></a>
+        </li>
+        <li>
+            <a class="share-email" title="Email This" href="mailto:?body=RATs and stealers rush through “Heaven’s Gate” with new loaderhttps://blog.talosintelligence.com/rats-and-stealers-rush-through-heavens/"></a>
+        </li>
+    </ul>
+</div></article>
+                    </div>
+                </div>
+                <div class="alt-layout-row-dk sidebar" id="side-bar">
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <footer id="footer">
+    <div class="container-fluid px-0">
+        <div class="row footer_nav_wrapper mx-0">
+            <div class="col-xl-10 col-12">
+                <div class="multi-col-list-wrapper">
+                    <ul class="footer-parent-list">
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6><a href="https://talosintelligence.com/reputation">Intelligence Center</a></h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/reputation_center">Intelligence Search</a></li>
+                                <li><a href="https://talosintelligence.com/reputation_center/email_rep">Email &amp; Spam Trends</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6><a href="https://talosintelligence.com/vulnerability_info">Vulnerability Research</a></h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/vulnerability_reports">Vulnerability Reports</a></li>
+                                <li><a href="https://talosintelligence.com/ms_advisories">Microsoft Advisories</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                             <ul>
+                                <li>
+                                    <h6><a href="https://talosintelligence.com/incident_response">Incident Response</a></h6>
+                                </li>
+                                <li>
+                                    <a href="https://talosintelligence.com/incident_response/services#reactive-services">Reactive Services</a>
+                                </li>
+                                <li>
+                                    <a href="https://talosintelligence.com/incident_response/services#proactive-services">Proactive Services</a>
+                                </li>
+                                <li>
+                                    <a href="https://talosintelligence.com/incident_response/contact">Emergency Support</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Security Resources</h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/software">Open Source Security Tools</a></li>
+                                <li><a href="https://talosintelligence.com/categories">Intelligence Categories Reference</a></li>
+                                <li><a href="https://talosintelligence.com/secure-endpoint-naming">Secure Endpoint Naming Reference</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Media</h6>
+                                </li>
+                                <li><a href="https://blog.talosintelligence.com">Talos Intelligence Blog</a></li>
+                                <li><a href="https://blog.talosintelligence.com/category/threat-source-newsletter/">Threat Source Newsletter</a></li>
+                                <li><a href="https://talosintelligence.com/podcasts/shows/beers_with_talos">Beers with Talos Podcast</a></li>
+                                <li><a href="https://talosintelligence.com/podcasts/shows/talos_takes">Talos Takes Podcast</a></li>
+                                <li><a target="_blank" href="https://www.youtube.com/channel/UCPZ1DtzQkStYBSG3GTNoyfg/featured">Talos Videos</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Support</h6>
+                                </li>
+                                <li><a href="https://support.talosintelligence.com">Support Documentation</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Company</h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/about">About Talos</a></li>
+                                <li><a href="https://talosintelligence.com/careers">Careers</a></li>
+                                <li><a target="_blank" href="https://www.cisco.com/c/en/us/products/security/product-listing.html">Cisco Security</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xl-2 col-12 connect_social">
+                <div class="connect-footer-section-wrapper">
+                    <h6>Follow us</h6>
+                    <ul>
+                        <li>
+                            <a target="_blank" href="https://x.com/talossecurity"><div class="footer-media-icon" id="footer-media-icon-x"></div>
+                            </a></li>
+                        <li>
+                            <a target="_blank" href="https://www.youtube.com/channel/UCPZ1DtzQkStYBSG3GTNoyfg/featured"><div class="footer-media-icon" id="footer-media-icon-youtube"></div>
+                            </a></li>
+                        <li>
+                            <a target="_blank" href="https://www.linkedin.com/company/cisco-talos-intelligence-group/"><div class="footer-media-icon" id="footer-media-icon-linkedin"></div>
+                            </a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row mx-0">
+            <div class="col-12 footer_corporate">
+                <a target="_blank" href="http://tools.cisco.com/security/center/home.x"><img alt="Cisco" src="https://blog.talosintelligence.com/assets/images/logo_cisco_white.svg">
+                </a><p class="copyright">
+                ©
+                <span id='current-year'></span>
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                <a target="_blank" class="underline" href="http://www.cisco.com/web/siteassets/legal/privacy_full.html">Privacy Policy.</a>
+            </p>
+            </div>
+        </div>
+    </div>
+</footer>
+    <script>
+  function coverageView() {
+    const coverageTable = document.getElementById('coverage-block');
+    const sidebar = document.getElementById('side-bar');
+    const postContent = document.getElementById('post-content');
+    const currentWidth = window.innerWidth;  
+  
+    if (coverageTable && sidebar && postContent) {
+      if (currentWidth < 1000) {
+        // For viewport less than 1000px, append to post content
+        postContent.appendChild(coverageTable);
+      } else {
+        // For viewport 1000px and wider, check for subscribe button
+        const subscribeButton = sidebar.querySelector('.subscribe-button');
+        
+        if (subscribeButton) {
+          // Insert coverage block after the subscribe button
+          subscribeButton.insertAdjacentElement('afterend', coverageTable);
+        } else {
+          // No subscribe button found, prepend to top of sidebar
+          sidebar.prepend(coverageTable);
+        }
+      }
+    }
+  }
+  
+  window.addEventListener("resize", coverageView);
+  window.addEventListener("load", coverageView);
+
+
+  (function() {
+    Array.from(document.querySelectorAll("a")).filter(a => {
+        return a.hostname && a.hostname !== location.hostname
+    }).forEach(a => a.setAttribute('target', '_blank'))
+})();
+</script>
+
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://blog.talosintelligence.com/assets/js/jquery-3.6.0.min.js?v=_xUj-3OJU5yExlq6"></script>
+<script src="https://blog.talosintelligence.com/assets/js/popper.min.js?v=ZvOgfh-ptkpoa2Y4"></script>
+<script src="https://blog.talosintelligence.com/assets/js/resize-styles.js?v=iB-0rQKwd6f_Dllp"></script>
+<script src="https://blog.talosintelligence.com/assets/js/bootstrap.bundle.min.js?v=JRXjfu4x9e89ZZsh"></script>
+<script src="https://blog.talosintelligence.com/assets/js/date.js?v=TlJWK1qtzFQeV9lL"></script>
+<script src="https://blog.talosintelligence.com/assets/js/prism.js?v=roQly8fYXhzQ4Osd"></script>
+<script src="https://cdn.jsdelivr.net/npm/ghost-theme-utils@latest/dist/js/ghost-theme-utils.min.js" async defer></script>
+<script src="https://blog.talosintelligence.com/assets/js/chart.min.js?v=dEAdc43T4D7l37O2"></script>
+<script src="https://blog.talosintelligence.com/assets/js/x-scroll.js?v=DuV8f5nlfWlGIAUr"></script>
+<script src="https://blog.talosintelligence.com/assets/js/2025_yir_chart.js?v=OSqUj45x6XXKWbZW"></script>
+
+
+</body>
+
+</html>

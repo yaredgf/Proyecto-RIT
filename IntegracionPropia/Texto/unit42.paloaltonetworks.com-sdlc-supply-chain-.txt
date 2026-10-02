@@ -1,0 +1,1266 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Connecting the Dots: Securing the Overlooked Corners of the Software Development Lifecycle (SDLC) Supply Chain
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Menu
+
+
+
+
+
+
+Tools
+ATOMs
+Security Consulting
+About Us
+Under Attack?
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  Threat Research CenterInsightsGeneral 
+ 
+General
+Connecting the Dots: Securing the Overlooked Corners of the Software Development Lifecycle (SDLC) Supply Chain
+
+
+  4  min read              
+
+
+Related ProductsCloud-Delivered Security ServicesCortex CloudUnit 42 Incident Response 
+
+
+
+
+
+
+
+
+By:Yaron Avital 
+
+Published:August 21, 2026 Categories:GeneralInsights
+ Tags:ChainDropNpm packagesSoftware supply-chain attackSupply chain
+ 
+
+
+ 
+ 
+
+
+Share
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+While supply chain threats have been quietly compounding over the past decade, the last 12–18 months have triggered a drastic shift in the scale and velocity of these attacks. Rather than just hunting for bugs in finished software, attackers are targeting the everyday tools and code developers rely on.
+Unit 42 research shows this happening at every step of the building process. We've observed attackers spending years pretending to be helpful contributors just to hide backdoors in core software, as seen in the XZ Utils vulnerability (CVE-2024-3094). We've seen attackers hijack accounts to drop malware into popular libraries, like in the Axios supply chain attack. And we've seen them misuse setup scripts to automatically steal credentials using the Shai-Hulud npm worm.
+Simply put, attackers are more focused on poisoning the digital factory that builds an application as opposed to the application itself. By targeting continuous integration/continuous delivery (CI/CD) pipelines and developer environments, they hijack software at the source before it ever hits production.
+Threat Analysis: ChainDrop npm Worm
+Consider the recent ChainDrop npm worm, which infected over 400 packages including massively popular libraries like keyv and cacheable-request using a highly evasive three-step chain:
+
+The hook: Attackers modified package manifests with a malicious preinstall script that downloaded the legitimate Bun runtime to silently launch a 727 KB obfuscated payload in the background.
+The theft: Rather than just scraping disk files, a hidden Python script directly read live process memory from GitHub Actions runners to steal temporary OpenID Connect (OIDC) tokens and secrets, alongside a massive sweep for local developer credentials.
+The payload: The worm used those stolen npm and GitHub tokens to self-propagate, silently infecting and republishing additional packages while leaving their legitimate functionality perfectly intact so that developers don't notice.
+
+ChainDrop secured long-term persistence by establishing cross-linked hooks directly inside developer tools like VS Code and Claude Code, while managing its entire command-and-control (C2) infrastructure dynamically through Ethereum blockchain transactions.
+The malware triggers silently the second someone runs npm install by misusing npm's setup scripts (preinstall hooks). From there, it hits three distinct targets:
+
+Cloud secret harvesting: It searches build server memory to scrape unencrypted credentials and platform access tokens
+Local endpoint backdooring: It modifies local developer tool configs (like VS Code's tasks.json) so the attacker retains access even after the build finishes
+Automated propagation: It uses stolen tokens to automatically create rogue code repositories, turning compromised accounts into new launchpads to spread the worm
+
+Package Visibility Across the SDLC
+The main takeaway is that open-source and third-party packages touch every single phase of the software development lifecycle (SDLC). Modern applications aren't built from scratch, they are assembled. Because open-source code makes up 80-90% of modern codebases, the attack surface expands to developer laptops, CI/CD pipelines and cloud infrastructure.
+Ten years ago, a project might have relied on a few dozen external libraries. Today, even a simple application pulls in thousands of indirect dependencies. Generating a software bill of materials (SBOM) at the end of a build is great for compliance, but an SBOM alone simply doesn't cut it anymore. An inventory list created at the finish line won't catch malware that was executed during the build process. To truly secure an environment, every single place a third-party package touches needs to be mapped.
+The Endpoint Attack Surface
+Developers today navigate an endless matrix of language-specific package managers. They routinely execute installations across a massive array of ecosystems — npm install, pip install, cargo build, go get, mvn install and many more — while simultaneously juggling 10–30 integrated development environment (IDE) extensions. Why are these attacks so effective? Because developer tools lack basic guardrails.
+Think about your web browser. When you visit a website, the browser locks it in a safe container (a sandbox) so it can’t touch your computer. But setup scripts and code editor extensions don't have those walls. The second they run, they get the same permissions you have, giving malware total freedom to read your files, steal keys and run commands on your machine.
+This massive, un-isolated weakness is exactly why registries and marketplaces have become prime targets, as seen in the recent GlassWorm campaign. Whether it’s a malicious script running silently during a routine dependency pull or a compromised IDE extension updating automatically in the background, an attacker instantly gains unrestricted execution rights on a developer's machine and access to valuable cloud knowledge.
+CI/CD Pipelines
+Build pipelines rely on numerous outside tools, plugins and helper scripts to assemble code. Attackers often target these build environments because they are packed with temporary passwords and cloud access keys. The compromise of Trivy highlights the potential attack surface of pipeline security tools. This means that only scanning app code is insufficient. A pipeline bill of materials (PBOM) is also needed, which is an inventory list of every single tool running inside your build system.
+The Cloud Runtime
+Finally, we can't forget the cloud. A standard application SBOM typically only lists the code libraries developers explicitly add to their software. However, cloud environments rely on containers, which require a broader approach. A container SBOM provides the full picture by tracking both the application code and the hidden operating system tools built into the container image such as basic security utilities and system libraries like OpenSSL. Standard application scans completely overlook these deeper system layers.
+The danger of this weakness was starkly illustrated by the wave of OpenSSL zero-day vulnerabilities disclosed in early 2026. Because these critical flaws sit deep within the foundational cryptographic infrastructure of the container's operating system, the application-layer code will look perfectly clean and pass every repository scan, while the underlying cloud workload remains completely exposed to a remote takeover.
+Given this extensive attack surface, relying on static, point-in-time gateway scans is an insufficient strategy. True supply chain resilience requires continuous visibility between local developer endpoints, automated pipelines and cloud runtime workloads. Correlating telemetry across all three domains is the only way to intercept malicious behaviors and halt a compromise before it propagates downstream.
+Tips for Hardening Pipelines
+Defending against automated supply chain attacks requires shifting from reactive code scanning to strict execution control across the entire build path. Because tools, IDE extensions and package managers run with high privileges, organizations must lock down the developer environment by disabling lifecycle install scripts (--ignore-scripts), enforcing package cooldown periods, restricting CI/CD egress traffic, using ephemeral CI/CD servers and pinning dependencies down to exact commit SHAs.
+Beyond environment hardening, neutralizing autonomous malware like Shai-Hulud means eliminating the long-lived credentials that fuel them. By transitioning to brief OIDC authentication and enforcing end-to-end cryptographic provenance, teams can establish an unbroken chain of trust. This trust extends from signed commits at the developer endpoint to signed artifacts and SBOMs in production, helping stop self-propagating worms in their tracks.
+
+
+Back to top
+
+TagsChainDropNpm packagesSoftware supply-chain attackSupply chain
+
+
+
+Threat Research Center
+
+
+Next: Identity Abuse Through Trusted Communication Channels
+
+
+
+
+
+
+
+Table of Contents
+
+
+
+
+
+
+Related Articles
+
+
+
+                      ChainDrop: Inside a Self-Propagating npm Worm                  
+
+
+
+                      Token Jacking: Cybercriminals Could Be Stealing Your AI Resources                  
+
+
+
+                      The npm Threat Landscape: Attack Surface and Mitigations (Updated July 15)                  
+
+
+
+
+
+
+
+
+
+Related General Resources
+
+
+
+
+ 
+
+
+
+Insights September 16, 2026
+
+Atomic macOS (AMOS) Stealer Activity
+
+
+
+MacOS
+
+
+Threat intelligence
+
+
+Unit 42
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights September 2, 2026
+
+An AI-Assisted Cyber Attack: Inside a Unit 42 Investigation
+
+
+
+Agentic AI
+
+
+Frontier AI
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights August 28, 2026
+
+Perturbation Probing: A New Diagnostic for the Fragility of LLM Safety
+
+
+
+AI
+
+
+Jailbreak
+
+
+LLM
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+High Profile Threats August 18, 2026
+
+Threat Brief: Mitigating Large-Scale Credential Attacks (Updated August 18)
+
+
+
+Credential theft
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights August 4, 2026
+
+The Frontier AI Vulnerability Burst: Industrializing Autonomous Zero-Day Discovery in Open-Source Software
+
+
+
+AI
+
+
+Frontier AI
+
+
+Vulnerability Exploitation
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights July 2, 2026
+
+How We Added WebAuthn to a Browser-Based RDP Client
+
+
+
+IDA Pro
+
+
+Microsoft
+
+
+RDP
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights June 12, 2026
+
+Tracing Digital Intent: New MacOS Tahoe 26 Artifact Discovered
+
+
+
+Digital forensics
+
+
+MacOS
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights June 8, 2026
+
+When “Hi, This Is IT” Comes Through Microsoft Teams
+
+
+
+Cloaked Ursa
+
+
+Identity
+
+
+Phishing
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights May 28, 2026
+
+2026 World Cup: Discussing The World’s Biggest Game’s Attack Surface
+
+
+
+Fiddling Scorpius
+
+
+Fighting Ursa
+
+
+Muddled Libra
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
+				Get updates from Unit 42			
+Peace of mind comes from staying ahead of threats. Subscribe today.
+
+
+
+
+
+
+
+
+
+
+Your Email
+
+
+Subscribe for email updates to all Unit 42 threat research.
+By submitting this form, you agree to our Terms of Use and acknowledge our Privacy Statement.
+
+                    This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.                            
+  
+
+Invalid captcha!
+ 
+					Subscribe					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Get the latest news, invites to events, and threat alerts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Enter your email now to subscribe!
+
+
+
+
+
+Sign up 
+
+
+
+
+                                
+                                
+                                
+                                    By submitting this form, I understand my personal data will be processed in accordance with
+                                        Palo Alto Networks Privacy Statement and Terms of Use.
+
+
+
+Sign up 
+
+
+
+
+
+
+
+
+
+
+
+
+Products and Services
+
+
+
+
+
+                                    AI-Powered Network Security Platform
+                                
+
+
+
+                                    Secure AI by Design
+                                
+
+
+
+                                    Prisma AIRS
+                                
+
+
+
+                                    AI Access Security
+                                
+
+
+
+                                    Cloud Delivered Security Services
+                                
+
+
+
+                                    Advanced Threat Prevention
+                                
+
+
+
+                                    Advanced URL Filtering
+                                
+
+
+
+                                    Advanced WildFire
+                                
+
+
+
+                                    Advanced DNS Security
+                                
+
+
+
+                                    Enterprise Data Loss Prevention
+                                
+
+
+
+                                    Enterprise IoT Security
+                                
+
+
+
+                                    Medical IoT Security
+                                
+
+
+
+                                    Industrial OT Security
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    Next-Generation Firewalls
+                                
+
+
+
+                                    Hardware Firewalls
+                                
+
+
+
+                                    Software Firewalls
+                                
+
+
+
+                                    Strata Cloud Manager
+                                
+
+
+
+                                    SD-WAN for NGFW
+                                
+
+
+
+                                    PAN-OS
+                                
+
+
+
+                                    Panorama
+                                
+
+
+
+                                    Secure Access Service Edge
+                                
+
+
+
+                                    Prisma SASE
+                                
+
+
+
+                                    Application Acceleration
+                                
+
+
+
+                                    Autonomous Digital Experience Management
+                                
+
+
+
+                                    Enterprise DLP
+                                
+
+
+
+                                    Prisma Access
+                                
+
+
+
+                                    Prisma Browser
+                                
+
+
+
+                                    Prisma SD-WAN
+                                
+
+
+
+                                    Remote Browser Isolation
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    AI-Driven Security Operations Platform
+                                
+
+
+
+                                    Cloud Security
+                                
+
+
+
+                                    Cortex Cloud
+                                
+
+
+
+                                    Application Security
+                                
+
+
+
+                                    Cloud Posture Security
+                                
+
+
+
+                                    Cloud Runtime Security
+                                
+
+
+
+                                    Prisma Cloud
+                                
+
+
+
+                                    AI-Driven SOC
+                                
+
+
+
+                                    Cortex XSIAM
+                                
+
+
+
+                                    Cortex XDR
+                                
+
+
+
+                                    Cortex XSOAR
+                                
+
+
+
+                                    Cortex Xpanse
+                                
+
+
+
+                                    Unit 42 Managed Detection & Response
+                                
+
+
+
+                                    Managed XSIAM
+                                
+
+
+
+                                    Observability
+                                
+
+
+
+                                    Cortex XCOR
+                                
+
+
+
+
+
+                                    Next-Generation Identity Security
+                                
+
+
+
+                                    Privileged Access Management
+                                
+
+
+
+                                    Identity and Access Management 
+                                
+
+
+
+                                    Endpoint Privilege Manager
+                                
+
+
+
+                                    Identity Governance
+                                
+
+
+
+                                    Workforce Password Management
+                                
+
+
+
+                                    Agentic Identities
+                                
+
+
+
+                                    Secrets Management
+                                
+
+
+
+                                    Unified Secrets Governance
+                                
+
+
+
+                                    Application Credentials Delivery
+                                
+
+
+
+                                    Vendor Privileged Access
+                                
+
+
+
+                                    Threat Intel and Incident Response Services
+                                
+
+
+
+                                    Prepare for Emerging Risks
+                                
+
+
+
+                                    Strengthen Your Defenses
+                                
+
+
+
+                                    Build Your Security Strategy
+                                
+
+
+
+                                    Understand the Adversary
+                                
+
+
+
+                                    Respond to a Cyber Attack
+                                
+
+
+
+
+
+
+Company
+
+
+
+
+
+                                    About Us
+                                
+
+
+
+                                    Careers
+                                
+
+
+
+                                    Contact Us
+                                
+
+
+
+                                    Corporate Responsibility
+                                
+
+
+
+                                    Customers
+                                
+
+
+
+                                    Investor Relations
+                                
+
+
+
+                                    Location
+                                
+
+
+
+                                    Newsroom
+                                
+
+
+
+
+
+
+Popular Links
+
+
+
+
+
+                                    Blog
+                                
+
+
+
+                                    Communities
+                                
+
+
+
+                                    Content Library
+                                
+
+
+
+                                    Cyberpedia
+                                
+
+
+
+                                    Event Center
+                                
+
+
+
+                                    Manage Email Preferences
+                                
+
+
+
+                                    Products A-Z
+                                
+
+
+
+                                    Product Certifications
+                                
+
+
+
+                                    Report a Vulnerability
+                                
+
+
+
+                                    Sitemap
+                                
+
+
+
+                                    Tech Docs
+                                
+
+
+
+                                    Unit 42
+                                
+
+
+
+                                    Do Not Sell or Share My Personal Information
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Privacy
+                            
+
+
+
+                                Trust Center
+                            
+
+
+
+                                Terms of Use
+                            
+
+
+
+                                Documents
+                            
+
+
+Copyright © 2026 Palo Alto Networks. All Rights Reserved
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+EN
+
+
+
+Select your language
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Your browser does not support the video tag.
+          
+
+Default Heading
+Read the article
+              
+
+
+
+
+Seekbar
+
+
+
+
+
+
+
+
+
+
+
+
+
+Volume
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

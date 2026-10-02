@@ -1,0 +1,715 @@
+
+
+
+Matt Olney - Cisco Talos Blog (Page 5)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Matt Olney
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+December 24, 2008 22:32
+MS-SQL Quickie update
+Hey folks,
+
+Since MS chose today to speak on this issue (see http://www.microsoft.com/technet/security/advisory/961040.mspx)
+
+We wanted to remind you that we released coverage for this rule on the 9th of December. The following SIDs address this issue:
+
+15127, 15128, 15129, 15130
+
+
+                    By
+                
+Matt Olney
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+November 21, 2008 14:36
+Fun with SSDT Hooks and DEP
+My favorite part of work here at the VRT is how much you can learn from a project that, in the end, doesn’t achieve what you set out to do. This past week, I was looking at the possibility of watching, in the Windows kernel, for attempts to bypass DEP protection. Briefly, DEP is
+
+
+                    By
+                
+Matt Olney
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+October 28, 2008 14:43
+Update on Snort and ClamAV for ms08-067
+There's been a lot of action on the MS08-067 front over the weekend, so we thought we'd bring you up to date on the bug in general, and how Snort and ClamAV are providing specific detection. Interestingly, things are rolling out about the way we expected them to. We happe
+
+
+                    By
+                
+Matt Olney
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+September 5, 2008 10:58
+Webcast Teaser -- Basic Buffer Overflow Detection
+Our next webcast, Performance Rules Creation: Rules Options and Techniques, is scheduled for 1pm EST on Wednesday, September 17th. We’ll be using actual published VRT rules to demonstrate common rule structures, rule options and some of the gotchas that you might run across when
+
+
+                    By
+                
+Matt Olney
+
+
+
+
+
+ 
+
+
+
+
+
+
+← Prev
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

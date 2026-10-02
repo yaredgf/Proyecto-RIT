@@ -1,0 +1,970 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+V1: ED 25-03: Identify and Mitigate Potential Compromise of Cisco Devices | CISA
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+ 
+
+
+
+
+
+An official website of the United States government
+Here’s how you know
+
+Here’s how you know
+
+
+
+
+
+
+
+
+
+Official websites use .gov
+ A .gov website belongs to an official government organization in the United States.
+              
+
+
+
+
+
+
+Secure .gov websites use HTTPS
+ A lock (LockA locked padlock) or https:// means you’ve safely connected to the .gov website. Share sensitive information only on official, secure websites.
+              
+
+
+
+
+
+
+
+
+
+
+
+Staying Secure at Eventsno-cost Cyber ServicesCybersecurity Awareness MonthKEV CatalogReport A Cyber Issue 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Search
+
+
+
+ 
+
+
+Menu
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Close
+
+
+ 
+
+
+
+
+Topics
+
+
+
+Topics
+
+
+
+
+
+Cybersecurity Best Practices
+
+
+
+
+
+
+Cyber Threats and Response
+
+
+
+
+
+
+Critical Infrastructure Security and Resilience
+
+
+
+
+
+
+Election Security
+
+
+
+
+
+
+Emergency Communications
+
+
+
+
+
+
+Industrial Control Systems
+
+
+
+
+
+
+Information and Communications Technology Supply Chain Security
+
+
+
+
+
+
+Partnerships and Collaboration
+
+
+
+
+
+
+Physical Security
+
+
+
+
+
+
+Risk Management
+
+
+
+
+
+
+        How can we help?
+       
+GovernmentEducational InstitutionsIndustryState, Local, Tribal, and TerritorialIndividuals and FamiliesSmall and Medium BusinessesFind Help LocallyFaith-Based CommunityExecutivesHigh-Risk Communities
+
+
+
+
+
+Spotlight
+
+
+
+
+Resources & Tools
+
+
+
+Resources & Tools
+
+
+
+
+
+All Resources & Tools
+
+
+
+
+
+
+Services
+
+
+
+
+
+
+Programs
+
+
+
+
+
+
+Resources
+
+
+
+
+
+
+Training
+
+
+
+
+
+
+Groups
+
+
+
+
+
+
+
+
+News & Events
+
+
+
+News & Events
+
+
+
+
+
+Directives
+
+
+
+
+
+
+News
+
+
+
+
+
+
+Events
+
+
+
+
+
+
+Cybersecurity Alerts & Advisories
+
+
+
+
+
+
+Request a CISA Speaker
+
+
+
+
+
+
+Congressional Testimony
+
+
+
+
+
+
+CISA Conferences
+
+
+
+
+
+
+CISA Live!
+
+
+
+
+
+
+
+
+Careers
+
+
+
+Careers
+
+
+
+
+
+Benefits & Perks
+
+
+
+
+
+
+Hiring and Recruitment
+
+
+
+
+
+
+New Employee Orientation & Onboarding
+
+
+
+
+
+
+Students & Recent Graduates
+
+
+
+
+
+
+Veteran and Military Spouses
+
+
+
+
+
+
+
+
+About
+
+
+
+About
+
+
+
+
+
+Divisions & Offices
+
+
+
+
+
+
+Regions
+
+
+
+
+
+
+Leadership
+
+
+
+
+
+
+Doing Business with CISA
+
+
+
+
+
+
+Site Links
+
+
+
+
+
+
+CISA GitHub
+
+
+
+
+
+
+CISA Central
+
+
+
+
+
+
+Contact Us 
+
+
+
+
+
+
+Subscribe
+
+
+
+
+
+
+Transparency and Accountability
+
+
+
+
+
+
+Policies & Plans
+
+
+
+
+
+
+
+
+
+
+Staying Secure at Eventsno-cost Cyber ServicesCybersecurity Awareness MonthKEV CatalogReport A Cyber Issue 
+
+
+
+
+
+
+
+
+
+
+Breadcrumb
+
+
+Home
+
+
+News & Events
+
+
+Cybersecurity Directives
+
+
+
+              V1: ED 25-03: Identify and Mitigate Potential Compromise of Cisco Devices
+            
+
+
+
+
+
+
+
+Share:
+
+
+
+
+
+
+
+    Opens in a new window
+  
+
+
+
+
+
+
+    Opens in a new window
+  
+
+
+
+
+
+
+    Opens in a new window
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Emergency Directives
+
+V1: ED 25-03: Identify and Mitigate Potential Compromise of Cisco Devices
+
+April 23, 2026
+
+
+
+								Related topics:
+							
+
+Cybersecurity Best Practices
+
+
+
+
+
+
+
+
+
+
+
+
+News & Events
+
+
+
+
+Directives
+
+
+
+
+News
+
+
+
+
+Events
+
+
+
+
+Cybersecurity Alerts & Advisories
+
+
+
+
+Request a CISA Speaker
+
+
+
+
+Congressional Testimony
+
+
+
+
+CISA Conferences
+
+
+
+
+CISA Live!
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+This page contains a web-friendly version of the Cybersecurity and Infrastructure Security Agency’s V1: Emergency Directive 25-03: Identify and Mitigate Potential Compromise of Cisco Devices.
+Section 3553(h) of title 44, U.S. Code, authorizes the Secretary of Homeland Security, in response to a known or reasonably suspected information security threat, vulnerability, or incident that represents a substantial threat to the information security of an agency, to “issue an emergency directive to the head of an agency to take any lawful action with respect to the operation of the information system, including such systems used or operated by another entity on behalf of an agency, that collects, processes, stores, transmits, disseminates, or otherwise maintains agency information, for the purpose of protecting the information system from, or mitigating, an information security threat.” 44 U.S.C. § 3553(h)(1)–(2). Section 2205(3) of the Homeland Security Act of 2002, as amended, delegates this authority to the Director of the Cybersecurity and Infrastructure Security Agency. 6 U.S.C. § 655(3). Federal agencies are required to comply with these directives. 44 U.S.C. § 3554 (a)(1)(B)(v). These directives do not apply to statutorily defined “national security systems” nor to systems operated by the Department of War or the Intelligence Community. 44 U.S.C. § 3553(d), (e)(2), (e)(3), (h)(1)(B).
+See Emergency Directive 25-03 for the Original Directive issued on September 25, 2025.
+Background
+
+CISA is issuing V1 to supersede the required actions in Emergency Directive (ED) 25-03: Identify and Mitigate Potential Compromise of Cisco Devices. V1 provides updated and new required actions, an additional reporting requirement, and applies to any agency running affected products. V1 expands on the original ED 25-03 requirements with required actions three, four, and six.
+The revision to ED 25-03 is in response to updated cyber threat intelligence concerning threat actors retaining persistence and continued unauthorized access to Cisco Firepower and Secure Firewall products with Adaptive Security Appliance (ASA) or Firepower Threat Defense (FTD) software. CISA analysis determines that applying the Cisco-provided security updates required by the original issuance of ED 25-03 does not necessarily remove an existing threat actor from the compromised device. Agencies who have completed the security update requirements are still susceptible to persistence and therefore must complete the updated required actions within this V1 ED.
+CISA analysis continues to assess the following CVEs as an unacceptable risk to Federal Civilian and Executive Branch (FCEB) information systems:
+
+CVE-2025-20333 – allows for remote code execution
+CVE-2025-20362 – allows for privilege escalation
+
+In conjunction with this ED update, CISA released the FIRESTARTER Backdoor Malware Analysis Report with further details about the threat actor activity, malware functionality, detection methods, and mitigations.
+Scope
+This Directive applies to agency assets in any federal information system, including an information system used or operated by another entity on behalf of an agency, that collects, processes, stores, transmits, disseminates, or otherwise maintains agency information. This Directive does not apply to contractors, but FCEB agencies may need to modify contracts to comply with the required actions of this Directive.
+For federal information systems hosted in third-party environments, each agency is responsible for maintaining an inventory of its information systems hosted in those environments (FedRAMP Authorized or otherwise) and obtaining status updates pertaining to, and to ensure compliance with, this Directive. Agencies should work through the FedRAMP program office to obtain these updates for FedRAMP-authorized cloud service providers and work directly with service providers that are not FedRAMP-authorized.
+All other provisions specified in this Directive remain applicable.
+Note: Entities outside of the FCEB that wish to perform the actions outlined in this section may follow the same CISA instructions to collect and upload a core dump file to CISA for analysis.
+
+Required Actions
+This ED requires agencies to take the following actions:
+For all public-facing Cisco ASA devices:
+
+Immediately identify all Cisco ASA platforms (ASA hardware, ASA-Service Module [ASA-SM], ASA Virtual [ASAv]).
+For all public-facing Cisco ASA hardware appliances identified in required action 1, follow CISA’s step-by-step Core Dump and Hunt Instructions Parts 1-3 and submit core dump(s) via the Malware Next Gen portal by 11:59PM EST on September 26, 2025.
+
+If the result is “Compromise Detected,” agencies must immediately disconnect the device from their network (but do not power off), report the incident to CISA, and work with CISA on incident response and eviction actions.
+If the result is “No Compromise Detected,”:
+
+For ASA hardware models with an end-of-support date on or before September 30, 2025, take the following action:
+
+Permanently disconnect these devices on or before September 30, 2025, as these legacy platforms/releases cannot meet current vendor support and update requirements.
+Agencies that cannot meet this requirement must apply the latest Cisco-provided updates for software by 11:59PM EST on September 26, 2025, report to CISA mission critical needs preventing such action and plans for eventual decommissioning of the device as directed by requirement 5.
+
+
+For ASA hardware models with an end-of-support date of August 31, 2026: Download and apply the latest Cisco-provided updates for software by 11:59PM EST on Sept. 26, 2025, and apply all subsequent updates via Cisco’s download portal within 48 hours of release.
+[New Requirement] For any newly identified ASA hardware models, follow the requirements outlined in BOD 26-02: Mitigating Risk From End-of-Support Edge Devices.
+
+
+For all ASAv instances identified in required action 1, download and apply the latest Cisco-provided updates for software by 11:59PM EST on September 26, 2025, and apply all subsequent updates via Cisco’s download portal within 48 hours of release.
+
+
+
+For public-facing Cisco Firepower and Secure Firewall devices:
+
+[New Requirement] Immediately identify all Firepower 1000, 2100, 4100, 9300 series and Secure Firewall 200, 1200, 3100, 4200, and 6100 series devices.
+[New Requirement] For devices identified in required action 3, follow CISA’s step-by-step Core Dump and Hunt Instructions and submit core dump(s) via the Malware Next Gen portal by 11:59PM EST on April 24, 2026.
+
+If the result is “Compromise Detected,” agencies must: keep the device powered on, immediately disconnect the device from their network, and report the incident to CISA, and work with CISA on incident response, forensics, and eviction actions.
+If the result is “No Compromise Detected,” agencies must:
+
+Download and apply the latest Cisco-provided updates for software by 11:59PM EST on April 24, 2026. This includes:
+
+The software updates to address CVE-2025-20333 and CVE-2025-20362, if not already patched; and,
+The recently released patch created for this specific persistence issue (links provided by device type in CISA’s step-by-step Core Dump and Hunt Instructions).
+
+
+Perform a hard reset of the device(s) by physically unplugging the device’s power supply, as a reboot is not sufficient to expunge the malware, no later than April 30, 2026.
+
+Follow CISA’s step-by-step Core Dump and Hunt Instructions, which includes further guidance if a hard reset of the device cannot occur immediately after patch implementation.
+
+
+Apply all subsequent updates via Cisco’s download portal within 48 hours of release.
+
+
+
+
+
+All agencies must:
+
+By 11:59 PM EST on October 2, 2025, report to CISA (using the provided template) a complete inventory of all instances of products within scope on agency networks, including details on actions taken and results.
+[New Requirement] By 11:59 PM EST on May 1, 2026, report to CISA (using the provided template) a complete inventory of all Firepower 1000, 2100, 4100, 9300 series and Secure Firewall 200, 1200, 3100, 4200, and 6100 series devices including details on actions taken and results.
+
+CISA Actions:
+
+CISA will provide agencies with a template that will be used for reporting agency actions following the issuance of this Directive.
+CISA will continue efforts to identify instances and potential compromises associated with this threat activity, provide partner notifications, and will issue additional guidance and direction, as appropriate.
+CISA can provide technical assistance to agencies who are without internal capabilities sufficient to comply with this Directive.
+By February 1, 2026, CISA will provide a report to the Secretary of Homeland Security, the National Cyber Director, the Director of the Office of Management and Budget, and the Federal Chief Information Security Officer identifying cross-agency status and outstanding issues.
+[New Action] By August 1, 2026, CISA will provide an updated report to the Secretary of Homeland Security, the National Cyber Director, the Director of the Office of Management and Budget, and the Federal Chief Information Security Officer identifying cross-agency status and outstanding issues.
+
+Additional Information
+Visit https://www.cisa.gov/news-events/directives or contact the following for:
+
+General information, assistance, and reporting – CyberDirectives@cisa.dhs.gov
+Reporting indications of compromise – contact@cisa.dhs.gov
+
+For more information on the threat actor activity, malware functionality, detection methods, and mitigations please see CISA’s FIRESTARTER Backdoor Malware Analysis Report https://www.cisa.gov/news-events/analysis-reports/ar26-113a
+For further instructions on how to perform a “core dump” please visit https://cisa.gov/news-events/directives/supplemental-direction-ed-25-03-core-dump-and-hunt-instructions
+For eviction guidance please visit https://www.cisa.gov/eviction-strategies-tool/create-from-template
+
+
+
+
+
+
+Tags
+
+Topics:
+                                                                                                                                                                                                                                                                                                                                                Cybersecurity Best Practices
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Directives
+
+
+
+
+
+
+Mar 11, 2026
+
+Emergency Directive
+
+
+
+V1: ED 26-03: Mitigate Vulnerabilities in Cisco SD-WAN Systems
+ 
+
+
+
+
+
+
+
+Feb 25, 2026
+
+Emergency Directive
+
+
+
+Supplemental Direction ED 26-03: Hunt and Hardening Guidance for Cisco SD-WAN Systems
+ 
+
+
+
+
+
+
+
+Feb 25, 2026
+
+Emergency Directive
+
+
+
+ED 26-03: Mitigate Vulnerabilities in Cisco SD-WAN Systems
+ 
+
+
+
+
+
+
+
+Jan 08, 2026
+
+Emergency Directive
+
+
+
+ED 24-02: Mitigating the Significant Risk from Nation-State Compromise of Microsoft Corporate Email System (Closed)
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Return to top
+
+
+
+
+
+
+Topics
+
+
+Spotlight
+
+
+Resources & Tools
+
+
+News & Events
+
+
+Careers
+
+
+About
+
+
+
+
+
+
+
+
+
+Cybersecurity & Infrastructure Security Agency
+ 
+
+
+
+Facebook
+
+
+X
+
+
+LinkedIn
+
+
+YouTube
+
+
+Instagram
+
+
+RSS
+
+
+
+CISA Central
+1-844-Say-CISA
+contact@cisa.dhs.gov
+
+
+
+
+
+
+
+
+
+
+DHS Seal
+
+CISA.gov
+An official website of the U.S. Department of Homeland Security
+
+
+
+
+About CISA
+
+
+Budget and Performance
+
+
+DHS.gov
+
+
+FOIA Requests
+
+
+No FEAR Act
+
+
+Office of Inspector General
+
+
+Privacy Policy
+
+
+Subscribe
+
+
+The White House
+
+
+USA.gov
+
+
+Website Feedback
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

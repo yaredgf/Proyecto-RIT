@@ -1,0 +1,693 @@
+
+
+
+Attacks on web applications spike in third quarter, new Talos IR data shows
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Attacks on web applications spike in third quarter, new Talos IR data shows
+
+
+By 
+Nicole Hoffman
+
+
+
+            Tuesday, October 24, 2023 08:00
+        
+
+
+                            Talos IR trends
+                        
+
+
+
+
+Quarterly threat report: Telecommunications and education are most-targeted verticals There was a notable increase in threats to web applications, accounting for 30 percent of the engagements Cisco Talos Incident Response (Talos IR) responded to in the third quarter of 2023, compared to 8 percent the previous quarter. Exploitation of public-facing applications was the top observed means of gaining initial access, accounting for 30 percent of engagements. The high number of web application attacks likely played a significant role in the increase this quarter.  One pager: Talos IR Quarterly Trends Report (Q3 2023)Download the one-pager here to get a quick overview of the top threats Talos IR addressed in Q3.102023 IR Q323.pdf171 KBdownload-circleHowever, ever-present ransomware continues to be a threat, accounting for 10 percent of engagements. This quarter, which covers July, August and September, featured the LockBit and BlackByte ransomware families, which Talos IR has observed in previous quarters. But for the very first time, Talos IR observed a new variant of BlackByte ransomware, BlackByte NT.  Telecommunications and education were the most targeted verticals, each accounting for 20 percent of engagements. Threat actors and groups with varying motives and sophistication frequently targeted telecommunications organizations, continuing a trend where it was consistently a top-targeted industry vertical in 2022, according to Talos IR.  Telecommunications companies are attractive targets due to their control over several critical infrastructure assets, serving as a gateway for adversaries to access other businesses, subscribers, or third-party providers. These organizations also have a large amount of customer data that is often targeted by financially motivated cybercriminals such as ransomware groups.   Educational institutions are continuously targeted by cybercriminals due to vast amounts of personally identifiable student data, including financial and counseling records, as well as research institutes rich in intellectual property. Many education organizations have limited budgets devoted to cybersecurity, hampering defenses.      Web application targeting on the rise Attacks against web applications — and subsequent post-compromise activity — were the top-observed threat in Q3, accounting for 30 percent of engagements, a significant increase compared to the previous quarter. After gaining initial access, adversaries leveraged techniques such as launching web injection attacks, deploying web shells, and using commercial off-the-shelf frameworks such as Supershell, which deploys web shells to maintain access to a system. Talos IR is seeing a growing trend of adversaries leveraging advanced functionalities of various command and control (C2) frameworks, such as the newly observed Supershell C2 framework, to identify weaknesses in web servers and deploy web shells more easily. Supershell is a web-based management platform that allows attackers to remotely execute commands, manage compromised systems, and collaborate with multiple users. Before downloading Supershell, the attackers placed malicious XML inputs containing a reference to an external entity using XML external entity (XXE) injection attacks in hopes the web server had a misconfigured XML parser. Based on our analysis, Supershell appears to be designed for predominantly Chinese-speaking individuals as the tool is written for a Chinese-only web interface console. There is also a clear preference for Chinese in Supershell’s GitHub documentation, although an English-translated option exists.  Although the development of recent frameworks that make the deployment of web shells easier benefits sophisticated adversaries, these frameworks may also reduce the barrier for entry for less sophisticated attackers. Given the growing trend of commercial off-the-shelf C2 frameworks within the last year, including Alchimist and Manjusaka, it is likely this trend will continue to play out as adversaries increasingly turn to adopt additional capabilities for performing web-based attacks. Web shells are malicious scripts that enable threat actors to compromise web-based servers exposed to the internet. Talos IR responded to an engagement where attackers uploaded several PHP web shells to an unpatched web server, demonstrating how threat actors commonly chain together web shells to build a more flexible toolkit. Within this cluster of activity, the attackers could not further carry out any post-compromise objectives due to the presence of a Web Application Firewall (WAF), highlighting the importance of implementing a WAF between public-facing servers and the Internet to help defend against these attacks.   In several engagements this quarter, we observed adversaries leveraging Structured Query Language injection (SQLi) attacks, a technique in which adversaries enter SQL commands into an input field that does not use validation and sanitization. We increasingly see adversaries continue to use scanning frameworks to launch SQLi attacks. In one cluster of activity, Talos IR identified multiple SQLi attempts and more than 1,000 instances of SQLMap, an open-source utility often used to identify and exploit SQLi vulnerabilities. Adversaries also used a SQL injection module within Nessus, a proprietary vulnerability scanner, highlighting the threat actor’s intent on identifying SQLi vulnerabilities for expanded access.  Ransomware remains a threat Ransomware activity continued this quarter accounting for 10 percent of total IR engagements in Q3. We observed the BlackByte ransomware group’s new variant, BlackByte NT, for the first time in addition to the previously seen LockBit ransomware, which continues to be the top observed ransomware family in Talos IR engagements. LockBit was one of the most prevalent variants seen in Talos IR engagements since September 2022, consistent with a wide body of reporting calling LockBit one of the most active ransomware threats this year.  Talos IR responded to a LockBit ransomware attack where the adversaries gained an initial foothold into the environment by compromising a valid contractor account. Once inside, attackers began dumping credentials from internal systems and were able to create an administrator account to elevate privileges and remain persistent in the environment. To evade detection, the attackers cleared the Windows event logs and disabled several security tools, including endpoint detection and response (EDR) and antivirus. LockBit established C2 channels via multiple methods, including the adversary simulation tool Cobalt Strike and the legitimate remote access software AnyDesk. The attackers modified domain policies to create a scheduled task that eventually executed the LockBit ransomware binary.  Talos IR has previously observed BlackByte ransomware, but this quarter was the first time seeing the new variant, BlackByte NT. Unlike the former variants, this new variant (aka BlackByte 2.0) is written entirely in C++ and was discovered in May 2023. Talos IR observed the new BlackByte NT ransomware variant where the attackers initially compromised a valid account to gain access. Several accounts with administrator privileges were created in this engagement as well, showing ransomware actors’ reliance on account creation to escalate privileges and enable persistence. Attackers then used a combination of RDP, SSH, and Server Message Block (SMB) for lateral movement. Using the open-source Secure File Transfer Protocol (SFTP) tool WinSCP, adversaries exfiltrated data from the environment. Before encryption, the attackers cleared the Windows event logs to cover their tracks and deleted the shadow volume copies to inhibit system recovery, consistent with ransomware TTPs. Ransomware was propagated across the environment via SMB admin shares, a common distribution method also observed in ransomware attacks.   New ShroudedSnooper actor observed using custom backdoors This quarter also featured a new advanced persistent threat (APT) ShroudedSnooper targeting telecommunications firms in the Middle East. This activity is a continuation of a trend we have been monitoring over the past several years in which sophisticated actors are frequently targeting telecommunications organizations, a top-targeted industry vertical this quarter and throughout 2022, according to Talos IR. As part of this activity, ShroudedSnooper deployed two novel backdoor implants we dubbed “HTTPSnoop” and “PipeSnoop.” These backdoors interface with Windows HTTP kernel drivers and devices to listen to incoming requests for specific HTTP(S) URLs and execute that content on the infected endpoint. Talos IR observed DLL- and EXE-based versions of the implants that masquerade as legitimate security software components, and specifically extended detection and response (XDR) agents, making detection challenging.  Initial vectors Exploitation of public-facing applications was the top observed means of gaining initial access, accounting for 30 percent of engagements. The high number of web application attacks likely played a significant role in the increase this quarter.   Security weaknesses Unpatched or misconfigured applications and a lack of multi-factor authentication (MFA) were tied to the top security weaknesses, each accounting for 40 percent of engagements. This activity aligns with the top two initial access vectors used by adversaries this quarter, including exploiting public-facing applications and abusing valid accounts. Talos IR frequently observes attacks that could have been prevented if MFA was enabled on critical services, such as RDP. Talos IR recommends expanding MFA for all user accounts, such as employee, contractor and business partner accounts.   Staying up-to-date with software updates on public-facing applications is a crucial aspect of an organization’s security posture. Attackers often exploit vulnerabilities to achieve post-compromise objectives, such as privilege escalation. While vulnerability and patch management are critical, it is not always possible to immediately apply every security patch due to the complexity of enterprise networks. Talos IR recommends prioritizing critical vulnerabilities that pose the biggest threats to preventing exploitation.   Misconfigurations can also leave organizations exposed regardless of an adversary’s intention. Talos IR frequently sees actors compromising systems that were misconfigured to be exposed publicly. Attackers often take the path of least resistance by leveraging vulnerabilities and exposures, highlighting that organizations need to be proactive in ensuring both systems and tools are configured properly.    Top observed MITRE ATT&CK techniques The table below represents the MITRE ATT&CK techniques observed in this quarter’s IR engagements, which includes relevant examples and the volume Talos IR saw in engagements. Given that some techniques can fall under multiple tactics, we grouped them under the most relevant tactic in which they were leveraged. Please note this is not an exhaustive list. Key findings from the MITRE ATT&CK framework include: Exploitation of public-facing applications was the top observed means of gaining initial access this quarter, accounting for 30 percent of total engagements.  Attackers abused remote services, such as RDP, to move laterally in 25 percent of engagements. AnyDesk was observed in all ransomware and pre-ransomware engagements this quarter, underscoring its role in ransomware affiliates' attack chains.   Indicator removal, such as clearing Windows event logs and file deletion, was the top defense evasion technique observed.   In 25 percent of engagements this quarter, Talos IR observed attackers abusing scheduled tasks for continuous execution of malicious code to maintain persistence on an endpoint.    
+
+Initial Access (TA0001)  Example  T1190 Exploit in Public-Facing Application  Attackers successfully exploited a vulnerable application that was publicly exposed to the Internet    Execution (TA0002)  Example  T1059.001 Command and Scripting Interpreter: PowerShell  Executes PowerShell code to retrieve information about the client’s Active Directory environment  Persistence (TA0003)  Example  T1053.005 Scheduled Task / Job: Scheduled Task  Scheduled tasks were created on a compromised server  Defense Evasion (TA0005)  Example  T1134.002 Access Token Manipulation: Create Process with Token  Attackers created a new process using the command “run as”  Credential Access (TA0006)  Example  T1003.001 OS Credential Dumping: LSASS Memory  Use “lsass.exe” for stealing password hashes from memory  Lateral Movement (TA0008)  Example  T1021.001 Remote Services: Remote Desktop Protocol  Adversary made attempts to move laterally using Windows Remote Desktop   Command and Control (TA0011)  Example  T1219 Remote Access Software  Remote access tools found on the compromised system    Exfiltration (TA0010)  Example  T1048.003 Exfiltration Over Alternative Protocol: Exfiltration Over Unencrypted Non-C2 Protocol  Using FTP for file exfiltration  Impact (TA0040)  Example  T1486 Data Encrypted for Impact  Deploy LockBit ransomware and encrypt critical systems  
+
+
+
+
+Share this post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Content
+
+
+IR Trends Q2 2026: Phishing and weaponized remote management tools drive attack chains
+July 28, 2026 06:00
+Talos IR's Q2 report highlights a significant surge in phishing-based initial access and the weaponization of legitimate remote management tools. Learn how to sharpen your defenses.
+
+
+
+
+IR Trends Q1 2026: Phishing reemerges as top initial access vector, as attacks targeting public administration persist
+April 22, 2026 06:00
+Phishing reemerged as the most observed means of gaining initial access, accounting for over a third of the engagements where initial access could be determined. Phishing has not been the top vertical for initial access since Q2 2025.
+
+
+
+
+IR Trends Q4 2025: Exploitation remains dominant, phishing campaign targets Native American tribal organizations
+January 29, 2026 06:00
+A drop in exploitation and ransomware, but a spike in phishing and credential abuse, show why timely patching and robust MFA matter more than ever.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

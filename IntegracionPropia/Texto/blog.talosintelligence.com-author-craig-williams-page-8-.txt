@@ -1,0 +1,788 @@
+
+
+
+Craig Williams - Cisco Talos Blog (Page 8)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Craig Williams
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+October 9, 2014 05:54
+Evolution of the Nuclear Exploit Kit
+This post is co-authored by Alex Chiu, Martin Lee, Emmanuel Tacheau, and Angel Villegas.
+
+Exploit kits remain an efficient mechanism for cyber criminals to distribute malware. Such kits include exploits for multiple vulnerabilities within a single malicious webpage. Criminals can
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+September 30, 2014 04:01
+Shellshock Exploits in the Wild
+This post was authored by Joel Esler & Martin Lee.
+
+The recently discovered Bash vulnerability (CVE-2014-6271) potentially allows attackers to execute code on vulnerable systems. We have already blogged about the issue and provided more technical detail in a further blog. The
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+September 25, 2014 04:55
+Another Major Vulnerability Bashes Systems
+Vulnerabilities that permit remote network attacks against ubiquitous software components are the nightmares of security professionals. On 24 September the presence of a new vulnerability, CVE-2014-6271 in Bash shell allowing remote code execution was disclosed.
+
+
+The Bash shell
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+September 17, 2014 03:00
+Help! My IP Address Has Been Hijacked!
+This post is authored by Jaeson Schultz.
+
+SpamCop is a free, community-based spam email reporting service provided by Cisco. SpamCop analyzes reported spam, and extracts details about the sending IP, the URLs contained in the spam, and the networks over which the spam message has
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+September 5, 2014 13:10
+Danger at the Retail Point of Sale
+This blog post was authored by Martin Lee and Jaeson Schultz.
+
+With the announcement that yet another major retailer has allegedly been breached, it is important to review how attackers compromise retail systems and how such intrusions can be prevented. In this latest case, retai
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+August 20, 2014 05:38
+Snowshoe Spam Attack Comes and Goes in a Flurry
+This post is authored by Alex Chiu, Jaeson Schultz and Craig Williams.
+
+Every so often, we observe certain spam campaigns that catch our interest. On August 15, we observed a particular spam campaign that caught our attention because it was using "snowshoe" spam techniq
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+← Prev
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

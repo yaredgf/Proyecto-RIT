@@ -1,0 +1,866 @@
+
+
+
+Craig Williams - Cisco Talos Blog (Page 5)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Craig Williams
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+March 10, 2015 08:45
+Microsoft Patch Tuesday for March 2015: 14 Bulletins Released; FREAK
+Patched
+Today, Microsoft has released their monthly set of security bulletins designed to address security vulnerabilities within their products.  This month’s release sees a total of 14 bulletins being released which address 45 CVEs.  The first 5 bulletins are rated critical and address
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+March 2, 2015 05:03
+Talos is Hiring
+If you’re an experienced malware reverse engineer, exploit developer, response specialist, intel analyst, or looking to start your career in security, Talos might be the place for you.  We have a number of positions open in Columbia, Maryland; Austin, Texas; San Jose, California;
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+February 25, 2015 06:23
+Malicious PNGs: What You See Is Not All You Get!
+This post was authored by Earl Carter and Nick Randolph.
+
+Threat actors are continually evolving their techniques. One of the latest Graftor variants is delivering a Malware DLL via a PNG file delivery mechanism. Graftor basically indicates some type of trojan hiding in a piece o
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+February 18, 2015 09:32
+Tax Time: Let the Phishing Begin
+This post was authored by Earl Carter and Craig Williams.
+
+With the April 15th US tax deadline only about 2 months away, a new wave of tax related phishing is underway. In this latest spear-phishing campaign, attackers are attempting to gain access to your system so that they can
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+February 18, 2015 03:15
+Equation Coverage
+Cisco Talos is aware of the public discourse surrounding the malware family dubbed “The Equation Family”. As of February 17th the following rules (33543 - 33546 MALWARE-CNC Win.Trojan.Equation) were released to detect the Equation Family traffic. These rules may be found in the C
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+February 12, 2015 05:01
+Bad Browser Plug-ins Gone Wild: Malvertising, Data Exfiltration, andMalware, Oh my!
+This post was authored by Fred Concklin, William Largent,  Martin Rehak,  Michal Svoboda, and Veronica Valeros.
+
+During an average day of surfing the web via computer, smartphones, and tablets, we are constantly deluged by advertising. Total annual Internet advertising revenue wi
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+February 10, 2015 05:48
+Microsoft Patch Tuesday for February 2015: 56 vulnerabilities fixed
+Microsoft’s Patch Tuesday for February 2015 has arrived.  This month’s round of security updates is large with Microsoft releasing 9 bulletins addressing 56 CVEs.  3 of the bulletins are rated critical and address vulnerabilities within Internet Explorer, Windows, and Group Polic
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+February 9, 2015 05:06
+Cryptowall 3.0: Back to the Basics
+This post was authored by Andrea Allievi  & Earl Carter
+
+Ransomware continues to impact a large number of organizations and the malware continues to evolve. In January, we examined Cryptowall 2.0 and highlighted new features incorporated into the dropper and Cryptowall binary
+
+
+                    By
+                
+Craig Williams
+
+
+
+                            ransomware
+                        
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+February 3, 2015 02:49
+Angler Exploit Kit - New Variants
+This post was authored by Nick Biasini
+
+On January 27th,  Talos researchers began observing a new Angler Exploit Kit (EK) campaign using new variants associated with (CVE-2015-0311). Based on our telemetry data the campaign lasted from January 26th until January 30th with the maj
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+← Prev
+
+
+Next →
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

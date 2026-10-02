@@ -1,0 +1,1457 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now You See Me, Now You Don’t: Using LLMs to Obfuscate Malicious JavaScript
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Menu
+
+
+
+
+
+
+Tools
+ATOMs
+Security Consulting
+About Us
+Under Attack?
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  Threat Research CenterThreat ResearchMalware 
+ 
+Malware
+Now You See Me, Now You Don’t: Using LLMs to Obfuscate Malicious JavaScript
+
+
+  11  min read              
+
+
+Related ProductsAdvanced URL FilteringCloud-Delivered Security ServicesUnit 42 Incident Response 
+
+
+
+
+
+
+
+
+By:Lucas HuShaown SarkerBilly MelicherAlex StarovWei WangNabeel MohamedTony Li 
+
+Published:December 20, 2024 Categories:MalwareThreat Research
+ Tags:Credential stealerData AugmentationFraudGPTGenAIGreedy AlgorithmJavaScriptLLMsModel RetrainingObfuscationWormGPT
+ 
+
+
+ 
+ 
+
+
+Share
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+Executive Summary
+We developed an adversarial machine learning (ML) algorithm that uses large language models (LLMs) to generate novel variants of malicious JavaScript code at scale. We have used the results to improve our detection of malicious JavaScript code in the wild by 10%.
+Recently, advancements in the code understanding capabilities of LLMs have raised concerns about criminals using LLMs to generate novel malware. Although LLMs struggle to create malware from scratch, criminals can easily use them to rewrite or obfuscate existing malware, making it harder to detect.
+Adversaries have long used common obfuscation techniques and tools to avoid detection. We can easily fingerprint or detect off-the-shelf obfuscation tools because they are well known to defenders and produce changes in a predefined way. However, criminals can prompt LLMs to perform transformations that are much more natural-looking, which makes detecting this malware more challenging.
+Furthermore, given enough layers of transformations, many malware classifiers can be fooled into believing that a piece of malicious code is benign. This means that as malware evolves over time, either deliberately for evasion purposes or by happenstance, malware classification performance degrades.
+To demonstrate this, we created an algorithm that uses LLMs to rewrite malicious JavaScript code in a step-by-step fashion. We started with a set of rewriting prompts including the following:
+
+Variable renaming
+Dead code insertion
+Removing unnecessary whitespace
+
+Testing samples of malicious code, we continually applied these rewriting steps to allow us to fool a static analysis model. At each step, we also used a behavior analysis tool to ensure the program’s behavior remained unchanged.
+Using this LLM-based rewriting technique, we generated significant reductions in the number of vendors on VirusTotal that detected each sample as malicious.
+To defend against this type of LLM-assisted attack, we retrained our malicious JavaScript classifier on tens of thousands of LLM-rewritten samples. Our new malicious JavaScript detector is now deployed in our Advanced URL Filtering service. This solution helps better protect Palo Alto Networks customers by detecting thousands of new phishing and malware webpages per week.
+If you think you might have been compromised or have an urgent matter, contact the Unit 42 Incident Response team.
+
+
+
+Related Unit 42 Topics
+LLMs, GenAI
+
+
+
+Background: LLMs for Malware Generation
+In 2023, news outlets published several articles about “evil LLMs” that cybercriminals were touting on the dark web. These evil LLMs (e.g., WormGPT, FraudGPT) claimed to be jailbroken versions of models that attackers could use to generate novel malware, write phishing emails and perform other malicious tasks.
+Upon closer examination, these claims were largely unsubstantiated in almost all cases. The evil LLMs’ users complained about broken formatting, limited context windows and overall poor code understanding and generation abilities.
+As explained in our Threat Frontier report on preparing for emerging AI risks, even closed-source LLMs currently require a significant amount of hand holding to generate any non-trivial malware, limiting their usefulness for attackers.
+Instead of generating malware from scratch, we experimented with using LLMs to rewrite existing malware samples to evade detection. This approach was much more feasible and produced results that were more difficult to detect.
+Attack: Using LLMs to Create Malicious JavaScript Variants
+Our algorithm uses an LLM to iteratively transform malicious JavaScript until it evades detection by tools like IUPG or PhishingJS, without altering its functionality. We designed this algorithm to create thousands of novel malware variants at scale without any manual hand holding.
+We focused on JavaScript because:
+
+It is a popular choice for a variety of attacks, from malware to phishing
+It is a scripting language that allows for a high degree of polymorphism with respect to code implementations
+
+Algorithm Overview
+We framed this task as an adversarial machine learning problem, where the goal is to manipulate the model inputs (in this case, the malicious JavaScript) to produce a desired output (a benign verdict).
+We first designed a set of rewriting prompts that instructed an LLM to transform a piece of code in a specific way. For example, this set could include:
+
+Variable renaming
+String splitting
+Dead code insertion
+Removing unnecessary whitespace
+Alternative reimplementation of a function
+
+In Figure 1, we present an example of two specific rewriting instructions, one for dead code insertion and another for variable renaming.
+Figure 1. Two examples of rewriting prompts.
+We then ran samples of the code through our complete set of rewriting prompts in a greedy algorithm. At each iteration, we tried each remaining rewriting prompt, running the resulting samples through the deep learning model. Then we selected the prompt that gave the greatest reduction in the code’s “malicious” score. We present an example of the overall prompt template in Figure 2.
+Figure 2. The general prompt template when calling the LLM to perform a rewriting step.
+In addition to evaluating the increased stealthiness, we had to ensure the code's malicious functionality remained unchanged. For this, we used our custom JavaScript behavior analysis tool to confirm the rewritten script maintained the same set of behaviors and network activity as the original script.
+The tool simulates execution of multiple possible execution paths to generate a list of behaviors or actions that the JavaScript could take, including DOM injections, redirects and dynamically executed code. If the LLM produces a rewritten script with different behavior than the original script, we simply discarded that rewritten script.
+The full algorithm is as follows:
+
+Given a malicious JavaScript sample \(s\), a deep learning-based malicious JavaScript detector \(d\) and a set of rewriting prompts \(P\)
+While \(P\) is not empty:
+
+Run each remaining rewriting prompt in \(P\) on script \(s\) to get new scripts \(S_(new)\)
+Run a behavior analysis tool on each script in \(S_{new}\). If behavior is changed, discard the script (remove it from \(S_{new}\))
+Run each script in \(S_{new}\) through the model \(d\) to get the malicious score for each script
+Select the script in \(S_{new}\) that has the largest score decrease (call this \(s_{new}\)) and remove the selected prompt from \(P\)
+Run step 2 again with the new selected script \(s_{new}\)
+
+
+Output final rewritten script \(s_{new}\)
+
+The final output is a new variant of the malicious JavaScript that maintains the same behavior of the original script, while almost always having a much lower malicious score.
+When we repeated this process on a few hundred unique malicious JavaScript samples, our algorithm flipped the deep learning model’s verdict from malicious to benign 88% of the time.
+Step-by-Step Example
+The following example demonstrates the LLM-based rewriting process applied to a malicious JavaScript sample.
+We started with a sample of real-world malicious JavaScript code shown in Figure 3. This code was from a phishing webpage for credential stealing.
+Figure 3. Example of JavaScript code from a phishing webpage for credential stealing.
+Initially, the score from the baseline version of the phishing deep learning model was very high at nearly 1.0 or 100%. This was because the sample closely reflects the type of malicious JavaScript seen in its training set.
+Other security vendors had already detected this script as well. In fact, VirusTotal revealed that 13 vendors produced a malicious verdict as shown in Figure 4.
+Figure 4. VirusTotal results for the original malicious (phishing) JavaScript.
+In Figures 5-7, we show how this greedy rewriting algorithm can flip the verdict of both our own deep learning model and other vendors on VirusTotal.
+In the first step, the greedy algorithm selected the “minification” prompt, which removed any unnecessary whitespace from the code. This first step resulted in a very slight decrease in the deep learning model’s phishing detection score from 0.99999976 to 0.99843687 as shown in Figure 5.
+Figure 5. Greedy rewriting algorithm step 1, minification.
+Next, the LLM performed string splitting on selected strings. For example, it split the first URL string from Figure 5 ‘hxxp://gantep.edu[.]tr/’ as ‘hxxp://’ + ‘/gantep.edu[.]tr’ as shown below in Figure 6. This brought the model’s detection score of the rewritten sample down to roughly 0.91 or 91%.
+Figure 6. Greedy rewriting algorithm step 2, string splitting.
+Finally, the model performed variable renaming, which renamed the variables in the JavaScript code to new names of the LLM’s choice. For example, it simply renamed the first variable strMainDomain from Figures 5 and 6 to a in Figure 7. Depending on the temperature setting, the model could produce more or less random variable names.
+Figure 7. Greedy rewriting algorithm step 3, variable renaming.
+At this point, we had stacked enough transformations on top of each other that the deep learning model no longer detected this script as malicious. The phishing detection score was now 0.007577492, less than 1%. Note that the selected steps, as well as the order of the steps, will vary depending on both the target model and the JavaScript itself.
+Furthermore, when we uploaded the newly rewritten script to VirusTotal, no other vendors detected it as malicious either. This was true even after 4 days, as shown in Figure 8. This demonstrates that the attack is transferable from our own deep learning model to other analyzers.
+Figure 8. VirusTotal results for the rewritten script.
+LLM-Based Obfuscation Vs. Off-the-Shelf Tools
+Adversaries have been using common obfuscation techniques to avoid detection long before LLMs existed. These obfuscation techniques can be as simple as the following activities:
+
+Manipulation through splitting and subsequent concatenation of strings
+Encoding strings
+Renaming identifiers
+Injecting dead code to make the JavaScript source code harder to comprehend
+
+These obfuscation techniques can also be more complex, such as control flow flattening, which makes irreversible structural changes to the original source code. Attackers often use obfuscator.io, which is also available as an npm package with more than 180,000 weekly downloads, to apply these obfuscation techniques at scale.
+However, these off-the-shelf JavaScript obfuscation tools have a drawback compared to LLM-based obfuscation. Since these tools are well known to defenders and produce automated changes in a predefined manner, the results from these tools can be easily fingerprinted and reliably detected.
+When compared to off-the-shelf tools, obfuscation from LLM rewrites looks much more natural. Figure 9 shows a comparison of the results using these two methods on the same piece of JavaScript code.
+Figure 9. Code snippets as rewritten by obfuscator.io (left) and an LLM (right). The LLM-rewritten script appears much more natural than the script from obfuscator.io.
+To further demonstrate this, we used both LLM rewrites and similar obfuscation techniques using obfuscator.io on a randomly selected set of JavaScript from our dataset. We then measured the text entropy distribution in the resulting JavaScript code.
+Entropy in the source text measures the amount of randomness present in the source code. As seen in Figure 10, the distribution of entropy for the LLM-generated scripts was much closer to the original compared to the tool-generated versions. This indicates how organic LLM-rewritten code can be compared to code rewritten by off-the-shelf tools, providing a further incentive for malicious actors to rely upon LLM rewrites to evade detection.
+Figure 10. Compared to LLM rewrites, tool-based obfuscation is more random and more easily identifiable.
+Defense: Data Augmentation and Model Retraining
+We’ve shown how adversarial machine learning techniques can be applied to rewrite malicious JavaScript code using LLMs. Now let’s explore how to improve the baseline detection model to defend against these sorts of attacks.
+One natural approach is to reframe this rewriting process as a data augmentation technique. To improve model generalization, we can augment the training set by including transformed data, in this case, the LLM-generated samples.
+We tested how retraining the deep learning model on these LLM-generated samples would affect real-world detection performance. For this experiment, we collected real-world malicious JavaScript examples from 2021 and earlier, specifically phishing-related JavaScript. We then used these samples as a starting point to create 10,000 unique LLM-rewritten samples.
+When we added these samples to our model’s training set and retrained it, we saw a 10% increase in the real-world detection rate on samples from 2022 and later. This is a noticeable increase in performance on future real-world malicious JavaScript samples. Figure 11 presents a visualization of this process.
+Figure 11. Retraining on LLM-rewritten samples improves real-world detection results.
+One possible explanation for this performance boost is that retraining on these LLM-generated samples might make the deep learning classifier more robust to surface-level changes. This makes the model less perturbed by the changes that malicious code could undergo in the real world.
+Real-World Detections
+Figures 12-14 present examples of real-world detections from the adversarially retrained malicious JavaScript model.
+Each of the detected JavaScript samples was not yet seen on VirusTotal at the time of detection in November 2024. In each of these instances, the detected JavaScript is quite similar to some other existing phishing scripts, but with slight modifications.
+These modifications include:
+
+Obfuscation
+Commented code
+Renamed variables
+Slight differences in functionality
+
+In the first example, Figure 12 shows deobfuscated code for stealing webmail login credentials from a Web 3.0 IPFS phishing page hosted at bafkreihpvn2wkpofobf4ctonbmzty24fr73fzf4jbyiydn3qvke55kywdi[.]ipfs[.]dweb[.]link. The script shown in Figure 12 has several behavioral and syntactical similarities to a phishing script that first appeared in May 2022. However, the older script does not contain Telegram-based exfiltration functionality.
+Figure 12. Screenshot of a phishing page and the corresponding deobfuscated malicious JavaScript that exfiltrates the login credentials to Telegram.
+Figure 13 shows JavaScript from a Korean language generic webmail phishing page hosted at jakang.freewebhostmost[.]com/korea/app.html. The deobfuscated JavaScript exfiltrates phished credentials to nocodeform[.]io, a legitimate form-hosting platform. The deobfuscated script also shows a Korean language message showing the process of confirming (확인중…) but will ultimately display an unsuccessful login via an HTML-encoded string after the victim clicks the submit button.
+Figure 13. Screenshot of a Korean phishing page containing malicious JavaScript that exfiltrates phished credentials to nocodeform[.]io.
+Figure 14 shows a Web 3.0 IPFS phishing page hosted on ipfs[.]io redirected from dub[.]sh/TRVww78?email=[recipient's email address]. The page contains highly obfuscated JavaScript that renders a customized background depending on the target's email domain. The script also disables right-clicking to prevent users or researchers from easily inspecting the webpage, although we can still add view-source: at the beginning of the URL to view the webpage's source code.
+Figure 14. Screenshot of our final phishing page example and associated malicious JavaScript.
+These three examples of obfuscated JavaScript are typical of the malicious code from phishing pages we frequently detect with our retrained model.
+Conclusion
+Although LLMs can struggle when it comes to generating novel malware, they excel at rewriting existing malicious code to evade detection. For defenders, this presents both challenges and opportunities.
+The scale of new malicious code variants could increase with the help of generative AI. However, we can use the same tactics to rewrite malicious code to help generate training data that can improve the robustness of ML models.
+We have used these tactics to develop our new deep learning-based malicious JavaScript detector. We retrained this detector on adversarially generated JavaScript samples, and it is currently running in Advanced URL Filtering detecting tens of thousands of JavaScript-based attacks each week. Our ongoing research into AI-based threats will help our defenses remain ahead of evolving attack techniques.
+If you think you may have been compromised or have an urgent matter, get in touch with the Unit 42 Incident Response team or call:
+
+North America Toll-Free: 866.486.4842 (866.4.UNIT42)
+EMEA: +31.20.299.3130
+APAC: +65.6983.8730
+Japan: +81.50.1790.0200
+
+Palo Alto Networks has shared these findings with our fellow Cyber Threat Alliance (CTA) members. CTA members use this intelligence to rapidly deploy protections to their customers and to systematically disrupt malicious cyber actors. Learn more about the Cyber Threat Alliance.
+Indicators of Compromise
+Examples of recent phishing URLs:
+
+bafkreihpvn2wkpofobf4ctonbmzty24fr73fzf4jbyiydn3qvke55kywdi.ipfs.dweb[.]link
+jakang.freewebhostmost[.]com/korea/app[.]html
+dub[.]sh/TRVww78?email=
+ipfs[.]io/ipfs/bafkreihzqku7sygssd6riocrla7wx6dyh5acszguxaob57z4sfzv5x55cq
+
+SHA256 hashes of malicious JavaScript samples:
+
+03d3e9c54028780d2ff15c654d7a7e70973453d2fae8bdeebf5d9dbb10ff2eab
+4f1eb707f863265403152a7159f805b5557131c568353b48c013cad9ffb5ae5f
+3f0b95f96a8f28631eb9ce6d0f40b47220b44f4892e171ede78ba78bd9e293ef
+
+Additional Resources
+
+PhishingJS: A Deep Learning Model for JavaScript-Based Phishing Detection – Unit 42, Palo Alto Networks
+The Innocent Until Proven Guilty Learning Framework Helps Overcome Benign Append Attacks – Unit 42, Palo Alto Networks
+Malicious JavaScript Injection Campaign Infects 51k Websites – Unit 42, Palo Alto Networks
+Why Is an Australian Footballer Collecting My Passwords? The Various Ways Malicious JavaScript Can Steal Your Secrets – Unit 42, Palo Alto Networks
+WormGPT – The Generative AI Tool Cybercriminals Are Using to Launch Business Email Compromise Attacks – SlashNext
+FraudGPT: The Latest Development in Malicious Generative AI – Abnormal Security
+Disrupting malicious uses of AI by state-affiliated threat actors – OpenAI
+Data augmentation – Tutorials, TensorFlow
+Adversarial Machine Learning – NIST
+Malware Lineage in the Wild – Haq, Irfan Ul, et al. Computers & Security 78 (2018): 347-363.
+
+ 
+
+
+Back to top
+
+TagsCredential stealerData AugmentationFraudGPTGenAIGreedy AlgorithmJavaScriptLLMsModel RetrainingObfuscationWormGPT
+
+
+
+Threat Research Center
+
+
+Next: Effective Phishing Campaign Targeting European Companies and Organizations
+
+
+
+
+
+
+
+Table of Contents
+
+
+
+
+
+
+Related Articles
+
+
+
+                      Token Jacking: Cybercriminals Could Be Stealing Your AI Resources                  
+
+
+
+                      The Xcode Assassin Returns: A Deep Dive Into the Latest XCSSET Version                  
+
+
+
+                      Russian Global Webmail Espionage                  
+
+
+
+
+
+
+
+
+
+Related Malware Resources
+
+
+
+
+ 
+
+
+
+Threat Research September 29, 2026
+
+OperTraitors: How Kubernetes Operators Betray Your Security Posture
+
+
+
+AI
+
+
+AI agents
+
+
+API
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights September 16, 2026
+
+Atomic macOS (AMOS) Stealer Activity
+
+
+
+MacOS
+
+
+Threat intelligence
+
+
+Unit 42
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research September 10, 2026
+
+The Machine With Many Faces: Post-Exploitation Identity Misuse in SPIFFE/SPIRE
+
+
+
+API
+
+
+Cryptographic
+
+
+JSON
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research September 9, 2026
+
+Untracked Nightmares: The Threats Hiding Behind Commodity Infrastructure
+
+
+
+ARKTunnel
+
+
+C2
+
+
+CL-CRI-1171
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research September 3, 2026
+
+Attackers Expose Ongoing AI Tool Use Targeting Organizations in Latin America
+
+
+
+Agentic AI
+
+
+ChatGPT
+
+
+CL-CRI-1131
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research August 31, 2026
+
+Spring Ring: An Inside Look at Voice Phishing Campaigns in Microsoft Teams
+
+
+
+Cloaked Ursa
+
+
+Entra ID
+
+
+Microsoft Teams
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research August 25, 2026
+
+The State of AI-Enabled Malware August 2026: From Brand Abuse to Agentic Execution
+
+
+
+Backdoor
+
+
+Bitcoin
+
+
+DLL hijacking
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research August 20, 2026
+
+Identity Abuse Through Trusted Communication Channels
+
+
+
+Authentication
+
+
+Identity theft
+
+
+Malware
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research August 11, 2026
+
+Kimwolf v7: An Evolution of the Kimwolf Botnet
+
+
+
+Android APK
+
+
+Ethereum
+
+
+HTTP
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research August 10, 2026
+
+The Permanent Threat: Analyzing Aeternum’s Blockchain-Based C2 Operations and Communications
+
+
+
+Aeternum
+
+
+Infection chain
+
+
+JSON
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
+				Get updates from Unit 42			
+Peace of mind comes from staying ahead of threats. Subscribe today.
+
+
+
+
+
+
+
+
+
+
+Your Email
+
+
+Subscribe for email updates to all Unit 42 threat research.
+By submitting this form, you agree to our Terms of Use and acknowledge our Privacy Statement.
+
+                    This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.                            
+  
+
+Invalid captcha!
+ 
+					Subscribe					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Get the latest news, invites to events, and threat alerts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Enter your email now to subscribe!
+
+
+
+
+
+Sign up 
+
+
+
+
+                                
+                                
+                                
+                                    By submitting this form, I understand my personal data will be processed in accordance with
+                                        Palo Alto Networks Privacy Statement and Terms of Use.
+
+
+
+Sign up 
+
+
+
+
+
+
+
+
+
+
+
+
+Products and Services
+
+
+
+
+
+                                    AI-Powered Network Security Platform
+                                
+
+
+
+                                    Secure AI by Design
+                                
+
+
+
+                                    Prisma AIRS
+                                
+
+
+
+                                    AI Access Security
+                                
+
+
+
+                                    Cloud Delivered Security Services
+                                
+
+
+
+                                    Advanced Threat Prevention
+                                
+
+
+
+                                    Advanced URL Filtering
+                                
+
+
+
+                                    Advanced WildFire
+                                
+
+
+
+                                    Advanced DNS Security
+                                
+
+
+
+                                    Enterprise Data Loss Prevention
+                                
+
+
+
+                                    Enterprise IoT Security
+                                
+
+
+
+                                    Medical IoT Security
+                                
+
+
+
+                                    Industrial OT Security
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    Next-Generation Firewalls
+                                
+
+
+
+                                    Hardware Firewalls
+                                
+
+
+
+                                    Software Firewalls
+                                
+
+
+
+                                    Strata Cloud Manager
+                                
+
+
+
+                                    SD-WAN for NGFW
+                                
+
+
+
+                                    PAN-OS
+                                
+
+
+
+                                    Panorama
+                                
+
+
+
+                                    Secure Access Service Edge
+                                
+
+
+
+                                    Prisma SASE
+                                
+
+
+
+                                    Application Acceleration
+                                
+
+
+
+                                    Autonomous Digital Experience Management
+                                
+
+
+
+                                    Enterprise DLP
+                                
+
+
+
+                                    Prisma Access
+                                
+
+
+
+                                    Prisma Browser
+                                
+
+
+
+                                    Prisma SD-WAN
+                                
+
+
+
+                                    Remote Browser Isolation
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    AI-Driven Security Operations Platform
+                                
+
+
+
+                                    Cloud Security
+                                
+
+
+
+                                    Cortex Cloud
+                                
+
+
+
+                                    Application Security
+                                
+
+
+
+                                    Cloud Posture Security
+                                
+
+
+
+                                    Cloud Runtime Security
+                                
+
+
+
+                                    Prisma Cloud
+                                
+
+
+
+                                    AI-Driven SOC
+                                
+
+
+
+                                    Cortex XSIAM
+                                
+
+
+
+                                    Cortex XDR
+                                
+
+
+
+                                    Cortex XSOAR
+                                
+
+
+
+                                    Cortex Xpanse
+                                
+
+
+
+                                    Unit 42 Managed Detection & Response
+                                
+
+
+
+                                    Managed XSIAM
+                                
+
+
+
+                                    Observability
+                                
+
+
+
+                                    Cortex XCOR
+                                
+
+
+
+
+
+                                    Next-Generation Identity Security
+                                
+
+
+
+                                    Privileged Access Management
+                                
+
+
+
+                                    Identity and Access Management 
+                                
+
+
+
+                                    Endpoint Privilege Manager
+                                
+
+
+
+                                    Identity Governance
+                                
+
+
+
+                                    Workforce Password Management
+                                
+
+
+
+                                    Agentic Identities
+                                
+
+
+
+                                    Secrets Management
+                                
+
+
+
+                                    Unified Secrets Governance
+                                
+
+
+
+                                    Application Credentials Delivery
+                                
+
+
+
+                                    Vendor Privileged Access
+                                
+
+
+
+                                    Threat Intel and Incident Response Services
+                                
+
+
+
+                                    Prepare for Emerging Risks
+                                
+
+
+
+                                    Strengthen Your Defenses
+                                
+
+
+
+                                    Build Your Security Strategy
+                                
+
+
+
+                                    Understand the Adversary
+                                
+
+
+
+                                    Respond to a Cyber Attack
+                                
+
+
+
+
+
+
+Company
+
+
+
+
+
+                                    About Us
+                                
+
+
+
+                                    Careers
+                                
+
+
+
+                                    Contact Us
+                                
+
+
+
+                                    Corporate Responsibility
+                                
+
+
+
+                                    Customers
+                                
+
+
+
+                                    Investor Relations
+                                
+
+
+
+                                    Location
+                                
+
+
+
+                                    Newsroom
+                                
+
+
+
+
+
+
+Popular Links
+
+
+
+
+
+                                    Blog
+                                
+
+
+
+                                    Communities
+                                
+
+
+
+                                    Content Library
+                                
+
+
+
+                                    Cyberpedia
+                                
+
+
+
+                                    Event Center
+                                
+
+
+
+                                    Manage Email Preferences
+                                
+
+
+
+                                    Products A-Z
+                                
+
+
+
+                                    Product Certifications
+                                
+
+
+
+                                    Report a Vulnerability
+                                
+
+
+
+                                    Sitemap
+                                
+
+
+
+                                    Tech Docs
+                                
+
+
+
+                                    Unit 42
+                                
+
+
+
+                                    Do Not Sell or Share My Personal Information
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Privacy
+                            
+
+
+
+                                Trust Center
+                            
+
+
+
+                                Terms of Use
+                            
+
+
+
+                                Documents
+                            
+
+
+Copyright © 2026 Palo Alto Networks. All Rights Reserved
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+EN
+
+
+
+Select your language
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Your browser does not support the video tag.
+          
+
+Default Heading
+Read the article
+              
+
+
+
+
+Seekbar
+
+
+
+
+
+
+
+
+
+
+
+
+
+Volume
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,702 @@
+
+
+
+De-anonymizing ransomware domains on the dark web
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+De-anonymizing ransomware domains on the dark web
+
+
+By 
+Paul Eubanks
+
+
+
+            Tuesday, June 28, 2022 08:00
+        
+
+
+                                ransomware
+                            
+
+                                Features
+                            
+
+
+
+
+We have developed three techniques to identify ransomware operators' dark websites hosted on public IP addresses, allowing us to uncover previously unknown infrastructure for the DarkAngels, Snatch, Quantum and Nokoyawa ransomware groups.The methods we used to identify the public internet IPs involved matching threat actors’ TLS certificate serial numbers and page elements with those indexed on the public internet, as well as taking advantage of ransomware operators’ security failures.In de-anonymizing the dark web infrastructure used by ransomware actors, we can enable hosting providers to reduce illegal activity on their networks, enhance threat actor tracking, assist in possible law enforcement investigations, and/or slow ransomware operations as they make operational changes.Ransomware infrastructure landscapeRansomware operators typically constrain their activities to the dark web to conceal their illegal activities. Their public leak sites and victim communication portals are accessible only on The Onion Router (TOR) network via a specific URL that is only available via direct disclosure. This limits access to fellow operators, victims and security researchers who track and discover such sites. The TOR network provides a reasonable cloak of anonymity when used properly, but when a threat actor makes configuration mistakes, their activity becomes public and can attract the attention of security researchers or law enforcement agencies. Ransomware operators seek to avoid this sort of attention at all costs and will go to great lengths to ensure their operations remain anonymous.In several cases, we identified public IP addresses hosting the same threat actor infrastructure as those on the dark web, making their leak sites and other infrastructure components accessible for any user on the public internet. By removing the anonymity network that TOR provides, hosting providers can take action against these potentially illegal activities occurring on their networks, and we can observe changes in threat actor behavior upon their discovery.Since these TOR hidden services aren’t directly indexed by web search engines, we have employed several methods to uncover the adversaries’ clear web infrastructures. One approach involves identifying the actors’ self-signed TLS certificates and specific icons — known as favicons — associated with their dark websites and indexing the clear web to see if they are used on the public internet. We also discovered instances in which adversaries unwittingly exposed sensitive identifying server data, allowing us to obtain a list of specific login locations threat actors have used to administer their ransomware servers.Using these methods, we so far have exposed clear web infrastructure used by the DarkAngels, Snatch, Quantum and Nokoyawa ransomware groups.Method 1: TLS certificate matchingOften, we can de-anonymize ransomware groups through TLS certificate matching. In this approach, we identify the actors’ self-signed TLS certificates associated with their dark websites and index the clear web to see if they are used on the public internet.Typically, ransomware sites don't use SSL/TLS because they must include a certificate from an issuing certificate authority, and certificates can be used as identifying markers. An SSL/TLS certificate contains identifying information, such as a unique serial number and cryptographic key information, which is then traceable if reused on other web properties. A big tenant of operating on the dark web is to maintain anonymity, so certificates providing identity attestation can actually help pinpoint the operator behind a website. It’s possible the ransomware group is using an SSL/TLS site on the dark web to give the impression to their victims they are operating in a secure environment and create a sense of legitimacy in their operation.DarkAngelsWe successfully applied this method to Dark Angels, a ransomware group that has been reported as a rebranding of the Babuk ransomware group. They operate much the same as other groups in that they have set up a blog website as a TOR hidden service with a countdown timer to the publication of victim data, as well as links for victims to use to enter a chat room with DarkAngels affiliates to discuss ransom payment negotiations.The home page of Dark Angels ransomware group on the TOR network.TLS certificate being served by Dark Angels site on the TOR network with its serial number highlighted.Web crawlersWeb crawlers, such as Shodan, provide a powerful method for indexing the public internet. They provide a myriad of information about host computers that are running internet-enabled services. One of the services Shodan provides is cataloging TLS certificate information. By leveraging Shodan’s index, we discover the same certificate the DarkAngels actors have created for themselves is also in use by a host in Singapore with the IP address 89.38.225[.]166. According to whois.ripe.net, this host belongs to M247 LTD Singapore (AS9009).Shodan catalogs further information about this host:De-anonymizationWhen we visit this host on the public web, we discover the same information is being hosted there for all to see.And we can verify the TLS certificate serial number is also the same as used for the site hosted on TOR hidden services.The DarkAngels group is using a TLS page to host their victim interactions page on TOR hidden services and on the clear web, which we can attribute to a specific hosting provider.The following domains have been listed as A records in Domain Name System (DNS) records with 89.38.225[.]166 since 2021:login.myob[.]linkmyob[.]livewww.myob[.]liveLogin.myob[.]liveThese domains were registered using a privacy domain registration proxy service by the ransomware threat actor, presumably to maintain the anonymity of operations. As of May 11, 2022, login.myob[.]link still resolves to the IP address DarkAngels is using to host their infrastructure.Private keys and login portals exposedThere also appears to be a public-facing .env file detailing the connection string info for databases, likely one that holds all chat logs, and it leaks the APP_SECRET key. The actors, in this case, appear to be using Symfony, a framework for creating web applications.There also appears to be a login portal for a service running on the site:Snatch ransomwareThe Snatch ransomware group similarly has a TOR hidden service being used in conjunction with an SSL/TLS certificate which hosts their write-ups and data leaks. In this case, however, they post a clear web link on their main page, which points to snatch[.]press.Snatch ransomware group’s stolen data blog.We’d like to pinpoint what hosting provider Snatch uses for their ransomware infrastructure, but the snatch[.]press URI rotates frequently, almost daily, according to telemetry sourced from Cisco Umbrella:This only tells half the story, however. If we look up the current resolving IP address for the URI snatch[.]press, we see the following:And pointing our web browser at the web page hosted at this IP, we will see a connection failed response:Using the same certificate matching method, we see the certificate serial number hosted at hxxps://snatch[.]press is associated with two other IP addresses, one of which is the address where the page is actually hosted:The two IP addresses hosting this TLS certificate belong to a Swedish hosting provider. Visiting the IP address where the page is hosted confirms the location:Snatch ransomware group’s hosting IP addressMethod 2: Favicon matchingAnother method we used to uncover dark websites on the clear internet is a process we call "favicon matching." A favicon is an icon associated with a URL that is displayed in a browser's address bar or next to the site name in a bookmark list. They serve as a visual branding badge for web properties. Much like TLS certificate matching, we can index the public internet to see if specific favicons on the dark web appear on the clear net as well. These files are typically stored in public directories using common nomenclature, making their discovery trivial. Again, the web crawler Shodan indexes these favicon.ico files as it crawls out across the public web.Quantum ransomware gangThe Quantum ransomware gang is an example where we can use the favicon matching technique to discover their dark web infrastructure hosted on the public internet. Quantum has been making the news lately for their high-speed ransomware campaigns, but they’re not immune to making basic operational security (OPSEC) failures. Much like every ransomware group, Quantum operates a hidden service blog on TOR on which they post stolen victim data.De-anonymizationThe Quantum blog’s hidden service on the TOR network contains a favicon file stored in the web root directory as favicon.ico, and we can obtain this file and calculate a hash value for it. Fortunately for us, Shodan happens to keep an index of these favicon file hashes, which we can search for.In this case, we can see only one other site using this particular favicon file. After we have obtained the clear web IP address of 185.38.185[.]32 (part of AS60781 in the Netherlands), we can visit the site to confirm it’s hosting the same content:Hat tip to researcher Soufiane Tahiri (@S0ufi4n3) for making the same discovery.Associated domains:A reverse DNS lookup of this IP shows some recent notable domains pointing to this IP, as well as many dynamic DNS sub-domains:quantumleap[.]questiwasruninhome[.]siteqxv.staceyvicari[.]commtr.ddns[.]mobiUgroza.123ddns[.]comMethod 3: Catastrophic OPSEC failuresRansomware operators sometimes make catastrophic security errors which lead to complete removal of their anonymity. The next case study displays how a ransomware operator fails to establish proper file permissions and creates a glaring directory traversal vulnerability, allowing us to pinpoint the location of that ransomware administrator.NokoyawaNokoyawa is a newer ransomware group that shares many code similarities with the Karma ransomware operation. Like most ransomware groups, once they’ve breached a network and encrypted its contents, they drop a ransom note for the system administrators containing a web address for a TOR hidden service, and the victim can then go chat with the ransomware affiliates to try and negotiate for a decryption key. The web address of the hidden service also contains an identifier that is presumably unique to each company they attack:
+
+hxxp://lirncvjfmdhv6samxvvlohfqx7jklfxoxj7xn3fh7qeabs3taemdsdqd[.]onion/pay?id=qruytnwpfyfjozignatcmtblnhtcqgaa
+
+
+The chat window contains a method for the victim to upload their encrypted files, and the ransomware operator will decrypt one or two files as a proof of concept to show them their decryption method works. In this case, however, the ransomware affiliate(s) who set up the web portal has made catastrophic security mistakes that blow their cover.Directory Traversal: Party like it’s 1999!If we check the URL of the shared files, we see the link contains several HTTP parameters:
+
+download?id=qruytnwpfyfjozignatcmtblnhtcqgaa&file=gbrberodgkmsqplz.NOKOYAWA&type=download_upload
+
+
+If we tamper with the file= parameter, we can test for directory traversal:
+
+download?id=qruytnwpfyfjozignatcmtblnhtcqgaa&file=../../../../etc/passwd&type=download_upload
+
+
+De-anonymizationThis command tells the web server to traverse up past the web root directory and fetch the system file /etc/passwd. Normally, this sensitive file is protected by user permission settings and access control lists, but because the ransomware operator has made an amateur data security mistake when configuring the web server, this actually succeeds. Worse yet, files which are typically only accessible by the root user of the system are also available via this directory traversal method, which means the web server is possibly running as the root user instead of a dedicated web-server user account. De-anonymization is then as simple as pulling /var/log/auth.log* and searching for the successful remote login connections:A successful login attempt via Secure Shell (SSH) means the user of that host has valid credentials to administer the ransomware web server. We see there are successful root user logins from two IP addresses:5.230.29[.]12176.119.0[.]195Further research reveals 5.230.29[.]12 belongs to GHOSTnet GmbH, which provides Virtual Private Server (VPS) Hosting Services. It is common for computer network criminals to employ the use of a VPS as a network proxy, or “hopping off point”, in order to obscure their true location. 176.119.0[.]195 however belongs to AS58271 which is listed under the name Tyatkova Oksana Valerievna. It’s possible the operator forgot to use the German-based VPS for obfuscation and logged into a session with this web server directly from their true location at 176.119.0[.]195.Administrator login portalWe also see there is an admin login panel for this web server, so it’s possible via credentials disclosure for an outside attacker to assume control of the ransomware infrastructure upon successful login.Public-facing login portal for administering Nokoyawa ransomware group’s infrastructure.ConclusionThrough various methods we’ve demonstrated, we can see ransomware operators take many precautions to obscure their true identity online, as well as the hosting location of their web server infrastructure. They use the TOR network to provide a layer of anonymity for their web servers. They use DNS proxy registration services to keep their names off of the domain names they register. In our experience, we find that most ransomware operators use hosting providers outside their country of origin (such as Sweden, Germany and Singapore) to host their ransomware operations sites. They use VPS hop-points as a proxy to hide their true location when they connect to their ransomware web infrastructure for remote administration tasks. By exposing some of these techniques, we can gain knowledge about the tools and procedures these groups rely on to cloak their true identities, as well as build a better understanding of how these groups operate.
+
+
+
+Share this post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Content
+
+
+Ransomware incidents in Japan in the first half of 2026: Investigation of The Gentlemen’s infrastructure and evidence of Qilin's AI use
+September 17, 2026 06:00
+Ransomware incidents in Japan rose 4.7% year over year. The Gentlemen was the most active group, with leak-site listings more than doubling from January to July. Qilin ranked second and appeared to use AI, while SMEs with capital under JPY 1 billion represented 80% of victims.
+
+
+
+
+Chaos ransomware's msaRAT: Living off the browser to build a covert C2 channel
+July 23, 2026 06:00
+The Chaos ransomware group uses new malware "msaRAT" that hijacks browsers. The malware doesn't communicate directly with C2 but connects through the browser. It enables arbitrary command execution while hiding the attacker's IP from victims via WebRTC over TURN.
+
+
+
+
+An overview of ransomware threats in Japan in 2025 and early detection insights from Qilin cases
+April 2, 2026 06:00
+There were 134 ransomware incidents reported in Japan in 2025, representing a 17.5% year-over-year increase from 2024.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

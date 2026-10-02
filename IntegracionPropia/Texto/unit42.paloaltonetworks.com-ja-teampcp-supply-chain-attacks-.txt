@@ -1,0 +1,1594 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+プロテクターを武器として利用する:セキュリティ インフラにおけるTeamPCPの多段階サプライ チェーン攻撃
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Menu
+
+
+
+
+
+
+セキュリティ コンサルティング
+現在、攻撃を受けていますか?
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Japanese
+
+
+
+
+
+English
+
+
+Spanish (LATAM)
+
+
+French
+
+
+Japanese
+
+
+
+
+
+  Threat Research Center主なサイバー脅威マルウェア 
+ 
+マルウェア
+プロテクターを武器として利用する:セキュリティ インフラにおけるTeamPCPの多段階サプライ チェーン攻撃
+
+
+  4  分で読めます              
+
+
+Related ProductsAdvanced DNS SecurityAdvanced Threat PreventionAdvanced URL FilteringAdvanced WildFireCloud-Delivered Security ServicesCortexCortex XDRCortex XpanseCortex XSIAMUnit 42 Incident Response 
+
+
+
+
+
+
+
+
+著者:Unit 42 
+
+公開日:2026年3月31日 カテゴリーマルウェア主なサイバー脅威
+ タグ:CVE-2025-55182GitHubInfostealerPythonSupply chainWiper
+ 
+
+
+ 
+ 
+
+
+共有
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+エグゼクティブ サマリー
+2月下旬から2026年3月にかけて、脅威グループTeamPCPは、高度に計算され、強度の強まる一連のサプライ チェーン脅威を加えました。脆弱性スキャナーTrivyやKICS、そして人気の高いAIゲートウェイLiteLLMなど、広く信頼されているオープンソースのセキュリティ ツールは、脅威グループTeamPCPによって体系的に侵害されました。影響を受けたソフトウェアには、Telnyxの公式Python SDKも含まれています。
+これら進行中のサプライ チェーン攻撃では、GitHub ActionsレジストリとPython Package Index (PyPI)レジストリに悪意のあるinfostealer(インフォスティラー)ペイロードが直接注入されました。ルーチンの自動化されたワークフローで実行されると、以下のような機密性の高いデータは、マルウェアによってサイレントに抽出されます:
+
+クラウド アクセス トークン
+SSH鍵
+Kubernetesのシークレット
+
+さらに、これらの攻撃では、クラスター間を横方向に移動するための永続的なバックドアが確立されます。
+対象になるソフトウェアを以下に示します:
+
+BerriAI LiteLLM、LLMプロバイダ間でリクエストをルーティングするために使用するオープン ソース ライブラリです(ドキュメントによれば、その月間ダウンロード数は9千5百万となっています)
+Aqua Security TrivyとCheckmarx KICS(Keeping Infrastructure as Code Secure)は、何百万もの企業のCI/CDパイプラインに組み込まれています
+広く使用されているTelnyxの公式Python SDK、音声とメッセージングのためのプログラマブルAPIを提供するグローバル コミュニケーション プラットフォームです
+
+vx-undergroundなどの情報源からは、攻撃者は、すでに50万台のマシンから300GBを超えるデータとシークレットを不正に流出させ、あらゆる業種の大手組織を深刻なフォローオン攻撃にさらしていると考えられています。
+従来のサプライ チェーン攻撃とは異なり、このオペレーションでは、本来高い権限を必要とするセキュリティや開発者のインフラが明らかに武器として利用されています。そのため、攻撃者は、製造上のシークレットに自由にアクセスできます。そして、攻撃者は、侵害された組織に、恐喝による金銭の支払いを要求することができます。
+大きな影響をおよぼす現在の攻撃範囲:
+
+影響の大きさ:アクターは、クラウド トークンやKubernetesのシークレット情報など、300GBを超えるデータと50万件を超える認証情報を流出させたと思われます。
+侵害の広がり:主要なターゲット以外にも、TeamPCPは収集したトークンを利用して48件の追加パッケージを感染させました。TeamPCPは、少なくとも16の被害組織を特定し、公開リーク サイトを通じて公表しました。
+巧妙化:攻撃者は、分散型command-and-control (C2)アーキテクチャと標的型ワイパー コンポーネントの両方からなるCanisterWormを導入しました。これは、クラウド ネイティブなオペレーションに焦点を当てた革新的な技術パターンを示しています。
+
+3月27日現在、パロアルトネットワークスCortex Xpanseでは、オペレーションの3つの波に関連する3つの固有の自己署名証明書の存在が確認されました。
+パロアルトネットワークスのお客様は、以下の製品とサービスによって、本書で取り上げる脅威に対する確実な保護を構築できます:
+
+Advanced Threat Prevention
+Cortex XDRとXSIAM
+Cortex Cloud
+Cortex Xpanse
+Cortex AgentiX脅威インテリジェンス・エージェント
+
+また、暫定ガイダンスセクションにあるように、パロアルトネットワークスでは、脆弱なパッケージを特定し、CI/CDポリシーを強化する対策を講じることを推奨しています。
+Unit 42 Cloud Security Assessmentは、クラウド インフラストラクチャをレビューして、設定ミスやセキュリティ ギャップを特定する評価サービスです。
+Unit 42インシデント レスポンス チームは、お客様のリスク軽減のために、侵害を受けた際の支援だけでなくプロアクティブな評価を提供しています。
+サプライ チェーン攻撃の現在の範囲
+TeamPCP(別名PCPcat、ShellForce、DeadCatx3)が行ってきたオペレーションの歴史は、少なくとも2025年9月までさかのぼります。このグループは2025年12月、クラウド環境を狙った大規模なReact2Shellキャンペーンをきっかけに有名になりました。
+このグループが脆弱なクラウド エンドポイント内でリモート コード実行(RCE)ができるように、このキャンペーンではReact2Shellの脆弱性(CVE-2025-55182)がつけこまれました。これらのオペレーションの間、よく知られているReact2Shellエクスプロイト インジケーターと並んで、このグループの最も注目すべき検出アーティファクトでは、ほぼすべてのエクスプロイト オペレーションにポート番号666が使用されていました。
+このグループの軌跡は急速に進化しました。このグループは当初ランサムウェアを中心に活動してきましたが、暗号資産のマイニングや暗号資産の盗難も主な活動になっています。ごく最近では、このグループは、2026年3月中旬からサプライ チェーンの侵害オペレーションにシフトしています。
+最近、このグループの活動は、活気を帯びています。ダーク ウェブのリーク サイトだけでなく、Telegramチャンネルへの投稿も増やしています。
+最新の発表によると、同グループは、もう1つのランサムウェア グループであるCipherForceと手を組み、侵害に関する情報を公開しています。さらに、サイバー犯罪者がハッキングのトピックやデータ侵害について議論するフォーラムであるBreachForumsでは、同グループがVectランサムウェア グループと提携していることが発表されました(図1)。
+図1.BreachForumsの告知スクリーンショット。
+この提携により、TeamPCPはサプライ チェーン業務に専念できそうです。図2に示すように、TeamPCPは、3月下旬の時点で、少なくとも16組織の侵害を発表しています。
+図2.CipherForceランサムウェアのデータ流出サイトのスクリーンショット。
+Aqua Security Trivy
+この最新のキャンペーンは2026年3月19日に始まり、TeamPCPは、2月下旬にAqua Security TrivyのGitHubリポジトリ内で起きた小規模な侵害の後、不完全な認証情報ローテーションが利用されました。
+TeamPCPはaqua-botサービス アカウントを侵害し、なりすましコミット攻撃を実行しました。その結果、aquasecurity/trivy-actionリポジトリの77のバージョン タグのうちの76のタグと、aquasecurity/setup-trivyのすべてのタグに悪意のあるコードが強制プッシュされました。
+この最初の波では、TeamPCPクラウド スティーラーと呼ばれるTeamPCP主要ペイロードが導入されました。このクラウド スティーラーは、kamikaze.shスクリプトによってアクションを実行しました。このスクリプトは、3つの異なるバージョンに進化しました:
+
+バージョン1 - モノリシック アーキテクチャ:150行のbashスクリプトは、環境のフィンガープリンティングと、侵害されたエンドポイントのインスタンス メタデータ サービス(IMDS)を使用したAWS/GCP/Azure認証情報からの即時認証情報収集に重点が置かれていました。このbashスクリプトは、/proc/<pid>/mem経由でrunner.workerプロセスのメモリを直接読み込んで、GitHubのシークレットのマスキングを回避し、平文のトークンを抽出しました。
+バージョン2 - モジュラー アーキテクチャー:v1の最初のリリースから2時間後、TeamPCPは最初のスクリプトをスリムな15行のローダー スクリプトに置き換えました。このバージョンは、pullメソッドを使用して、kube.pyと呼ばれるセカンドステージ ペイロードをダウンロードしました。これにより、アクターはGitHubタグをリポイズニングすることなく、ペイロードを更新できました。バージョン2では、実行後に自分自身を削除する自己削除コマンドrm - "$0 "も導入されました。
+バージョン3 - ワームとワイパー:この最後の既知のバージョンでは、スクリプトは、CanisterWormと呼ばれるキャンペーンで自己複製機能を持つマルウェアへと進化しました。CanisterWormについては、以下で詳しく説明します。バージョン3では、公開されているDocker API、ポート2375、ローカル サブネットのスキャンが可能になりました。また、SSH鍵の収集も可能になりました。
+
+このオペレーションは他に類がないほど人をあざむく内容でした。例えば、正規のTrivyスキャン ロジックが実行される前に悪意のあるコードが実行され、同時に、正規のスキャナーにはオペレーションを継続させておきます。これにより、スキャン オペレーションは通常のオペレーション ステータスに戻りますが、裏ではマルウェアがtyposquattedドメインscan.aquasecurtiy[.]orgにサイレントにデータを流出していました。プライマリC2サーバーが失敗すると、ペイロードはバックアップ ドメインtdtqy-oyaaa-aaaae-af2dq-cai.raw.icp0[.]ioを使用しました。
+さらに、TeamPCPアクターは、最初のTrivyの侵害の波で収集したnpmのパブリッシング トークンを使用して、@emilgroup、@opengov、および@v7の名前空間に展開された47の追加パッケージを特定し、感染させた自動化スクリプトを開始しました。すべての報告によれば、これらのオペレーションは60秒以内に行われました。
+感染は、各ライブラリのpackage.jsonファイル内に悪意のあるプレインストール スクリプトまたはポストインストール スクリプトを注入して達成されました。これにより、開発者または継続的インテグレーション/継続的デリバリー(CI/CD)ランナーが、これらの汚染されたnpmパッケージのいずれかを含むnpmインストールを実行すると、TeamPCPクラウド スティーラーのペイロードが直ちに確実に実行されました。CI/CDランナーは、ソフトウェア パイプラインのジョブを実行するライトウェイト エージェントまたはアプリケーションです。
+この波では、請求、保険、会計サービスの内部開発キットをターゲットにした、ソフトウェア開発キット(SDK)スクワッティングと呼ばれる手法に重点が置かれました。これによって、高い権限を持つ企業環境にマルウェアが侵入する可能性が最大限に高まりました。
+感染した各パッケージは新しいテレメトリー ノードとして機能し、環境フィンガープリンティングを実行し、ローカル.envファイルとAWS/Azure設定ディレクトリからグループのC2インフラストラクチャにデータを流出させようとしました。これにより、1ベンダーの違反が、これらのプライベートSDKやパブリックSDKの下流の消費者にとっては、潜在的に、体系的で広範なサプライ チェーン リスクになりました。
+Checkmarx KICS
+Aqua Security Trivyの最初の侵害に続き、2026年3月21日にTeamPCPは盗んだGitHub Personal Access Tokens(PAT)を使用してCheckmarx KICSを標的にしました。KICSはオープンソースのIaC(Infrastructure-as-Code)スキャナーです。
+この攻撃者は、checkmarx/kics-github-actionリポジトリの35あるバージョン タグのすべてに悪意のあるコミットを強制プッシュし、checkmarx/ast-github-actionのバージョン2.3.28を汚染しました。技術的には、このオペレーションは公式のコンテナ エントリーポイントであるsetup.shを破壊し、代わりにTeamPCPクラウド スティーラーと呼ばれる3段階のペイロードを注入しました。
+このペイロードには、Trivy waveペイロードと同様の機能があります。手動による検出を回避するため、このマルウェアは、ベンダーがテーマ化したtyposquatドメインcheckmarx[.]zoneに盗んだデータを流出させました。このマルウェアは、プライマリC2通信が失敗した場合、そのペイロードは被害者自身のGITHUB_TOKENを使用して、被害者のGitHub組織内にdocs-tpcpという名前の隠しリポジトリを作成するというセカンダリ フォールバック メカニズムを備えていました。
+LiteLLM
+2026年3月23日、TeamPCPはBerriAI LiteLLMを使用したPyPI公開トークンをターゲットにして、GitHub PATから立ち去りました。このグループは、Trivy脆弱性スキャナーの以前の侵害からこれらのトークンを収集したと思われます。悪意のあるバージョン(v1.82.7とv1.82.8)をPyPIにアップロードできるように、攻撃者はLiteLLMのCI/CDパイプラインを汚染しました。
+この波では、バージョン1.82.8のlitellm_init.pthという名前の.pthファイルを介した非常に回避的な実行方法が導入されました。Pythonインタプリタが起動時に自動的に.pthファイルを処理するため、このマルウェアは、LiteLLMがインポートされたかどうかに関係なく、ホスト上でPythonプロセスが初期化されるたびに実行されます。これにより、TeamPCPは潜在的な被害者の範囲を広げることができました。
+多段階ペイロードは、静的解析を回避するように設計されたダブルBase64エンコードされたスクリプトで構成されていました。このスクリプトは、以下の情報を収集する包括的なシークレット スイーパーとして機能しました:
+
+SSH鍵
+クラウド認証(AWS、Google Cloud、Azure)
+Kubernetes設定ファイル
+重要なのは、LLMのAPI鍵(OPENAI_API_KEY、ANTHROPIC_API_KEYなど)をおさめた高密度の環境変数
+
+以下の図3では、コード スニペットでこの例を示します。
+図3.ダブルBase64エンコードされたスクリプトを表すコード スニペット。
+このBase64エンコーディングの内部には、C2コマンドのC2エンドポイントを提供する2番目のBase64エンコードされたブロックがありました。図4はファイルパス/host/root/.config/sysmon/sysmon.pyに書かれたコードを示しています。
+図4.host/root/.config/sysmon/sysmon.pyに書かれたコード。
+流出したデータは、Checkmarxの波と同じ方法で扱われ、AES-256-CBCセッション鍵で暗号化され、さらにハードコードされた4096ビットのRSA公開鍵でセキュリティが確保されました。LiteLLMの流出C2エンドポイントでは、攻撃者はタイポスクワッティングしたドメインmodels.litellm[.]cloudを使用しました。図5に示すコードは、収集データの流出を処理するサブプロセスの例です。
+図5.収集データの流出を処理するサブプロセス。
+以下に示したのは、2026年3月27日までのすべての既知のC2流出ドメインの一覧です:
+
+scan.aquasecurtiy[.]org
+checkmarx[.]zone
+models.litellm[.]cloud
+tdtqy-oyaaa-aaaae-af2dq-cai.raw.icp0[.]io
+
+Telnyx
+2026年3月27日、TeamPCPはTelnyx Python SDKを侵害しました。これは、脅威アクターがPyPIの公開認証情報を乗っ取って、telnyxパッケージの悪意のあるバージョン4.87.1と4.87.2を公開した、LiteLLMと同様のパターンに沿っていました。
+これらのバージョンには、クライアント ライブラリにサイレント インジェクタが含まれており、インポート時に即座に実行されて、クラウド認証情報とシステム シークレットを流出させます。この攻撃は、マルウェアがWindows、Linux、およびmacOSシステム上で永続性を確立しながらネットワーク フィルターを回避できるように、WAVステガノグラフィを使用して、暗号化されたセカンドステージのペイロードを有効なオーディオ ファイル内に隠します。
+Windowsのオーディオ ファイルのハードコード名はhangup.wav、Linuxのオーディオ ファイルのハードコード名はringtone.wavでした。このキャンペーンは、特にインフラストラクチャと通信ツールを標的として、より広範なクラスタ悪用のために、価値の高いアクセス トークンとサービス アカウント鍵を収集します。
+CanisterWorm
+CanisterWormは分散型Internet Computer Protocol(ICP)キャニスターをC2に使用して、一般的なワーム駆除オペレーションに耐性を持つ、ペイロード デリバリーのための改ざん防止デッドドロップを提供します。認証情報を盗み出し、永続性を実現するだけでなく、脅威アクターはsystemdのような正当なサービスになりすまし、pgmonと呼ばれるPostgreSQLユーティリティとしてその脅威を隠しました。
+このキャンペーンは最近、破壊的なワイパー コンポーネントを統合しました。そのコンポーネントは、2026年3月23日にイランを標的として観測されました。これは、図6と図7に示すkube.pyファイルのコード ブロック内で確認できます。
+図6.kube.pyのコード ブロック(1/2)。
+図7.kube.pyのコード ブロック(2/2)。
+このセカンダリ ペイロードは、環境フィンガー プリンティングを実行してKubernetesクラスタを特定し、特権DaemonSetをデプロイしてクラスタ全体を機能停止し、あるいはコンテナ化されていないホスト上で再帰的ファイル削除を実行します。自動化された伝播、分散化されたインフラストラクチャ、そして標的を絞った破壊の融合により、CanisterWormは、その派手で短命な活動歴をもってしても、これまでに確認されたクラウド ネイティブな脅威の中では、より複雑なマルウェアの1つになっています。
+中間ガイダンス
+サプライ チェーン攻撃に対するクラウド アセットの強化
+Cortex Cloudには、TeamPCPが依存する脆弱性や設定ミスの特定に役立つ、広範なアプリケーション セキュリティ ポスチャ管理(ASPM)機能とサプライ チェーンセキュリティ機能があります。以下のガイダンスでは、パロアルトネットワークス製品に固有の指示がいくつか含まれています。説明にあるように、私たちは、すべての組織において、クラウド アセット強化のための適切なメカニズムが見出されることを推奨します。
+(備考:まだCortex Cloudに移行していないPrisma Cloudのお客様にも同様の注意が求められます。)
+1. 脆弱なパッケージの特定: ソフトウェア構成分析(SCA)とソフトウェア部品表(SBOM)
+このような悪意のあるパッケージのCVEは攻撃より遅れる可能性があるため、組織はSBOMに対するリアルタイムの可視性を整える必要があります。
+
+オペレーショナル リスク モデル:CVEが公開されていないパッケージについては、パロアルトネットワークス独自のオペレーショナル リスク モデルに追加の保護機能があります。この機能では、メンテナーのアクティビティ、非推奨のステータス、コミュニティでの採用などの要因に基づいてオープンソースパッケージが評価され、既知の脆弱性がない場合でも、危険なコンポーネントを特定することができます。
+SBOMクエリ:Cortex Cloudでは、既知の悪意のあるパッケージのリストを基に組織のSBOMを照会し、影響を即座に特定することができます。
+
+2.CI/CDポリシーの強化: out-of-the-box (OotB)ルール
+TeamPCPは、セキュリティが確保されていない露出した環境につけ込みます。パロアルトネットワークスのお客様は、同様の攻撃を防ぐために設計された以下のCortex Cloudのout-of-the-box (OotB) CI/CDルールを活用できます。これらのルールはOWASPトップ10 CI/CDリスクやCISソフトウェア サプライ チェーンセキュリティ ガイドなどの業界標準に対応しています。
+
+セキュリティが確保されていない状態でインストールされたパッケージ:一般的な構成では、GitHubもnpmのいずれにおいてもパッケージの完全性がチェックされずに、更新されたパッケージのバージョンを配信されることがあります。これにより、あるリポジトリをコントロールする攻撃者は、自動ダウンロードが有効になっているパッケージについて、悪意のあるバージョンをアップロードすることができます。組織にとっては、すべてのパッケージが信頼できても、検証することが重要です。新しいCI/CDパイプラインでは、実装前にすべてのパッケージをスキャンすることが不可欠です。
+コミット ハッシュの参照なしでgitからダウンロードしたnpmパッケージ:特定のコミット ハッシュがなければ、git URLからダウンロードしたパッケージの完全性を保証することができず、ビルド サーバーによって悪意のあるバージョンがダウンロードされるおそれがあります。
+未使用の依存関係が含まれているnpmプロジェクト:未使用の依存関係があると、正当な根拠なくアタック サーフェスが広がります。未使用の依存関係がTeamPCPによって侵害されると、たとえそのコードが積極的に使用されていなくても、プロジェクトはリスクにさらされます。
+
+Unit 42マネージド脅威ハンティング用クエリ
+Unit 42マネージド脅威ハンティング チームは、以下のXQLクエリを提案しています。Cortex XDRとXSIAMのお客様は、これらのXQLクエリーで、悪用の兆候を検索することができます。
+
+
+
+
+
+// Title: TeamPCP Process Execution Artifacts
+
+// Description: Identifies hardcoded components in the deployed payloads - relies on the fact that the python process is being used to execute sub processes with hardcoded command parameters
+
+// MITRE ATT&CK TTP ID: T1059
+
+config case_sensitive = false
+| dataset = xdr_data
+| fields event_type, event_id, event_sub_type, actor_process_image_path, actor_process_command_line, actor_process_image_name, action_process_image_command_line, action_process_image_sha256, action_process_image_name, action_process_image_path, agent_hostname, agent_id
+| filter event_type = ENUM.PROCESS and event_sub_type in (ENUM.PROCESS_START) and action_process_image_name in ("openssl", "tar", "curl", "systemctl", "python") and action_process_image_command_line ~= "(?:tpcp\.tar\.gz|\-inkey p \-in session\.key|models\.litellm\.cloud|payload\.enc|session\.key\.enc| sysmon\.service|openssl rand -out .+session\.key|import base64; exec\(base64.b64decode\(\')"
+
+
+
+
+12345678910
+
+// Title: TeamPCP Process Execution Artifacts // Description: Identifies hardcoded components in the deployed payloads - relies on the fact that the python process is being used to execute sub processes with hardcoded command parameters // MITRE ATT&CK TTP ID: T1059 config case_sensitive = false| dataset = xdr_data| fields event_type, event_id, event_sub_type, actor_process_image_path, actor_process_command_line, actor_process_image_name, action_process_image_command_line, action_process_image_sha256, action_process_image_name, action_process_image_path, agent_hostname, agent_id| filter event_type = ENUM.PROCESS and event_sub_type in (ENUM.PROCESS_START) and action_process_image_name in ("openssl", "tar", "curl", "systemctl", "python") and action_process_image_command_line ~= "(?:tpcp\.tar\.gz|\-inkey p \-in session\.key|models\.litellm\.cloud|payload\.enc|session\.key\.enc| sysmon\.service|openssl rand -out .+session\.key|import base64; exec\(base64.b64decode\(\')"
+
+
+
+
+
+
+
+
+
+
+
+// Title: TeamPCP File Creation Artifacts
+// Description: Identifies file artifacts related to the TeamPCP enumeration, persistence and exfiltration activity
+// MITRE ATT&CK TTP ID: T1074
+dataset = xdr_data
+| fields event_type, event_id, event_sub_type, actor_process_image_path, actor_process_command_line, action_file_path, action_file_name, action_file_sha256, actor_process_image_name, agent_hostname, agent_id
+| filter event_type = ENUM.FILE and event_sub_type in (ENUM.FILE_CREATE_NEW, ENUM.FILE_WRITE) and (action_file_name in ("session.key", "payload.enc", "session.key.enc", "tpcp.tar.gz", "sysmon.service", "pglog", ".pg_state") and actor_process_image_name in ("python*", "openssl"))
+
+
+
+
+123456
+
+// Title: TeamPCP File Creation Artifacts// Description: Identifies file artifacts related to the TeamPCP enumeration, persistence and exfiltration activity// MITRE ATT&CK TTP ID: T1074dataset = xdr_data| fields event_type, event_id, event_sub_type, actor_process_image_path, actor_process_command_line, action_file_path, action_file_name, action_file_sha256, actor_process_image_name, agent_hostname, agent_id| filter event_type = ENUM.FILE and event_sub_type in (ENUM.FILE_CREATE_NEW, ENUM.FILE_WRITE) and (action_file_name in ("session.key", "payload.enc", "session.key.enc", "tpcp.tar.gz", "sysmon.service", "pglog", ".pg_state") and actor_process_image_name in ("python*", "openssl"))
+
+
+
+
+
+
+
+
+
+
+
+// Title: TeamPCP Network Artifacts
+
+// Description: AWS and Kube API interaction from a single python process indicative of the enumeration and lateral movement observed by TeamPCP
+
+// MITRE ATT&CK TTP ID: T1021.007
+
+dataset = xdr_data
+| fields event_type, event_id, event_sub_type, actor_process_image_path, actor_process_command_line, actor_process_image_name, uri, actor_process_instance_id, agent_hostname, agent_id
+| filter event_type in (ENUM.STORY, ENUM.NETWORK) and uri ~= "(?:/api/v1/namespaces/.+/secrets|/api/v1/secrets|/api/v1/namespaces|/api/v1/nodes|/api/v1/namespaces/kube-system/pods|/latest/meta-data/iam/security-credentials/|/latest/api/token)" and actor_process_image_name contains "python"
+| comp values(agent_hostname) as agent_hostname, values(actor_process_command_line) as actor_process_command_line, values(uri) as uri, count_distinct(uri) as uri_cnt by actor_process_image_name, actor_process_instance_id
+| filter uri_cnt > 3
+
+
+
+
+1234567891011
+
+// Title: TeamPCP Network Artifacts // Description: AWS and Kube API interaction from a single python process indicative of the enumeration and lateral movement observed by TeamPCP // MITRE ATT&CK TTP ID: T1021.007 dataset = xdr_data| fields event_type, event_id, event_sub_type, actor_process_image_path, actor_process_command_line, actor_process_image_name, uri, actor_process_instance_id, agent_hostname, agent_id| filter event_type in (ENUM.STORY, ENUM.NETWORK) and uri ~= "(?:/api/v1/namespaces/.+/secrets|/api/v1/secrets|/api/v1/namespaces|/api/v1/nodes|/api/v1/namespaces/kube-system/pods|/latest/meta-data/iam/security-credentials/|/latest/api/token)" and actor_process_image_name contains "python"| comp values(agent_hostname) as agent_hostname, values(actor_process_command_line) as actor_process_command_line, values(uri) as uri, count_distinct(uri) as uri_cnt by actor_process_image_name, actor_process_instance_id| filter uri_cnt > 3
+
+
+
+
+
+
+結論
+TeamPCPのサプライ チェーン オペレーションの急速な拡大に対して、パロアルトネットワークスは、各組織が開発環境と本番環境内で以下の対象を直ちに監査することを強く推奨します:
+
+CI/CDパイプライン
+GitHub PAT
+クラウド プロバイダーの認証情報
+Kubernetesサービス アカウント トークン(SAT)
+コンテナ ベースのSSH鍵
+
+2026年2月から3月にかけて、このアクターはランサムウェアや暗号通貨マイニングから、サプライ チェーンに焦点を絞った侵害モデルへ移行しました。このオペレーションは、BerriAI LiteLLMゲートウェイだけでなく、Aqua Security TrivyやCheckmarx KICSのような信頼されたセキュリティ ツールを侵害させることに成功しました。
+いずれの組織にも、横移動とデータ流出のリスク軽減のために、具体的にはSBOMの可視化とCI/CDポリシーの強化に関して、この概要で提供した暫定ガイダンスの実施を優先することが求められます。
+パロアルトネットワークスのお客様は、以下に示す当社製品により保護されています。新たな関連情報が明らかになり次第、本「脅威概要」は更新されます。
+パロアルトネットワークス製品によるTeamPCPの多段階サプライ チェーン攻撃に対する対策
+パロアルトネットワークスのお客様は、さまざまな製品保護、アップデートを活用して、本脅威を特定し組織を保護いただけます。
+Cortex CloudのOotBサプライ チェーンのベストプラクティスは、環境内でピン留めされていないTrivyとLiteLLM所有のCI/CDパイプラインの使用を認識し、アラートを提供するように設計されています。いずれの組織も、サプライ チェーンアプリケーション用に、特定の既知のパッケージ バージョンのピン留めを推奨します。
+図8は、Trivy、Checkmarx、LiteLLMのサプライ チェーン カタログを表示する際に、Cortex Cloudのプラットフォームに表示される内容を示しています。図9は、環境内のアセットのアプリケーション セキュリティ カバレッジについて表示される内容です。図10は、潜在的に脆弱なクラウド リソースに含まれるシークレットについて、注目すべき発見を示したものです。
+図8.Cortex Cloudアプリケーション セキュリティ モジュール:サプライ チェーン パッケージのカタログ。
+図9.Cortex Cloudアプリケーション セキュリティ モジュール:カバレッジ表示。
+図10.Cortex Cloudアプリケーション セキュリティ モジュール:検出されたシークレットの表示。
+Unit 42 Cloud Security Assessmentは、クラウド インフラストラクチャをレビューして、設定ミスやセキュリティ ギャップを特定する評価サービスです。
+情報漏えいの可能性がある場合、または緊急の案件がある場合はUnit 42インシデント レスポンス チームまでご連絡ください:
+
+北米:フリーダイヤル: +1 (866) 486-4842 (866.4.UNIT42)
+英国: +44.20.3743.3660
+ヨーロッパおよび中東: +31.20.299.3130
+アジア: +65.6983.8730
+日本: +81.50.1790.0200
+オーストラリア: +61.2.4062.7950
+インド: 000 800 050 45107
+韓国: +82.080.467.8774
+
+次世代ファイアウォール向けクラウド提供型セキュリティ サービス
+Advanced URL FilteringとAdvanced DNS Securityは、この活動に関連する既知のドメインとURLを悪意のあるものとして識別することが可能です。
+Cortex AgentiX
+セキュリティ アナリストは自然言語を使用してCortex AgentiX脅威インテリジェンス・エージェントに、この「脅威概要」から侵害のインジケーター(IoC)を抽出することを促すことができます。組織はその後、ケースをエンリッチさせ、Cortexテナントで関連するアラートに注目し続ける必要があります。AgentiXエージェントは、影響の簡単な要約を組織に届けます。アナリストは、ケース調査エージェントを活かして、このキャンペーンに関連するケースやアーティファクトの詳細の確認や、対応策の作成ができます。
+Cortex XDRおよびXSIAM
+Cortex XDRとXSIAMには、Behavioral Threat Protection (BTP)、Advanced WildFire、およびCortex Analyticsなどの多層防御機能があり、この記事で説明した初期アクセス、C2、および潜在的な横移動に対する防御に役立ちます。
+Cortex Xpanse
+Cortex Xpanseには、公衆インターネット上で露出したLiteLLMデバイスを特定し、この発見を防御側にエスカレーションする機能があります。お客様は、LiteLLMアタック サーフェス ルールが有効になっていることを確認すれば、このリスクに関するアラートを有効にできます。特定された調査結果は、Threat Response CenterまたはExpanderのインシデント ビューで確認できます。これらの知見は、ASMモジュールを購入したCortex XSIAMのお客様も利用できます。
+Cortex Cloud
+
+Cortex Cloudのお客様は、Cortex Cloud XDRエンドポイント エージェントとサーバーレス エージェントをクラウド環境内に適切に配置することで、この記事で説明したような話題から保護されます。これらの脅威からクラウド体制とランタイム オペレーションを保護するために設計されたCortex Cloudは、この記事で取り上げた悪意のあるオペレーションやコンフィギュレーションの変更、エクスプロイトの検出と防止を支援します。
+Cortex Cloud Identity Securityは、Cloud Infrastructure Entitlement Management (CIEM)、Identity Security Posture Management (ISPM)、Data Access Governance (DAG)、Identity Threat Detection and Response (ITDR)をまとめ、アイデンティティ関連のセキュリティ要件の強化に必要な機能をクライアントに提供するものです。Identity Securityモジュールは、クラウド環境内のアイデンティティとそのアクセス許可を可視化し、設定ミスや機密データへの不要なアクセスを正確に検出します。セキュリティ監視を維持するために設計された、使用状況とアクセス パターンにまつわるリアルタイムの分析を提供します。
+Cortex Cloudのアプリケーション セキュリティ モジュール(ASPM)は、この記事で取り上げたサードパーティのSaaSベンダーからのセキュリティ監査ログや調査結果の取り込みをサポートし、取り込まれたアプリケーションに基づいてアラート、問題、ポリシー、アセットの優先順位付けを行います。これにより、セキュリティ チームは、オンプレミスとクラウド環境全体でより適切なセキュリティ意識を持ち、この記事で取り上げた脅威に対して警告を発することができます。
+
+
+
+
+アラート名
+MITRE ATT&CKタクティクス
+
+
+異常なKubernetesサービス アカウント ファイルの読み取り
+認証情報のアクセス(TA0006)
+
+
+異常なクラウド インスタンス メタデータ サービス(IMDS)のアクセス
+認証情報のアクセス(TA0006)
+
+
+クラウド認証情報ファイルへの不審なアクセス
+認証情報のアクセス(TA0006)
+
+
+Kubernetesのシークレット価値抽出アクティビティ
+認証情報のアクセス(TA0006)
+
+
+
+Advanced Threat Preventionを備えた次世代ファイアウォール
+Advanced Threat Preventionを備えた次世代ファイアウォールは、以下のThreat Preventionシグネチャを通じて攻撃をブロックできます：87120。
+侵害のインジケーター
+IPアドレス
+
+23.142.184[.]129
+45.148.10[.]212
+63.251.162[.]11
+83.142.209[.]11
+83.142.209[.]203
+195.5.171[.]242
+209.34.235[.]18
+212.71.124[.]188
+
+ドメイン
+
+checkmarx[.]zone
+models.litellm[.]cloud
+scan.aquasecurtiy[.]org
+tdtqy-oyaaa-aaaae-af2dq-cai.raw.icp0[.]io
+
+トンネリングURL
+
+championships-peoples-point-cassette.trycloudflare[.]com
+create-sensitivity-grad-sequence.trycloudflare[.]com
+investigation-launches-hearings-copying.trycloudflare[.]com
+plug-tab-protective-relay.trycloudflare[.]com
+souls-entire-defined-routes.trycloudflare[.]com
+
+マルウェアに使用された自己署名証明書のSHA256ハッシュ
+
+30015DD1E2CF4DBD49FFF9DDEF2AD4622DA2E60E5C0B6228595325532E948F14
+41C4F2F37C0B257D1E20FE167F2098DA9D2E0A939B09ED3F63BC4FE010F8365C
+D8CAF4581C9F0000C7568D78FB7D2E595AB36134E2346297D78615942CBBD727
+
+ファイル名
+
+kamikaze[.]sh
+kube[.]py
+prop[.]py
+proxy_server[.]py
+tpcp.tar[.]gz
+
+悪意のあるファイルのSHA256ハッシュ
+
+0880819ef821cff918960a39c1c1aada55a5593c61c608ea9215da858a86e349
+0c0d206d5e68c0cf64d57ffa8bc5b1dad54f2dda52f24e96e02e237498cb9c3a
+0c6a3555c4eb49f240d7e0e3edbfbb3c900f123033b4f6e99ac3724b9b76278f
+18a24f83e807479438dcab7a1804c51a00dafc1d526698a66e0640d1e5dd671a
+1e559c51f19972e96fcc5a92d710732159cdae72f407864607a513b20729decb
+5e2ba7c4c53fa6e0cef58011acdd50682cf83fb7b989712d2fcf1b5173bad956
+61ff00a81b19624adaad425b9129ba2f312f4ab76fb5ddc2c628a5037d31a4ba
+6328a34b26a63423b555a61f89a6a0525a534e9c88584c815d937910f1ddd538
+7321caa303fe96ded0492c747d2f353c4f7d17185656fe292ab0a59e2bd0b8d9
+7b5cc85e82249b0c452c66563edca498ce9d0c70badef04ab2c52acef4d629ca
+7df6cef7ab9aae2ea08f2f872f6456b5d51d896ddda907a238cd6668ccdc4bb7
+822dd269ec10459572dfaaefe163dae693c344249a0161953f0d5cdd110bd2a0
+887e1f5b5b50162a60bd03b66269e0ae545d0aef0583c1c5b00972152ad7e073
+bef7e2c5a92c4fa4af17791efc1e46311c0f304796f1172fce192f5efc40f5d7
+c37c0ae9641d2e5329fcdee847a756bf1140fdb7f0b7c78a40fdc39055e7d926
+cd08115806662469bbedec4b03f8427b97c8a4b3bc1442dc18b72b4e19395fe3
+d5edd791021b966fb6af0ace09319ace7b97d6642363ef27b3d5056ca654a94c
+e4edd126e139493d2721d50c3a8c49d3a23ad7766d0b90bc45979ba675f35fea
+e6310d8a003d7ac101a6b1cd39ff6c6a88ee454b767c1bdce143e04bc1113243
+e64e152afe2c722d750f10259626f357cdea40420c5eedae37969fbf13abbecf
+e87a55d3ba1c47e84207678b88cacb631a32d0cb3798610e7ef2d15307303c49
+e9b1e069efc778c1e77fb3f5fcc3bd3580bbc810604cbf4347897ddb4b8c163b
+ecce7ae5ffc9f57bb70efd3ea136a2923f701334a8cd47d4fbf01a97fd22859c
+f398f06eefcd3558c38820a397e3193856e4e6e7c67f81ecc8e533275284b152
+f7084b0229dce605ccc5506b14acd4d954a496da4b6134a294844ca8d601970d
+
+2026年4月9日午前8時（太平洋標準時）に更新し、「Advanced Threat Prevention」に関する記述を追加しました。
+
+
+トップに戻る
+
+タグCVE-2025-55182GitHubInfostealerPythonSupply chainWiper
+
+
+
+Threat Research Center
+
+
+次ページ:脅威情報: パロアルトネットワークスの人材獲得チームになりすました採用スキーム
+
+
+
+
+
+
+
+目次
+
+
+
+
+
+
+関連記事
+
+
+
+                      ChainDropの脅威の概要:自己増殖型npmワームの内部                  
+
+
+
+                      npmの脅威の状況: アタックサーフェスと緩和策(6月2日更新)                  
+
+
+
+                      脅威情報: 2026年イランに関するサイバー リスクの激化(4月17日更新)                  
+
+
+
+
+
+
+
+
+
+関連項目 マルウェア リソース
+
+
+
+
+ 
+
+
+
+主なサイバー脅威 2026年8月6日
+
+ChainDropの脅威の概要:自己増殖型npmワームの内部
+
+
+
+Blockchain
+
+
+ChainDrop
+
+
+Claude code
+ 
+
+
+                    今すぐ読む                    
+
+
+
+
+
+
+
+ 
+
+
+
+主なサイバー脅威 2026年6月2日
+
+npmの脅威の状況: アタックサーフェスと緩和策(6月2日更新)
+
+
+
+Credential Harvesting
+
+
+GitHub
+
+
+Npm packages
+ 
+
+
+                    今すぐ読む                    
+
+
+
+
+
+
+
+ 
+
+
+
+脅威アクター グループ 2026年5月22日
+
+イランAPT Screening Serpensによる2026年スパイ キャンペーンの追跡
+
+
+
+Advanced Persistent Threat
+
+
+AppDomainManager
+
+
+DLL Sideloading
+ 
+
+
+                    今すぐ読む                    
+
+
+
+
+
+
+
+ 
+
+
+
+主なサイバー脅威 2026年4月17日
+
+脅威情報: 2026年イランに関するサイバー リスクの激化(4月17日更新)
+
+
+
+APK
+
+
+DDoS attacks
+
+
+GenAI
+ 
+
+
+                    今すぐ読む                    
+
+
+
+
+
+
+
+ 
+
+
+
+主なサイバー脅威 2026年4月1日
+
+脅威概要:Axiosサプライ チェーン攻撃で広範に及ぶ影響
+
+
+
+API attacks
+
+
+JavaScript
+
+
+Powershell
+ 
+
+
+                    今すぐ読む                    
+
+
+
+
+
+
+
+ 
+
+
+
+脅威リサーチ 2026年3月24日
+
+脅威情報: パロアルトネットワークスの人材獲得チームになりすました採用スキーム
+
+
+
+Email scam
+
+
+Lure
+
+
+Phishing
+ 
+
+
+                    今すぐ読む                    
+
+
+
+
+
+
+
+ 
+
+
+
+主なサイバー脅威 2026年2月11日
+
+国家支援型の脅威アクターがNotepad++のサプライチェーンを悪用
+
+
+
+Backdoor
+
+
+Cobalt Strike
+
+
+DLL Sideloading
+ 
+
+
+                    今すぐ読む                    
+
+
+
+
+
+
+
+ 
+
+
+
+脅威リサーチ 2026年1月22日
+
+ランタイムアセンブリ攻撃の新たなフロンティア：LLMを活用したフィッシング用JavaScriptのリアルタイム生成
+
+
+
+API
+
+
+Google
+
+
+JavaScript
+ 
+
+
+                    今すぐ読む                    
+
+
+
+
+
+
+
+ 
+
+
+
+脅威リサーチ 2026年1月2日
+
+Pyarmorを利用して難読化と検知回避を行うVVS Discord Stealer
+
+
+
+Discord
+
+
+Infostealer
+
+
+Python
+ 
+
+
+                    今すぐ読む                    
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
+				Unit 42 からの最新情報を取得			
+進化する脅威の状況を常に先取り
+
+
+
+
+
+
+
+
+
+
+メール アドレス
+
+
+本フォームを送信することにより、利用規約に同意し、プライバシー ポリシーを承認したことになります。
+
+                     本サイトは reCAPTCHA で保護されており、Googleのプライバシー ポリシー とサービス利用規約が適用されます。                            
+  
+
+Invalid captcha!
+ 
+					サブスクライブ					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+最新ニュース、イベント情報、脅威アラートを配信
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+登録にはメールアドレスをご入力ください。
+
+
+
+
+
+お申込み 
+
+
+
+
+                                
+                                
+                                
+                                    
+                                    
+                                        
+                                        このフォームを送信することにより、個人情報がパロアルトネットワークスのプライバシーポリシーおよび利用規約に従って処理されることを理解します。
+                                    
+                                
+
+                                
+                                
+
+
+お申込み 
+
+
+
+
+
+
+
+
+
+
+
+
+製品とサービス
+
+
+
+
+
+                                    AI利用ネットワーク セキュリティ プラットフォーム
+                                
+
+
+
+                                    AIのセキュア バイ デザイン
+                                
+
+
+
+                                    Prisma AIRS
+                                
+
+
+
+                                    AI Access Security
+                                
+
+
+
+                                    クラウド提供型セキュリティ サービス
+                                
+
+
+
+                                    Advanced Threat Prevention
+                                
+
+
+
+                                    Advanced URL Filtering
+                                
+
+
+
+                                    Advanced WildFire
+                                
+
+
+
+                                    Advanced DNS Security
+                                
+
+
+
+                                    Enterprise Data Loss Prevention
+                                
+
+
+
+                                    Enterprise IoT Security
+                                
+
+
+
+                                    Medical IoT Security
+                                
+
+
+
+                                    Industrial OT Security
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    次世代ファイアウォール
+                                
+
+
+
+                                    ハードウェア ファイアウォール
+                                
+
+
+
+                                    ソフトウェア ファイアウォール
+                                
+
+
+
+                                    Strata Cloud Manager
+                                
+
+
+
+                                    SD-WAN for NGFW
+                                
+
+
+
+                                    PAN-OS
+                                
+
+
+
+                                    Panorama
+                                
+
+
+
+                                    セキュア アクセス サービス エッジ
+                                
+
+
+
+                                    Prisma SASE
+                                
+
+
+
+                                    App Acceleration
+                                
+
+
+
+                                    自律型デジタルエクスペリエンス管理
+                                
+
+
+
+                                    Enterprise DLP
+                                
+
+
+
+                                    Prisma Access
+                                
+
+
+
+                                    Prisma Browser
+                                
+
+
+
+                                    Prisma SD-WAN 
+                                
+
+
+
+                                    リモート ブラウザ分離
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    AI駆動型セキュリティ運用プラットフォーム
+                                
+
+
+
+                                    Cloud Security
+                                
+
+
+
+                                    Cortex Cloud
+                                
+
+
+
+                                    Application Security
+                                
+
+
+
+                                    Cloud Posture Security
+                                
+
+
+
+                                    Cloud Runtime Security
+                                
+
+
+
+                                    Prisma Cloud 
+                                
+
+
+
+                                    AI駆動型SOC
+                                
+
+
+
+                                    Cortex XSIAM
+                                
+
+
+
+                                    Cortex XDR
+                                
+
+
+
+                                    Cortex XSOAR
+                                
+
+
+
+                                    Cortex Xpanse
+                                
+
+
+
+                                    Unit 42マネージド ディテクション&レスポンス
+                                
+
+
+
+                                    マネージドXSIAM
+                                
+
+
+
+
+
+                                    次世代のアイデンティティ セキュリティ
+                                
+
+
+
+                                    特権アクセス管理
+                                
+
+
+
+                                    アイデンティティ管理とアクセス管理
+                                
+
+
+
+                                    Endpoint Privilege Manager
+                                
+
+
+
+                                    アイデンティティ ガバナンス
+                                
+
+
+
+                                    従業員パスワード管理
+                                
+
+
+
+                                    エージェンティック アイデンティティ
+                                
+
+
+
+                                    シークレット管理
+                                
+
+
+
+                                    統合型シークレット ガバナンス
+                                
+
+
+
+                                    アプリケーションの認証情報配信
+                                
+
+
+
+                                    ベンダーの特権アクセス
+                                
+
+
+
+                                    脅威インテリジェンス&インシデント レスポンス サービス
+                                
+
+
+
+                                    予防評価
+                                
+
+
+
+                                    インシデント レスポンス
+                                
+
+
+
+                                    セキュリティ戦略を変革
+                                
+
+
+
+                                    脅威インテリジェンスについて
+                                
+
+
+
+
+
+
+会社名
+
+
+
+
+
+                                    パロアルトネットワークスについて
+                                
+
+
+
+                                    採用情報
+                                
+
+
+
+                                    お問合せ
+                                
+
+
+
+                                    企業責任
+                                
+
+
+
+                                    お客様向け
+                                
+
+
+
+                                    IR
+                                
+
+
+
+                                    拠点
+                                
+
+
+
+                                    ニュースルーム
+                                
+
+
+
+
+
+
+人気のあるリンク
+
+
+
+
+
+                                    ブログ
+                                
+
+
+
+                                    コミュニティ
+                                
+
+
+
+                                    コンテンツライブラリ
+                                
+
+
+
+                                    Cyberpedia
+                                
+
+
+
+                                    イベントセンター
+                                
+
+
+
+                                    電子メール設定の管理
+                                
+
+
+
+                                    製品A〜Z
+                                
+
+
+
+                                    製品認証
+                                
+
+
+
+                                    脆弱性の報告
+                                
+
+
+
+                                    サイトマップ
+                                
+
+
+
+                                    テクニカル ドキュメント
+                                
+
+
+
+                                    Unit 42
+                                
+
+
+
+                                    個人情報の販売および共有禁止
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                プライバシー
+                            
+
+
+
+                                トラスト センター
+                            
+
+
+
+                                利用規約
+                            
+
+
+
+                                ドキュメント
+                            
+
+
+Copyright © 2026 Palo Alto Networks. All Rights Reserved
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+JP
+
+
+
+Select your language
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Your browser does not support the video tag.
+          
+
+Default Heading
+Read the article
+              
+
+
+
+
+Seekbar
+
+
+
+
+
+
+
+
+
+
+
+
+
+Volume
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

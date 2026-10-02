@@ -1,0 +1,1363 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Threat Brief: Salesloft Drift Integration Used To Compromise Salesforce Instances
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Menu
+
+
+
+
+
+
+Tools
+ATOMs
+Security Consulting
+About Us
+Under Attack?
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+English
+
+
+
+
+
+English
+
+
+Spanish (LATAM)
+
+
+French
+
+
+Japanese
+
+
+Korean
+
+
+
+
+
+  Threat Research CenterHigh Profile ThreatsVulnerabilities 
+ 
+Vulnerabilities
+Threat Brief: Salesloft Drift Integration Used To Compromise Salesforce Instances
+
+
+  4  min read              
+
+
+Related ProductsUnit 42 Incident Response 
+
+
+
+
+
+
+
+
+By:Unit 42 
+
+Published:September 2, 2025 Categories:High Profile ThreatsVulnerabilities
+ Tags:Credential-based attacksData exfiltrationSalesforceSalesloft
+ 
+
+
+ 
+ 
+
+
+Share
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+Executive Summary
+Unit 42 stopped monitoring this threat and updating the brief on Dec. 2, 2025. Please refer to the Salesloft website for the latest information.
+Unit 42 has observed activity consistent with a specific threat actor campaign leveraging the Salesloft Drift integration to compromise customer Salesforce instances. This brief provides information about our observations and guidance for potentially affected organizations.
+As detailed in a recent notification from Salesloft, from August 8-18, 2025, a threat actor utilized compromised OAuth credentials to exfiltrate data from affected customers’ Salesforce environments.
+Our observations indicate that the threat actor performed mass exfiltration of sensitive data from various Salesforce objects, including Account, Contact, Case and Opportunity records. Following exfiltration, the actor appeared to be actively scanning the acquired data for credentials, likely with the intent to facilitate further attacks or expand their access. We have observed that the threat actor deleted queries to hide evidence of the jobs they run, likely as an anti-forensics technique.
+Salesloft has confirmed that all impacted customers have been notified and took immediate action to secure its systems and contain and mitigate the incident, including proactively revoking all active access and refresh tokens for the Drift application, necessitating re-authentication for affected administrators.
+Palo Alto Networks recommends that organizations continue to monitor Salesforce and Salesloft updates, in addition to following any recommendations shared below.
+The Unit 42 Incident Response team can also be engaged to help with a compromise or to provide a proactive assessment to lower your risk.
+
+
+
+Related Unit 42 Topics
+High Profile Threats, Data Exfiltration
+
+
+
+Recommendations for Organizations
+Organizations that utilize the Salesloft Drift integration with Salesforce should treat this incident with immediate urgency. Beyond the proactive steps Salesloft took to secure its platform (such as token revocation), the following recommendations are critical to assess potential impact and mitigate further risk:
+Immediate Investigation and Log Review:
+
+Drift API Integrations: Conduct a thorough review of all Drift integrations and review all authentication activity within third-party systems for signs of suspicious connections, credential harvesting and data exfiltration.
+Salesforce Logs: Conduct a thorough review of Salesforce login history, audit trails and API access logs for the period of August 8 to present. Specifically, examine Salesforce Event Monitoring logs, if enabled, for unusual activity associated with the Drift connection user and review authentication activity from the Drift Connected App. Look for suspicious login attempts, unusual data access patterns, and the indicators mentioned in the Hunting Guidance section, such as the Python/3.11 aiohttp/3.12.15 user agent string and activity from known threat actor IP addresses. Also, review UniqueQuery events that log executed Salesforce Object Query Language (SOQL) queries to identify which Salesforce objects (e.g., Account, Contact, Opportunity, Case, etc.) and which fields within those objects the attacker queried. Consider opening a Salesforce support case to obtain specific queries used by the threat actor if needed.
+Identity Provider Logs: Review logs from your Identity Provider (IdP) for any unusual authentication attempts or successful logins to Salesforce or other integrated applications during the incident period.
+Network Logs: Analyze network flow logs and proxy logs for connections to Salesforce from suspicious IPs or unusual data transfer volumes.
+
+Review and Rotate Exposed Credentials:
+
+Automated Tools: Leverage automated tools (e.g., Trufflehog, GitLeaks) to efficiently scan for secrets and hardcoded credentials within code repositories, configuration files or any potentially exfiltrated data.
+Data Scrutiny: If exfiltration is confirmed or suspected, review data for the presence of sensitive credentials. This includes searching for patterns like AWS access key identifiers (e.g., AKIA), Snowflake credentials (e.g., Snowflake or snowflakecomputing[.]com), generic keywords such as password, secret or key, and strings related to organization-specific login URLs (e.g., VPN or SSO login pages).
+Immediate Rotation: Promptly rotate all credentials identified as exposed within the exfiltrated data. This includes, but is not limited to, Salesforce API keys, connected app credentials and any other system credentials found within the compromised data.
+
+Hunting Guidance
+Organizations concerned about potential compromise related to the Salesloft Drift integration incident should immediately initiate proactive threat hunting activities within their Salesforce environments. (As a starting point, Salesforce provides some resources for investigating Salesforce security incidents.) A critical first step involves a thorough review of Salesforce login and activity logs for specific indicators of compromise (IoCs) associated with the threat actor.
+Defenders should look for logins originating from suspicious IP addresses, including but not limited to known threat actor IP addresses (for info and advice, please see the Indicators of Compromise section of this report).
+Of particular interest is the presence of the user agent string Python/3.11 aiohttp/3.12.15 associated with these login events. While this specific string is a valid user agent that is not inherently malicious, it is also indicative of the automated, high-volume data exfiltration observed in this campaign.
+The presence of this string is significant because threat actors can leverage asynchronous Python libraries like aiohttp in combination with Salesforce's Bulk API to perform rapid, high-throughput data exfiltration. This pairing allows them to efficiently extract significant volumes of data from Salesforce objects such as Account, Contact, Case and Opportunity, minimizing their time on target.
+Conclusion
+Palo Alto Networks highly recommends rotating credentials and following the above guidance to validate authentication activity for Drift integrations. Vigilance and verification are key.
+Organizations should be wary of social engineering attempts resulting from this or any other data exfiltration event.
+Best practices include:
+
+Be Skeptical of Unsolicited Communications: Advise your teams to carefully scrutinize any unsolicited or unusual emails, calls or messages, even if they appear to be from a trusted source.
+Verify Requests: Always verify requests for sensitive data or credentials through a separate, official communication channel before taking any action. For instance, if you receive a suspicious email from a colleague, call them directly to confirm the request is legitimate. Only exchange information and files through our Customer Support Portal, not email.
+Implement Zero Trust Principles: Enforcing a Zero Trust posture with conditional access policies and the principle of least privilege can significantly limit an attacker's ability to move laterally within your network, even if they successfully trick an employee.
+
+For more information about social engineering and how to mitigate it, please see our recent 2025 Unit 42 Global Incident Response Report: Social Engineering Edition.
+Palo Alto Networks and Unit 42 will continue to monitor the situation for updated information, and we will update this threat brief with additional information if any becomes available.
+Salesforce will be providing updates and resources to customers.
+If you think you might have been compromised or have an urgent matter, get in touch with the Unit 42 Incident Response team or call:
+
+North America: Toll Free: +1 (866) 486-4842 (866.4.UNIT42)
+UK: +44.20.3743.3660
+Europe and Middle East: +31.20.299.3130
+Asia: +65.6983.8730
+Japan: +81.50.1790.0200
+Australia: +61.2.4062.7950
+India: 000 800 050 45107
+
+Indicators of Compromise
+Salesloft made some IoCs available for hunting. It is worth noting that many of the IP addresses listed in their notification are Tor exit nodes and may have a high false positive rate for organizations that allow Tor connections.
+Additional Resources
+
+Salesforce-Connected Third-Party Drift Application Incident Response – Palo Alto Networks
+
+Updated Sept. 2, 2025, at 1:50 p.m. PT to add Additional Resources section
+ 
+
+
+Back to top
+
+TagsCredential-based attacksData exfiltrationSalesforceSalesloft
+
+
+
+Threat Research Center
+
+
+Next: Data Is the New Diamond: Heists in the Digital Age
+
+
+
+
+
+
+
+Table of Contents
+
+
+
+
+
+
+Related Articles
+
+
+
+                      Threat Brief: Mitigating Large-Scale Credential Attacks (Updated August 18)                  
+
+
+
+                      The Xcode Assassin Returns: A Deep Dive Into the Latest XCSSET Version                  
+
+
+
+                      Can AI Attack the Cloud? Lessons From Building an Autonomous Cloud Offensive Multi-Agent System                  
+
+
+
+
+
+
+
+
+
+Related Vulnerabilities Resources
+
+
+
+
+ 
+
+
+
+High Profile Threats September 30, 2026
+
+Threat Brief: NetScaler Zero Days CVE-2026-88771 and CVE-2026-88772 Exploited in the Wild (Updated September 30)
+
+
+
+Citrix
+
+
+CVE-2026-88771
+
+
+CVE-2026-88772
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights August 4, 2026
+
+The Frontier AI Vulnerability Burst: Industrializing Autonomous Zero-Day Discovery in Open-Source Software
+
+
+
+AI
+
+
+Frontier AI
+
+
+Vulnerability Exploitation
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research July 30, 2026
+
+Chinese-Speaking Threat Actor Harnesses AI Models for Autonomous Cyberattacks
+
+
+
+ChatGPT
+
+
+Claude code
+
+
+CVEs
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research July 17, 2026
+
+Three Steps to the Terminal: A Siemens ROX II Zero-Day Trilogy
+
+
+
+Command injection
+
+
+CVE-2025-40947
+
+
+CVE-2025-40948
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+High Profile Threats June 9, 2026
+
+Threat Brief: Active Exploitation of PAN-OS CVE-2026-0257
+
+
+
+CVE-2026-0257
+
+
+Vulnerability
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+High Profile Threats May 6, 2026
+
+Threat Brief: Exploitation of PAN-OS Captive Portal Zero-Day for Unauthenticated Remote Code Execution
+
+
+
+CVE-2026-0300
+
+
+EarthWorm
+
+
+PAN-OS
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+High Profile Threats May 5, 2026
+
+Copy Fail: What You Need to Know About the Most Severe Linux Threat in Years
+
+
+
+Containers
+
+
+CVE-2026-31431
+
+
+Kubernetes
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research April 16, 2026
+
+A Deep Dive Into Attempted Exploitation of CVE-2023-33538
+
+
+
+Botnet
+
+
+Command injection
+
+
+CVE-2023-33538
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+High Profile Threats February 19, 2026
+
+VShell and SparkRAT Observed in Exploitation of BeyondTrust Critical Vulnerability (CVE-2026-1731)
+
+
+
+Bash
+
+
+CVE-2026-1731
+
+
+PowerShell
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+High Profile Threats February 17, 2026
+
+Critical Vulnerabilities in Ivanti EPMM Exploited
+
+
+
+CVE-2026-1281
+
+
+CVE-2026-1340
+
+
+Ivanti
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
+				Get updates from Unit 42			
+Peace of mind comes from staying ahead of threats. Subscribe today.
+
+
+
+
+
+
+
+
+
+
+Your Email
+
+
+Subscribe for email updates to all Unit 42 threat research.
+By submitting this form, you agree to our Terms of Use and acknowledge our Privacy Statement.
+
+                    This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.                            
+  
+
+Invalid captcha!
+ 
+					Subscribe					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Get the latest news, invites to events, and threat alerts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Enter your email now to subscribe!
+
+
+
+
+
+Sign up 
+
+
+
+
+                                
+                                
+                                
+                                    By submitting this form, I understand my personal data will be processed in accordance with
+                                        Palo Alto Networks Privacy Statement and Terms of Use.
+
+
+
+Sign up 
+
+
+
+
+
+
+
+
+
+
+
+
+Products and Services
+
+
+
+
+
+                                    AI-Powered Network Security Platform
+                                
+
+
+
+                                    Secure AI by Design
+                                
+
+
+
+                                    Prisma AIRS
+                                
+
+
+
+                                    AI Access Security
+                                
+
+
+
+                                    Cloud Delivered Security Services
+                                
+
+
+
+                                    Advanced Threat Prevention
+                                
+
+
+
+                                    Advanced URL Filtering
+                                
+
+
+
+                                    Advanced WildFire
+                                
+
+
+
+                                    Advanced DNS Security
+                                
+
+
+
+                                    Enterprise Data Loss Prevention
+                                
+
+
+
+                                    Enterprise IoT Security
+                                
+
+
+
+                                    Medical IoT Security
+                                
+
+
+
+                                    Industrial OT Security
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    Next-Generation Firewalls
+                                
+
+
+
+                                    Hardware Firewalls
+                                
+
+
+
+                                    Software Firewalls
+                                
+
+
+
+                                    Strata Cloud Manager
+                                
+
+
+
+                                    SD-WAN for NGFW
+                                
+
+
+
+                                    PAN-OS
+                                
+
+
+
+                                    Panorama
+                                
+
+
+
+                                    Secure Access Service Edge
+                                
+
+
+
+                                    Prisma SASE
+                                
+
+
+
+                                    Application Acceleration
+                                
+
+
+
+                                    Autonomous Digital Experience Management
+                                
+
+
+
+                                    Enterprise DLP
+                                
+
+
+
+                                    Prisma Access
+                                
+
+
+
+                                    Prisma Browser
+                                
+
+
+
+                                    Prisma SD-WAN
+                                
+
+
+
+                                    Remote Browser Isolation
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    AI-Driven Security Operations Platform
+                                
+
+
+
+                                    Cloud Security
+                                
+
+
+
+                                    Cortex Cloud
+                                
+
+
+
+                                    Application Security
+                                
+
+
+
+                                    Cloud Posture Security
+                                
+
+
+
+                                    Cloud Runtime Security
+                                
+
+
+
+                                    Prisma Cloud
+                                
+
+
+
+                                    AI-Driven SOC
+                                
+
+
+
+                                    Cortex XSIAM
+                                
+
+
+
+                                    Cortex XDR
+                                
+
+
+
+                                    Cortex XSOAR
+                                
+
+
+
+                                    Cortex Xpanse
+                                
+
+
+
+                                    Unit 42 Managed Detection & Response
+                                
+
+
+
+                                    Managed XSIAM
+                                
+
+
+
+                                    Observability
+                                
+
+
+
+                                    Cortex XCOR
+                                
+
+
+
+
+
+                                    Next-Generation Identity Security
+                                
+
+
+
+                                    Privileged Access Management
+                                
+
+
+
+                                    Identity and Access Management 
+                                
+
+
+
+                                    Endpoint Privilege Manager
+                                
+
+
+
+                                    Identity Governance
+                                
+
+
+
+                                    Workforce Password Management
+                                
+
+
+
+                                    Agentic Identities
+                                
+
+
+
+                                    Secrets Management
+                                
+
+
+
+                                    Unified Secrets Governance
+                                
+
+
+
+                                    Application Credentials Delivery
+                                
+
+
+
+                                    Vendor Privileged Access
+                                
+
+
+
+                                    Threat Intel and Incident Response Services
+                                
+
+
+
+                                    Prepare for Emerging Risks
+                                
+
+
+
+                                    Strengthen Your Defenses
+                                
+
+
+
+                                    Build Your Security Strategy
+                                
+
+
+
+                                    Understand the Adversary
+                                
+
+
+
+                                    Respond to a Cyber Attack
+                                
+
+
+
+
+
+
+Company
+
+
+
+
+
+                                    About Us
+                                
+
+
+
+                                    Careers
+                                
+
+
+
+                                    Contact Us
+                                
+
+
+
+                                    Corporate Responsibility
+                                
+
+
+
+                                    Customers
+                                
+
+
+
+                                    Investor Relations
+                                
+
+
+
+                                    Location
+                                
+
+
+
+                                    Newsroom
+                                
+
+
+
+
+
+
+Popular Links
+
+
+
+
+
+                                    Blog
+                                
+
+
+
+                                    Communities
+                                
+
+
+
+                                    Content Library
+                                
+
+
+
+                                    Cyberpedia
+                                
+
+
+
+                                    Event Center
+                                
+
+
+
+                                    Manage Email Preferences
+                                
+
+
+
+                                    Products A-Z
+                                
+
+
+
+                                    Product Certifications
+                                
+
+
+
+                                    Report a Vulnerability
+                                
+
+
+
+                                    Sitemap
+                                
+
+
+
+                                    Tech Docs
+                                
+
+
+
+                                    Unit 42
+                                
+
+
+
+                                    Do Not Sell or Share My Personal Information
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Privacy
+                            
+
+
+
+                                Trust Center
+                            
+
+
+
+                                Terms of Use
+                            
+
+
+
+                                Documents
+                            
+
+
+Copyright © 2026 Palo Alto Networks. All Rights Reserved
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+EN
+
+
+
+Select your language
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Your browser does not support the video tag.
+          
+
+Default Heading
+Read the article
+              
+
+
+
+
+Seekbar
+
+
+
+
+
+
+
+
+
+
+
+
+
+Volume
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

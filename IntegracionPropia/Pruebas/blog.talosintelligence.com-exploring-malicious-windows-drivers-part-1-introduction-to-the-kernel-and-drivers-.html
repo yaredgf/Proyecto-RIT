@@ -1,0 +1,838 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Exploring malicious Windows drivers (Part 1): Introduction to the kernel and drivers</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/bootstrap.min.css?v=-xdjtZ-fV2QpS1r5">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/navigation.css?v=PhzoiGnw4ldwozL1">
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/footer.css?v=sVEdldiwj6rF6gHP">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/pagination.css?v=HruyeF1JUFuoy6Wu">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/banners.css?v=vI3KT68RWE95HKDs">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/style.css?v=idjnUZoOumC94rdj">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/prism.css?v=jqyaOB6z6CqMaOT4">
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/prism-vsc-dark-plus.css?v=xoEFwaYF1JkH_sqf">
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/prism-talos.css?v=kn8aYcNhO045nXac">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/landing-page.css?v=EPtrK0eJwYLqD25v">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/coverage-block.css?v=vBgCqINSTHrSh9PX">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/ghost-theme-utils@latest/dist/css/style.min.css" rel="stylesheet">
+
+
+    <meta name="description" content="Malicious drivers are difficult to detect and successfully leveraging one can give an attacker full access to a system.">
+    <link rel="icon" href="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w256h256/2022/07/talos_o_square.png" type="image/png">
+    <link rel="canonical" href="https://blog.talosintelligence.com/exploring-malicious-windows-drivers-part-1-introduction-to-the-kernel-and-drivers/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta property="og:site_name" content="Cisco Talos Blog">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Exploring malicious Windows drivers (Part 1): Introduction to the kernel and drivers">
+    <meta property="og:description" content="Malicious drivers are difficult to detect and successfully leveraging one can give an attacker full access to a system.">
+    <meta property="og:url" content="https://blog.talosintelligence.com/exploring-malicious-windows-drivers-part-1-introduction-to-the-kernel-and-drivers/">
+    <meta property="og:image" content="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1200/2024/01/GenericCiscoTalos-Header.png">
+    <meta property="article:published_time" content="2024-01-18T13:00:07.000Z">
+    <meta property="article:modified_time" content="2024-01-18T13:30:29.000Z">
+    <meta property="article:tag" content="Features">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Exploring malicious Windows drivers (Part 1): Introduction to the kernel and drivers">
+    <meta name="twitter:description" content="Malicious drivers are difficult to detect and successfully leveraging one can give an attacker full access to a system.">
+    <meta name="twitter:url" content="https://blog.talosintelligence.com/exploring-malicious-windows-drivers-part-1-introduction-to-the-kernel-and-drivers/">
+    <meta name="twitter:image" content="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1200/2024/01/GenericCiscoTalos-Header.png">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Chris Neal">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="Features">
+    <meta name="twitter:site" content="@TalosSecurity">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="600">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Cisco Talos Blog",
+        "url": "https://blog.talosintelligence.com/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/11/TalosBrand_ukraine.svg"
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Chris Neal",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/11/ultraman.jpeg",
+            "width": 1024,
+            "height": 768
+        },
+        "url": "https://blog.talosintelligence.com/author/chris-neal/",
+        "sameAs": []
+    },
+    "headline": "Exploring malicious Windows drivers (Part 1): Introduction to the kernel and drivers",
+    "url": "https://blog.talosintelligence.com/exploring-malicious-windows-drivers-part-1-introduction-to-the-kernel-and-drivers/",
+    "datePublished": "2024-01-18T13:00:07.000Z",
+    "dateModified": "2024-01-18T13:30:29.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1200/2024/01/GenericCiscoTalos-Header.png",
+        "width": 1200,
+        "height": 600
+    },
+    "keywords": "Features",
+    "description": "Malicious drivers are difficult to detect and successfully leveraging one can give an attacker full access to a system. ",
+    "mainEntityOfPage": "https://blog.talosintelligence.com/exploring-malicious-windows-drivers-part-1-introduction-to-the-kernel-and-drivers/"
+}
+    </script>
+
+    <meta name="generator" content="Ghost 6.68">
+    <link rel="alternate" type="application/rss+xml" title="Cisco Talos Blog" href="https://blog.talosintelligence.com/rss/">
+    
+    <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/sodo-search.min.js" data-key="4ffb0139d74ada998f4b141e4d" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/main.css" data-sodo-search="https://cisco-talos-blog.ghost.io/" data-locale="en" crossorigin="anonymous"></script>
+    
+    <link href="https://blog.talosintelligence.com/webmentions/receive/" rel="webmention">
+    <script defer src="/public/cards.min.js?v=ShRHxgy4po8zN-Wf"></script>
+    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=WwnU9jw5ancNC8Gc">
+    <script defer src="/public/ghost-stats.min.js?v=vFcCUf6ZQ0Hyhc8h" data-stringify-payload="false" data-datasource="analytics_events" data-storage="localStorage" data-host="https://blog.talosintelligence.com/.ghost/analytics/api/v1/page_hit"  tb_site_uuid="afa04ee3-414f-4481-8d23-7e7c146f192e" tb_post_uuid="5e6d3601-eebb-4535-8766-01e34adff301" tb_post_type="post" tb_member_uuid="undefined" tb_member_status="undefined" tb_gift_link=""></script><style>:root {--ghost-accent-color: #006db6;}</style>
+    <style type='text/css'>
+    img[src*="icon_check_white.svg"] { width: 20px; margin-left: 0px; margin-right: auto; }
+    
+    #ghost-portal-root { display: none; }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F45RVJG3BK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-F45RVJG3BK');
+</script>
+</head>
+
+<body class="post-template tag-features">
+
+    <div id="mobile-page-header" class="desktop-hide mobile-page-header">
+    <a class="mobile-nav-home-link" href="/">
+        <div class="mobile-logo-wrapper">
+        </div>
+        <div class="mobile-home-title">Blog</div>
+    </a>
+    <div id="mobile-search-wrapper">
+        <button class="search-button mobile-search-button" data-ghost-search>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        </button>
+    </div>
+</div>
+
+<nav id="nav">
+    <input id="nav-trigger" class="nav-trigger" type="checkbox"/>
+    <label for="nav-trigger">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="22px" height="16px" viewBox="0 0 22 16">
+            <g id="menu-icon">
+                <path fill="#FFFFFF" d="M20.5,3h-19C0.672,3,0,2.329,0,1.5S0.672,0,1.5,0h19C21.328,0,22,0.671,22,1.5S21.328,3,20.5,3z"></path>
+                <path fill="#FFFFFF" d="M20.5,9.5h-19C0.672,9.5,0,8.828,0,8c0-0.829,0.672-1.5,1.5-1.5h19C21.328,6.5,22,7.171,22,8   C22,8.828,21.328,9.5,20.5,9.5z"></path>
+                <path fill="#FFFFFF" d="M20.5,16h-19C0.672,16,0,15.328,0,14.5S0.672,13,1.5,13h19c0.828,0,1.5,0.672,1.5,1.5S21.328,16,20.5,16z"></path>
+            </g>
+        </svg>
+    </label>
+    <div id="top-nav-bar">
+    </div>
+
+    <div id="navigation">
+        <div class="navigation-logos-wrapper">
+            <div id="talos-logo-wrapper">
+                <a class="navbar-brand" href="https://talosintelligence.com">
+                </a>
+            </div>
+        </div>
+        <div class="navigation-links-wrapper">
+            <ul class="main-nav-list">
+                <li class="nav-item">
+                    <div class="primary-link-wrapper">
+                        <a class="primary_nav_link" href="https://talosintelligence.com/reputation">
+                            <div class="mobile-nav-icon"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" height="20px" width="20px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                            <style type="text/css">
+                                .white{fill:#FFFFFF;}
+                            </style>
+                            <g>
+                                <path class="white" d="M19.5,9.5h-1.1c-0.3-4.2-3.6-7.6-7.8-7.8V0.5C10.5,0.2,10.3,0,10,0l0,0C9.7,0,9.5,0.2,9.5,0.5l0,0v1.1   C5.3,1.9,1.9,5.3,1.6,9.5H0.5C0.2,9.5,0,9.7,0,10s0.2,0.5,0.5,0.5l0,0h1.1c0.3,4.2,3.6,7.6,7.8,7.8v1.1c0,0.3,0.2,0.5,0.5,0.5l0,0   c0.3,0,0.5-0.2,0.5-0.5l0,0v-1.1c4.2-0.3,7.6-3.6,7.8-7.8h1.1c0.3,0,0.5-0.2,0.5-0.5C20,9.7,19.8,9.5,19.5,9.5 M16.6,10.5h0.7   c-0.3,3.6-3.2,6.5-6.8,6.8v-0.8c0-0.3-0.2-0.5-0.5-0.5l0,0c-0.3,0-0.5,0.2-0.5,0.5v0.8C5.8,17,3,14.2,2.7,10.5h0.8   C3.8,10.5,4,10.3,4,10S3.8,9.5,3.5,9.5l0,0H2.7C3,5.8,5.8,3,9.5,2.7v0.8C9.5,3.7,9.7,4,10,4l0,0c0.3,0,0.5-0.2,0.5-0.5V2.7   C14.2,3,17,5.8,17.3,9.5h-0.7c-0.3,0-0.5,0.2-0.5,0.5C16.1,10.3,16.3,10.5,16.6,10.5L16.6,10.5"></path>
+                                                            <circle class="white" cx="10" cy="10" r="3.2"></circle>
+                            </g>
+                            </svg>
+                            </div>
+                            <span class="top-nav-link-text">
+                                Intelligence Center
+                            </span>
+                        </a>
+                    </div>
+                    <input class="sub-nav-trigger" id="intelligence-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="intelligence-sub-trigger">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+
+                    </label>
+                    <ul class="sub-nav sub-nav-single-list">
+                        <li class="desktop-hide">
+                            <a class="mobile_nav_link" href="https://talosintelligence.com/reputation"><h1>Intelligence Center</h1>
+                            </a></li>
+                        <li class="desktop-hide">
+                            <label class="subnav-back-button" for="intelligence-sub-trigger">BACK</label>
+                        </li>
+                        <li><a class="secondary_nav_link" href="https://talosintelligence.com/reputation_center">Intelligence Search</a></li>
+                        <li><a class="secondary_nav_link" href="https://talosintelligence.com/reputation_center/email_rep">Email &amp; Spam Trends</a></li>
+                    </ul>
+                    <div class="desktop-hide subnav-overlay"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" height="20px" width="20px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                        <style type="text/css">
+                            .white{fill:#FFFFFF;}
+                        </style>
+                                                <g>
+                            <path class="white" d="M19.5,9.5h-1.1c-0.3-4.2-3.6-7.6-7.8-7.8V0.5C10.5,0.2,10.3,0,10,0l0,0C9.7,0,9.5,0.2,9.5,0.5l0,0v1.1   C5.3,1.9,1.9,5.3,1.6,9.5H0.5C0.2,9.5,0,9.7,0,10s0.2,0.5,0.5,0.5l0,0h1.1c0.3,4.2,3.6,7.6,7.8,7.8v1.1c0,0.3,0.2,0.5,0.5,0.5l0,0   c0.3,0,0.5-0.2,0.5-0.5l0,0v-1.1c4.2-0.3,7.6-3.6,7.8-7.8h1.1c0.3,0,0.5-0.2,0.5-0.5C20,9.7,19.8,9.5,19.5,9.5 M16.6,10.5h0.7   c-0.3,3.6-3.2,6.5-6.8,6.8v-0.8c0-0.3-0.2-0.5-0.5-0.5l0,0c-0.3,0-0.5,0.2-0.5,0.5v0.8C5.8,17,3,14.2,2.7,10.5h0.8   C3.8,10.5,4,10.3,4,10S3.8,9.5,3.5,9.5l0,0H2.7C3,5.8,5.8,3,9.5,2.7v0.8C9.5,3.7,9.7,4,10,4l0,0c0.3,0,0.5-0.2,0.5-0.5V2.7   C14.2,3,17,5.8,17.3,9.5h-0.7c-0.3,0-0.5,0.2-0.5,0.5C16.1,10.3,16.3,10.5,16.6,10.5L16.6,10.5"></path>
+                                                    <circle class="white" cx="10" cy="10" r="3.2"></circle>
+                        </g>
+                        </svg>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="primary-link-wrapper">
+                        <a class="primary_nav_link" href="https://talosintelligence.com/vulnerability_info"><div class="mobile-nav-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px" height="20px" viewBox="0 0 26 20">
+                            <g id="vuln-icon" class="nav-icon">
+                                <path fill="#FFFFFF" d="M24.256,18.49L13.872,0.503C13.692,0.192,13.36,0,13,0c-0.359,0-0.692,0.192-0.872,0.503L1.744,18.49  c-0.18,0.312-0.18,0.695,0,1.006C1.924,19.809,2.257,20,2.616,20h20.769c0.359,0,0.691-0.191,0.871-0.504  C24.436,19.186,24.436,18.803,24.256,18.49 M14.268,18.215h-2.533v-1.85h2.533V18.215z M14.268,15.441h-2.533L10.89,6.515h4.222  L14.268,15.441z"></path>
+                            </g>
+                        </svg>
+                        </div>
+                            <span class="top-nav-link-text">
+                            Vulnerability Research
+                            </span>
+                        </a></div>
+                    <input class="sub-nav-trigger" id="vuln-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="vuln-sub-trigger">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+                        </div>
+                    </label>
+                    <ul class="sub-nav sub-nav-single-list">
+                        <li class="desktop-hide">
+                            <a href="https://talosintelligence.com/vulnerability_info"><h1>Vulnerability Research</h1>
+                            </a></li>
+                        <li class="desktop-hide">
+                            <label class="subnav-back-button" for="vuln-sub-trigger">BACK</label>
+                        </li>
+                        <li><a class="vulnerabilty-info-nav-link" href="https://talosintelligence.com/vulnerability_reports">Vulnerability Reports</a></li>
+                        <li><a class="vulnerabilty-info-nav-link" href="https://talosintelligence.com/ms_advisories">Microsoft Advisories</a></li>
+                    </ul>
+                    <div class="desktop-hide subnav-overlay">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px" height="20px" viewBox="0 0 26 20">
+                        <g id="vuln-icon" class="nav-icon">
+                            <path fill="#FFFFFF" d="M24.256,18.49L13.872,0.503C13.692,0.192,13.36,0,13,0c-0.359,0-0.692,0.192-0.872,0.503L1.744,18.49  c-0.18,0.312-0.18,0.695,0,1.006C1.924,19.809,2.257,20,2.616,20h20.769c0.359,0,0.691-0.191,0.871-0.504  C24.436,19.186,24.436,18.803,24.256,18.49 M14.268,18.215h-2.533v-1.85h2.533V18.215z M14.268,15.441h-2.533L10.89,6.515h4.222  L14.268,15.441z"></path>
+                        </g>
+                        </svg>
+                    </div>
+                </li>
+
+
+               <li class="nav-item">
+                   <div class="primary-link-wrapper">
+                        <a class="primary_nav_link" href="https://talosintelligence.com/incident_response">
+                           <div class="mobile-nav-icon">
+                               <svg xmlns="http://www.w3.org/2000/svg" width="111.588" height="148.311" viewBox="0 0 111.588 148.311">
+                                    <path d="M1.181,128.446v15.7a4.167,4.167,0,0,0,4.167,4.167h100.9a4.167,4.167,0,0,0,4.167-4.167v-15.7a4.167,4.167,0,0,0-4.167-4.167H5.348a4.167,4.167,0,0,0-4.167,4.166M55.8,63.109a3.277,3.277,0,1,1,0,6.553c-10.344,0-20.755,8.578-20.755,18.57a3.277,3.277,0,1,1-6.554,0C28.489,73.947,41.93,63.109,55.8,63.109Zm0-12.016c-21.787,0-39.325,17.81-39.325,39.937v26.7H95.122V91.03c0-22.128-17.537-39.937-39.324-39.937m52.365-38.3a3.291,3.291,0,0,0-2.254,1.024L88.432,31.294a3.283,3.283,0,0,0,4.642,4.644l17.478-17.479a3.278,3.278,0,0,0-2.389-5.666m-105.138,0a3.276,3.276,0,0,0-1.98,5.666L18.522,35.938a3.283,3.283,0,0,0,4.643-4.644L5.687,13.817A3.255,3.255,0,0,0,3.025,12.793ZM55.389.026a3.276,3.276,0,0,0-2.867,3.345V19.642a3.277,3.277,0,1,0,6.554,0V3.371A3.283,3.283,0,0,0,55.389.026Z" fill="#fff"></path>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text">
+                                Incident Response
+                            </span>
+                       </a>
+                   </div>
+                   <input class="sub-nav-trigger" id="ir-sub-trigger" type="checkbox">
+                   <label class="sub-nav-trigger-label" for="ir-sub-trigger">
+                       <div class="mobile-nav-icon">
+                           <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                                <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                               <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                               </g>
+                           </svg>
+                       </div>
+                   </label>
+                   <ul class="sub-nav sub-nav-single-list">
+                       <li class="desktop-hide">
+                           <a href="/incident_response">
+                               <h1>Incident Response</h1>
+                           </a>
+                        </li>
+                       <li class="desktop-hide">
+                           <label class="subnav-back-button" for="ir-sub-trigger">BACK</label>
+                       </li>
+                       <li>
+                           <a class="secondary_nav_link" href="https://talosintelligence.com/incident_response/services#reactive-services">Reactive Services</a>
+                       </li>
+                       <li>
+                           <a class="secondary_nav_link" href="https://talosintelligence.com/incident_response/services#proactive-services">Proactive Services</a></li>
+                       <li>
+                           <a href="https://talosintelligence.com/incident_response/contact">Emergency Support</a>
+                        </li>
+                   </ul>
+                   <div class="desktop-hide subnav-overlay"><svg xmlns="http://www.w3.org/2000/svg" width="111.588" height="148.311" viewBox="0 0 111.588 148.311">
+                     <path d="M1.181,128.446v15.7a4.167,4.167,0,0,0,4.167,4.167h100.9a4.167,4.167,0,0,0,4.167-4.167v-15.7a4.167,4.167,0,0,0-4.167-4.167H5.348a4.167,4.167,0,0,0-4.167,4.166M55.8,63.109a3.277,3.277,0,1,1,0,6.553c-10.344,0-20.755,8.578-20.755,18.57a3.277,3.277,0,1,1-6.554,0C28.489,73.947,41.93,63.109,55.8,63.109Zm0-12.016c-21.787,0-39.325,17.81-39.325,39.937v26.7H95.122V91.03c0-22.128-17.537-39.937-39.324-39.937m52.365-38.3a3.291,3.291,0,0,0-2.254,1.024L88.432,31.294a3.283,3.283,0,0,0,4.642,4.644l17.478-17.479a3.278,3.278,0,0,0-2.389-5.666m-105.138,0a3.276,3.276,0,0,0-1.98,5.666L18.522,35.938a3.283,3.283,0,0,0,4.643-4.644L5.687,13.817A3.255,3.255,0,0,0,3.025,12.793ZM55.389.026a3.276,3.276,0,0,0-2.867,3.345V19.642a3.277,3.277,0,1,0,6.554,0V3.371A3.283,3.283,0,0,0,55.389.026Z" fill="#fff"></path>
+                   </svg>
+                </div>
+               </li>
+
+
+
+
+
+                <li class="nav-item">
+                    <a class="primary_nav_link" href="https://blog.talosintelligence.com">
+                        <div class="mobile-nav-icon">
+                        <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="260px" height="296.5px" viewBox="0 0 260 296.5" enable-background="new 0 0 260 296.5" xml:space="preserve">
+                        <path fill="#FFFFFF" d="M243.586,42.404h-14.448c-0.943-4.513-3.143-8.813-6.616-12.33L201.793,9.098  c-4.7-4.757-10.972-7.377-17.66-7.377c-6.578,0-12.777,2.547-17.457,7.173l-33.875,33.511H17.586c-6.6,0-12,5.399-12,12V226.28  c0,6.6,5.4,12,12,12H153.83l84.21,56.278l-27.448-56.278h32.994c6.6,0,12-5.4,12-12V54.404  C255.586,47.804,250.186,42.404,243.586,42.404z M214.662,48.045c-0.01,0.2-0.021,0.399-0.044,0.599  c-0.008,0.069-0.021,0.139-0.031,0.207c-0.046,0.345-0.113,0.688-0.196,1.026c-0.034,0.137-0.063,0.273-0.103,0.408  c-0.039,0.135-0.087,0.267-0.133,0.399c-0.051,0.151-0.102,0.302-0.16,0.45c-0.049,0.126-0.105,0.249-0.16,0.373  c-0.068,0.153-0.139,0.307-0.216,0.457c-0.059,0.116-0.12,0.23-0.184,0.345c-0.088,0.157-0.181,0.312-0.278,0.465  c-0.065,0.104-0.13,0.206-0.2,0.308c-0.115,0.168-0.239,0.33-0.366,0.492c-0.064,0.081-0.124,0.165-0.19,0.244  c-0.199,0.238-0.409,0.472-0.635,0.694L82.458,182.308l-47.932,12.871l13.427-47.74L177.223,19.561  c1.917-1.895,4.414-2.84,6.911-2.84c2.534,0,5.068,0.975,6.99,2.92l20.726,20.974c0.545,0.552,1.002,1.156,1.39,1.79  c0.574,0.938,0.975,1.951,1.206,2.993c0.004,0.021,0.01,0.04,0.014,0.06c0.049,0.226,0.086,0.453,0.119,0.682  c0.008,0.06,0.017,0.118,0.024,0.178c0.026,0.211,0.045,0.424,0.058,0.636c0.004,0.077,0.007,0.153,0.009,0.23  c0.007,0.203,0.011,0.407,0.005,0.61C214.673,47.877,214.666,47.961,214.662,48.045z"></path>
+                        </svg>
+                    </div>
+                        <span class="top-nav-link-text">Blog</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="primary_nav_link" href="https://support.talosintelligence.com">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26px" height="20px" viewBox="0 0 123.17 159.292">
+                            <path d="M61.59,0,0,17.069v85.32c0,23.472,61.59,56.9,61.59,56.9s61.58-36.288,61.58-56.9V17.069Zm-.433,149.746C38.314,136.662,8.128,114.3,8.128,102.389V23.239l53.029-14.7Z" fill="#fff"></path>
+                        </svg>
+                        </div>
+                        <span class="top-nav-link-text">Support</span>
+                    </a>
+                </li>
+            </ul>
+
+
+<!--                <li class="nav-item desktop-hide">-->
+<!--                    <button class="search-button" data-ghost-search><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg> <span>Search Blog</span></button>-->
+<!--                </li>-->
+
+            <ul class="secondary-nav-list">
+                <div class="more-desktop-link">
+                    <div class="more-link-wrapper">
+                        <span class="more-nav-link">
+                            <div class="desktop-nav-icon more-menu-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="22px" height="16px" viewBox="0 0 22 16">
+                                <g id="menu-icon">
+                                    <path fill="#FFFFFF" d="M20.5,3h-19C0.672,3,0,2.329,0,1.5S0.672,0,1.5,0h19C21.328,0,22,0.671,22,1.5S21.328,3,20.5,3z"></path>
+                                    <path fill="#FFFFFF" d="M20.5,9.5h-19C0.672,9.5,0,8.828,0,8c0-0.829,0.672-1.5,1.5-1.5h19C21.328,6.5,22,7.171,22,8   C22,8.828,21.328,9.5,20.5,9.5z"></path>
+                                    <path fill="#FFFFFF" d="M20.5,16h-19C0.672,16,0,15.328,0,14.5S0.672,13,1.5,13h19c0.828,0,1.5,0.672,1.5,1.5S21.328,16,20.5,16z"></path>
+                                </g>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            More
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <li class="nav-item more-text-link">
+                    <div class="more-link-wrapper more-link-wrapper-mobile">
+                        <span class="more-nav-link">
+                            <div class="mobile-nav-icon"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" style="enable-background:new 0 0 20 20;" width="25px" height="25px" xml:space="preserve">
+                                <style type="text/css">
+                                    .white{fill:#FFFFFF;}
+                                </style>
+                                <path class="white" d="M19.4,17.1c0,0.1-0.1,0-0.2,0c0,0-1.3-0.9-2-1.4c-0.2-0.1-0.5-0.1-0.6,0.1c-0.3,0.3-0.6,0.8-0.9,1.3  c-0.1,0.2-0.1,0.5,0.1,0.6l2,1.5c0.1,0,0,0.1,0.1,0.2c0,0.1,0,0.1-0.1,0.2c-1.2,0.5-2.6,0.2-3.5-0.7c-0.8-0.9-1-2-0.7-3.1L4.5,6.5  c-1,0.3-2.3,0-3-0.9c-0.8-0.9-1.1-1.7-1-2.7c0-0.1,0-0.1,0.1-0.2c0.1,0,0.2,0.1,0.2,0.1l2,1.5C3,4.4,3.3,4.5,3.4,4.2  c0,0,0.5-0.8,0.9-1.3c0.1-0.2,0.1-0.5-0.1-0.6L2.3,0.9c-0.1,0,0-0.1-0.1-0.3c0-0.1,0-0.1,0.1-0.2C3.5-0.1,5,0.2,5.8,1.1  c0.8,0.9,1,2,0.7,3.1l9.1,9.3c1-0.3,2.3,0,3,0.9c0.7,0.7,0.9,1.5,0.9,2.5C19.5,16.9,19.5,17,19.4,17.1z"></path>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            Security Resources
+                            </span>
+                        </span>
+                    </div>
+                    <input class="sub-nav-trigger" id="security-resources-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="security-resources-sub-trigger">
+                        <div class="mobile-nav-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+                        </div>
+                    </label>
+                    <div class="sub-nav sub-nav-multiple-list sub-nav-multiple-list-left">
+                        <div class="sub-nav-multiple-wrapper">
+                            <div class="sub-nav-list-top-of-mobile-wrapper">
+                                <h1 class="sub-nav-list-header sub-nav-list-top-of-mobile">Security Resources</h1>
+                                <ul class="sub-nav-list">
+                                    <li class="desktop-hide">
+                                        <label class="subnav-back-button" for="security-resources-sub-trigger">BACK</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sub-nav-list-item-wrapper">
+                                <span class="sub-nav-desktop-header uppercase">Security Resources</span>
+                                <ul class="sub-nav-list">
+                                    <li>
+                                        <a href="https://talosintelligence.com/software"><span>Open Source Security Tools</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/categories"><span>Intelligence Categories Reference</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/secure-endpoint-naming"><span>Secure Endpoint Naming Reference</span>
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="desktop-hide subnav-overlay"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" style="enable-background:new 0 0 20 20;" width="25px" height="25px" xml:space="preserve">
+                        <style type="text/css">
+                            .white{fill:#FFFFFF;}
+                        </style>
+                                                <path class="white" d="M19.4,17.1c0,0.1-0.1,0-0.2,0c0,0-1.3-0.9-2-1.4c-0.2-0.1-0.5-0.1-0.6,0.1c-0.3,0.3-0.6,0.8-0.9,1.3  c-0.1,0.2-0.1,0.5,0.1,0.6l2,1.5c0.1,0,0,0.1,0.1,0.2c0,0.1,0,0.1-0.1,0.2c-1.2,0.5-2.6,0.2-3.5-0.7c-0.8-0.9-1-2-0.7-3.1L4.5,6.5  c-1,0.3-2.3,0-3-0.9c-0.8-0.9-1.1-1.7-1-2.7c0-0.1,0-0.1,0.1-0.2c0.1,0,0.2,0.1,0.2,0.1l2,1.5C3,4.4,3.3,4.5,3.4,4.2  c0,0,0.5-0.8,0.9-1.3c0.1-0.2,0.1-0.5-0.1-0.6L2.3,0.9c-0.1,0,0-0.1-0.1-0.3c0-0.1,0-0.1,0.1-0.2C3.5-0.1,5,0.2,5.8,1.1  c0.8,0.9,1,2,0.7,3.1l9.1,9.3c1-0.3,2.3,0,3,0.9c0.7,0.7,0.9,1.5,0.9,2.5C19.5,16.9,19.5,17,19.4,17.1z"></path>
+                        </svg>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="more-link-wrapper more-link-wrapper-mobile">
+                        <span class="more-nav-link">
+                            <div class="mobile-nav-icon"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" width="25px" height="25px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                                <style type="text/css">
+                                    .sticoncomment{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+                                </style>
+                                <path class="sticoncomment" d="M13.6,7.1H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,6.8,13.9,7.1,13.6,7.1L13.6,7.1z M13.6,9.4H6.4c-0.3,0-0.6-0.3-0.6-0.6s0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,9.2,13.9,9.4,13.6,9.4L13.6,9.4z M11.5,11.7H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6h5.1c0.3,0,0.6,0.3,0.6,0.6  C12.1,11.5,11.8,11.7,11.5,11.7z M15.8,3H4.2C3.5,3,3,3.5,3,4.2V17l2.8-2.3h10c0.6,0,1.2-0.5,1.2-1.2V4.2C17,3.5,16.5,3,15.8,3  L15.8,3z"></path>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            Media
+                            </span>
+                        </span>
+                    </div>
+                    <input class="sub-nav-trigger" id="media-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="media-sub-trigger">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                            </svg>
+                        </div>
+                    </label>
+                    <div class="sub-nav sub-nav-multiple-list sub-nav-multiple-list-middle">
+                        <div class="sub-nav-multiple-wrapper">
+                            <div class="sub-nav-list-top-of-mobile-wrapper">
+                                <h1 class="sub-nav-list-header sub-nav-list-top-of-mobile">Media</h1>
+                                <ul class="sub-nav-list">
+                                    <li class="desktop-hide">
+                                        <label class="subnav-back-button" for="media-sub-trigger">BACK</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sub-nav-list-item-wrapper">
+                                <span class="sub-nav-desktop-header uppercase">Media</span>
+                                <ul class="sub-nav-list">
+                                    <li>
+                                        <a href="https://blog.talosintelligence.com"><span>Talos Intelligence Blog</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://blog.talosintelligence.com/category/threat-source-newsletter/"><span>Threat Source Newsletter</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/podcasts/shows/beers_with_talos"><span>Beers with Talos Podcast</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/podcasts/shows/talos_takes"><span>Talos Takes Podcast</span>
+                                        </a></li>
+                                    <li>
+                                        <a target="_blank" href="https://www.youtube.com/channel/UCPZ1DtzQkStYBSG3GTNoyfg/featured"><span>Talos Videos</span>
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="desktop-hide subnav-overlay"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" width="25px" height="25px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                        <style type="text/css">
+                            .sticoncomment{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+                        </style>
+                        <path class="sticoncomment" d="M13.6,7.1H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,6.8,13.9,7.1,13.6,7.1L13.6,7.1z M13.6,9.4H6.4c-0.3,0-0.6-0.3-0.6-0.6s0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,9.2,13.9,9.4,13.6,9.4L13.6,9.4z M11.5,11.7H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6h5.1c0.3,0,0.6,0.3,0.6,0.6  C12.1,11.5,11.8,11.7,11.5,11.7z M15.8,3H4.2C3.5,3,3,3.5,3,4.2V17l2.8-2.3h10c0.6,0,1.2-0.5,1.2-1.2V4.2C17,3.5,16.5,3,15.8,3  L15.8,3z"></path>
+                        </svg>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="more-link-wrapper more-link-wrapper-mobile">
+                        <span class="more-nav-link">
+                            <div class="mobile-nav-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="25px" viewBox="0 0 55 55">
+                                <g>
+                                    <g class="mobile-nav-home">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M45.201,12.343c0.378,0.48,0.758,0.925,1.096,1.401    c2.975,4.207,4.543,8.876,4.494,14.044c-0.05,5.452-1.643,10.386-5.186,14.593c-3.484,4.133-7.929,6.73-13.182,7.895    c-6.313,1.398-12.216,0.275-17.695-3.131c-0.441-0.273-0.847-0.6-1.266-0.904c-0.11-0.078-0.208-0.174-0.337-0.287    c0.127-0.141,0.246-0.27,0.366-0.398c0.887-0.949,1.765-1.904,2.663-2.844c0.114-0.119,0.321-0.217,0.485-0.217    c3.658-0.006,7.318,0,10.975,0.008c3.458,0.006,6.913,0.02,10.369,0.02c0.957,0,1.871-0.193,2.62-0.844    c0.797-0.693,1.157-1.596,1.157-2.643c0.001-7.533,0.003-15.067-0.005-22.601c-0.002-0.309,0.088-0.524,0.3-0.743    C43.098,14.598,44.127,13.49,45.201,12.343"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M41.402,8.822c-0.99,1.027-1.994,2.021-2.935,3.072    c-0.312,0.35-0.616,0.416-1.036,0.415c-6.98-0.009-13.957-0.007-20.938-0.007c-2.039,0-3.561,1.514-3.561,3.557    c0,6.504,0.002,13.008,0.006,19.512c0.002,0.973,0.011,1.943,0.004,2.914c0,0.133-0.04,0.301-0.127,0.393    c-1.069,1.162-2.15,2.314-3.229,3.469c-0.021,0.023-0.052,0.039-0.109,0.08c-0.159-0.188-0.323-0.369-0.471-0.562    c-2.535-3.348-4.119-7.102-4.605-11.268c-0.61-5.229,0.194-10.229,2.835-14.839c2.669-4.664,6.655-7.805,11.618-9.75    c3.205-1.257,6.533-1.852,9.977-1.621c4.478,0.298,8.553,1.754,12.227,4.325c0.101,0.072,0.197,0.151,0.291,0.229    C41.364,8.755,41.374,8.778,41.402,8.822"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M39.799,12.47c0.873-0.911,1.749-1.829,2.676-2.797    c0.605,0.564,1.195,1.112,1.816,1.691c-0.941,0.985-1.817,1.903-2.703,2.83c-0.276-0.339-0.511-0.688-0.807-0.975    C40.492,12.941,40.145,12.728,39.799,12.47"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M10.35,43.279c0.969-1.016,1.885-1.977,2.76-2.893    c0.213,0.369,0.376,0.762,0.639,1.072c0.265,0.312,0.627,0.539,0.98,0.832c-0.853,0.891-1.713,1.791-2.624,2.746    C11.513,44.445,10.939,43.869,10.35,43.279"></path>
+                                    </g>
+                                </g>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            Company
+                            </span>
+                        </span>
+                    </div>
+                    <input class="sub-nav-trigger" id="company-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="company-sub-trigger">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+                        </div>
+                    </label>
+                    <div class="sub-nav sub-nav-multiple-list sub-nav-multiple-list-right">
+                        <div class="sub-nav-multiple-wrapper">
+                            <div class="sub-nav-list-top-of-mobile-wrapper">
+                                <h1 class="sub-nav-list-header sub-nav-list-top-of-mobile">Company</h1>
+                                <ul class="sub-nav-list">
+                                    <li class="desktop-hide">
+                                        <label class="subnav-back-button" for="company-sub-trigger">BACK</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sub-nav-list-item-wrapper">
+                                <span class="sub-nav-desktop-header uppercase">Company</span>
+                                <ul class="sub-nav-list">
+                                    <li>
+                                        <a href="https://talosintelligence.com/about"><span>About Talos</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/careers"><span>Careers</span>
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="desktop-hide subnav-overlay"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="25px" viewBox="0 0 55 55">
+                        <g>
+                            <g class="mobile-nav-home">
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M45.201,12.343c0.378,0.48,0.758,0.925,1.096,1.401    c2.975,4.207,4.543,8.876,4.494,14.044c-0.05,5.452-1.643,10.386-5.186,14.593c-3.484,4.133-7.929,6.73-13.182,7.895    c-6.313,1.398-12.216,0.275-17.695-3.131c-0.441-0.273-0.847-0.6-1.266-0.904c-0.11-0.078-0.208-0.174-0.337-0.287    c0.127-0.141,0.246-0.27,0.366-0.398c0.887-0.949,1.765-1.904,2.663-2.844c0.114-0.119,0.321-0.217,0.485-0.217    c3.658-0.006,7.318,0,10.975,0.008c3.458,0.006,6.913,0.02,10.369,0.02c0.957,0,1.871-0.193,2.62-0.844    c0.797-0.693,1.157-1.596,1.157-2.643c0.001-7.533,0.003-15.067-0.005-22.601c-0.002-0.309,0.088-0.524,0.3-0.743    C43.098,14.598,44.127,13.49,45.201,12.343"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M41.402,8.822c-0.99,1.027-1.994,2.021-2.935,3.072    c-0.312,0.35-0.616,0.416-1.036,0.415c-6.98-0.009-13.957-0.007-20.938-0.007c-2.039,0-3.561,1.514-3.561,3.557    c0,6.504,0.002,13.008,0.006,19.512c0.002,0.973,0.011,1.943,0.004,2.914c0,0.133-0.04,0.301-0.127,0.393    c-1.069,1.162-2.15,2.314-3.229,3.469c-0.021,0.023-0.052,0.039-0.109,0.08c-0.159-0.188-0.323-0.369-0.471-0.562    c-2.535-3.348-4.119-7.102-4.605-11.268c-0.61-5.229,0.194-10.229,2.835-14.839c2.669-4.664,6.655-7.805,11.618-9.75    c3.205-1.257,6.533-1.852,9.977-1.621c4.478,0.298,8.553,1.754,12.227,4.325c0.101,0.072,0.197,0.151,0.291,0.229    C41.364,8.755,41.374,8.778,41.402,8.822"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M39.799,12.47c0.873-0.911,1.749-1.829,2.676-2.797    c0.605,0.564,1.195,1.112,1.816,1.691c-0.941,0.985-1.817,1.903-2.703,2.83c-0.276-0.339-0.511-0.688-0.807-0.975    C40.492,12.941,40.145,12.728,39.799,12.47"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M10.35,43.279c0.969-1.016,1.885-1.977,2.76-2.893    c0.213,0.369,0.376,0.762,0.639,1.072c0.265,0.312,0.627,0.539,0.98,0.832c-0.853,0.891-1.713,1.791-2.624,2.746    C11.513,44.445,10.939,43.869,10.35,43.279"></path>
+                            </g>
+                        </g>
+                    </svg>
+                    </div>
+                </li>
+            </ul>
+            <div class="nav-search-wrapper" id="desktop-search-wrapper">
+                <button class="search-button desktop-search-button" data-ghost-search>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </button>
+            </div>
+        </div>
+
+
+
+    </div>
+</nav>
+
+    
+
+    <main id="site-main">
+        <div class="container-fluid px-0">
+            <div class="main-content-row">
+                <div class="main-content-col px-0">
+                    <div class="post-full-content">
+                        
+<article class="post tag-features ">
+        <div class="feature-image-wrapper my-5">
+            <figure>
+                <img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2024/01/GenericCiscoTalos-Header.png" alt="" class="img-fluid" />
+            </figure>
+        </div>
+
+    <h1 class="text-center">Exploring malicious Windows drivers (Part 1): Introduction to the kernel and drivers</h1>
+
+    <div class="text-center m-1">
+        <div class="post-author">
+            <span>By </span>
+                <a href="https://blog.talosintelligence.com/author/chris-neal/">Chris Neal</a>
+        </div>
+
+        <br/>
+        <time class="post-datetime" datetime="January 18, 2024 08:00">
+            Thursday, January 18, 2024 08:00
+        </time>
+
+        <div class="m-3">
+                            <a href="/category/features/" class="category primary-category">
+                                Features
+                            </a>
+                                </div>
+    </div>
+
+    <section class="post-content-wrapper mt-5">
+        <div class="post-content" id="post-content">
+            <p>Drivers have long been of interest to threat actors, whether they are exploiting vulnerable drivers or creating malicious ones. Malicious drivers are difficult to detect and successfully leveraging one can give an attacker full access to a system. Real-world examples can be found in our previous research into the driver-based browser hijacker <a href="https://blog.talosintelligence.com/undocumented-reddriver/">RedDriver</a> and <a href="https://blog.talosintelligence.com/old-certificate-new-signature/">HookSignTool</a> — a signature timestamp forging tool.</p><p>With the existence of malicious drivers, there is a need for those who can analyze identified samples. This analysis requires specific knowledge of the Windows operating system, which can be difficult to acquire. Windows drivers and the kernel can be overwhelming to learn about, as these topics are vast and highly complex. The documentation available on these subjects is daunting and difficult to navigate for newcomers, even for those with programming experience. This initial hurdle and steep learning curve create a high barrier of entry into the subject. To many, the kernel space seems to be an arcane and hidden part of the operating system.&nbsp;</p><p>This series is a high-level introduction and overview of drivers and the Windows kernel for those interested in malicious driver research, but do not have experience with them. However, previous experience with basic Windows concepts like processes, threads, the registry and common system files is recommended, along with experience or familiarity with disassemblers and C or C++ programming. In the future it may be advantageous to acquire experience with the Rust programming language, as Microsoft has slowly started to migrate portions of the Windows 11 kernel over to Rust.&nbsp;</p><p>This series intends to serve as a starting point for learning about malicious drivers and to lower the barrier of entry into the subject. Each portion of this series will build on the last, but first, we’ll introduce the basic concepts of drivers and the Windows kernel and the I/O system.&nbsp;</p><p>In the next entry, we’ll expand on the I/O system and driver operations. Eventually, we’ll get to topics like the security concepts surrounding drivers and how they can be used in a malicious context, and basic driver analysis and how to identify a malicious driver.</p><p>Links to external resources for further information on relevant subjects will be provided to supplement this blog post. It is highly recommended to explore the links, as this blog series is meant to serve as a broad introduction to concepts rather than detailed instruction. A list of recommended resources for further reading will also be provided.</p><h2 id="the-windows-kernel">The Windows kernel</h2><h4 id="kernel-mode-vs-user-mode">Kernel mode vs. User mode</h4><p>The Windows operating system (OS) is split into two layers or “<a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/gettingstarted/user-mode-and-kernel-mode">modes</a>:” User mode, where the files and applications that users interact with reside, and kernel mode, where kernel-mode drivers and the underpinnings of Windows perform the necessary functions to run the system. Splitting the operating system into two modes creates a highly controlled logical barrier between the average user and the Windows kernel. This barrier is necessary to maintain the integrity and security of the system, as the kernel is a highly complex and fragile environment.</p><figure class="kg-card kg-image-card"><img src="https://lh7-us.googleusercontent.com/n5900hIdMcDxyq3i_DzthxY7mGY1wlTfSGDePUqsK4SRNzLj61eGo7gJJhdW8jNm7OGCDoc60FF5SC794fKKbHDiEyom7LOJKpbEqfiNHaDhCwaaRzkQoAioaFe6AsWaOfmuVAkDV4tlHuaHg_DkRJk" class="kg-image" alt="" loading="lazy" width="624" height="703"></figure><p>In memory, the two modes are logically separated into two “<a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/gettingstarted/virtual-address-spaces">virtua<u>l</u></a>” address spaces. Within the user-mode address space, applications open a process when executed and run in separate private virtual memory spaces. If a user-mode process crashes, running in private memory spaces allows the system to continue operating and handle the crashed process accordingly. However, in kernel mode, drivers all run in the same virtual address space along with the operating system itself. If a driver mistakenly writes to the address of another driver or the operating system, the entire system crashes to prevent damage, resulting in what is commonly known as the “Blue Screen of Death” (BSOD). In other words, it's easy to crash the system with a driver, so they must be written carefully.</p><h3 id="kernel-concepts">Kernel concepts&nbsp;</h3><p>The Windows kernel is an intensely complex subject, warranting entire books and courses dedicated to different aspects of its functionality. It would not be possible to thoroughly describe the kernel in just one blog post. However, we will introduce the basics by discussing drivers and how they interact with the operating system. This will provide a foothold for starting the process of learning about the kernel and drivers in greater detail.&nbsp;</p><p>The kernel-mode layer is composed of an array of different components that work in concert to run the system. As the chart below shows, kernel mode is further divided into different layers.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://lh7-us.googleusercontent.com/mBU0SD3FbJZs3U33h7mU2bKX_qItae7UFh7gbdMw9Cj1dnPY2iqyI9493QK6gfS-IHlSduVoV2_2uURfKmmgHTHyy2J0bi1tRzkLVEsvLgoRo7ZWXUSa6C0OduzeD3u0pQDXVoX-qSus1XRjxe3acDo" class="kg-image" alt="" loading="lazy" width="624" height="852"><figcaption><i><em class="italic" style="white-space: pre-wrap;">Important note: The above chart is a simplified representation of the Windows kernel. Many components are not represented here as they are outside the scope of this blog post.</em></i></figcaption></figure><p>As can be seen above, drivers run in kernel mode rather than in user mode with applications. Kernel mode can be seen as the underlying infrastructure of the OS that is never directly interacted with by a typical user. Although the layers are logically separated, information is still exchanged between the layers through highly controlled channels.&nbsp;</p><p>In modern operating systems, a systems privilege model is typically divided into logical layers commonly represented as “rings.” Each ring represents a level of privilege, with the outermost ring being the least privileged and the center ring — the kernel — is the highest privileged. An application in the outer ring cannot directly perform actions that require the privilege of an inner ring. This model is referred to as “hierarchical protection domains” or simply as “protection rings.”</p><figure class="kg-card kg-image-card"><img src="https://lh7-us.googleusercontent.com/drv3-8z2dKgn1pSVD0e5p2dTwcKxcYQ-IPBvH0OuDCaHUUSFTwPpzHvJxnwKyqDHL9GJLDGDYo6KFUXbK3dz_eiG6acw1qxP5FoouROF1AlRl7oMv-Rnv4uK6mk9orCoKpEB2KNHJ2VwMkg5aal6gAs" class="kg-image" alt="" loading="lazy" width="624" height="557"></figure><p>The protection rings model is designed to prevent faults and malicious activity by restricting direct access to system resources. Any actions from an outer ring that require higher privileges must make a “system call” (also known as a syscall). Making a syscall begins a chain of functions that ultimately performs the intended action in the kernel at Ring 0. As an example, if an application were to execute the Windows API function <a href="https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-openprocess">OpenProcess</a>, the flow of execution would look like this in an x64 system:</p><figure class="kg-card kg-image-card"><img src="https://lh7-us.googleusercontent.com/FISJhvQgHvQ5xPWYDiPNIXhPTGQUIPTb1hrl7b0dXQZpFp1j2cv4esMzEJ0VuviVgO_-gFPgFg_F08WgakVIG8M7tmFVmfAI6BfB8CDcTceb2c_me6fSAPHbAC87blmbH-c0BDj3pNPSQ9nvI__gtpo" class="kg-image" alt="" loading="lazy" width="624" height="668"></figure><p>In Ring 3, each function in the flow of execution is effectively a wrapper for the next function in the chain, each one passing execution to the next. However, once <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/ntddk/nf-ntddk-ntopenprocess">NtOpenProcess</a> in ntdll.dll is called, the next step is making the actual syscall to the kernel which in turn executes KiSystemCall64 — the system service dispatcher.</p><p>Once it receives a syscall, KiSystemCall64 retrieves the address of the requested function from the System Service Descriptor Table (SSDT); a table of addresses of kernel functions that have been mapped for use by system calls. Once the appropriate address has been located, the requested function will execute.</p><h4 id="executive-layer">Executive layer</h4><p>Within kernel mode is another layer referred to as the “executive layer,” which contains several components that provide functions and services for drivers:</p><ul><li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/windows-kernel-mode-object-manager">Object management</a>.</li><li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/windows-kernel-mode-memory-manager">Memory management</a>.</li><li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/windows-kernel-mode-process-and-thread-manager">Process and thread management</a>.</li><li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/windows-kernel-mode-configuration-manager">Configuration management</a>.</li><li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/windows-kernel-mode-i-o-manager">Input/output (I/O) management</a>.</li><li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/windows-kernel-mode-plug-and-play-manager">Plug-and-Play management</a> (sub-system of I/O manager).</li><li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/windows-kernel-mode-power-manager">Power management</a> (sub-system of I/O manager).</li></ul><p>These are referred to as “managers” and each provides an interface to its various functions for drivers to use. Each manager is responsible for a specific area of functionality, such as object management or memory management. The manager names are fairly self-explanatory, but each will be discussed in this blog series when necessary. To further understand the various managers we recommend exploring the MSDN links provided in the list above.</p><p>A large portion of the behavior observed while analyzing malicious drivers will be related to functions that are provided by the executive layer manager interfaces. Later in this series, we will discuss how the I/O manager plays a large role in the operations of drivers, including malicious ones.&nbsp;</p><h4 id="hardware-abstraction-layer-hal">Hardware abstraction layer (HAL)</h4><p>Below the kernel sits the hardware abstraction layer (HAL) which can be described as an intermediary layer between the hardware and the rest of the OS. In Windows, the HAL is implemented in the aptly named “<a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/windows-kernel-mode-hal-library">hal.dll</a>.” The HAL facilitates communication between the OS and the physical hardware and provides a standard interface to processor resources. An important feature of the HAL is that it allows Windows to operate on different CPU architectures by implementing different versions of the HAL depending on the architecture.&nbsp;</p><p>As opposed to many DLLs, most of the <a href="https://www.geoffchappell.com/studies/windows/km/hal/api/index.htm?tx=4"><u>functions exported</u></a> by hal.dll are not intended to be called directly by a programmer via an application or driver but are intended to be used by other modules and components in the system. Most of the functions hal.dll exports are undocumented and many are obsolete holdovers from previous Windows versions.&nbsp;</p><h2 id="drivers">Drivers</h2><h4 id="what-do-drivers-do">What do drivers do?</h4><p>Drivers serve a critical background role in the Windows operating system, and most users will not directly interact with them past the initial installation or the occasional update. While the file structure may be similar to user-mode executables, they function quite differently. Unlike user-mode executables, drivers do not use the standard Win32 API routines, but rather “driver support routines,” which are provided by a set of <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/_kernel/#core-kernel-library-support-routines"><u>kernel mode libraries</u></a> and the interfaces of the manager components within the executive layer.&nbsp;</p><p>Generally, drivers operate in kernel mode and facilitate communication between the operating system and hardware or connected devices. However, this is an oversimplification as there are many types of drivers and not all interface directly with hardware, such as filter drivers and software drivers. Some drivers operate within user mode, although for this blog series, we will focus on kernel-mode drivers only. For more information on driver types, we recommend referring to the Microsoft <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/gettingstarted/what-is-a-driver-">documentation</a>.</p><p>In simple terms, a driver receives requests from clients and performs different actions in the system that are outside the direct capabilities of the client itself. These actions can include interfacing with hardware, manipulating threads or processes, network filtering and many others that require kernel-level access. In other words, drivers serve as conduits for instructions given to the operating system by bridging the gap between kernel mode and user mode.</p><h4 id="driver-files">Driver files</h4><p>From a superficial standpoint, a driver is essentially a dynamic link library (DLL) that has the “.sys” file extension, although it differs greatly from typical DLL files. A driver cannot be executed in the same manner as other executable files and the functions and libraries that a driver imports are not available for use in user-mode applications. To run a driver, it must first be loaded into the operating system through a specific process that will be discussed later on in this series.</p><p>In many cases, a .sys file will initially be contained within a “driver package” along with a setup information (INF) file, a catalog (.cat) file and any other files the driver might require. An <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/install/overview-of-inf-files">INF</a> (.inf) file is a text file that provides Windows with all the necessary information it needs to install the driver such as version info, device IDs, driver files and .cat files. An example and overview of INF files can be found <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/install/looking-at-an-inf-file">here</a> in Microsoft's documentation. A <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/install/catalog-files">catalog</a> file contains the file hashes of the contents of the driver package, which Windows uses to verify the integrity of the files contained within the package.</p><h2 id="how-do-drivers-work">How do drivers work?</h2><h5 id="windows-driver-model-and-frameworks">Windows Driver Model and Frameworks</h5><p>With the release of Windows 98 and Windows 2000, Microsoft released the <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/introduction-to-wdm">Windows Driver Model</a> (WDM), a fundamental model for device drivers that, among other features, eased the process of driver development. This new model made it easier to port a driver's source code between different versions of Windows, rather than having to write a separate driver for each version. This portability provided forward compatibility, which was not possible before its release. A WDM driver is not guaranteed to be backward compatible. However, older versions of Windows may not have the same features available.&nbsp;&nbsp;</p><p>One of the downsides to WDM was that it does not inherently handle <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/introduction-to-plug-and-play">Plug and Play</a> (PNP) or <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/introduction-to-power-management">Power Management</a> I/O requests, which increasingly became more common with hardware. This led to most developers copying boilerplate code that <em>could</em> handle these requests and using it in their drivers, which is a rather inefficient process.</p><p>To make writing a driver a more streamlined process, Microsoft introduced the <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/wdf/using-the-framework-to-develop-a-driver">Windows Driver Frameworks</a> (WDF), also formerly known as Windows Driver Foundation. Providing developers with WDF removed the need for boilerplate code that used to be required for each driver. However, WDF itself is not a singular framework. It actually contains two distinct frameworks, <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/wdf/kmdf-version-history">KMDF</a> (Kernel-mode Driver Framework) and <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/wdf/umdf-version-history">UMDF</a> (User-mode Driver Framework). WDF does not directly replace WDM, but provides a more efficient interface to WDM that simplifies some of the more complicated tasks.</p><p>Although Microsoft recommends using KMDF to develop kernel-mode drivers at the time of this writing, WDM can still be a viable option and is still the core model that Windows drivers are based upon. WDF adds a layer of abstraction to development which takes care of some of the more tedious aspects of writing a driver, however, it is beneficial to learn WDM, as it provides a clearer view of some of the actions that WDF performs behind the scenes. For this reason, the code examples in this blog series will be utilizing WDM. Additionally, it is valuable knowledge from a research and defense perspective, as it is still common for malicious drivers to be written using WDM. It is worth mentioning that in the case of developing production drivers, it is highly recommended to follow Microsoft’s <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/">guidance and standard practices</a>.&nbsp;</p><h5 id="driver-code">Driver code</h5><p>Generally, Windows drivers are written in C, although with <a href="https://visualstudio.microsoft.com/">Visual Studio</a> 2012 and <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/download-the-wdk">Windows Driver Kit</a> (WDK) 8, Microsoft began supporting C++. Some driver developers prefer C++, as it allows for easier resource management by using a concept called <a href="https://en.wikipedia.org/wiki/Resource_acquisition_is_initialization#:~:text=Resource%20acquisition%20is%20initialization%20(RAII,is%20tied%20to%20object%20lifetime.">Resource Acquisition is Initialization</a> (RAII). While RAII is outside the scope of this blog post, understanding what it is can be useful later on while learning about drivers.</p><p>An important difference between writing drivers and user-mode executables is that many of the memory operations for drivers must be done manually. In a user-mode application, any private allocated memory will be freed once the process terminates. Conversely, while writing a driver, memory must be manually allocated and freed accordingly, otherwise, it may result in a memory leak and cause unexpected issues. Special care should be taken to ensure all memory is appropriately handled while developing drivers.</p><p>To perform its basic operations, a driver must first implement its required “standard routines”. Without implementing each of these <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/introduction-to-standard-driver-routines">standard routines</a>, a driver could not function:</p><ul><li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/wdf/driverentry-for-kmdf-drivers">DriverEntry</a>: Starts the driver.</li><li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/wdm/nc-wdm-driver_add_device">AddDevice</a>: Create a device that will receive client requests.</li><li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/dispatchcreate--dispatchclose--and-dispatchcreateclose-routines">Dispatch routines</a>: Handles requests made to the driver.</li><li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/network/specifying-an-unload-function">Unload routine</a>: Shuts down the driver.</li></ul><h5 id="objects-in-windows">Objects in Windows</h5><p>Before diving into how a driver works, it is necessary to first introduce “objects,” one of the key concepts of the Windows kernel.&nbsp;</p><p>The Windows OS is <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/object-based"><u>object-based</u></a>, meaning the files, threads, executables and all the various components within the system are defined and represented as specific object types.&nbsp;</p><p>Conceptually, representing an object as a defined type provides standardization and portability, as the structure of a defined type will always be the same regardless of what is interacting with it. The data held <em>within</em> a structure may change, but the definition of the structure <em>itself</em> cannot be changed, as it would then be a different object type by definition.&nbsp;</p><blockquote><em>Note: Object-based is not to be confused with object-oriented</em><a href="https://en.wikipedia.org/wiki/Object-oriented_programming"><em><u> programming</u></em></a><em> (OOP). While the Windows OS does implement some OOP principles, one term should not be conflated with the other.</em></blockquote><p>As an example, the system represents the image of a loaded driver as an object type called <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/wdm/ns-wdm-_driver_object">DRIVER_OBJECT</a>, and the different members of the structure represent and contain its corresponding attributes, such as DriverSize and DriverName.&nbsp;</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://lh7-us.googleusercontent.com/sfXaxhdnxkqo_Q1i3WrdOs_xP77znztnPIg63eEMDFdeQVYFKvWJhAfjx5wBKT1fxJGWMy2gF4YvtSLlAzeHhmlREC8mgGHN6x2tHk0msnERvQ-al9LzmjAX1AEluCHsJ_wZ19FnI42J4dYl2BIsW38" class="kg-image" alt="" loading="lazy" width="624" height="252"><figcaption><i><em class="italic" style="white-space: pre-wrap;">DRIVER_OBJECT structure (from </em></i><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/wdm/ns-wdm-_driver_object"><u><i><em class="italic underline" style="white-space: pre-wrap;">MSDN</em></i></u></a><i><em class="italic" style="white-space: pre-wrap;">).</em></i></figcaption></figure><p>You will encounter many types of objects while learning about drivers or the kernel, and documentation for many can be found on the <a href="https://learn.microsoft.com/en-us/docs/">MSDN</a> website. MSDN is the most important resource available while learning about the Windows operating system. Additionally, searching for an object type or function name in a search engine can provide helpful information, as there are several undocumented functions and data types.&nbsp;</p><h5 id="driverentry">DriverEntry</h5><p>The most immediate requirement for a driver’s code is that it must have an entry routine, typically named <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/wdf/driverentry-for-kmdf-drivers"><em>DriverEntry</em></a>. The first routine that is called once a driver is loaded. There are multiple <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/driverentry-s-required-responsibilities">required responsibilities</a> that DriverEntry must take care of:&nbsp;</p><ul><li>Implementing the other standard routines.</li><li>Implementing dispatch routines and assigning their entry points.</li><li>Creating and initializing required resources, objects and devices.</li><li>Freeing memory that is no longer required.</li><li>Providing an <a href="https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-erref/596a1078-e883-4972-9bbc-49e60bebca55">NTSTATUS</a> return <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/driverentry-return-values">value</a>.&nbsp;&nbsp;&nbsp;</li></ul><p><em>DriverEntry</em> takes two parameters: DriverObject and RegistryPath.&nbsp;</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://lh7-us.googleusercontent.com/KENgiEPWlGu_lCKviIfoQEtT06F07EJSe3DLzkYpHbNFsIxLtCkuAe1ky8OYXYU5aM2Ixlmavtli9zPXBt0A1ROSu0h3IFqN8A6aqXMSAmOuJHkm4lZ8SabFXbtTqqEQy4SDkn7X8HHR8otbSVD_ZYA" class="kg-image" alt="" loading="lazy" width="624" height="108"><figcaption><i><em class="italic" style="white-space: pre-wrap;">DriverEntry prototype (from </em></i><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/wdf/driverentry-for-kmdf-drivers"><u><i><em class="italic underline" style="white-space: pre-wrap;">MSDN</em></i></u></a><i><em class="italic" style="white-space: pre-wrap;">).</em></i></figcaption></figure><p>The RegistryPath parameter is a pointer to a Unicode string that contains the registry path to the driver's “parameters” key in the registry, which is created when the driver is initially installed on the system. The key typically contains configuration information that the driver might require, depending on how the driver was written.&nbsp;</p><p>The DriverObject parameter is a pointer to a structure defined as <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/wdm/ns-wdm-_driver_object">DRIVER_OBJECT</a><strong>, </strong>which represents the kernel-mode driver itself and contains information about the driver within its members. DRIVER_OBJECT is partially opaque, meaning that not all of its members are viewable to the user.&nbsp;&nbsp;</p><p>The example below shows what a typical DriverEntry function might look like written in C++:</p><figure class="kg-card kg-image-card"><img src="https://lh7-us.googleusercontent.com/6EKP2OTlw1SSb3qGHLLhd4R07ep5VyUjf7oO_RlNn_iZsv9J5dDqsxoHiOyMjS0jHKTAyldTHRxWYJ-UkaLTxZNa29120LyGoRz9ozaV9MgPHnLCN7FVp4vZQXvp1MQ2q_7v0VVeyMvOdDA-wn4hpqo" class="kg-image" alt="" loading="lazy" width="624" height="175"></figure><p>In this example, DriverEntry simply returns an <a href="https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-erref/596a1078-e883-4972-9bbc-49e60bebca55" rel="noreferrer">NTSTATUS</a> value of STATUS_SUCCESS once it has finished executing.</p><p>As mentioned earlier, DriverEntry must also create and initialize the required resources, objects, or devices that the driver needs. For demonstration purposes, this driver needs to initialize and create a <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/introduction-to-device-objects">device object</a> and a <a href="https://learn.microsoft.com/en-us/windows/win32/fileio/symbolic-links">symbolic link</a>.</p><p>For a driver to receive requests from a client it must create a device object, which is represented as the structure <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/wdm/ns-wdm-_device_object">DEVICE_OBJECT</a>:&nbsp;</p><blockquote><em>“The DEVICE_OBJECT structure is used by the operating system to represent a device object. A device object represents a logical, virtual, or physical device for which a driver handles I/O requests.” - </em><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/wdm/ns-wdm-_device_object"><em><u>MSDN</u></em></a>&nbsp;</blockquote><p>A device object can be thought of as an interface for requests between a client and a driver. Instead of sending a request directly to a driver, a device object acts as the communication point for a client. <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/creating-a-device-object">Creating a device object</a> is done by initializing a <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/wdm/ns-wdm-_device_object">PDEVICE_OBJECT</a> structure and then passing it to the <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/wdm/nf-wdm-iocreatedevice">IoCreateDevice</a> function as the <em>DeviceObject </em>parameter. A name for the device represented as a Unicode string is also supplied and passed as the <em>DeviceName</em> parameter.&nbsp;</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://lh7-us.googleusercontent.com/xLOApqhvuqYo6jQM4zXPvbpuMmH15AukbbnnpR7rfIOd28pJj0rKf6TMdrewlyHE9t4jlS6qmu4MO_cf4Wzxvq1n6-AntwqZH5nnYJxirED9ZvoqE7dCcJEjJU7I0au5BV7A3lrB-etMEK15hn2z4wk" class="kg-image" alt="" loading="lazy" width="624" height="147"><figcaption><i><em class="italic" style="white-space: pre-wrap;">IoCreateDevice prototype (from </em></i><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/wdm/nf-wdm-iocreatedevice"><u><i><em class="italic underline" style="white-space: pre-wrap;">MSDN</em></i></u></a><i><em class="italic" style="white-space: pre-wrap;">).</em></i></figcaption></figure><p>Now, a symbolic link can be initialized and created using the device object name by calling the <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/wdm/nf-wdm-iocreatesymboliclink">IoCreateSymbolicLink</a> function. A symbolic link — or symlink — is linking a device object name to a specified name that will be viewable to users.&nbsp;</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://lh7-us.googleusercontent.com/rtm8T0545s1FoXY6c1rD9DETX0jTG5oMOTQdpl4ZG63fX32Kh-iQW26ObsAiTZMEnI0DN-C1vBaWp4jwi5QYpYknl_vfithJLh2GSaOZ3pnEzHCWnuwImQGUt98x35i_C53s4agZkL7pnBwLAu76vpE" class="kg-image" alt="" loading="lazy" width="624" height="380"><figcaption><i><em class="italic" style="white-space: pre-wrap;">Creating a device object and symbolic link.</em></i></figcaption></figure><p>After setting up the device object and symlink, the driver is now ready to implement its dispatch routines — the functions that process the different requests that a driver might receive.&nbsp;&nbsp;</p><h5 id="unload-routine">Unload routine</h5><p>Another required section of code is a DriverUnload routine, a function that determines what operations will be performed once a driver is unloaded. This will commonly include deleting device objects and symbolic links created by the driver or performing any cleanup that may be necessary.&nbsp;</p><p>In DriverEntry, the unload routine must be declared by assigning it to the DriverUnload member of the DriverObject structure. In this example, the device object and symlink will be deleted.</p><figure class="kg-card kg-image-card"><img src="https://lh7-us.googleusercontent.com/PFV4Z1AGkIV8xYZLmrgRYpGkNRDl7ystDXUfw2XKJNh5TG-QzmjgtFTqzu7c3Jk2mbW9-Wsd1ml-qgr7n_98hIh87AV5earqwjyQoCh-3AwDD1W4rJw6jsZi0DFUwJ7Pyf1VzUIyU1GTi5O5_UQOUtE" class="kg-image" alt="" loading="lazy" width="624" height="149"></figure><h4 id="dispatch-routines-and-function-codes">Dispatch routines and function codes</h4><p>An important member of the DRIVER_OBJECT structure to understand is MajorFunction. This member is defined as PDRIVER_DISPATCH – a pointer to a <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/wdm/nc-wdm-driver_dispatch">DRIVER_DISPATCH</a> structure –&nbsp; and contains an array of entry points for a driver's dispatch routines; effectively a list of operations that a given driver supports. Dispatch routines are functions within a driver that are called when it receives a system-defined “function code”, also known as a “MajorFunction code.” As can be seen in the list below, each one has the prefix “IRP_MJ_”:</p><p>Common MajorFunction codes:</p><ul><li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/irp-mj-close">IRP_MJ_CLOSE</a></li><li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/irp-mj-create">IRP_MJ_CREATE</a></li><li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/irp-mj-read">IRP_MJ_READ</a></li><li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/irp-mj-write">IRP_MJ_WRITE</a></li><li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/irp-mj-device-control">IRP_MJ_DEVICE_CONTROL</a></li><li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/irp-mj-power">IRP_MJ_POWER</a></li></ul><p>It is worth noting that while the majority of function codes start with “IRP_MJ_”, there are some that use the prefix “IRP_MN_” which indicates that it is a MinorFunction, a subordinate of a related MajorFunction. As an example, <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/irp-mn-set-power">IRP_MN_SET_POWER</a> is a subordinate of <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/irp-mj-power">IRP_MJ_POWER</a>. A more complete list of Major- and MinorFunction codes can be found <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/irp-major-function-codes">here</a> in the Microsoft documentation.</p><p>Function codes essentially serve as instructions for a driver to perform certain actions by request. To be able to handle function codes, a driver must assign a dispatch routine entry point to the appropriate MajorFunction code within the DriverObject structure. This assignment takes place in the DriverEntry routine, and as can be seen below, each dispatch routine is assigned to a specific function code:</p><figure class="kg-card kg-image-card"><img src="https://lh7-us.googleusercontent.com/q33kLuges3xCuWnU0AT3cFXvkvBmU9P0PMkNSCPriWj82Vjjl1i0E3JcDR51fgmJM0kRcYsQcgLpLDVC8cNQSoTkhnn6w7uvDlB5q_Hwhaq2M0Ay9lmT-QzSX_Q7ZvyqumBKJq2G_fDPxx892hMgadY" class="kg-image" alt="" loading="lazy" width="624" height="409"></figure><p>For example, if the driver in the example above receives a request that contains the function code <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/irp-mj-create">IRP_MJ_CREATE</a>, it would then execute the dispatch routine TestDriverCreate. Below is an example of what the TestDriverCreate routine could look like:</p><figure class="kg-card kg-image-card"><img src="https://lh7-us.googleusercontent.com/eErE7R-I3MCkfuBmNa6afEFw09W3-n0lkG5j0cUjqsg_z9rBRFEp7oc0K0MsQOQOWHzQKJjgzA-KtRVXszst4E1T1RerjWhujJliSUuGOBbU9l-gIiaksuRQqmF0Le7AuQgnPL3YNd_dXb-h_w_1A04" class="kg-image" alt="" loading="lazy" width="624" height="205"></figure><p>IRP_MJ_CREATE is an important function code as it must be handled by every driver, whether it makes use of it or not. In the TestDriverCreate function shown above, the function code is handled by doing nothing at all and then completing the request by calling <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/wdm/nf-wdm-iocompleterequest">IoCompleteRequest</a>. A more detailed explanation for handling requests will appear later in this blog series. For demonstration purposes this example intentionally has no functionality; however, in a real driver there might be actions performed when handling this function code.&nbsp;</p><p>The second parameter of the TestDriverCreate function, “PIRP Irp”, refers to a critical structure used in the operation of drivers: the I/O request packet, also known as an “IRP”.</p><h4 id="the-io-system-and-io-request-packets-irps">The I/O system and I/O request packets (IRPs)</h4><p>To manage the flow of requests to drivers, among other operations, Windows implements what is called the <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/overview-of-the-windows-i-o-model">I/O (input/output) system</a>. This system is responsible for facilitating the flow of data between drivers, peripheral devices and any client making a request to a driver. The data — including major function codes — is encapsulated in what is called an “IRP,” short for “I/O request packet,” represented as a structure defined as <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/wdm/ns-wdm-_irp"><u>_</u>IRP</a>.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://lh7-us.googleusercontent.com/XBFVXj7Pr3FCOf6_2dWAVLELXO4B2OQO04XvIg4Ix-Eevuy_LY5kkE1k8wSC3ujxck9Ar2rywc2YOwqj_9GXmA8-MtwkeZEwmVNzxgfNz267Frd_KkAOU4XHCovACyS1Lziv0gC_lq_ZdusMQRsqQ88" class="kg-image" alt="" loading="lazy" width="496" height="755"><figcaption><i><em class="italic" style="white-space: pre-wrap;">_IRP structure (from </em></i><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/wdm/ns-wdm-_irp"><u><i><em class="italic underline" style="white-space: pre-wrap;">MSDN</em></i></u></a><i><em class="italic" style="white-space: pre-wrap;">).</em></i></figcaption></figure><p>As part of the I/O system, the <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/overview-of-the-windows-i-o-model"><u>I/O manager</u></a> serves as an interface to kernel-mode drivers by creating and sending IRPs to drivers, which can contain a function code for the receiving driver to act upon. However, the I/O manager is not the only source of IRPs, as they can be created by other managers in the Executive layer, and in some cases, they may be created by a driver. Creating IRPs is not the only function of the I/O manager. It is also responsible for creating a driver object for each installed driver.</p><p>As mentioned earlier, the I/O system plays a large role in the operations of drivers, and it is worth becoming familiar with its components. In our next entry in this series, we will expand on the topic of IRPs and the I/O system and their relation to drivers. Device stacks and IOCTLs will also be introduced. Later in the series, we will also walk through the process of loading and debugging a driver, eventually leading to malicious driver behavior and analysis.&nbsp;</p><p>Until the next entry in this series, we recommend exploring the links provided throughout this blog. The basic concepts surrounding drivers and the kernel environment will become familiar with exposure to them, as well as reading the documentation or relevant research. Below is a list of recommended readings that will provide invaluable information on how drivers are written and the way they work.</p><h2 id="books">Books</h2><ul><li><em>Windows Kernel Programming</em> by Pavel Yosifovich<ul><li>Fantastic in-depth overview of Windows kernel programming.</li></ul></li><li><em>Windows NT Device Driver Development</em> by Peter Viscarole, W. Anthony Mason<ul><li>Older Windows device driver development book, but still has a large amount of currently relevant information.</li></ul></li><li><em>Windows Internals: Part 1 &amp; 2</em>&nbsp; by Pavel Yosifovich, Mark E. Russinovich, Alex Ionescu, David A. Solomon<ul><li>Official book of Windows internals by Microsoft. Does not focus on the kernel but is a good reference to own.</li></ul></li></ul>
+
+            
+        </div>
+    </section>
+    <div class="social-media-wrapper">
+    <h5>Share this post</h5>
+    <ul class="social-media-share-list">
+        <li>
+            <a class="share-facebook" title="Share this on Facebook" data-text="Exploring malicious Windows drivers (Part 1): Introduction to the kernel and drivers" data-href="https://blog.talosintelligence.com/exploring-malicious-windows-drivers-part-1-introduction-to-the-kernel-and-drivers/" rel="nofollow" target="_blank" href="https://www.facebook.com/sharer.php?u=https://blog.talosintelligence.com/exploring-malicious-windows-drivers-part-1-introduction-to-the-kernel-and-drivers/"></a>
+        </li>
+        <li>
+            <a class="share-x" title="Post This" data-text="Exploring malicious Windows drivers (Part 1): Introduction to the kernel and drivers" data-href="https://blog.talosintelligence.com/exploring-malicious-windows-drivers-part-1-introduction-to-the-kernel-and-drivers/" rel="nofollow" target="_blank" href="https://x.com/share?url=https://blog.talosintelligence.com/exploring-malicious-windows-drivers-part-1-introduction-to-the-kernel-and-drivers/"></a>
+        </li>
+        <li>
+            <a class="share-linkedin" title="Share this on LinkedIn" data-text="Exploring malicious Windows drivers (Part 1): Introduction to the kernel and drivers" data-href="https://blog.talosintelligence.com/exploring-malicious-windows-drivers-part-1-introduction-to-the-kernel-and-drivers/" rel="nofollow" target="_blank" href="https://www.linkedin.com/sharing/share-offsite/?url=https://blog.talosintelligence.com/exploring-malicious-windows-drivers-part-1-introduction-to-the-kernel-and-drivers/"></a>
+        </li>
+        <li>
+            <a class="share-reddit" title="Reddit This" data-text="Exploring malicious Windows drivers (Part 1): Introduction to the kernel and drivers" data-href="https://blog.talosintelligence.com/exploring-malicious-windows-drivers-part-1-introduction-to-the-kernel-and-drivers/" rel="nofollow" target="_blank" href="https://www.reddit/submit?url=https://blog.talosintelligence.com/exploring-malicious-windows-drivers-part-1-introduction-to-the-kernel-and-drivers/"></a>
+        </li>
+        <li>
+            <a class="share-email" title="Email This" href="mailto:?body=Exploring malicious Windows drivers (Part 1): Introduction to the kernel and drivershttps://blog.talosintelligence.com/exploring-malicious-windows-drivers-part-1-introduction-to-the-kernel-and-drivers/"></a>
+        </li>
+    </ul>
+</div></article>
+                    </div>
+                </div>
+                <div class="alt-layout-row-dk sidebar" id="side-bar">
+                            <h4>Related Content</h4>
+
+                                <div class="sidebar-snippet-wrapper">
+                                    <a href="/there-is-no-business-school-class-that-would-ever-sit-down-and-design-talos-2/">
+                                        <h3>&quot;There is no business school class that would ever sit down and design Talos&quot;</h3>
+                                        <span  class="preview-attributes">July 31, 2024 07:55</span>
+                                        <p>We look back on 10 years of Talos, in multiple interviews with Talos&#39; leaders.</p>
+                                    </a>
+                                </div>
+                                <div class="sidebar-snippet-wrapper">
+                                    <a href="/a-somewhat-complete-timeline-of-talos-history/">
+                                        <h3>A (somewhat) complete timeline of Talos’ history</h3>
+                                        <span  class="preview-attributes">July 24, 2024 06:00</span>
+                                        <p>Relive some of the major cybersecurity incidents and events that have shaped Talos over the past 10 years.</p>
+                                    </a>
+                                </div>
+                                <div class="sidebar-snippet-wrapper">
+                                    <a href="/badgerboard-research/">
+                                        <h3>Badgerboard: A PLC backplane network visibility module</h3>
+                                        <span  class="preview-attributes">March 5, 2024 15:30</span>
+                                        <p>Analysis of the traffic between networked devices has always been of interest since devices could even communicate with one another. 
+
+As the complexity of networks grew, the more useful dedicated traffic analysis tools became. Major advancements have been made over the years with tools like Snort or Wireshark, but these</p>
+                                    </a>
+                                </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <footer id="footer">
+    <div class="container-fluid px-0">
+        <div class="row footer_nav_wrapper mx-0">
+            <div class="col-xl-10 col-12">
+                <div class="multi-col-list-wrapper">
+                    <ul class="footer-parent-list">
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6><a href="https://talosintelligence.com/reputation">Intelligence Center</a></h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/reputation_center">Intelligence Search</a></li>
+                                <li><a href="https://talosintelligence.com/reputation_center/email_rep">Email &amp; Spam Trends</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6><a href="https://talosintelligence.com/vulnerability_info">Vulnerability Research</a></h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/vulnerability_reports">Vulnerability Reports</a></li>
+                                <li><a href="https://talosintelligence.com/ms_advisories">Microsoft Advisories</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                             <ul>
+                                <li>
+                                    <h6><a href="https://talosintelligence.com/incident_response">Incident Response</a></h6>
+                                </li>
+                                <li>
+                                    <a href="https://talosintelligence.com/incident_response/services#reactive-services">Reactive Services</a>
+                                </li>
+                                <li>
+                                    <a href="https://talosintelligence.com/incident_response/services#proactive-services">Proactive Services</a>
+                                </li>
+                                <li>
+                                    <a href="https://talosintelligence.com/incident_response/contact">Emergency Support</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Security Resources</h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/software">Open Source Security Tools</a></li>
+                                <li><a href="https://talosintelligence.com/categories">Intelligence Categories Reference</a></li>
+                                <li><a href="https://talosintelligence.com/secure-endpoint-naming">Secure Endpoint Naming Reference</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Media</h6>
+                                </li>
+                                <li><a href="https://blog.talosintelligence.com">Talos Intelligence Blog</a></li>
+                                <li><a href="https://blog.talosintelligence.com/category/threat-source-newsletter/">Threat Source Newsletter</a></li>
+                                <li><a href="https://talosintelligence.com/podcasts/shows/beers_with_talos">Beers with Talos Podcast</a></li>
+                                <li><a href="https://talosintelligence.com/podcasts/shows/talos_takes">Talos Takes Podcast</a></li>
+                                <li><a target="_blank" href="https://www.youtube.com/channel/UCPZ1DtzQkStYBSG3GTNoyfg/featured">Talos Videos</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Support</h6>
+                                </li>
+                                <li><a href="https://support.talosintelligence.com">Support Documentation</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Company</h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/about">About Talos</a></li>
+                                <li><a href="https://talosintelligence.com/careers">Careers</a></li>
+                                <li><a target="_blank" href="https://www.cisco.com/c/en/us/products/security/product-listing.html">Cisco Security</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xl-2 col-12 connect_social">
+                <div class="connect-footer-section-wrapper">
+                    <h6>Follow us</h6>
+                    <ul>
+                        <li>
+                            <a target="_blank" href="https://x.com/talossecurity"><div class="footer-media-icon" id="footer-media-icon-x"></div>
+                            </a></li>
+                        <li>
+                            <a target="_blank" href="https://www.youtube.com/channel/UCPZ1DtzQkStYBSG3GTNoyfg/featured"><div class="footer-media-icon" id="footer-media-icon-youtube"></div>
+                            </a></li>
+                        <li>
+                            <a target="_blank" href="https://www.linkedin.com/company/cisco-talos-intelligence-group/"><div class="footer-media-icon" id="footer-media-icon-linkedin"></div>
+                            </a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row mx-0">
+            <div class="col-12 footer_corporate">
+                <a target="_blank" href="http://tools.cisco.com/security/center/home.x"><img alt="Cisco" src="https://blog.talosintelligence.com/assets/images/logo_cisco_white.svg">
+                </a><p class="copyright">
+                ©
+                <span id='current-year'></span>
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                <a target="_blank" class="underline" href="http://www.cisco.com/web/siteassets/legal/privacy_full.html">Privacy Policy.</a>
+            </p>
+            </div>
+        </div>
+    </div>
+</footer>
+    <script>
+  function coverageView() {
+    const coverageTable = document.getElementById('coverage-block');
+    const sidebar = document.getElementById('side-bar');
+    const postContent = document.getElementById('post-content');
+    const currentWidth = window.innerWidth;  
+  
+    if (coverageTable && sidebar && postContent) {
+      if (currentWidth < 1000) {
+        // For viewport less than 1000px, append to post content
+        postContent.appendChild(coverageTable);
+      } else {
+        // For viewport 1000px and wider, check for subscribe button
+        const subscribeButton = sidebar.querySelector('.subscribe-button');
+        
+        if (subscribeButton) {
+          // Insert coverage block after the subscribe button
+          subscribeButton.insertAdjacentElement('afterend', coverageTable);
+        } else {
+          // No subscribe button found, prepend to top of sidebar
+          sidebar.prepend(coverageTable);
+        }
+      }
+    }
+  }
+  
+  window.addEventListener("resize", coverageView);
+  window.addEventListener("load", coverageView);
+
+
+  (function() {
+    Array.from(document.querySelectorAll("a")).filter(a => {
+        return a.hostname && a.hostname !== location.hostname
+    }).forEach(a => a.setAttribute('target', '_blank'))
+})();
+</script>
+
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://blog.talosintelligence.com/assets/js/jquery-3.6.0.min.js?v=_xUj-3OJU5yExlq6"></script>
+<script src="https://blog.talosintelligence.com/assets/js/popper.min.js?v=ZvOgfh-ptkpoa2Y4"></script>
+<script src="https://blog.talosintelligence.com/assets/js/resize-styles.js?v=iB-0rQKwd6f_Dllp"></script>
+<script src="https://blog.talosintelligence.com/assets/js/bootstrap.bundle.min.js?v=JRXjfu4x9e89ZZsh"></script>
+<script src="https://blog.talosintelligence.com/assets/js/date.js?v=TlJWK1qtzFQeV9lL"></script>
+<script src="https://blog.talosintelligence.com/assets/js/prism.js?v=roQly8fYXhzQ4Osd"></script>
+<script src="https://cdn.jsdelivr.net/npm/ghost-theme-utils@latest/dist/js/ghost-theme-utils.min.js" async defer></script>
+<script src="https://blog.talosintelligence.com/assets/js/chart.min.js?v=dEAdc43T4D7l37O2"></script>
+<script src="https://blog.talosintelligence.com/assets/js/x-scroll.js?v=DuV8f5nlfWlGIAUr"></script>
+<script src="https://blog.talosintelligence.com/assets/js/2025_yir_chart.js?v=OSqUj45x6XXKWbZW"></script>
+
+
+</body>
+
+</html>

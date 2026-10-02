@@ -1,0 +1,691 @@
+
+
+
+Should you care about an “AI slowdown?”
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Should you care about an “AI slowdown?”
+
+
+By 
+David J. Bianco
+
+
+
+            Thursday, September 17, 2026 14:00
+        
+
+
+                            Threat Source newsletter
+                        
+
+
+
+
+Welcome to this week’s edition of the Threat Source newsletter. There’s been a lot of talk recently about slowing down the pace of AI development. And yes, there are legitimate moral, ethical, geopolitical, and safety concerns with the use of AI. It’s not clear yet whether an AI slowdown could happen, let alone whether it should (hat tip to Dr. Ian Malcolm). I admit, I’m not really qualified to opine on the impacts unrestricted AI might have on bioterrorism, the balance of international power, or even our chances of being eaten by dinosaurs. What I can tell you, though, is that any sort of “AI slowdown” is not likely to have much of an impact on cybersecurity.  There are a few reasons to think this. The most obvious one is that models are already really good. We’re at the point where the newest models bring only incremental improvements in cybersecurity capabilities. Arguably, they’ve been getting better so fast that our ability to use them effectively for defensive tasks hasn’t kept up. On the offensive side, practically every recent model is already able to mine decades of tech debt to uncover an uncomfortable number of vulnerabilities. Instead of chasing model improvements, our best strategy might be to improve our agentic harnesses and frameworks, essentially giving us better capabilities with our existing models. Maybe even more importantly, many of us are still not eating our cyber-vegetables. I get it: AI is hot. It’s sexy. It brings the money and the board’s attention. But no matter how great your AI is, if it’s sitting on the typical two-and-a-half-legged stool that is most IT environments, you’re still going to have compromises and breaches no matter how much AI you throw at it. We’ve known for a long time now that good security depends on things like asset and role inventories, identity management, least privilege, and segmented networks. They’re not as shiny as AI, but they’re more impactful in terms of making it harder for threats both human and agentic to successfully carry out attacks. This is not to say that you shouldn’t be looking at AI until you’ve solved all your other security problems; just don’t look only to AI. Regardless of whether we slow the pace of AI development or not, we still have plenty of places to make significant security improvements using the models we already have access to. By making better use of what we already have and by investing in well-known security fundamentals, we can come out ahead no matter whether AI development accelerates, slows down, or is trapped in a kitchen with a pack of hungry velociraptors. P.S. I’ve got some speaking engagements coming up soon (see below). If you see me, don’t be shy about asking for a Pyramid of Pain sticker or button! The one big thing  Cisco Talos is sharing new insights into Japan's ransomware landscape, where incidents rose nearly 5 percent in the first half of 2026. This increase is driven by two prominent actors: "The Gentlemen," a rapidly expanding ransomware-as-a-service group, and "Qilin," which is leveraging generative AI to streamline its attacks. Both groups are aggressively targeting small- and medium-sized enterprises with double-extortion tactics. Why do I care? Adversaries are working smarter, not harder. Qilin uses large language models to generate destructive scripts, accelerating their attack speed and lowering the barrier to entry. Meanwhile, The Gentlemen relies on legitimate red-teaming frameworks like AdaptixC2 to blend in, making lateral movement difficult to detect. This combination of AI-driven efficiency and stealthy techniques puts organizations at risk of data theft and operational disruption. So now what? Strictly manage internet-accessible devices and lock down credentials. Start by auditing VPNs, disabling unused features, and enforcing multi-factor authentication (MFA) across all administrative and third-party accounts. Ensure you have robust endpoint detection to monitor for suspicious remote access or attempts to disable backups. Finally, update your defenses using the Snort rules provided in the full blog to help detect and block this activity. Top security headlines of the week Indonesia hit by Android banking app-cloning campaign Indonesia has emerged as an early testing ground for a new Android banking malware technique that uses Google's Work Profile feature to help fraudsters evade banking security controls. (Dark Reading) Apple patches 200 vulnerabilities with new iOS 27, macOS Golden Gate 27 releases  Approximately 100 of the resolved security defects affect both the mobile and desktop operating systems. The fixes target more than 90 platform components, including AppleKeyStore, Authentication Services, Foundation, Safe Browsing, Sandbox, Security, TCC, and WebKit. (SecurityWeek) ClickFix attacks are tricking Mac and Windows users into hacking themselves Hackers posting fake ads on Reddit, linking to a page that looks like HBO Max but contains a ClickFix lure that tricks people into hacking themselves. The hackers compromised the official HBO Max’s account on Reddit that was then used to post hundreds of fake but real-looking adverts to the news-sharing site. (TechCrunch) VectraRAT can hack Windows enterprises for $250 per month VectraRAT, a previously undocumented platform that includes a full-featured Windows implant, command-and-control (C2) infrastructure, and an operator panel built entirely from scratch rather than based on existing malware (Dark Reading) Can’t get enough Talos? Securing the unpatchable in an age of AI-driven vulnerabilities Advances in AI technology will continue to identify vulnerabilities that in some circumstances are difficult, or effectively impossible, to patch. Appropriate network segmentation, rigorous visibility, and the deployment of NGFW/IPS combinations can provide a powerful compensatory layer. Beers with Talos: Martin Lee would like everyone to go outside Martin may have stopped being a Talos employee, but we made him come on the podcast anyway to talk about abandoning his early career aspirations of researching human viruses so he could play on the internet — and also running very long distances in crazy conditions. Upcoming events where you can find Talos LABSCon (Sept. 16 – 19) Scottsdale, AZ VB (Oct. 14 – 16) Seville, Spain CAMLIS (Oct. 21 – 23) Arlington, VA SecurityOnion Conference (Oct. 23) Augusta, GA BsidesAugusta (Oct. 24) Augusta, GA SAINTCON (Oct. 26 – 30) Provo, UT Most prevalent malware files from Talos telemetry over the past week SHA256: 9f1f11a708d393e0a4109ae189bc64f1f3e312653dcf317a2bd406f18ffcc507  MD5: 2915b3f8b703eb744fc54c81f4a9c67f  Talos Rep: https://talosintelligence.com/talos_file_reputation?s=9f1f11a708d393e0a4109ae189bc64f1f3e312653dcf317a2bd406f18ffcc507  Example Filename: VID001.exe  Detection Name: W32.9F1F11A708-100.SBX.TG** SHA256: c4dd71e347a076ba24bdd2d0ee532ef991c1ef25a2431a19f850942ba2ab16b2 MD5: 9a47c4d379998ade2f8f99e23a630c06  Talos Rep: https://talosintelligence.com/talos_file_reputation?s=c4dd71e347a076ba24bdd2d0ee532ef991c1ef25a2431a19f850942ba2ab16b2 Example Filename: WCInstaller_NonAdmin.exe  Detection Name: W32.C4DD71E347-95.SBX.TG SHA256: 9896a6fcb9bb5ac1ec5297b4a65be3f647589adf7c37b45f3f7466decd6a4a7f  MD5: 38de5b216c33833af710e88f7f64fc98  Talos Rep: https://talosintelligence.com/talos_file_reputation?s=9896a6fcb9bb5ac1ec5297b4a65be3f647589adf7c37b45f3f7466decd6a4a7f Example Filename: SECOH-QAD.exe  Detection Name: Win.Tool.Procpatcher::1201 SHA256: 38d053135ddceaef0abb8296f3b0bf6114b25e10e6fa1bb8050aeecec4ba8f55  MD5: 41444d7018601b599beac0c60ed1bf83  Talos Rep: https://talosintelligence.com/talos_file_reputation?s=38d053135ddceaef0abb8296f3b0bf6114b25e10e6fa1bb8050aeecec4ba8f55 Example Filename: content.js  Detection Name: W32.38D053135D-95.SBX.TG SHA256: fed979f93bcaf4e73ebd25748093a92095d5109cbd01d55f97bdc50ce509ad2f MD5: 207d9d891ac756b2bfad88aba5682c65  Talos Rep: https://talosintelligence.com/talos_file_reputation?s=fed979f93bcaf4e73ebd25748093a92095d5109cbd01d55f97bdc50ce509ad2f Example Filename: AAct.exe  Detection Name: W32.FED979F93B-95.SBX.TG**
+
+
+
+Share this post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Subscribe to Threat Source
+Related Content
+
+
+Give yourself room to be human
+October 1, 2026 14:00
+In this week’s edition, Amy reflects on the importance of prioritizing family and personal well-being over the pressure to remain constantly productive.
+
+
+
+
+Trust and the enticing consultancy offer
+September 24, 2026 14:00
+In this week’s newsletter Martin muses over a very suspicious elicitation over social media and the true value of trust within the cyber ecosystem. Hubris might be the real vulnerability that the cyber industry must worry about.
+
+
+
+
+We've got one word for it, and it's usually the wrong one
+September 10, 2026 14:00
+In this week's Threat Source newsletter, Joe explores why the word "burnout" often fails to capture the true toll of working in the cybersecurity industry and why we need better language to address it.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

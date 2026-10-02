@@ -1,0 +1,883 @@
+
+
+
+Alexander Chiu - Cisco Talos Blog (Page 7)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Alexander Chiu
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+August 4, 2016 14:09
+Vulnerability Spotlight: Multiple Arbitrary Code Execution Vulnerabilities Identified in Hancom Hangul Office
+Vulnerabilities discovered by the Talos Vulnerability Development Team. Blog post authored by Alex Chiu.
+
+Securing your network and environment is a challenging task, especially when organizations need to keep track of various software packages that are used on a daily basis. Pro
+
+
+                    By
+                
+Alexander Chiu
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+June 14, 2016 16:26
+Microsoft Patch Tuesday - June 2016
+This post was authored by Warren Mercer.
+
+Patch Tuesday for June 2016 has arrived where Microsoft releases their monthly set of security bulletins designed to address security vulnerabilities within their products. This month's release contains 17 bulletins addressing 44 vuln
+
+
+                    By
+                
+Alexander Chiu
+
+
+
+                            Patch Tuesday
+                        
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+June 1, 2016 12:52
+Research Spotlight: ROPMEMU - A Framework for the Analysis of Complex Code-Reuse Attacks
+The post was authored by Mariano Graziano.
+
+
+Executive Summary Attacks have grown more and more complex over the years. The evolution of the threat landscape has demonstrated this where adversaries have had to modify their tactics to bypass mitigations and compromise systems in r
+
+
+                    By
+                
+Alexander Chiu
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+May 17, 2016 12:39
+Making Friends By Proactive Notification
+This blog post is authored by Tazz.
+
+Talos has continued to observe ongoing attacks leveraging the use of JBoss exploits. Through our research efforts, we have identified an additional 600 or so compromised hosts which contain webshells due to adversaries compromising unpatched J
+
+
+                    By
+                
+Alexander Chiu
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+May 10, 2016 16:39
+Microsoft Patch Tuesday - May 2016
+This post is authored by Holger Unterbrink.
+
+Patch Tuesday for May 2016 has arrived where Microsoft releases their monthly set of security bulletins designed to address security vulnerabilities within their products. This month's release contains 16 bulletins addressing 33 vu
+
+
+                    By
+                
+Alexander Chiu
+
+
+
+                            Patch Tuesday
+                        
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+April 15, 2016 11:29
+Widespread JBoss Backdoors a Major Threat
+Recently a large scale ransomware campaign delivering Samsam changed the threat landscape for ransomware delivery. Targeting vulnerabilities in servers to spread ransomware is a new dimension to an already prolific threat. Due to information provided from our Cisco IR Services Te
+
+
+                    By
+                
+Alexander Chiu
+
+
+
+                            ransomware
+                        
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+April 12, 2016 16:12
+Microsoft Patch Tuesday - April 2016
+Bulletins MS16-037 through MS16-040 and bulletins MS16-042, MS16-050 are rated as critical in this month's release.
+
+MS16-037 is related to six vulnerabilities in Internet Explorer. The most severe vulnerabilities allow an attacker to craft a website that executes arbitrary
+
+
+                    By
+                
+Alexander Chiu
+
+
+
+                            Patch Tuesday
+                        
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+April 7, 2016 16:24
+News Flash! Another Adobe Flash Zero-day Vulnerability Spotted in the Wild
+In today's threat landscape, Adobe Flash Player unfortunately remains an attractive attack vector for adversaries to exploit and compromise systems. Over the past year, Talos has observed several instances where adversaries have identified zero-day vulnerabilities and exploit
+
+
+                    By
+                
+Alexander Chiu
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+March 8, 2016 15:00
+Microsoft Patch Tuesday - March 2016
+Patch Tuesday for March 2016 has arrived. Today, Microsoft has released their monthly set of security bulletins designed to address security vulnerabilities within their products. This month’s release contains 13 bulletins addressing 44 vulnerabilities. Five bulletins are rated c
+
+
+                    By
+                
+Alexander Chiu
+
+
+
+                            Patch Tuesday
+                        
+
+
+
+ 
+
+
+
+
+
+
+← Prev
+
+
+Next →
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

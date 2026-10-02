@@ -1,0 +1,690 @@
+
+
+
+Microsoft Patch Tuesday for September 2026 — Snort rules and prominent vulnerabilities
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Microsoft Patch Tuesday for September 2026 — Snort rules and prominent vulnerabilities
+
+
+By 
+Cisco Talos
+
+
+
+            Tuesday, September 8, 2026 18:16
+        
+
+
+                            Patch Tuesday
+                        
+
+
+
+
+Microsoft has released its monthly security update for September 2026, which includes 973 vulnerabilities affecting a range of products, including 113 that Microsoft marked as "critical."Microsoft notes that 2 of the vulnerabilities disclosed this month have been exploited in the wild:CVE-2026-81963 affects Windows Update Stack. CVE-2026-81963 is a elevation of privilege vulnerability associated with Improper Link Resolution Before File Access ('Link Following') and Improper Access Control and has a CVSS base score of 7.8.CVE-2026-85880 affects Windows Advanced Local Procedure Call (ALPC). CVE-2026-85880 is a elevation of privilege vulnerability associated with Heap-based Buffer Overflow and Use of Uninitialized Resource and has a CVSS base score of 7.8.Out of 113 "critical" vulnerabilities, 82 are remote code execution (RCE) vulnerabilities.Microsoft considers exploitation of the following vulnerabilities more likely:CVE-2026-69676 affects Windows Kerberos. CVE-2026-69676 is a remote code execution vulnerability associated with Authentication Bypass by Capture-replay and has a CVSS base score of 8.8.CVE-2026-69852 affects Windows Routing and Remote Access Service (RRAS). CVE-2026-69852 is a remote code execution vulnerability associated with Heap-based Buffer Overflow and has a CVSS base score of 7.5.CVE-2026-72957 affects Windows Deployment Services. CVE-2026-72957 is a remote code execution vulnerability associated with Heap-based Buffer Overflow and has a CVSS base score of 7.8.CVE-2026-69854 affects Spring Cloud Azure. CVE-2026-69854 is a elevation of privilege vulnerability associated with Improper Authentication and has a CVSS base score of 9.0.CVE-2026-83501 affects Windows Virtualization-Based Security (VBS). CVE-2026-83501 is a information disclosure vulnerability associated with Out-of-bounds Read and has a CVSS base score of 5.5.CVE-2026-70585 affects Windows Services for NFS ONCRPC XDR Driver. CVE-2026-70585 is a remote code execution vulnerability associated with Use After Free and has a CVSS base score of 7.0.CVE-2026-69730 affects Windows DNS Server. CVE-2026-69730 is a remote code execution vulnerability associated with Use After Free and has a CVSS base score of 9.8.CVE-2026-69857 affects Azure Cosmos DB. CVE-2026-69857 is a spoofing vulnerability associated with Authorization Bypass Through User-Controlled Key and has a CVSS base score of 8.5.Microsoft considers exploitation of the following vulnerabilities less likely:CVE-2026-69845 and CVE-2026-72979 affect Windows DHCP Server. CVE-2026-69845 is a remote code execution vulnerability associated with Heap-based Buffer Overflow and Improper Input Validation and has a CVSS base score of 9.8. CVE-2026-72979 is a remote code execution vulnerability associated with Use After Free and has a CVSS base score of 9.8.CVE-2026-58599 affects HEVC Video Extensions. CVE-2026-58599 is a remote code execution vulnerability associated with Heap-based Buffer Overflow and has a CVSS base score of 7.8.CVE-2026-65772 affects Microsoft Dynamics 365 On-Premises. CVE-2026-65772 is a remote code execution vulnerability associated with Deserialization of Untrusted Data and has a CVSS base score of 8.8.CVE-2026-66302 affects Skype for Business. CVE-2026-66302 is a remote code execution vulnerability associated with External Control of File Name or Path and has a CVSS base score of 9.8.CVE-2026-67631, CVE-2026-65669, and CVE-2026-67378 affect Microsoft SQL Server. CVE-2026-67631 is a remote code execution vulnerability associated with Heap-based Buffer Overflow and has a CVSS base score of 8.8. CVE-2026-65669 is a elevation of privilege vulnerability associated with Improper Neutralization of Special Elements in Output Used by a Downstream Component ('Injection') and has a CVSS base score of 9.6. CVE-2026-67378 is a remote code execution vulnerability associated with Untrusted Pointer Dereference and has a CVSS base score of 8.5.CVE-2026-69499, CVE-2026-70296, CVE-2026-73023, CVE-2026-77495, and CVE-2026-73013 affect Windows Imaging Component. CVE-2026-69499 is a remote code execution vulnerability associated with Integer Overflow or Wraparound and has a CVSS base score of 8.8. CVE-2026-70296 is a remote code execution vulnerability associated with Out-of-bounds Write and has a CVSS base score of 9.8. CVE-2026-73023 is a remote code execution vulnerability associated with Heap-based Buffer Overflow and has a CVSS base score of 8.8. CVE-2026-77495 is a remote code execution vulnerability associated with Heap-based Buffer Overflow and has a CVSS base score of 8.8. CVE-2026-73013 is a remote code execution vulnerability associated with Heap-based Buffer Overflow and has a CVSS base score of 8.8.CVE-2026-69501, CVE-2026-83939, CVE-2026-69906, and CVE-2026-69846 affect Windows Secure Kernel Mode. CVE-2026-69501 is a elevation of privilege vulnerability associated with Untrusted Pointer Dereference and has a CVSS base score of 7.0. CVE-2026-83939 is a elevation of privilege vulnerability associated with Untrusted Pointer Dereference and has a CVSS base score of 8.2. CVE-2026-69906 is a elevation of privilege vulnerability associated with Heap-based Buffer Overflow and has a CVSS base score of 8.2. CVE-2026-69846 is a elevation of privilege vulnerability associated with Integer Overflow or Wraparound and has a CVSS base score of 8.2.CVE-2026-69590 and CVE-2026-72959 affect Windows Routing and Remote Access Service (RRAS). CVE-2026-69590 is a remote code execution vulnerability associated with Heap-based Buffer Overflow and has a CVSS base score of 9.8. CVE-2026-72959 is a remote code execution vulnerability associated with Heap-based Buffer Overflow and has a CVSS base score of 8.8.CVE-2026-69601 affects Microsoft Windows Media Foundation. CVE-2026-69601 is a remote code execution vulnerability associated with Heap-based Buffer Overflow and has a CVSS base score of 8.8.CVE-2026-72981 affects IP Helper. CVE-2026-72981 is a remote code execution vulnerability associated with Use After Free and has a CVSS base score of 8.1.CVE-2026-73006 affects DirectWrite. CVE-2026-73006 is a remote code execution vulnerability associated with Stack-based Buffer Overflow and has a CVSS base score of 8.8.CVE-2026-73009 affects Windows Secure Socket Tunneling Protocol (SSTP). CVE-2026-73009 is a remote code execution vulnerability associated with Use After Free and has a CVSS base score of 9.8.CVE-2026-73010 and CVE-2026-78444 affect Microsoft Failover Cluster. CVE-2026-73010 is a remote code execution vulnerability associated with Use After Free and has a CVSS base score of 9.8. CVE-2026-78444 is a remote code execution vulnerability associated with Untrusted Pointer Dereference and has a CVSS base score of 8.1.CVE-2026-73017 affects Graphics Kernel. CVE-2026-73017 is a remote code execution vulnerability associated with Heap-based Buffer Overflow and has a CVSS base score of 7.5.CVE-2026-77493 affects Windows Graphics Component. CVE-2026-77493 is a remote code execution vulnerability associated with Double Free and has a CVSS base score of 9.8.CVE-2026-83498 affects Windows Virtualization-Based Security (VBS) Enclave. CVE-2026-83498 is a elevation of privilege vulnerability associated with Untrusted Pointer Dereference and has a CVSS base score of 7.8.CVE-2026-69530, CVE-2026-78449, and CVE-2026-78450 affect Windows Reliable Multicast Transport Driver (RMCAST). CVE-2026-69530 is a remote code execution vulnerability associated with Use After Free and has a CVSS base score of 8.1. CVE-2026-78449 is a remote code execution vulnerability associated with Use After Free and has a CVSS base score of 8.1. CVE-2026-78450 is a remote code execution vulnerability associated with Use After Free and has a CVSS base score of 8.1.CVE-2026-81948, CVE-2026-81950, CVE-2026-81951, CVE-2026-81959, and CVE-2026-81953 affect Microsoft Excel. CVE-2026-81948 is a remote code execution vulnerability associated with Heap-based Buffer Overflow and has a CVSS base score of 7.8. CVE-2026-81950 is a remote code execution vulnerability associated with Double Free and has a CVSS base score of 7.8. CVE-2026-81951 is a remote code execution vulnerability associated with Heap-based Buffer Overflow and has a CVSS base score of 7.8. CVE-2026-81959 is a remote code execution vulnerability associated with Heap-based Buffer Overflow and Integer Overflow or Wraparound and has a CVSS base score of 7.8. CVE-2026-81953 is a remote code execution vulnerability associated with Stack-based Buffer Overflow and has a CVSS base score of 7.8.CVE-2026-81354 affects Windows Hello. CVE-2026-81354 is a elevation of privilege vulnerability associated with Heap-based Buffer Overflow and has a CVSS base score of 8.2.CVE-2026-78525, CVE-2026-78520, CVE-2026-78519, and CVE-2026-78509 affect Microsoft Office Outlook. CVE-2026-78525 is a remote code execution vulnerability associated with Use After Free and has a CVSS base score of 8.8. CVE-2026-78520 is a remote code execution vulnerability associated with Out-of-bounds Read and has a CVSS base score of 6.5. CVE-2026-78519 is a remote code execution vulnerability associated with Use of Uninitialized Resource and has a CVSS base score of 8.8. CVE-2026-78509 is a remote code execution vulnerability associated with Heap-based Buffer Overflow and has a CVSS base score of 9.8.CVE-2026-81952 and CVE-2026-78510 affect Microsoft Word. CVE-2026-81952 is a remote code execution vulnerability associated with Heap-based Buffer Overflow and has a CVSS base score of 8.8. CVE-2026-78510 is a remote code execution vulnerability associated with Heap-based Buffer Overflow and has a CVSS base score of 9.8.CVE-2026-69595 and CVE-2026-78445 affect Windows Services for NFS ONCRPC XDR Driver. CVE-2026-69595 is a remote code execution vulnerability associated with Use After Free and has a CVSS base score of 9.8. CVE-2026-78445 is a remote code execution vulnerability associated with Use After Free and has a CVSS base score of 9.8.CVE-2026-73018 and CVE-2026-72986 affect Graphic Fonts. CVE-2026-73018 is a remote code execution vulnerability associated with Heap-based Buffer Overflow and has a CVSS base score of 8.8. CVE-2026-72986 is a remote code execution vulnerability associated with Heap-based Buffer Overflow and Integer Overflow or Wraparound and has a CVSS base score of 8.8.CVE-2026-70203 affects Windows Media Player. CVE-2026-70203 is a remote code execution vulnerability associated with Heap-based Buffer Overflow and has a CVSS base score of 8.8.CVE-2026-69632, CVE-2026-77898, CVE-2026-69285, and CVE-2026-78505 affect Microsoft Office. CVE-2026-69632 is a remote code execution vulnerability associated with Use After Free and has a CVSS base score of 8.8. CVE-2026-77898 is a remote code execution vulnerability associated with Heap-based Buffer Overflow and has a CVSS base score of 7.5. CVE-2026-69285 is a remote code execution vulnerability associated with Heap-based Buffer Overflow and has a CVSS base score of 8.8. CVE-2026-78505 is a remote code execution vulnerability associated with Heap-based Buffer Overflow and has a CVSS base score of 8.8.CVE-2026-69813 and CVE-2026-77505 affect Windows DNS Server. CVE-2026-69813 is a remote code execution vulnerability associated with Use After Free and has a CVSS base score of 8.1. CVE-2026-77505 is a remote code execution vulnerability associated with Use After Free and has a CVSS base score of 8.1.CVE-2026-78439 affects Microsoft Office Graphics Component. CVE-2026-78439 is a remote code execution vulnerability associated with Stack-based Buffer Overflow and has a CVSS base score of 8.8.CVE-2026-81355 affects Virtual Hard Disk (VHD) Miniport Driver. CVE-2026-81355 is a remote code execution vulnerability associated with Heap-based Buffer Overflow and has a CVSS base score of 7.5.CVE-2026-77504 affects Microsoft Office Word. CVE-2026-77504 is a remote code execution vulnerability associated with Double Free and has a CVSS base score of 8.8.CVE-2026-69649 affects Raw Image Extension. CVE-2026-69649 is a remote code execution vulnerability associated with Heap-based Buffer Overflow and has a CVSS base score of 8.8.CVE-2026-69797, CVE-2026-69767, and CVE-2026-69678 affect Microsoft Office PowerPoint. CVE-2026-69797 is a remote code execution vulnerability associated with Use After Free and has a CVSS base score of 8.8. CVE-2026-69767 is a remote code execution vulnerability associated with Use After Free and has a CVSS base score of 8.8. CVE-2026-69678 is a remote code execution vulnerability associated with Use After Free and has a CVSS base score of 8.8.CVE-2026-72983 affects Internet Connection Sharing (ICS). CVE-2026-72983 is a remote code execution vulnerability associated with Use After Free and has a CVSS base score of 9.8.CVE-2026-69518 affects Windows Remote Desktop. CVE-2026-69518 is a remote code execution vulnerability associated with Heap-based Buffer Overflow and has a CVSS base score of 8.8.CVE-2026-69712 affects Windows Key Distribution Center. CVE-2026-69712 is a remote code execution vulnerability associated with Use After Free and has a CVSS base score of 8.8. Microsoft considers exploitation of the following vulnerabilities unlikely:CVE-2026-69603, CVE-2026-72961, and CVE-2026-80083 affect Windows Hyper-V. CVE-2026-69603 is a remote code execution vulnerability associated with Heap-based Buffer Overflow and has a CVSS base score of 8.8. CVE-2026-72961 is a elevation of privilege vulnerability associated with Heap-based Buffer Overflow and has a CVSS base score of 8.2. CVE-2026-80083 is a remote code execution vulnerability associated with Untrusted Pointer Dereference and has a CVSS base score of 8.8.CVE-2026-69710, CVE-2026-69725, CVE-2026-69740, CVE-2026-69784, CVE-2026-69799, CVE-2026-69820, CVE-2026-69864, and CVE-2026-72980 affect Windows Hello. CVE-2026-69710 is a elevation of privilege vulnerability associated with Concurrent Execution using Shared Resource with Improper Synchronization ('Race Condition') and has a CVSS base score of 7.5. CVE-2026-69725 is a elevation of privilege vulnerability associated with Double Free and has a CVSS base score of 7.8. CVE-2026-69740 is a elevation of privilege vulnerability associated with Use After Free and has a CVSS base score of 8.8. CVE-2026-69784 is a elevation of privilege vulnerability associated with Use After Free and has a CVSS base score of 8.8. CVE-2026-69799 is a elevation of privilege vulnerability associated with Concurrent Execution using Shared Resource with Improper Synchronization ('Race Condition') and has a CVSS base score of 7.8. CVE-2026-69820 is a elevation of privilege vulnerability associated with Heap-based Buffer Overflow and has a CVSS base score of 8.2. CVE-2026-69864 is a elevation of privilege vulnerability associated with Use After Free and has a CVSS base score of 7.8. CVE-2026-72980 is a security feature bypass vulnerability associated with Uncontrolled Search Path Element and has a CVSS base score of 4.4.CVE-2026-69769 affects Windows HTTP Print Provider. CVE-2026-69769 is a remote code execution vulnerability associated with Heap-based Buffer Overflow and has a CVSS base score of 9.8.CVE-2026-69829 affects Windows Shell. CVE-2026-69829 is a remote code execution vulnerability associated with Heap-based Buffer Overflow and has a CVSS base score of 9.8.CVE-2026-69860 affects Windows Imaging Component. CVE-2026-69860 is a remote code execution vulnerability associated with Heap-based Buffer Overflow and has a CVSS base score of 8.8.CVE-2026-69874 affects Windows ALPC. CVE-2026-69874 is a elevation of privilege vulnerability associated with Untrusted Pointer Dereference and has a CVSS base score of 8.2.CVE-2026-69890 affects Windows Virtual Trusted Platform Module. CVE-2026-69890 is a elevation of privilege vulnerability associated with Use After Free and has a CVSS base score of 7.5.CVE-2026-70586 affects Windows Paint. CVE-2026-70586 is a remote code execution vulnerability associated with Heap-based Buffer Overflow and has a CVSS base score of 8.8.CVE-2026-72950 affects Windows Routing and Remote Access Service (RRAS). CVE-2026-72950 is a remote code execution vulnerability associated with Heap-based Buffer Overflow and has a CVSS base score of 8.8.CVE-2026-72954 affects Windows Deployment Services. CVE-2026-72954 is a remote code execution vulnerability associated with Use After Free and has a CVSS base score of 7.5.CVE-2026-72958 affects Windows Credential Guard. CVE-2026-72958 is a elevation of privilege vulnerability associated with Double Free and has a CVSS base score of 8.2.CVE-2026-72960 affects Windows Media Player. CVE-2026-72960 is a remote code execution vulnerability associated with Heap-based Buffer Overflow and has a CVSS base score of 8.8.CVE-2026-72962 affects Windows USB Video Driver. CVE-2026-72962 is a elevation of privilege vulnerability associated with Heap-based Buffer Overflow and has a CVSS base score of 8.2.CVE-2026-72982 affects Windows Netlogon. CVE-2026-72982 is a remote code execution vulnerability associated with Stack-based Buffer Overflow and has a CVSS base score of 9.8.CVE-2026-72987 affects Windows DNS. CVE-2026-72987 is a remote code execution vulnerability associated with Use After Free and has a CVSS base score of 8.1.CVE-2026-81949 affects Microsoft Excel. CVE-2026-81949 is a remote code execution vulnerability associated with Integer Overflow or Wraparound and has a CVSS base score of 7.8.CVE-2026-81352 affects Web Media Extensions. CVE-2026-81352 is a remote code execution vulnerability associated with Heap-based Buffer Overflow and has a CVSS base score of 8.8.CVE-2026-81955 affects Windows Graphics Component. CVE-2026-81955 is a remote code execution vulnerability associated with Heap-based Buffer Overflow and has a CVSS base score of 8.8.CVE-2026-69858 and CVE-2026-69827 affect Windows DNS Server. CVE-2026-69858 is a remote code execution vulnerability associated with Use After Free and has a CVSS base score of 8.1. CVE-2026-69827 is a remote code execution vulnerability associated with Concurrent Execution using Shared Resource with Improper Synchronization ('Race Condition') and Use After Free and has a CVSS base score of 8.1.CVE-2026-67643 and CVE-2026-67636 affect Microsoft SQL Server. CVE-2026-67643 is a remote code execution vulnerability associated with Heap-based Buffer Overflow and has a CVSS base score of 8.8. CVE-2026-67636 is a remote code execution vulnerability associated with Out-of-bounds Read and has a CVSS base score of 8.5.CVE-2026-69579 affects Windows Message Queuing. CVE-2026-69579 is a remote code execution vulnerability associated with Use After Free and has a CVSS base score of 9.8.CVE-2026-70351 affects Microsoft WebP Image Extension. CVE-2026-70351 is a remote code execution vulnerability associated with Integer Overflow or Wraparound and Heap-based Buffer Overflow and has a CVSS base score of 8.8. Other critical vulnerabilities:CVE-2026-62916 affects Microsoft Entra ID. CVE-2026-62916 is a elevation of privilege vulnerability associated with Authentication Bypass Using an Alternate Path or Channel and has a CVSS base score of 9.1.CVE-2026-83941 affects Entra ID. CVE-2026-83941 is a elevation of privilege vulnerability associated with Missing Authorization and has a CVSS base score of 9.9.CVE-2026-65818 affects Power Automate. CVE-2026-65818 is a elevation of privilege vulnerability associated with Server-Side Request Forgery (SSRF) and has a CVSS base score of 8.5.CVE-2026-80098 affects Copilot Studio. CVE-2026-80098 is a elevation of privilege vulnerability associated with Improper Verification of Cryptographic Signature and has a CVSS base score of 9.3.CVE-2026-83711 affects Microsoft Azure Active Directory B2C. CVE-2026-83711 is a elevation of privilege vulnerability associated with Authorization Bypass Through User-Controlled Key and has a CVSS base score of 10.0.CVE-2026-70178 affects Microsoft Fabric. CVE-2026-70178 is a elevation of privilege vulnerability associated with Missing Authorization and has a CVSS base score of 8.5.CVE-2026-70352 affects Azure AI Language. CVE-2026-70352 is a elevation of privilege vulnerability associated with Missing Authentication for Critical Function and has a CVSS base score of 10.0.CVE-2026-62906 affects Microsoft Discovery Studio. CVE-2026-62906 is a information disclosure vulnerability associated with Improper Neutralization of Special Elements in Data Query Logic and has a CVSS base score of 7.4. Talos would also like to highlight the following "important" vulnerabilities as Microsoft has determined that their exploitation is "more likely:"CVE-2026-68846: Windows Kernel Elevation of Privilege VulnerabilityCVE-2026-68876: Windows Program Compatibility Assistant Service Elevation of Privilege VulnerabilityCVE-2026-68880: Windows Win32k Elevation of Privilege VulnerabilityCVE-2026-68884: Windows Kernel Elevation of Privilege VulnerabilityCVE-2026-69274: Windows Win32k Elevation of Privilege VulnerabilityCVE-2026-69277: Microsoft Local Security Authority (LSA) Server Elevation of Privilege VulnerabilityCVE-2026-69301: Windows Win32k Elevation of Privilege VulnerabilityCVE-2026-69305: Microsoft Windows Search Component Elevation of Privilege VulnerabilityCVE-2026-69310: Windows DNS Elevation of Privilege VulnerabilityCVE-2026-69337: Windows Registry Elevation of Privilege VulnerabilityCVE-2026-69364: Windows Print Spooler Components Elevation of Privilege VulnerabilityCVE-2026-69385: Windows TCP/IP Elevation of Privilege VulnerabilityCVE-2026-69391: Windows Broker Infrastructure Service Elevation of Privilege VulnerabilityCVE-2026-69406: Windows Kernel Information Disclosure VulnerabilityCVE-2026-69436: Windows Error Reporting Elevation of Privilege VulnerabilityCVE-2026-69450: Windows Error Reporting Elevation of Privilege VulnerabilityCVE-2026-69451: Windows Management Instrumentation Elevation of Privilege VulnerabilityCVE-2026-69459: Windows Power Dependency Coordinator Elevation of Privilege VulnerabilityCVE-2026-69466: Windows Kernel Elevation of Privilege VulnerabilityCVE-2026-69473: Windows Kernel Elevation of Privilege VulnerabilityCVE-2026-69478: Windows Device Association Service Elevation of Privilege VulnerabilityCVE-2026-69498: Windows Win32k Elevation of Privilege VulnerabilityCVE-2026-69525: Remote Desktop Services Remote Code Execution VulnerabilityCVE-2026-69541: Virtual Hard Disk (VHD) Miniport Driver Elevation of Privilege VulernabilityCVE-2026-69585: Microsoft Windows Search Component Elevation of Privilege VulnerabilityCVE-2026-69600: Microsoft Windows Search Component Elevation of Privilege VulnerabilityCVE-2026-69605: Microsoft Install Service Elevation of Privilege VulnerabilityCVE-2026-69623: Windows HTTP Print Provider Remote Code Execution VulnerabilityCVE-2026-69714: Windows Device Association Service Elevation of Privilege VulnerabilityCVE-2026-69723: Windows Kernel Information Disclosure VulnerabilityCVE-2026-69757: Windows TCP/IP Elevation of Privilege VulnerabilityCVE-2026-69777: Windows DHCP Client Elevation of Privilege VulnerabilityCVE-2026-69779: Windows Win32k Elevation of Privilege VulnerabilityCVE-2026-69832: Win32k Information Disclosure VulnerabilityCVE-2026-69911: Microsoft Windows Search Component Elevation of Privilege VulnerabilityCVE-2026-69921: Windows Print Spooler Components Elevation of Privilege VulnerabilityCVE-2026-70289: Windows Win32k Elevation of Privilege VulnerabilityCVE-2026-70342: Windows Ancillary Function Driver for WinSock Elevation of Privilege VulnerabilityCVE-2026-70562: Windows Audio Service Elevation of Privilege VulnerabilityCVE-2026-70583: Windows Core Messaging Elevation of Privilege VulnerabilityCVE-2026-71340: Windows File History Service Elevation of Privilege VulnerabilityCVE-2026-72936: Windows SMB Client Remote Code Execution VulnerabilityCVE-2026-77500: Windows Device Association Service Elevation of Privilege VulnerabilityCVE-2026-78454: Windows CD-ROM Driver Information Disclosure VulnerabilityCVE-2026-69460: Windows Modern Device Management (MDM) Elevation of Privilege VulnerabilityCVE-2026-69467: Microsoft Graphics Component Elevation of Privilege VulnerabilityCVE-2026-80093: Windows Cloud Files Mini Filter Driver Elevation of Privilege VulnerabilityCVE-2026-72940: Windows Schannel Remote Code Execution VulnerabilityCVE-2026-71343: Windows Remote Access Connection Manager Remote Code Execution VulnerabilityCVE-2026-69366: Windows Kernel Elevation of Privilege VulnerabilityA complete list of all the other vulnerabilities Microsoft disclosed this month is available on its update page. In response to these vulnerability disclosures, Talos is releasing a new Snort ruleset that detects attempts to exploit some of them. Please note that additional rules may be released at a future date, and current rules are subject to change pending additional information. Cisco Secure Firewall customers should use the latest update to their ruleset by updating their SRU. Open-source Snort Subscriber Ruleset customers can stay up to date by downloading the latest rule pack available for purchase on Snort.org.Snort 2 rule coverage: SIDs 67011-67032 and 67036-67084.Snort 3 rule coverage: SIDs 301619-301629, 301632-301655, and 67046.
+
+
+
+Share this post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Content
+
+
+Microsoft Patch Tuesday for August 2026 — Snort rules and prominent vulnerabilities
+August 11, 2026 18:21
+Microsoft has released its monthly security update for August 2026, which includes 421 vulnerabilities affecting a range of products, including 62 that Microsoft marked as "critical."
+
+
+
+
+Microsoft Patch Tuesday for July 2026 — Snort rules and prominent vulnerabilities
+July 14, 2026 16:27
+Microsoft has released its monthly security update for July 2026, which includes 622 vulnerabilities affecting a range of products, including 57 that Microsoft marked as "critical."
+
+
+
+
+Microsoft Patch Tuesday for June 2026 — Snort rules and prominent vulnerabilities
+June 9, 2026 17:21
+Microsoft Patch Tuesday details for June 2026.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

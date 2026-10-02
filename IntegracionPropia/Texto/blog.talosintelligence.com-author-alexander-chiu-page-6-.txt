@@ -1,0 +1,864 @@
+
+
+
+Alexander Chiu - Cisco Talos Blog (Page 6)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Alexander Chiu
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+March 3, 2017 17:05
+Malware Round-up For The Week of Feb 27 - Mar 3
+Today, Talos is publishing a glimpse into the most prevalent threats we've observed over the past week. Unlike our other posts, this post isn't meant to be an in-depth analysis. Instead, this post will summarize the threats we've observed by highlighting key behavior
+
+
+                    By
+                
+Alexander Chiu
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+February 16, 2017 20:22
+Cisco Coverage for 'Magic Hound'
+'Magic Hound' is the code name used to reference a seemingly limited series of malware distribution campaigns that were observed targeting organizations in Saudi Arabia as well as organizations with business interests in Saudi Arabia. Similar to other malware distribution
+
+
+                    By
+                
+Alexander Chiu
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+January 10, 2017 15:28
+Microsoft Patch Tuesday - January 2017
+Happy New Year to our readers! Today marks the first Patch Tuesday of 2017 with Microsoft releasing their monthly set of bulletins designed to address security vulnerabilities. This month's release is relatively light with 4 bulletins addressing 3 vulnerabilities. Two bulleti
+
+
+                    By
+                
+Alexander Chiu
+
+
+
+                            Patch Tuesday
+                        
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+January 6, 2017 11:30
+Cisco Coverage for 'GRIZZLY STEPPE'
+Over the past several weeks, there have been ongoing discussions regarding cyber attacks that have occurred against several political, governmental, and private sector entities in the United States. These discussions have revolved around allegations that these cyber attacks were
+
+
+                    By
+                
+Alexander Chiu
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+December 14, 2016 13:00
+Vulnerability Spotlight: Local Denial of Service Bug in NVIDIA Windows Kernel Mode Drivers Fixed
+Bugs are inevitable in complex systems and software. Operating systems and device drivers are prime examples where layers of abstraction help hide complexity and allow hardware and software to communicate. Thus, when bugs are identified that could compromise, disrupt, or bring sy
+
+
+                    By
+                
+Alexander Chiu
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+November 17, 2016 23:20
+Vulnerability Spotlight: Multiple File Parsing Bugs in HDF5 File Library Patched
+These vulnerabilities were discovered by the Talos Vulnerability Development Team.
+
+Today, Talos is disclosing the discovery of four vulnerabilities which have been identified in HDF5. HDF5 is a file format that is designed to be used for storage and organization of large amounts
+
+
+                    By
+                
+Alexander Chiu
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+October 31, 2016 15:53
+Vulnerability Spotlight: Remotely Exploitable Bugs in Memcached Identified and Patched
+Vulnerabilities identified by Aleksandar Nikolich of Talos.
+
+Our efforts to make the internet safer and protect our customers involves, amongst many other things, researching and identifying zero-day vulnerabilities in the third-party software. As part of our effort to find and r
+
+
+                    By
+                
+Alexander Chiu
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+October 11, 2016 16:57
+Microsoft Patch Tuesday - October 2016
+Patch Tuesday has once again arrived! Microsoft's monthly release of security bulletins to address vulnerabilities provides fixes for 37 newly disclosed security flaws. Today's release sees a total of 10 bulletins with five of the bulletins rated critical and address vuln
+
+
+                    By
+                
+Alexander Chiu
+
+
+
+                            Patch Tuesday
+                        
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+August 10, 2016 13:46
+Vulnerability Spotlight: MS Edge/Windows PDF Library Arbitrary Code Execution Vulnerability Identified and Patched
+Vulnerability discovered by Aleksandar Nikolic of Cisco Talos.
+
+Yesterday, Microsoft released its monthly set of security bulletins and patches for various flaws within currently supported products. Two of the bulletins in yesterday's release are rated critical and address CV
+
+
+                    By
+                
+Alexander Chiu
+
+
+
+                            Patch Tuesday
+                        
+
+
+
+ 
+
+
+
+
+
+
+← Prev
+
+
+Next →
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,836 @@
+
+
+
+Matt Olney - Cisco Talos Blog (Page 3)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Matt Olney
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+July 7, 2010 14:19
+Yes, Virginia, There is Cyberwar
+DEAR EDITOR:
+
+I have been in security for 8 years.  Some of my friends say there is no such thing as cyberwar.  My manager says, "If you see it on the VRT Blog then it's so"  Please tell me the truth; is there cyberwar?
+
+Virginia O'Hanlon.
+115 West Ninety-Fifth
+
+
+                    By
+                
+Matt Olney
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+June 15, 2010 09:17
+National Cyber-Security Emergency and Phenomenal Cosmic Power or Lieberman -- EARN IT
+So…you’re at the bar and across the room you see this incredible [insert whatever floats your boat here].You spend an inappropriate amount of your time watching this person and your mind starts to fill in the details that the dark environment masks.  Then they turn around walk to
+
+
+                    By
+                
+Matt Olney
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+April 22, 2010 04:34
+A New Detection Framework
+We just completed a talk here in Dubai on some detection capability research the VRT has been doing.  The subtitle of the presentation, "What would you do with a pointer and a size?" pretty much sums up the potential of the project.  It all started last December at the
+
+
+                    By
+                
+Matt Olney
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+April 5, 2010 15:00
+Matt's Primer for PDF Analysis
+For obvious reasons, the VRT has been spending a lot of time on the PDF format lately. While the attack researchers have been concentrating on fuzzing, reverse engineering and data flow analysis, the defense researchers have been automating the backend analysis of PDF submissions
+
+
+                    By
+                
+Matt Olney
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+April 1, 2010 11:37
+New Mac OSX Module for Snort
+Today, the VRT is excited to announce a revolutionary new module for the Snort Intrusion Detection System.  The extraordinary capability of Snort to be molded through rules, so_rules, preprocessors and the fact that the entire code base is open gives us unprecedented capability t
+
+
+                    By
+                
+Matt Olney
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+March 16, 2010 13:36
+The New Disclosure Debate and the Evil Mr. Moore
+So, let's pretend you are Rob, Mr. Head of IT, and that you are sitting in your office on March 9th, working on your fantasy baseball (I hear Albert Pujols is the way to go...) when one of your staff walks in and says that Microsoft has another 0-day running around. Internet
+
+
+                    By
+                
+Matt Olney
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+March 9, 2010 18:54
+APT:  Should your panties be in a bunch, and how do you un-bunch them?
+There is no more predictable group of people than marketers. Once a term reaches a certain tipping point, they grab onto it for dear life and choke it until it means nothing. Apparently, the Advanced Persistent Threat (APT) hit that point somewhere around December. Despite the te
+
+
+                    By
+                
+Matt Olney
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+February 23, 2010 18:18
+CyberShockWave
+There has been a lot of talk about CNN’s special presentation called “Cyber Shockwave” in the past couple of days. The program was an edited presentation of the 4-hour war games exercise that took place at the Mandarin Oriental Hotel in Washington D.C. Designed by Michael Hayden,
+
+
+                    By
+                
+Matt Olney
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+January 6, 2010 16:40
+Adobe Responds to Vendor Response Blog Post
+Hey folks, Brad Arkin, Director, Product Security & Privacy for Adobe Systems left a note in the comments section of my blog entry on Vendor response (http://vrt-sourcefire.blogspot.com/2009/12/matts-guide-to-vendor-response.html). In that post, I expressed my concern on a nu
+
+
+                    By
+                
+Matt Olney
+
+
+
+
+
+ 
+
+
+
+
+
+
+← Prev
+
+
+Next →
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,1924 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Unit 42 - Latest Cybersecurity Research | Palo Alto Networks
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Menu
+
+
+
+
+
+
+Tools
+ATOMs
+Security Consulting
+About Us
+Under Attack?
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+ 
+CRITICAL THREAT
+High Profile Threats September 30, 2026
+
+Threat Brief: NetScaler Zero Days CVE-2026-88771 and CVE-2026-88772 Exploited in the Wild (Updated September 30)
+
+
+Unit 42 is aware of possible 0-day activity against NetScaler devices. Citrix reports CVE-2026-88771, CVE-2026-88772 have been exploited in the wild. 
+
+
+								NetScaler Zero Days: Pre-Disclosure Activity and More								
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+High Profile Threats September 30, 2026
+
+Threat Brief: NetScaler Zero Days CVE-2026-88771 and CVE-2026-88772 Exploited in the Wild (Updated September 30)
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research September 29, 2026
+
+OperTraitors: How Kubernetes Operators Betray Your Security Posture
+
+
+
+
+
+
+
+ 
+
+
+
+Insights September 25, 2026
+
+3 Consulting Myths Debunked by Unit 42 Experts
+
+
+
+
+
+
+
+
+
+
+
+
+Explore all the articles at the push of a button 
+
+                View all articles 
+
+
+
+
+
+
+
+
+
+
+ Threat Research
+
+
+
+
+
+
+
+
+
+                  Threat Research                
+
+
+
+                  High Profile Threats                
+
+
+
+                  Insights                
+
+
+
+                  Trend Reports                
+
+
+
+                  Threat Actor Groups                
+
+
+
+
+
+ 
+
+
+
+
+Access the latest threat research
+
+            View all research            
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+Cloud Cybersecurity Research September 21, 2026
+
+From Exposure to Lockdown: How AWS Neutralizes Compromised IAM Credentials through Managed Policies
+
+
+
+AWS
+
+
+AWS CloudTrail
+
+
+Bedrock
+ 
+
+Read now
+
+
+
+
+
+
+ 
+
+
+
+Cloud Cybersecurity Research September 18, 2026
+
+A Vault with a Heap-View: The Uncomfortable Space Between AgentCore Harness and Identity
+
+
+
+Agentic AI
+
+
+AWS
+
+
+Cloud
+ 
+
+Read now
+
+
+
+
+
+
+ 
+
+
+
+Cloud Cybersecurity Research September 14, 2026
+
+Unmasking Cloud Identities: From Behavioral Clustering to Automated Detection
+
+
+
+AWS CloudTrail
+
+
+Cloud detection
+
+
+DevOps
+ 
+
+Read now
+
+
+
+
+
+
+
+ 
+
+
+Understand high profile cyberthreats and vulnerabilities
+
+            View high profile threats            
+
+
+
+
+
+
+
+
+
+ 
+High Profile Threats
+August 6, 2026
+
+ChainDrop: Inside a Self-Propagating npm Worm
+
+
+Analysis of ChainDrop, an npm supply chain worm extracting GitHub Actions runner secrets and using Ethereum smart contracts for C2 routing.
+
+Read now
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+General August 18, 2026
+
+Threat Brief: Mitigating Large-Scale Credential Attacks (Updated August 18)
+
+
+
+Credential theft
+ 
+
+Read now
+
+
+
+
+
+ 
+
+
+
+Malware August 6, 2026
+
+ChainDrop: Inside a Self-Propagating npm Worm
+
+
+
+Blockchain
+
+
+ChainDrop
+
+
+Claude code
+ 
+
+Read now
+
+
+
+
+
+ 
+
+
+
+Malware July 15, 2026
+
+The npm Threat Landscape: Attack Surface and Mitigations (Updated July 15)
+
+
+
+Credential Harvesting
+
+
+GitHub
+
+
+Npm packages
+ 
+
+Read now
+
+
+
+
+
+ 
+
+
+
+Vulnerabilities June 9, 2026
+
+Threat Brief: Active Exploitation of PAN-OS CVE-2026-0257
+
+
+
+CVE-2026-0257
+
+
+Vulnerability
+ 
+
+Read now
+
+
+
+
+
+ 
+
+
+
+Vulnerabilities May 6, 2026
+
+Threat Brief: Exploitation of PAN-OS Captive Portal Zero-Day for Unauthenticated Remote Code Execution
+
+
+
+CVE-2026-0300
+
+
+EarthWorm
+
+
+PAN-OS
+ 
+
+Read now
+
+
+
+
+
+ 
+
+
+
+Vulnerabilities May 5, 2026
+
+Copy Fail: What You Need to Know About the Most Severe Linux Threat in Years
+
+
+
+Containers
+
+
+CVE-2026-31431
+
+
+Kubernetes
+ 
+
+Read now
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+Industrial & Critical Infrastructure Security
+
+
+Critical infrastructure is changing. Security must change with it. As industrial systems become more connected, converge with IT, and adopt AI and automation, cyber risk increasingly extends beyond data to affect physical operations. Understanding how these changes are reshaping the threat landscape is essential to strengthening operational resilience and preparing for what’s next.
+
+Expanding attack surface: Greater connectivity across industrial environments creates new pathways for cyber risk.
+Real-world impact: Cyber incidents can affect safety, production, and business continuity, not just data. 
+What’s changing: AI, automation, and IT/OT convergence are reshaping how organizations approach industrial security.
+
+
+
+                Explore OT Threat Research              
+
+
+
+
+ 
+
+
+
+
+ 
+
+
+
+Insights – Explore fresh perspectives from Unit 42
+
+            Insights            
+
+
+
+
+
+
+
+
+
+
+
+
+
+Matt Brady
+Cybercrime, Retail and Hospitality
+Read more from Matt Brady
+
+
+
+
+
+
+
+
+
+Justin Moore
+Threat Intelligence, Cyberthreats
+Read more from Justin Moore
+
+
+
+
+
+
+
+
+
+Sam Rubin
+
+Read more from Sam Rubin
+
+
+
+
+
+
+
+
+
+Kathi Whitbey
+Cyber Threat Alliance
+Read more from Kathi Whitbey
+
+
+
+
+
+
+
+
+
+Andy Piazza
+
+Read more from Andy Piazza
+
+
+
+
+
+
+
+
+
+Michael Spisak
+
+Read more from Michael Spisak
+
+
+
+
+
+
+
+
+
+Kate Middagh
+AI Vibe Coding
+Read more from Kate Middagh
+
+
+
+
+
+
+
+
+
+Margaret Kelley
+
+Read more from Margaret Kelley
+
+ 
+
+
+
+Recent Articles
+
+			 Insights – Explore fresh perspectives from Unit 42		  
+
+
+
+
+ 
+
+
+
+Unit 42 
+
+3 Consulting Myths Debunked by Unit 42 Experts
+
+
+
+AI
+
+
+Privilege escalation
+
+
+Unit 42 Incident Response Report
+ 
+
+Read now
+
+
+
+
+
+ 
+
+
+
+Sharon Maydar 
+
+Inside the Modern SOC: Defending the Cross-Environment Pivot
+
+
+
+AI
+
+
+Attack surface
+
+
+Unit 42 Incident Response Report
+ 
+
+Read now
+
+
+
+
+
+ 
+
+
+
+Bradley Duncan 
+
+Atomic macOS (AMOS) Stealer Activity
+
+
+
+MacOS
+
+
+Threat intelligence
+
+
+Unit 42
+ 
+
+Read now
+
+
+
+
+
+ 
+
+
+
+Renzon Cruz 
+
+An AI-Assisted Cyber Attack: Inside a Unit 42 Investigation
+
+
+
+Agentic AI
+
+
+Frontier AI
+ 
+
+Read now
+
+
+
+
+
+ 
+
+
+
+Tony Li 
+
+Perturbation Probing: A New Diagnostic for the Fragility of LLM Safety
+
+
+
+AI
+
+
+Jailbreak
+
+
+LLM
+ 
+
+Read now
+
+
+
+
+
+ 
+
+
+
+Yaron Avital 
+
+Connecting the Dots: Securing the Overlooked Corners of the Software Development Lifecycle (SDLC) Supply Chain
+
+
+
+ChainDrop
+
+
+Npm packages
+
+
+Software supply-chain attack
+ 
+
+Read now
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+Unit 42 Breaking Insights: Combat Risks from Frontier AI Models
+
+
+The latest frontier AI models are changing cyber risk faster than traditional defenses can adapt. In this threat briefing, Sam Rubin, SVP of Unit 42, and Palo Alto Networks CISO Marc Benoit will break down how these new models can find and exploit exposures that have gone undetected for years and the implications for security leaders.
+This session examines how the threat landscape has hit an inflection point, with work that once took deep expertise, time, and manual effort happening in seconds at machine scale. Our experts will discuss what CISOs need to prioritize now to reduce exposure before attackers put these capabilities to broader use.
+
+Exploit time compression: How frontier AI models are shrinking the time from vulnerability discovery to exploitation from months to minutes.
+The biggest risks today: The most immediate risks created by sophisticated, automated attacks at scale.
+Immediate actions to take: Practical guidance from Palo Alto Networks’ own CISO on what leaders should do now.
+
+
+
+                Watch on demand              
+
+
+
+
+ 
+
+
+
+
+ 
+
+
+
+Frontline insights defining the next era of cyber risk.
+
+            View All            
+
+
+
+
+
+
+                                    Report                
+
+Explore the findings.
+
+
+The 2026 Unit 42 Global Incident Response Report confirms it: The adversary isn’t just smarter; they are faster.
+Your new threat reality? AI enables threat actors to move from initial access to exfiltration in minutes, effortlessly bypassing traditional defenses.
+In the report, you will learn how:
+
+Speed now defines risk: Attacks are 4X faster, with data exfiltration in <1 hour in some cases.
+Identity accelerates impact: 65% of initial access is driven by identity-based techniques allowing unauthorized access, privilege escalation and lateral movement.
+Sprawl expands exposure: 87% of attacks unfolded across multiple attack surfaces, making it harder to correlate attack signals.
+
+
+
+                Get the report              
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+Cybercrime July 30, 2025
+
+2025 Unit 42 Global Incident Response Report: Social Engineering Edition
+
+
+
+Agent Serpens
+
+
+Agentic AI
+
+
+ClickFix
+ 
+
+Read now
+
+
+
+
+
+ 
+
+
+
+Ransomware April 23, 2025
+
+Extortion and Ransomware Trends January-March 2025
+
+
+
+BianLian
+
+
+Akira ransomware
+
+
+Muddled Libra
+ 
+
+Read now
+
+
+
+
+
+ 
+
+
+
+Vulnerabilities April 9, 2025
+
+How Prompt Attacks Exploit GenAI and How to Fight Back
+
+
+
+LLM
+
+
+GenAI
+
+
+Prompt injection
+ 
+
+Read now
+
+
+
+
+
+ 
+
+
+
+Learning Hub October 16, 2024
+
+Unit 42 Looks Toward the Threat Frontier: Preparing for Emerging AI Risks
+
+
+
+GenAI
+ 
+
+Read now
+
+
+ 
+
+
+ 
+
+
+Follow the activities of threat actor groups tracked by Unit 42
+
+            All threat actor posts            
+
+
+
+
+
+
+
+
+
+ 
+Malware
+May 22, 2026
+
+Tracking Iranian APT Screening Serpens’ 2026 Espionage Campaigns
+
+
+Unit 42 details Screening Serpens' use of AppDomainManager hijacking and new RAT variants to target tech and defense sectors in recent campaigns.
+
+Read now
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+Malware May 22, 2026
+
+Tracking Iranian APT Screening Serpens’ 2026 Espionage Campaigns
+
+
+
+Advanced Persistent Threat
+
+
+AppDomainManager
+
+
+DLL Sideloading
+ 
+
+Read now
+
+
+
+
+
+ 
+
+
+
+Malware March 26, 2026
+
+Converging Interests: Analysis of Threat Clusters Targeting a Southeast Asian Government
+
+
+
+CL-STA-1048
+
+
+CL-STA-1049
+
+
+Stately Taurus
+ 
+
+Read now
+
+
+
+
+
+ 
+
+
+
+Cybercrime March 16, 2026
+
+Boggy Serpens Threat Assessment
+
+
+
+Advanced Persistent Threat
+
+
+Boggy Serpens
+
+
+C2
+ 
+
+Read now
+
+
+
+
+
+ 
+
+
+
+Cybercrime February 10, 2026
+
+A Peek Into Muddled Libra’s Operational Playbook
+
+
+
+Muddled Libra
+
+
+PowerShell
+
+
+Scattered Spider
+ 
+
+Read now
+
+
+
+
+
+ 
+
+
+
+Nation-State Cyberattacks February 5, 2026
+
+The Shadow Campaigns: Uncovering Global Espionage
+
+
+
+Espionage
+
+
+Government
+
+
+Phishing
+ 
+
+Read now
+
+
+
+
+
+ 
+
+
+
+Ransomware December 17, 2025
+
+From Linear to Complex: An Upgrade in RansomHouse Encryption
+
+
+
+ESXi
+
+
+Jolly Scorpius
+
+
+RansomHouse
+ 
+
+Read now
+
+
+ 
+
+
+ 
+
+
+
+
+
+Follow Unit 42 for breaking threat intelligence
+
+ 
+ 
+ 
+ 
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
+				Get updates from Unit 42			
+Peace of mind comes from staying ahead of threats. Subscribe today.
+
+
+
+
+
+
+
+
+
+
+Your Email
+
+
+Subscribe for email updates to all Unit 42 threat research.
+By submitting this form, you agree to our Terms of Use and acknowledge our Privacy Statement.
+
+                    This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.                            
+  
+
+Invalid captcha!
+ 
+					Subscribe					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Get the latest news, invites to events, and threat alerts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Enter your email now to subscribe!
+
+
+
+
+
+Sign up 
+
+
+
+
+                                
+                                
+                                
+                                    By submitting this form, I understand my personal data will be processed in accordance with
+                                        Palo Alto Networks Privacy Statement and Terms of Use.
+
+
+
+Sign up 
+
+
+
+
+
+
+
+
+
+
+
+
+Products and Services
+
+
+
+
+
+                                    AI-Powered Network Security Platform
+                                
+
+
+
+                                    Secure AI by Design
+                                
+
+
+
+                                    Prisma AIRS
+                                
+
+
+
+                                    AI Access Security
+                                
+
+
+
+                                    Cloud Delivered Security Services
+                                
+
+
+
+                                    Advanced Threat Prevention
+                                
+
+
+
+                                    Advanced URL Filtering
+                                
+
+
+
+                                    Advanced WildFire
+                                
+
+
+
+                                    Advanced DNS Security
+                                
+
+
+
+                                    Enterprise Data Loss Prevention
+                                
+
+
+
+                                    Enterprise IoT Security
+                                
+
+
+
+                                    Medical IoT Security
+                                
+
+
+
+                                    Industrial OT Security
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    Next-Generation Firewalls
+                                
+
+
+
+                                    Hardware Firewalls
+                                
+
+
+
+                                    Software Firewalls
+                                
+
+
+
+                                    Strata Cloud Manager
+                                
+
+
+
+                                    SD-WAN for NGFW
+                                
+
+
+
+                                    PAN-OS
+                                
+
+
+
+                                    Panorama
+                                
+
+
+
+                                    Secure Access Service Edge
+                                
+
+
+
+                                    Prisma SASE
+                                
+
+
+
+                                    Application Acceleration
+                                
+
+
+
+                                    Autonomous Digital Experience Management
+                                
+
+
+
+                                    Enterprise DLP
+                                
+
+
+
+                                    Prisma Access
+                                
+
+
+
+                                    Prisma Browser
+                                
+
+
+
+                                    Prisma SD-WAN
+                                
+
+
+
+                                    Remote Browser Isolation
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    AI-Driven Security Operations Platform
+                                
+
+
+
+                                    Cloud Security
+                                
+
+
+
+                                    Cortex Cloud
+                                
+
+
+
+                                    Application Security
+                                
+
+
+
+                                    Cloud Posture Security
+                                
+
+
+
+                                    Cloud Runtime Security
+                                
+
+
+
+                                    Prisma Cloud
+                                
+
+
+
+                                    AI-Driven SOC
+                                
+
+
+
+                                    Cortex XSIAM
+                                
+
+
+
+                                    Cortex XDR
+                                
+
+
+
+                                    Cortex XSOAR
+                                
+
+
+
+                                    Cortex Xpanse
+                                
+
+
+
+                                    Unit 42 Managed Detection & Response
+                                
+
+
+
+                                    Managed XSIAM
+                                
+
+
+
+                                    Observability
+                                
+
+
+
+                                    Cortex XCOR
+                                
+
+
+
+
+
+                                    Next-Generation Identity Security
+                                
+
+
+
+                                    Privileged Access Management
+                                
+
+
+
+                                    Identity and Access Management 
+                                
+
+
+
+                                    Endpoint Privilege Manager
+                                
+
+
+
+                                    Identity Governance
+                                
+
+
+
+                                    Workforce Password Management
+                                
+
+
+
+                                    Agentic Identities
+                                
+
+
+
+                                    Secrets Management
+                                
+
+
+
+                                    Unified Secrets Governance
+                                
+
+
+
+                                    Application Credentials Delivery
+                                
+
+
+
+                                    Vendor Privileged Access
+                                
+
+
+
+                                    Threat Intel and Incident Response Services
+                                
+
+
+
+                                    Prepare for Emerging Risks
+                                
+
+
+
+                                    Strengthen Your Defenses
+                                
+
+
+
+                                    Build Your Security Strategy
+                                
+
+
+
+                                    Understand the Adversary
+                                
+
+
+
+                                    Respond to a Cyber Attack
+                                
+
+
+
+
+
+
+Company
+
+
+
+
+
+                                    About Us
+                                
+
+
+
+                                    Careers
+                                
+
+
+
+                                    Contact Us
+                                
+
+
+
+                                    Corporate Responsibility
+                                
+
+
+
+                                    Customers
+                                
+
+
+
+                                    Investor Relations
+                                
+
+
+
+                                    Location
+                                
+
+
+
+                                    Newsroom
+                                
+
+
+
+
+
+
+Popular Links
+
+
+
+
+
+                                    Blog
+                                
+
+
+
+                                    Communities
+                                
+
+
+
+                                    Content Library
+                                
+
+
+
+                                    Cyberpedia
+                                
+
+
+
+                                    Event Center
+                                
+
+
+
+                                    Manage Email Preferences
+                                
+
+
+
+                                    Products A-Z
+                                
+
+
+
+                                    Product Certifications
+                                
+
+
+
+                                    Report a Vulnerability
+                                
+
+
+
+                                    Sitemap
+                                
+
+
+
+                                    Tech Docs
+                                
+
+
+
+                                    Unit 42
+                                
+
+
+
+                                    Do Not Sell or Share My Personal Information
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Privacy
+                            
+
+
+
+                                Trust Center
+                            
+
+
+
+                                Terms of Use
+                            
+
+
+
+                                Documents
+                            
+
+
+Copyright © 2026 Palo Alto Networks. All Rights Reserved
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+EN
+
+
+
+Select your language
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Your browser does not support the video tag.
+          
+
+Default Heading
+Read the article
+              
+
+
+
+
+Seekbar
+
+
+
+
+
+
+
+
+
+
+
+
+
+Volume
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

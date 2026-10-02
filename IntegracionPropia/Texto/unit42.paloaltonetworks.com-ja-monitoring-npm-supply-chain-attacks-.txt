@@ -1,0 +1,2117 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+npmの脅威の状況: アタックサーフェスと緩和策(6月2日更新)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Menu
+
+
+
+
+
+
+セキュリティ コンサルティング
+現在、攻撃を受けていますか?
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Japanese
+
+
+
+
+
+English
+
+
+Spanish (LATAM)
+
+
+Japanese
+
+
+
+
+
+  Threat Research Center主なサイバー脅威マルウェア 
+ 
+マルウェア
+npmの脅威の状況: アタックサーフェスと緩和策(6月2日更新)
+
+
+  6  分で読めます              
+
+
+Related ProductsAdvanced DNS SecurityAdvanced URL FilteringCloud-Delivered Security ServicesCortexCortex CloudUnit 42 Incident Response 
+
+
+
+
+
+
+
+
+著者:Unit 42 
+
+公開日:2026年6月2日 カテゴリーマルウェア主なサイバー脅威
+ タグ:Credential HarvestingGitHubNpm packagesObfuscationPayloadSupply chainWorm propagation
+ 
+
+
+ 
+ 
+
+
+共有
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+エグゼクティブ サマリー
+npmエコシステムのセキュリティは、2025年9月に重大な転換点に達しました。Shai Huludワームは、悪意のあるパッケージの侵害と再配布を自動化する自己複製型マルウェアで、npm攻撃の「迷惑な」時代の終わりと、重大な脅威の始まりとなりました。
+この転機以来、Unit 42はサプライチェーンにおける侵害の頻度と技術的な深さを積極的に加速させてきました。攻撃は、一連の孤立したタイポスクワッティング インシデントから、現代のソフトウェア開発の原動力となっている信頼を武器にする、さまざまな脅威アクターによる組織的なキャンペーンへと発展しています。
+2026年4月のキャンペーン
+4月には2件のキャンペーンが発生しました。最初のキャンペーンは2026年4月22日に始まり、「Shai-Hulud: The Third Coming」というストリングが含まれるものでした。2回目は2026年4月29日に開始され、通称Mini Shai-Huludと呼ばれるものです。
+2026年5月のキャンペーン
+2026年5月、Mini Shai-Huludキャンペーンは、TeamPCPによる2つの新しい波とともに継続しました。これらのキャンペーンでは、2つの特徴的な要素を導入しました。1つは、認証情報を必要としない初期アクセス技術を使用したキャンペーン、もう1つは、これまでのShai-Huludワームの中で、単一時間あたりとしては最大規模のパッケージ数を生成したキャンペーンでした。模倣活動が発生したことで、TeamPCPへの今後の帰属がより困難になりました。
+2026年6月キャンペーン
+2026年6月1日の新しいサプライチェーン攻撃により、@redhat-cloud-services npm名前空間で公開された少なくとも32のパッケージが侵害されました。攻撃者はコードレビューを完全にバイパスし、Miasma というペイロードをプッシュします。
+npmの脅威に対する新たなベースライン
+Shai Huludインシデントは、npmレジストリがマルウェアの拡散のための戦力倍増装置として使用される可能性があることを証明しました。その後数カ月で、攻撃者の戦術、手法、手順(TTP)に3つの核心的な変化が見られました。
+
+ワーム型の伝播: 悪意のあるペイロードは、npmトークンとGitHubパーソナル アクセス トークン(PAT)の窃取を優先するようになり、2026年3月のAxiosの侵害で見られたように、合法的なパッケージを自動的に感染させ、再公開するようになりました。
+インフラストラクチャレベルの永続性: 攻撃者はもはやデータを盗むだけではありません。継続的インテグレーション/継続的デリバリ(CI/CD)パイプラインに組み込まれ、企業環境への長期的で検知不可能なアクセスを獲得しているのです。
+多段階ペイロード: 2025年9月のテンプレートに倣い、現在の攻撃は、自動化されたスキャナーを回避するために、特定の環境条件下でのみ起動する休止状態の「スリーパー」への依存を多くの場合でデプロイします。
+
+npm攻撃の全体的な概要
+npmの侵害には共通のテーマがあります。Shai Hulud以降の時代には、アタックサーフェスを全体的に考えることが有効だと私たちは考えています。
+この記事では、以下について取り上げます:
+
+主要なインシデントの詳細: 重大なパッケージ侵害のリアルタイム分析(例: Shai-Hulud 2.0、Axios、Chalk/Debug)
+キャンペーン間の相関:異なる攻撃を同じ脅威アクターに結びつける共通のインフラストラクチャやコード スニペットの特定
+修復プレイブック: 認証情報をローテーションし、ローカルおよびクラウドベースのキャッシュから悪意のある依存関係を削除するための実用的なガイダンス
+
+Shai-Hulud: 新しい波
+bitwarden/cliのバージョン2026.4.0として公開された悪意のあるnpmパッケージは、TeamPCPを原因とする広範なサプライチェーン キャンペーンの一部として特定されました。このパッケージは正規のBitwardenコマンドライン インターフェイス(CLI)パスワード マネージャーになりすまします。
+インストールされると、クラウド プロバイダ、CI/CDシステム、開発者ワークステーションから認証情報を盗み出す多段階のペイロードが実行されます。そして、被害者が公開できるすべてのnpmパッケージをバックドアすることで自己増殖します。公開されたGitHubリポジトリの内部には、「Shai-Hulud:The Third Coming」という文字列が含まれていることが指摘されています。
+攻撃者は同じペイロードを複数のCheckmarx配布チャネルにデプロイしました:
+
+Docker Hubのイメージ
+GitHub Actions
+VSコードのエクステンション
+
+これは、影響範囲を最大化するために、侵害された開発者ツールの認証情報を武器化するための組織的キャンペーンであることを示しています。
+パロアルトネットワークスのお客様は、以下の製品とサービスによって、本書で取り上げる脅威に対する確実な保護を構築できます:
+
+Advanced WildFire
+Advanced URL FilteringおよびAdvanced DNS Security
+Cortex Cloud
+
+Unit 42インシデント レスポンス チームは、お客様のリスク軽減のために、侵害を受けた際の支援だけでなくプロアクティブな評価を提供しています。
+
+
+
+関連するUnit 42のトピック
+サプライチェーン, 認証情報の収集, 難読化, バックドア
+
+
+
+2026年6月 - Mini Shai-Hulud Blightをが広がる
+2026年6月1日、新しいサプライチェーン攻撃により、@redhat-cloud-services npm名前空間で公開された少なくとも32のパッケージが侵害されました。悪意のあるバージョンは、累積で約80,000の週次ダウンロード数を記録しました。根本原因は、侵害されたRed Hat 従業員のGitHub アカウントです。これは、悪意のある孤立コミットを複数のRedHatInsights リポジトリにプッシュするために使用され、コードレビューを完全にバイパスします。
+攻撃者は、GitHub Actions ワークフローをトリガしてOpenID Connect (OIDC) トークンを要求し、有効な SLSA provenance を持つトロイザ化されたパッケージを発行しました。証明書は正確で、パッケージは実際にそのパイプラインによって構築されました。その時点で、たまたまマルウェアが埋め込まれていました。
+ペイロードは Miasma と呼ばれます。この名前は、マルウェアが攻撃者作成のGitHubリポジトリに付与する説明文「Miasma:The Spreading Blight.」に由来します。この脅威は、TeamPCPが5月12日にオープンソース化した Mini-Shai-Hulud マルウェアに由来しており、攻撃手法（トレードクラフト）はほぼ同一です。
+分析したサンプルは、通常の約200KB index.js を4.29MB の難読化ペイロードに置き換えました。これはサイズが25倍に増加しており、それ自体が信頼性の高い検出指標です。
+盗まれた認証情報には以下が含まれます。
+
+GitHub トークン、npm トークン、SSH キー
+AWS、GCP、Azure の認証情報およびクラウドアイデンティティ
+Kubernetes サービスアカウントトークンとHashiCorp Vault の秘密
+GitHubアクション、CircleCIおよび関連プラットフォームからのCI/CDシークレット
+
+攻撃者の帰属は依然として不明です。TTP は TeamPCP と一致していますが、Mini-Shai-Hulud のソースコードが公開されたことで、十分な能力を持つ攻撃者であれば同じ攻撃を再現できる可能性があります。確かなのは、この傾向です。侵害された1つのアカウントと1つのCIパイプラインだけで、npm インストールを実行したすべての開発者に32個のトロイの木馬化されたパッケージが自動配布されたのです。あとはレジストリが残りの処理を行います。
+2026年5月 - Mini Shai-Huludの継続
+2026年5月には、さらに2つの波が発生し、Mini Shai-Huludキャンペーンが継続しました。
+
+1つ目の波では、盗まれた認証情報を必要としない、根本的に新しい初期アクセス手法を使用。また、ソフトウェア アーティファクト向けサプライ チェーン レベル(SLSA)の来歴が有効な、初の悪意あるnpmパッケージも確認
+2番目の波は、Shai-Huludの波としては過去最大となる、1時間あたりのパッケージ数を記録
+
+両方ともTeamPCPによるものと見られています。5月12日にワームのソース コードが公開されたことで、すでに別の模倣活動が発生し、今後の帰属が複雑になっています。
+2026年5月11日: Mini Shai-Huludが再び攻撃
+5月11日、TeamPCPはnpmおよびPyPIエコシステム全体を標的とした、連携型のサプライ チェーン攻撃を開始しました。初期のベクトルとなったのは、TanStackのGitHub Actions CIパイプラインでした。6分以内に、42個の@tanstack/*パッケージにわたり、84個の悪意のあるパッケージ アーティファクトが公開されました。
+ワームの自己伝播メカニズムは、その後急速に拡大しました。その日の終わりまでに、169個のnpmパッケージにまたがる373個の悪意あるバージョンと、侵害されたPyPIパッケージを文書化しています。
+影響範囲はTanStackをはるかに超えていました。ワームの自己伝播により、複数の業界やエコシステムにわたるパッケージへの侵害が広がりました。
+
+エンタープライズ インフラストラクチャ: @opensearch-project/opensearch (公式のOpenSearch JavaScriptクライアント、バージョン3.5.3–3.8.0)および57個の@uipath/*エンタープライズ自動化パッケージ
+AIツール: @mistralai/mistralaiおよびAzure/GCP向けバリアント。公式Mistral AI TypeScriptクライアント
+専門的なエコシステム: 19@squawk/*航空データ パッケージ、intercom-client@7.0.4(顧客メッセージング)、さらに@tallyui、@draftlab、@beproduct、@mesadevおよび複数のスコープなしパッケージにまたがる、その他多数のパッケージ
+
+@tanstack/react-router単独で毎週1270万回以上のダウンロードがあります。影響を受けた期間に、5億2,000万件の累積ダウンロードがあったと推定されています。パロアルトネットワークスは、この活動を検出するためのXDRおよびXQLクエリを提供しています。
+新しい初期アクセス: 盗まれた認証情報は不要
+これまでのShai-Huludの波は、いずれも盗まれた、またはフィッシングによって取得された認証情報から始まっていました。TanStack攻撃は、どちらも必要ありませんでした。代わりに単独では成立しない、3つのGitHub Actionsの脆弱性が連鎖しました。
+ステップ1: Pwnリクエスト
+5月10日、攻撃者はアカウントzblgg/configuration配下にTanStack/routerのフォークを作成しました。これは、フォークリスト検索に表示されないように意図的に名付けられたものです。悪意あるコミットは、Anthropic Claude GitHubアプリになりすました、claude <claude@users.noreply.github.com>という偽装アイデンティティ名義で作成されました。また、プッシュ時に自動CIを抑制するため、[skip ci]をプレフィックスとして付与されていました。
+その後、TanStack/router#main に対するプル リクエスト(PR #7378)がトリガーされ、 bundle-size.yml — pull_request_targetトリガーを使用し、フォークのマージ参照をチェック アウトするワークフローが実行されました。これにより、フォークのコードがベース リポジトリのランナー コンテキストで実行され、そのキャッシュ スコープへの完全なアクセスが可能となりました。
+脅威アクターは、図1が示すようにNode.jsおよびnpmの代替となる軽量JavaScriptランタイム兼パッケージ マネージャーとなる、Bunを使用していました。攻撃はBunを使用して悪意のあるペイロードtanstack_runner.jsを実行しました。これにより、GitHub認証トークン(gh auth token)を取得するために、GitHub CLIを呼び出すなど、機密な認証情報を探索する目的でシステム列挙を試みました。
+図1.Windows上のMini Shai-Hulud TanStack実行チェーン。
+Kubernetes
+LinuxホストのKubernetes環境において、Unit 42は、その後侵害されたJavaScriptパッケージを取得・実行したビルド パイプラインに関連する正当なruncによるコンテナ作成活動を観測しました。runcの作成呼び出し自体は、コンテナ化されたビルド プロセスに関連する正当なKubernetesランタイム活動でした。
+ビルド中: 
+
+プロジェクトでは、pnpm依存関係チェーンを通じて、再度Bunランタイムを動的に取得、実行
+その後、悪意のあるJavaScriptペイロードtanstack_runner.jsを実行 
+次に、Windows環境と同様の処理を継続
+
+プロセスの系譜は図2に示されています。
+図2.LinuxホストのKubernetesにおけるMini Shai-Hulud TanStack実行チェーン。
+ステップ2:GitHub Actionsキャッシュ ポイズニング
+フォーク側のコードは、release.ymlが後に参照する正確なキャッシュキー配下に、1.1 GBの汚染されたpnpmストアを書き込みました。そのキーは、ワークフローが使用するのと同じhashFiles()式を用いて、公開しているpnpm-lock.yamlから事前に計算されていました。汚染されたキャッシュ エントリは、その後8時間にわたり潜伏していました。
+重要な点: actions/cache@v5のジョブ後の保存は、ワークフローのGITHUB_TOKENではなく、ランナー内部トークンを使用するため、ワークフローでpermissions: contents: readを設定してもキャッシュの書き込みを防ぐことはできません。
+ステップ 3：ランナーのメモリからOpenID Connect(OIDC)トークン抽出
+正規のメンテナーがmainにプッシュすると、release.ymlがトリガーされ、汚染されたキャッシュが復元され、ビルド フェーズ中に攻撃者が制御するバイナリが実行されました。これらのバイナリは/proc/<Runner.Worker>/memを読み取り、OIDCトークンを抽出しました — このトークンは、id-token: writeが設定されている場合にのみランナーのメモリ内で遅延生成されるものです — そしてそれを直接registry.npmjs.orgにPOSTしました。
+ワークフローの自身のPublish Packagesステップには決して到達しませんでした。テストは失敗し、そのステップはスキップされました。それにもかかわらず、npmは有効な署名付きかつ来歴が証明済みのパッケージ公開84件を受信しました。
+これは、2025年3月のtj-actions/changed-filesの侵害事案で文書化され、2026年4月のSAPおよびBitwardenの波で再利用されたものと同じ/procメモリ抽出技術です。
+SLSA来歴問題
+これは、有効なSLSAビルド レベル3の来歴情報を持つ、悪意あるnpmパッケージをワームが公開した、はじめて文書化されたケースです。Sigstoreは、パッケージがrelease.ymlからrefs/heads/main of TanStack/routerによってビルドされたことを正しく証明していました — 実際そのとおりだったためです。SLSAの来歴は、どのパイプラインがパッケージを構築したかを確認するものであり、そのパイプラインの内部状態がクリーンであったかを確認するものではありません。
+根本的な原因は、4月29日の@cap-jsの波で悪用された同じOIDC信頼スコープの誤設定にあります。信頼されたパブリッシャーのバインディングは、保護されたブランチの特定のワークフローではなく、リポジトリ全体を信頼対象としていました。
+来歴の検証は必要ですが、それだけではもはや十分ではありません。これが、インストール時の行動分析が不可欠である理由です。弊社のAI駆動のリスク エンジンは、公開直後に影響を受けたアーティファクトを自動的に検出し、フラグを立てました。
+ペイロードと伝播
+悪意のあるペイロード、router_init.js(2.3 MBの難読化されたファイル)は、侵害されたパッケージ自体のプリインストール フック経由では配信されませんでした。代わりに、各tarballは、攻撃者のフォーク内の孤立したコミットを参照するoptionalDependenciesエントリが挿入されました。
+これは、共有されたフォーク ネットワークのコミット オブジェクト ストレージにより、GitHubが正規のTanStack/routerのURL配下に表示するコミットです: 
+
+
+
+
+
+"optionalDependencies": {
+  "@tanstack/setup": "github:tanstack/router#79ac49eedf774dd4b0cfa308722bc463cfe5885c"
+}
+
+
+
+
+123
+
+"optionalDependencies": {  "@tanstack/setup": "github:tanstack/router#79ac49eedf774dd4b0cfa308722bc463cfe5885c"}
+
+
+
+
+
+この依存関係は、インストール中にいつの間にか失敗するように設計されています。悪意のあるコードは、インストール プロセスが正常に見える一方で、バックグラウンドで実行され、ログにほとんど痕跡を残しません。このペイロードは、自動分析に対し耐性を高めるため、複数層の難読化および暗号化を使用しています。また、4月22日のBitwardenおよび4月29日のSAPセクションで文書化された同じカスタム暗号を共有しており、3つすべての波における作者の共通性を裏付けています。
+ワームの伝播を介して感染した二次被害者(例: UiPath、Mistral AI、OpenSearch)に対して、配信メカニズムは4月のSAPの波で使用された従来のプリインストール フックへ戻されていました。
+パターンは現在、確立されています。ワームが一つのエコシステムに足場を得ると、盗んだ認証情報を使用して、被害者が維持する他のすべてのパッケージに再公開し、無関係なプロジェクトや組織全体に迅速にその範囲を拡大します。
+デッドマン スイッチ: 修正順序に関する重大な警告
+2026年5月11日のペイロードは、盗まれたGitHubトークンを使用してapi.github.com/userを60秒ごとにポーリングする永続的なバックグラウンド サービスをインストールします。このトークンが失効した場合（HTTP 40x）、サービスはrm -rf ~/を実行し、ユーザーのホーム ディレクトリを破壊します。このデーモンは24時間後に自動的に終了します。
+2026年5月12日: ワームの公開リリース
+2026年5月12日の夕方、完全に武器化されたMini Shai-Huludのソース コードが公開GitHubリポジトリに公開され、その後削除されました。CIキャッシュ ポイズニング スクリプト、OIDCトークン抽出ツール、およびその伝播ロジックを持つ認証情報窃盗ツールを含むチェーンは、現在一般公開されています。
+Mini Shai-HuludはもはやTeamPCPに限定されたものではありません。今後、このツール チェーンを使用するインシデントは、TeamPCPのインフラ ストラクチャや攻撃の手口を共有しない可能性があり、ワームの系統のみに基づいて帰属判断を行うべきではありません。
+2026年5月19日: @antv Wave
+2026年5月19日、npmメンテナー アカウントatoolが新しいMini Shai-Huludの波の一環として侵害されました。約1時間で、323個のユニーク パッケージにまたがって639個の悪意あるパッケージ バージョンが公開されました。これは、これまでのShai-Huludの波の中で、最大の1時間あたりのパッケージ数です。
+影響を受けた範囲は、@antvデータ可視化エコシステムおよび関連ライブラリにまで及んでいます。
+
+@antv/g2、g6、x6、l7、s2、f2、g、g2plot、graphin、data-setおよびs2-vue 
+@antv名前空間外のパッケージには、echarts-for-react（約110万件の週次ダウンロード）、timeago.js、size-sensorおよびcanvas-nest.jsが含まれる
+
+データ可視化、グラフ作成、マッピング、チャート作成、Reactコンポーネント エコシステム全体にわたる潜在的な影響範囲は重要です。
+感染メカニズム
+TanStackの波のパイプライン乗っ取り手法とは異なり、この波はよりシンプルなモデルへ戻っています。具体的にはメンテナー アカウントを侵害し、それを使用してパッケージを直接再公開する手法です。これは2025年9月および11月のキャンペーンで確認されたものと同じアプローチです。
+攻撃者は各パッケージのpackage.jsonを3つの方法で改変しました。
+
+悪意のあるペイロードをBunランタイムを介して実行するプレインストール フック("preinstall": "bun run index.js")の追加
+任意のマシン上でBunを利用可能にするための、依存関係としてのBunのバンドル
+バックアップ実行パスとして、正規のantvis/G2リポジトリの孤立したコミットを参照するgitベースのオプショナル依存関係の挿入
+
+悪意あるバージョンを可能な限り多くの標的へ到達させるため、攻撃者は最新の正規リリースを上回るバージョン番号を引き上げました(例: @antv/s2-vueは実際のバージョン2.2.0から2.4.0へ変更)。^2.xのような緩やかなバージョン範囲を使用しているプロジェクトは、次回のインストール時に自動的に悪意のあるバージョンを引き込むことになります。
+ペイロードの機能
+499 KBの難読化されたペイロードは、広範囲のターゲットを探索する6つの認証情報収集ツールを並行して実行します。
+
+開発者の認証情報: GitHubトークン、npmトークン、SSHキー、Git認証情報、秘密鍵
+クラウドとインフラ: AWS認証情報とパラメータ、Kubernetesサービスアカウント トークン、HashiCorp Vaultシークレット、Docker認証
+CI/CDプラットフォーム: GitHub Actions、GitLab CI、CircleCI、Vercel、Netlifyを含む18以上のプラットフォームからのトークン
+サードパーティ サービス: データベース接続文字列、Stripe、Slack、Twilio APIキー
+パスワード マネージャー(この波では新たに追加): ペイロードは1Password、Bitwarden、pass、gopassをローカルCLI経由で直接クエリ
+
+すべての盗まれたデータは暗号化され、OpenTelemetryトレース取り込みとして偽装されたC2エンドポイント(t.m-kosche[.]com)に送信されるため、ネットワーク監視ツールはトラフィックを正当な観測可能性テレメトリとして分類する可能性があります。
+フォールバック チャネルは、被害者のアカウント配下に作成されたGitHubリポジトリにデータを送出し、Duneをテーマにした名前と逆順のキャンペーン マーカーShai-Hulud: を使用します。再び始まります。
+2026年4月 - Shai-Hulud: 新しい波
+4月下旬のMini Shai-Huludの波
+2026年4月29日現在、新たなサプライチェーン攻撃の波(Mini Shai-Huludと命名)が、侵害された4つのnpmパッケージを通じて、SAP開発者エコシステムを積極的に標的としています。影響を受けるバージョンは以下のとおりです:
+
+@cap-js/sqlite@2.2.2
+@cap-js/postgres@2.2.2
+@cap-js/db-service@2.10.1
+mbt@1.2.48
+
+これらのパッケージは、合わせると毎週約57万件のダウンロードがあり、そのうち@cap-js/sqliteが約25万件、@cap-js/db-serviceが約26万件となっています。
+4つのパッケージはすべて、SAPのクラウド アプリケーション プログラミング(CAP)モデルとマルチターゲット アプリケーション(MTA)ビルド ツールチェーンの一部です。このため、この攻撃のターゲットは、クラウド認証情報、GitHubトークン、デプロイメント シークレットにアクセスできる企業の開発者やCI/CDパイプラインとなります。
+このキャンペーンは、2026年4月に行われた@bitwarden/cli@2026.4.0の侵害を構造的に引き継ぐものです。同じツールチェーン、同じ難読化、同じ伝播ロジックを使用しており、今やSAPのエコシステムに反旗を翻しています。
+攻撃メカニズム
+侵害された各パッケージは2つの新しいファイルを受け取りました:
+
+setup.mjs
+execution.js
+
+これらのファイルは、プリインストールのライフサイクル フック("preinstall": "node setup.mjs")を追加した変更されたpackage.jsonと一緒に届きました。
+つまり、インストールが完了する前に、悪意のあるコードがnpmのインストール プロセス中に自動的に実行されるのです。setup.mjsブートストラッパーは、ホストOSとアーキテクチャを検出し、次のアクティビティを実行します:
+
+公式github[.]com/oven-sh/bunリリースからBun JavaScriptランタイム(v1.3.13)をダウンロードする
+ランタイムを一時ディレクトリに展開する
+ランタイムをすぐに使用してexecution.jsを実行する
+
+ペイロード機能
+11.7MBの単一ファイルで難読化された認証情報窃取ツールのexecution.jsは伝播フレームワークです。以下のようなアクティビティを行います:
+
+ctf-scramble-v2とラベル付けされたカスタム文字列スクランブル レイヤーを使用して、機密文字列を静的解析から隠す
+ロシア語ロケールのキルスイッチを含む(システムロケールがruに設定されている場合、確認なしで終了する)
+非CIマシンでデーモン化し、バックグラウンドで実行する
+
+次のような情報が得られます:
+
+GitHubトークン(gh authトークンの出力を含む)
+.npmrcからのnpmトークン
+完全な環境変数ブロック
+GitHubアクションのシークレット
+AWS STSアイデンティティ
+シークレット マネージャーとSSMパラメータ
+Azure Key Vaultのシークレット
+GCPシークレット マネージャーの値
+Kubernetesサービス アカウント トークン
+ClaudeとMCPの設定ファイル
+Electrumウォレット
+VPN設定
+
+特にアグレッシブなCIパスでは、GitHub Actions Runner.Workerプロセスの/procメモリを読み込み、マスクされたシークレットの値を抽出するPythonヘルパーが組み込まれています。収集されたデータはすべて以下の過程を経ます:
+
+圧縮
+AES-256-GCMで暗号化され、埋め込みRSA公開鍵にキーをラッピング
+Duneをテーマにしたランダムな名前と「A Mini Shai-Hulud has Appeared(ミニ・シャイフルードが現れた)」という説明文のついた、新しく作成された公開GitHubリポジトリへの流出
+
+伝播とGitHubデッドドロップ
+このキャンペーンは、GitHubの公開コミット検索APIを秘密のコマンド&コントロール(C2)チャネルとして利用しています。このマルウェアは以下のアクティビティを行います:
+
+キーワード「OhNoWhatsGoingOnWithGitHub」を含むコミットを検索する
+盗まれたGitHubトークンを復元するために、トークンのデッドドロップとして一致するコミットメッセージを解読する
+メッセージを拡散のために使う
+
+使用可能なトークンが取得されると、以下のようなペイロードが生成されます:
+
+自身をexecution[.]jsにコピーする
+setup.mjsを書き込む
+package.jsonに"preinstall": "node setup.mjs"を設定する
+パッチのバージョンを上げる
+公開用にtarballをリパックする
+
+このマルウェアはまた、以下のファイルを被害者のリポジトリに直接プッシュします:
+
+.vscode/setup.mjs
+.claude/execution.js
+.claude/settings.json
+
+このマルウェアは、claude <claude@users.noreply.github.com>として作成されたコミットを使って、chore: update dependenciesというメッセージとともに上記のファイルをプッシュします。
+Bitwardenキャンペーンとの関連
+bitwarden/cli@2026.4.0への3つのフォレンジック リンクは、作者の共有や直接再利用されたツールチェーンを示すのに十分な正確さを持っています。
+1. setup.mjsプリインストール ブートストラッパー。Bitwardenのキャンペーンでは、setup.mjsがワーム(bw1.js)の自己複製アーティファクトとして、被害者が公開できるすべてのnpmパッケージに注入されました。SAPパッケージはブートストラッパーとして同じファイル名を使い、同じBunバージョン(1.3.13)、同じAlpine/musl検出ロジック、同じリダイレクト フォロー ダウンロード アプローチなど、この2つには明確な共通の系統があります。
+2.decodeScramble / ctf-scramble-v2難読化メソッド。Bitwardenのペイロードは、カスタムシードのASCIIシャッフル暗号を使用して、すべての機密文字列を暗号化します。これは、0x3039(12345)をシードとする線形合同PRNGによって駆動される128文字のASCIIテーブルに対するフィッシャーイェーツシャッフルです。SAPのexecution.jsは、ctf-scramble-v2と明示的にラベル付けされたレイヤーを使用しており、これは同じ決定論的置換スキームです。これはライブラリではなく、オーダーメイドの実装です。両方のペイロードで再利用されます。
+3. GitHubのコミットのデッドドロップのパターン。Bitwardenマルウェアは、GitHubの公開コミット検索APIを秘密のC2チャネルとして利用しました。LongLiveTheResistanceAgainstMachines:<base64>に一致するコミット メッセージに窃取されたトークンを埋め込み、攻撃者が管理するインフラストラクチャなしで新しい流出経路をブートストラップするために使用しました。
+この波では、まったく同じパターンを新しいキーワード(OhNoWhatsGoingOnWithGitHub)で適用し、一致するコミット メッセージをトークンのデッドドロップとしてデコードします。この仕組みは実装も同じです:
+
+GitHub APIでキーワードを含むコミットを検索する
+コミット メッセージ本文をパースする
+埋め込まれたトークンをデコードする
+リポジトリへのアクセスを検証する
+
+テクニックを維持したままキーワードを入れ替えるのは、再利用されるコードベースを更新する同じオペレーターの特徴です。
+Shai-Huludキャンペーンのコンテキスト
+Checkmarxの公式セキュリティ アップデートによると、このnpmパッケージは、複数のCheckmarx配布チャネルを同時に侵害する、より広範なサプライチェーン キャンペーンの1つのコンポーネントです:
+
+Docker Hub: ポイズニングされたcheckmarx/kicsイメージ (v2.1.20、v2.1.21、最新版、alpine、debian)
+GitHub Actions: 悪意のあるcheckmarx/ast-github-action v2.3.35
+VSコードのエクステンション: checkmarx/ast-results (v2.63, v2.66)およびcheckmarx/cx-dev-assist (v1.17, v1.19)をバックドア化
+npm: 本レポートで分析する@bitwarden/cliパッケージ
+
+Checkmarxの開示情報によると、すべてのアーティファクトは同じC2インフラストラクチャ(audit.checkmarx[.]cx)、同じ難読化技術、同じ認証情報の獲得および伝播ロジックを共有しています。このVS Codeエクステンションの亜種は、Checkmarx自身のGitHubリポジトリにある日付を遡った孤立コミットからペイロード(mcpAddon.js)を配信し、ダウンロードURLを信頼性のあるものに見せていました。
+TeamPCP (@pcpcats)は、この侵害を自分の手柄だと公言しました。ソケットの分析によると、このグループは、2026年3月にもTrivyやLiteLLMとともにCheckmarxのインフラストラクチャを標的にしており、セキュリティ ツール ベンダーに対する継続的なキャンペーンを示唆していました。
+攻撃の概要
+表1に攻撃の属性を示します。
+
+
+
+属性
+詳細
+
+
+
+
+パッケージ
+@bitwarden/cli@2026.4.0
+
+
+トリガー
+プリインストール ライフサイクル スクリプト
+
+
+ランタイム
+Bun v1.3.13 (インストール時にダウンロード)
+
+
+C2サーバー
+audit.checkmarx[.]cx:443 (94.154.172[.]43)
+
+
+C2パス
+/v1/telemetry
+
+
+フォールバックC2
+動的、GitHub Search APIデッドドロップ経由でフェッチ
+
+
+データ窃取
+HTTPS POST (暗号化) + GitHub公開リポジトリ
+
+
+アトリビューション
+TeamPCP (@pcpcats)
+
+
+
+表1.攻撃の属性。
+Bitwardenのセキュリティ チームは、以下の情報を提供しました。表1に記載のこの悪意のあるパッケージは、2026年4月22日午後5時57分から午後7時30分(米国東部標準時間)の間に、@bitwarden/cli@2026.4.0 のnpm配信パスを通じて、より広範なサプライチェーン インシデントに関連して短期間配布されました。
+彼らの調査では、エンドユーザーのボールトデータがアクセスされたり危険にさらされたりした証拠も、本番データや本番システムが侵害された証拠も見つかりませんでした。問題が発見されると、以下のアクションを行いました:
+
+侵害されたアクセスを取り消し
+悪意のあるnpmリリースを廃止
+直ちに改善手順を開始
+
+この問題は、その限られた期間中にCLIのnpm配布メカニズムに影響を及ぼしたものであり、正規のBitwarden CLIコードベースや保存されているボールトデータの完全性には影響しませんでした。
+この期間中にnpmからパッケージをダウンロードしなかった人は影響を受けませんでした。Bitwardenは、社内環境、リリースパス、関連システムのレビューを完了しました。現時点では、影響を受けた追加の製品や環境は見つかっていません。
+このインシデントに関連して、Bitwarden CLIバージョン2026.4.0のCVEが発行されています。
+ステージ1: ブートストラップ - bw_setup.js
+package.jsonには、図1に示すように、悪意のあるスクリプトの実行パスが2つ用意されています。
+図1.package.jsonファイル内の悪意のあるスクリプトの実行パス。
+プリインストール フックは、npmインストール中に自動的に実行されます。binフィールドは、bw_setup.jsをbwコマンドとして登録し、ユーザーのPATHにシンボリックリンクします。
+正規のBitwarden CLIもバイナリ名としてbwを使用しているため、これは二次的なトリガーとして機能します。プリインストールが(--ignore-scriptsなどで)ブロックされていても、マルウェアは次にユーザーやスクリプトがbwを起動したときに実行されます。bw_setup.jsの先頭にあるシバン行#!/usr/bin/env nodeノードは、直接呼び出されたときにNode.jsスクリプトとして実行されることを保証します。
+ブートストラップ スクリプトは3つのアクションを実行します:
+
+プラットフォームの検出: OSとアーキテクチャ(Linux、macOS、Windows、x64またはarm64)を識別し、Linuxでのmuslとglibcの検出を含みます
+Bunランタイムのダウンロード: 公式github[.]com/oven-sh/bunリリースからBun JavaScriptランタイム(v1.3.13)をダウンロードします。これは、メインのペイロードがNode.jsでは利用できないBun固有のAPI(シェル実行、ファイルI/O、gzip)を使用するために必要です。
+ペイロードの実行: ダウンロードしたばかりのBunバイナリを使用してbw1.jsを実行します
+
+カスタムZIP抽出実装は、依存関係を回避するために含まれており、ブートストラップを完全に自己完結型にしています。
+ステージ2: ペイロード - bw1.js
+ペイロードは約10MBの単一行JavaScriptファイルで、フォーマットされると約285,000行になります。正規のソフトウェア開発者キット(SDK)(AWS SDK、Google Cloudクライアント ライブラリ、Azure Identity、Octokit、jsonwebtoken、tarなど)を悪意のあるオーケストレーション コードと一緒にバンドルしています。
+難読化の手法
+コードは何重にも難読化されています:
+
+ストリング テーブルのローテーション: 関数_0x214eは、大きな回転配列(_0x1ee1)から文字列への16進インデックスを解決し、単純な静的文字列解析を打ち破ります
+シードASCIIシャッフル暗号: 機密文字列(ドメイン、ファイル パス、シェル コマンド)は、フィッシャーイェーツシャッフルされたASCIIテーブルへの数値インデックスの配列としてエンコードされます。シャッフルには、以下の図2に示すように、0x3039 (12345)をシードとする線形合同PRNGを使用します。
+
+図2.シードASCIIシャッフル暗号。
+128文字のASCIIセットは決定論的にシャッフルされ、16進数値0x42のインデックスがASCII文字a、0x6eがuにマッピングされる置換テーブルを生成します。例えば、C2ドメインは、[0x42, 0x6e, 0x36, 0x4b, 0x2b, 0x5c, 0xd, 0x57, 0x0, 0xd, 0x7, 0x26, 0x42, 0x3, 0x2a, 0x5c, 0xd, 0x2a]として格納され、ドメインaudit.checkmarx[.]cxのASCII文字列にデコードされます。
+
+GzipおよびBase64埋め込みペイロード: RSA公開鍵、GitHub ActionsワークフローYAML、ワームのsetup.mjsローダー、マニフェスト文字列など、いくつかのblobがgzip圧縮されたBase64文字列として格納されています
+名前就職される識別子: すべての変数名と関数名は、_0x3865d8のような16進数パターンに置き換えられます
+
+認証情報の獲得
+ペイロードは複数のプロバイダ クラスをデプロイし、それぞれが異なる認証情報ソースをターゲットとします。すべてのプロバイダは、図3に示すように、npmとGitHubのトークンを抽出するために正規表現パターンで結果をスキャンします。
+図3.npmとGitHubトークンを抽出するための正規表現パターン。
+ファイル システム プロバイダ(Cn)
+これは、開発者のワークステーションから機密ファイルを読み取るもので、OSごとのパスリストは、以下の表2に示すようにスクランブラを介してデコードされます。
+
+
+
+プラットフォーム
+対象ファイル
+
+
+
+
+Linux
+~/.ssh/id_*, ~/.ssh/keys, .git/config, ~/.npmrc, .npmrc, .env, ~/.claude/mcp.json, ~/.claude.json, ~/.kiro/settings/mcp.json
+
+
+MacOS
+~/.aws/credentials, .git/config, ~/.npmrc, .npmrc, .env, ~/.claude.json, .claude.json, ~/.kiro/settings/mcp.json, .kiro/settings/mcp.json
+
+
+Windows
+認証情報ストアのパス、config.ini
+
+
+
+表2.マルウェアからのOSパスリスト。
+約5MB以上のファイルはスキップされます。その他はすべて完全に読み取られ、窃取ペイロードに含まれます。
+シェルプロバイダ(un)
+execSyncを使ってgh認証トークンを実行し、GitHub CLIのアクティブ トークンを取得し、process.env環境ブロックをすべて取得します。どちらもトークン正規表現のスキャンと流出用に返されます。以下のクラウド プロバイダとは異なり、シェル プロバイダはSDKを使用せず、単一のシェル コマンドと環境変数のみに依存しています。
+GitHub Actionsプロバイダ(Co)
+process.env.GITHUB_ACTIONS === "true"を介してCI/CD環境を検出し、Actionsランナー コンテキストから{"value":"...", "isSecret":true}パターンをパースすることで、設定されたすべてのシークレットを抽出します。
+AWS SSMプロバイダ(ku)
+バンドルされているAWS SDK (SSMClient、DescribeParameters、GetParameter)を使用して、AWS Systems Manager Parameter Storeからパラメータを列挙して読み込みます。
+Azure Key Vaultプロバイダ(Rn)
+Azure IdentityおよびKey Vault SDKを使用してgetSecretsFromVaultを呼び出し、アクセス可能なすべてのボールトからシークレットをリストアップして読み取ります。
+Google Cloud Secret Managerプロバイダ (uo)
+Google Cloud Secret Managerクライアントを使用してlistSecretsとaccessSecretVersionを行い、プロジェクト全体でアクセス可能なすべてのシークレットを読み取ります。
+データ窃取
+獲得された認証情報はすべて、2層の流出システムを通じて処理されます。
+プライマリ: HTTPSからC2 (Cyクラス)へ
+
+結果はJSONにシリアライズされ、gzipで圧縮されます
+ランダムな32バイトのAES-256-GCM対称鍵が生成されます
+データはAES-256-GCMで暗号化されます
+共通鍵はハードコードされた4096ビットの公開鍵(Fr)でRSA暗号化されます
+暗号化されたエンベロープは、POST hxxps[:]//audit.checkmarx[.]cx:443/v1/telemetryによって送信されます
+
+セカンダリ: GitHub公開リポジトリ(kyクラス)
+盗まれたGitHubのトークンを使って、マルウェアは以下のアクティビティを行います:
+
+被害者のアカウントの下に、「Checkmarx Configuration Storage」という説明と、Duneをテーマにした名前(例：gesserit-melange-813)で、新しいパブリック リポジトリを作成します
+暗号化された結果ファイルをresults/ディレクトリにコミットします
+LongLiveTheResistanceAgainstMachines:<base64_token>というフォーマットでコミット メッセージに盗まれたトークンを埋め込みます
+
+この二重の流出により、C2ドメインがブロックされても、データは確実に攻撃者に到達します。
+GitHub Actionsワークフロー インジェクション(u_ クラス)
+マルウェアがリポジトリとワークフローのスコープを持つGitHubトークンを取得すると、クラスu_はスコープを検証し、その後:
+
+被害者がプッシュできるリポジトリを列挙し、最近アクティブになったリポジトリを優先します
+各リポジトリにGitHub Actionsシークレットが設定されているかどうかをチェックします(設定されていないリポジトリはスキップします)
+新しいブランチを作成し、.github/workflows/format-check.ymlをコミットします。以下の図4に示すように、すべてのシークレットをダンプする悪意のあるワークフローです
+
+図4.format-check.ymlファイルの内容。
+
+すべてのシリアライズされたシークレットを含む結果のアーティファクトをダウンロードします
+痕跡を隠ぺいするためにブランチとワークフローの実行を削除します
+
+npmワームの伝播
+これが自己複製コンポーネントです。マルウェアは、npmトークン(npm_...)を見つけると、以下のアクティビティを行います。
+トークンの検証
+これは、npmトークンAPIを認証で呼び出します: ベアラー<token>は、トークンがパッケージ スコープで公開(書き込み)パーミッションを持っていることと、2要素認証(2FA)をバイパスすることを検証します。
+パッケージ列挙
+検証されたトークンは、以下のアクティビティに使用されます:
+
+npmユーザー名を取得する
+トークンの許可されたリソース(組織、スコープ、特定のパッケージ)を反復処理する
+書き込み可能なパッケージを/-/org/<user>/packageに問い合わせる
+公開パッケージ用に/-/v1/search?text=maintainer:<user>にフォールバックする
+
+tarballのダウンロードとバックドア
+各ターゲット パッケージについて:
+
+npmレジストリから最新のtarballをダウンロードする
+一時ディレクトリに展開する
+Bunのバイナリをパッケージにコピーする
+package.jsonを書き換える:
+
+すべてのスクリプトを消去する
+"preinstall": "node setup.mjs"(スクランブラからデコード)を設定する
+パッチのバージョンを上げる(例: 1.2.3 → 1.2.4)
+
+
+ワームの完全なペイロード(K$、gzip+Base64でエンコードされたマルウェアのコピー)を含むsetup.mjsを書き込む
+tarballを再パックする
+
+パブリッシング
+盗まれたトークンの認証行(//registry.npmjs[.]org/:_authToken=<token>)で.npmrcを書き、bun publish<tarball>を実行します。
+新しく感染したパッケージはすべて、それをインストールする開発者に同じプリインストール チェーンをトリガーし、指数関数的な伝播ベクトルを作り出します。
+C2レジリエンス: GitHubのデッドドロップ
+このマルウェアは、GitHubの公開検索APIを秘密のコマンド チャネルとして使用することで、C2レジリエンスのためのフォールバック メカニズムを実装しています。
+プライマリC2サーバー(audit.checkmarx[.]cx)が到達不能な場合、マルウェアは以下のことを行います:
+
+公開されているSearch APIを使って、beautifulcastleというキーワードでGitHubのコミットを検索する
+[helloworm00/hello-world](hxxps[:]//github[.]com/helloworm00/hello-world)(本攻撃の1日前、4月21日付のコミットbc544f4)で一致するコミットを発見する
+コミット メッセージ本文を正規表現/beautifulcastle ([A-Za-z0-9+/=]{1,30})/([A-Za-z0-9+/=]{1,700})/でパースする
+最初のキャプチャ グループをBase64からデコードし、ドメインを取得する
+ハードコードされた公開鍵Erに対するデジタル署名(512バイトのRSA-4096)として、2番目のキャプチャ グループを検証する。これにより、攻撃者だけがマルウェアを新しいC2サーバーに誘導できるようになる。
+
+分析時、デッドドロップにはプレースホルダーの値（hxxps[:]//example[.]com）が含まれており、将来の使用のために事前にステージングされていたことがわかります。攻撃者は、公開されているGitHubリポジトリに新しい署名付きコミットを作成することで、いつでもC2インフラストラクチャをローテーションすることができます。
+第二のフォールバック(Hr関数)は、LongLiveTheResistanceAgainstMachines:<base64>に一致するコミットを検索し、以前に盗まれたGitHubトークンを流出リポジトリから回収することで、攻撃者が管理するインフラストラクチャを使わずに、新しいGitHubベースの流出チャネルを起動します。
+検知対策
+
+ロシアロケールのキルスイッチ: mz0関数は、ロシア語(ru)のIntl.DateTimeFormat().resolvedOptions().locale、LC_ALL、LC_MESSAGES、LANGUAGE、LANGをチェックします。一致するものがあれば、マルウェアは以下の処理を実行せずに直ちにprocess.exit(0)を呼び出します
+デーモン化: Ml0関数は、__DAEMONIZED=1でデタッチされたプロセスを環境に再スポーンし、ペイロードがバックグラウンドで実行されている間に親プロセスがきれいに終了できるようにします
+PIDベースのロック ファイル: $l0はprocess.pidを一時ファイルに書き込み、process.kill(pid, 0)によって前のインスタンスがまだ生きているかどうかをチェックすることで、複数のインスタンスの同時実行を防ぎます
+シグナル ハンドラ: SIGINT/SIGTERMをno-opコールバック(() => {})でキャッチし、中断を防ぎます
+一時ディレクトリのクリーンアップ: tarball操作後、フォレンジック アーティファクトが削除されます
+すべての機密文字列: スクランブラまたはgzip+Base64でエンコードされます
+サイレントエラー処理: 失敗はキャッチされ、抑制されます
+無害なネーミング: C2パスv1/テレメトリは正規の分析エンドポイントを模倣します
+
+中間ガイダンス
+
+上記のC2ドメインとIPをネットワーク境界でブロックします。
+npmトークン、GitHub PAT、AWS/Azure/Google Cloudキー、SSHキー、CI/CDシークレットなど、公開された可能性のあるすべての認証情報をローテーションします。
+メンテナンスしているnpmパッケージに不正なバージョンアップや新しいプリインストール フックがないか監査します。
+不正なリポジトリ作成、予期せぬワークフロー ファイル、アーティファクトのダウンロードがないかGitHubを確認します。
+組織全体のGitHub Actionsログからformat-resultsアーティファクトを検索します。
+予期せぬBunプロセスの実行や、IoC(侵害のインジケーター)インフラストラクチャへのアウトバウンド接続をハントします。
+ロックファイルと整合性ハッシュを使用して、依存関係を既知の良いバージョンに固定します。
+
+Unit 42マネージド脅威ハンティング用クエリ
+Unit 42のマネージド脅威ハンティングチームは、Cortex XDRと以下のXQLクエリを使用して、顧客全体でこのCVEの悪用試行を継続的に追跡しています。Cortex XDRの顧客は、これらのXQLクエリで、悪用の兆候を検索することもできます。
+以下のXQLクエリは、Bun経由でJavaScriptファイルを実行した後、ローカルに保存された認証トークンを収集する目的とみられるGitHub CLI呼び出しを行う挙動を特定するために使用されています。Bunは多くの開発者環境で正当なものである一方で、このキャンペーンにおけるパッケージ インストール型マルウェアの実行環境としての使用は、gh auth tokenのような認証情報アクセス コマンドと共に観測された場合、調査対象とする価値があります。
+
+
+
+
+
+// Title: Mini Shai-Hulud antv package compromise malicious package installation and persistence
+// Description: Identifies the Mini Shai-Hulud installation activity at various stages involved in the antv npm package compromise.
+// MITRE ATT&CK TTP ID: T1195.001
+config case_sensitive = false
+| dataset = xdr_data
+| fields agent_hostname, event_id, actor_effective_username, actor_process_image_command_line, actor_process_image_path, actor_process_image_sha256, action_file_sha256, action_file_path, action_file_name, action_process_image_command_line, action_process_image_path, action_process_image_name, event_type, event_sub_type, action_external_hostname
+| filter event_type in (ENUM.FILE, ENUM.NETWORK)
+and (action_file_path ~= "(?:\/tmp\/kitty\-[A-Za-z0-9]{6}\/.\.py|\.local\/share\/kitty\/cat\.py)"
+or (actor_process_image_path ~= "\.npm\/_npx\/[0-9a-f]{16}\/node_modules\/bun\/bin\/bun.exe" and (action_file_path ~= "\.npm\/_npx\/[0-9a-f]{16}\/node_modules\/nx\-next\/index\.js" or action_external_hostname ~= "(?:t\.m\-kosche\.com|api\.github\.com)")))
+
+
+
+
+123456789
+
+// Title: Mini Shai-Hulud antv package compromise malicious package installation and persistence// Description: Identifies the Mini Shai-Hulud installation activity at various stages involved in the antv npm package compromise.// MITRE ATT&CK TTP ID: T1195.001config case_sensitive = false| dataset = xdr_data| fields agent_hostname, event_id, actor_effective_username, actor_process_image_command_line, actor_process_image_path, actor_process_image_sha256, action_file_sha256, action_file_path, action_file_name, action_process_image_command_line, action_process_image_path, action_process_image_name, event_type, event_sub_type, action_external_hostname| filter event_type in (ENUM.FILE, ENUM.NETWORK)and (action_file_path ~= "(?:\/tmp\/kitty\-[A-Za-z0-9]{6}\/.\.py|\.local\/share\/kitty\/cat\.py)"or (actor_process_image_path ~= "\.npm\/_npx\/[0-9a-f]{16}\/node_modules\/bun\/bin\/bun.exe" and (action_file_path ~= "\.npm\/_npx\/[0-9a-f]{16}\/node_modules\/nx\-next\/index\.js" or action_external_hostname ~= "(?:t\.m\-kosche\.com|api\.github\.com)")))
+
+
+
+
+
+
+結論
+Unit 42は、2025年9月のShai Huludインシデント以来の変化を目の当たりにし、それが一時的な急増ではなく、ソフトウェアのサプライチェーン リスクの新たな基準値であることを証明しました。コードが思考のスピードで共有されるエコシステムでは、たったひとつの侵害された依存関係がグローバルな連鎖を引き起こす可能性があります。
+結局のところ、npmの侵害には共通点があり、組織は特定のベストプラクティスを念頭に置くことで、この不安定な状況を乗り切ることができます。npmパッケージに関連する調査結果を監視、分析、更新し続ける中で、静的な防御にとどまらず、継続的な検証の文化を受け入れることをお勧めします。サプライチェーンは新たな主要ターゲットとなる可能性がありますが、集合的インテリジェンスと絶え間ない可視性により、主要な脆弱性となる必要はありません。
+侵害されたnpmパッケージの緩和策
+クールダウン期間を適用する
+過去24時間から72時間以内に公開されたパッケージ バージョンをブロックするポリシーを(プライベート レジストリやArtifactoryのようなプロキシを介して)実装します。ほとんどの悪意のあるパッケージは、このウィンドウ内で特定され、パブリック レジストリから削除されます。
+ライフサイクル スクリプトを無効にする
+多くの侵害は、プリインストールまたはポストインストール フックに依存し、シークレットを流出させます。.npmrcで以下を使用します: ignore-scripts=true。
+バージョンのピン留めとnpm ci
+package-lock.jsonを使用し、CI/CDパイプラインがnpm installの代わりにnpm ciを使用するようにします。これにより、ビルド中の依存関係の「隠された」更新を防ぐことができます。
+プライベート レジストリのプロキシ
+開発者マシンやCIランナーがregistry.npmjs[]orgと直接会話することは決して許可しないでください。すべてのトラフィックをプライベート レジストリに通します。
+名前空間シャドウイング(依存関係の混乱の防止)
+攻撃者は多くの場合、内部ライブラリと同じ名前のパッケージをパブリック レジストリに公開します。常にスコープ付きパッケージ(@myorg/internal-libなど)を使用し、そのスコープを内部的に解決するためだけにプライベート レジストリを設定します。
+出所の検証
+OpenID Connect認証を確認します。多くの主要パッケージは、コードが特定のGitHub/GitLabランナーでビルドされたことを証明する「出所」を提供しています。ビルド中にこれらをチェックするには、slsa-verifierのようなツールを使います。
+CI/CDにおけるエグレス フィルタリング
+ほとんどのnpmベースのマルウェアは、~/.npmrcトークンまたは~/.sshキーをC2サーバーに送信しようとします。CIランナーに厳格なエグレス ネットワーク ポリシーを適用します。プライベート レジストリと既知のデプロイメント ターゲットへの接続のみを許可します。
+ソフトウェア部品表(SBOM)
+生産リリースごとにSBOMを自動生成します。これにより、お客様のセキュリティ チームは、新しいゼロデイが発表されたときに、即座に影響分析を行うことができます。
+侵害されたnpmパッケージに関するパロアルトネットワークス製品の保護
+パロアルトネットワークスのお客様は、さまざまな製品保護、アップデートを活用して、本脅威を特定し組織を保護いただけます。
+情報漏えいの可能性がある場合、または緊急の案件がある場合はUnit 42インシデント レスポンス チームにアクセスするか電話でご連絡ください:
+
+北米:フリーダイヤル: +1 (866) 486-4842 (866.4.UNIT42)
+英国: +44.20.3743.3660
+ヨーロッパおよび中東: +31.20.299.3130
+アジア: +65.6983.8730
+日本: +81.50.1790.0200
+オーストラリア: +61.2.4062.7950
+インド: 000 800 050 45107
+韓国: +82.080.467.8774
+
+Advanced WildFire
+Advanced WildFireの機械学習モデルと分析技術は、悪意のあるBitwardenパッケージを含むnpmの侵害に関連するインジケーターに照らして見直され、更新されています。
+次世代ファイアウォール向けクラウド提供型セキュリティ サービス
+Advanced URL FilteringとAdvanced DNS Securityは、この活動に関連する既知のドメインとIPアドレスを悪意のあるものとして識別することが可能です。
+Cortex Cloud
+Cortex Cloudのアプリケーション セキュリティ モジュール(ASPM)は、クラウド リソースにインストールされたnpmパッケージのスキャンだけでなく、この記事で取り上げたGitHubを含むサードパーティのSaaSベンダーからの監査ログのモニタリングもサポートしています。Cortex Cloudは、取り込まれたアプリケーションとその使用状況に基づいて、アラート、問題、ポリシー、アセットに優先順位をつけます。これにより、セキュリティ チームは、影響を受けたクラウド リソースを特定して修復し、関連するランタイム オペレーションに積極的に対応することで、Cortex CloudのXDRエージェントとサーバーレス オペレーションを通じて、この記事で取り上げた脅威に対してオンプレミスとクラウド環境全体のセキュリティ意識を維持することができます。Cortex Cloudを使用してこの脅威から保護する方法の詳細については、ブログをご覧ください。
+Koi Agentic Endpoint Security
+Koi Agentic Endpoint Securityでは、インストール済みパッケージの自動更新を一定期間遅延させることができます。これにより、新たに公開されたバージョンについて、環境へ展開される前にレピュテーションの確立と公開検証の時間を確保できます。
+侵害のインジケータ
+2026年4月29日のアクティビティのインジケータ
+影響を受けるパッケージ
+
+@cap-js/sqlite@2.2.2
+@cap-js/postgres@2.2.2
+@cap-js/db-service@2.10.1
+mbt@1.2.48
+
+SHA256ハッシュ
+
+setup.mjs:4066781fa830224c8bbcc3aa005a396657f9c8f9016f9a64ad44a9d7f5f45e34
+execution.js:6f933d00b7d05678eb43c90963a80b8947c4ae6830182f89df31da9f568fea95
+
+URLs
+
+hxxps[:]//github[.]com/oven-sh/bun/releases/download/bun-v1.3.13/ (Bunダウンロード)
+hxxps[:]//api.github[.]com/search/commits?q=OhNoWhatsGoingOnWithGitHub (デッドドロップ)
+
+2026年4月22日のアクティビティのインジケータ
+ネットワークインジケータ
+表3は、このアクティビティで得られたネットワークインジケータの一覧です。
+
+
+
+インジケータ
+タイプ
+
+
+
+
+audit.checkmarx[.]cx
+C2ドメイン
+
+
+94.154.172[.]43
+C2 IPアドレス
+
+
+checkmarx[.]cx
+攻撃者が制御するドメイン
+
+
+91.195.240[.]123
+攻撃者のIPアドレス
+
+
+
+表3ネットワークインジケータ。
+GitHubインジケータ
+表4は、このアクティビティで得られたGitHubの指標の一覧です。
+
+
+
+インジケータ
+タイプ
+
+
+
+
+helloworm00/hello-world
+デッドドロップ リポジトリ
+
+
+bc544f455d7c06c8a1f3446160a6d9a4a8236b11
+デッドドロップ コミットのSHA1ハッシュ
+
+
+helloworm00@proton[.]me
+攻撃者のメールアドレス
+
+
+LongLiveTheResistanceAgainstMachines:*に一致するコミット メッセージ
+データ窃取ステージング
+
+
+"Checkmarx Configuration Storage "という説明付きの<dune-word>-<dune-word>-<3digits>という名前のパブリック リポジトリ
+データ窃取リポジトリ
+
+
+
+表4.GitHubのインジケータ。
+ファイルとプロセスのインジケータ
+表5は、このアクティビティで得られたファイルとプロセスのインジケータです。
+
+
+
+インジケータ
+タイプ
+SHA256ハッシュ
+
+
+
+
+bw_setup.js
+ブートストラップ スクリプト
+f35475829991b303c5efc2ee0f343dd38f8614e8b5e69db683923135f85cf60d
+
+
+bw1.js
+難読化されたペイロード
+18f784b3bc9a0bcdcb1a8d7f51bc5f54323fc40cbd874119354ab609bef6e4cb
+
+
+package.json
+悪意のあるマニフェスト
+167ce57ef59a32a6a0ef4137785828077879092d7f83ddbc1755d6e69116e0ad
+
+
+感染したパッケージのsetup.mjs
+ワームのペイロード
+
+
+
+予期せぬbunプロセスの実行
+ランタイム インジケータ
+
+
+
+一時的ブランチの.github/workflows/format-check.yml
+ワークフロー インジェクション
+
+
+
+結果のフォーマット ワークフロー アーティファクト
+シークレットの窃取
+
+
+
+
+表5. ファイルとプロセスのインジケータ。
+npmインジケータ
+表6は、このアクティビティで得られたnpm指標の一覧です。
+
+
+
+インジケータ
+タイプ
+
+
+
+
+@bitwarden/cli@2026.4.0
+悪意のあるパッケージ
+
+
+新たなプリインストール: package.jsonの"node setup.mjs"
+インジェクション フック
+
+
+
+表6 npmインジケータ。
+2026年6月1日以降の活動指標 
+
+
+
+影響を受けるパッケージ
+バージョン:
+
+
+
+
+@redhat-cloud-services/chrome
+2.3.1, 2.3.2
+
+
+@redhat-cloud-services/compliance-client
+4.0.3, 4.0.4, 4.0.6
+
+
+@redhat-cloud-services/config-manager-client
+5.0.4, 5.0.5, 5.0.7
+
+
+@redhat-cloud-services/entitlements-client
+4.0.11, 4.0.12, 4.0.14
+
+
+@redhat-cloud-services/eslint-config-redhat-cloud-services
+3.2.1, 3.2.2, 3.2.4
+
+
+@redhat-cloud-services/frontend-components
+7.7.2, 7.7.3, 7.7.5
+
+
+@redhat-cloud-services/frontend-components-advisor-components
+3.8.2, 3.8.4, 3.8.6
+
+
+@redhat-cloud-services/frontend-components-config
+6.11.3, 6.11.4, 6.11.6
+
+
+@redhat-cloud-services/frontend-components-config-utilities
+4.11.2, 4.11.3, 4.11.5
+
+
+@redhat-cloud-services/frontend-components-notifications
+6.9.2, 6.9.3
+
+
+@redhat-cloud-services/frontend-components-remediations
+4.9.2, 4.9.3, 4.9.5
+
+
+@redhat-cloud-services/frontend-components-testing
+1.2.1, 1.2.2, 1.2.4
+
+
+@redhat-cloud-services/frontend-components-translations
+4.4.1, 4.4.2
+
+
+@redhat-cloud-services/frontend-components-utilities
+7.4.1, 7.4.2, 7.4.4
+
+
+@redhat-cloud-services/hcc-feo-mcp
+0.3.1, 0.3.2, 0.3.4
+
+
+@redhat-cloud-services/hcc-kessel-mcp
+0.3.1, 0.3.2, 0.3.4
+
+
+@redhat-cloud-services/hcc-pf-mcp
+0.6.1, 0.6.2, 0.6.4
+
+
+@redhat-cloud-services/host-inventory-client
+5.0.3, 5.0.4, 5.0.6
+
+
+@redhat-cloud-services/insights-client
+4.0.4, 4.0.5, 4.0.7
+
+
+@redhat-cloud-services/integrations-client
+6.0.4, 6.0.5, 6.0.7
+
+
+@redhat-cloud-services/javascript-clients-shared
+2.0.8, 2.0.9, 2.0.11
+
+
+@redhat-cloud-services/notifications-client
+6.1.4, 6.1.5, 6.1.7
+
+
+@redhat-cloud-services/patch-client
+4.0.4, 4.0.5, 4.0.7
+
+
+@redhat-cloud-services/quickstarts-client
+4.0.11, 4.0.12, 4.0.14
+
+
+@redhat-cloud-services/rbac-client
+9.0.3, 9.0.4, 9.0.6
+
+
+@redhat-cloud-services/remediations-client
+4.0.4, 4.0.5, 4.0.7
+
+
+@redhat-cloud-services/rule-components
+4.7.2, 4.7.3
+
+
+@redhat-cloud-services/sources-client
+3.0.10, 3.0.11, 3.0.13
+
+
+@redhat-cloud-services/topological-inventory-client
+3.0.10, 3.0.11, 3.0.13
+
+
+@redhat-cloud-services/tsc-transform-imports
+1.2.2, 1.2.4, 1.2.6
+
+
+@redhat-cloud-services/types
+3.6.1, 3.6.2, 3.6.4
+
+
+@redhat-cloud-services/vulnerabilities-client
+2.1.8, 2.1.9, 2.1.11
+
+
+
+リポジトリ / GitHub または リポジトリ（GitHub）
+
+攻撃者作成のリポジトリの説明:"Miasma:The Spreading Blight"
+
+ネットワーク
+
+Bun ランタイムダウンロード: github.com/oven-sh/bun/releases/download/bun-v1.3.13/
+
+参考文献
+
+Checkmarxのセキュリティ アップデート: 2026年4月22日- Checkmarx
+KICSの公式Dockerリポジトリとコード エクステンションに悪意のあるCheckmarxのアーティファクトが見つかる- ソケット
+プロテクターを武器として使用する:セキュリティ インフラストラクチャにおけるTeamPCPの多段階サプライ チェーン攻撃
+脅威情報:Axiosサプライ チェーン攻撃で広範に及ぶ影響
+「Shai-Hulud」ワームがサプライ チェーン攻撃でnpmエコシステムを侵害(11月26日更新)
+Bitwarden CLIなりすまし攻撃がクラウド認証情報を盗み出し、npmサプライチェーン全体に広がる- Cortex Cloud、パロアルトネットワークス
+
+2026年4月27日午後2時15分更新。PTがBitwardenに関する情報を追加し、Additional ReferencesセクションにCortex Cloudの記事へのリンクを追加。
+2026年5月1日午後5時55分更新。PTがMini Shai-Huludキャンペーンに関する情報を追加。
+2026年5月20日午後12時30分に更新PTは、2つの新しい波に関する情報を追加したエグゼクティブ サマリーを更新し、2026年5月のMini-Shai Huludの波に関する新しいセクションを追加します。
+2026年5月21日午前8時45分に更新PTは、マネージド脅威ハンティング クエリおよび製品保護を追加します。
+2026年6月2日午前11時22分更新。PT: Red Hat のサプライチェーン攻撃に関するセクションを追加。IoC（侵害の指標）セクションに影響を受けたパッケージを追加。
+
+
+トップに戻る
+
+タグCredential HarvestingGitHubNpm packagesObfuscationPayloadSupply chainWorm propagation
+
+
+
+Threat Research Center
+
+
+次ページ:イランAPT Screening Serpensによる2026年スパイ キャンペーンの追跡
+
+
+
+
+
+
+
+目次
+
+
+
+
+
+
+関連記事
+
+
+
+                      ChainDropの脅威の概要:自己増殖型npmワームの内部                  
+
+
+
+                      脅威概要:Axiosサプライ チェーン攻撃で広範に及ぶ影響                  
+
+
+
+                      プロテクターを武器として利用する:セキュリティ インフラにおけるTeamPCPの多段階サプライ チェーン攻撃                  
+
+
+
+
+
+
+
+
+
+関連項目 マルウェア リソース
+
+
+
+
+ 
+
+
+
+主なサイバー脅威 2026年8月6日
+
+ChainDropの脅威の概要:自己増殖型npmワームの内部
+
+
+
+Blockchain
+
+
+ChainDrop
+
+
+Claude code
+ 
+
+
+                    今すぐ読む                    
+
+
+
+
+
+
+
+ 
+
+
+
+脅威アクター グループ 2026年5月22日
+
+イランAPT Screening Serpensによる2026年スパイ キャンペーンの追跡
+
+
+
+Advanced Persistent Threat
+
+
+AppDomainManager
+
+
+DLL Sideloading
+ 
+
+
+                    今すぐ読む                    
+
+
+
+
+
+
+
+ 
+
+
+
+主なサイバー脅威 2026年4月17日
+
+脅威情報: 2026年イランに関するサイバー リスクの激化(4月17日更新)
+
+
+
+APK
+
+
+DDoS attacks
+
+
+GenAI
+ 
+
+
+                    今すぐ読む                    
+
+
+
+
+
+
+
+ 
+
+
+
+主なサイバー脅威 2026年4月1日
+
+脅威概要:Axiosサプライ チェーン攻撃で広範に及ぶ影響
+
+
+
+API attacks
+
+
+JavaScript
+
+
+Powershell
+ 
+
+
+                    今すぐ読む                    
+
+
+
+
+
+
+
+ 
+
+
+
+主なサイバー脅威 2026年3月31日
+
+プロテクターを武器として利用する:セキュリティ インフラにおけるTeamPCPの多段階サプライ チェーン攻撃
+
+
+
+CVE-2025-55182
+
+
+GitHub
+
+
+Infostealer
+ 
+
+
+                    今すぐ読む                    
+
+
+
+
+
+
+
+ 
+
+
+
+脅威リサーチ 2026年3月24日
+
+脅威情報: パロアルトネットワークスの人材獲得チームになりすました採用スキーム
+
+
+
+Email scam
+
+
+Lure
+
+
+Phishing
+ 
+
+
+                    今すぐ読む                    
+
+
+
+
+
+
+
+ 
+
+
+
+主なサイバー脅威 2026年2月11日
+
+国家支援型の脅威アクターがNotepad++のサプライチェーンを悪用
+
+
+
+Backdoor
+
+
+Cobalt Strike
+
+
+DLL Sideloading
+ 
+
+
+                    今すぐ読む                    
+
+
+
+
+
+
+
+ 
+
+
+
+脅威リサーチ 2026年1月22日
+
+ランタイムアセンブリ攻撃の新たなフロンティア：LLMを活用したフィッシング用JavaScriptのリアルタイム生成
+
+
+
+API
+
+
+Google
+
+
+JavaScript
+ 
+
+
+                    今すぐ読む                    
+
+
+
+
+
+
+
+ 
+
+
+
+脅威リサーチ 2026年1月2日
+
+Pyarmorを利用して難読化と検知回避を行うVVS Discord Stealer
+
+
+
+Discord
+
+
+Infostealer
+
+
+Python
+ 
+
+
+                    今すぐ読む                    
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
+				Unit 42 からの最新情報を取得			
+進化する脅威の状況を常に先取り
+
+
+
+
+
+
+
+
+
+
+メール アドレス
+
+
+本フォームを送信することにより、利用規約に同意し、プライバシー ポリシーを承認したことになります。
+
+                     本サイトは reCAPTCHA で保護されており、Googleのプライバシー ポリシー とサービス利用規約が適用されます。                            
+  
+
+Invalid captcha!
+ 
+					サブスクライブ					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+最新ニュース、イベント情報、脅威アラートを配信
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+登録にはメールアドレスをご入力ください。
+
+
+
+
+
+お申込み 
+
+
+
+
+                                
+                                
+                                
+                                    
+                                    
+                                        
+                                        このフォームを送信することにより、個人情報がパロアルトネットワークスのプライバシーポリシーおよび利用規約に従って処理されることを理解します。
+                                    
+                                
+
+                                
+                                
+
+
+お申込み 
+
+
+
+
+
+
+
+
+
+
+
+
+製品とサービス
+
+
+
+
+
+                                    AI利用ネットワーク セキュリティ プラットフォーム
+                                
+
+
+
+                                    AIのセキュア バイ デザイン
+                                
+
+
+
+                                    Prisma AIRS
+                                
+
+
+
+                                    AI Access Security
+                                
+
+
+
+                                    クラウド提供型セキュリティ サービス
+                                
+
+
+
+                                    Advanced Threat Prevention
+                                
+
+
+
+                                    Advanced URL Filtering
+                                
+
+
+
+                                    Advanced WildFire
+                                
+
+
+
+                                    Advanced DNS Security
+                                
+
+
+
+                                    Enterprise Data Loss Prevention
+                                
+
+
+
+                                    Enterprise IoT Security
+                                
+
+
+
+                                    Medical IoT Security
+                                
+
+
+
+                                    Industrial OT Security
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    次世代ファイアウォール
+                                
+
+
+
+                                    ハードウェア ファイアウォール
+                                
+
+
+
+                                    ソフトウェア ファイアウォール
+                                
+
+
+
+                                    Strata Cloud Manager
+                                
+
+
+
+                                    SD-WAN for NGFW
+                                
+
+
+
+                                    PAN-OS
+                                
+
+
+
+                                    Panorama
+                                
+
+
+
+                                    セキュア アクセス サービス エッジ
+                                
+
+
+
+                                    Prisma SASE
+                                
+
+
+
+                                    App Acceleration
+                                
+
+
+
+                                    自律型デジタルエクスペリエンス管理
+                                
+
+
+
+                                    Enterprise DLP
+                                
+
+
+
+                                    Prisma Access
+                                
+
+
+
+                                    Prisma Browser
+                                
+
+
+
+                                    Prisma SD-WAN 
+                                
+
+
+
+                                    リモート ブラウザ分離
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    AI駆動型セキュリティ運用プラットフォーム
+                                
+
+
+
+                                    Cloud Security
+                                
+
+
+
+                                    Cortex Cloud
+                                
+
+
+
+                                    Application Security
+                                
+
+
+
+                                    Cloud Posture Security
+                                
+
+
+
+                                    Cloud Runtime Security
+                                
+
+
+
+                                    Prisma Cloud 
+                                
+
+
+
+                                    AI駆動型SOC
+                                
+
+
+
+                                    Cortex XSIAM
+                                
+
+
+
+                                    Cortex XDR
+                                
+
+
+
+                                    Cortex XSOAR
+                                
+
+
+
+                                    Cortex Xpanse
+                                
+
+
+
+                                    Unit 42マネージド ディテクション&レスポンス
+                                
+
+
+
+                                    マネージドXSIAM
+                                
+
+
+
+
+
+                                    次世代のアイデンティティ セキュリティ
+                                
+
+
+
+                                    特権アクセス管理
+                                
+
+
+
+                                    アイデンティティ管理とアクセス管理
+                                
+
+
+
+                                    Endpoint Privilege Manager
+                                
+
+
+
+                                    アイデンティティ ガバナンス
+                                
+
+
+
+                                    従業員パスワード管理
+                                
+
+
+
+                                    エージェンティック アイデンティティ
+                                
+
+
+
+                                    シークレット管理
+                                
+
+
+
+                                    統合型シークレット ガバナンス
+                                
+
+
+
+                                    アプリケーションの認証情報配信
+                                
+
+
+
+                                    ベンダーの特権アクセス
+                                
+
+
+
+                                    脅威インテリジェンス&インシデント レスポンス サービス
+                                
+
+
+
+                                    予防評価
+                                
+
+
+
+                                    インシデント レスポンス
+                                
+
+
+
+                                    セキュリティ戦略を変革
+                                
+
+
+
+                                    脅威インテリジェンスについて
+                                
+
+
+
+
+
+
+会社名
+
+
+
+
+
+                                    パロアルトネットワークスについて
+                                
+
+
+
+                                    採用情報
+                                
+
+
+
+                                    お問合せ
+                                
+
+
+
+                                    企業責任
+                                
+
+
+
+                                    お客様向け
+                                
+
+
+
+                                    IR
+                                
+
+
+
+                                    拠点
+                                
+
+
+
+                                    ニュースルーム
+                                
+
+
+
+
+
+
+人気のあるリンク
+
+
+
+
+
+                                    ブログ
+                                
+
+
+
+                                    コミュニティ
+                                
+
+
+
+                                    コンテンツライブラリ
+                                
+
+
+
+                                    Cyberpedia
+                                
+
+
+
+                                    イベントセンター
+                                
+
+
+
+                                    電子メール設定の管理
+                                
+
+
+
+                                    製品A〜Z
+                                
+
+
+
+                                    製品認証
+                                
+
+
+
+                                    脆弱性の報告
+                                
+
+
+
+                                    サイトマップ
+                                
+
+
+
+                                    テクニカル ドキュメント
+                                
+
+
+
+                                    Unit 42
+                                
+
+
+
+                                    個人情報の販売および共有禁止
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                プライバシー
+                            
+
+
+
+                                トラスト センター
+                            
+
+
+
+                                利用規約
+                            
+
+
+
+                                ドキュメント
+                            
+
+
+Copyright © 2026 Palo Alto Networks. All Rights Reserved
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+JP
+
+
+
+Select your language
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Your browser does not support the video tag.
+          
+
+Default Heading
+Read the article
+              
+
+
+
+
+Seekbar
+
+
+
+
+
+
+
+
+
+
+
+
+
+Volume
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

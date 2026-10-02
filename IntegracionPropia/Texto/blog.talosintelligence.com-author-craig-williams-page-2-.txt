@@ -1,0 +1,879 @@
+
+
+
+Craig Williams - Cisco Talos Blog (Page 2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Craig Williams
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+September 8, 2015 07:17
+Microsoft Patch Tuesday - September 2015
+Today, Microsoft has released their monthly set of security bulletins designed to address security vulnerabilities within their products. This month’s release sees a total of 12 bulletins released which address 55 CVEs. Five bulletins are rated "Critical" this month and
+
+
+                    By
+                
+Craig Williams
+
+
+
+                            Patch Tuesday
+                        
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+September 3, 2015 04:55
+Cognitive Research: Learning Detectors of Malicious Network Traffic
+This post was authored by Karel Bartos, Vojtech Franc, & Michal Sofka.
+
+Malware is constantly evolving and changing. One way to identify malware is by analyzing the communication that the malware performs on the network. Using machine learning, these traffic patterns can be u
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+August 25, 2015 04:43
+Malware Meets SysAdmin - Automation Tools Gone Bad
+This post was authored by Alex Chiu and Xabier Ugarte Pedrero.
+
+Talos recently spotted a targeted phishing attack with several unique characteristics that are not normally seen. While we monitor phishing campaigns used to distribute threats such as Dridex, Upatre, and Cryptowall,
+
+
+                    By
+                
+Craig Williams
+
+
+
+                            RAT
+                        
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+August 18, 2015 16:33
+Microsoft Internet Explorer Out of Band Advisory
+Today an out of band advisory was released by Microsoft to address CVE-2015-2502. This vulnerability is addressed by MS15-093.
+
+MS15-093 address a memory corruption vulnerability in Internet Explorer versions 7, 8, 9, 10, and 11. This affects all currently supported versions of
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+August 13, 2015 08:35
+Talos Identifies Multiple Memory Corruption Issues in Quicktime
+Update 2015-08-21: This post has been updated to reflect an additional advisory released on August 20.
+
+Talos, in conjunction with Apple’s security advisories issued on August 13 and August 20, has released six advisories for vulnerabilities that Talos found in Apple Quicktime. I
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+August 11, 2015 07:30
+Microsoft Patch Tuesday - August 2015
+Microsoft has released their monthly set of security bulletins designed to address security vulnerabilities within their products. This month’s release sees a total of 14 bulletins released which address 58 CVEs. Four bulletins are rated "Critical" this month and addres
+
+
+                    By
+                
+Craig Williams
+
+
+
+                            Patch Tuesday
+                        
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+August 8, 2015 13:31
+Research Spotlight: Detecting Algorithmically Generated Domains
+This post was authored by Mahdi Namazifar and Yuxi Pan
+
+Once a piece of malware has been successfully installed on a vulnerable system one of the first orders of business is for the malware to reach out to the remote command-and-control (C&C) servers in order to receive furth
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+July 31, 2015 07:01
+Your Files Are Encrypted with a "Windows 10 Upgrade"
+This post was authored by Nick Biasini with contributions from Craig Williams & Alex Chiu
+
+Update 8/1: To see a video of this threat in action click here
+
+Adversaries are always trying to take advantage of current events to lure users into executing their malicious payload. T
+
+
+                    By
+                
+Craig Williams
+
+
+
+                            ransomware
+                        
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+July 17, 2015 06:13
+Vulnerability Spotlight: Total Commander FileInfo Plugin Denial of
+Service
+Talos is releasing an advisory for multiple vulnerabilities that have been found within the Total Commander FileInfo Plugin. These vulnerabilities are local denial of service flaws and have been assigned CVE-2015-2869. In accordance with our Vendor Vulnerability Reporting and Dis
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+← Prev
+
+
+Next →
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

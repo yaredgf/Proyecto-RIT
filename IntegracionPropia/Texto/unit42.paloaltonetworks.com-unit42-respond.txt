@@ -1,0 +1,1362 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Responding to Cloud Incidents: A Step-by-Step Guide From the 2025 Unit 42 Global Incident Response Report
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Menu
+
+
+
+
+
+
+Tools
+ATOMs
+Security Consulting
+About Us
+Under Attack?
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  Threat Research CenterInsightsCloud Cybersecurity Research 
+ 
+Cloud Cybersecurity Research
+Responding to Cloud Incidents: A Step-by-Step Guide From the 2025 Unit 42 Global Incident Response Report
+
+
+  5  min read              
+
+
+Related ProductsCortexCortex XSIAMUnit 42 Incident Response 
+
+
+
+
+
+
+
+
+By:Margaret Kelley 
+
+Published:October 7, 2025 Categories:Cloud Cybersecurity ResearchGeneralInsights
+ Tags:Cloud Infrastructure ProtectionCloud SecurityUnit 42 Incident Response Report
+ 
+
+
+ 
+ 
+
+
+Share
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+Cloud incidents like ransomware attacks and account compromise can bring operations to a halt and create a situation in which costs, reputation and customer trust are at stake.
+What happens when your cloud environment falls under attack? How do you mitigate organizational impact step by step?
+Unit 42 helps cybersecurity pros understand how cloud investigations differ from traditional incidents, and what matters most when time is critical.
+Scope and Mindset for Cloud Investigations
+According to the Unit 42 2025 Global Incident Response Report, 29% of incident investigations conducted in 2024 involved cloud or SaaS environments. One in five incidents involved threat actors adversely impacting cloud environments and assets. With entire business models relying on cloud-native architecture, it is vital to protect cloud surfaces.
+Traditional incident investigations focus heavily on endpoints and network activity, so cloud investigations require a mindset shift. When cloud environments are breached, investigations primarily focus on investigating identities, misconfigurations and service interactions.
+Unit 42 Cloud Incident Response begins each investigation by asking several questions:
+
+What is the overall impact?
+What logs do we have or lack?
+Are identity/service misuse, automated actions or API exploitation contributing factors?
+
+We’ll now go through the process, step by step.
+Step 1: Triage and Scoping
+Cloud investigations begin with triage and scoping. Investigators will do two things:
+
+Establish a timeline.
+ When did the abnormal activity begin? How was it detected? Is it ongoing?
+Determine what cloud assets are involved.
+Does the incident involve virtual machines? What about identity and access management (IAM), cloud storage, containers, etc.?
+
+Log gaps can be a major challenge due to misconfigurations or retention issues. Incident responders often uncover these problems during an engagement, which can be too late and obfuscate threat actor activity.
+Tip: Before any incidents occur, ensure you’ll have the data to investigate breaches properly:
+
+Enable logging within the CSP and retain the data for a minimum of 90 days.
+Enable additional logs specifically for tracking activity against your most sensitive resources.
+Ensure these logs are properly stored and encrypted to prevent any data loss if they are accessed by unauthorized parties.
+Centralize logs and apply machine learning and AI to correlate alerts.
+
+Step 2: Evidence Collection
+Once the incident has been triaged, evidence collection begins for investigators:
+
+Collect audit logs, resource-specific logs and snapshots.
+
+These can provide details on what resources the attacker can access.
+
+
+Work with teams to capture volatile artifacts before they disappear.
+
+Cloud environments are fast-moving and ephemeral, so anything that could assist the investigation needs to specifically be saved.
+
+
+Image cloud virtual machines (VMs) or containers.
+
+These images involve taking snapshots of virtual machines and their attached volumes.
+
+
+
+This evidence enables understanding the attack and speedy remediation.
+“In one investigation, the organization successfully mitigated an attack, only to be compromised again a short time later. Our investigators discovered that threat actors had automated exploitation of a vulnerability within a service used within the organization’s cloud-based products. By combining this with using anti-forensic techniques to hide activity, the threat actor was able to regain access to the organization and its clients even after internal teams appeared to have successfully removed them.”
+–2025 Unit 42 Global Incident Response Report, page 12
+Step 3: Identity and Role Forensics
+The majority of cloud breaches begin with compromised and overpermissioned identities. Bad actors gaining access to one admin-level account could wipe out business data or infrastructure. They could even provide themselves more SSH certificates or keys to enable attack persistence.
+Attackers often use legitimate credentials. Behavioral baselining and anomaly detection via user and entity behavior analytics (UEBA) or Cortex XSIAM® is key.
+During this step, the Unit 42 team will investigate:
+
+IAM configurations
+Assume-role patterns
+Federated login logs
+Privilege escalation attempts
+
+One red flag investigators search for is excessive or unexpected identity hopping. Tracing how permissions are passed between identities, services or accounts is challenging but important.
+Step 4: Uncovering Lateral Movement and Persistence
+Cloud environments are often interconnected with the same set of credentials, depending on the architecture. Once inside, cloud-native lateral movement might involve attackers moving across regions, services or identities. Resource sprawl, the third-party ecosystem, as well as other factors can make these advancements difficult to detect.
+Living-off-the-land (LotL) and modify-the-land (MtL) techniques also help them evade detection, because they abuse existing resources rather than import new, malicious ones (like malware).
+To detect these attacks, teams must detect anomalies, not just signatures. That requires establishing a baseline of behavior. Once a baseline is achieved, you can flag unusual API calls, new role assumptions or atypical access patterns that are beyond failed logins.
+Step 5: Containment, Eradication and Recovery
+This step of a cloud incident investigation can be broken down into three parts:
+Containment of Compromised Assets
+Containment needs to be fast and surgical to avoid alerting the attacker or impacting production/operations. Investigators will revoke credentials, restrict IAM permissions and quarantine virtual machines, preferably all at once.
+Eradication of Attacker Persistence
+All possible sources of attacker persistence identified above need to be blocked. Eradication includes identifying persistence mechanisms, validating configuration changes and revoking tokens or rotating credentials.
+Recovery of Business Operations
+Recovery involves validating the integrity of cloud services, along with patching and monitoring exploited attack vectors.
+For faster incident containment and recovery, Unit 42 has several recommendations:
+
+Enable and centralize logs.
+Define various cloud IR playbooks.
+Prepare cloud sandboxes for forensics.
+
+Learn from Past Experiences to Secure Future Environments
+Ensure the tools to gather images and logs are set up along with your cloud environment, so you always have the evidence needed to investigate the cause of a breach. Understand the roles and identities involved, look for signs of attacker persistence and then contain and eradicate the intrusion. Once the attack is stopped, your security experts should analyze the data to identify the attack vector and close it.
+Institutionalize lessons learned from previous incidents. As cloud adoption increases so will cloud-native attacks. Unit 42 can help you take a proactive stance against cloud attacks. Our approach identifies root causes and uses lessons learned, so clients increase their resiliency.
+
+Gain visibility: Get a complete picture of where your organization stands with our Unit 42 Cloud Security Assessment, which includes an analysis of cloud threat trends and adversaries related to your business and technology.
+Adopt zero trust: Taking incremental steps toward zero trust is pivotal to shrinking your cloud’s attack surface. Our Unit 42 Zero Trust Advisory helps you see where you stand today and helps you adopt a modern cybersecurity approach that eliminates implicit trust.
+Get elite backup: With a Unit 42 Retainer, our experts become an extension of your team. We’ll be on speed dial in case of an incident, and we’ll help you achieve a proactive stance against tomorrow’s threats.
+
+Ready to fortify your cloud defenses? Read the 2025 Global Incident Response Report for key insights from 500+ Unit 42 IR cases last year to help you better navigate the changing threat landscape.
+Key Takeaways:
+
+Cloud incidents are increasing and require a shift in investigation mindset: Cloud and SaaS environments are increasingly targeted in incident investigations (29% in 2024), necessitating a focus on identities, misconfigurations and service interactions rather than traditional endpoints and network activity.
+Proactive logging and evidence collection are crucial: To effectively respond to cloud incidents, organizations must enable and centralize logs, retain data for a minimum of 90 days, and collect volatile artifacts and virtual machine images promptly. Log gaps due to misconfigurations or retention issues can significantly hinder investigations.
+Identity and lateral movement are key areas of focus for attackers: The majority of cloud breaches begin with compromised identities. Attackers often use legitimate credentials and employ "living-off-the-land" and "modify-the-land" techniques to move laterally and maintain persistence. Detecting these attacks requires behavioral baselining and anomaly detection.
+
+
+
+Back to top
+
+TagsCloud Infrastructure ProtectionCloud SecurityUnit 42 Incident Response Report
+
+
+
+Threat Research Center
+
+
+Next: TOTOLINK X6000R: Three New Vulnerabilities Uncovered
+
+
+
+
+
+
+
+Table of Contents
+
+
+
+
+
+
+Related Articles
+
+
+
+                      3 Consulting Myths Debunked by Unit 42 Experts                  
+
+
+
+                      Inside the Modern SOC: Defending the Cross-Environment Pivot                  
+
+
+
+                      Inside the Modern SOC: The Identity Front Door                  
+
+
+
+
+
+
+
+
+
+Related  Resources
+
+
+
+
+ 
+
+
+
+Threat Research September 21, 2026
+
+From Exposure to Lockdown: How AWS Neutralizes Compromised IAM Credentials through Managed Policies
+
+
+
+AWS
+
+
+AWS CloudTrail
+
+
+Bedrock
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research September 18, 2026
+
+A Vault with a Heap-View: The Uncomfortable Space Between AgentCore Harness and Identity
+
+
+
+Agentic AI
+
+
+AWS
+
+
+Cloud
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights September 16, 2026
+
+Atomic macOS (AMOS) Stealer Activity
+
+
+
+MacOS
+
+
+Threat intelligence
+
+
+Unit 42
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research September 14, 2026
+
+Unmasking Cloud Identities: From Behavioral Clustering to Automated Detection
+
+
+
+AWS CloudTrail
+
+
+Cloud detection
+
+
+DevOps
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights September 2, 2026
+
+An AI-Assisted Cyber Attack: Inside a Unit 42 Investigation
+
+
+
+Agentic AI
+
+
+Frontier AI
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights August 28, 2026
+
+Perturbation Probing: A New Diagnostic for the Fragility of LLM Safety
+
+
+
+AI
+
+
+Jailbreak
+
+
+LLM
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights August 21, 2026
+
+Connecting the Dots: Securing the Overlooked Corners of the Software Development Lifecycle (SDLC) Supply Chain
+
+
+
+ChainDrop
+
+
+Npm packages
+
+
+Software supply-chain attack
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+High Profile Threats August 18, 2026
+
+Threat Brief: Mitigating Large-Scale Credential Attacks (Updated August 18)
+
+
+
+Credential theft
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights August 4, 2026
+
+The Frontier AI Vulnerability Burst: Industrializing Autonomous Zero-Day Discovery in Open-Source Software
+
+
+
+AI
+
+
+Frontier AI
+
+
+Vulnerability Exploitation
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights July 2, 2026
+
+How We Added WebAuthn to a Browser-Based RDP Client
+
+
+
+IDA Pro
+
+
+Microsoft
+
+
+RDP
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
+				Get updates from Unit 42			
+Peace of mind comes from staying ahead of threats. Subscribe today.
+
+
+
+
+
+
+
+
+
+
+Your Email
+
+
+Subscribe for email updates to all Unit 42 threat research.
+By submitting this form, you agree to our Terms of Use and acknowledge our Privacy Statement.
+
+                    This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.                            
+  
+
+Invalid captcha!
+ 
+					Subscribe					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Get the latest news, invites to events, and threat alerts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Enter your email now to subscribe!
+
+
+
+
+
+Sign up 
+
+
+
+
+                                
+                                
+                                
+                                    By submitting this form, I understand my personal data will be processed in accordance with
+                                        Palo Alto Networks Privacy Statement and Terms of Use.
+
+
+
+Sign up 
+
+
+
+
+
+
+
+
+
+
+
+
+Products and Services
+
+
+
+
+
+                                    AI-Powered Network Security Platform
+                                
+
+
+
+                                    Secure AI by Design
+                                
+
+
+
+                                    Prisma AIRS
+                                
+
+
+
+                                    AI Access Security
+                                
+
+
+
+                                    Cloud Delivered Security Services
+                                
+
+
+
+                                    Advanced Threat Prevention
+                                
+
+
+
+                                    Advanced URL Filtering
+                                
+
+
+
+                                    Advanced WildFire
+                                
+
+
+
+                                    Advanced DNS Security
+                                
+
+
+
+                                    Enterprise Data Loss Prevention
+                                
+
+
+
+                                    Enterprise IoT Security
+                                
+
+
+
+                                    Medical IoT Security
+                                
+
+
+
+                                    Industrial OT Security
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    Next-Generation Firewalls
+                                
+
+
+
+                                    Hardware Firewalls
+                                
+
+
+
+                                    Software Firewalls
+                                
+
+
+
+                                    Strata Cloud Manager
+                                
+
+
+
+                                    SD-WAN for NGFW
+                                
+
+
+
+                                    PAN-OS
+                                
+
+
+
+                                    Panorama
+                                
+
+
+
+                                    Secure Access Service Edge
+                                
+
+
+
+                                    Prisma SASE
+                                
+
+
+
+                                    Application Acceleration
+                                
+
+
+
+                                    Autonomous Digital Experience Management
+                                
+
+
+
+                                    Enterprise DLP
+                                
+
+
+
+                                    Prisma Access
+                                
+
+
+
+                                    Prisma Browser
+                                
+
+
+
+                                    Prisma SD-WAN
+                                
+
+
+
+                                    Remote Browser Isolation
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    AI-Driven Security Operations Platform
+                                
+
+
+
+                                    Cloud Security
+                                
+
+
+
+                                    Cortex Cloud
+                                
+
+
+
+                                    Application Security
+                                
+
+
+
+                                    Cloud Posture Security
+                                
+
+
+
+                                    Cloud Runtime Security
+                                
+
+
+
+                                    Prisma Cloud
+                                
+
+
+
+                                    AI-Driven SOC
+                                
+
+
+
+                                    Cortex XSIAM
+                                
+
+
+
+                                    Cortex XDR
+                                
+
+
+
+                                    Cortex XSOAR
+                                
+
+
+
+                                    Cortex Xpanse
+                                
+
+
+
+                                    Unit 42 Managed Detection & Response
+                                
+
+
+
+                                    Managed XSIAM
+                                
+
+
+
+                                    Observability
+                                
+
+
+
+                                    Cortex XCOR
+                                
+
+
+
+
+
+                                    Next-Generation Identity Security
+                                
+
+
+
+                                    Privileged Access Management
+                                
+
+
+
+                                    Identity and Access Management 
+                                
+
+
+
+                                    Endpoint Privilege Manager
+                                
+
+
+
+                                    Identity Governance
+                                
+
+
+
+                                    Workforce Password Management
+                                
+
+
+
+                                    Agentic Identities
+                                
+
+
+
+                                    Secrets Management
+                                
+
+
+
+                                    Unified Secrets Governance
+                                
+
+
+
+                                    Application Credentials Delivery
+                                
+
+
+
+                                    Vendor Privileged Access
+                                
+
+
+
+                                    Threat Intel and Incident Response Services
+                                
+
+
+
+                                    Prepare for Emerging Risks
+                                
+
+
+
+                                    Strengthen Your Defenses
+                                
+
+
+
+                                    Build Your Security Strategy
+                                
+
+
+
+                                    Understand the Adversary
+                                
+
+
+
+                                    Respond to a Cyber Attack
+                                
+
+
+
+
+
+
+Company
+
+
+
+
+
+                                    About Us
+                                
+
+
+
+                                    Careers
+                                
+
+
+
+                                    Contact Us
+                                
+
+
+
+                                    Corporate Responsibility
+                                
+
+
+
+                                    Customers
+                                
+
+
+
+                                    Investor Relations
+                                
+
+
+
+                                    Location
+                                
+
+
+
+                                    Newsroom
+                                
+
+
+
+
+
+
+Popular Links
+
+
+
+
+
+                                    Blog
+                                
+
+
+
+                                    Communities
+                                
+
+
+
+                                    Content Library
+                                
+
+
+
+                                    Cyberpedia
+                                
+
+
+
+                                    Event Center
+                                
+
+
+
+                                    Manage Email Preferences
+                                
+
+
+
+                                    Products A-Z
+                                
+
+
+
+                                    Product Certifications
+                                
+
+
+
+                                    Report a Vulnerability
+                                
+
+
+
+                                    Sitemap
+                                
+
+
+
+                                    Tech Docs
+                                
+
+
+
+                                    Unit 42
+                                
+
+
+
+                                    Do Not Sell or Share My Personal Information
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Privacy
+                            
+
+
+
+                                Trust Center
+                            
+
+
+
+                                Terms of Use
+                            
+
+
+
+                                Documents
+                            
+
+
+Copyright © 2026 Palo Alto Networks. All Rights Reserved
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+EN
+
+
+
+Select your language
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Your browser does not support the video tag.
+          
+
+Default Heading
+Read the article
+              
+
+
+
+
+Seekbar
+
+
+
+
+
+
+
+
+
+
+
+
+
+Volume
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

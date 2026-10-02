@@ -1,0 +1,697 @@
+
+
+
+IR Trends Q3 2025: ToolShell attacks dominate, highlighting criticality of segmentation and rapid response
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+IR Trends Q3 2025: ToolShell attacks dominate, highlighting criticality of segmentation and rapid response
+
+
+By 
+Lexi DiScola
+
+
+
+            Thursday, October 23, 2025 06:00
+        
+
+
+                            Talos IR trends
+                        
+
+                            CTIR trends
+                        
+
+
+
+
+Threat actors predominately exploited public-facing applications for initial access this quarter, with this tactic appearing in over 60 percent of Cisco Talos Incident Response (Talos IR) engagements – a notable increase from less than 10 percent last quarter. This spike is largely attributable to a wave of engagements involving ToolShell, an attack chain that targets on-premises Microsoft SharePoint servers through exploitation of vulnerabilities that were publicly disclosed in July. We also saw an increase in post-exploitation phishing campaigns launched from compromised valid accounts this quarter, a trend we noted last quarter, with threat actors using this technique to expand their attack both within the compromised organizations as well as to external partner entities. Watch this discussion on the biggest callouts from this quarter's reportRansomware incidents made up only approximately 20 percent of engagements this quarter, a decrease from 50 percent last quarter, despite ransomware remaining one of the most persistent threats to organizations. Talos IR responded to Warlock, Babuk, and Kraken ransomware variants for the first time, while also responding to previously seen families Qilin and LockBit. We observed an attack we attributed with moderate confidence to the threat actor that Microsoft tracks as China-based group Storm-2603 based on overlapping tactics, techniques, and procedures (TTPs). As part of their attack chain, the actors leveraged open-source digital forensics and incident response (DFIR) platform Velociraptor for persistence, a tool that has not been previously seen in ransomware attacks or associated with Storm-2603. We also responded to more Qilin ransomware engagements than last quarter, supporting our assessment from last quarter that the threat group is likely accelerating the cadence of their attacks.ToolShell attacks underscore importance of robust segmentation and rapid patching As mentioned above, threat actors exploited public-facing applications for initial access in over 60 percent of engagements this quarter. Almost 40 percent of all engagements involved ToolShell activity, majorly contributing to this tactic’s rise in popularity.  Starting in mid-July 2025, threat actors began actively exploiting two path traversal vulnerabilities affecting on-premises SharePoint servers: CVE-2025-53770 and CVE-2025-53771. These two vulnerabilities are related to CVE-2025-49704 and CVE-2025-49706, which had been previously featured in Microsoft Patch Tuesday updates in early July. One of the key features of the older vulnerabilities was that the adversary needed to be authenticated to obtain a valid signature by extracting the ValidationKey from memory or configuration. With the discovery of the newer vulnerabilities, attackers managed to eliminate the need to be authenticated to obtain a valid signature, resulting in unauthenticated remote code execution. This quarter’s ToolShell activity highlights the importance of network segmentation, as attackers demonstrated how they can exploit poorly segmented environments once a single server is compromised to move laterally within a targeted network. For example, in one engagement, the victim organization was impacted by ToolShell exploitation against a SharePoint server, then experienced a ransomware attack a few weeks later. In the latter attack, Talos IR analysis indicated the actors transferred credential stealing malware from the affected public-facing SharePoint server to a SharePoint database server on the victim’s internal network, demonstrating how they leveraged the trusted relationship between the two servers to expand their foothold. The wave of ToolShell attacks also shows how quickly threat actors mobilize when significant zero-day vulnerabilities are disclosed and/or proof-of-concepts appear. Active exploitation of the ToolShell vulnerabilities was first observed in the wild on July 18, a day before Microsoft issued its emergency advisory. Almost all Talos IR engagements responding to ToolShell activity kicked off within the following 10 days. Automated scanning enables attackers to rapidly discover and exploit vulnerable hosts while defenders race to test and deploy patches across diverse environments. Patching as soon as possible is key in narrowing that window of exposure, in addition to building safeguards through robust segmentation as mentioned above.Post-exploitation phishing attacks from compromised accounts persist Consistent with findings from last quarter, threat actors continued to launch phishing campaigns after their initial compromise by leveraging compromised internal email accounts to expand their attack both within the compromised organization as well as externally to partner entities. This tactic appeared in a third of all engagements this quarter, an increase from last quarter’s 25 percent. Last quarter, we predominately saw this tactic used when phishing was also used for initial access. This quarter, however, we also saw it appear in engagements where other methods, such as valid accounts, were used for initial access. The follow-on phishing campaigns were primarily oriented towards credential harvesting. For example, in one engagement, the adversary used a compromised Microsoft Office 365 account to send almost 3,000 emails to internal and external partners. To evade detection, the adversary modified the email management rules to hide the sent phishing emails and any replies. Almost 30 employees of the targeted organization received the adversary’s phishing email and at least three clicked on the malicious credential harvesting link that was included; it is unknown how many users at external organizations were impacted. In another engagement, the adversary used a compromised email account to send internal phishing emails containing a link that directed to a credential harvesting page. The malicious site mimicked an Office 365 login page that was configured to redirect to the targeted organization’s legitimate login page upon the user entering their credentials, enhancing the attack’s legitimacy.   Looking forward, as defenses against phishing attacks improve, adversaries are seeking ways to enhance these emails’ legitimacy, likely leading to the increased use of compromised accounts post-exploitation that we have observed recently. Defenders should seek to improve identification and protection capabilities against internal phishing campaigns, with actions such as providing stronger authentication methods for users’ email accounts, enhancing analysis of users’ email patterns and notifying on anomalies, and improving user awareness training.Ransomware trends Ransomware incidents made up approximately 20 percent of engagements this quarter, a decrease from 50 percent last quarter, though we assess this dip is likely not indicative of any larger downward trend in the ransomware threat environment. Talos IR responded to Warlock, Babuk and Kraken ransomware variants for the first time, while also responding to previously seen families Qilin and LockBit.Open-source DFIR tool Velociraptor adopted into ransomware toolkit  We responded to a ransomware engagement this quarter that we assessed with moderate confidence was attributable to the Storm-2603 threat group based on overlapping TTPs, such as the deployment of both LockBit and Warlock ransomware. Storm-2603 is a suspected China-based threat actor that was first seen in July 2025 when they engaged in ToolShell activity. While LockBit is widely deployed by various ransomware actors, Warlock was first advertised in June 2025 and has since been heavily used by Storm-2603. Notably, we also observed evidence of Babuk ransomware files on the customer’s network in this engagement, which has not been previously deployed by Storm-2603 according to public reporting, though it failed to encrypt and only renamed files. The incident severely impacted the customer’s IT environment, including connected Operational Support Systems (OSS), a critical component of telecommunication infrastructure that allows for remote management and monitoring of day-to-day operations. We discovered the actors installed an older version of open-source DFIR platform Velociraptor on five servers to maintain persistence and launched the tool several times even after the host was isolated. Velociraptor is a legitimate tool that we have not previously observed being abused in ransomware attacks. It is a free product designed to help with investigations, data collection, and remediation during and after security incidents and it provides real-time or near real-time visibility into the activities occurring on monitored endpoints. The version of Velociraptor observed in this incident was outdated (version 0.73.4.0) and exposed to a privilege escalation vulnerability (CVE-2025-6264), which may have been leveraged for persistence as this vulnerability can lead to arbitrary command execution and endpoint takeover. The addition of this tool in the ransomware playbook is in line with findings from Talos’ 2024 Year in Review, which highlights the increasing variety of commercial and open-source products leveraged by threat actors.Qilin ransomware operators likely accelerate pace of attacks    We saw an increased number of Qilin ransomware engagements kick off this quarter compared to last quarter, when we encountered it for the first time. We predicted last quarter the group was accelerating their operational tempo, based on an increase in disclosures on their data leak site since February 2025. We observed Qilin operators use TTPs consistent with last quarter, including valid compromised credentials for initial access, a binary encryptor customized to the victim, and file transfer tool CyberDuck for exfiltration. In one Qilin engagement this quarter we were able to determine the adversaries’ dwell time as well, finding that the ransomware was executed two days after the attack first began. The steady increase in Qilin activity indicates it will very likely continue to be a top ransomware threat through at least the remainder of 2025, pending any disruption or intervention.Targeting For the first time since we began documenting analysis of Talos IR engagements in 2021, public administration was the most targeted industry vertical this quarter. Though it hasn’t been the top targeted vertical before, it is often amongst the most seen, making this observation not entirely unexpected. Organizations within the public administration sector are attractive targets as they are often underfunded and still using legacy equipment. Additionally, the organizations targeted this quarter were largely local governments, which also typically oversee and support public school districts and county-run hospitals or clinics. As such, these entities often have access to sensitive data as well as a low downtime tolerance, making them attractive to financially motivated and espionage-focused threat groups, both of which we observed during these engagements.Initial access As mentioned, the most observed means of gaining initial access this quarter was exploitation of public-facing applications, largely due to ToolShell activity. Other observed means of achieving initial access included phishing, valid accounts, and drive-by compromise.Recommendations for addressing top security weaknessesImplement detections to identify MFA abuse and strong MFA policies for impossible travel scenarios Almost a third of engagements this quarter involved multifactor authentication (MFA) abuse, including MFA bombing and MFA bypass — a slight decrease from approximately 40 percent last quarter. MFA bombing, also known as an MFA fatigue attack, involves an attacker repeatedly sending MFA requests to a user’s device, aiming to overwhelm them into inadvertently approving an unauthorized login attempt. MFA bypass encompasses a range of techniques leveraged by attackers to circumvent or disable MFA mechanisms and gain unauthorized access. Talos IR recommends defenders implement detections to identify when MFA has been bypassed, such as deploying products that use behavior analytics to identify new device logins and policies to generate alerts when detected.  Talos IR also encountered numerous engagements this quarter that involved impossible travel scenarios, and recommended organizations implement strong MFA policies when these are detected. An example of an impossible travel scenario would be if a user logs into their account from New York, then the adversary logs into the same account three minutes later from Tokyo.   Configure centralized logging capabilities across the environment  Insufficient logging hindered investigation and response in approximately a third of engagements, a slight increase from 25 percent last quarter, due to issues such as log retention limitations, logs that were encrypted or deleted during attacks, and lack of logs due to disablement by the adversary. Understanding the full context and chain of events performed by an adversary on a targeted host is vital not only for remediation but also for enhancing defenses and addressing any system vulnerabilities for the future. Talos IR recommends that organizations implement a Security Information and Event Management (SIEM) solution for centralized logging. In the event an adversary deletes or modifies logs on the host, the SIEM will contain the original logs to support forensic investigation. Conduct robust patch management  Finally, vulnerable/unpatched infrastructure was exploited in approximately 15 percent of engagements this quarter. Targeted infrastructure included unpatched development servers and unpatched SharePoint servers that remained vulnerable weeks after the ToolShell patches were released — we did not include SharePoint servers that were vulnerable before the release of the patches in this category. Exploitation of vulnerable infrastructure enabled adversaries’ lateral movement, emphasizing the importance of patch management.Top-observed MITRE ATT&CK techniquesThe table below represents the MITRE ATT&CK techniques observed in this quarter’s Talos IR engagements. Given that some techniques can fall under multiple tactics, we grouped them under the most relevant tactic in which they were leveraged. Please note this is not an exhaustive list.  Key findings from the MITRE ATT&CK framework include:  Related to the internal phishing campaigns observed this quarter, we saw adversaries leveraging email hiding rules in numerous engagements, hiding certain inbound and outbound emails in the compromised user's mailbox to evade detection. We also saw user execution of malicious links that directed to credential harvesting pages in these campaigns.We observed web shells deployed for persistence in the ToolShell engagements this quarter. The most observed web shell, “spinstall0.aspx”, was used to extract sensitive cryptographic keys from compromised servers.
+
+Tactic Technique Example Reconnaissance (TA0043) T1595.002 Active Scanning: Vulnerability Scanning It is likely the majority of vulnerable SharePoint servers targeted in the ToolShell engagements this quarter were identified via adversaries’ active scanning methods.   Initial Access (TA0001) T1190 Exploit Public-Facing Application Adversaries may exploit a vulnerability to gain access to a target system.  T1598.003 Phishing for Information: Spear phishing Link Adversaries may send spear phishing messages with a malicious link to elicit sensitive information that can be used during targeting.   T1078 Valid Accounts Adversaries may use compromised credentials to access valid accounts during their attack.  T1190 Exploit in Public-Facing Application Adversaries may exploit a vulnerability to gain access to a target system.  T1189 Drive-by Compromise Adversaries may gain access to a system through a user visiting a website over the normal course of browsing. Execution (TA0002)  T1204.001 User Execution: Malicious Link An adversary may rely upon a user clicking a malicious link in order to gain execution. Users may be subjected to social engineering to get them to click on a link that will lead to code execution.  T1059.001 Command and Scripting Interpreter: PowerShell Adversaries may abuse PowerShell to execute commands or scripts throughout their attack.  T1078 Valid Accounts   Adversaries may obtain and abuse credentials of existing accounts to access systems within the network and execute their payload.  T1021.004 Remote Services: SSH   Adversaries may use valid accounts to log into remote machines using Secure Shell (SSH). The adversary may then perform actions as the logged-on user. Persistence (TA0003) T1505.003 Server Software Component: Web Shell   Adversaries may backdoor web servers with web shells to establish persistent access to systems.  T1136 Create Account   Adversaries may create an account to maintain access to victim systems.  T1053 Scheduled Task/Job   Adversaries may abuse task scheduling functionality to facilitate initial or recurring execution of malicious code.  T1021.001 Remote Services: Remote Desktop Protocol   Adversaries may use valid accounts to log into a computer via RDP, then perform actions as the logged-on user.  T1078 Valid Accounts The adversary may compromise a valid account to move through the network to additional systems.  T1547.001 Boot or Logon Autostart Execution: Registry Run Keys / Startup Folder Adversaries may achieve persistence by adding a program to a startup folder or referencing it with a Registry run key. Adding an entry to the "run keys" in the Registry or startup folder will cause the program referenced to be executed when a user logs in. Defense Evasion (TA0005)  T1564.008 Hide Artifacts: Email Hiding Rules Adversaries may use email rules to hide inbound or outbound emails in a compromised user's mailbox.  T1562 Impair Defenses Adversaries may maliciously modify components of a victim environment in order to hinder or disable defensive mechanisms.  T1070 Indicator Removal   Adversaries may delete or modify artifacts generated within systems to remove evidence of their presence or hinder defenses. Credential Access (TA0006)  T1111 Multi-Factor Authentication Interception   Adversaries may target MFA mechanisms, (i.e., smart cards, token generators, etc.) to gain access to credentials that can be used to access systems, services, and network resources.  T1621 Multi-factor Authentication Request Generation Adversaries may attempt to bypass MFA mechanisms and gain access to accounts by generating MFA requests sent to users.  T1110.003 Brute Force: Password spraying Adversaries may use a single or small list of commonly used passwords against many different accounts to attempt to acquire valid account credentials. Discovery (TA0007) T1078 Valid Accounts An adversary may use compromised credentials for reconnaissance against principle accounts.  T1083 File and Directory Discovery   Adversaries may enumerate files and directories or may search in specific locations of a host or network share for certain information within a file system.  T1087 Account Discovery   Adversaries may attempt to get a listing of valid accounts, usernames, or email addresses on a system or within a compromised environment.  T1135 Network Share Discovery Adversaries may look for folders and drives shared on remote systems as a means of identifying sources of information to gather. Lateral Movement (TA0008)  T1021.001 Remote Services: Remote Desktop Protocol Adversaries may use Valid Accounts to log into a computer using the Remote Desktop Protocol (RDP). The adversary may then perform actions as the logged-on user.  T1033 System Owner/User Discovery Adversaries may attempt to identify the primary user, currently logged in user, set of users that commonly uses a system, or whether a user is actively using the system. Command and Control (TA0011)  T1219 Remote Access Tools An adversary may use legitimate remote access tools to establish an interactive command and control channel within a network.  T1071.001 Application Layer Protocol: Web Protocols   Adversaries may communicate using application layer protocols associated with web traffic to avoid detection/network filtering by blending in with existing traffic. Exfiltration (TA0010)  T1059.001 Command and Scripting Interpreter: PowerShell Adversaries may abuse PowerShell commands and scripts. Impact (TA0040)  T1486 Data Encrypted for Impact Adversaries may use ransomware to encrypt data on a target system.   Software/Tool  S0029 PsExec Free Microsoft tool that can remotely execute programs on a target system.  S0591 ConnectWise A legitimate remote administration tool that has been used since at least 2016 by threat actors.  S0638 Babuk Babuk is a Ransomware-as-a-service (RaaS) malware that has been used since at least 2021. The operators of Babuk employ a "Big Game Hunting" approach to targeting major enterprises and operate a leak site to post stolen data as part of their extortion scheme.  S1199 LockBit LockBit is an affiliate-based RaaS that has been in use since at least June 2021. LockBit  has versions capable of infecting Windows and VMware ESXi virtual machines, and has been observed targeting multiple industry verticals globally. 
+
+
+
+
+Share this post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Content
+
+
+IR Trends Q2 2026: Phishing and weaponized remote management tools drive attack chains
+July 28, 2026 06:00
+Talos IR's Q2 report highlights a significant surge in phishing-based initial access and the weaponization of legitimate remote management tools. Learn how to sharpen your defenses.
+
+
+
+
+IR Trends Q1 2026: Phishing reemerges as top initial access vector, as attacks targeting public administration persist
+April 22, 2026 06:00
+Phishing reemerged as the most observed means of gaining initial access, accounting for over a third of the engagements where initial access could be determined. Phishing has not been the top vertical for initial access since Q2 2025.
+
+
+
+
+IR Trends Q4 2025: Exploitation remains dominant, phishing campaign targets Native American tribal organizations
+January 29, 2026 06:00
+A drop in exploitation and ransomware, but a spike in phishing and credential abuse, show why timely patching and robust MFA matter more than ever.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

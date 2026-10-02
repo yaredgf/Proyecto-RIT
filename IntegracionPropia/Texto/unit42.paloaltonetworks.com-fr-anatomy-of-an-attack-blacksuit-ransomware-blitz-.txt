@@ -1,0 +1,1107 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Anatomie d’une attaque : « BlackSuit Blitz » chez un équipementier mondial
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Menu
+
+
+
+
+
+
+ATOMs
+Security Consulting
+Under Attack?
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+French
+
+
+
+
+
+English
+
+
+Spanish (LATAM)
+
+
+French
+
+
+Japanese
+
+
+
+
+
+  Threat Research CenterInsightsGeneral 
+ 
+General
+Anatomie d’une attaque : « BlackSuit Blitz » chez un équipementier mondial
+
+
+  4  minutes de lecture              
+
+
+Related ProductsCortexCortex XDRCortex XSOARNext-Generation FirewallUnit 42 Incident Response 
+
+
+
+
+
+
+
+
+Par:Preston Miller 
+
+Publié:14 octobre 2025 CatégoriesGeneralInsights
+ Tags:BlackSuit ransomwareIgnoble ScorpiusReconnaissance
+ 
+
+
+ 
+ 
+
+
+Partager
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+Unit 42 a récemment assisté un grand fabricant victime d’une attaque par ransomware d’envergure orchestrée par Ignoble Scorpius, le groupe responsable de la distribution du ransomware BlackSuit. Cet incident rappelle combien un problème apparemment mineur – ici, un seul jeu d’identifiants VPN compromis – peut déclencher une crise d’entreprise majeure et peser lourdement sur le résultat net.
+L’attaque : une combinaison de reconnaissance et de ransomware
+L’opération d’Ignoble Scorpius a débuté par un appel d’hameçonnage vocal (vishing). L’attaquant s’est fait passer pour le service d’assistance informatique de l’entreprise et a trompé un employé, qui a saisi ses identifiants VPN légitimes sur un site de phishing.
+Avec ces identifiants, l’acteur de la menace a obtenu un accès initial au réseau puis a immédiatement escaladé ses privilèges. Il a exécuté une attaque DCSync contre un contrôleur de domaine pour voler des identifiants hautement privilégiés, dont un compte de service critique. En utilisant ces identifiants compromis, les cyber attaquants ont pivoté latéralement sur le réseau via RDP et SMB, s’appuyant sur des outils comme Advanced IP Scanner et SMBExec pour cartographier l’infrastructure et identifier des cibles à forte valeur.
+Ils ont établi une persistance en déployant AnyDesk et un RAT personnalisé sur un contrôleur de domaine, configuré comme tâche planifiée afin de survivre aux redémarrages. Il est important de préciser que les acteurs de la menace détournent fréquemment des produits légitimes tels qu’AnyDesk à des fins malveillantes. Cela ne signifie en aucun cas que le produit légitime présente une faille de sécurité. Les attaquants ont ensuite compromis un second contrôleur de domaine, dont ils ont extrait la base de données NTDS.dit contenant l’ensemble des empreintes de mots de passe des utilisateurs. Ils ont exfiltré plus de 400 Go de données à l’aide d’un utilitaire rclone renommé. Pour effacer leurs traces, ils ont déployé CCleaner afin de supprimer les preuves forensiques, avant de porter le coup final : le ransomware BlackSuit, orchestré via Ansible, qui a simultanément chiffré des centaines de machines virtuelles sur près de 60 hôtes VMware ESXi, provoquant une interruption massive des opérations à l’échelle de toute l’infrastructure.
+Comment Unit 42 est intervenue
+Lorsque Unit 42 a été sollicitée, nous avons aidé le client à étendre le déploiement de Cortex XDR, passant de 250 à plus de 17 000 terminaux. Cette extension a permis d’obtenir une visibilité complète à l’échelle de l’entreprise, afin de suivre chacun des mouvements de l’attaquant. Nous avons également exploité Cortex XSOAR pour automatiser les actions de confinement, stoppant ainsi la propagation de l’attaque.
+Notre enquête a permis d’identifier l’intégralité du chemin d’attaque et de formuler plusieurs recommandations essentielles :
+
+Sécurité réseau : remplacer les pare-feu Cisco ASA en fin de vie par des pare-feu nouvelle génération (NGFW), mettre en place une segmentation du réseau et restreindre les accès administratifs aux systèmes critiques (tels que les contrôleurs de domaine et les hôtes ESXi) à des VLAN de gestion dédiés.
+Gestion des identités et des accès : appliquer l’authentification multifacteur (MFA) pour tous les accès à distance, désactiver NTLM ou exiger EPA, faire pivoter l’ensemble des identifiants et interdire l’utilisation de comptes de service pour les connexions interactives comme RDP.
+Renforcement des terminaux et serveurs : bloquer EFSRPC à l’aide de filtres RPC pour prévenir les attaques PetitPotam/DCSync, déployer et maintenir une solution XDR entièrement corrigée sur tous les terminaux, et appliquer une politique stricte de retrait des systèmes en fin de vie.
+Journalisation et surveillance : étendre la rétention des journaux à plus de 90 jours pour les sources critiques (ESXi, pare-feu, Nasuni), garantir que les journaux soient correctement analysés pour une corrélation efficace, et activer des fonctionnalités comme la validation des journaux AWS CloudTrail.
+
+Résultat
+Le client a pu atteindre plusieurs résultats majeurs :
+
+Exigence financière annulée : nous avons réussi à faire annuler la demande de rançon de 20 millions de dollars. Le client n’a donc versé aucun paiement.
+Visibilité accrue : l’intervention a permis d’étendre la visibilité en passant de 250 à plus de 17 000 terminaux, posant ainsi une base solide pour les futures opérations de sécurité.
+Orientation stratégique : nous avons fourni un accompagnement stratégique personnalisé après l’incident, aidant le client à renforcer ses défenses et à prévenir de futures attaques.
+Surveillance continue : à la suite de l’incident, le client a adopté les services managés de détection et réponse (MDR) d’Unit 42 pour une surveillance continue, lui permettant d’être mieux préparé face aux menaces à venir.
+
+À retenir
+Cette attaque rappelle avec force qu’un seul identifiant compromis peut déclencher un effet domino, menant à une brèche de sécurité catastrophique. La rapidité et la sophistication des tactiques employées par des acteurs de la menace tels qu’Ignoble Scorpius illustrent le caractère indispensable et critique d’une stratégie de défense proactive et multicouche.
+En mettant en œuvre l’authentification multifacteur (MFA) sur tous les points d’accès à distance, et en intégrant une visibilité renforcée des terminaux, des mécanismes de confinement automatisés et un accompagnement d’experts, les organisations peuvent non seulement interrompre une attaque en cours, mais aussi consolider leurs défenses pour prévenir de futurs incidents. Surtout, les investissements dans des évaluations de sécurité proactives se révèlent largement rentables, leurs bénéfices dépassant de loin les coûts opérationnels et financiers d’une attaque par ransomware à grande échelle.
+Vous souhaitez en savoir plus sur les tendances récentes des cyberattaques ? Consultez le Rapport mondial Unit 42 sur la réponse à incident 2025, qui présente les enseignements clés issus de nos interventions sur des cyberattaques dans plus de 500 organisations réparties dans 38 pays.
+Pour aller plus loin
+Neuf témoignages relatifs à Unit 42 en action
+L’état des services Cybersecurity Incident Response
+42 conseils pour rester sur la voie de la cyber-résilience
+À propos d’Unit 42
+Nous fournissons à votre équipe de sécurité l’expertise et les outils nécessaires pour anticiper les menaces et protéger votre entreprise. Et pour vous aider à gérer les situations les plus délicates en toute sérénité, nous mettons à votre service des stratégies qui ont fait leurs preuves et les enseignements tirés de milliers de missions IR.
+
+
+Retour en haut de page
+
+ÉtiquettesBlackSuit ransomwareIgnoble ScorpiusReconnaissance
+
+
+
+Threat Research Center
+
+
+SuivantL’usine d’hameçonnage : mise en lumière d’IUAM ClickFix Generator
+
+
+
+
+
+
+
+SOMMAIRE
+
+
+
+
+
+
+Sur le même thème
+
+
+
+                      Une arme à double tranchant : Les LLM malveillants                  
+
+
+
+
+
+
+
+
+
+Associé General Ressources
+
+
+
+
+ 
+
+
+
+Insights 20 avril 2026
+
+Quand les modèles d’IA de frontière fracturent la sécurité logicielle
+
+
+
+AI
+
+
+Attack path
+
+
+Data exfiltration
+ 
+
+
+                    Lire l’article                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights 16 mars 2026
+
+L’évolution de la cybermenace iranienne : des wipers MBR à l’instrumentalisation des identités
+
+
+
+Agonizing Serpens
+
+
+Agrius
+
+
+Curious Serpens
+ 
+
+
+                    Lire l’article                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights 12 mars 2026
+
+Insights : Risque accru d'attaques par wiper
+
+
+
+Hacktivism
+
+
+Wiper
+ 
+
+
+                    Lire l’article                    
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
+				Abonnez-vous aux infos d’Unit 42			
+Gardez un coup d’avance sur les menaces pour évoluer en toute sérénité. Contactez-nous
+
+
+
+
+
+
+
+
+
+
+Your Email
+
+
+Abonnez-vous aux infos par e-mail sur les travaux de recherche Unit 42.L’envoi de ce formulaire implique l’acceptation de nos Conditions d’utilisation et de notre Politique de confidentialité.
+
+                    Ce site est protégé par reCAPTCHA et est soumis à la Politique de confidentialité et aux Conditions générales de Google.                            
+  
+
+Invalid captcha!
+ 
+					Je m’abonne					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Recevez toutes les dernières infos, invitations à des évènements et alertes de sécurité
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Saisissez votre adresse e-mail...
+
+
+
+
+
+Je m’abonne  
+
+
+
+
+                                
+                                
+                                
+                                    
+                                    
+                                        
+                                        En soumettant ce formulaire, j’accepte que mes données personnelles soient traitées conformément à la politique de confidentialité et aux conditions d’utilisation de Palo Alto Networks.
+                                    
+                                
+
+                                
+                                
+
+
+Je m’abonne  
+
+
+
+
+
+
+
+
+
+
+
+
+Produits et services
+
+
+
+
+
+                                    Plateforme de sécurité du réseau pilotée par IA 
+                                
+
+
+
+                                    Sécuriser l’IA à la conception 
+                                
+
+
+
+                                    Prisma AIRS
+                                
+
+
+
+                                    AI Access Security 
+                                
+
+
+
+                                    Services de sécurité cloud (CDSS) 
+                                
+
+
+
+                                    Advanced Threat Prevention 
+                                
+
+
+
+                                    Advanced URL Filtering 
+                                
+
+
+
+                                    Advanced WildFire 
+                                
+
+
+
+                                    Advanced DNS Security 
+                                
+
+
+
+                                    Enterprise Data Loss Prevention 
+                                
+
+
+
+                                    Sécurité IoT d’entreprise 
+                                
+
+
+
+                                    Sécurité IoT médical 
+                                
+
+
+
+                                    Industrial OT Security 
+                                
+
+
+
+                                     Sécurité SaaS 
+                                
+
+
+
+
+
+                                    Pare-feu nouvelle génération 
+                                
+
+
+
+                                    Pare-feu matériels 
+                                
+
+
+
+                                    Logiciels pare-feu 
+                                
+
+
+
+                                    Strata Cloud Manager 
+                                
+
+
+
+                                    SD-WAN pour NGFW 
+                                
+
+
+
+                                    PAN-OS 
+                                
+
+
+
+                                    Panorama 
+                                
+
+
+
+                                    Secure Access Service Edge 
+                                
+
+
+
+                                    Prisma SASE 
+                                
+
+
+
+                                    Accélération des applications 
+                                
+
+
+
+                                    Autonomous Digital Experience Management (ADEM) 
+                                
+
+
+
+                                    DLP d’entreprise 
+                                
+
+
+
+                                    Prisma Access 
+                                
+
+
+
+                                    Prisma Browser 
+                                
+
+
+
+                                    Prisma SD-WAN 
+                                
+
+
+
+                                    Isolation de navigateur à distance (RBI) 
+                                
+
+
+
+                                    Sécurité SaaS 
+                                
+
+
+
+
+
+                                    Plateforme SecOps pilotée par IA
+                                
+
+
+
+                                    Sécurité cloud
+                                
+
+
+
+                                    Cortex Cloud 
+                                
+
+
+
+                                    Sécurité des applications 
+                                
+
+
+
+                                    Posture de sécurité dans le cloud 
+                                
+
+
+
+                                    Sécurité du Runtime dans le cloud 
+                                
+
+
+
+                                    Prisma Cloud 
+                                
+
+
+
+                                    SOC piloté par IA 
+                                
+
+
+
+                                    Cortex XSIAM 
+                                
+
+
+
+                                    Cortex XDR 
+                                
+
+
+
+                                    Cortex XSOAR 
+                                
+
+
+
+                                    Cortex Xpanse 
+                                
+
+
+
+                                    Services managés détection et réponse Unit 42 
+                                
+
+
+
+                                    XSIAM managé 
+                                
+
+
+
+
+
+                                    Sécurité des identités nouvelle génération
+                                
+
+
+
+                                    Gestion des accès privilégiés (PAM)
+                                
+
+
+
+                                    Gestion des identités et des accès (IAM)
+                                
+
+
+
+                                    Endpoint Privilege Manager
+                                
+
+
+
+                                    Gouvernance des identités
+                                
+
+
+
+                                    Workforce Password Management
+                                
+
+
+
+                                    Identités agentiques
+                                
+
+
+
+                                    Gestion des secrets
+                                
+
+
+
+                                    Gouvernance unifiée des secrets
+                                
+
+
+
+                                    Déploiement d’identifiants applicatifs
+                                
+
+
+
+                                    Accès privilégiés des prestataires
+                                
+
+
+
+                                    Services de Threat Intelligence et de réponse à incident
+                                
+
+
+
+                                    Évaluations proactives
+                                
+
+
+
+                                    Réponse à incident
+                                
+
+
+
+                                    Transformez votre stratégie de sécurité
+                                
+
+
+
+                                    Découvrez la Threat Intelligence Entreprise Notre entreprise Carrières Nous contacter Responsabilité d’entreprise Clients Relations investisseurs Présence dans le monde
+                                
+
+
+
+
+
+
+Entreprise
+
+
+
+
+
+                                    Notre entreprise
+                                
+
+
+
+                                    Carrières
+                                
+
+
+
+                                    Nous contacter 
+                                
+
+
+
+                                    Responsabilité d’entreprise
+                                
+
+
+
+                                    Clients
+                                
+
+
+
+                                    Relations investisseurs
+                                
+
+
+
+                                    Présence dans le monde
+                                
+
+
+
+                                    Presse
+                                
+
+
+
+
+
+
+Pages les plus visitées
+
+
+
+
+
+                                    Article
+                                
+
+
+
+                                    Communautés
+                                
+
+
+
+                                    Bibliothèque de contenu
+                                
+
+
+
+                                    Cyberpedia
+                                
+
+
+
+                                    Évènements
+                                
+
+
+
+                                    Préférences de communication
+                                
+
+
+
+                                    Produits de A à Z
+                                
+
+
+
+                                    Certifications produits
+                                
+
+
+
+                                    Signaler une vulnérabilité
+                                
+
+
+
+                                    Plan du site
+                                
+
+
+
+                                    Documentation technique
+                                
+
+
+
+                                    Unit 42
+                                
+
+
+
+                                    Ne pas autoriser la vente ou le partage de mes données personnelles
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Politique de confidentialité
+                            
+
+
+
+                                Trust Center
+                            
+
+
+
+                                Conditions générales d'utilisation
+                            
+
+
+
+                                Documents
+                            
+
+
+Copyright © 2026 Palo Alto Networks. Tous droits réservés
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+FR
+
+
+
+Select your language
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Your browser does not support the video tag.
+          
+
+Default Heading
+Read the article
+              
+
+
+
+
+Seekbar
+
+
+
+
+
+
+
+
+
+
+
+
+
+Volume
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

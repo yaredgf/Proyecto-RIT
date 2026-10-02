@@ -1,0 +1,694 @@
+
+
+
+The Hunter's Paradox: Is it time to embrace automated threat hunting?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The Hunter's Paradox: Is it time to embrace automated threat hunting?
+
+
+By 
+David J. Bianco
+
+
+
+            Thursday, July 16, 2026 06:00
+        
+
+
+                            On The Radar
+                        
+
+                            Threats
+                        
+
+
+
+
+Should we let AI run our threat hunts? The debate usually splits into two camps. One says, "Yes, obviously! The sheer scale of our security telemetry is impossible for humans to deal with." The other says, "Absolutely not!  You can't trust an AI with something this important."  The thing is, I think both are wrong, or at least incomplete.  I've spent a long time as one of the louder voices saying that hunting is specifically a human-driven process. I created the first widely recognized definition of threat hunting back in 2015, and the version I'd have given you until very recently put a human firmly at the center of it.  But lately I've been reconsidering the role of AI in threat hunting. So this post is, in part, me arguing with my past self.  We're facing what I call the Hunter's Paradox: Humans can no longer keep up with the volume and velocity of security data on their own, so we need to lean on automation. But the most capable automation available, AI, is exactly the kind we can't fully trust. Both are true at once, and that tension is what I've been wrestling with for a while. We can’t resolve it cleanly by picking either side, so let's take them in turn, starting with the human element. Humans have a numbers problem So why not just keep humans in the driver's seat and call it a day? Because that math stopped working a long time ago. When I started in this field about 30 years ago, the conventional advice was that system administrators should read all their logs every day. It probably wasn't realistic even then, and it has been thoroughly impossible for most of my career. That's the volume problem, and it only ever compounds. There's more data than anyone can read, and there's more of it every year. Then there's velocity. Automated attacks already move at close to machine speed, and even human-driven intrusions routinely outpace human defenders. AI on the offensive side is making that gap wider, not narrower. And finally, there's capacity. This isn't the usual complaint about being under-resourced. That may still be true, but the problem is deeper than that. Volume and velocity together have pushed us to a place where it is simply not possible for humans to keep up no matter how many of us there are. If your team can still manage today, the trend line says it won't be able to for long. Even a perfectly staffed, perfectly funded team can’t beat that math forever. Put those three pressures together and opting out of AI isn't really an option. We can't hunt at scale without it, which lands us right back in the paradox: we need a tool we can't fully trust. AI doesn’t deal well with lies When most people think about AI and attackers, they think about prompt injection. An attacker slips instructions into something the AI will read, the AI dutifully follows them, and now your defensive tooling is working for the other team. It's real, it's a problem, and you should design with it in mind. It's also the less interesting part of the trust problem, so I'm going to acknowledge it and move on. The deeper issue is that attackers lie and cheat constantly, whether or not they think an AI might be watching. Deception isn't a tactic they reach for occasionally; it's the medium they operate in. Every phish, every exploit, every defense evaded is a lie that has to be believed in order to work. That has always been true, long before AI showed up. Pervasive deception is a real issue for AI. It’s baked into how we create LLMs: They have no concept that their training data might be deceiving them, and so when they come into the real world and deal with our dirty data, they tend to take it at face value. Not every time, maybe, but enough that their judgment is noticeably skewed even when we explicitly tell them to detect shenanigans.  Even the most accurate telemetry isn't trustworthy if it's faithfully recording a lie, and AI tends to process what it's given and believe it. Solving the paradox starts with a definition Now that we understand how deep of a hole we’re in, we can start thinking about how we might get out of it. Let’s start with the very definition of threat hunting itself. Back in 2015, I was the architect behind the Sqrrl threat hunting framework. I defined hunting as "any manual or machine-assisted process for identifying security incidents your automated detection systems missed." That same definition carried forward into our PEAK framework in 2023, of which I was the lead author. This has been the working definition for much of the field for a decade, though often in different words. That phrase right at the front, "manual or machine-assisted," is the entire reason I’ve been thinking about this so hard. What that phrase actually meant was that humans drive the hunt. Machines can assist, through analytics or machine learning or whatever tooling you had, but a person was always the one doing the hunting.  And honestly, that was the right call at the time. But if I look back at what I was really trying to capture with that definition, the essential ingredient was never the human. It was reasoning. Humans were just the only place to get it in 2015.  But that’s no longer the case. AI can reason now — maybe not as well as a good human analyst, but it really can reason in a way that the tools of 2015 could not. So maybe the definition should change to match what I really meant. Threat hunting might be better described as "any reasoning-driven process for identifying security incidents your automated detection systems missed."  Reframing hunting around reasoning rather than around who's doing it feels more accurate to the original intent, and it's a lot more useful for working through the paradox. If reasoning is the point, then the question isn't whether the hunter is human or machine. It's whether there's real reasoning involved. If it’s really about reasoning, what does that mean? If we accept that AI can reason and hunting is a reasoning-driven process, then letting AI drive starts to seem… well, reasonable. The next big question, then, is what should that actually look like? Just saying, "AI, go find the evil!" is not a real plan. I wouldn't hand most human hunters that assignment either. Letting AI hunt responsibly takes careful planning, and more importantly it takes guardrails. At least three things matter. The first is tight focus. Decide deliberately which hunts you're willing to let AI drive. The procedure should be reasonably clear, but the hunt should still contain some real ambiguity. It’s the ambiguity that requires reasoning, and if there’s no reasoning at all you don't have a hunt, you have a SIEM rule. A good place to start is the pile of hunts you've run before but never quite managed to fully automate. Most teams have at least one of those sitting in a backlog. The second is strict guidelines. An AI agent operating in your environment is a non-human principal with credentials, and it should be treated with at least as much care as a service account: scoped access, audit trails, the ability to revoke and rotate, and never more privilege than your most junior hunter would get. You also have to decide ahead of time which actions the AI can take on its own and which it cannot. Maybe you let it quarantine a user endpoint when it's confident something is wrong. Quarantining a production server? Probably not. The third is graduated autonomy. Don't jump straight to full hunting independence. Let the AI act as an advisor first, then an assistant, then an operator on narrowly defined tasks, earning a little more trust at each step. Remember: Your threat actors don’t have to care about collateral damage, but you do. We’ve all heard the horror stories about AIs that deleted the production database. If your AI oversteps its boundaries, you’re more likely to actually cause incidents than to detect them. What stays human Even with all of that working well, there are still things that humans will be markedly better at for the foreseeable future, but they mostly trace back to one aspect: creativity. One important creative area is your hunt strategy — that is, deciding what's worth hunting for in the first place, what to prioritize, and in what order. That's running the hunt program, and it shouldn't be delegated to the AI. It can execute hunts, but it shouldn't be allowed to decide which hunts matter. Another important creative area is analytic novelty. Attackers are creative, so we have to be creative too, both in what we choose to look for and in how we analyze our data. The biggest payoff in hunting comes from finding the thing nobody thought to look for, and an AI's training data by definition doesn't include the attacker behavior nobody has seen yet. Lean too hard on AI to generate your hunting procedures and you'll quietly converge on well-trodden ground, leaving the truly new stuff as your blind spot.  Put together, we almost have another guideline: Humans pick what's worth hunting and how. AI executes within those bounds. Where we go from here So, should we let AI start driving some hunts? Probably, yes, but that was never really the hard question. The hard question is how, and that's the part we have to work out together. I don't have all the answers, and I'm not pretending this is a finished playbook. What I'm sure of is that reframing hunting around reasoning, applying narrow focus and strict guidelines and graduated autonomy, and keeping humans firmly in charge of strategy and novelty are good things to keep in mind as we figure it out. You hunters reading this are the ones who are actually going to shape what AI hunting becomes. It’s going to be on all of us to experiment, to try things, and then to share what we’ve built — whether that's code on GitHub, a blog post, or a conference talk. The whole field gets better when we share what worked and what didn't. I'm eagerly looking forward to seeing what we come up with. 
+
+
+
+Share this post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Content
+
+
+The Fine Art of Frustrating the Adversary
+October 1, 2026 06:00
+What really frustrates an adversary? Eight Cisco Talos researchers share practical ways to make their next move slower and riskier. From deception and behavioral detection to breaking attack dependencies and resisting manufactured urgency.
+
+
+
+
+Securing the unpatchable in an age of AI-driven vulnerabilities
+September 16, 2026 06:00
+Advances in AI technology will continue to identify vulnerabilities that in some circumstances are difficult, or effectively impossible, to patch. Appropriate network segmentation, rigorous visibility, and the deployment of NGFW/IPS combinations can provide a powerful compensatory layer.
+
+
+
+
+The safety penalty: Reclaiming operational sovereignty in the age of AI
+August 25, 2026 06:00
+As frontier AI models become increasingly restrictive, security teams are facing a "safety penalty" that hampers real-time incident response. Discover how organizations can move toward operational sovereignty to ensure their defensive AI keeps pace with unconstrained adversaries.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

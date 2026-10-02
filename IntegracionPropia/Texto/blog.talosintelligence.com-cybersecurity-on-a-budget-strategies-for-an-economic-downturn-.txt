@@ -1,0 +1,707 @@
+
+
+
+Cybersecurity on a budget: Strategies for an economic downturn
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Cybersecurity on a budget: Strategies for an economic downturn
+
+
+By 
+Jerzy ‘Yuri’ Kramarz, 
+                Nate Pors, 
+                David Roman
+
+
+
+            Wednesday, October 29, 2025 06:00
+        
+
+
+                            The Need to Know
+                        
+
+
+
+
+During economic uncertainty, businesses face the challenge of maintaining strong cybersecurity while managing tightened budgets.  Cyber threats can become more numerous, motivated, and persistent during economic downturns, making the need for resilient, cost-effective security measures critical.  This blog shares practical strategies to help absorb budget cuts while minimizing the damage to an organization’s cybersecurity posture. Learning from history As many seasoned industry professionals remember, 2008 – 2010 was a tough time for the tech industry as well as the larger U.S. economy. During the Great Recession, unemployment rose as high as 10%, and IT and cybersecurity budgets were certainly not spared. During the 2020 COVID-19 crisis, the need for tech workers and larger IT budgets to support remote work was so strong that it outweighed the global economic slowdown. As a result, many new IT professionals never experienced what a real recession feels like. The FBI noted a 22.3% increase in cybercrime complaint submissions from 2008 – 2009, which some attributed in part to unemployed, financially desperate tech workers turning their skillsets to crime. At that time, threat actors mostly targeted individuals in the form of scams, fraud, and other crimes. In today’s environment, a similar economic downturn could easily lead to a surge in the number and talent of ransomware operators. Why? Unlike in the Great Recession, most corporate networks are now remote- or hybrid-enabled by default. While nothing about a network’s attack surface would inherently change due to an economic downturn, any increase in the number and skill level of attackers, decrease in the number and skill of defenders, or decrease in the quality of security measures could have devastating consequences for the IT environment owner.Defend legacy hardware/software As was painfully highlighted in recent years by Salt Typhoon incursions into telecommunications networks, working with legacy hardware and software is a risk many businesses take. As belts tighten during an economic downturn, cybersecurity budgets will decrease, and many businesses will inevitably need to postpone technology upgrades beyond end of life. While this introduces risk, there are a few solid strategies to mitigate that risk. Defense in depth and zero trust While these terms were both solid contenders for the No. 1 Sales Buzzword of 2023, they reflect a valuable underlying principle: Assume the adversary is going to gain a foothold and architect accordingly.  If a business must continue to use 40% legacy firewalls and only has budget to replace 60%, those legacy firewalls should be positioned in the interior of the network versus on the perimeter and logically separated so an adversary cannot “island-hop” from one to the next using the same vulnerability. If a legacy server must be positioned in a public-facing location, it should be placed in a tightly-controlled DMZ where compromise of that server would not lead to further network intrusion. No breach is desirable, but you can minimize the potential for lateral movement. Lock down unnecessary functionality Many vulnerable applications and systems are targeted via plugins or extra features that an organization isn’t even using. The classic example is a webserver with an abandoned WordPress plugin that later is discovered to be vulnerable. Another example is the SSH login method on a VMWare ESXi hypervisor — an organization may accidentally leave this enabled and allow an adversary to log in as root.  For vulnerable systems and software, it is critical to review what is strictly necessary for it to operate and disable all other functionalities. This is an important part of attack surface reduction.Optimize open- and closed-source software While closed-source commercial security tools usually offer the easiest setup and best overall experience, transitioning a budget-constrained organization to a blend of commercial and open-source software may be the right answer for maximum efficacy. Here are some rules of thumb for selection. Open source Open-source software excels when the product does not depend on frequent updates or detailed technical support. Initial setup may be involved and challenging, but financial savings can be significant. A good current example is the Zeek network security monitor, which is not a standalone security product but significantly enhances network-based detection capabilities. An open-source SIEM solution that may be suitable for smaller businesses is Security Onion. Closed source/commercial For solutions that depend on frequent updates, particularly time-sensitive signature/definition updates, commercial security solutions are the only answer. This primarily includes endpoint detection and response (EDR)/antivirus (AV), firewall, and DNS security solutions. Recognizing that this is a mandatory expenditure will help solidify planning for other areas of cost savings.Configure what you already have For organizations that don’t have the budget for new security systems, making the most of what you already have can go a long way to ensure that basic level of security and hardening is applied. For further information beyond what is reflected below, consider reading this paper on practical security measures for small and/or budget-constrained organizations. EDR and antivirus tuning Review configuration and policy settings for your existing security investments like AV or EDR solutions. Optimizing them is an easy way to increase security for free. Revisit any policies that were not recently reviewed. Simple configuration changes like turning on heuristic scanning in the AV software can help to catch threats that haven’t been seen before or use more advanced methods of compromise. During the AV/EDR review, checking the exclusions list is always a good idea. As an extreme example that Talos IR has unfortunately seen during incident response, having the whole C: drive excluded prevents any detections at all. Exclusions should be targeted and precise.Windows domain and cloud policies Another powerful, albeit time-consuming, security measure is to optimize Windows domain policies and configurations to help protect the organization. Windows Security baselines, published by Microsoft, are a great starting point. Policy settings like enforcing strong passwords, limiting admin access, and disabling unnecessary features can help tighten security without spending extra money. The CIS also recently published an extensive guide on Active Directory and GPM configuration best practices. For cloud environments, CISA’s SCuBA program offers excellent configuration security guidance.  PowerShell hardening  Locking down PowerShell so only trusted users can run it, or setting it to a restricted mode, makes it much harder for attackers to use it against you. The newest versions of PowerShell provide excellent controls, allowing your team to restrict access, limit which scripts can be executed, and configure other granular restrictions, which will help ensure that even if a malicious PowerShell script lands somewhere in the environment, the hardened configuration of PowerShell will limit its functionality.  Executable neutering Various tricks to prevent executables from running by default can be surprisingly effective. For example, changing the default program for opening .js files to Notepad stops these scripts from running. These small changes may seem simple, but together they can create strong layers of defense. For organizations with limited resources, these tweaks can make a big difference in reducing risk without breaking the bank. The following is a very simple PowerShell script which will ensure that malware on unsuspecting user systems is treated as a text file. Of course, these suggestions should be tested and modified to ensure that they do not impair valid enterprise functions.
+
+# List of dangerous file extensions to associate with Notepad 
+$extensions = @(".js", ".jse", ".vbs", ".vbe", ".wsf", ".wsh", ".ps1", ".cmd", ".bat", ".hta", ".scr") 
+foreach ($ext in $extensions) { 
+    try { 
+        $assoc = New-Object -ComObject WScript.Shell 
+        $assoc.RegWrite("HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\$ext\UserChoice\Progid", "Applications\notepad.exe", "REG_SZ") 
+        Write-Host "Set $ext to open with Notepad" 
+    } 
+    catch { 
+        Write-Warning "Failed to set $ext: $_" 
+    } 
+} 
+
+Figure 1: Sample script to neuter executables.Logging and alerting optimization Assuming you have the storage space, optimizing logging and alerting is a cheap way to improve network security when a breach is likely. A good understanding of which systems are legacy and therefore vulnerable is an excellent starting point — prioritizing visibility on those systems is key.  Canaries and decoys Thoughtful placement of canary tokens, decoy/honey accounts, and other creative countermeasures on vulnerable systems are other mechanisms to quickly detect and shut down an adversary in the network. This is especially important when you start with the assumption that you will be breached at some point due to vulnerable systems or software. Firewalls and network filtering The majority of organizations have firewalls and network boundary devices deployed across their infrastructure. Tuning these devices to filter high ports and allow for common ports like 80/443 outbound while restricting access to unnecessary services results in the disruption of many command-and-control malware channels, which often try to evade detection by using high ports for communication.Doing more with less staffing An ISC2 survey showed that 24% of cybersecurity departments faced layoffs in 2024, a trend which seems to be continuing into 2025. This was not due to a surplus of cybersecurity staffing. 67% of respondents also agreed that they no longer had the staff to meet their goals. In an economic downturn, this situation would only worsen. It is therefore important to consider how to use the remaining personnel budget as effectively as possible. Attract and retain high-quality people Recent developments have virtually guaranteed a future shortage of skilled mid-career cybersecurity professionals. First, the glut of cybersecurity talent on the market due to recent layoffs have led to many mid-career professionals taking entry-level jobs. Second, the advent of generative AI has led many organizations to reduce their hiring of entry-level professionals. These two factors have created an extremely hostile environment for recent graduates from cybersecurity educational programs. The authors of this post have personally observed several promising students graduate with cybersecurity degrees and ultimately pivot to unrelated fields due to the lack of opportunity. Unless gen AI advancements truly replace cybersecurity professionals, the current entry-level pipeline collapse may well lead to a shortage of skilled mid-career professionals in the next 5 – 10 years as the replacement rate drops below the rate of retirement and general attrition. With that in mind, forward-thinking organizations should take care to attract above-average, early-to-mid career talent and make every effort to train and retain them. It is currently a strong employers’ market, and forward investment now may result in relatively cheap, seasoned employees in the future when the pendulum swings back. Quality specialist partners In a budget-constrained environment, having a strong relationship with on-demand cybersecurity consultants can be a form of leverage, providing tremendous benefit at a relatively cheap cost. If an organization is large enough to experience a significant cybersecurity incident every week, it would make sense to fully staff an in-house incident response team. However, for most organizations that only experience a few incidents per year, it makes good financial sense to employ a team of cybersecurity generalists and have an incident response provider on retainer for extreme circumstances.  Using Cisco Talos as an example, not only is an annual retainer with Cisco Talos Incident Response cheaper than employing a single full-time incident responder, but the retaining organization also gets the benefit of a highly-experienced incident response team that deals with major incidents around the globe on a weekly basis. Hard decisions are inevitable when the security budget decreases. However, exploring new options to add efficiency can not only protect the organization in the short term, but also provide long-term efficiency gains when budgetary restrictions eventually ease. 
+
+
+
+Share this post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Content
+
+
+[Video] Where protection starts: Cisco Talos Intelligence Integrations
+July 14, 2026 06:47
+Every day, defenders make high-consequence decisions with incomplete information. Learn how Cisco Talos Intelligence Integrations help reduce uncertainty by turning the latest threat intelligence into proactive protections across Cisco technologies.
+
+
+
+
+Agentic AI security: Why you need to know about autonomous agents now
+March 11, 2026 06:00
+There are many benefits and security risks of deploying agentic AI within organizations. This blog emphasizes the importance of robust risk management and threat modeling to defend against both internal operational errors and potential malicious exploitation.
+
+
+
+
+How Cisco Talos powers the solutions protecting your organization
+January 7, 2026 06:00
+What happens under the hood of Cisco's security portfolio? Our reputation and detection services apply Talos' real-time intelligence to detect and block threats. Here's how.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

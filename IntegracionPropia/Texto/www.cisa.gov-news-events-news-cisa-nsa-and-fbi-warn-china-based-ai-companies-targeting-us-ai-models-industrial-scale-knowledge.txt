@@ -1,0 +1,827 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CISA, NSA and FBI Warn of China-Based AI Companies Targeting US AI Models with Industrial-Scale Knowledge Distillation Campaigns to Shortcut AI Development | CISA
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+ 
+
+
+
+
+
+An official website of the United States government
+Here’s how you know
+
+Here’s how you know
+
+
+
+
+
+
+
+
+
+Official websites use .gov
+ A .gov website belongs to an official government organization in the United States.
+              
+
+
+
+
+
+
+Secure .gov websites use HTTPS
+ A lock (LockA locked padlock) or https:// means you’ve safely connected to the .gov website. Share sensitive information only on official, secure websites.
+              
+
+
+
+
+
+
+
+
+
+
+
+Staying Secure at Eventsno-cost Cyber ServicesCybersecurity Awareness MonthKEV CatalogReport A Cyber Issue 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Search
+
+
+
+ 
+
+
+Menu
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Close
+
+
+ 
+
+
+
+
+Topics
+
+
+
+Topics
+
+
+
+
+
+Cybersecurity Best Practices
+
+
+
+
+
+
+Cyber Threats and Response
+
+
+
+
+
+
+Critical Infrastructure Security and Resilience
+
+
+
+
+
+
+Election Security
+
+
+
+
+
+
+Emergency Communications
+
+
+
+
+
+
+Industrial Control Systems
+
+
+
+
+
+
+Information and Communications Technology Supply Chain Security
+
+
+
+
+
+
+Partnerships and Collaboration
+
+
+
+
+
+
+Physical Security
+
+
+
+
+
+
+Risk Management
+
+
+
+
+
+
+        How can we help?
+       
+GovernmentEducational InstitutionsIndustryState, Local, Tribal, and TerritorialIndividuals and FamiliesSmall and Medium BusinessesFind Help LocallyFaith-Based CommunityExecutivesHigh-Risk Communities
+
+
+
+
+
+Spotlight
+
+
+
+
+Resources & Tools
+
+
+
+Resources & Tools
+
+
+
+
+
+All Resources & Tools
+
+
+
+
+
+
+Services
+
+
+
+
+
+
+Programs
+
+
+
+
+
+
+Resources
+
+
+
+
+
+
+Training
+
+
+
+
+
+
+Groups
+
+
+
+
+
+
+
+
+News & Events
+
+
+
+News & Events
+
+
+
+
+
+Directives
+
+
+
+
+
+
+News
+
+
+
+
+
+
+Events
+
+
+
+
+
+
+Cybersecurity Alerts & Advisories
+
+
+
+
+
+
+Request a CISA Speaker
+
+
+
+
+
+
+Congressional Testimony
+
+
+
+
+
+
+CISA Conferences
+
+
+
+
+
+
+CISA Live!
+
+
+
+
+
+
+
+
+Careers
+
+
+
+Careers
+
+
+
+
+
+Benefits & Perks
+
+
+
+
+
+
+Hiring and Recruitment
+
+
+
+
+
+
+New Employee Orientation & Onboarding
+
+
+
+
+
+
+Students & Recent Graduates
+
+
+
+
+
+
+Veteran and Military Spouses
+
+
+
+
+
+
+
+
+About
+
+
+
+About
+
+
+
+
+
+Divisions & Offices
+
+
+
+
+
+
+Regions
+
+
+
+
+
+
+Leadership
+
+
+
+
+
+
+Doing Business with CISA
+
+
+
+
+
+
+Site Links
+
+
+
+
+
+
+CISA GitHub
+
+
+
+
+
+
+CISA Central
+
+
+
+
+
+
+Contact Us 
+
+
+
+
+
+
+Subscribe
+
+
+
+
+
+
+Transparency and Accountability
+
+
+
+
+
+
+Policies & Plans
+
+
+
+
+
+
+
+
+
+
+Staying Secure at Eventsno-cost Cyber ServicesCybersecurity Awareness MonthKEV CatalogReport A Cyber Issue 
+
+
+
+
+
+
+
+
+
+
+Breadcrumb
+
+
+Home
+
+
+News & Events
+
+
+News
+
+
+
+              CISA, NSA and FBI Warn of China-Based AI Companies Targeting US AI Models with Industrial-Scale Knowledge Distillation Campaigns to Shortcut AI Development
+            
+
+
+
+
+
+
+
+Share:
+
+
+
+
+
+
+
+    Opens in a new window
+  
+
+
+
+
+
+
+    Opens in a new window
+  
+
+
+
+
+
+
+    Opens in a new window
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Press Release
+
+CISA, NSA and FBI Warn of China-Based AI Companies Targeting US AI Models with Industrial-Scale Knowledge Distillation Campaigns to Shortcut AI Development
+
+Advisory Details Threat Activity and Techniques, Provides Urgent Recommendations for US Companies to Take
+
+
+ReleasedSeptember 08, 2026
+
+
+
+
+								Related topics:
+							
+
+Cyber Threats and Response
+										,
+																																																							Nation-State Threats
+										,
+																																																							Cybersecurity Best Practices
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+WASHINGTON – The Cybersecurity and Infrastructure Security Agency (CISA), in collaboration with the National Security Agency (NSA) and Federal Bureau of Investigation (FBI), released a joint cybersecurity advisory today warning of China-based artificial intelligence (AI) companies targeting U.S. AI companies to systematically extract proprietary models through knowledge distillation campaigns. Knowledge distillation is a machine learning technique that involves training a less capable AI model using the outputs of a larger, more capable one. While it’s a valid training method, it can be misused to attempt to acquire capabilities from competitors in less time and with less cost than developing them legitimately. The malicious campaigns described in this advisory form the core of China’s AI development strategy. Likely with Chinese government awareness, DeepSeek, Moonshot AI, Alibaba, MiniMax, StepFun, and Z.AI extracted billions of tokens across millions of exchanges/requests from U.S. frontier AI models, including variants of Claude, GPT, Gemini, and Grok, since at least late 2024. The distillation tactics used by China-based AI companies violate the U.S. companies’ terms of service and shorten AI research development for the China-based companies, undermining fair competition. “CISA is committed to promoting the secure use of AI while fostering the innovation crucial to America’s global competitiveness,” said CISA Acting Director Nick Andersen. “We strongly urge AI companies to take immediate steps to safeguard their platforms against knowledge distillation campaigns that threaten to close the gap in advancements made by American companies.” The advisory recommends U.S. frontier companies take three immediate actions: Implement comprehensive detection and mitigation: Detect anomalous and malicious prompts, accounts, networks, and behaviors. Additionally, monitor subscription-to-usage ratios, immediate maximum usage from new accounts, and enterprise-scale throughput patterns. Deploy targeted response changes: Subtly alter responses for suspected malicious distillation attempts to attenuate the payoffs to companies conducting industrial-scale distillation campaigns.Establish cross-organization intelligence sharing: Correlate activity across model providers, cloud platforms, and API aggregators to reveal distributed campaigns. Read the full advisory. ###About CISAAs the nation’s cyber defense agency and national coordinator for critical infrastructure security, the Cybersecurity and Infrastructure Security Agency leads the national effort to manage, uncover, and reduce risk to our digital and physical infrastructure Americans rely on every hour of every day. Visit CISA.gov for more information and follow us on X, Facebook, LinkedIn, Instagram. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Articles
+
+
+
+
+
+
+Apr 23, 2026
+
+Press Release
+
+
+
+CISA, National Cyber Security Centre (NCSC) UK, and Global Partners Issue Advisory on Chinese Government-Linked Covert Cyber Networks
+ 
+
+
+
+
+
+
+
+Apr 20, 2022
+
+Press Release
+
+
+
+CISA, FBI, NSA, and International Partners Issue Advisory on Demonstrated Threats and Capabilities of Russian State-Sponsored and Cyber Criminal Actors 
+ 
+
+
+
+
+
+
+
+Mar 24, 2022
+
+Press Release
+
+
+
+CISA, FBI and DOE Publish Advisory With Historical Cyber Activity Used by Indicted Russian State-Sponsored Actors
+ 
+
+
+
+
+
+
+
+Feb 16, 2022
+
+Press Release
+
+
+
+New Cybersecurity Advisory on Protecting Cleared Defense Contractor Networks Against Years-Long Activity by Russian State-Sponsored Actors   
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Return to top
+
+
+
+
+
+
+Topics
+
+
+Spotlight
+
+
+Resources & Tools
+
+
+News & Events
+
+
+Careers
+
+
+About
+
+
+
+
+
+
+
+
+
+Cybersecurity & Infrastructure Security Agency
+ 
+
+
+
+Facebook
+
+
+X
+
+
+LinkedIn
+
+
+YouTube
+
+
+Instagram
+
+
+RSS
+
+
+
+CISA Central
+1-844-Say-CISA
+contact@cisa.dhs.gov
+
+
+
+
+
+
+
+
+
+
+DHS Seal
+
+CISA.gov
+An official website of the U.S. Department of Homeland Security
+
+
+
+
+About CISA
+
+
+Budget and Performance
+
+
+DHS.gov
+
+
+FOIA Requests
+
+
+No FEAR Act
+
+
+Office of Inspector General
+
+
+Privacy Policy
+
+
+Subscribe
+
+
+The White House
+
+
+USA.gov
+
+
+Website Feedback
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,692 @@
+
+
+
+Ransomware in 2025: Blending in is the strategy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Ransomware in 2025: Blending in is the strategy
+
+
+By 
+Hazel Burton
+
+
+
+            Tuesday, March 31, 2026 06:00
+        
+
+
+                                2025YiR
+                            
+
+                                Year In Review
+                            
+
+                                ransomware
+                            
+
+
+
+
+Ransomware attacks aren’t smash-and-grab anymore. They’re built on access that already looks legitimate — closer to positioning chess pieces than breaking the door down.That’s the big trend that comes through in the ransomware data from the Talos 2025 Year in Review. Once attackers have initial access (and 40% of the time it’s through phishing) they move the way a user or administrator would: logging in, checking systems, and using the same remote access tools that are already installed.In fact, one of the biggest challenges for defenders today is that ransomware actors are deliberately trying to overlap with everyday activity. RDP, PowerShell, and PsExec are the top three tools that are used by ransomware actors, but in many environments, these tools are part of normal operations.The difference is how they’re being used. If they’re being used to expand access and move across systems, this should raise a few red flags. I’m not sure it’s possible to emphasise enough how important your asset management comes into play here — having clear asset inventories and network behaviour baselines and conducting continuous anomaly monitoring.Like the rest of the Talos Year in Review, identity is what ties everything together. Valid accounts show up across nearly every stage of ransomware attacks: initial access, lateral movement, and execution. Top-targeted sectorsFrom our ransomware data analysis, manufacturing continues to be the most targeted sector, which reflects how challenging these environments are to monitor closely. There’s a mixture of systems, users, and processes, often with limited tolerance for disruption.Professional, scientific, and technical services (second on the most targeted sectors list) face similar exposure, especially when access spans multiple systems or organizations.Most prolific ransomware groupsThe ransomware-as-a-service (RaaS) groups have had a bit of a shakeup. After LockBit topped our 2024 report, the group fell to 35th this year following sustained law enforcement pressure. Qilin, a constant pain in the “you-know-what” for our incident responders for over a year now, came in at No. 1.Qilin uses a double-extortion approach, combining data encryption with threats to release stolen information publicly. According to their data leak site, in 2025, Qilin targeted more than 40 victims every month except January, signaling that this ransomware group will remain a persistent and significant threat in 2026.Akira and Play (No. 2 and 3 in the chart) had continued success, which can likely be credited to their evolving and adaptable tactics and absorption of affiliates from defunct ransomware groups (i.e., LockBit).An opportunity for defendersWhat’s interesting to note is that for the second year running, January saw lower activity, likely tied to holiday slowdowns and Eastern European public holidays.It may be wise for security teams to consider testing ransomware defenses in months where activity levels are generally lower, such as January, as there is a reduced chance of interfering with real incidents.Defender recommendationsStrengthen identity protections. Actors predominately targeted the person who holds the key rather than the lock itself (i.e., the target’s infrastructure). Phishing and social engineering training is highly recommended.Monitor the use of built-in administrative tools such as RDP, PowerShell, and PsExec for lateral movement. Look for unexpected usage patterns, and abnormal access requests.Basics, basics, basics! They very much still hold true. Strengthen your backup, EDR, segmentation, logging, and recovery capabilities.Regularly test ransomware response readiness.Read the full 2025 Talos Year in Review to dig deeper into ransomware trends, vulnerability exploitation, phishing and MFA bypass, state-sponsored activity, and how AI is shaping the threat landscape.
+
+
+
+Share this post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Content
+
+
+Five defender priorities from the Talos Year in Review
+April 28, 2026 09:23
+With attackers moving faster than ever, it’s easy to feel overwhelmed. This blog breaks down five practical priorities from the Cisco Talos 2025 Year in Review to help defenders focus and prioritize, amidst all the noise.
+
+
+
+
+[Podcast] It's not you, it's your printer: State-sponsored and phishing threats in 2025
+April 21, 2026 08:29
+In this episode of Talos Takes, Amy and Martin Lee unpack state-sponsored and phishing trends from the 2025 Talos Year in Review.
+
+
+
+
+Phishing and MFA exploitation: Targeting the keys to the kingdom
+April 21, 2026 08:00
+In 2025, attackers increasingly targeted weaknesses in multi-factor authentication (MFA) workflows, and phishing attacks leveraged valid, compromised credentials to launch lures from trusted accounts. The trends focused entirely on trust, or the lack thereof, in everyday business operations.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

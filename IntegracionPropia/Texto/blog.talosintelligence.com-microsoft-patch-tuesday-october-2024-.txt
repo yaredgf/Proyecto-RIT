@@ -1,0 +1,694 @@
+
+
+
+Largest Patch Tuesday since July includes two exploited in the wild, three critical vulnerabilities
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Largest Patch Tuesday since July includes two exploited in the wild, three critical vulnerabilities
+
+
+By 
+Jonathan Munshaw
+
+
+
+            Tuesday, October 8, 2024 15:04
+        
+
+
+                            Patch Tuesday
+                        
+
+                            vulnerability
+                        
+
+
+
+
+The largest Microsoft Patch Tuesday since July includes two vulnerabilities that have been exploited in the wild and three other critical issues across the company’s range of hardware and software offerings.  October’s monthly security update from Microsoft includes fixes for 117 CVEs, the most in a month since July’s updates covered 142 vulnerabilities.   The two vulnerabilities that Microsoft reports have been actively exploited in the wild and are publicly known are both rated as only being of “moderate” severity.  CVE-2024-43572 is a remote code execution vulnerability in the Microsoft Management Console that could allow an attacker to execute arbitrary code on the targeted machine. Microsoft’s security update will prevent untrusted Microsoft Saved Console (MSC) files from being opened to protect users against adversaries trying to exploit this vulnerability.  The security update will prevent untrusted Microsoft Saved Console (MSC) files from being opened to protect customers against the risks associated with this vulnerability. The other vulnerability that was exploited in the wild in this week’s security update is CVE-2024-43573, a platform spoofing vulnerability in Windows MSHTML. Platform spoofing vulnerabilities usually allow an adversary to gain unauthorized access to an environment by disguising themselves as a trusted source.  CVE-2024-43583, an elevation of privilege vulnerability in Winlogon, has also been publicly disclosed, according to Microsoft, but has not yet been exploited in the wild. This vulnerability could allow an attacker to obtain SYSTEM-level privilege. In addition to applying the patch, Microsoft also recommends users enable a Microsoft first-party Input Method Editor (IME) on their devices to prevent adversaries from being able to exploit third-party IMEs during the sign-in process. October’s Patch Tuesday also includes three critical vulnerabilities that could all lead to remote code execution. CVE-2024-43468 is the most serious of this bunch, with a CVSS severity score of 9.8 out of 10. An attacker could exploit this vulnerability in Microsoft Configuration Manager to execute commands on the targeted server or underlying database. Another remote code execution vulnerability, CVE-2024-43488, exists in the Visual Studio Code extension for Arduino, an open-source platform for building and managing single-board microcontrollers and microcontroller kits. A missing authentication protocol could allow an adversary to execute remote code over the network.  Microsoft stated that the company has already mitigated this vulnerability and users do not need to take any additional steps. This extension has also been deprecated and can no longer be downloaded from the internet. Lastly, CVE-2024-43582 exists in the Windows Remote Desktop Protocol server and could allow an attacker to execute code on the server side with the same permissions as the RPC service. An adversary could exploit this vulnerability by sending malformed packets to an RPC host. However, exploitation also requires that the adversary win a race condition first.  Cisco Talos would also like to highlight several vulnerabilities that are only rated as “important,” but Microsoft lists as “more likely” to be exploited: CVE-2024-43502: Elevation of privilege vulnerability in Windows Kernel CVE-2024-43509 and CVE-2024-43556: Elevation of privilege vulnerabilities in Windows Graphics Component     CVE-2024-43560: Elevation of privilege vulnerability in Windows Storage Port CVE-2024-43581 and CVE-2024-43615: Remote code execution vulnerability in Microsoft OpenSSH for Windows  CVE-2024-43609: Spoofing vulnerability in Microsoft Office A complete list of all the other vulnerabilities Microsoft disclosed this month is available on its update page. In response to these vulnerability disclosures, Talos is releasing a new Snort rule set that detects attempts to exploit some of them. Please note that additional rules may be released at a future date and current rules are subject to change pending additional information. Cisco Security Firewall customers should use the latest update to their ruleset by updating their SRU. Open-source Snort Subscriber Rule Set customers can stay up to date by downloading the latest rule pack available for purchase on Snort.org.  The rules included in this release that protect against the exploitation of many of these vulnerabilities are 64083 - 64086, 64089, 64090, 64111 and 64112. There are also Snort 3 rules 301034 - 301036 and 301041.
+
+
+
+Share this post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Content
+
+
+Microsoft Patch Tuesday for September 2026 — Snort rules and prominent vulnerabilities
+September 8, 2026 18:16
+Microsoft has released its monthly security update for September 2026, which includes 973 vulnerabilities affecting a range of products, including 113 that Microsoft marked as "critical."
+
+
+
+
+Microsoft Patch Tuesday for August 2026 — Snort rules and prominent vulnerabilities
+August 11, 2026 18:21
+Microsoft has released its monthly security update for August 2026, which includes 421 vulnerabilities affecting a range of products, including 62 that Microsoft marked as "critical."
+
+
+
+
+Microsoft Patch Tuesday for July 2026 — Snort rules and prominent vulnerabilities
+July 14, 2026 16:27
+Microsoft has released its monthly security update for July 2026, which includes 622 vulnerabilities affecting a range of products, including 57 that Microsoft marked as "critical."
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

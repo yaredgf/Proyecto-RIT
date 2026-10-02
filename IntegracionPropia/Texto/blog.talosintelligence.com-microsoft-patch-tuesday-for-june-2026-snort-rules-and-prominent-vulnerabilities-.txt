@@ -1,0 +1,707 @@
+
+
+
+Microsoft Patch Tuesday for June 2026 — Snort rules and prominent vulnerabilities
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Microsoft Patch Tuesday for June 2026 — Snort rules and prominent vulnerabilities
+
+
+By 
+Chetan Raghuprasad
+
+
+
+            Tuesday, June 9, 2026 17:21
+        
+
+
+                            Patch Tuesday
+                        
+
+
+
+
+Microsoft has released its monthly security update for June 2026, which includes 206 vulnerabilities affecting a range of products, including 32 that Microsoft marked as “critical”. Out of 32 "critical" entries, 28 are remote code execution (RCE) vulnerabilities in Microsoft Windows services and applications including Windows Active Directory, Windows Kerberos Key Distribution Centre (KDC), Windows Graphics component, Windows Remote Desktop client, Windows Deployment Services (WDS), DHCP Client service, Windows Hyper-V, Windows Kernel and Media, Azure Kubernetes Service (AKS), Microsoft Office, Microsoft Outlook, Microsoft Word, Microsoft SQL server and Windows HTTP Protocol Stack. Talos highlights 4 critical vulnerabilities as Microsoft has determined that their exploitation is “more likely:” CVE-2026-42985 is a critical Remote Code Execution Vulnerability due to Heap-based buffer overflow in Remote Desktop Client which allows an unauthorized attacker to execute code over a network. CVE-2026-47291 is a critical Remote Code Execution Vulnerability due to Integer overflow or wraparound in Windows HTTP Protocol Stack (http.sys). An unauthenticated attacker could exploit this vulnerability by sending a specially crafted packet to a targeted server utilizing the HTTP Protocol Stack (http.sys) to process packets. CVE-2026-44803 and CVE-2026-44812 are critical Remote Code Execution Vulnerability in the Windows Graphics component. This vulnerability is due to Integer overflow or wraparound in Windows Win32K – GRFX subsystem (graphics component). An unauthorized attacker, exploiting this vulnerability can execute malicious code locally. Talos highlights 23 critical vulnerabilities as Microsoft has determined that their exploitation is “less likely:” CVE-2026-42992, CVE-2026-44799, CVE-2026-44801, CVE-2026-47289 and CVE-2026-48563 are critical Remote Code Execution Vulnerability due to Heap-based buffer overflow in Windows Remote Desktop Client allows an unauthorized attacker to execute code over a network. Successful exploitation of this vulnerability necessitates that an attacker takes additional steps to prepare the target environment before exploitation. In the case of a Remote Desktop connection, an attacker who controls a Remote Desktop Server could initiate a remote code execution (RCE) on the machine when a victim connects to the attacking server using the vulnerable Remote Desktop Client. CVE-2026-45607, CVE-2026-45641 and CVE-2026-47652 are critical Remote Code Execution vulnerabilities in Windows Hyper-V that arise from Out-of-bounds reads, which enable an unauthorized attacker to execute code locally. This vulnerability necessitates that an authenticated attacker on a guest virtual machine (VM) sends specially crafted file operation requests to hardware resources within the VM which could result in remote code execution on the host server. CVE-2026-45657 is a critical use after free vulnerability in Windows Kernel which allows an unauthorized attacker to execute malicious code over a network. An attacker could exploit this vulnerability by sending specially crafted network traffic to a vulnerable Windows system. With the successful exploitation attempt, the malicious network packets could trigger a flaw in how the Windows kernel processes certain TCP/IP data, potentially allowing the attacker to run code with system-level privileges without needing to sign in or interact with a user. CVE-2026-48574 is a critical Remote Code Execution vulnerability in Windows Media due to Heap-based buffer overflow which allows an unauthorized attacker to execute the malicious code locally.  CVE-2026-42987 is a critical Remote Code Execution vulnerability in Windows Deployment Services (WDS). This vulnerability is due to the use after free flaw in Windows Deployment Services and an unauthorized attacker, exploiting this vulnerability, can execute malicious code over a network.  CVE-2026-44815 is a critical Remote Code Execution vulnerability due to the Stack-based buffer overflow in Windows DHCP Client which allows an unauthorized attacker to execute code over a network. An authenticated user could exploit this vulnerability by sending specially crafted network traffic to a server configured for use as a Dynamic Host Configuration Protocol (DHCP) Server. CVE-2026-45456, CVE-2026-45458, and CVE-2026-47635 are critical Remote Code Execution vulnerabilities in Microsoft Outlook and Word, caused by the access of resources using an incompatible type ('type confusion') in Microsoft Office. The exploitation of these vulnerabilities allows an unauthorized attacker to execute malicious code locally. Microsoft states that the attack vector is the preview pane of Outlook (classic), and this vulnerability can be exploited when rendering emails in Outlook (classic), as the email rendering in Outlook (classic) utilizes Microsoft Word functionality, where this vulnerability exists. CVE-2026-45461, CVE-2026-45463, CVE-2026-45472 and CVE-2026-45474 are critical Use after free flaw in Microsoft office when exploited, allows an unauthorized attacker to execute malicious code locally. CVE-2026-45476 is a critical Elevation of Privilege vulnerability in Microsoft Azure Network Adapter. The vulnerability is due to use after free flaw in Linux MANA Driver. An attacker who already has control of the host environment could trigger the flaw in the guest driver that mishandles memory. This could allow the attacker to read sensitive information from the guest and potentially use that access to gain higher privileges within the guest system. CVE-2026-44810 is a critical Improper authentication flaw in Windows Cryptographic Services, when exploited, allows an unauthorized attacker to elevate privileges locally. Microsoft states that, to exploit this vulnerability, an attacker would first have to log on to the system. An attacker could then run a specially crafted application that could exploit the vulnerability and take control of an affected system. Additionally, an attacker could convince a local user to open a malicious file. The attacker would have to convince the user to click a link, typically by way of an enticement in an email or instant message and then convince them to open the specially crafted file. An attacker who successfully exploited this vulnerability could gain SYSTEM privileges. CVE-2026-47644 is a critical information disclosure vulnerability due to the Improper neutralization of special elements in output used by a downstream component('injection') in Copilot Chat (Microsoft Edge). Exploiting this vulnerability allows an unauthorized attacker to disclose information over a network. CVE-2026-26142 is a remote code execution vulnerability due to deserialization of untrusted data in Nuance Powerscribe. Exploiting this vulnerability could allow an attacker to execute code over a network. Talos also highlights 6 critical vulnerabilities as Microsoft has determined that these are unlikely exploited.  CVE-2026-32193 is a critical Remote Code Execution Vulnerability in Azure Kubernetes Service (AKS) due to Improper limitation of a pathname to a restricted directory (path traversal). An exploitation of this vulnerability allows an authorized attacker to execute the malicious code locally.  Microsoft states that this vulnerability can be exploited by an attacker who can run an untrusted container configured with host Network could send specially crafted requests to a host level service that was not intended for unauthenticated access. This action could allow the attacker to break out of the container and gain control of the AKS worker node. CVE-2026-45648 is a critical Remote Code Execution Vulnerability in Windows Active Directory Domain services due to a Stack-based buffer overflow flaw in Active Directory Domain services. An authorized attacker who exploits this vulnerability could execute the malicious code over a network.  CVE-2026-47288 is a critical Remote Code Execution Vulnerability in Windows Kerberos Key Distribution Center (KDC) due to the Integer overflow or wraparound in Windows Kerberos, when exploited, allows an authorized attacker to execute malicious code over an adjacent network. CVE-2026-47654 is a critical Remote Code Execution Vulnerability in Remote Desktop Client due to the Heap-based buffer overflow flaw which when exploited allows an unauthorized attacker to execute malicious code over a network. CVE-2026-33828 is a critical Elevation of Privilege Vulnerability in Windows Device Health Attestation (DHA). This vulnerability is due to the trust boundary violation in Windows Attestation which when exploited, allows an authorized attacker to elevate privileges locally. CVE-2026-45460 is a critical Information disclosure vulnerability in Microsoft Office due to a buffer over-read flaw which when exploited allows an unauthorized attacker to disclose information locally. Talos also shares few other critical vulnerabilities where Microsoft had mentioned that their exploitation status is unknown or not applicable.  CVE-2026-48567 is a critical elevation of privilege vulnerability in Azure HorizonDB. This vulnerability arises from an authentication bypass through spoofing in Azure HorizonDB. An unauthorized attacker exploiting this vulnerability can elevate their privileges over a network. CVE-2026-48579 is a critical information disclosure vulnerability in Microsoft Exchange Online caused by improper authorization. An unauthorized attacker exploiting this vulnerability could disclose information over a network. CVE-2026-45497 and CVE-2026-42824 is a remote code execution vulnerability in Microsoft M365 copilot due to improper neutralization of special elements used in a command (‘command injection’). An unauthorized attacker exploiting this vulnerability could execute code over a network.  CVE-2026-47655 is a critical information disclosure vulnerability in Microsoft Graph that allows an authorized attacker to expose sensitive information to an unauthorized actor over a network. Talos would also like to highlight the following "important" vulnerabilities as Microsoft has determined that their exploitation is "more likely:"   CVE-2026-42905: Windows DWM Core Library Elevation of Privilege Vulnerability CVE-2026-42980: NT OS Kernel Elevation of Privilege Vulnerability CVE-2026-42986: Microsoft Graphics Component Elevation of Privilege Vulnerability CVE-2026-42989: Winlogon Elevation of Privilege Vulnerability CVE-2026-45481: Microsoft SharePoint Server Spoofing Vulnerability CVE-2026-45586: Windows Collaborative Translation Framework (CTFMON) Elevation of Privilege Vulnerability CVE-2026-45658 and CVE-2026-50507: Windows BitLocker Security Feature Bypass Vulnerability CVE-2026-47634: Microsoft SharePoint Server Spoofing Vulnerability CVE-2026-49160: Windows HTTP Protocol Stack (http.sys) Denial of Service Vulnerability  A complete list of all the other vulnerabilities Microsoft disclosed this month is available on its update page.    In response to these vulnerability disclosures, Talos is releasing a new Snort ruleset that detects attempts to exploit some of them. Please note that additional rules may be released at a future date, and current rules are subject to change pending additional information. Cisco Security Firewall customers should use the latest update to their ruleset by updating their SRU. Open-source Snort Subscriber Ruleset customers can stay up to date by downloading the latest rule pack available for purchase on Snort.org.    Snort 2 rules included in this release that protect against the exploitation of many of these vulnerabilities are: 66572-66577, 66581,66589,66590,66594,66595, 66601-66604 The following Snort 3 rules are also available: 301523-301525, 301527-301529, 301531, 301532. 
+
+Integrated Coverage
+
+Network Security
+
+
+                    Cisco Talos
+                    Network Intrusion Prevention
+                
+
+
+
+
+                Read more about Cisco Talos Intelligence Integrations in our data sheet on Cisco.com.
+        
+
+
+
+
+Share this post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Content
+
+
+Microsoft Patch Tuesday for September 2026 — Snort rules and prominent vulnerabilities
+September 8, 2026 18:16
+Microsoft has released its monthly security update for September 2026, which includes 973 vulnerabilities affecting a range of products, including 113 that Microsoft marked as "critical."
+
+
+
+
+Microsoft Patch Tuesday for August 2026 — Snort rules and prominent vulnerabilities
+August 11, 2026 18:21
+Microsoft has released its monthly security update for August 2026, which includes 421 vulnerabilities affecting a range of products, including 62 that Microsoft marked as "critical."
+
+
+
+
+Microsoft Patch Tuesday for July 2026 — Snort rules and prominent vulnerabilities
+July 14, 2026 16:27
+Microsoft has released its monthly security update for July 2026, which includes 622 vulnerabilities affecting a range of products, including 57 that Microsoft marked as "critical."
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

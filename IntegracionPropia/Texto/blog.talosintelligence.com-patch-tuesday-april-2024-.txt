@@ -1,0 +1,690 @@
+
+
+
+April’s Patch Tuesday includes 150 vulnerabilities, 60 which could lead to remote code execution
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+April’s Patch Tuesday includes 150 vulnerabilities, 60 which could lead to remote code execution
+
+
+By 
+Jonathan Munshaw
+
+
+
+            Tuesday, April 9, 2024 14:23
+        
+
+
+                            Patch Tuesday
+                        
+
+
+
+
+In one of the largest Patch Tuesdays in years, Microsoft disclosed 150 vulnerabilities across its software and product portfolio this week, including more than 60 that could lead to remote code execution. Though April’s monthly security update from Microsoft is the largest since at least the start of 2023, only three of the issues disclosed are considered “critical,” all of which are remote code execution vulnerabilities in Microsoft Defender for IoT.  Most of the remainder of the security issues are considered “important,” and only two are “moderate” severity. The three critical vulnerabilities — CVE-2024-21322, CVE-2024-21323 and CVE-2024-29053 — are all remote code execution vulnerabilities in Microsoft Defender for IoT. Though little information is provided on how these issues could be exploited, Microsoft did state that exploitation of these vulnerabilities is “less likely.”  There are also three vulnerabilities Talos would like to highlight, as Microsoft as deemed them "more likely" to be exploited: CVE-2024-26241: Elevation of privilege vulnerability in Win32k CVE-2024-28903: Security feature bypass vulnerability in Windows Secure Boot CVE-2024-28921: Security feature bypass vulnerability in Windows Secure Boot More than half of the code execution vulnerabilities exist in Microsoft SQL drivers. An attacker could exploit these vulnerabilities by tricking an authenticated user into connecting to an attacker-created SQL server via ODBC, which could result in the client receiving a malicious network packet. This could allow the adversary to execute code remotely on the client. A complete list of all the other vulnerabilities Microsoft disclosed this month is available on its update page. In response to these vulnerability disclosures, Talos is releasing a new Snort rule set that detects attempts to exploit some of them. Please note that additional rules may be released at a future date and current rules are subject to change pending additional information. Cisco Security Firewall customers should use the latest update to their ruleset by updating their SRU. Open-source Snort Subscriber Rule Set customers can stay up to date by downloading the latest rule pack available for purchase on Snort.org. The rules included in this release that protect against the exploitation of many of these vulnerabilities are 63254 - 63257, 63265 - 63271, 63274 and 63275. There are also Snort 3 rules 300873, 300874 and 300877 - 300879.
+
+
+
+Share this post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Content
+
+
+Microsoft Patch Tuesday for September 2026 — Snort rules and prominent vulnerabilities
+September 8, 2026 18:16
+Microsoft has released its monthly security update for September 2026, which includes 973 vulnerabilities affecting a range of products, including 113 that Microsoft marked as "critical."
+
+
+
+
+Microsoft Patch Tuesday for August 2026 — Snort rules and prominent vulnerabilities
+August 11, 2026 18:21
+Microsoft has released its monthly security update for August 2026, which includes 421 vulnerabilities affecting a range of products, including 62 that Microsoft marked as "critical."
+
+
+
+
+Microsoft Patch Tuesday for July 2026 — Snort rules and prominent vulnerabilities
+July 14, 2026 16:27
+Microsoft has released its monthly security update for July 2026, which includes 622 vulnerabilities affecting a range of products, including 57 that Microsoft marked as "critical."
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

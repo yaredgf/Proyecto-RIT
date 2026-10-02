@@ -1,0 +1,691 @@
+
+
+
+An overview of ransomware threats in Japan in 2025 and early detection insights from Qilin cases
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+An overview of ransomware threats in Japan in 2025 and early detection insights from Qilin cases
+
+
+By 
+Azim Khodjibaev, 
+                James Nutland, 
+                Takahiro Takeda, 
+                Holger Unterbrink
+
+
+
+            Thursday, April 2, 2026 06:00
+        
+
+
+                                ransomware
+                            
+
+
+
+
+In 2025, a total of 134 ransomware incidents were reported in Japan, marking a 17.5% increase compared to 2024. Among these, 22 incidents were attributed to Qilin, representing 16.4% of the total.In 2025, Qilin ransomware was highly active. Looking ahead to 2026, unless there is significant external pressure or disruption, it is likely to further increase its impact. While there are some variations in tactics across affiliates, operations are expected to become more automated, with fewer trial-and-error steps and increasingly refined tradecraft.Evidence suggests that some Qilin affiliates may have ties to countries in the post-Soviet region, including the Baltic states.Rather than focusing on post-ransomware execution, this blog examines detection opportunities during the pre-ransomware phase.Ransomware activity in Japan in 2025In 2025, the number of ransomware incidents increased compared to 2024. Notably, it was a year in which attacks leveraging Qilin ransomware were observed most frequently. There were 134 ransomware incidents reported in Japan in 2025, representing a 17.5% year-over-year increase from 2024. Figure 1 presents the monthly number of ransomware incidents. The data was compiled based on information obtained from data leak sites, official disclosures by affected organizations, and publicly available media reports. On average, approximately 11 incidents were observed per month.Figure 1. Monthly victim counts in 2025.Industry-based analysis, as shown in Figure 2, indicates that manufacturing accounts for the largest share of affected organizations (28%). This is followed by automotive-related industries (8%), trading companies (7%), IT (6%), and education (5%). The data suggests that manufacturing and automotive-related sectors continue to be heavily targeted, consistent with last year.Figure 2. Number of victim organizations by industry.Small- and medium-sized enterprises (based on capital) remained the primary targets of ransomware attacks at 57% of victim organizations, compared to 17% for large enterprises (see Figure 3).Figure 3. Classification of victim organizations by capital size.Figure 4 highlights which ransomware groups targeted Japan in 2025. Qilin accounts for the largest share at 16.4% of all incidents, representing approximately four times the number of cases attributed to Lynx, the second most active group. While Qilin caused the highest number of incidents, the data also indicates that many other ransomware groups are actively targeting organizations in Japan.Figure 4. Types of ransomware employed in attacks.Factors behind Qilin’s growing attack activityIn 2025, Qilin became the ransomware group responsible for the highest number of victims worldwide. In October alone, the number of victim organizations listed on its leak site exceeded approximately 200 (see Figure 5).Figure 5. Number of victims listed on Qilin ransomware leak site.Below, Talos examines the reasons behind Qilin’s significant increase in attack volume from three key perspectives.First, Qilin primarily relies on stolen credentials to gain initial access. In the example shown in Figure 6, credentials were obtained through platforms such as Telegram, Breach Forums, and other online platforms. After successfully breaching a target environment, the group places considerable emphasis on post-compromise activities, allowing it to methodically expand its control and maximize impact.Figure 6. Credential exposure identified across multiple accounts.Figure 7. Telegram post suggesting that an initial access broker (IAB) may be communicating with a Qilin affiliate.Second, posts suggesting that the operators are mindful of penetration testers indicate a relatively high level of operational maturity. This awareness implies that Qilin likely maintains well-developed attack manuals that function as practical, step-by-step references for conducting intrusions efficiently.Figure 8. Post by Haise, one of Qilin’s operators.Finally, 2025’s statistics show that Qilin most frequently targets industries such as manufacturing; professional, scientific, and technical services; wholesale trade; health care and social assistance; and construction. Among these, health care and social assistance stands out as a particular focus, suggesting that Qilin tends to prioritize sectors where ransomware-induced operational disruptions can cause especially severe consequences.Figure 9. Sectors experiencing impact from Qilin.Qilin affiliate use of EDR killer malwareTalos recently discovered a Qilin affiliate leveraging malware specifically designed to disable EDR on victim endpoints. This tooling is intended to bypass endpoint security monitoring and enable attackers to operate with reduced visibility on compromised systems. A detailed technical analysis of this malware is available in the following article.The final payload deployed by this malware is an EDR killer capable of disabling over 300 different EDR drivers across a wide range of commercial solutions.Figure 10. Excerpt list of targeted EDR solutions.The malware implements geo-fencing, specifically excluding systems configured for languages commonly used in post-Soviet countries. This check is performed at an early stage, and the malware terminates if a locale from the exclusion list is detected. This indicates that the threat actor is specifically attempting to avoid infecting systems in this region, a tactic commonly used by threat actors in this region to avoid encouraging law enforcement action against their operation(s).Figure 11. Geo-fencing function.Figure 12. Geo-fencing excluded localization list.Threat detection during the pre‑ransomware phaseBased on Talos’ investigation of multiple Qilin cases, ransomware execution occurred on average approximately six days after the initial compromise. This highlights the critical need to detect attacker activity at the earliest possible stage and to disrupt their operations before ransomware deployment. However, to detect attacker activity at an early stage, it is also necessary to monitor the standard commands attackers commonly use. This approach carries the risk of generating many false positives and therefore requires careful consideration. To help reduce false positives, we recommend the following three approaches:      • Trigger alerts based on the correlation of multiple events.      • Determine whether an account is deviating from its expected role.      • Whether the execution occurred outside of normal operating hours.For example, attackers often create user accounts using commands such as the following, which makes it important to have a mechanism in place to verify whether these accounts are legitimate.
+
+net user Attacker1 Password@123 /add
+
+Figure 13 shows the detection points within the tactics, techniques, and procedures (TTPs) of the pre-ransomware stage of Qilin attacks. In this example, we define the pre-ransomware phase as the period prior to the execution of ransomware, covering the stages from Initial Access through the execution of SystemBC . For details on the attack chain from the initial intrusion to the execution of the Qilin ransomware, please refer to the following blog.Figure 13. Key detection points for impact mitigation.In this blog, we share a total of 12 Sigma rules, some of which are accompanied by correlation rules to help reduce false positives.In the example shown in Figure 14, the rule is designed to detect the use of the net user command. However, if this rule is used on its own, it may also trigger alerts when the command is executed by legitimate administrators. The correlation rules are tuned based on analysis of log data. For the correlation rule associated with the net user command, an alert is generated only when the command is executed at least three times within a 15-minute time window (see Figure 15).Figure 14. Sigma rule: net user <username> Execution.Figure 15. Sigma correlation rule: net user <username> Execution.The Sigma and YARA rules are published here. Please adjust them according to your organization’s environment.For more information on the defensive approaches discussed in this blog and Qilin's detailed TTPs, please refer to the related materials for more details.CoverageThe following ClamAV signatures detect and block this threat:Win.Malware.Bumblebee-10056548-0Win.Tool.EdrKiller-10059833-0Win.Tool.ThrottleStop-10059849-0The following SNORT® rules (SIDs) detect and block this threat: Covering Snort 2 SID(s): 66181, 66180Covering Snort 3 SID(s): 301456Indicators of compromise (IOCs)The IOCs can also be found in our GitHub repository here.
+
+
+
+Share this post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Content
+
+
+Ransomware incidents in Japan in the first half of 2026: Investigation of The Gentlemen’s infrastructure and evidence of Qilin's AI use
+September 17, 2026 06:00
+Ransomware incidents in Japan rose 4.7% year over year. The Gentlemen was the most active group, with leak-site listings more than doubling from January to July. Qilin ranked second and appeared to use AI, while SMEs with capital under JPY 1 billion represented 80% of victims.
+
+
+
+
+Chaos ransomware's msaRAT: Living off the browser to build a covert C2 channel
+July 23, 2026 06:00
+The Chaos ransomware group uses new malware "msaRAT" that hijacks browsers. The malware doesn't communicate directly with C2 but connects through the browser. It enables arbitrary command execution while hiding the attacker's IP from victims via WebRTC over TURN.
+
+
+
+
+Ransomware in 2025: Blending in is the strategy
+March 31, 2026 06:00
+A summary of the top ransomware trends from the Talos 2025 Year in Review, with a focus on identity, attacker tactics, and practical defenses.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

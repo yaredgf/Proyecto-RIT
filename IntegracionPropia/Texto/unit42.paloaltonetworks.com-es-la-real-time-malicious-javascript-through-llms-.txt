@@ -1,0 +1,1320 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+La próxima frontera de los ataques de ensamblado en tiempo de ejecución: aprovechamiento de los LLM para generar JavaScript de phishing en tiempo real
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Menu
+
+
+
+
+
+
+ATOMs
+Security Consulting
+Under Attack?
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Spanish (LATAM)
+
+
+
+
+
+English
+
+
+Spanish (LATAM)
+
+
+French
+
+
+Japanese
+
+
+
+
+
+  Threat Research CenterInvestigación de amenazasMalware 
+ 
+Malware
+La próxima frontera de los ataques de ensamblado en tiempo de ejecución: aprovechamiento de los LLM para generar JavaScript de phishing en tiempo real
+
+
+  11  lectura mínima              
+
+
+Related ProductsAdvanced URL FilteringCloud-Delivered Security ServicesCode to Cloud PlatformUnit 42 AI Security AssessmentUnit 42 Incident Response 
+
+
+
+
+
+
+
+
+Por:Shehroze FarooqiAlex StarovDiva-Oriane MartyBilly Melicher 
+
+Publicado:22 de Enero de 2026 CategoríasInvestigación de amenazasMalware
+ Etiquetas:APIDeepSeekGoogleJavaScriptLLMPhishing
+ 
+
+
+ 
+ 
+
+
+Compartir
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+Resumen ejecutivo
+Imagine que visita una página web que parece perfectamente segura. No tiene códigos maliciosos ni enlaces sospechosos. Sin embargo, en cuestión de segundos, se transforma en una página de phishing personalizada.
+No es una mera ilusión. Se trata de la próxima frontera de los ataques web, en la que los atacantes utilizan IA generativa (GenAI) para crear una amenaza que se carga después de que la víctima haya visitado una página web aparentemente inofensiva.
+En otras palabras, en este artículo se demuestra una novedosa técnica de ataque en la que una página web aparentemente benigna utiliza llamadas a la API del lado del cliente a servicios de modelos de lenguaje grandes (LLM) de confianza para generar JavaScript malicioso dinámicamente en tiempo real. Los atacantes podrían utilizar instrucciones cuidadosamente diseñadas para eludir las barreras de seguridad de la IA, engañando al LLM para que devuelva fragmentos de código malicioso. Estos fragmentos se devuelven a través de la API del servicio de LLM y, a continuación, se ensamblan y ejecutan en el navegador de la víctima en tiempo de ejecución, lo que da como resultado una página de phishing totalmente funcional.
+Esta técnica de ensamblado en tiempo de ejecución mejorada por la IA está diseñada para ser evasiva:
+
+El código de la página de phishing es polimórfico, por eso, existe una variante única y sintácticamente diferente para cada visita.
+El contenido malicioso se entrega desde un dominio de LLM de confianza, eludiendo el análisis de red.
+Se ensambla y ejecuta en tiempo de ejecución.
+
+La defensa más eficaz contra esta nueva clase de amenazas es el análisis de comportamiento en tiempo de ejecución, que puede detectar y bloquear la actividad maliciosa en el punto de ejecución, directamente dentro del navegador.
+Los clientes de Palo Alto Networks están mejor protegidos gracias a los siguientes productos y servicios:
+
+URL Filtering avanzado
+Prisma AIRS
+Navegador Prisma con protección web avanzada
+
+La evaluación de la seguridad de la IA de Unit 42 puede ayudar a potenciar el uso y desarrollo seguros de la IA en toda su organización.
+Si cree que puede haber resultado vulnerado o tiene un problema urgente, póngase en contacto con el equipo de respuesta ante incidentes de Unit 42.
+
+
+
+Temas relacionados de Unit 42
+JavaScript, LLMs, Phishing
+
+
+
+Modelo de ataque de ensamblado en tiempo de ejecución mejorado con LLM
+Nuestra investigación previa muestra cómo los atacantes pueden utilizar eficazmente los LLM para ofuscar sus muestras maliciosas de JavaScript fuera de línea. Informes de otras fuentes han documentado campañas que aprovechan los LLM durante la ejecución en máquinas infectadas para adaptar los ataques (por ejemplo, malware y ransomware con tecnología de LLM).
+Los investigadores de Anthropic también han publicado informes que indican que los LLM han ayudado a ciberdelincuentes y han desempeñado un papel en las campañas de ciberespionaje orquestadas por IA. Motivados por estos recientes descubrimientos, investigamos cómo los actores de amenazas podrían aprovechar los LLM para generar, ensamblar y ejecutar cargas útiles de ataques de phishing dentro de una página web en tiempo de ejecución, lo que dificultaría su detección mediante el análisis de red. A continuación esbozamos nuestra prueba de concepto (POC) para esta posible situación de ataque y ofrecemos pasos para ayudar a mitigar el impacto de este ataque potencial.
+Modelo de ataque para nuestra POC
+La posible situación de ataque comienza con una página aparentemente benigna. Una vez cargada en el navegador de la víctima, la página web inicial realiza solicitudes de JavaScript del lado del cliente a clientes LLM populares y de confianza (por ejemplo, DeepSeek y Google Gemini, aunque la POC podría ser efectiva en varios modelos).
+A continuación, los atacantes pueden engañar al LLM para que devuelva fragmentos de JavaScript maliciosos mediante instrucciones cuidadosamente diseñadas que eluden las barreras de seguridad. Luego, estos fragmentos se ensamblan y ejecutan en el tiempo de ejecución del navegador para renderizar una página de phishing completamente funcional. Esto no deja detrás de sí ninguna carga estática detectable.
+En la figura 1, se muestra cómo desarrollamos nuestra POC para aprovechar los LLM con el fin de mejorar los ataques existentes y eludir las defensas. Los dos primeros pasos implican la preparación inicial, mientras que el último detalla la generación y ejecución del código de phishing dentro del navegador en tiempo de ejecución.
+Figura 1. Flujo de trabajo de la POC. Los dos primeros pasos son la preparación inicial y el tercero es un ejemplo de generación de contenido malicioso para que sea renderizado en el navegador.
+Paso 1: Selección de una página web maliciosa o de phishing
+El primer paso del atacante sería seleccionar una página web de una campaña activa maliciosa o de phishing para utilizarla como modelo del tipo de código malicioso que realizaría la función deseada. A partir de ahí, pueden crear fragmentos de código de JavaScript que se generarán en tiempo real para renderizar dinámicamente la página final que se muestra al usuario.
+Paso 2: Traducción de código de JavaScript malicioso en instrucciones de LLM
+El siguiente paso del atacante sería crear instrucciones que describan la funcionalidad del código de JavaScript al LLM en texto plano. Podrían refinar iterativamente las instrucciones, lo que generaría código malicioso que eludiera las barreras de protección existentes del LLM. Estos fragmentos generados podrían diferir estructural y sintácticamente, y permitir a los atacantes crear código polimórfico con la misma funcionalidad.
+Paso 3: Generación y ejecución de scripts maliciosos en tiempo de ejecución
+A partir de ahí, los atacantes podrían incrustar estas instrucciones bien diseñadas dentro de una página web, que se cargaría en el navegador de la víctima. A continuación, la página web utilizaría la instrucción para solicitar que un endpoint de la API de un LLM popular y legítimo generara fragmentos de código malicioso. Estos fragmentos podrían transmitirse a través de dominios populares y de confianza para eludir el análisis de la red. Posteriormente, estos scripts generados podrían ensamblarse y ejecutarse para renderizar código malicioso o contenido de phishing.
+Cómo ayuda esta técnica de ataque a la evasión
+Esta técnica se basa en comportamientos de ensamblado en tiempo de ejecución evasivos que observamos a menudo en las URL de phishing y entrega de malware. Por ejemplo, el 36 % de las páginas web maliciosas que detectamos a diario muestran un comportamiento de ensamblado en tiempo de ejecución, como la ejecución de scripts secundarios construidos con una función eval (por ejemplo, cargas útiles recuperadas, descodificadas o ensambladas). Aprovechar los LLM en tiempo de ejecución en una página web ofrece a los atacantes las siguientes ventajas:
+
+Evasión del análisis de redes. El código malicioso generado por un LLM podría transferirse a través de la red desde un dominio de confianza, ya que el acceso a dominios de endpoints de API de LLM populares suele estar permitido desde el lado del cliente.
+Aumento de la diversidad de scripts maliciosos con cada visita. Un LLM puede generar nuevas variantes de código de phishing, lo que conduce a un mayor polimorfismo. Esto puede dificultar su detección.
+Uso de ensamblado en tiempo de ejecución y ejecución de código de JavaScript para complicar la detección. Ensamblar y ejecutar estos fragmentos de código durante el tiempo de ejecución permite realizar campañas de phishing más personalizadas, como seleccionar una marca objetivo en función de la ubicación o la dirección de correo electrónico de la víctima.
+Ofuscación de código en texto plano. La traducción de código a texto para su posterior ocultación dentro de una página web puede considerarse una forma de ofuscación. Los atacantes suelen emplear diversas técnicas convencionales (por ejemplo, codificación, cifrado y fragmentación del código) para ocultar visualmente el código malicioso y eludir la detección. Mientras que los análisis avanzados suelen identificar los métodos de ofuscación convencionales mediante la evaluación de expresiones, para los defensores será más difícil evaluar el texto como código ejecutable sin someter cada fragmento a un LLM.
+
+Ejemplo de POC
+En la investigación de la POC demostramos cómo se podía aplicar esta mejora a una campaña de phishing del mundo real e ilustramos su capacidad para mejorar las técnicas de evasión a través de los pasos que hemos descrito anteriormente. A continuación se ofrece un breve resumen de esta POC.
+Paso 1: Selección de una página web maliciosa o de phishing
+Para nuestra POC, replicamos una página web de una campaña avanzada de phishing del mundo real conocida como LogoKit. El ataque de phishing original utiliza una carga útil de JavaScript estática para transformar un formulario web de aspecto benigno en un señuelo de phishing convincente. Este script realiza dos funciones clave: personalizar la página según el correo electrónico de la víctima en la barra de direcciones y exfiltrar las credenciales capturadas al servidor web del atacante.
+Paso 2: Traducción de código de JavaScript malicioso en instrucciones de LLM
+Nuestra POC utiliza un servicio de LLM popular, al que se puede acceder a través de una consulta a la API de chat desde JavaScript del navegador. Para mitigar el posible uso indebido por parte de los atacantes, no revelamos el nombre de esta API específica. Utilizamos esta API de LLM para generar dinámicamente el código necesario para la recolección de credenciales y suplantar páginas web objetivo. Dado que la carga útil maliciosa se genera dinámicamente en el navegador, la página inicial transmitida a través de la red es benigna, lo que le permite eludir intrínsecamente los detectores de seguridad basados en la red.
+El éxito del ataque dependía de una instrucción de ingeniería cuidadosa para eludir las barreras de protección integradas en el LLM. Descubrimos que una simple reformulación era notablemente eficaz.
+Por ejemplo, se permitió una solicitud de una función genérica $AJAX POST (mostrada en la figura 2), mientras que se bloqueó una solicitud directa de “código para exfiltrar credenciales”. Además, los indicadores de vulneración (IoC) (por ejemplo, las URL de exfiltración codificadas en Base64) también podían ocultarse dentro de la propia instrucción para mantener limpia la página inicial.
+Figura 2. Ejemplo de instrucción de ingeniería para eludir las barreras de seguridad del LLM y generar código de JavaScript para el contenido de phishing.
+La salida no determinista del modelo proporcionaba un alto grado de polimorfismo, ya que cada consulta devolvía una variante sintácticamente única pero funcionalmente idéntica del código malicioso. Por ejemplo, en la figura 3 se muestran las diferencias en los fragmentos de código resaltados en rojo. Esta mutación constante dificulta aún más la detección.
+Figura 3. Polimorfismo que crea múltiples variantes de código de JavaScript generado dinámicamente.
+Cabe destacar que el código generado por LLM puede incluir alucinaciones, pero lo mitigamos mediante un refinamiento y una mayor especificidad de la instrucción, lo que redujo eficazmente los errores de sintaxis. Como resultado, la instrucción final, muy específica, generó de manera adecuada código funcional en la mayoría de los casos.
+Paso 3: Ejecución de scripts maliciosos en tiempo de ejecución
+El script generado se ensambló y se ejecutó en tiempo de ejecución en la página web para renderizar el contenido de phishing. Este proceso construyó con éxito una página de phishing que suplantaba una marca funcional, lo que validaba la viabilidad del ataque (mostrada en la figura 4). La ejecución adecuada del código generado, que renderizaba la página de phishing sin errores, confirmó la eficacia de nuestra POC.
+Figura 4. Ejemplo de una página de phishing generada mediante el ensamblado de JavaScript generado dinámicamente en tiempo de ejecución en el navegador.
+Generalización de la amenaza y ampliación de la superficie de ataque
+Métodos alternativos para solicitar la API del LLM
+Nuestro modelo de ataque, demostrado a través de una POC, podría implementarse de varias maneras. Sin embargo, cada metodología descrita en la POC habla de cómo un atacante se conecta a las API de LLM para transferir código malicioso como fragmentos que se ejecutan en el navegador en tiempo de ejecución.
+Como se muestra en nuestra POC, los atacantes podrían eludir las medidas de seguridad conectándose directamente a un conocido endpoint de la API de servicios de LLM desde un navegador para ejecutar instrucciones de generación de código. Como alternativa, podrían utilizar un servidor proxy de backend en dominios de confianza o redes de entrega de contenidos (CDN) para conectarse al servicio del LLM para la ejecución de instrucciones. Otra táctica podría consistir en conectarse a este servidor proxy de backend a través de conexiones que no sean HTTP, como WebSockets, un método que hemos informado anteriormente en campañas de phishing.
+Otros abusos de los dominios de confianza
+Los atacantes han abusado de la confianza en los dominios legítimos para eludir las detecciones en el pasado, como se ha visto en casos como EtherHiding. En EtherHiding, los atacantes ocultaban cargas útiles maliciosas en cadenas de bloques públicas asociadas a plataformas de contratos inteligentes confiables y de buena reputación.
+El ataque detallado en este artículo utiliza una combinación de diversos fragmentos de código malicioso generados por LLM y la transmisión de este código malicioso a través de un dominio de confianza para evadir la detección.
+Traducción de código malicioso a instrucciones de texto para más ataques
+Este artículo se centra en la conversión de código de JavaScript malicioso en una instrucción de texto para facilitar la renderización de una página web de phishing. Esta metodología presenta un vector potencial para que los actores maliciosos generen diversas formas de código hostil. Por ejemplo, podrían desarrollar malware o establecer un canal de comando y control (C2) en una máquina comprometida que genere y transmita código malicioso desde dominios de confianza asociados a LLM populares.
+Ataques que aprovechan los comportamientos de los ensamblados en tiempo de ejecución en el navegador
+El modelo de ataque presentado aquí ejemplifica los comportamientos de los ensamblados en tiempo de ejecución, en los que las páginas web maliciosas se construyen dinámicamente dentro de un navegador. Investigaciones anteriores también habían documentado diferentes variantes de ensamblado en tiempo de ejecución para la elaboración de páginas de phishing o la entrega de malware. Por ejemplo, en este artículo se menciona una técnica en la que un atacante descompone el código malicioso en componentes más pequeños y los vuelve a ensamblar posteriormente para su ejecución en tiempo de ejecución dentro del navegador (denominado por SquareX como ataque de reensamblado de última milla). En varios informes se describe a atacantes que utilizan técnicas de contrabando de HTML para entregar malware.
+El modelo de ataque descrito en esta publicación va más allá, ya que implica la generación en tiempo de ejecución de nuevas variantes de scripts que posteriormente se ensamblan y ejecutan, lo que plantea un reto significativamente mayor para la detección.
+Recomendaciones para los defensores
+La naturaleza dinámica de este ataque en combinación con el ensamblado en tiempo de ejecución en el navegador lo convierte en un temible desafío defensivo. Este modelo de ataque crea una variante única para cada víctima. Cada carga útil maliciosa se genera dinámicamente, es única y se transmite a través de un dominio de confianza.
+Este supuesto indica un cambio crítico en el panorama de la seguridad. La detección de estos ataques (si bien es posible mediante rastreadores mejorados basados en navegadores) requiere un análisis de comportamiento en tiempo de ejecución dentro del navegador.
+Los defensores también deben restringir el uso de servicios de LLM no autorizados en los lugares de trabajo. Aunque no es una solución completa, puede servir como medida preventiva importante.
+Por último, nuestro trabajo pone de manifiesto la necesidad de contar con barreras de seguridad más sólidas en las plataformas de LLM, ya que hemos demostrado cómo una ingeniería cuidadosa de instrucciones puede eludir las barreras de protección existentes y permitir un uso malintencionado.
+Conclusión
+En este artículo, se demuestra un novedoso método mejorado por la IA en el que una página web maliciosa utiliza servicios de LLM para generar dinámicamente numerosas variantes de código malicioso en tiempo real dentro del navegador. Para combatir esto, la estrategia más eficaz es el análisis de comportamiento en tiempo de ejecución en el punto de ejecución a través de la protección en el navegador y mediante la ejecución de análisis fuera de línea con sandboxes basadas en el navegador que renderizan la página web final.
+Protección y mitigación de Palo Alto Networks
+Los clientes de Palo Alto Networks están mejor protegidos frente a las amenazas mencionadas gracias a los siguientes productos y servicios:
+Los clientes de Prisma AIRS pueden proteger sus aplicaciones de GenAI construidas internamente contra entradas que intenten eludir las barreras de seguridad.
+Clientes que utilizan URL Filtering avanzado y el navegador Prisma (con protección web avanzada) están mejor protegidos contra varios ataques de ensamblado en tiempo de ejecución.
+Los clientes del navegador Prisma con protección web avanzada están protegidos contra ataques de reensamblado en tiempo de ejecución desde el primer intento, o golpe “paciente cero”, porque la defensa utiliza análisis de comportamiento en tiempo de ejecución directamente dentro del navegador para detectar y bloquear la actividad maliciosa en el punto de ejecución.
+La Evaluación de la seguridad de la IA de Unit 42 puede ayudar a potenciar el uso y desarrollo seguros de la IA en toda su organización.
+Si cree que puede haber resultado vulnerado o tiene un problema urgente, póngase en contacto con el equipo de respuesta ante incidentes de Unit 42 o llame al:
+
+Norteamérica: llamada gratuita: +1 (866) 486-4842 (866.4.UNIT42)
+Reino Unido: +44.20.3743.3660
+Europa y Oriente Medio: +31.20.299.3130
+Asia: +65.6983.8730
+Japón: +81.50.1790.0200
+Australia: +61.2.4062.7950
+India: 000 800 050 45107
+Corea del Sur: +82.080.467.8774
+
+Palo Alto Networks ha compartido estos resultados con nuestros compañeros de Cyber Threat Alliance (CTA). Los miembros de CTA utilizan esta inteligencia para implementar rápidamente medidas de protección para sus clientes y desarticular sistemáticamente a los ciberdelincuentes. Obtenga más información sobre Cyber Threat Alliance.
+Recursos adicionales
+
+Now You See Me, Now You Don’t: Using LLMs to Obfuscate Malicious JavaScript (en inglés), Unit 42, Palo Alto Networks
+First known AI-powered ransomware uncovered by ESET Research (en inglés), ESET
+First Known LLM-Powered Malware From APT28 Hackers Integrates AI Capabilities into Attack Methodology (en inglés), Cybersecurity News
+UAC-0001 Cyberattacks on Security/Defense Sector Using LLM-Based LAMEHUG Tool (en ucraniano), CERT-UA
+AI-orchestrated cyber espionage campaigns [PDF] (en inglés), informe de Anthropic
+Attackers break malware into tiny pieces and bypass your Secure Web Gateway (en inglés), SecurityBrief Australia
+What are Last Mile Reassembly Attacks? (en inglés), SquareX
+“EtherHiding:” Hiding Web2 Malicious Code in Web3 Smart Contracts (en inglés), Guardio
+
+
+
+Volver al principio
+
+EtiquetasAPIDeepSeekGoogleJavaScriptLLMPhishing
+
+
+
+Threat Research Center
+
+
+Siguiente:DNS durante DoS: ¿Los endpoints privados son demasiado privados?
+
+
+
+
+
+
+
+ÍNDICE
+
+
+
+
+
+
+Artículos relacionados
+
+
+
+                      Resumen sobre amenazas: aumento del riesgo cibernético relacionado con Irán en 2026 (actualizado el 17 de abril)                  
+
+
+
+                      Resumen sobre amenazas: impacto generalizado del ataque a la cadena de suministro de Axios                  
+
+
+
+                      Resumen sobre amenazas: plan de contratación que suplanta la identidad del equipo de adquisición de talentos de Palo Alto Networks                  
+
+
+
+
+
+
+
+
+
+Relacionados Malware Recursos
+
+
+
+
+ 
+
+
+
+Investigación de amenazas 3 de Septiembre de 2026
+
+Los atacantes aprovechan el uso continuo de herramientas de IA para atacar organizaciones en América Latina
+
+
+
+Agentic AI
+
+
+ChatGPT
+
+
+CL-CRI-1131
+ 
+
+
+                    Leer ahora                    
+
+
+
+
+
+
+
+ 
+
+
+
+Amenazas sofisticadas 2 de Junio de 2026
+
+El panorama de amenazas de npm: superficie de ataque y mitigaciones (Actualizado el 2 de junio)
+
+
+
+Credential Harvesting
+
+
+GitHub
+
+
+Npm packages
+ 
+
+
+                    Leer ahora                    
+
+
+
+
+
+
+
+ 
+
+
+
+Amenazas sofisticadas 17 de Abril de 2026
+
+Resumen sobre amenazas: aumento del riesgo cibernético relacionado con Irán en 2026 (actualizado el 17 de abril)
+
+
+
+APK
+
+
+DDoS attacks
+
+
+GenAI
+ 
+
+
+                    Leer ahora                    
+
+
+
+
+
+
+
+ 
+
+
+
+Amenazas sofisticadas 1 de Abril de 2026
+
+Resumen sobre amenazas: impacto generalizado del ataque a la cadena de suministro de Axios
+
+
+
+API attacks
+
+
+JavaScript
+
+
+PowerShell
+ 
+
+
+                    Leer ahora                    
+
+
+
+
+
+
+
+ 
+
+
+
+Amenazas sofisticadas 31 de Marzo de 2026
+
+Armar a los protectores: ataque multifase de TeamPCP a la cadena de suministro dirigido contra la infraestructura de seguridad
+
+
+
+CVE-2025-55182
+
+
+GitHub
+
+
+Infostealer
+ 
+
+
+                    Leer ahora                    
+
+
+
+
+
+
+
+ 
+
+
+
+Investigación de amenazas 24 de Marzo de 2026
+
+Resumen sobre amenazas: plan de contratación que suplanta la identidad del equipo de adquisición de talentos de Palo Alto Networks
+
+
+
+Email scam
+
+
+Phishing
+
+
+Recruiter
+ 
+
+
+                    Leer ahora                    
+
+
+
+
+
+
+
+ 
+
+
+
+Amenazas sofisticadas 11 de Febrero de 2026
+
+Actores de amenazas de estados-nación explotan la cadena de suministro de Notepad++
+
+
+
+Backdoor
+
+
+Cobalt Strike
+
+
+DLL Sideloading
+ 
+
+
+                    Leer ahora                    
+
+
+
+
+
+
+
+ 
+
+
+
+Investigación de amenazas 2 de Enero de 2026
+
+VVS Discord Stealer utiliza Pyarmor para ofuscación y evasión de detección
+
+
+
+Discord
+
+
+Infostealer
+
+
+Python
+ 
+
+
+                    Leer ahora                    
+
+
+
+
+
+
+
+ 
+
+
+
+Grupos de actores de amenazas 11 de Diciembre de 2025
+
+Ashen Lepus, afiliado a Hamás, ataca a entidades diplomáticas de Oriente Medio con el nuevo conjunto de malware AshTag
+
+
+
+Ashen Lepus
+
+
+Espionage
+
+
+WIRTE
+ 
+
+
+                    Leer ahora                    
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
+				Obtener actualizaciones de Unit 42			
+Manténgase un paso adelante de las amenazas para estar tranquilo. Comuníquese con nosotros hoy mismo.
+
+
+
+
+
+
+
+
+
+
+Your Email
+
+
+Suscribirse para recibir actualizaciones por correo electrónico de todas las investigaciones de amenazas de Unit 42.Cuando envía este formulario, acepta nuestras Condiciones de uso y confirma nuestra Declaración de privacidad
+
+                    Este sitio está protegido por reCAPTCHA y se aplican la Política de privacidad y los Términos de servicio de Google.                            
+  
+
+Invalid captcha!
+ 
+					Suscribirse					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Obtenga las últimas noticias, invitaciones a eventos y alertas de amenazas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Introduzca su correo electrónico...
+
+
+
+
+
+Regístrese  
+
+
+
+
+                                
+                                
+                                
+                                    
+                                    
+                                        
+                                        Al enviar este formulario, comprendo que mis datos personales se procesarán de acuerdo con la Política de privacidad de Palo Alto Networks y las Condiciones de uso.
+                                    
+                                
+
+                                
+                                
+
+
+Regístrese  
+
+
+
+
+
+
+
+
+
+
+
+
+Productos y servicios
+
+
+
+
+
+                                     Plataforma de seguridad de la red con tecnología de IA 
+                                
+
+
+
+                                     IA segura por diseño 
+                                
+
+
+
+                                     Prisma AIRS 
+                                
+
+
+
+                                    Seguridad de AI Access
+                                
+
+
+
+                                    Servicios de seguridad entregados en la nube
+                                
+
+
+
+                                    Threat Prevention avanzada
+                                
+
+
+
+                                    URL Filtering avanzado
+                                
+
+
+
+                                     WildFire avanzado 
+                                
+
+
+
+                                     Seguridad de DNS avanzada 
+                                
+
+
+
+                                    Prevención de pérdida de datos empresariales
+                                
+
+
+
+                                    Seguridad de IoT empresarial
+                                
+
+
+
+                                    Seguridad de IoT para dispositivos médicos
+                                
+
+
+
+                                    Seguridad de OT industrial
+                                
+
+
+
+                                    Seguridad de SaaS
+                                
+
+
+
+
+
+                                     Firewalls de nueva generación 
+                                
+
+
+
+                                     Firewalls de hardware 
+                                
+
+
+
+                                     Firewalls de software 
+                                
+
+
+
+                                    Strata Cloud Manager 
+                                
+
+
+
+                                     SD-WAN para NGFW 
+                                
+
+
+
+                                     PAN-OS 
+                                
+
+
+
+                                     Panorama 
+                                
+
+
+
+                                     Perímetro de servicio de acceso seguro 
+                                
+
+
+
+                                     Prisma SASE 
+                                
+
+
+
+                                    Aceleración de aplicaciones
+                                
+
+
+
+                                     Gestión autónoma de la experiencia digital 
+                                
+
+
+
+                                    Enterprise DLP
+                                
+
+
+
+                                     Prisma Access 
+                                
+
+
+
+                                    Prisma Browser 
+                                
+
+
+
+                                     Prisma SD-WAN 
+                                
+
+
+
+                                     Aislamiento del explorador remoto 
+                                
+
+
+
+                                     Seguridad de SaaS 
+                                
+
+
+
+
+
+                                    Plataforma de operaciones de seguridad dirigida por IA
+                                
+
+
+
+                                     Seguridad de nube 
+                                
+
+
+
+                                     Cortex Cloud 
+                                
+
+
+
+                                     Seguridad de las aplicaciones 
+                                
+
+
+
+                                     Postura de seguridad en la nube 
+                                
+
+
+
+                                     Seguridad en tiempo de ejecución en la nube 
+                                
+
+
+
+                                     Prisma Cloud 
+                                
+
+
+
+                                     SOC impulsado por IA 
+                                
+
+
+
+                                     Cortex XSIAM 
+                                
+
+
+
+                                     Cortex XDR 
+                                
+
+
+
+                                     Cortex XSOAR 
+                                
+
+
+
+                                     Cortex Xpanse 
+                                
+
+
+
+                                     Detección y respuesta gestionadas de Unit 42 
+                                
+
+
+
+                                     XSIAM gestionado 
+                                
+
+
+
+
+
+                                     Inteligencia de amenazas y respuesta ante incidentes 
+                                
+
+
+
+                                    Evaluaciones proactivas
+                                
+
+
+
+                                    Respuesta ante incidentes
+                                
+
+
+
+                                    Transforme su estrategia de seguridad
+                                
+
+
+
+                                    Descubra la inteligencia de amenazas
+                                
+
+
+
+
+
+
+Empresa
+
+
+
+
+
+                                    Acerca de nosotros
+                                
+
+
+
+                                    Carreras
+                                
+
+
+
+                                    Contáctenos
+                                
+
+
+
+                                    Responsabilidad corporativa
+                                
+
+
+
+                                    Clientes
+                                
+
+
+
+                                    Relaciones con inversionistas
+                                
+
+
+
+                                    Ubicación
+                                
+
+
+
+                                    Sala de prensa
+                                
+
+
+
+
+
+
+Enlaces populares
+
+
+
+
+
+                                    Blog
+                                
+
+
+
+                                    Comunidades
+                                
+
+
+
+                                    Biblioteca de contenido
+                                
+
+
+
+                                    Cyberpedia
+                                
+
+
+
+                                    Centro de eventos
+                                
+
+
+
+                                     Administrar preferencias de correo electrónico 
+                                
+
+
+
+                                    Productos A-Z
+                                
+
+
+
+                                    Certificaciones de productos
+                                
+
+
+
+                                     Informar sobre una vulnerabilidad 
+                                
+
+
+
+                                    Mapa del sitio
+                                
+
+
+
+                                    Documentos técnicos
+                                
+
+
+
+                                    Unit 42
+                                
+
+
+
+                                    No vender ni compartir mi información personal
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Privacidad
+                            
+
+
+
+                                Centro de confianza
+                            
+
+
+
+                                Condiciones de uso
+                            
+
+
+
+                                Documentación
+                            
+
+
+Copyright © 2026 Palo Alto Networks. Todos los derechos reservados
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+LA
+
+
+
+Select your language
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Your browser does not support the video tag.
+          
+
+Default Heading
+Read the article
+              
+
+
+
+
+Seekbar
+
+
+
+
+
+
+
+
+
+
+
+
+
+Volume
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

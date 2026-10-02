@@ -1,0 +1,1189 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The Golden Scale: Notable Threat Updates and Looking Ahead
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Menu
+
+
+
+
+
+
+Tools
+ATOMs
+Security Consulting
+About Us
+Under Attack?
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  Threat Research CenterInsightsHospitality Hacks and Retail Reality Checks 
+ 
+Hospitality Hacks and Retail Reality Checks
+The Golden Scale: Notable Threat Updates and Looking Ahead
+
+
+  5  min read              
+
+
+Related ProductsUnit 42 Incident Response 
+
+
+
+
+
+
+
+
+By:Matt Brady 
+
+Published:October 20, 2025 Categories:Hospitality Hacks and Retail Reality ChecksInsights
+ Tags:Bling LibraExtortionLapsus$Leak siteMuddled LibraScattered SpiderTelegram
+ 
+
+
+ 
+ 
+
+
+Share
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+We recently published an Insights piece “The Golden Scale: Bling Libra and the Evolving Extortion Economy,” which primarily focused on the Salesforce data theft extortion activity. This was associated with the cybercriminal syndicate known as Scattered LAPSUS$ Hunters. Since early October 2025, we have observed several notable developments within a Telegram channel (SLSH 6.0 part 3) used by the threat actors. This activity may provide a glimpse into how the group plans to operate in the foreseeable future. We’re providing these insights so that organizations can better prepare for and defend against this evolving threat activity.
+Fallout From the Extortion Deadline
+As noted in our previous Insights piece, Scattered LAPSUS$ Hunters listed the deadline for impacted organizations to make a ransom payment as 11:59 PM ET on Oct. 10, 2025. Since that time, news reports have indicated that the threat actors have leaked stolen data allegedly belonging to six companies. These companies operate across the aviation, energy and retail sectors. The leaked data allegedly includes various types of personally identifiable information (PII) such as names, dates of birth, email addresses, phone numbers and frequent flyer numbers.
+Unit 42 recently tried to access the data leak site (DLS) associated with the threat actors, and noticed the website had what appeared to be a defacement message posted (see Figure 1). As a result, we were unable to determine if any victim data was still listed.
+Figure 1. Screenshot of message posted to Bling Libra’s latest DLS as of Oct. 17, 2025. Source: Scattered LAPSUS$ Hunters' DLS.
+On Oct. 11, 2025, a day after the posted deadline and the release of data for the six organizations referenced above, the threat actors stated that “nothing else will be leaked.” The meaning of “the things we have cannot be leaked for obvious reasons” is unclear (see Figure 2). These “obvious reasons” could mean increased attention and action from law enforcement due to who owns the data or its type.
+Figure 2. Screenshot of Telegram post to SLSH 6.0 part 3 channel on Oct. 11, 2025. Source: Telegram.
+As shown below in Figure 3, the threat actors appear to potentially be stepping away from any activities until the beginning of next year. A post after this one states “I promise you, you WILL feel our wrath.”
+Figure 3. Screenshot of Telegram post to SLSH 6.0 part 3 channel on Oct. 11, 2025. Source: Telegram.
+Extortion-as-a-Service Program Advertisement
+On Oct. 10, 2025, shortly prior to their self-imposed deadline, the threat actors formally alluded to the launch of their extortion-as-a-service (EaaS) program as shown in Figure 4. They claim this EaaS program will be similar to a typical ransomware-as-a-service (RaaS) program with a clear difference: no file encryption. As noted in my previous Insights piece, one likely factor for this shift is to potentially fly under the radar of law enforcement attention. This could be motivated by their focus on disrupting ransomware operations in recent years.
+Figure 4. Screenshot of Telegram post to SLSH 6.0 part 3 channel on Oct. 10, 2025. Source: Telegram.
+Renewed Insider Access Recruitment
+On Oct. 5, 2025, the threat actors posted an advertisement seeking insider access at organizations across a variety of industries, as seen in Figure 5.
+As also noted by ReliaQuest on their X account, the threat actors state their primary interest is in acquiring access to call centers, gaming companies, hosting providers, software-as-a-service (SaaS) and telecom organizations. These organizations would be based in countries such as the U.S., UK, Australia, Canada and France.
+Figure 5. Screenshot of Telegram post to SLSH 6.0 part 3 channel on Oct. 5, 2025 Source: Telegram.
+Threat actors affiliated with “The Com” have previously advertised interest in partnering with insiders at targets of interest to them. This was reported in our May 2025 update on Muddled Libra (aka Scattered Spider).
+Potential Emergence of New Ransomware
+On Oct. 4, 2025, the threat actors claimed to be developing a new form of ransomware named “SHINYSP1D3R” as noted in Figures 6 and 7. These posts appear to be related to observations previously noted by Falconfeeds in August 2025. It is currently unclear if the aforementioned ransomware is still under development or simply a false claim.
+Figure 6. Screenshot of Telegram posts to SLSH 6.0 part 3 channel on Oct. 4, 2025. Source: Telegram.
+Figure 7. Screenshot of Telegram posts to SLSH 6.0 part 3 channel on Oct. 4, 2025. Source: Telegram.
+What Comes Next — and What I Recommend You Do
+Given that the clearnet version of Scattered LAPSUS$ Hunters’ newly launched DLS is unavailable at this time, it is unclear if any of the victims listed on the site made a ransom payment to the threat actors.
+Additionally, it remains relatively uncertain if the EaaS program advertised by the threat actors will be as lucrative of a business model as they likely hoped it would be. Given that the advertisement specifically cites the removal of any file encryption in comparison to a traditional RaaS program, organizations may be less willing to make a ransom payment considering the potential lack of operational disruption.
+Finally, it is not evident why the threat actors would potentially be interested in operating both an EaaS and a RaaS program, other than attempting to diversify their revenue streams. This is certainly something Unit 42 will continue to monitor going forward.
+As noted in our previous Insights piece, the theft and leakage of PII, including loyalty program details (e.g., frequent flyer numbers) from some victim organizations (specifically those in hospitality) could enable cybercriminals to conduct identity theft and other types of fraud, including fueling the growth of fraudulent travel agencies advertised across underground cybercrime forums and Telegram channels.
+Given the rise of RaaS programs in recent years, many organizations have developed incident response playbooks specifically to prepare for a ransomware event in terms of operational disruption. I believe it is now time for organizations to create similar playbooks for the growing threat of EaaS programs, specifically to prepare for the reputational risks associated with such events. This should include having third-party experts on standby via retainer to assist with potential negotiations, verification of stolen data and other related actions.
+If your organization has been threatened with data theft extortion by Scattered Lapsus$ Hunters or other cybercriminals, the Unit 42 Incident Response team is here and ready to support with either a suspected compromise or to reduce the risk via a proactive threat assessment.
+
+
+Back to top
+
+TagsBling LibraExtortionLapsus$Leak siteMuddled LibraScattered SpiderTelegram
+
+
+
+Threat Research Center
+
+
+Next: Threat Brief: Nation-State Actor Steals F5 Source Code and Undisclosed Vulnerabilities
+
+
+
+
+
+
+
+Table of Contents
+
+
+
+
+
+
+Related Articles
+
+
+
+                      The Permanent Threat: Analyzing Aeternum’s Blockchain-Based C2 Operations and Communications                  
+
+
+
+                      2026 World Cup: Discussing The World’s Biggest Game’s Attack Surface                  
+
+
+
+                      Out of the Crypt: The Evolving Cyber Extortion Economy                  
+
+
+
+
+
+
+
+
+
+Related Hospitality Hacks and Retail Reality Checks Resources
+
+
+
+
+ 
+
+
+
+Insights July 10, 2026
+
+No Manners Here: The Ruthless Rise of The Gentlemen Ransomware
+
+
+
+Howling Scorpius
+
+
+RaaS
+
+
+Spikey Scorpius
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights March 20, 2026
+
+Who’s Really Shopping? Retail Fraud in the Age of Agentic AI
+
+
+
+Agentic AI
+
+
+E-commerce
+
+
+Retail
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights November 26, 2025
+
+The Golden Scale: 'Tis the Season for Unwanted Gifts
+
+
+
+Bling Libra
+
+
+Lapsus$
+
+
+Leak site
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights October 10, 2025
+
+The Golden Scale: Bling Libra and the Evolving Extortion Economy
+
+
+
+Bling Libra
+
+
+Extortion
+
+
+Lapsus$
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights September 9, 2025
+
+Data Is the New Diamond: Latest Moves by Hackers and Defenders
+
+
+
+Muddled Libra
+
+
+Bling Libra
+
+
+Extortion
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights August 26, 2025
+
+Data Is the New Diamond: Heists in the Digital Age
+
+
+
+Bling Libra
+
+
+Extortion
+
+
+Social engineering
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
+				Get updates from Unit 42			
+Peace of mind comes from staying ahead of threats. Subscribe today.
+
+
+
+
+
+
+
+
+
+
+Your Email
+
+
+Subscribe for email updates to all Unit 42 threat research.
+By submitting this form, you agree to our Terms of Use and acknowledge our Privacy Statement.
+
+                    This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.                            
+  
+
+Invalid captcha!
+ 
+					Subscribe					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Get the latest news, invites to events, and threat alerts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Enter your email now to subscribe!
+
+
+
+
+
+Sign up 
+
+
+
+
+                                
+                                
+                                
+                                    By submitting this form, I understand my personal data will be processed in accordance with
+                                        Palo Alto Networks Privacy Statement and Terms of Use.
+
+
+
+Sign up 
+
+
+
+
+
+
+
+
+
+
+
+
+Products and Services
+
+
+
+
+
+                                    AI-Powered Network Security Platform
+                                
+
+
+
+                                    Secure AI by Design
+                                
+
+
+
+                                    Prisma AIRS
+                                
+
+
+
+                                    AI Access Security
+                                
+
+
+
+                                    Cloud Delivered Security Services
+                                
+
+
+
+                                    Advanced Threat Prevention
+                                
+
+
+
+                                    Advanced URL Filtering
+                                
+
+
+
+                                    Advanced WildFire
+                                
+
+
+
+                                    Advanced DNS Security
+                                
+
+
+
+                                    Enterprise Data Loss Prevention
+                                
+
+
+
+                                    Enterprise IoT Security
+                                
+
+
+
+                                    Medical IoT Security
+                                
+
+
+
+                                    Industrial OT Security
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    Next-Generation Firewalls
+                                
+
+
+
+                                    Hardware Firewalls
+                                
+
+
+
+                                    Software Firewalls
+                                
+
+
+
+                                    Strata Cloud Manager
+                                
+
+
+
+                                    SD-WAN for NGFW
+                                
+
+
+
+                                    PAN-OS
+                                
+
+
+
+                                    Panorama
+                                
+
+
+
+                                    Secure Access Service Edge
+                                
+
+
+
+                                    Prisma SASE
+                                
+
+
+
+                                    Application Acceleration
+                                
+
+
+
+                                    Autonomous Digital Experience Management
+                                
+
+
+
+                                    Enterprise DLP
+                                
+
+
+
+                                    Prisma Access
+                                
+
+
+
+                                    Prisma Browser
+                                
+
+
+
+                                    Prisma SD-WAN
+                                
+
+
+
+                                    Remote Browser Isolation
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    AI-Driven Security Operations Platform
+                                
+
+
+
+                                    Cloud Security
+                                
+
+
+
+                                    Cortex Cloud
+                                
+
+
+
+                                    Application Security
+                                
+
+
+
+                                    Cloud Posture Security
+                                
+
+
+
+                                    Cloud Runtime Security
+                                
+
+
+
+                                    Prisma Cloud
+                                
+
+
+
+                                    AI-Driven SOC
+                                
+
+
+
+                                    Cortex XSIAM
+                                
+
+
+
+                                    Cortex XDR
+                                
+
+
+
+                                    Cortex XSOAR
+                                
+
+
+
+                                    Cortex Xpanse
+                                
+
+
+
+                                    Unit 42 Managed Detection & Response
+                                
+
+
+
+                                    Managed XSIAM
+                                
+
+
+
+                                    Observability
+                                
+
+
+
+                                    Cortex XCOR
+                                
+
+
+
+
+
+                                    Next-Generation Identity Security
+                                
+
+
+
+                                    Privileged Access Management
+                                
+
+
+
+                                    Identity and Access Management 
+                                
+
+
+
+                                    Endpoint Privilege Manager
+                                
+
+
+
+                                    Identity Governance
+                                
+
+
+
+                                    Workforce Password Management
+                                
+
+
+
+                                    Agentic Identities
+                                
+
+
+
+                                    Secrets Management
+                                
+
+
+
+                                    Unified Secrets Governance
+                                
+
+
+
+                                    Application Credentials Delivery
+                                
+
+
+
+                                    Vendor Privileged Access
+                                
+
+
+
+                                    Threat Intel and Incident Response Services
+                                
+
+
+
+                                    Prepare for Emerging Risks
+                                
+
+
+
+                                    Strengthen Your Defenses
+                                
+
+
+
+                                    Build Your Security Strategy
+                                
+
+
+
+                                    Understand the Adversary
+                                
+
+
+
+                                    Respond to a Cyber Attack
+                                
+
+
+
+
+
+
+Company
+
+
+
+
+
+                                    About Us
+                                
+
+
+
+                                    Careers
+                                
+
+
+
+                                    Contact Us
+                                
+
+
+
+                                    Corporate Responsibility
+                                
+
+
+
+                                    Customers
+                                
+
+
+
+                                    Investor Relations
+                                
+
+
+
+                                    Location
+                                
+
+
+
+                                    Newsroom
+                                
+
+
+
+
+
+
+Popular Links
+
+
+
+
+
+                                    Blog
+                                
+
+
+
+                                    Communities
+                                
+
+
+
+                                    Content Library
+                                
+
+
+
+                                    Cyberpedia
+                                
+
+
+
+                                    Event Center
+                                
+
+
+
+                                    Manage Email Preferences
+                                
+
+
+
+                                    Products A-Z
+                                
+
+
+
+                                    Product Certifications
+                                
+
+
+
+                                    Report a Vulnerability
+                                
+
+
+
+                                    Sitemap
+                                
+
+
+
+                                    Tech Docs
+                                
+
+
+
+                                    Unit 42
+                                
+
+
+
+                                    Do Not Sell or Share My Personal Information
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Privacy
+                            
+
+
+
+                                Trust Center
+                            
+
+
+
+                                Terms of Use
+                            
+
+
+
+                                Documents
+                            
+
+
+Copyright © 2026 Palo Alto Networks. All Rights Reserved
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+EN
+
+
+
+Select your language
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Your browser does not support the video tag.
+          
+
+Default Heading
+Read the article
+              
+
+
+
+
+Seekbar
+
+
+
+
+
+
+
+
+
+
+
+
+
+Volume
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

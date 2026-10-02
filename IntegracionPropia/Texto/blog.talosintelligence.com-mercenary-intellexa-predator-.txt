@@ -1,0 +1,727 @@
+
+
+
+Mercenary mayhem: A technical analysis of Intellexa's PREDATOR spyware
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Mercenary mayhem: A technical analysis of Intellexa's PREDATOR spyware
+
+
+By 
+Cisco Talos
+
+
+
+            Thursday, May 25, 2023 08:02
+        
+
+
+                                Threat Advisory
+                            
+
+                                SecureX
+                            
+
+                                Threats
+                            
+
+
+
+
+We would like to thank The Citizen Lab for their cooperation, support and inputs into this research.Commercial spyware use is on the rise, with actors leveraging these sophisticated tools to conduct surveillance operations against a growing number of targets. Cisco Talos has new details of a commercial spyware product sold by the spyware firm Intellexa (formerly known as Cytrox).Our research specifically looks at two components of this mobile spyware suite known as “ALIEN” and “PREDATOR,” which compose the backbone of the spyware implant. Our findings include an in-depth walkthrough of the infection chain, including the implants’ various information-stealing capabilities.A deep dive into both spyware components indicates that ALIEN is more than just a loader for PREDATOR and actively sets up the low-level capabilities needed for PREDATOR to spy on its victims.We assess with high confidence that the spyware has two additional components — tcore (main component) and kmem (privilege escalation mechanic) — but we were unable to obtain and analyze these modules.If readers suspect their system(s) may have been compromised by commercial spyware, please consider notifying Talos’ research team at no-spyware@external.cisco.com to assist in furthering the community’s knowledge of these threats.ALIEN and PREDATOR part of growing rise in spyware useThreat actors’ use of commercial spyware has been on the rise, and the number of companies supplying these products and services seems to keep growing. Most commercial spyware is intended for government use, with firms like NSO Group advertising their products as technology that helps prevent terrorism, investigate crime, and enhance national security. However, in recent years, ethical and legal questions have swirled around the use of these surveillance tools, which have become known in the security community as “mercenary spyware.” As a response to the rapid proliferation and growing concern over the misuse of these products, on March 27, 2023, the Biden-Harris administration signed an Executive Order prohibiting the U.S. government from using commercial spyware that poses national security risks or has been misused by foreign actors to enable human rights abuses. Spyware suppliers take great care to make the final payloads difficult to detect, obtain, analyze and protect against by creating deployment sequences that often require little or no user interaction. The delivery mechanism is usually an exploit chain that can start a zero-click exploit, like FORCEDENTRY, which is produced by Israeli spyware firm NSO Group, or with a link that the victim is tricked into clicking (i.e., a “one-click” exploit), like the one created by the surveillance company Cytrox to deploy their own spyware known as “PREDATOR.” (Note: Cytrox is owned by Intellexa, which sells the PREDATOR spyware.)PREDATOR is an interesting piece of mercenary spyware that has been around since at least 2019, designed to be flexible so that new Python-based modules can be delivered without the need for repeated exploitation, thus making it especially versatile and dangerous. New analysis from Talos uncovered the inner workings of PREDATOR and the mechanisms it uses to communicate with the other spyware component deployed along with it known as “ALIEN.” Both components work together to bypass traditional security features on the Android operating system. Our findings reveal the extent of the interweaving of capabilities between PREDATOR and ALIEN, providing proof that ALIEN is much more than just a loader for PREDATOR as previously thought to be.Intellexa spyware frameworkIntellexa’s spyware products, like most recently exposed spyware tools, have multiple components that can be grouped into three major buckets aligned with consecutive stages of the attack:The first two — exploitation and privilege escalation — are often grouped in exploit chains, which start by exploiting a remote vulnerability to obtain remote code execution (RCE) privileges, followed by mitigation circumvention and privilege escalation, since the vulnerable processes are often less privileged.An example of the initial chain is covered in detail in this 2021 blog post from Google TAG. The report describes how adversaries exploited five different zero-day vulnerabilities to deliver ALIEN, the implant in charge of loading the PREDATOR spyware. The vulnerabilities, which were discovered in 2021, are CVE-2021-37973, CVE-2021-37976, CVE-2021-38000, CVE-2021-38003 — all of which affect Google Chrome, and CVE-2021-1048 in Linux and Android. While ALIEN and PREDATOR can be used against Android and iOS mobile devices, the samples we analyzed were specifically designed for Android. For privilege escalation, the spyware is configured to use a method called QUAILEGGS, or, if QUAILEGGS is not present, it will use a different method called “kmem.” The samples we analyzed were running QUAILEGGS. There is no way to know for sure what vulnerability QUAILEGGS exploits without having access to the code itself. Nevertheless, we decided to share our assessment in hopes that other researchers might be able to add to it.We assess that QUAILEGGS likely exploits the aforementioned zero-day vulnerability CVE-2021-1048. Based on Google’s root cause analysis, this vulnerability allows code injection into privileged processes, which is exactly what happens with ALIEN when QUAILEGGS is used. According to the Linux kernel development git logs, the vulnerability was public since August 2020 and patched in September. However, some Google Pixel phones remained vulnerable until March 2021 and Samsung devices until at least October 2021. From the PREDATOR components Cisco Talos had access to, we assess that there are at least two more components that we have not been able to analyze: “tcore” and "kmem.”The tcore Python module is loaded by loader.py, the key instrumentor module, after all initializations are completed.Loader module importing tcore.If tcore fails to load, the loader deletes the downloaded encrypted SQLite3 file. It first tries to delete the file, and if that fails, attempts to open the file for write operations and write zero bytes to it to wipe it clean, effectively eradicating the file contents without deleting the file itself.We assess that the tcore Python module contains the core spyware functionality. Analysis of the native code inside ALIEN and PREDATOR indicates that the spyware can record audio from phone calls and VOIP-based applications. It can also collect information from some of the most popular applications, including Signal, WhatsApp and Telegram. Peripheral functionalities include the ability to hide applications and prevent applications from being executed upon device reboot.The second component we are missing is the artifact that implements the KMEM module. Based on our analysis of the “_km” python module, we assess that KMEM provides arbitrary read and write access into the kernel address space.Access gained by exploiting CVE-2021-1048 would allow the spyware to execute most of its capabilities, including loading and executing additional payloads at SYSTEM level. Eventually, this could lead to the user gaining kernel access and making configuration setting changes to kmem.Spyware implant architecture and overviewALIEN/PREDATOR teamworkThe spyware implant runs a variety of processes to bypass the inherent restrictions of Android’s security model. The spyware takes the “__progname” of the process that is currently running and then uses it to decide what set of functions to call. The processes looked for are: zygote64, system_server, installd, audioserver (alien_voip) and a second version of audioserver (alien_recorder).The zygote64 and system_server call chains are the ones that do the most work while the installd call chain sets up the file structures for the other portions of the spyware. Each of these call chains set up a process structure used to intercept specific ioctl commands, where the spyware uses the functionality of that process to abuse the SELinux context to grant different functionality to the other processes.The image below shows an example in which the SELinux policy-applied zygote process prevents all kinds of access to sockets, except for Unix-type local ones.Source: https://android.googlesource.com/platform/system/sepolicy/+/master/private/app_zygote.te#130However, by storing the recorded audio in a shared memory area using ALIEN, then saving it to disk and exfiltrating it with PREDATOR, this restriction can be bypassed. This is a simplified view of the process — keep in mind that ALIEN is injected into the zygote address space to pivot into specialized privileged processes inside the Android permission model. Since zygote is the parent process of most of the Android processes, it can change to most UIDs and transition into other SELinux contexts that possess different privileges. Therefore, this makes zygote a great target to begin operations that require multiple sets of permissions.The ALIEN component configuration contains the URL to download the PREDATOR component. During the initialization, it starts the download and calls its main_exec() function by importing it using dlsym(), thus initializing the main component of the spyware. It is unclear how ALIEN is initially started, but it is highly likely that it is loaded from the shellcode executed by the exploits used in the initial stage.Download URL for PREDATOR in ALIEN.ALIEN is also responsible for updating PREDATOR after, for instance, secondary exploitation.If the configuration contains the string “_refresh”, the file downloaded will be stored as fs.db that will be processed by the sqlimper.py module residing inside PREDATOR and not ALIEN, thus strengthening our findings that these two modules are highly dependent on each other. It is worth noting that fs.db is an SQLite3-encrypted database that may contain new configuration settings or serialized Python code, thus making it extremely modular and adaptable spyware.ALIEN and PREDATOR also communicate via binder transactions. During its initialization routines, ALIEN hooks ioctl() to catch binder transactions arriving at its host process. A detailed example of this method of communication can be seen in the audio recording feature description ahead.ALIEN overviewALIEN is the primary worker component for the spyware. Once deployed, downloads and activates the remaining components according to the configuration that has been hardcoded into its own binary. We assess with high confidence that ALIEN is injected into a privileged process address space and is then launched in an independent thread. Initially, ALIEN checks if it has been loaded into zygote64. If this check is positive, it will go ahead and perform its activities. If needed, it will download the PREDATOR component from a hosting site defined in the configuration. Optionally, this can be a refresh, in which case the already existing PREDATOR will be replaced by a new version, meaning a second exploitation of the target device was performed and a new version of tcore is installed. Keep in mind that this is tcore and not the entire PREDATOR payload. ALIEN’s configuration also includes the location for its working directory which is actively utilized for carrying out tasks such as data exfiltration etc. An example of one such working directory is “/data/local/tmp/wd/”. Spyware artifacts such as PREDATOR and SQLite3-encrypted database files can be found on it.
+
+
+
+
+
+Path
+Purpose
+
+
+
+
+/data/local/tmp/wd/pred[.]so
+PREDATOR spyware shared library
+
+
+/data/local/tmp/wd/fs[.]db
+SQLITE3 file containing additional payloads
+
+
+
+
+
+ALIEN is not just a loader but also an executor — its multiple threads will keep reading commands coming from PREDATOR and executing them, providing the spyware with the means to bypass some of the Android framework security features. Before launching PREDATOR, there are several steps that need to be performed:Hooking the ioctl() API in the libbinder.so using an open-source library called xHook is one of the means it uses to communicate with PREDATOR. The distributed nature of the spyware requires component communication and synchronization to work properly. The spyware framework has several means of achieving this communication and synchronization. ALIEN hooks the ioctl() function in libbinder.so, which is responsible for inter-process communication (IPC) in the Android framework. The ioctl hooks are structured to allow the implant to communicate with itself (on forked processes) and with other implant components. Hooking ioctl.When the implant begins executing, it selects which application context it’s running within. After this activity starts, it will record the thread ID that it is running inside, then register a hook on the ioctl activity in that process. This ioctl hook manages a variety of different binder commands, inside of the BINDER_WRITE_READ IOCTL command. This hook filters all the BINDER_WRITE_READ functions to ALIEN’s own handler commands. The commands that are redirected include BC_TRANSACTION, BR_TRANSACTION, BR_REPLY, BC_REPLY. This allows the control of information into and out of the target process. Within each of the selected processes mentioned above, there are different actions a malicious module could then take on the system. This creates an effective way to communicate within the implant while also allowing the implant to hide within other legitimate system processes. The implant communicates discreetly with itself, without network-based indicators and avoiding SELinux restrictions.On the instalID process, the implant hooks BR_TRANSACTION and BC_REPLY. Each of the commands takes the same action. It then spawns a thread and moves toward recursively changing the permissions of 26 directories belonging to applications and users’ media. Each application has a list of flags associated with it referencing what vendor will likely possess the application and whether to apply the new permissions to said app. In this sample, each application is given the permissions of 777, although the spyware supports an extension of any value. ALIEN also gives them an SELinux context consistent with the configuration of the spyware “u:object_r:shell_data_file:s0” using the function setfilecon. These files (applications) are copied into the configuration directory where the spyware resides, likely to be extracted later.PREDATOR overviewPREDATOR is a pyfrozen ELF file that contains serialized Python modules and native code used by either of the built-in modules or downloaded modules. ALIEN launches PREDATOR, calling the main_exec() exported function with a parameter that contains two file descriptors. These are shared memory area file descriptors created by ALIEN to be used as a medium for communication between the two components.The PREDATOR main_exec() function is a simple function that will duplicate the file handles and launch PREDATOR’s real main function on a native thread, thus ensuring it can run without being blocked by ALIEN processes or the main process execution.Initialization process for PREDATOR.This threat will call the startPy() function which prepares the Python runtime environment to be used by the spyware. Like any other pyfrozen binary, it starts by importing the usual “__main__” module. Then, it defines the following attributes to the “__main__”:
+
+NameUsageSHMEMFD_PC2Shared memory handle for communication with ALIENSHMEMFD_VSSShared memory handle for communication with ALIENDEVDefines if the current PREDATOR implant is a development version or not. This will have impact in the amount of logging performedinstallIDAn installation ID that can be related to the victim, device or campaign. The value is hardcoded in the initialization time. 
+
+The final activities are the import of another module called loader whose main subroutine, a Python function called “mainExec” will be called. It is interesting to note that the installation ID is hardcoded in the native code with a specific value but, in the Python module loader.py, the value is initialized with a placeholder value. Once the Python runtime is properly initialized, PREDATOR will proceed to initialize and start the spyware tcore component.Spyware capabilitiesWhen used together, these components provide a variety of information stealing, surveillance and remote-access capabilities. The functionalities described here are just a subset of the comprehensive capabilities of the spyware. At this time, Talos does not have access to all components of the spyware; therefore, this capability list should not be considered exhaustive. We believe that capabilities like geolocation tracking, camera access or the ability to make it appear as if the phone is powering off may have been implemented in the tcore module.Arbitrary code executionALIEN also can read and execute code from specified locations on the filesystem. For example, the implant can inject code that was read earlier from “/system/fonts/NotoColorEmoji.ttf” into the system_server process memory for execution.Inject and wait for the result.The spyware architecture is highly reliable on process-based parallelism. The shell code is injected after a fork() call, the child process will inject the shell code, execute it and exit. Meanwhile, the parent process will wait for the execution of the shell code for five seconds before returning. Given the code flow, we assess with medium confidence that the injected shell code takes the content of “/data/system/.0” as a parameter.The overall injection process is achieved using ptrace() and mmap() to inject the code into the target process.Overall injection flow.Audio recordingThis spyware can record audio from different sources by several means. It can record from microphone, earpiece- and VOIP-based calls, using deep-level techniques like memcpy hooking inside audio-related processes, or more simply, creating a RECORD interface using the OpenSLES native library. This capability is spread across the two components and just like any other component it can be started from the Python environment loaded by PREDATOR.Audio recorder command codes.This capability's internal name is pc2. The screenshot above shows the preparation of the Python environment with the constants that will be used as commands between the ALIEN and PREDATOR modules. PREDATOR implements the native code that will be responsible for the communication with ALIEN, on one side, and exposes that code to the Python interpreter so it can be called from the tcore module.ALIEN attempts to hook the following APIs in the audio libraries being used by a process. The APIs are hooked using the xhook framework. These hooks are established to copy the source data served to the legitimate APIs into a buffer allocated and specified by the spyware.
+
+Lib nameFunction to be hookedlibaudioutils.somemcpy_by_audio_format.*\\libaudiohal.*.so$memcpy.*\\libaudioflinger.so$memcpy
+
+Hooks created in audio libraries using xhook.Another set of interception measures deployed by ALIEN includes the setting up of ioctl hooks and a recorder interface. These hooks intercept and identify the operations being carried out/requested by the recorder to copy data into locations defined by the spyware. These mechanisms target the audioserver process on the device and are meant to essentially record audio from the VOIP and voice recording interfaces. Although the whole infrastructure to enable voice recording is set up by ALIEN, it is primarily operated by PREDATOR, which is responsible for issuing commands to either start or stop recording. This is yet another example of the close relationship between ALIEN and PREDATOR to carry out essential malicious activities on the infected devices.Adding certificates to the storeThe spyware can also add certificates to the current user-trusted certificate authorities by writing the certificate authority’s (CA) public certificate to the path “/data/misc/user/0/cacerts-added”, as shown below.Even though the spyware has high privileges, it doesn't attempt to add the certificates at the system level. That kind of operation could interfere with the normal functioning of the device. Some versions of Android would even require the remount of the filesystem with read-write permissions. If anything was to go wrong during TLS decryption at the system level, the device may become unstable, likely tipping off the victims. From an attacker’s perspective, the risks outweigh the reward, since with user-level certificates, the spyware can still perform TLS decryption on any communication within the browser.Application hiding and preventing execution on rebootRead the contents in “/data/system/.0” and use that as an input for establishing hooks in Android runtime (ART) using a custom version of the YAHFA framework. The way that the hooking works is that ALIEN contains an embedded DEX file which is loaded using the InMemoryClassLoader() method.Embedded DEX in ALIEN The customized version inside the DEX contains, what seems to be a plugin, called “com.jnative.pluginshideapp”, which implements the methods mentioned below.getInstalledApplicationsgetInstalledPackagesqueryIntentActivitiesInternalqueryIntentReceiversInternalMalicious plugins with Hooks defined for Package Manager APIs.The DEX file thus uses these hooks for two key purposes:Hiding Applications/packages: The plugin in the DEX can hook and filter out a specific package/application name from the list of installed packages and applications.Prevent execution on Reboot: The plugin can also hook and be used for filtering out specific names from the list of packages/applications to be run when the BOOT_COMPLETED intent is received via broadcast.Filtering of applications and packages based on their “packageName” field.To filter the application/package lists for hiding or disabling them on reboot, the DEX file hooks the original API calls, replacing them with its own custom code. Every time a call is made to the hooked method, the custom code will check the destination list against its own list, removing any matches of application and package names it intends to hide. Filtering of the list is followed by the call to the original API with the filtered list now being used as its argument. The code we analyzed only implements the BOOT_COMPLETED broadcast, which prevents an application from starting after reboot. This same method could be implemented for other broadcasts, modeling the behavior of other applications in the process. For example, it could do the same for the SMS_RECEIVED broadcast notification, preventing SMSs from reaching the user. This can be considered a more aggressive method of interception use instead of the more commonly used technique of installing an application that receives SMS_RECEIVED broadcasts with higher priority. Get system informationThe spyware uses a variety of sources to gather information about the system. It will enumerate various directories on the file system and read multiple files to extract as much statically available data from the infected device.Enumerating directoriesThe ALIEN implant will first get the device manufacturer name from the system property “ro.product.manufacturer”. It checks for specific manufacturers from a hardcoded list:SamsungHuaweiOppoXiaomiIf any of these manufacturers' names match, it will recursively enumerate the contents of the following directories on disk:
+
+TypeDirectoriesMessaging/data/data/com.samsung.android.messagingContacts/data/data/com.samsung.android.providers.contacts/data/data/com.android.providers.contactsMedia/data/data/com.samsung.android.providers.media/data/data/com.android.providers.media/data/data/com.google.android.providers.media/data/media/0/data/media/data/data/com.google.android.providers.media.module/data/data/com.android.providers.media.moduleEmail/data/data/com.samsung.android.email.providercom.google.android.gmTelephony/data/data/com.android.providers.telephonySocial media apps/data/data/com.instagram.android/data/data/com.facebook.orca/data/data/com.twitter.androidMessaging Apps/data/data/com.skype.raider/data/data/jp.naver.line.android/data/data/com.whatsapp/data/data/org.telegram.messenger/data/data/com.viber.voip/data/data/com.tencent.mm (WeChat)/data/data/org.thoughtcrime.securesms/data/data/com.google.android.apps.messagingALIEN working directory/data/local/tmp/wd - This is the directory used by ALIEN to store stolen data from the device.Browser apps/data/data/com.android.chrome
+
+Getting Configuration DataThe implant gathers configuration information, but it will also collect contacts, calls and messaging information by copying the content of the files listed below. The implant will again check for the manufacturer names and then read data from the following files:/data/misc/wifi/.WifiConfigStore.xml/data/local/tmp/wd/WifiConfigStore.xml/data/data/com.android.providers.contacts/databases/contacts2.db-wal/data/data/com.android.providers.media/databases/contacts2.db-wal/data/data/com.android.providers.contacts/databases/contacts2.db-shm/data/data/com.android.providers.media/databases/contacts2.db-shm/data/data/com.android.providers.contacts/databases/contacts2.db/data/data/com.android.providers.media/databases/contacts2.db/data/data/com.android.providers.contacts/databases/calls.db-wal/data/data/com.android.providers.media/databases/calls.db-wal/data/data/com.android.providers.contacts/databases/calls.db-shm/data/data/com.android.providers.media/databases/calls.db-shm/data/data/com.android.providers.contacts/databases/calls.db-journal/data/data/com.android.providers.media/databases/calls.db-journal/data/data/com.android.providers.contacts/databases/calls.db/data/data/com.android.providers.media/databases/calls.db/data/data/com.android.providers.telephony/databases/mmssms.db-wal/data/data/com.android.providers.media/databases/mmssms.db-wal/data/data/com.android.providers.telephony/databases/mmssms.db-shm/data/data/com.android.providers.media/databases/mmssms.db-shm/data/data/com.android.providers.telephony/databases/mmssms.db/data/data/com.android.providers.media/databases/mmssms.dbThe content obtained is then written to “/data/local/tmp/wd/”, before being exfiltrated. This can be considered a low-level method of collecting information. Spyware with fewer privileges on the system usually uses the Android framework API to collect such information. This method, however, requires user interaction to provide the necessary permissions.CoverageCisco Secure Endpoint (formerly AMP for Endpoints) is ideally suited to prevent the execution of the malware detailed in this post. Try Secure Endpoint for free here.Cisco Secure Web Appliance web scanning prevents access to malicious websites and detects malware used in these attacks.Cisco Secure Email (formerly Cisco Email Security) can block malicious emails sent by threat actors as part of their campaign. You can try Secure Email for free here.Cisco Secure Firewall (formerly Next-Generation Firewall and Firepower NGFW) appliances such as Threat Defense Virtual, Adaptive Security Appliance and Meraki MX can detect malicious activity associated with this threat.Cisco Secure Malware Analytics (Threat Grid) identifies malicious binaries and builds protection into all Cisco Secure products.Umbrella, Cisco's secure internet gateway (SIG), blocks users from connecting to malicious domains, IPs, and URLs, whether users are on or off the corporate network. Sign up for a free trial of Umbrella here.Cisco Secure Web Appliance (formerly Web Security Appliance) automatically blocks potentially dangerous sites and tests suspicious sites before users access them.Additional protections with context to your specific environment and threat data are available from the Firewall Management Center.Cisco Duo provides multi-factor authentication for users to ensure only those authorized are accessing your network.Open-source Snort Subscriber Rule Set customers can stay up to date by downloading the latest rule pack available for purchase on Snort.org.IOCsIndicators of Compromise associated with this threat can be found here.
+
+
+
+Share this post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Content
+
+
+Active exploitation of Cisco Secure Firewall Management Center vulnerabilities
+September 9, 2026 12:08
+Cisco Talos is actively tracking the exploitation of two vulnerabilities in Cisco’s Secure Firewall Management Center (FMC) Software.
+
+
+
+
+ARToken: Inside an EvilTokens affiliate panel targeting Microsoft 365
+July 1, 2026 06:00
+Talos has identified "ARToken," a phishing-as-a-service platform that targets Microsoft 365. The ARToken panel exposes 80+ API endpoints for device code phishing, Primary Refresh Token persistence, email access, BEC operations, and SharePoint exfiltration.
+
+
+
+
+Ongoing exploitation of Cisco Catalyst SD-WAN vulnerabilities
+May 14, 2026 12:02
+Cisco Talos is tracking the active exploitation of CVE-2026-20182, an authentication bypass vulnerability in Cisco Catalyst SD-WAN Controller, formerly SD-WAN vSmart, and Cisco Catalyst SD-WAN Manager, formerly SD-WAN vManage.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

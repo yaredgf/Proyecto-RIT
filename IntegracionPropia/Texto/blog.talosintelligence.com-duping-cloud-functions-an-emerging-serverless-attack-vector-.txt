@@ -1,0 +1,686 @@
+
+
+
+Duping Cloud Functions: An emerging serverless attack vector
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Duping Cloud Functions: An emerging serverless attack vector
+
+
+By 
+William Charles Gibson
+
+
+
+            Tuesday, May 20, 2025 06:00
+        
+
+
+                                Vulnerability Spotlight
+                            
+
+
+
+
+Summary and backgroundGoogle Cloud Platform (GCP) Cloud Functions are event-triggered, serverless functions that automatically scale and execute code in response to specific events like Hypertext Transfer Protocol (HTTP) requests or data changes. Tenable Research published an article discussing a vulnerability they discovered within GCP’s Cloud Functions serverless compute service and its Cloud Build continuous integration and continuous delivery or deployment (CI/CD) pipeline service.“When a GCP user creates or updates a Cloud Function, a multi-step backend process is triggered,” Tenable author Liv Matan writes. “This process, among other things, attaches a default Cloud Build service account to the Cloud Build instance that is created as part of the function’s deployment.” This default Cloud Build Service Account (SA) previously gave users excessive Cloud Function permissions. An attacker who has gained the ability to create or update a cloud function could utilize the function’s deployment process to escalate privileges to the default Cloud Build service account or assign a higher privileged SA. Google has since partially addressed Tenable’s discovery to ensure the default Cloud Build service account no longer provides users with excessive permissions.Based on Tenable’s research, Cisco Talos conducted a series of offensive tests within Cisco’s Google Cloud Platform (GCP) to identify additional threats that may affect customer environments.During its research, Talos discovered that the technique Tenable identified could be adapted to perform other malicious activities. By implementing different malicious console commands into the Node Package Manager (NPM) ‘package.json’ file used in this technique, threat actors could execute behaviors such as environment enumeration.Talos furthered this research by attempting to replicate similar behaviors in Amazon Web Services (AWS) and Microsoft Azure to determine if these techniques could be employed to perform similar malicious activities in other cloud-based environments.ResearchPrerequisitesTo utilize this attack vector, certain prerequisites must be met. Talos set up a Debian Linux server within the GCP environment with Node Package Manager (NPM) and Ngrok installed. However, the virtual machine for this research can be created in any cloud environment.After installing NPM and Ngrok, Talos configured both tools to function as intended.Once NPM and Ngrok were configured, a Python server was created to output the data received from the cloud function.With NPM, Ngrok, and the Python server set up and configured, the next step was to create and modify the NPM package.Talos then replaced the content of the package.json file with the following code:Finally, once all the necessary files are created and configured, Talos set up the environment to visually display the data output from deploying the functions. To achieve this, Talos activated both the Ngrok server and the Python server created earlier.To replicate the GCP behavior discussed in Tenable’s article, Talos created/updated an SA with function build and cloud build permissions. This SA was then assigned to the GCP Cloud Run Function to allow the code to be executed with privileged access.Once the servers and service accounts were online and configured to receive and output data, the emulation of the behavior could begin.EmulationWith the package.json file configured to be utilized by the build function, Talos began emulating the technique described in Tenable’s research article.The first step in Talos’ replication involved the utilizing a misconfigured GCP function to extract the default Cloud Build service account token. To initiate this process, the "malicious" package.json was updated on the virtual machine, ensuring that it contains code similar to that used by Tenable.Once the package.json file was modified as desired, it needed to be published to the public NPM registry. To do this, Talos executed the following command:With the package.json file uploaded to the NPM public registry, it was time to deploy the GCP Cloud Run Function so that the package.json can execute the provided code. To do this, the user must to navigate to their GCP Cloud Run Functions page and select or create a Cloud Run Function, ensuring it is assigned a service account with Cloud Build permissions.Figure 1. Google Cloud Run Function displaying the assigned service account.As Talos created or selected our existing GCP Cloud Run Function, we navigated to the source page of the cloud function. Here, Talos modified the package.json file to install the malicious package uploaded to NPM.Figure 2. Google Cloud Run Function’s Source page.Once Talos updated the package.json file with the correct name and version of the NPM package, we selected "Deploy" or "Save and Redeploy" to initiate the build process. During this process, the function sends the requested data to the Ngrok server, which was then output on the Python server.Talos confirmed that the exfiltration of GCP service account access tokens can no longer be achieved using this method, due to Google's response and patching of the issue. We further verified this by executing the same command provided to our NPM-uploaded package.json from a separate virtual machine. The command executed successfully, confirming our suspicion that this specific technique for obtaining privileged service account tokens has been patched out.Original ResearchCisco Talos' research extended Tenable’s original behavior concept by applying it to other cloud environments through modifications to their respective cloud services. AWS Lambda and Azure Functions are serverless compute services that allow users to run code without provisioning or managing servers. By creating a Lambda function or an Azure function with a Node.js 20.x runtime, a package.json file can be created with dependencies set to execute a malicious package uploaded to NPM’s public repository. These malicious packages may contain harmful console commands that provide a threat actor with valuable enumeration information.Although this specific vector of threat actor behavior is no longer possible, other commands have proven useful in providing adversaries with valuable enumeration capabilities. These commands can be used on cloud platforms beyond GCP Cloud Build Function, such as AWS Lambda and Azure Functions.Some examples of the types of enumeration a threat actor can perform using this method include the following.ICMP DiscoveryInternet Control Message Protocol (ICMP) Discovery is utilized to gather information about network devices and their configurations. By analyzing ICMP responses, adversaries can infer the network's structure, including the presence of routers, gateways, and the pathways between devices. This information can be crucial for planning attacks.Existence of .dockerenvIdentifying the presence of a .dockerenv file indicates that a process is running inside a Docker container. By checking for this file, threat actors can confirm whether they are operating within a Docker environment. This information can influence their selection of tools and techniques, as containers often possess different security boundaries compared to host systems.CPU SchedulingEnumerating CPU Scheduling provides detailed scheduling and status information about the process with process identifier (PID) 1, which is typically the init system or main process in a containerized environment. Threat actors can determine the init system in use, such as systemd or sysvinit. This information helps them understand the system's configuration and identify potential vulnerabilities associated with the specific init system.CPU Scheduling Data Output Plain TextControl Group Container IDEnumerating Control Group Container ID provides detailed information about current mount points. Threat actors can use this information to identify critical or sensitive filesystems that might be targeted for data exfiltration. By examining mount options, they can look for insecure configurations, such as filesystems mounted with exec permissions in directories where malicious binaries could be introduced. In containerized environments, understanding mount namespaces can aid in developing container escape techniques, enabling attackers to break out of the container and access the host system.Control Group Container ID Plain Text 1 & Control Group Container ID Plain Text 2Initial Server OverviewFor Initial Server Overview enumeration, combining the following commands provides comprehensive details about the system's kernel, architecture and distribution, which are critical for understanding the environment and planning potential exploits. Knowing the exact OS and kernel version enables threat actors to choose the most effective exploits, as many vulnerabilities are version-specific.User and Permission EnumerationThe following User and Permission commands provides insights into user accounts, privileges and group memberships, which are crucial for planning privilege escalation and lateral movement within a system.Network DiscoveryThe following Network and Discovery commands help gather detailed insights into the system's operating environment and network setup, which can be used to identify vulnerabilities and plan attacks.Detailed System CommandsThe ‘cat /etc/os-release’ command reveals the operating system distribution and version. Knowing the exact OS helps attackers identify specific vulnerabilities and tailor their exploits to the target's environment.User Related CommandsThe ‘/etc/shadow’ file contains hashed passwords for user accounts, which, if accessed, can be used to crack passwords and gain elevated access to the system.User Related Commands Data Output Plain TextAWS Lambda FunctionsThe following example demonstrates Talos using the same commands previously mentioned within a Google Cloud Platform (GCP) environment, now applied in an Amazon Web Services (AWS) environment using Lambda functions. This illustrates that the method utilized by the Tenable lab can be adapted for other cloud-based environments, such as AWS.Azure FunctionsThe following example demonstrates the same process performed with an AWS Lambda function, but instead utilizing Azure Functions within the Azure environment. This further proves that the method can be employed across various cloud-based environments.Conclusion and Defense SummaryGoogle’s ResponseAs described in Tenable’s article, Google responded to their research by creating a remediation patch. This update altered the default behavior of Cloud Build and the default Cloud Build SA. Additionally, new organization policies were released to give organizations full control over which SA Cloud Build uses by default. While Google has implemented this remediation, Cloud Build services can still be used to execute non-privileged commands as a means of enumerating an environment.Mitigation SummaryThe most effective mitigation strategy to protect your environment from similar threat actor behavior is to ensure that all SAs within your cloud environment adhere to the principle of least privilege and that no legacy cloud SAs are still in use. Ensure that all cloud services and dependencies are up to date with the latest security patches. If legacy SAs are present, replace them with least-privilege SAs. Additionally, users with access to Cloud Functions should not have IAM permissions to the services included in the function’s orchestration.Threat Hunting RecommendationsAudit and monitor SA permissions: Regularly audit and monitor SA permissions, with a particular focus on the default Cloud Build SA. Adhere to the principle of least privilege by removing any excessive permissions that are not essential for the SA’s operations.Alert setup for Cloud Functions: Establish alerts for any unusual or unauthorized creation or modification of Cloud Functions. Identify potentially malicious activities where an attacker may be attempting to exploit function deployments for privilege escalation.Inspect network traffic: Analyze network traffic for unusual patterns or connections that might indicate data exfiltration attempts. Pay attention to data being sent to unknown or unauthorized external endpoints, such as those using Ngrok or similar tunneling services.Verify NPM package integrity: Ensure the integrity and authenticity of NPM packages used within Cloud Functions. Prevent the execution of malicious scripts embedded in package.json files that could facilitate environment enumeration or other malicious activities.Detect environment enumeration: Detect and respond to signs of environment enumeration, such as ICMP discovery or system information gathering.
+
+
+
+Share this post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Content
+
+
+ReVault! When your SoC turns against you…
+August 5, 2025 09:00
+Talos reported 5 vulnerabilities to Broadcom and Dell affecting both the ControlVault3 Firmware and its associated Windows APIs that we are calling “ReVault”.
+
+
+
+
+Badgerboard: A PLC backplane network visibility module
+March 5, 2024 15:30
+Analysis of the traffic between networked devices has always been of interest since devices could even communicate with one another. 
+
+As the complexity of networks grew, the more useful dedicated traffic analysis tools became. Major advancements have been made over the years with tools like Snort or Wireshark, but these
+
+
+
+
+The many vulnerabilities Talos discovered in SOHO and industrial wireless routers post-VPNFilter
+August 2, 2023 08:00
+Given the privileged position these devices occupy on the networks they serve, they are prime targets for attackers, so their security posture is of paramount importance.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

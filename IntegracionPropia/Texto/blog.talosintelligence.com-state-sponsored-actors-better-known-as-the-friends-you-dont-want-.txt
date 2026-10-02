@@ -1,0 +1,689 @@
+
+
+
+State-sponsored actors, better known as the friends you don’t want
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+State-sponsored actors, better known as the friends you don’t want
+
+
+By 
+Elio Biasiotto, 
+                Jerzy ‘Yuri’ Kramarz
+
+
+
+            Tuesday, May 12, 2026 06:00
+        
+
+
+                                Threats
+                            
+
+                                APT
+                            
+
+
+
+
+State-sponsored actors don't break in. They log in, and they use your own tools to stay invisible for months.Responding to a state-sponsored threat is nothing like responding to ransomware, and the differences can make or break the outcome. From logging and baselines to OT segmentation and supply chain readiness, the work that matters happens long before the first alert.Most organizations operate under the assumption that anything residing within their trust boundary is trustworthy. Software arrives from vetted vendors, employees pass background checks, cloud providers hold compliance certifications, and build pipelines produce signed artifacts. In practice, these assumptions are rarely scrutinized, and state-sponsored actors have constructed their operational methodology around exploiting precisely this gap. They operate inside the trust boundary, using trusted tools, holding valid credentials, and performing actions that appear entirely authorized. Conventional security architecture is not designed to identify this, and that limitation warrants acknowledgment before turning to what incident response looks like when the adversary is a state-sponsored.Responding to a state-sponsored intrusion is fundamentally different from responding to a criminal one. The adversary is better resourced, more patient, operationally disciplined, and often in pursuit of objectives that do not trigger any alarms, such as espionage or long-term data extraction. Standard incident response playbooks, typically built around malware containment and ransomware recovery, are not adequate for this category of threat. The tooling, decision-making, legal coordination, and even the definition of what constitutes a successful response all need to be reconsidered.  This is also the context in which zero trust architecture becomes essential. This is a fundamental reorientation from a model in which trust is assumed to one in which it is continuously verified, and in which systems are architected to handle the case where verification fails. The operative principle is not "trust nothing," which no organization can realistically operationalize, but rather "verify continuously and plan for failure." The following sections cover how state-sponsored actors operate across the Cyber Kill Chain, why their techniques demand different detection and response approaches, and what organizations need to have in place before, during, and after an intrusion to mount an effective response.Same Kill Chain, different objective Every cyber attack, from commodity ransomware to state-sponsored espionage, follows the same fundamental sequence as the Cyber Kill Chain developed by Lockheed Martin: reconnaissance, weaponization, delivery, exploitation, installation, command and control (C2), and action on objectives. State-sponsored actors do not deviate from this sequence. They execute each phase with greater patience, greater precision, and a fundamentally different objective. A financially motivated attacker requires the target to know it has been compromised. The ransomware note, the leak site, and the negotiation channel are all components of the business model. A state-sponsored actor requires the opposite. Whether the objective is espionage, intellectual property theft, or pre-positioning for future disruption, success depends on the target remaining unaware. That requirement for covertness shapes every technical decision the actor makes and determines what defenders need to look for at each phase. The following are common trends that change the dimensions of defense:Reconnaissance: This stage tends to be deeper and more prolonged. Where a financially motivated actor might scan for exposed Remote Desktop Protocol (RDP) and move on, a state-sponsored adversary may spend weeks or months mapping an organization's personnel, technology stack, vendor relationships, and communication patterns, often entirely outside the target's perimeter through open-source intelligence (OSINT) and social engineering of adjacent organizations. This phase frequently leaves no artifacts in defender logs. State-sponsored actors also have lawful access laws in their respective countries that allow them to obtain some of this data without the target being aware that any reconnaissance is taking place.Initial access: State-sponsored adversaries can afford to expend significant capabilities against a single target, including zero-days or supply chain vectors that signature-based detection will not identify. More commonly, however, they use legitimate credentials obtained through spear phishing or supply chain compromise, which produce no exploit signature at all. Lateral movement: This is where the covert imperative becomes most technically consequential. Rather than deploying custom malware, state-sponsored actors increasingly operate using tools already present on the target's systems, such as PowerShell, WMI, and PsExec, or they take time to observe what tools are used in the environment. If the environment uses SCCM or Puppet to manage infrastructure, the state-sponsored actor will aim to gain access to these systems and use legitimate deployment methods to compromise additional hosts. When Active Directory is queried through PowerShell, the security stack registers a routine administrative task, because it is indistinguishable from one. Extended dwell times result not from slow operational tempo, but from deliberate use of trusted tools to minimize the detection surface. Persistence: State-sponsored actors operate on the assumption that any single access method may be discovered and therefore establish multiple mechanisms across different parts of the infrastructure. Think aboutscheduled tasks, modified service configurations, dormant accounts, and firmware-level implants. These footholds may remain inactive for extended periods, activating only when an intelligence requirement or geopolitical trigger demands it. Action on objectives: This stage may not resemble what most teams would identify as an incident. If the objective is long-term data collection, exfiltration is structured to blend into normal traffic patterns. If the objective is pre-positioned disruption, as CISA assessed with Volt Typhoon in U.S. critical infrastructure, the actor may take no visible action during peacetime. Salt Typhoon's access to lawful intercept systems required no disruptive action to deliver intelligence value. The access itself was the operation. When that access gets used is a separate question. Anti-forensics: Advanced actors clear event logs, manipulate file timestamps, operate in memory where possible, and use encrypted channels that leave minimal artifacts. Attribution may be further complicated by the deliberate planting of indicators associated with a different threat actor. Detection methodology does not require reinvention. The Kill Chain remains the same. It does, however, need to be calibrated for an adversary that treats every phase as an exercise in remaining invisible, that can operate using the target's own tooling, and that measures success in months of undetected access.Attribution Attribution in the context of incident response deserves a straightforward treatment, because it is frequently misunderstood and its operational relevance is often overstated at the tactical level. Technical attribution, associating an intrusion with a known threat actor based on tactics, techniques, and procedures (TTPs); infrastructure; and malware characteristics is possible with varying degrees of confidence and is useful primarily for informing the threat model and anticipating likely next steps. An organization that can assess with reasonable confidence that Volt Typhoon is responsible for an intrusion can make better-informed decisions about what systems to prioritize, what persistence mechanisms to hunt for, and what the likely objectives are. Political attribution, the public or legal assignment of responsibility to a state-sponsored actor, is a government function -not a security team function - and attempting it without the intelligence resources to support it creates more risk than it resolves. The practical implication for incident response teams is that TTPs and infrastructure indicators should be shared with national authorities and relevant Information Sharing and Analysis Centers (ISACs), who are better positioned to place them in a broader intelligence context. Internal response should focus on containment, scope determination, and recovery regardless of whether attribution is ever formally established. Preparing for the long game Encountering a state-sponsored actor during incident response is not the time to discover logging gaps, missing baselines, or that the legal team has never discussed intelligence sharing with government agencies. The following sections cover the areas where preparation most directly determines whether detection and response are feasible. Logging and visibility Default logging configurations are not sufficient for detecting the techniques described above. Windows process creation (Event ID 4688): Enable full command-line argument logging to track exact parameters used during process execution. PowerShell script block logging (Event ID 4104): Capture the actual code being executed, not just the fact that PowerShell was launched. Sysmon: Deploy with a configuration tuned to detect suspicious parent-child process relationships, flagging legitimate binaries used as proxies for malicious activity, both on Windows and Linux environments. Strategic prioritization: If a full Sysmon rollout is impractical, prioritize critical servers, externally facing web applications, and cloud environments. Deploying Sysmon everywhere is sometimes not feasible due to very extensive and noisy logging. Prioritization is important here. Centralized log aggregation: Forward all logs to a write-once, centralized location, as sophisticated actors routinely clear local event logs, permanently destroying evidence left on compromised hosts More broadly, visibility needs to extend across identity systems, endpoints, network infrastructure, and cloud environments. Endpoint telemetry alone is insufficient. State-sponsored actors operating through legitimate tools will generate process events that are difficult to distinguish from normal administrative activity, and network-layer visibility provides an independent detection plane that host-based logging cannot replace. NetFlow analysis: Connection metadata without payload content is sufficient to identify unusual communication patterns, including beaconing behavior characteristic of C2 channels and lateral movement between systems that have no operational reason to communicate. DNS logging: Many C2 frameworks rely on DNS for command delivery and exfiltration. A host suddenly querying domains it has never previously resolved, or generating abnormal DNS query volumes, warrantsinvestigation. Encrypted traffic analysis: Machine learning models can identify C2 communication patterns in TLS sessions without breaking encryption, based on session timing, packet size distributions, and connection frequency. These capabilities do not require deep packet inspection and remain viable where privacy or compliance constraints limit payload visibility. Behavioral baselines CISA's joint advisory on living-off-the-land techniques recommends maintaining continuous baselines across network traffic, user behavior, administrative tool usage, and application activity. The emphasis on "continuously" is not incidental. A baseline established once and left unattended can generate more problems than it resolves, creating false confidence that normal has been adequately defined, when in reality theorganization has moved on. Baselines need to reflect seasonal patterns, organizational changes, infrastructure updates, and role transitions. When an administrator changes teams, their access patterns shift. When a new application is deployed, new NetFlow patterns emerge. If the baseline fails to keep pace, genuine threats blend into an outdated picture of normal, and anomaly detection becomes a source of noise rather than signal.Statistical anomaly detection can surface the low-and-slow deviations characteristic of state-sponsored lateral movement, but tuning is an ongoing commitment, and false positive management carries a real operational cost that should not be underestimated. State-sponsored actors do not typically maintain access through malware alone. Once inside, they move through identity infrastructure. Privileged access management deserves explicit treatment: administrative accounts should operate on a tiered model that prevents domain administrator credentials from being exposed on workstations, and service accounts should be scoped to the minimum access their function requires. Detection logic needs to account for credential abuse patterns that do not involve any malicious tooling. Pass-the-hash and pass-the-ticket attacks use legitimate authentication protocols and will not trigger antivirus. Kerberoasting, where an attacker requests service tickets for offline cracking, is visible in Kerberos event logs but only if those logs are collected and someone is looking. Anomalous authentication patterns, such as accounts authenticating at unusual hours, from unusual sources, or against systems they have never previously accessed, are among the more reliable behavioral signals available, provided the baseline exists to contextualize them. Operational security (OPSEC) If a state-sponsored breach is confirmed, the response needs to assume the adversary can see internal communications. If they have domain admin access, they can likely read email. If they have compromised a collaboration platform, they may be able to see the incident response channel. Here are some of the common aspects that should be considered:  Out-of-band communications: Use encrypted channels on separate, unconnected devices to ensure investigative communications remain outside the compromised infrastructure. Compartmentalization: Limit knowledge of the investigation to essential personnel only, as each additional person aware of the response is a potential vector for the adversary to detect the investigation. Pre-established authority contacts: Maintain established relationships with national authorities, CERTs, and intelligence agencies before a crisis occurs, rather than identifying the right contacts during an active incident. Organizations should also have a pre-established relationship with national authorities, including the relevant contacts at national CERTs or intelligence agencies, rather than trying to find the right person during a crisis. OT and Industrial Control System (ICS) readiness For organizations with OT environments, the threat model extends beyond what most IT-centric IR plans address. The IT-OT boundary that appears on network diagrams is a logical construct, and state-sponsored actors treat it as a lateral movement path rather than a barrier. Volt Typhoon demonstrated this in concrete terms by moving from compromised IT infrastructure toward OT-adjacent systems, including those controlling water treatment plants and electrical substations. Through 2025, the group progressed from IT reconnaissance to directly interacting with OT network-connected devices and extracting sensor and operational data, representing a transition from passive espionage to what amounts to a sabotage-ready foothold, maintained quietly and positioned for activation when circumstances require it. Important aspects are:  Availability as a safety constraint: OT systems often cannot be taken offline for forensic imaging, as production shutdowns in energy, water, or manufacturing carry significant safety and economic consequences.Investigations must work around live systems. Patching constraints: Many OT systems run legacy software that cannot be updated without vendor involvement, making virtual patching through IDS/IPS rules the only viable near-term remediation option. Insufficient software-defined segmentation: IT/OT boundaries relying solely on software-defined controls are inadequate, as a compromised account with sufficient privileges can reconfigure them. Hardware-enforced unidirectional gateways: Data diodes provide a physical, deterministic guarantee of network separation that cannot be overridden by a compromised account or software misconfiguration. Regulatory alignment: Both CISA and the UK's NCSC recommend engineering-based, deterministic protections for OT boundaries as the baseline standard. Supply chain readiness Vendors, software dependencies, and network infrastructure are all extensions of the trust boundary, and preparing for supply chain compromise means understanding those dependencies and having response procedures ready before one of them is exploited. Some critical measures are as follows: Software Bill of Materials (SBOM): Maintain an SBOM for all applications and monitor it against vulnerability databases using automated tooling, connected directly to infrastructure. Vendor access inventory: Map which systems each third party can access, through what mechanisms, and at what privilege level. Contractual incident notification: Enforce 24-hour disclosure clauses in vendor contracts to ensure timely notification of compromise, preventing containment windows from closing before the organization is aware. Pre-authorized IR procedures: Define in advance what gets revoked, what gets isolated, and who makes the call for each vendor integration, eliminating delays while an adversary continues to operate. Firmware inventory: Maintain a firmware inventory with patch status for every network device, including firewalls, routers, switches, and VPN concentrators. Legacy and end-of-life (EOL) devices: Apply compensating controls such as network isolation, enhanced monitoring, and virtual patching to devices that can no longer receive patches, as they represent supply chain risk sitting inside the perimeter. Insider threat readiness In the state-sponsored context, the insider threat is not about a disgruntled employee stealing files. It is a structured intelligence operation that uses the hiring process itself as an attack vector, and preparation requires a cross-functional program spanning security, HR, legal, and finance because the indicators span all four domains. For planted insiders, the DPRK IT worker scheme being the most documented example, hiring verification needs to go beyond standard background checks. This includes live, multi-stage video interviews with liveness verification that current deepfake technology cannot reliably defeat (for now), digital footprint validation across independent data sources, detection of VoIP phone numbers and shared credentials across applications, and cross-referencing candidate information for the kinds of inconsistencies a fabricated identity cannot fully conceal. For all insider categories, behavioral baselines and data loss prevention policies should be in place before an incident occurs. Legal pre-authorization for employee monitoring is also important to establish ahead of time. Trying to build that legal framework during an active investigation will either delay the response or create legal exposure. Why your IR plan needs revisiting If your current IR plan covers malware and ransomware but typically it does not address supply chain compromise, insider threats, or living-off-the-land techniques. Most IR plans simply reflect a threat landscape that has already shifted. These gaps should be addressed through distinct playbooks, each with its own containment decision trees, evidence collection procedures, legal coordination requirements, and recovery verification steps. Each playbook should be tested through tabletop exercises built around realistic scenarios. One aspect of state-sponsored incident response sets it apart from criminal incident response is that the adversary may be observing the response in real time, will likely attempt to regain access after eviction, and the diplomatic, legal, and intelligence dimensions of the incident extend well beyond the security operations center. The containment decision in a state-sponsored incident is rarely straightforward. Treating it as a binary choice between immediate isolation and inaction understates the complexity involved. In a criminal incident, early containment is almost always the correct approach. In a state-sponsored incident, premature containment can eliminate the opportunity to understand the full scope of the adversary's access, forfeit the ability to collect intelligence on their infrastructure, and signal to the adversary that they have been detected. That signal may trigger accelerated action on their objectives before defenses are fully in place. The deliberate choice to monitor silently while the adversary operates introduces its own legal, ethical, and operational risks. That decision should never be made unilaterally by the SOC. It requires input from legal counsel and senior leadership, and in many cases a conversation with national authorities before it is exercised. The incident response plan should define in advance who holds decision authority over containment timing, what criteria govern the transition from silent monitoring to active containment, and what evidence collection must be completed before containment begins. Tabletop exercises that do not incorporate this decision point are not adequately preparing teams for the reality of state-sponsored incident response. Post-incident After containment and recovery, the work is not finished. The intelligence collected during the incident has value beyond the organization that was targeted, and sharing it through ISACs and government channels contributes to a broader defensive picture that benefits the entire sector. Internally, the after-action review should map findings to MITRE ATT&CK, not as a compliance exercise but as a structured way to identify where detection failed, where response was too slow, and where controls need to be strengthened. That review should feed directly into updated detection logic, revised access controls, and adjusted monitoring priorities. Threat hunting should not stop when the incident is closed. A state-sponsored actor that has been evicted will often attempt to regain access using different infrastructure or modified techniques, and sustained hunting focused on the specific actor's TTPs is the most reliable way to catch that early. Tabletop exercises should also be updated to reflect what was learned, so the next time a similar scenario plays out, the team is not relearning the same lessons under pressure. None of this is new guidance, but in the context of state-sponsored threats, where the adversary is persistent, well-resourced, and likely to return, these activities stop being procedural housekeeping and become direct preparation for the next intrusion. Where to start when you have low budget, minimal staff, and competing priorities Everything covered above assumes an organization can invest in logging, baselines, segmentation, supply chain controls, and dedicated IR planning in parallel. In reality, most security teams are operating under hiring freezes, flat budgets, and competing priorities, and the guidance to "do all of this" is not actionable without a sense of sequencing. The following is a pragmatic order of operations for teams that need to make meaningful progress without a step-change in resourcing. Start with visibility, because you cannot defend what you cannot see. Before buying new tooling, turn on what you already own. Enabling Windows command-line logging (Event ID 4688), PowerShell script block logging (Event ID 4104), and centralized log forwarding costs nothing in licensing and addresses the single largest gap most organizations have. If logs are not being collected and retained centrally, no amount of downstream investment will compensate. After this, prioritize identity over endpoints. State-sponsored actors move through credentials, not malware that can be easily fingerprinted, blocked, and made public through sandboxes. Enforcing multi-factor authentication (MFA) on all administrative accounts, implementing tiered admin models, and reviewing service account privileges typically delivers more risk reduction per hour invested than any endpoint initiative. These are configuration changes, not procurement cycles. Next, focus monitoring where the adversary has to go. If Sysmon everywhere is not feasible, then deploy it on domain controllers, identity infrastructure, externally facing systems, and critical servers. An adversary pursuing meaningful objectives will eventually touch these systems, and concentrated visibility on them is more valuable than thin visibility everywhere. The underlying principle is that state-sponsored readiness is not a single large investment. It is a sequence of smaller decisions where the early ones disproportionately determine whether the later ones are ever useful. Visibility and identity come first. Everything else builds on them.
+
+
+
+Share this post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Content
+
+
+ClearFake WebDAV infection chain delivers Amatera stealer, ZigCryptoStealer, and NetSupport Manager
+September 8, 2026 06:01
+We assess with moderate confidence that the attacks are not targeted at a particular organization, but are a part of a cryptocurrency and credentials-stealing operation using the Amatera stealer as the primary payload.
+
+
+
+
+“Keep going, bro. You’ve got this!” A data-driven look at how adversaries are weaponizing AI
+August 4, 2026 06:00
+Talos has collected prompt logs from threat actor endpoints running various applications, such as Claude Code, CodeX, Cursor, or Gemini. This blog is an analysis of the ways we've seen bad actors leveraging cloud-based AI.
+
+
+
+
+The Hunter's Paradox: Is it time to embrace automated threat hunting?
+July 16, 2026 06:00
+Humans can no longer keep up with the volume and velocity of security data on their own, but AI can't be fully trusted. David discusses the merits of both and muses on what the future might look like.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

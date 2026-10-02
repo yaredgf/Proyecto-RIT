@@ -1,0 +1,692 @@
+
+
+
+Adversaries increasingly using vendor and contractor accounts to infiltrate networks
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Adversaries increasingly using vendor and contractor accounts to infiltrate networks
+
+
+By 
+Nick Biasini, 
+                Craig Jackson
+
+
+
+            Tuesday, June 6, 2023 08:01
+        
+
+
+                            On The Radar
+                        
+
+
+
+
+Cisco Talos Incident Response (Talos IR) has repeatedly observed attackers targeting and using compromised vendor and contractor accounts  (VCAs) during recent emergency response engagements. While high-profile software supply chain compromise events garner significant media attention (e.g., the recent disclosure of supply chain attacks via the 3CX Desktop Softphone application), abuse of third-party workforce accounts is often overlooked.VCAs typically have expanded privilege and access. They may be glossed over during account audits because of increased trust placed in the third party.Organizations should increase prevention and detection capabilities around VCAs.The software supply chain has become a key security focus for many organizations, but the risks associated with supply chain attacks are often misunderstood. High-profile incidents like those reported by 3CX and MSI routinely grab headlines, continuing a trajectory of big-name security events that involve one specific aspect of the supply chain – software.Successful software-focused supply chain attacks can give an adversary access to dozens or even hundreds of victims, but they are resource-intensive and require an extensive understanding of the target environment, the build process, and the software itself. The inherently broad scope of a software supply chain attack also eliminates the ability for adversaries to strategically target victims. Attacks with higher victim counts create increased awareness within the cybersecurity community, which means the attackers are more likely to eventually be discovered and stopped.Other aspects of the supply chain offer greater ease of exploitation and could still result in the opportunity to pivot between victim organizations. While the industry focuses on identifying and addressing software-focused supply chain attacks, Talos IR has seen more incidents involving the abuse of compromised VCAs.Adversaries view vendor accounts as an attractive supply chain entry pointVCAs are accounts created for third-party workforce members – employees of external partner organizations that maintain physical or virtual access to an organization’s environment.VCAs are particularly attractive to adversaries before and after initial access is gained. During one investigation, Talos IR observed an adversary gaining access to an organization using a low-privilege user account, then later authenticating successfully using two other accounts: a service account used to deploy software across the organization and a third-party vendor account.Both accounts had Domain Admin or comparable privileges. Talos IR observed that the adversary authenticated to the service account first, but the vendor account was used almost exclusively thereafter. Why?There are a few reasons adversaries may favor VCAs over other accounts with comparable privileges.Vendors may remotely access the environment intermittently or at unusual times, making it difficult for the information security team to establish an activity baseline for those accounts. How would an organization detect a time-of-day authentication anomaly if their contracted development team had members around the world working their own unique shifts? What about for a contractor who only connects remotely a few times a month based on their schedule? Or one that only logs in for ad hoc troubleshooting?Geolocation anomalies can be difficult to detect as well. If the organization hires a freelance consultant who prefers the travel-and-work lifestyle, that account may be seen authenticating from many different geographic regions. Similarly, in large organizations, how easy is it to keep track of who is on vacation or is traveling for business, or who has relocated to a different area (temporarily or permanently)?Privilege levels are another attractive aspect. VCA privileges are usually based on the vendor’s role, but these accounts usually have elevated privileges – think Domain Admin. In some cases, such as Electronic Health Record (EHR) or core banking applications, the VCA might even have access to manage systems and data that no one in the organization’s IT and infosec department shares.Adversary activity may be camouflaged by other legitimate vendor activity. Technology vendors commonly perform tasks involving command line execution, modification of configuration files, and complex debugging and troubleshooting. Even under scrutiny, these tasks bear similarities to typical adversary activity. As evidenced by the incident mentioned previously where the adversary chose to leverage a VCA over a service account, it’s much easier to hide in the noise if you take over an account that is regularly used for system administration activities.Lessons learned from IR engagements involving VCAsOver the past several years, Talos IR has repeatedly observed adversaries abusing VCAs in different ways during incident response engagements. These accounts are frequently leveraged for initial access and then used to move laterally through the organization’s network, especially when the victim hasn’t deployed multi-factor authentication (MFA). Since VCAs are usually given elevated permissions, theft of these credentials will often result in widespread damage to victim assets and could even be used to move along the initial victim’s supply chain.VCA credential theft doesn’t always involve compromise of a username/password set. In at least one engagement, Talos IR observed an adversary leverage a stolen public key to breach the targeted organization. This demonstrates that, although adversaries tend to focus on obtaining valid usernames and passwords, they have willingly used other authentication methods in the name of easy access. Organizations with VCAs should consider this a key takeaway – protect keys and other authentication mechanisms with the same vigilance as protecting user account credentials. All organizations should have procedures in place to rotate these keys and revoke access for keys that may have been compromised.As previously noted, VCA abuse is often used to achieve elevated permissions and expand access. In multiple engagements, Talos IR found that adversaries gained initial access through low-privilege accounts, but quickly pivoted to using VCAs to expand access and maximize impact.Access and impact are often correlated, as demonstrated by two ransomware incidents investigated by Talos IR. In the first incident, the adversary gained access to a public-facing web server in the context of the web server service account. Privilege escalation attempts failed, pivot attempts failed, and the effects of the ransomware were limited to a selection of web server directories on a single server. In the second incident, the adversary compromised a VCA and modified the Active Directory Default Domain Policy, so domain-connected systems executed a ransomware binary from the domain’s SYSVOL folder. The adversary used this elevated access to detonate a ransomware binary on the victim’s ESXi host, affecting multiple virtual systems in the host’s datastore. The severity of the latter incident highlights the need for strict access controls around VCAs and the potential effects if they are compromised.Strategies to protect against and reduce the impact of VCA abuseUnderstanding and acknowledging the level of risk your VCAs present is the first step in mitigating this threat. The challenge then becomes how to properly secure them. Fortunately, there are several strategies an organization can use to protect VCAs and mitigate the impact of a compromised VCA.Some of the following recommendations are made with more than prevention in mind. They also enable incident responders to quickly understand the scope of which systems may be impacted by a compromised VCA, especially when your Active Directory is out of commission. It’s a good idea to audit VCAs and general user accounts, as permissions creep is all too common and problematic in an incident.Disable VCAs when they’re not neededOne of the easiest steps an IT or infosec team can take to protect their VCAs is to disable them when they’re not needed. This might seem like common sense but it’s the type of activity that many organizations struggle to implement consistently, especially as vendors come and go. A dependable process should be established for vendors and contractors to access active accounts only when needed. Once this process is set up, conduct periodic audits to confirm that it is being followed.There are limitations associated with this approach. If a vendor needs consistent access every one or two days, it’s probably not worth it to disable the account and then re-enable it multiple times per week. In situations like this, consider some of the other recommendations instead.Validate logging and enforce security monitoringEvaluate logging configurations, specifically around VCAs to ensure you have visibility into everything they do. Create alerts to identify suspicious or anomalous VCA activity. If a VCA accesses a system it shouldn’t need to access, you should know about it immediately.Implement least privilege accessEffective access control is a common challenge in enterprise environments, and VCAs are no exception. Think about this concept in the context of physical security. If an HVAC vendor enters a high-security facility to perform maintenance, they won’t be allowed to roam around, peering in office windows and rattling door knobs. They’ll be given direct access to the specific set of rooms they need to do their job and nothing more. The same restrictions should apply for VCAs. Limit what they can access at the network or application layer. If they are supporting a specific application or product, only allow them to access those applications on the systems and ports you would expect.Taking this concept a step further, isolate VCAs as much as possible via your network and security architecture. Isolating VCAs allows stronger security controls to be configured around these accounts and streamlines implementation of more aggressive remediation actions during incident response. Isolation can be achieved through a variety of means including, but not limited to, Network Access Control (NAC), network segmentation and Active Directory groups. Penetration tests and red team engagements can be used to better understand the extent of VCA access, and the potential effects of a compromised VCA.Include VCAs in remote access health checksYou work hard to be sure your end user workstations are hardened and protected with a variety of host-based controls. Don’t let a vendor using an unrecognized, unpatched and unprotected personal device be the reason for a long and costly incident. Deploy and configure health checking and/or trusted device configurations for remote devices, either through integrated operating system functions or third-party tools. This is a great practice for the entire workforce but is particularly relevant for vendors who may not be using company-owned assets. Ask your vendors to share their security and compliance documentation to help understand security practices and baselines in their organization. Your organization is only as safe as the least protected system accessing your resources.Use a jump box or dedicated vendor access applicationOne of the best ways to enforce vendor security requirements is to create a single point of entry through a jump box or dedicated vendor access application. This approach allows multiple security functions to be implemented through a single, specialized system (or group of systems). For example, a vendor access application can grant vendors access to the systems required to accomplish their tasks and nothing more. It can ensure proper logging and monitoring of activities performed by a vendor while connected. It can also provide system health checking capabilities, and some may even provide a degree of proxying or sandboxing of files transferred into or out of the organization’s environment using the VCA.Adversaries are going to continue to abuse VCAs. It’s an established and effective way to obtain privileged access using accounts that blend in with other administrative accounts. If you’re reading this and you know you have a VCA with a customer, talk to them about it. Ensuring that your customers are prepared and protected before a supply chain attack might be the greatest value-add you can offer.
+
+
+
+Share this post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Content
+
+
+The Fine Art of Frustrating the Adversary
+October 1, 2026 06:00
+What really frustrates an adversary? Eight Cisco Talos researchers share practical ways to make their next move slower and riskier. From deception and behavioral detection to breaking attack dependencies and resisting manufactured urgency.
+
+
+
+
+Securing the unpatchable in an age of AI-driven vulnerabilities
+September 16, 2026 06:00
+Advances in AI technology will continue to identify vulnerabilities that in some circumstances are difficult, or effectively impossible, to patch. Appropriate network segmentation, rigorous visibility, and the deployment of NGFW/IPS combinations can provide a powerful compensatory layer.
+
+
+
+
+The safety penalty: Reclaiming operational sovereignty in the age of AI
+August 25, 2026 06:00
+As frontier AI models become increasingly restrictive, security teams are facing a "safety penalty" that hampers real-time incident response. Discover how organizations can move toward operational sovereignty to ensure their defensive AI keeps pace with unconstrained adversaries.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

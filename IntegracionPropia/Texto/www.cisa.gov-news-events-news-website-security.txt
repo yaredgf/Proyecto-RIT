@@ -1,0 +1,843 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Website Security | CISA
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+ 
+
+
+
+
+
+An official website of the United States government
+Here’s how you know
+
+Here’s how you know
+
+
+
+
+
+
+
+
+
+Official websites use .gov
+ A .gov website belongs to an official government organization in the United States.
+              
+
+
+
+
+
+
+Secure .gov websites use HTTPS
+ A lock (LockA locked padlock) or https:// means you’ve safely connected to the .gov website. Share sensitive information only on official, secure websites.
+              
+
+
+
+
+
+
+
+
+
+
+
+Staying Secure at Eventsno-cost Cyber ServicesCybersecurity Awareness MonthKEV CatalogReport A Cyber Issue 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Search
+
+
+
+ 
+
+
+Menu
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Close
+
+
+ 
+
+
+
+
+Topics
+
+
+
+Topics
+
+
+
+
+
+Cybersecurity Best Practices
+
+
+
+
+
+
+Cyber Threats and Response
+
+
+
+
+
+
+Critical Infrastructure Security and Resilience
+
+
+
+
+
+
+Election Security
+
+
+
+
+
+
+Emergency Communications
+
+
+
+
+
+
+Industrial Control Systems
+
+
+
+
+
+
+Information and Communications Technology Supply Chain Security
+
+
+
+
+
+
+Partnerships and Collaboration
+
+
+
+
+
+
+Physical Security
+
+
+
+
+
+
+Risk Management
+
+
+
+
+
+
+        How can we help?
+       
+GovernmentEducational InstitutionsIndustryState, Local, Tribal, and TerritorialIndividuals and FamiliesSmall and Medium BusinessesFind Help LocallyFaith-Based CommunityExecutivesHigh-Risk Communities
+
+
+
+
+
+Spotlight
+
+
+
+
+Resources & Tools
+
+
+
+Resources & Tools
+
+
+
+
+
+All Resources & Tools
+
+
+
+
+
+
+Services
+
+
+
+
+
+
+Programs
+
+
+
+
+
+
+Resources
+
+
+
+
+
+
+Training
+
+
+
+
+
+
+Groups
+
+
+
+
+
+
+
+
+News & Events
+
+
+
+News & Events
+
+
+
+
+
+Directives
+
+
+
+
+
+
+News
+
+
+
+
+
+
+Events
+
+
+
+
+
+
+Cybersecurity Alerts & Advisories
+
+
+
+
+
+
+Request a CISA Speaker
+
+
+
+
+
+
+Congressional Testimony
+
+
+
+
+
+
+CISA Conferences
+
+
+
+
+
+
+CISA Live!
+
+
+
+
+
+
+
+
+Careers
+
+
+
+Careers
+
+
+
+
+
+Benefits & Perks
+
+
+
+
+
+
+Hiring and Recruitment
+
+
+
+
+
+
+New Employee Orientation & Onboarding
+
+
+
+
+
+
+Students & Recent Graduates
+
+
+
+
+
+
+Veteran and Military Spouses
+
+
+
+
+
+
+
+
+About
+
+
+
+About
+
+
+
+
+
+Divisions & Offices
+
+
+
+
+
+
+Regions
+
+
+
+
+
+
+Leadership
+
+
+
+
+
+
+Doing Business with CISA
+
+
+
+
+
+
+Site Links
+
+
+
+
+
+
+CISA GitHub
+
+
+
+
+
+
+CISA Central
+
+
+
+
+
+
+Contact Us 
+
+
+
+
+
+
+Subscribe
+
+
+
+
+
+
+Transparency and Accountability
+
+
+
+
+
+
+Policies & Plans
+
+
+
+
+
+
+
+
+
+
+Staying Secure at Eventsno-cost Cyber ServicesCybersecurity Awareness MonthKEV CatalogReport A Cyber Issue 
+
+
+
+
+
+
+
+
+
+
+Breadcrumb
+
+
+Home
+
+
+News & Events
+
+
+News
+
+
+
+              Website Security
+            
+
+
+
+
+
+
+
+Share:
+
+
+
+
+
+
+
+    Opens in a new window
+  
+
+
+
+
+
+
+    Opens in a new window
+  
+
+
+
+
+
+
+    Opens in a new window
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Archived Content    In an effort to keep CISA.gov current, the archive contains outdated information that may not reflect current policy or programs.
+  
+
+
+
+
+
+
+
+
+
+
+Blog
+
+Website Security
+
+
+
+ReleasedFebruary 01, 2021
+
+
+
+
+								Related topics:
+							
+
+Cybersecurity Best Practices
+										,
+																																																							Identity Theft and Personal Cyber Threats
+										,
+																																																							Organizations and Cyber Safety
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+What is website security?Website security refers to the protection of personal and organizational public-facing websites from cyberattacks.Why should I care about website security?Cyberattacks against public-facing websites—regardless of size—are common and may result in:Website defacement,Loss of website availability or denial-of-service (DoS) condition,Compromise of sensitive customer or organizational data,An attacker taking control of the affected website, orUse of website as a staging point for watering hole attacks.These threats affect all aspects of information security—confidentiality, integrity, and availability—and can gravely damage the reputation of the website and its owner. For example, organization and personal websites that fall victim to defacement, DoS, or data breach may experience financial loss due to eroded user trust or a decrease in website visitors.What steps can my organization take to protect against website attacks?There are multiple steps organizations and security professionals should take to properly secure their websites. Note: organizations should talk to their website hosting provider or managed service provider to discuss roles and responsibilities for implementing security measures.1. Secure domain ecosystems.Review registrar and Domain Name System (DNS) records for all domains.Change all default password that were provided from your domain registrar and DNS.
+Default credentials are not secure—they are usually readily available on the internet. Changing default usernames and passwords will prevent an attack that leverages default credentials. (See Choosing and Protecting Passwords for information on creating strong passwords.)Enforce multifactor authentication (MFA). (See Supplementing Passwords for more information)Monitor certificate transparency logs.Review CISA Emergency Directive 19-01 and Mitigate DNS Infrastructure Tampering for more information.2. Secure user accounts.Enforce MFA on all internet-accessible accounts—prioritizing those with privileged access.Implement the principle of least privilege and disable unnecessary accounts and privileges.Change all default usernames and passwords.Review CISA Cyber Insights: Enhanced Email and Web Security for more information.3. Continuously scan for—and remediate—critical and high vulnerabilities.Patch all critical and high vulnerabilities within 15 and 30 days, respectively, on internet-accessible systems. Be sure to scan for configuration vulnerabilities in addition to software vulnerabilities.
+Enable automatic updates whenever possible.Replace unsupported operating systems, applications, and hardware.Review CISA Emergency Directive 19-01 and CISA Cyber Insights: Enhanced Email and Web Security for more information.4. Secure data in transit.Disable Hypertext Transfer Protocol (HTTP); enforce Hypertext Transfer Protocol Secure (HTTPS) and HTTP Strict Transport Security (HSTS).
+Website visitors expect their privacy to be protected. To ensure communications between the website and user are encrypted, always enforce the use of HTTPS, and enforce the use of HSTS where possible. For further information and guidance, see the U.S. Chief Information Officer (CIO) and the Federal CIO Council's webpage on the HTTPS-Only Standard. Preload HSTS for all domains, when possible.Disable weak cyphers (SSLv2, SSlv3, 3DES, RC4).Review CISA Binding Operational Directive 18-01 and CISA Cyber Insights: Enhanced Email and Web Security for more information.5. Backup data.Employ a backup solution that automatically and continuously backs up critical data and system configurations from your website.Keep your backup media in a safe and physically remote environment.Test disaster recovery scenarios.6. Secure web applications.Identify and remediate the top 10 most critical web application security risks; then move on to other less critical vulnerabilities. (Refer to OWASP Top 10 for a list of the most critical web application security risks.)Enable logging and regularly audit website logs to detect security events or improper access.
+Send the logs to a centralized log server.Implement MFA for user logins to web applications and the underlying website infrastructure.7. Secure web servers.Use security checklists.
+Audit and harden configurations based on security checklists specific to each application (e.g., Apache, MySQL) on the system.Use application allow listing and disable modules or features that provide capabilities that are not necessary for business needs.Implement network segmentation and segregation.
+Network segmentation and segregation makes it more difficult for attackers to move laterally within connected networks. For example, placing the web server in a properly configured demilitarized zone (DMZ) limits the type of network traffic permitted between systems in the DMZ and systems in the internal corporate network.Know where your assets are.
+You must know where your assets are in order to protect them. For example, if you have data that does not need to be on the web server, remove it to protect it from public access.What are some additional steps to protect against website attacks?Sanitize all user input. Sanitize user input, such as special characters and null characters, at both the client end and the server end. Sanitizing user input is especially critical when it is incorporated into scripts or structured query language statements.Increase resource availability. Configure website caching to optimize resource availability. Optimizing a website's resource availability increases the chance that it will withstand unexpectedly high amounts of traffic during DoS attacks.Implement cross-site scripting (XSS) and cross-site request forgery (XSRF) protections. Protect website systems, as well as website visitors, by implementing XSS and XSRF protections.Implement a Content Security Policy (CSP). Website owners should also consider implementing a CSP. Implementing a CSP lessens the chances of an attacker successfully loading and running malicious JavaScript on the end user machine.Audit third-party code. Audit third-party services (e.g., ads, analytics) to validate that no unexpected code is being delivered to the end user. Website owners should weigh the pros and cons of vetting the third-party code and hosting it on the web server (as opposed to loading the code from the third party).Implement additional security measures. Additional measures include:
+Running static and dynamic security scans against the website code and system,Deploying web application firewalls,Leveraging content delivery networks to protect against malicious web traffic, andProviding load balancing and resilience against high amounts of traffic.Additional InformationFor additional guidance, see:CISA Cyber EssentialsNational Institute of Standards and Technology (NIST) Special Publication (SP) 800-44: Guidelines on Securing Public Web ServersNIST SP 800-95: Guide to Secure Web Services.Subscribe to Cybersecurity and Infrastructure Security Agency (CISA) News and Alerts to stay current on the latest website technology vulnerabilities.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Articles
+
+
+
+
+
+
+Feb 01, 2021
+
+Blog
+
+
+
+Understanding Website Certificates
+ 
+
+
+
+
+
+
+
+Feb 01, 2021
+
+Blog
+
+
+
+Understanding Denial-of-Service Attacks
+ 
+
+
+
+
+
+
+
+Feb 01, 2021
+
+Blog
+
+
+
+Preparing for Tax Season
+ 
+
+
+
+
+
+
+
+Dec 18, 2022
+
+Blog
+
+
+
+Privacy and Mobile Device Apps
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Return to top
+
+
+
+
+
+
+Topics
+
+
+Spotlight
+
+
+Resources & Tools
+
+
+News & Events
+
+
+Careers
+
+
+About
+
+
+
+
+
+
+
+
+
+Cybersecurity & Infrastructure Security Agency
+ 
+
+
+
+Facebook
+
+
+X
+
+
+LinkedIn
+
+
+YouTube
+
+
+Instagram
+
+
+RSS
+
+
+
+CISA Central
+1-844-Say-CISA
+contact@cisa.dhs.gov
+
+
+
+
+
+
+
+
+
+
+DHS Seal
+
+CISA.gov
+An official website of the U.S. Department of Homeland Security
+
+
+
+
+About CISA
+
+
+Budget and Performance
+
+
+DHS.gov
+
+
+FOIA Requests
+
+
+No FEAR Act
+
+
+Office of Inspector General
+
+
+Privacy Policy
+
+
+Subscribe
+
+
+The White House
+
+
+USA.gov
+
+
+Website Feedback
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

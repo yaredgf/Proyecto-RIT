@@ -1,0 +1,1238 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+No Manners Here: The Ruthless Rise of The Gentlemen Ransomware
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Menu
+
+
+
+
+
+
+Tools
+ATOMs
+Security Consulting
+About Us
+Under Attack?
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  Threat Research CenterInsightsHospitality Hacks and Retail Reality Checks 
+ 
+Hospitality Hacks and Retail Reality Checks
+No Manners Here: The Ruthless Rise of The Gentlemen Ransomware
+
+
+  5  min read              
+
+
+Related ProductsUnit 42 Incident Response 
+
+
+
+
+
+
+
+
+By:Matt Brady 
+
+Published:July 10, 2026 Categories:Hospitality Hacks and Retail Reality ChecksInsights
+ Tags:Howling ScorpiusRaaSSpikey Scorpius
+ 
+
+
+ 
+ 
+
+
+Share
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+Executive Summary
+The Gentlemen (aka Storm-2697) is a Ransomware-as-a-Service (RaaS) program active since at least July 2025. Public reporting indicates that the operators were likely active months earlier as an affiliate (known as ArmCorp) of Qilin RaaS, which Unit 42 tracks as Spikey Scorpius. Their ransomware variants are written in both C and Go programming languages, enabling the threat actors to spread their encryptors across different operating systems and virtual infrastructure. Figure 1 below illustrates the desktop wallpaper used by the ransomware after deployment.
+Figure 1. Image of The Gentlemen ransomware’s wallpaper. Source: Krebs on Security.
+Additional public reporting revealed that the operators (roughly 20 of them) likely morphed from a private entity into a RaaS model on or about September 2025. While traditional RaaS models typically offer affiliates a 70% to 80% cut of paid ransoms, The Gentlemen offer an unprecedented 90% payout.
+Background
+Unit 42 and other security researchers have observed The Gentlemen’s usage of a wide variety of initial access techniques similar to other RaaS operators since their inception, including the exploitation of vulnerabilities in edge devices (firewalls, VPNs), brute force attacks, obtaining leaked and/or stolen credentials and collaborating with initial access brokers (IABs).
+More recently, researchers have identified The Gentlemen’s usage of a custom Go-based backdoor, an EDR killer framework dubbed “GentleKiller” and the suspected usage of an unspecified zero-day vulnerability exploit to amplify their defense evasion capabilities.
+In May 2026, The Gentlemen announced a partnership with HasanBroker's BreachForums as a means to recruit affiliates, penetration testers and IABs. Figure 2 illustrates this announcement.
+Figure 2. Image of partnership announcement between BreachForums and The Gentlemen. Source: Gurucul.
+Additional information about The Gentlemen and their operational structure has emerged in recent months, following the leak of an internal database by an alleged insider in May 2026.
+Data Leak Site Insights
+One of the most alarming trends observed thus far in 2026 by Unit 42 and other security researchers is the sheer increase in volume of total victims claimed by The Gentlemen in comparison to 2025. Through July 7, one reputable source had counted a total of 580 victims claimed by The Gentlemen across 77 countries since their inception. Of those 580 victims, 103 operated within the manufacturing industry, a commonly targeted sector given the need for organizations to maintain operational uptime.
+Figure 3 below represents the total number of victims claimed by The Gentlemen in 2025 compared to both Qilin and Akira, tracked by Unit 42 as Howling Scorpius, which led all RaaS programs in victims claimed last year.
+Figure 3. Chart depicting total victims claimed by prominent RaaS programs in 2025. Source: Unit 42.
+In comparison to the above statistics, Figure 4 below represents the total number of victims claimed by The Gentlemen thus far in 2026 (through July 3) compared to both Qilin and Akira.
+Figure 4. Chart depicting total victims claimed by prominent RaaS programs in 2026. Source: Unit 42.
+When comparing the last six months of 2025 to the first six months of 2026, the number of victims claimed by The Gentlemen increased by slightly more than 6x. What makes this even more concerning is that these threat actors were only active for the last four months of 2025.
+Figure 5 below further illustrates the victims claimed by The Gentlemen per month since August 2025, one month prior to the official launch of their RaaS model. June 2026 represented their highest number of claimed victims to date with 117, just shy of a 4x increase from January 2026.
+Figure 5. Chart depicting victims claimed by The Gentlemen per month since August 2025. Source: Ransomware.live.
+Conclusion
+While legacy big-game hunting RaaS programs like Qilin and Akira continue to drive high volumes of victims by sticking to their established playbooks, The Gentlemen has solidified itself as the second most active RaaS program of 2026 in terms of victims. The combination of a lucrative affiliate payout structure to recruit affiliates, alongside the use of custom tooling across different phases of their attack lifecycle, make The Gentlemen a formidable threat for enterprise organizations to reckon with in the near and mid term future.
+Recommendations
+Initial Access:
+
+Immediately scope for and patch the following vulnerabilities known to be exploited:
+
+CVE-2024-55591 (Fortinet's FortiOS and FortiProxy)
+CVE-2025-32433 (Erlang/OTP SSH server)
+CVE-2025-33073 (Windows SMB Client)
+CVE-2025-55182 (React2Shell)
+
+
+Establish and maintain robust visibility into internet-facing systems and applications such as firewalls, VPNs and remote access gateways
+Audit for indicators of prior exploitation of edge devices and internet-facing RDP endpoints
+Establish strong security requirements for third-party dependencies and vendors, and monitor for breaches of any third-party tools or platforms
+
+Execution:
+
+Create immediate, high-severity SIEM alerts for the creation, deletion or execution of any scheduled task matching the string gentlemen*
+
+Privilege Escalation:
+
+Immediately scope for and patch the following vulnerabilities known to be exploited:
+
+CVE-2025-7771 (ThrottleStop.sys driver)
+
+
+
+Defense Impairment:
+
+Enable EDR Tamper Protection and monitor for the unexpected loading of unsigned or known vulnerable drivers
+Implement behavioral alerts for systems executing wevtutil to clear Security/System logs
+
+Credential Access:
+
+Deploy phishing-resistance multi-factor authentication (MFA) on all systems
+Regularly audit and rotate credentials
+
+Discovery:
+
+Monitor for internal usage of tools such as Advanced IP Scanner, which the threat actors frequently use for internal network reconnaissance and mapping
+
+Lateral Movement:
+
+Enforce strict SMB signing, disable SMBv1 completely, and restrict lateral network movement between internal segments to contain the self-propagation mechanism
+Ensure SSH is turned off on ESXi hosts by default and only enabled temporarily for explicit maintenance windows
+Treat your virtualized environment as tier-0 infrastructure and restrict ESXi management interfaces to a dedicated, isolated management VLAN
+
+Command and Control:
+
+Monitor for anomalous outbound traffic over non-standard ports or traffic matching known SystemBC communication signatures
+
+Impact:
+
+Maintain and validate offline backup and recovery capabilities
+Implement behavioral alerts for systems using vssadmin and wmic to delete Volume Shadow Copies
+
+
+
+Back to top
+
+TagsHowling ScorpiusRaaSSpikey Scorpius
+
+
+
+Threat Research Center
+
+
+Next: Vidar Stealer Unmasked: Code Signing Abuse, Go Loaders and File Inflation
+
+
+
+
+
+
+
+Table of Contents
+
+
+
+
+
+
+Related Articles
+
+
+
+                      The Golden Scale: 'Tis the Season for Unwanted Gifts                  
+
+
+
+                      Threat Actor Groups Tracked by Palo Alto Networks Unit 42 (Updated Aug. 1, 2025)                  
+
+
+
+                      Threat Assessment: Howling Scorpius (Akira Ransomware)                  
+
+
+
+
+
+
+
+
+
+Related Hospitality Hacks and Retail Reality Checks Resources
+
+
+
+
+ 
+
+
+
+Insights March 20, 2026
+
+Who’s Really Shopping? Retail Fraud in the Age of Agentic AI
+
+
+
+Agentic AI
+
+
+E-commerce
+
+
+Retail
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights November 26, 2025
+
+The Golden Scale: 'Tis the Season for Unwanted Gifts
+
+
+
+Bling Libra
+
+
+Lapsus$
+
+
+Leak site
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights October 20, 2025
+
+The Golden Scale: Notable Threat Updates and Looking Ahead
+
+
+
+Bling Libra
+
+
+Extortion
+
+
+Lapsus$
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights October 10, 2025
+
+The Golden Scale: Bling Libra and the Evolving Extortion Economy
+
+
+
+Bling Libra
+
+
+Extortion
+
+
+Lapsus$
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights September 9, 2025
+
+Data Is the New Diamond: Latest Moves by Hackers and Defenders
+
+
+
+Muddled Libra
+
+
+Bling Libra
+
+
+Extortion
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights August 26, 2025
+
+Data Is the New Diamond: Heists in the Digital Age
+
+
+
+Bling Libra
+
+
+Extortion
+
+
+Social engineering
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
+				Get updates from Unit 42			
+Peace of mind comes from staying ahead of threats. Subscribe today.
+
+
+
+
+
+
+
+
+
+
+Your Email
+
+
+Subscribe for email updates to all Unit 42 threat research.
+By submitting this form, you agree to our Terms of Use and acknowledge our Privacy Statement.
+
+                    This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.                            
+  
+
+Invalid captcha!
+ 
+					Subscribe					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Get the latest news, invites to events, and threat alerts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Enter your email now to subscribe!
+
+
+
+
+
+Sign up 
+
+
+
+
+                                
+                                
+                                
+                                    By submitting this form, I understand my personal data will be processed in accordance with
+                                        Palo Alto Networks Privacy Statement and Terms of Use.
+
+
+
+Sign up 
+
+
+
+
+
+
+
+
+
+
+
+
+Products and Services
+
+
+
+
+
+                                    AI-Powered Network Security Platform
+                                
+
+
+
+                                    Secure AI by Design
+                                
+
+
+
+                                    Prisma AIRS
+                                
+
+
+
+                                    AI Access Security
+                                
+
+
+
+                                    Cloud Delivered Security Services
+                                
+
+
+
+                                    Advanced Threat Prevention
+                                
+
+
+
+                                    Advanced URL Filtering
+                                
+
+
+
+                                    Advanced WildFire
+                                
+
+
+
+                                    Advanced DNS Security
+                                
+
+
+
+                                    Enterprise Data Loss Prevention
+                                
+
+
+
+                                    Enterprise IoT Security
+                                
+
+
+
+                                    Medical IoT Security
+                                
+
+
+
+                                    Industrial OT Security
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    Next-Generation Firewalls
+                                
+
+
+
+                                    Hardware Firewalls
+                                
+
+
+
+                                    Software Firewalls
+                                
+
+
+
+                                    Strata Cloud Manager
+                                
+
+
+
+                                    SD-WAN for NGFW
+                                
+
+
+
+                                    PAN-OS
+                                
+
+
+
+                                    Panorama
+                                
+
+
+
+                                    Secure Access Service Edge
+                                
+
+
+
+                                    Prisma SASE
+                                
+
+
+
+                                    Application Acceleration
+                                
+
+
+
+                                    Autonomous Digital Experience Management
+                                
+
+
+
+                                    Enterprise DLP
+                                
+
+
+
+                                    Prisma Access
+                                
+
+
+
+                                    Prisma Browser
+                                
+
+
+
+                                    Prisma SD-WAN
+                                
+
+
+
+                                    Remote Browser Isolation
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    AI-Driven Security Operations Platform
+                                
+
+
+
+                                    Cloud Security
+                                
+
+
+
+                                    Cortex Cloud
+                                
+
+
+
+                                    Application Security
+                                
+
+
+
+                                    Cloud Posture Security
+                                
+
+
+
+                                    Cloud Runtime Security
+                                
+
+
+
+                                    Prisma Cloud
+                                
+
+
+
+                                    AI-Driven SOC
+                                
+
+
+
+                                    Cortex XSIAM
+                                
+
+
+
+                                    Cortex XDR
+                                
+
+
+
+                                    Cortex XSOAR
+                                
+
+
+
+                                    Cortex Xpanse
+                                
+
+
+
+                                    Unit 42 Managed Detection & Response
+                                
+
+
+
+                                    Managed XSIAM
+                                
+
+
+
+                                    Observability
+                                
+
+
+
+                                    Cortex XCOR
+                                
+
+
+
+
+
+                                    Next-Generation Identity Security
+                                
+
+
+
+                                    Privileged Access Management
+                                
+
+
+
+                                    Identity and Access Management 
+                                
+
+
+
+                                    Endpoint Privilege Manager
+                                
+
+
+
+                                    Identity Governance
+                                
+
+
+
+                                    Workforce Password Management
+                                
+
+
+
+                                    Agentic Identities
+                                
+
+
+
+                                    Secrets Management
+                                
+
+
+
+                                    Unified Secrets Governance
+                                
+
+
+
+                                    Application Credentials Delivery
+                                
+
+
+
+                                    Vendor Privileged Access
+                                
+
+
+
+                                    Threat Intel and Incident Response Services
+                                
+
+
+
+                                    Prepare for Emerging Risks
+                                
+
+
+
+                                    Strengthen Your Defenses
+                                
+
+
+
+                                    Build Your Security Strategy
+                                
+
+
+
+                                    Understand the Adversary
+                                
+
+
+
+                                    Respond to a Cyber Attack
+                                
+
+
+
+
+
+
+Company
+
+
+
+
+
+                                    About Us
+                                
+
+
+
+                                    Careers
+                                
+
+
+
+                                    Contact Us
+                                
+
+
+
+                                    Corporate Responsibility
+                                
+
+
+
+                                    Customers
+                                
+
+
+
+                                    Investor Relations
+                                
+
+
+
+                                    Location
+                                
+
+
+
+                                    Newsroom
+                                
+
+
+
+
+
+
+Popular Links
+
+
+
+
+
+                                    Blog
+                                
+
+
+
+                                    Communities
+                                
+
+
+
+                                    Content Library
+                                
+
+
+
+                                    Cyberpedia
+                                
+
+
+
+                                    Event Center
+                                
+
+
+
+                                    Manage Email Preferences
+                                
+
+
+
+                                    Products A-Z
+                                
+
+
+
+                                    Product Certifications
+                                
+
+
+
+                                    Report a Vulnerability
+                                
+
+
+
+                                    Sitemap
+                                
+
+
+
+                                    Tech Docs
+                                
+
+
+
+                                    Unit 42
+                                
+
+
+
+                                    Do Not Sell or Share My Personal Information
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Privacy
+                            
+
+
+
+                                Trust Center
+                            
+
+
+
+                                Terms of Use
+                            
+
+
+
+                                Documents
+                            
+
+
+Copyright © 2026 Palo Alto Networks. All Rights Reserved
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+EN
+
+
+
+Select your language
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Your browser does not support the video tag.
+          
+
+Default Heading
+Read the article
+              
+
+
+
+
+Seekbar
+
+
+
+
+
+
+
+
+
+
+
+
+
+Volume
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

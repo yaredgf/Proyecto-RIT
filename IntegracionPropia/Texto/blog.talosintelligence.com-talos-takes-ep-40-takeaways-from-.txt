@@ -1,0 +1,723 @@
+
+
+
+Talos Takes Ep. #40: Takeaways from interviewing a ransomware operator
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Listen on: 
+
+                                        Apple Podcasts
+                                    
+
+                                        Google Podcasts
+                                    
+
+                                        Spotify
+                                    
+
+                                        Stitcher
+                                    
+
+                                        RSS Feed
+                                    
+
+
+
+
+
+
+
+
+
+Talos Takes Ep. #40: Takeaways from interviewing a ransomware operator
+
+
+By 
+Jonathan Munshaw
+
+
+
+            Friday, February 5, 2021 11:34
+        
+
+
+                            Talos Takes
+                        
+
+
+
+
+The latest episode of Talos Takes is available now. Download this episode and subscribe to Talos Takes using the buttons below, or visit the Talos Takes page.This week, we have two guests on (a Talos Takes first!) to discuss our recent research paper on the LockBit ransomware. Two of the authors, who spoke to the actor directly, join the show to talk about their major takeaways. They talk about how the operator chooses their targets and what defenders should take away from the paper.
+
+
+
+Share this post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Content
+
+
+Talos Takes Ep. #82: Log4j followed us in 2022
+January 14, 2022 10:16
+The latest episode of Talos Takes is available now. Download this episode and subscribe to Talos Takes using the buttons below, or visit the Talos Takes page.
+
+It's a new year, but unfortunately, we're facing the same cybersecurity problems.
+
+Log4j followed us into the holidays, and
+
+
+
+
+Talos Takes Ep. #80: I'll have a blue Christmas without a CTIR retainer
+December 10, 2021 14:30
+The latest episode of Talos Takes is available now. Download this episode and subscribe to Talos Takes using the buttons below, or visit the Talos Takes page.
+
+It's the holiday season, which means last-minute shopping, family time and cheer. Oh, and it's never a bad
+
+
+
+
+Talos Takes Ep. #79: Emotet's back with the worst type of holiday present
+December 3, 2021 10:46
+The latest episode of Talos Takes is available now. Download this episode and subscribe to Talos Takes using the buttons below, or visit the Talos Takes page.
+
+Emotet is back, and it brought the worst possible holiday present (just in time for peak spam season, too!). We recently chronicled how
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

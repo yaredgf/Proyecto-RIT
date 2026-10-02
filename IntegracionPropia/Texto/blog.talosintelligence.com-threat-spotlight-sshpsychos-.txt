@@ -1,0 +1,700 @@
+
+
+
+Threat Spotlight: SSHPsychos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Threat Spotlight: SSHPsychos
+
+
+By 
+Nick Biasini, 
+                Matt Olney, 
+                Craig Williams
+
+
+
+            Thursday, April 9, 2015 03:30
+        
+
+
+                            Threat Spotlight
+                        
+
+
+
+
+IntroductionTalos has been monitoring a persistent threat for quite some time, a group we refer to as SSHPsychos or Group 93. This group is well known for creating significant amounts of scanning traffic across the Internet. Although our research efforts help inform and protect Cisco customers globally, sometimes it is our relationships that can multiply this impact. Today Cisco and Level 3 Communications took action to help ensure a significantly larger portion of the Internet is also protected.
+Graphic Showing SSH Psychos SSH Traffic vs Rest of Internet (Green)
+BehaviorThe primary focus of SSHPsychos has been SSH brute force attacks.  Based on passive DNS data the first activity was seen in June 2014.  Since then two class C networks have been generating unequalled amounts of SSH login attempts to every host that is listening.  The graphic above demonstrates the volume of login attempts these networks are attempting.  The traffic from SSHPsychos dwarfs the combined SSH login attempt traffic from the rest of the Internet. It is important to note that these netblocks appear to only be used for malicious activity.
+High Level Overview of Attack
+The behavior consists of large amounts of SSH brute force login attempts from 103.41.124.0/23, only attempting to guess the password for the root user, with over 300,000 unique passwords.  Once a successful login is achieved the brute forcing stops. The next step involves a login from a completely different IP ranges owned by shared hosting companies based out of the United States.  After login is achieved a wget request is sent outbound for a single file which has been identified as a DDoS rootkit.  The file has been observed being downloaded from hardcoded IP addresses as well as from specific domains which resolve to the same address (23.234.60.140).  This address is associated with a hosting company based out of the United States.
+Domain Information for Server Hosting DDoS Kit
+Once the rootkit is installed additional instructions are downloaded via an XOR encoded file from one of the C2 servers.  Level 3 decoded one of the configuration files a sample of which can be found below.  The config file is largely constructed of a list of IP addresses that are being denied and filenames, and files to be deleted.
+Sample Decoded Config File (Click image for actual config file)
+Time for Action Using the information Talos has gathered over the last several months, we began collaborating with Level 3 to determine what steps can be taken to address this threat and protect users. Level 3 analyzed the behavior of the suspect networks and confirmed that no legitimate traffic is originating or destined for 103.41.124.0/23. At this point Talos and Level 3 started the process to take down this particular netblock.A Shift OccursAs part of the process, Level 3 worked to notify the appropriate providers regarding the change. On March 30th SSHPsychos suddenly pivoted. The original /23 network went from a huge volume of SSH brute force attempts to almost no activity and a new /23 network began large amounts of SSH brute forcing following the exact same behavior associated with SSHPsychos. The new network is 43.255.190.0/23 and its traffic was more than 99% SSH immediately after starting communication. The host serving the malware also changed and a new host (23.234.19.202) was seen providing the same file as discussed before a DDoS Rootkit.
+SSHPsychos SSH Traffic (103.41.124.0/23 - Red & Pink, 43.255.190.0/23 - Orange, All Other SSH Traffic - Green)
+Based on this sudden shift, immediate action was taken. Talos and Level 3 decided to remove the routing capabilities for 103.41.124.0/23, but also add the new netblock 43.255.190.0/23. The removal of these two netblocks introduced another hurdle for SSHPsychos, and hopefully slows their activity, if only for a short period.An operation of this size would only be possible with the collaboration of Level 3 and Cisco to make the Internet safer. In the future, we only see this type of operation being undertaken when we can prevent systems from being compromised without any impact to legitimate Internet activity.IOCDomains: ftp.rxxiaoao.com ndns.dsaj2a.org ndns.dsaj2a1.org ndns.hcxiaoao.com ndns.dsaj2a.com ns1.hostasa.org ns2.hostasa.org ns3.hostasa.org ns4.hostasa.org aa.hostasa.org info.3000uc.orgIP Addresses: Scanning: 103.41.124.0/2343.255.190.0/23Command & Control: 103.240.140.152 103.240.141.54 103.240.141.50 104.143.5.25 162.218.112.7Malware Hosting: 23.234.60.140 23.234.60.143 23.234.19.202SSH Password ListRootkit Config File SampleConclusionGone are the days when detectors and protectors can sit on the Internet’s sidelines when a group is brazenly attacking a wide range of systems around the world. This specific threat was known to the security community, but Cisco and Level 3 Communications agreed that it was time to step in and make it stop. Together we severely limited SSHPsychos ability to communicate within Level 3 Communications backbone, and hindered their ability to compromise systems and proliferate their malware.While these changes protect the portions of the Internet overseen by Level 3, we believe there is still more to be done. We ask that others join us to stop malicious traffic from spreading on the internet. We encourage ISPs and network administrators to join our efforts to curb this specific group, by removing the routes for these networks in a controlled and responsible manner. If we work together, we have the opportunity to eliminate a group that is making no effort to hide their malicious activity.If you support the idea of taking action against this group and others that openly attack the Internet, add your voice by tweeting #DownWithSSHPsychos.
+
+
+
+Share this post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Content
+
+
+China-nexus UAT-11587 targets government and policy organizations across Asia with Antino backdoor
+September 30, 2026 06:00
+Cisco Talos uncovered a cluster of activity we track as UAT-11587 targeting government and policy organizations across Asia, including in Taiwan, India, the Philippines, and Cambodia, to deliver a previously undocumented backdoor referred to as “Antino” in developer artifacts.
+
+
+
+
+The Closed Quorum: Inside the first reported autonomous AI C2 implant
+September 22, 2026 06:00
+CLOSEDQUORUM, a malware binary discovered through Cisco Talos’ CAIRN project, exhibits fully autonomous command and control (C2). It represents a shift in effort displacement for attackers, in which expanding portions of the attack chain can be executed without operator involvement.
+
+
+
+
+Ransomware incidents in Japan in the first half of 2026: Investigation of The Gentlemen’s infrastructure and evidence of Qilin's AI use
+September 17, 2026 06:00
+Ransomware incidents in Japan rose 4.7% year over year. The Gentlemen was the most active group, with leak-site listings more than doubling from January to July. Qilin ranked second and appeared to use AI, while SMEs with capital under JPY 1 billion represented 80% of victims.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,1403 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+DNS durante DoS: ¿Los endpoints privados son demasiado privados?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Menu
+
+
+
+
+
+
+ATOMs
+Security Consulting
+Under Attack?
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Spanish (LATAM)
+
+
+
+
+
+English
+
+
+Spanish (LATAM)
+
+
+French
+
+
+Japanese
+
+
+
+
+
+  Threat Research CenterInvestigación de amenazasDNS 
+ 
+DNS
+DNS durante DoS: ¿Los endpoints privados son demasiado privados?
+
+
+  12  lectura mínima              
+
+
+Related ProductsCortexCortex CloudUnit 42 Incident Response 
+
+
+
+
+
+
+
+
+Por:Golan Myers 
+
+Publicado:20 de Enero de 2026 CategoríasDNSInvestigación de amenazasInvestigación de ciberseguridad en la nube
+ Etiquetas:Microsoft AzureNetworking
+ 
+
+
+ 
+ 
+
+
+Compartir
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+Resumen ejecutivo
+Descubrimos un aspecto de la arquitectura del endpoint privado de Azure que podría exponer los recursos de Azure a ataques de denegación de servicio (DoS). En este artículo, analizamos cómo tanto los actos intencionados como los inadvertidos podrían dar lugar a un acceso limitado a los recursos de Azure a través del mecanismo Azure Private Link. Descubrimos este problema mientras investigábamos un comportamiento irregular en entornos de prueba de Azure.
+El riesgo se presenta en tres escenarios:
+
+Accidental, interno: Un administrador de red implementa endpoints privados para mejorar la seguridad de la red dentro de un entorno Azure.
+Accidental, proveedor: Un proveedor externo implementa endpoints privados como parte de su solución, por ejemplo para permitir el escaneo de recursos por parte de un producto de seguridad.
+Malicioso, atacante: Un actor de amenazas que obtuvo acceso a un entorno Azure implementa intencionalmente endpoints privados como parte de un ataque de DoS.
+
+Nuestra investigación indica que más del 5 % de las cuentas de almacenamiento de Azure operan actualmente con configuraciones que están sujetas a este problema de DoS. En la mayoría de los entornos, al menos un recurso de cada uno de los siguientes servicios es susceptible:
+
+Key Vault
+CosmosDB
+Registro de contenedores de Azure (ACR)
+Aplicaciones de funciones
+Cuentas de OpenAI
+
+Este problema puede afectar a las organizaciones de múltiples maneras. Por ejemplo, denegar el servicio a cuentas de almacenamiento podría provocar que Azure Functions dentro de FunctionApps y las actualizaciones posteriores de estas aplicaciones fallen. En otro caso posible, el riesgo podría conducir a DoS a Key Vaults, lo que resultaría en un efecto dominó en procesos que dependen de secretos dentro de la bóveda.
+Microsoft ofrece una solución alternativa a internet que resuelve parcialmente este y otros problemas conocidos asociados con endpoints privados.
+Analizamos aquí estos problemas, proporcionamos soluciones potenciales y sugerimos formas en que los defensores pueden escanear entornos en busca de recursos susceptibles a ataques de DoS.
+Los clientes de Palo Alto Networks están mejor protegidos frente a las amenazas mencionadas en este artículo gracias a los siguientes productos:
+
+Cortex Cloud
+
+Evaluación de la seguridad en la nube de Unit 42 es un servicio de evaluación estratégica que revisa la infraestructura en la nube de su organización para identificar errores de configuración y lagunas de seguridad, lo que permite a los equipos reforzar su postura frente a las amenazas basadas en la nube.
+Si cree que puede haber resultado vulnerado o tiene un problema urgente, póngase en contacto con el equipo de respuesta ante incidentes de Unit 42.
+
+
+
+Temas relacionados con Unit 42
+Microsoft Azure, Cloud Research
+
+
+
+Componentes, conceptos y flujos clave de Azure Private Link
+Como parte de la oferta de redes de Azure, Microsoft creó Azure Private Link. Este mecanismo ofrece una forma privada y segura de acceder a los recursos de Azure compatibles y a los servicios personalizados alojados en Azure mediante la red troncal de Azure.
+Definiciones:
+Para entender la solución y el proceso de conexión segura de los recursos que la utilizan, definamos primero los componentes y los conceptos clave.
+
+Servicio: Destino al que se establece la conexión.
+Private Link: Implementación de Azure que permite y gestiona las conexiones.
+Endpoint privado: Interfaz de red dentro de la red virtual de un cliente que permite la conectividad con el servicio.
+Zona de DNS privada: Servicio predeterminado del sistema de nombres de dominio (DNS) que se utiliza con los endpoints privados.
+Enlace de red virtual: Enlace creado por defecto entre una zona de DNS privada y una red virtual.
+Registro de DNS A: Registro de DNS que asigna un dominio o nombre de host a una dirección IP.
+ACL de red: Las listas de control de acceso (ACL) a la red definen reglas que permiten o restringen el tráfico a un servicio, independientes de la solución Private Link.
+
+Los recursos de Azure exponen endpoints públicos de forma predeterminada. Estos endpoints se resuelven a través de la infraestructura de DNS estándar, ya sea el DNS público de Azure o los resolvedores de DNS gestionados por el cliente. Cuando un cliente consulta un nombre de servicio, como mystorageaccount.blob.core.windows[.]net, el resolvedor de DNS devuelve una dirección IP pública propiedad de Microsoft. La dirección IP permite la conectividad a través de la internet pública o de los endpoints del servicio de Azure, según los controles de acceso a la red que se apliquen.
+Cuando se introduce Azure Private Link, el comportamiento de la resolución de DNS cambia. Una zona de DNS privada —por ejemplo, privatelink.blob.core.windows[.]net— puede estar vinculada a una o más redes virtuales. Si una red virtual tiene un enlace a una zona de DNS privada para un tipo de servicio determinado, la lógica de resolución de DNS de Azure da prioridad a esa zona cuando resuelve nombres de servicio coincidentes. Si existe un registro coincidente, el nombre se resuelve a la dirección IP privada del endpoint privado, en lugar del endpoint público.
+Las organizaciones suelen implementar una de las siguientes arquitecturas:
+
+Arquitectura de uso público. Se accede a los recursos utilizando sus endpoints públicos y la resolución de DNS estándar. Las ACL de red, los firewalls o los endpoints de servicio restringen el acceso.
+Arquitectura privada. Todo acceso al recurso se produce a través de endpoints privados. El acceso a la red pública está deshabilitado, y la resolución de DNS se controla totalmente a través de zonas de DNS privadas.
+Arquitectura híbrida (pública y privada). Algunas redes virtuales o cargas de trabajo acceden al recurso a través de endpoints privados, mientras que otras siguen utilizando el endpoint público. Este modelo se utiliza con frecuencia durante las migraciones, los lanzamientos por fases, las integraciones de terceros o los entornos de servicios compartidos.
+
+Utilizamos el ejemplo de las cuentas de almacenamiento para demostrar cómo se utilizan los endpoints privados en la red de Azure. Sin embargo, los mismos conceptos se aplican a cualquier servicio compatible con Private Link. De forma predeterminada, cuando un administrador de red o un usuario con los permisos adecuados de control de acceso basado en roles (RBAC) de Azure crea un endpoint privado vinculado a un recurso, se crea una zona de DNS privada con un enlace de red virtual a la misma red virtual que el endpoint privado.
+El nombre de la zona de DNS tiene una estructura predeterminada que se basa en el servicio de destino del endpoint privado (por ejemplo, privatelink.blob.core.windows[.]net para almacenamiento de blobs). Además, se crea un registro A en la zona de DNS, vinculando el nombre del recurso de destino y la dirección IP del endpoint privado.
+Hay dos maneras de conectarse entre una máquina virtual (VM) y una cuenta de almacenamiento con una ACL de red:
+
+Sin endpoint privado (utilizando endpoints públicos o de servicio)
+Con un endpoint privado
+
+Flujos de conexión
+En la figura 1, se muestra cómo se establece una conexión con un recurso que no utiliza la solución Private Link.
+Figura 1. Flujo de conexión sin la solución Private Link.
+El flujo, en este caso, es el siguiente:
+
+Al intentar acceder a la cuenta de almacenamiento, la máquina virtual intenta resolver el nombre de la cuenta en una dirección IP. Esto suele ocurrir a través de un resolvedor de DNS externo, y el tráfico atraviesa la internet pública.
+Si el resolvedor tiene un registro para la cuenta de almacenamiento, devuelve la dirección IP correspondiente.
+Una vez obtenida la dirección, la máquina virtual intenta conectarse a la cuenta de almacenamiento.
+A continuación, la cuenta de almacenamiento evalúa la dirección IP de la máquina virtual comparándola con su ACL de red. Si se permite la conexión, la cuenta de almacenamiento responde con la información solicitada.
+
+En la figura 2, se muestra cómo se realiza la misma conexión cuando se utiliza un endpoint privado.
+Figura 2. Flujo de conexión con la solución Private Link.
+
+Inicialmente, la máquina virtual intenta resolver el nombre de la cuenta en una dirección IP. Si existe un enlace de red virtual en la red virtual (VNET) a una zona de DNS privada que apunte a un servicio de Private Link, el mecanismo de Private Link de Azure fuerza la resolución utilizando la zona de DNS privada. Esto ocurre cuando la conexión se establece a un servicio de Private Link del mismo tipo (por ejemplo, almacenamiento de blobs).
+Cuando el resolvedor de DNS identifica un registro A coincidente, proporciona a la máquina virtual la dirección IP correspondiente.
+A continuación, la máquina virtual se conecta a la dirección IP que pertenece al endpoint privado.
+El endpoint privado actúa como interfaz de red para la cuenta de almacenamiento. Para ello, evalúa el tráfico y lo reenvía después a la cuenta de almacenamiento.
+La cuenta de almacenamiento evalúa la solicitud y proporciona una respuesta a través de la solución Private Link.
+La respuesta se presenta a la máquina virtual, que esencialmente accede a la cuenta de almacenamiento utilizando la red troncal de Azure.
+
+Peligros potenciales de los DNS de Private Link
+Como se ha indicado antes, las interacciones con un servicio Private Link desde una red virtual configurada con una zona de DNS privada para ese tipo de servicio solo pueden resolverse a través de la zona de DNS privada.
+Supongamos un entorno en el que VM1 en VNET1 accede con éxito a una cuenta de almacenamiento utilizando su endpoint público. La resolución de DNS se produce a través de la infraestructura de DNS pública predeterminada, y el acceso se permite mediante las ACL de red de la cuenta de almacenamiento. En esta fase, la carga de trabajo funciona con normalidad.
+Más tarde, se crea un endpoint privado para la cuenta de almacenamiento en VNET2, ya sea intencionada o accidentalmente, o bien, por una implementación de terceros. Como parte de este proceso, una zona de DNS privada para el almacenamiento de blobs (privatelink.blob.core.windows[.]net) se vincula a VNET1 o se comparte a través de redes virtuales.
+Una vez vinculada esta zona de DNS, la lógica de resolución de DNS de Azure fuerza toda la resolución de nombres de almacenamiento de blobs en VNET1 a través de la zona de DNS privada. Sin embargo, como no existe ningún registro “A” en la zona para la cuenta de almacenamiento en el contexto de VNET1, la resolución de DNS falla. VM1 ya no puede resolver el nombre de host de la cuenta de almacenamiento y no puede conectarse, aunque el endpoint público siga siendo accesible y no haya cambiado.
+Este cambio de configuración crea efectivamente una condición de denegación de servicio para cargas de trabajo en VNET1 que antes funcionaban correctamente. La interrupción se desencadena únicamente por un efecto secundario de resolución de DNS introducido por la configuración de Private Link, sin ningún cambio en el propio recurso de destino.
+En la figura 3, se muestra este ejemplo.
+Figura 3. Problema potencial causado por el uso de la solución Private Link.
+La figura anterior muestra que VM1 intenta conectarse a la cuenta de almacenamiento. Esta cuenta de almacenamiento tiene un endpoint privado en VNET2, pero no tiene un endpoint privado en VNET1. Hipotéticamente, VM1 podría intentar conectarse utilizando el endpoint público de la cuenta de almacenamiento. Esto funcionaría si la red virtual de la máquina virtual no tuviera una zona de DNS privada que resolviera al mismo tipo de recurso. En este caso, sin embargo, la zona de DNS privada y el servicio están registrados en Private Link, por eso, Private Link fuerza la resolución a través de la zona de DNS privada.
+El proceso que se muestra en la figura 3 ocurre de la siguiente manera:
+
+Private Link reconoce la zona de DNS privada de almacenamiento de blobs en VNET1 e identifica que la cuenta de almacenamiento está registrada en Private Link. Private Link fuerza la resolución de DNS a través de la zona de DNS privada.
+La configuración de la figura 3 muestra que no se ha creado ningún registro para la cuenta de almacenamiento en la zona de DNS privada vinculada a VNET1. Como tal, la máquina virtual no puede resolver el servicio.
+Debido al problema de resolución de DNS en el paso 2, los pasos siguientes —en los que VM1 envía una solicitud a la cuenta de almacenamiento y recibe una respuesta de ella— no se producen.
+
+Esta situación provoca una denegación de servicio parcial: cualquier recurso en VNET1 que intente acceder a la cuenta de almacenamiento no podrá hacerlo.
+Este riesgo también puede estar presente cuando se utilizan resolvedores de DNS locales, dependiendo de las configuraciones y los registros añadidos. Además, aunque nuestro ejemplo se refiere específicamente al almacenamiento de blobs, cualquier servicio que admita Azure Private Link está potencialmente en riesgo.
+Mitigaciones y recomendaciones
+Azure Private Link se concibió originalmente como una solución binaria, que podía habilitarse o deshabilitarse por completo. Cuando el servicio se implementa según lo previsto, los usuarios solo pueden acceder a los recursos que utilizan Private Link a través de los endpoints privados de dichos recursos. Este método elimina la necesidad de utilizar una combinación de endpoints privados, públicos y de servicio. Sin embargo, dado que más del 5 % de las cuentas de almacenamiento de Azure están configuradas de una manera que está sujeta a este problema, reconocemos que es necesario proporcionar soluciones que aborden los riesgos introducidos por estas implementaciones.
+Mitigación
+Microsoft reconoce que la naturaleza binaria de la solución es un problema conocido y lo menciona en su documentación. Microsoft también ofrece una solución parcial: habilitar una solución alternativa a internet al crear un enlace de red virtual. Con esta solución alternativa, cuando el resolvedor de DNS no puede encontrar un registro que coincida con el servicio solicitado, recurre a la internet pública. Si bien esta solución resuelve el problema, no coincide necesariamente con el concepto principal de Azure Private Link, que es atravesar la red troncal de Azure en lugar de la internet pública.
+Una segunda solución parcial consiste en añadir manualmente un registro para el recurso afectado en la zona de DNS privada necesaria. Esta opción es menos apropiada para grandes entornos de producción, ya que genera una sobrecarga operativa adicional.
+Aunque ni la alternativa ni la adición manual de un registro son soluciones definitivas, la combinación de los métodos anteriores con un descubrimiento exhaustivo ayudará a mapear, encontrar y corregir las configuraciones afectadas.
+Descubrimiento y escaneo exhaustivos
+Hay dos maneras de escanear e identificar los recursos que están potencialmente en riesgo:
+
+Escaneo de recursos con cada servicio por separado.
+Uso de Azure Resource Graph Explorer.
+
+El segundo método de escaneo es más eficaz y puede modificarse fácilmente para adaptarlo a la mayoría de los tipos de recursos. Creamos una consulta gráfica que recupera una lista de todas las redes virtuales del entorno que están vinculadas a una zona de DNS privada de almacenamiento de blobs (privatelink.blob.core.windows[.]net). Estas redes virtuales se ven obligadas a resolver los recursos de almacenamiento de blobs a través de sus endpoints privados cuando se comunican con recursos registrados en Private Link.
+
+
+
+
+
+resources
+| where type == "microsoft.network/privatednszones/virtualnetworklinks"
+| extend 
+    zone = tostring(split(id, "/virtualNetworkLinks")[0]),
+    vnetId = tostring(properties.virtualNetwork.id)
+| join kind=inner (
+    resources
+    | where type == "microsoft.network/privatednszones"
+    | where name == "privatelink.blob.core.windows.net"
+    | project zoneId = id
+) on $left.zone == $right.zoneId
+| project vnetId
+
+
+
+
+123456789101112
+
+resources| where type == "microsoft.network/privatednszones/virtualnetworklinks"| extend     zone = tostring(split(id, "/virtualNetworkLinks")[0]),    vnetId = tostring(properties.virtualNetwork.id)| join kind=inner (    resources    | where type == "microsoft.network/privatednszones"    | where name == "privatelink.blob.core.windows.net"    | project zoneId = id) on $left.zone == $right.zoneId| project vnetId
+
+
+
+
+
+Además, es importante identificar qué redes virtuales interactúan con los recursos de almacenamiento de blobs que no tienen conexiones de endpoint privadas. Para ello, hemos creado la siguiente consulta. Esta consulta recupera las cuentas de almacenamiento que permiten el acceso a su endpoint público y no tienen una conexión de endpoint privado.
+
+
+
+
+
+Resources
+| where type == "microsoft.storage/storageaccounts"
+| extend publicNetworkAccess = properties.publicNetworkAccess
+| extend defaultAction = properties.networkAcls.defaultAction
+| extend vnetRules = properties.networkAcls.virtualNetworkRules
+| extend ipRules = properties.networkAcls.ipRules
+| extend privateEndpoints = properties.privateEndpointConnections
+| where publicNetworkAccess == "Enabled"
+| where defaultAction == "Deny"
+| where (isnull(privateEndpoints) or array_length(privateEndpoints) == 0)
+| extend allowedVnets = iif(isnull(vnetRules), 0, array_length(vnetRules))
+| extend allowedIps = iif(isnull(ipRules), 0, array_length(ipRules))
+| where allowedVnets > 0 or allowedIps > 0
+| project id, name, vnetRules, ipRules
+
+
+
+
+1234567891011121314
+
+Resources| where type == "microsoft.storage/storageaccounts"| extend publicNetworkAccess = properties.publicNetworkAccess| extend defaultAction = properties.networkAcls.defaultAction| extend vnetRules = properties.networkAcls.virtualNetworkRules| extend ipRules = properties.networkAcls.ipRules| extend privateEndpoints = properties.privateEndpointConnections| where publicNetworkAccess == "Enabled"| where defaultAction == "Deny"| where (isnull(privateEndpoints) or array_length(privateEndpoints) == 0)| extend allowedVnets = iif(isnull(vnetRules), 0, array_length(vnetRules))| extend allowedIps = iif(isnull(ipRules), 0, array_length(ipRules))| where allowedVnets > 0 or allowedIps > 0| project id, name, vnetRules, ipRules
+
+
+
+
+
+Esta consulta identifica las redes virtuales permitidas y también recupera los recursos que permiten direcciones IP específicas. Esto es útil cuando hay visibilidad limitada en las configuraciones de DNS para redes virtuales, lo que dificulta determinar si las configuraciones están afectadas o no.
+Los defensores deben ser conscientes de que incluso los recursos que no tienen ACL de red podrían estar en riesgo. Sin embargo, no hay forma de utilizar las configuraciones para determinar qué redes virtuales, si hubiera alguna, intentan comunicarse con dichos recursos. Para hacer frente a este riesgo, utilice los registros de red para identificar las conexiones realizadas desde los rangos de red de Azure a los recursos susceptibles.
+Los defensores pueden cambiar y hacer coincidir el recurso y los detalles de la zona de DNS privada en la consulta de recursos anterior para detectar los recursos compatibles con Private Link que están en riesgo.
+Conclusión
+Comprender en profundidad las limitaciones de Azure Private Link es vital para proteger las redes que dependen de él. Con determinadas configuraciones de componentes y arquitectura, la naturaleza binaria de Azure Private Link puede provocar pérdidas de conectividad y, en algunos casos, podría permitir ataques de DoS.
+Dos de las posibles soluciones para proteger los endpoints privados contra este riesgo:
+
+Habilitar la resolución de DNS pública.
+Añadir manualmente registros de DNS para los recursos afectados.
+
+Para aumentar la eficacia de estas soluciones, los defensores pueden consultar los recursos, realizar un escaneo exhaustivo de la red para identificar los recursos en riesgo e implementar las protecciones necesarias.
+Protección y mitigación de Palo Alto Networks
+Los clientes de Palo Alto Networks están mejor protegidos frente a las amenazas mencionadas en este artículo gracias a los siguientes productos:
+
+Los clientes de Cortex Cloud están mejor protegidos contra el uso indebido de los endpoints privados de Azure analizados en este artículo mediante la ubicación adecuada del agente de endpoint de XDR de Cortex Cloud y agentes sin servidor dentro de un entorno de nube. Cortex Cloud está diseñado para proteger la postura y las operaciones en tiempo de ejecución de una nube contra este tipo de amenazas. Ayuda a detectar y prevenir las operaciones maliciosas o las alteraciones de la configuración o la explotación analizada en este artículo.
+
+Evaluación de la seguridad en la nube de Unit 42 es un servicio de evaluación estratégica que revisa la infraestructura en la nube de su organización para identificar errores de configuración y lagunas de seguridad, lo que permite a los equipos reforzar su postura frente a las amenazas basadas en la nube.
+Si cree que podría haber resultado vulnerado o tiene un problema urgente, póngase en contacto con el equipo de respuesta ante incidentes de Unit 42 o llame al:
+
+Norteamérica: llamada gratuita: +1 (866) 486-4842 (866.4.UNIT42)
+Reino Unido: +44.20.3743.3660
+Europa y Oriente Medio: +31.20.299.3130
+Asia: +65.6983.8730
+Japón: +81.50.1790.0200
+Australia: +61.2.4062.7950
+India: 00 800 050 45107
+
+Palo Alto Networks ha compartido estos resultados con nuestros compañeros de Cyber Threat Alliance (CTA). Los miembros de CTA utilizan esta inteligencia para implementar rápidamente medidas de protección para sus clientes y desarticular sistemáticamente a los ciberdelincuentes. Obtenga más información sobre Cyber Threat Alliance.
+Recursos adicionales
+
+Azure Private Endpoint private DNS zone values (en inglés), documentación de Microsoft
+Azure Private Link availability (en inglés), documentación de Microsoft
+Azure Resource Graph Explorer (en inglés), documentación de Microsoft
+​​Storage access constraints for clients in virtual networks with private endpoints (en inglés), documentación de Microsoft
+
+
+
+Volver al principio
+
+EtiquetasMicrosoft AzureNetworking
+
+
+
+Threat Research Center
+
+
+Siguiente:Ejecución remota de código con formatos y bibliotecas modernos de IA/ML
+
+
+
+
+
+
+
+ÍNDICE
+
+
+
+
+
+
+Artículos relacionados
+
+
+
+                      Detección en la nube con AzureHound                  
+
+
+
+                      Tokens de autenticación de funciones sin servidor en la nube: explotación y detección                  
+
+
+
+
+
+
+
+
+
+Relacionados  Recursos
+
+
+
+
+ 
+
+
+
+Investigación de amenazas 23 de Abril de 2026
+
+¿La IA puede atacar la nube? Lecciones del desarrollo de un sistema multiagente ofensivo y autónomo en la nube
+
+
+
+AI
+
+
+Cloud
+
+
+Data exfiltration
+ 
+
+
+                    Leer ahora                    
+
+
+
+
+
+
+
+ 
+
+
+
+Investigación de amenazas 6 de Febrero de 2026
+
+Técnica novedosa para detectar las operaciones de los actores de amenazas en la nube
+
+
+
+API
+
+
+IAM
+
+
+MITRE
+ 
+
+
+                    Leer ahora                    
+
+
+
+
+
+
+
+ 
+
+
+
+Investigación de amenazas 24 de Octubre de 2025
+
+Detección en la nube con AzureHound
+
+
+
+Control plane
+
+
+Curious Serpens
+
+
+Data plane
+ 
+
+
+                    Leer ahora                    
+
+
+
+
+
+
+
+ 
+
+
+
+Investigación de amenazas 22 de Octubre de 2025
+
+Jingle Thief: Por dentro de una campaña de fraude de tarjetas de regalo basada en la nube
+
+
+
+CL‑CRI‑1032
+
+
+Microsoft
+
+
+Phishing
+ 
+
+
+                    Leer ahora                    
+
+
+
+
+
+
+
+ 
+
+
+
+Investigación de amenazas 3 de Septiembre de 2025
+
+Técnica de reutilización del espacio de nombres del modelo: mal uso de un aspecto fundamental de la cadena de suministro de la IA
+
+
+
+Azure
+
+
+GenAI
+
+
+Google
+ 
+
+
+                    Leer ahora                    
+
+
+
+
+
+
+
+ 
+
+
+
+Investigación de amenazas 13 de Junio de 2025
+
+Tokens de autenticación de funciones sin servidor en la nube: explotación y detección
+
+
+
+AWS
+
+
+Google Cloud
+
+
+Microsoft Azure
+ 
+
+
+                    Leer ahora                    
+
+
+
+
+
+
+
+ 
+
+
+
+Investigación de amenazas 10 de Junio de 2025
+
+Evolución de los binarios de Linux en las operaciones en la nube específicas
+
+
+
+Endpoint
+
+
+Linux Malware
+
+
+Machine Learning
+ 
+
+
+                    Leer ahora                    
+
+
+
+
+
+
+
+ 
+
+
+
+Investigación de amenazas 9 de Junio de 2025
+
+¿Roles aquí? ¿Roles allí? ¡Roles en todas partes! Explorando la seguridad de AWS IAM Roles Anywhere
+
+
+
+AWS
+
+
+Kubernetes
+ 
+
+
+                    Leer ahora                    
+
+
+
+
+
+
+
+ 
+
+
+
+Investigación de amenazas 4 de Abril de 2025
+
+Aumentan las Amenazas en la Nube: las Tendencias de las Alertas Muestran un Mayor Enfoque de los Atacantes en la IAM y la Exfiltración
+
+
+
+API attacks
+
+
+Containers
+
+
+IAM
+ 
+
+
+                    Leer ahora                    
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
+				Obtener actualizaciones de Unit 42			
+Manténgase un paso adelante de las amenazas para estar tranquilo. Comuníquese con nosotros hoy mismo.
+
+
+
+
+
+
+
+
+
+
+Your Email
+
+
+Suscribirse para recibir actualizaciones por correo electrónico de todas las investigaciones de amenazas de Unit 42.Cuando envía este formulario, acepta nuestras Condiciones de uso y confirma nuestra Declaración de privacidad
+
+                    Este sitio está protegido por reCAPTCHA y se aplican la Política de privacidad y los Términos de servicio de Google.                            
+  
+
+Invalid captcha!
+ 
+					Suscribirse					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Obtenga las últimas noticias, invitaciones a eventos y alertas de amenazas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Introduzca su correo electrónico...
+
+
+
+
+
+Regístrese  
+
+
+
+
+                                
+                                
+                                
+                                    
+                                    
+                                        
+                                        Al enviar este formulario, comprendo que mis datos personales se procesarán de acuerdo con la Política de privacidad de Palo Alto Networks y las Condiciones de uso.
+                                    
+                                
+
+                                
+                                
+
+
+Regístrese  
+
+
+
+
+
+
+
+
+
+
+
+
+Productos y servicios
+
+
+
+
+
+                                     Plataforma de seguridad de la red con tecnología de IA 
+                                
+
+
+
+                                     IA segura por diseño 
+                                
+
+
+
+                                     Prisma AIRS 
+                                
+
+
+
+                                    Seguridad de AI Access
+                                
+
+
+
+                                    Servicios de seguridad entregados en la nube
+                                
+
+
+
+                                    Threat Prevention avanzada
+                                
+
+
+
+                                    URL Filtering avanzado
+                                
+
+
+
+                                     WildFire avanzado 
+                                
+
+
+
+                                     Seguridad de DNS avanzada 
+                                
+
+
+
+                                    Prevención de pérdida de datos empresariales
+                                
+
+
+
+                                    Seguridad de IoT empresarial
+                                
+
+
+
+                                    Seguridad de IoT para dispositivos médicos
+                                
+
+
+
+                                    Seguridad de OT industrial
+                                
+
+
+
+                                    Seguridad de SaaS
+                                
+
+
+
+
+
+                                     Firewalls de nueva generación 
+                                
+
+
+
+                                     Firewalls de hardware 
+                                
+
+
+
+                                     Firewalls de software 
+                                
+
+
+
+                                    Strata Cloud Manager 
+                                
+
+
+
+                                     SD-WAN para NGFW 
+                                
+
+
+
+                                     PAN-OS 
+                                
+
+
+
+                                     Panorama 
+                                
+
+
+
+                                     Perímetro de servicio de acceso seguro 
+                                
+
+
+
+                                     Prisma SASE 
+                                
+
+
+
+                                    Aceleración de aplicaciones
+                                
+
+
+
+                                     Gestión autónoma de la experiencia digital 
+                                
+
+
+
+                                    Enterprise DLP
+                                
+
+
+
+                                     Prisma Access 
+                                
+
+
+
+                                    Prisma Browser 
+                                
+
+
+
+                                     Prisma SD-WAN 
+                                
+
+
+
+                                     Aislamiento del explorador remoto 
+                                
+
+
+
+                                     Seguridad de SaaS 
+                                
+
+
+
+
+
+                                    Plataforma de operaciones de seguridad dirigida por IA
+                                
+
+
+
+                                     Seguridad de nube 
+                                
+
+
+
+                                     Cortex Cloud 
+                                
+
+
+
+                                     Seguridad de las aplicaciones 
+                                
+
+
+
+                                     Postura de seguridad en la nube 
+                                
+
+
+
+                                     Seguridad en tiempo de ejecución en la nube 
+                                
+
+
+
+                                     Prisma Cloud 
+                                
+
+
+
+                                     SOC impulsado por IA 
+                                
+
+
+
+                                     Cortex XSIAM 
+                                
+
+
+
+                                     Cortex XDR 
+                                
+
+
+
+                                     Cortex XSOAR 
+                                
+
+
+
+                                     Cortex Xpanse 
+                                
+
+
+
+                                     Detección y respuesta gestionadas de Unit 42 
+                                
+
+
+
+                                     XSIAM gestionado 
+                                
+
+
+
+
+
+                                     Inteligencia de amenazas y respuesta ante incidentes 
+                                
+
+
+
+                                    Evaluaciones proactivas
+                                
+
+
+
+                                    Respuesta ante incidentes
+                                
+
+
+
+                                    Transforme su estrategia de seguridad
+                                
+
+
+
+                                    Descubra la inteligencia de amenazas
+                                
+
+
+
+
+
+
+Empresa
+
+
+
+
+
+                                    Acerca de nosotros
+                                
+
+
+
+                                    Carreras
+                                
+
+
+
+                                    Contáctenos
+                                
+
+
+
+                                    Responsabilidad corporativa
+                                
+
+
+
+                                    Clientes
+                                
+
+
+
+                                    Relaciones con inversionistas
+                                
+
+
+
+                                    Ubicación
+                                
+
+
+
+                                    Sala de prensa
+                                
+
+
+
+
+
+
+Enlaces populares
+
+
+
+
+
+                                    Blog
+                                
+
+
+
+                                    Comunidades
+                                
+
+
+
+                                    Biblioteca de contenido
+                                
+
+
+
+                                    Cyberpedia
+                                
+
+
+
+                                    Centro de eventos
+                                
+
+
+
+                                     Administrar preferencias de correo electrónico 
+                                
+
+
+
+                                    Productos A-Z
+                                
+
+
+
+                                    Certificaciones de productos
+                                
+
+
+
+                                     Informar sobre una vulnerabilidad 
+                                
+
+
+
+                                    Mapa del sitio
+                                
+
+
+
+                                    Documentos técnicos
+                                
+
+
+
+                                    Unit 42
+                                
+
+
+
+                                    No vender ni compartir mi información personal
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Privacidad
+                            
+
+
+
+                                Centro de confianza
+                            
+
+
+
+                                Condiciones de uso
+                            
+
+
+
+                                Documentación
+                            
+
+
+Copyright © 2026 Palo Alto Networks. Todos los derechos reservados
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+LA
+
+
+
+Select your language
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Your browser does not support the video tag.
+          
+
+Default Heading
+Read the article
+              
+
+
+
+
+Seekbar
+
+
+
+
+
+
+
+
+
+
+
+
+
+Volume
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

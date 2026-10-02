@@ -1,0 +1,1153 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Supplemental Direction ED 26-03: Hunt and Hardening Guidance for Cisco SD-WAN Systems | CISA
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+ 
+
+
+
+
+
+An official website of the United States government
+Here’s how you know
+
+Here’s how you know
+
+
+
+
+
+
+
+
+
+Official websites use .gov
+ A .gov website belongs to an official government organization in the United States.
+              
+
+
+
+
+
+
+Secure .gov websites use HTTPS
+ A lock (LockA locked padlock) or https:// means you’ve safely connected to the .gov website. Share sensitive information only on official, secure websites.
+              
+
+
+
+
+
+
+
+
+
+
+
+Staying Secure at Eventsno-cost Cyber ServicesCybersecurity Awareness MonthKEV CatalogReport A Cyber Issue 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Search
+
+
+
+ 
+
+
+Menu
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Close
+
+
+ 
+
+
+
+
+Topics
+
+
+
+Topics
+
+
+
+
+
+Cybersecurity Best Practices
+
+
+
+
+
+
+Cyber Threats and Response
+
+
+
+
+
+
+Critical Infrastructure Security and Resilience
+
+
+
+
+
+
+Election Security
+
+
+
+
+
+
+Emergency Communications
+
+
+
+
+
+
+Industrial Control Systems
+
+
+
+
+
+
+Information and Communications Technology Supply Chain Security
+
+
+
+
+
+
+Partnerships and Collaboration
+
+
+
+
+
+
+Physical Security
+
+
+
+
+
+
+Risk Management
+
+
+
+
+
+
+        How can we help?
+       
+GovernmentEducational InstitutionsIndustryState, Local, Tribal, and TerritorialIndividuals and FamiliesSmall and Medium BusinessesFind Help LocallyFaith-Based CommunityExecutivesHigh-Risk Communities
+
+
+
+
+
+Spotlight
+
+
+
+
+Resources & Tools
+
+
+
+Resources & Tools
+
+
+
+
+
+All Resources & Tools
+
+
+
+
+
+
+Services
+
+
+
+
+
+
+Programs
+
+
+
+
+
+
+Resources
+
+
+
+
+
+
+Training
+
+
+
+
+
+
+Groups
+
+
+
+
+
+
+
+
+News & Events
+
+
+
+News & Events
+
+
+
+
+
+Directives
+
+
+
+
+
+
+News
+
+
+
+
+
+
+Events
+
+
+
+
+
+
+Cybersecurity Alerts & Advisories
+
+
+
+
+
+
+Request a CISA Speaker
+
+
+
+
+
+
+Congressional Testimony
+
+
+
+
+
+
+CISA Conferences
+
+
+
+
+
+
+CISA Live!
+
+
+
+
+
+
+
+
+Careers
+
+
+
+Careers
+
+
+
+
+
+Benefits & Perks
+
+
+
+
+
+
+Hiring and Recruitment
+
+
+
+
+
+
+New Employee Orientation & Onboarding
+
+
+
+
+
+
+Students & Recent Graduates
+
+
+
+
+
+
+Veteran and Military Spouses
+
+
+
+
+
+
+
+
+About
+
+
+
+About
+
+
+
+
+
+Divisions & Offices
+
+
+
+
+
+
+Regions
+
+
+
+
+
+
+Leadership
+
+
+
+
+
+
+Doing Business with CISA
+
+
+
+
+
+
+Site Links
+
+
+
+
+
+
+CISA GitHub
+
+
+
+
+
+
+CISA Central
+
+
+
+
+
+
+Contact Us 
+
+
+
+
+
+
+Subscribe
+
+
+
+
+
+
+Transparency and Accountability
+
+
+
+
+
+
+Policies & Plans
+
+
+
+
+
+
+
+
+
+
+Staying Secure at Eventsno-cost Cyber ServicesCybersecurity Awareness MonthKEV CatalogReport A Cyber Issue 
+
+
+
+
+
+
+
+
+
+
+Breadcrumb
+
+
+Home
+
+
+News & Events
+
+
+Cybersecurity Directives
+
+
+
+              Supplemental Direction ED 26-03: Hunt and Hardening Guidance for Cisco SD-WAN Systems
+            
+
+
+
+
+
+
+
+Share:
+
+
+
+
+
+
+
+    Opens in a new window
+  
+
+
+
+
+
+
+    Opens in a new window
+  
+
+
+
+
+
+
+    Opens in a new window
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Emergency Directives
+
+Supplemental Direction ED 26-03: Hunt and Hardening Guidance for Cisco SD-WAN Systems
+
+February 25, 2026
+
+
+
+								Related topics:
+							
+
+Cybersecurity Best Practices
+
+
+
+
+
+
+
+
+
+
+
+
+News & Events
+
+
+
+
+Directives
+
+
+
+
+News
+
+
+
+
+Events
+
+
+
+
+Cybersecurity Alerts & Advisories
+
+
+
+
+Request a CISA Speaker
+
+
+
+
+Congressional Testimony
+
+
+
+
+CISA Conferences
+
+
+
+
+CISA Live!
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+Emergency Directive 26-03: Mitigate Vulnerabilities in Cisco SD-WAN Systems directs Federal Civilian Executive Branch (FCEB) agencies to identify, update, and assess potential compromises to in-scope Cisco SD-WAN systems. Exploitation activities linked to CVE-2026-20127, CVE-2022-20775, CVE-2026-20133, CVE-2026-20182 and other specified vulnerabilities pose an unacceptable risk, necessitating immediate action to mitigate privilege escalation, root access, and persistent threats to SD-WAN networks.
+CISA is providing this guidance to help organizations hunt and harden Cisco SD-WAN systems. Emergency Directive 26-03 requires FCEB agencies to implement the measures below and report any indications of compromise or unusual activity to CISA. Though Emergency Directives apply only to federal agencies, CISA strongly encourages all organizations to utilize the below guidance to reduce the risk surface of their networks.
+Background
+Based on international partner and CISA forensic analysis and reporting, CISA is aware of ongoing threat actor exploitation of a previously unknown vulnerability in Cisco SD-WAN systems. At the time of exploitation, this vulnerability was a zero-day. CVE-2026-20127 has been assigned to this vulnerability, and the vendor has now patched this vulnerability with the latest updates.
+The vulnerability allows an unauthenticated threat actor to gain access and administrative privileges to an organization’s SD-WAN network management plane or control plane. The threat actor-controlled rogue device appears as a new, temporary, and legitimate SD-WAN component. The rogue device can then conduct trusted actions within the management and control planes, allowing for privilege escalation and persistence.
+International partners observed lateral movement outside of the Cisco SD-WAN environment, and the threat actor consistently applied defense evasion techniques, primarily related to removing forensic artifacts on the host. These defense evasion techniques include clearing logs, command history, network connection history, and configurations, as well as taking steps to prevent log forwarding.
+Given this information, network defenders must immediately take the following actions:
+
+Hunt for evidence of compromise.
+
+Organizations that identify root account compromises must deploy fresh vManage, vSmart, and vBond from patched OVA or QCOW2 images, migrating edges to the new infrastructure, with new administrator accounts with unique credentials.
+
+
+Implement the hardening guidance.
+
+Hunt Guidance
+In conjunction with Cisco’s released guidance, organizations should follow the below threat hunt guidance to detect malicious activity. This guidance leverages the Australian Signals Directorate Australian Cyber Security Centre’s joint Cisco SD-WAN Threat Hunt Guide (authored with CISA and international partners), and CISA encourages organizations to consult and examine all identified detections and artifacts in this guide.
+Organizations can action the sections in this hunt guidance concurrently and, depending on available logs, some of the guidance may not apply to all organizations. According to recent reporting, malicious activity likely began in 2023, and organizations should scope hunting efforts accordingly.
+Note: This guidance reflects CISA’s current understanding of the threat. Related investigations are ongoing, and there are still unknown elements to the malicious activity. CISA encourages all organizations to report findings to CISA, especially if new malicious activity or detection methods are observed.
+A. Check for Version Downgrade and Unexpected Reboot Events
+Artifacts to review:
+/var/volatile/log/vdebug
+/var/log/tmplog/vdebug
+/var/volatile/log/sw_script_synccdb.log 
+Process:
+
+Check for an unexpected downgrade to an earlier software version by reviewing sw script logging for the following:
+
+Installation of sw (software operations script) master install script and associated scripts
+
+Process contains sw and message contains master install
+
+
+Activation of older or vulnerable software version
+
+cdb Set software log IOC is a reliable indicator for identifying version changes
+
+
+
+
+Compare image version change versus the authorized plan
+
+Note: Software changes accompanied by a system reboot can occur as part of the installation process. If software changes are accompanied by a system reboot, the following artifacts should be present:
+
+Reboot notifications like system-reboot-issued
+Daemon service shutdowns
+Log files written to disk
+Initialization of services and modification of some system files on reboot
+Cisco installation script logging, including confirmation of software versions and history
+Network reconnections
+High volume logging of kernel changes related to software changes
+
+B. Check for Application Reversion
+Artifacts to review:
+/var/log/tmplog/vdebug
+Process:
+
+Check for software upgrade confirmation requests and timeouts within 15 minutes of a version downgrade (see above section for version downgrade details)
+Review upgrade confirmation timer message(s) for the following:
+
+Contains “Starting upgrade confirmation timer”
+Contains “Waiting for upgrade confirmation from user”
+Contains “Software upgrade not confirmed”
+
+
+
+C. Identify Rogue Peering
+Note: Complete all listed methods below to conduct a thorough review.
+Method 1: Identifying by Anomalous Peer Type
+Artifacts to review:
+/var/log/tmplog/vdebug
+Process:
+
+Aggregate peer types to review for anomalous peer values:
+
+Select 'control-connection-state-change' events where peer-type:'vhub' as observed, OR peer-type appears as a low-frequency outlier, especially with new-state:up and uptime '0:00:00:00'
+
+
+Confirm peer is unauthorized in inventory:
+
+Correlate with remote-color anomaly, dump_pkt, or malformed hello within the same minute
+
+
+
+Method 2: Identifying by Outlier Detection
+Artifacts to review:
+/var/log/tmplog/vdebug
+/var/log/vsyslog
+/var/log/jsyslog
+/var/log/messages
+Process:
+
+Aggregate both 'peer-type' and 'peer-system-ip' to return clusters of rogue peers
+Group the 'peer-type' and 'peer-system-ip' as one object
+
+Count occurrences and sort by count, with low frequency being likely anomalous
+
+
+Compare 'peer-system-ip' with expected values
+Take count of 'peer-system-ip'
+Compare the public-ip with known good values, or by low frequency of occurrence
+Review where 'peer-type:vmanage' has value for 'public-ip:<value>'
+
+Look for instances where the public IP is not known to your entity
+
+
+
+Method 3: Identifying by ‘Remote Color’ Anomaly
+Artifacts to review:
+/var/volatile/log/vconfd.10
+/var/log/tmplog/vdebug.5
+Process:
+
+Select control-connection events with remote-color equal to '(null)' or '{28 0}', especially at first peering instances
+
+Method 4: Validate All Peered vEdge in SD-WAN Instance
+Artifacts to review:
+N/A
+Process:
+
+Access vManage UI and individually validate all peered vEdge infrastructure in the SD-WAN instance are known legitimate devices.
+
+D. Check for Secure Shell (SSH) Abuse
+Method 1: Review authorized_keys
+Artifacts to review:
+/home/vmanage-admin/.ssh/authorized_keys
+Process:
+
+Search path /home/vmanage-admin/.ssh/authorized_keys
+Review for keys not legitimately created by sysadmins
+Look for unexpected SSH authentications for the vmanage-admin account and a rogue 'authorized_key'
+
+Method 2: Review and Validate All Accounts With Access to Control Plane Assets
+Artifacts to review:
+/home/*
+Process:
+
+Review all /home/ directory structures for accounts that have interacted with the control plane asset
+Validate that all identified accounts are approved and authorized to access these assets
+
+E. Identify Root SSH and Root Login Anomalies
+Note: The root user login is locked down in Cisco SD-WANs and should never be used interactively. Artifacts generated from root login and timestamps could provide an indication of compromise and valuable pivot point.
+Complete all of the following methods to conduct a thorough review.
+If root account compromise is identified, organizations must deploy fresh vManage, vSmart, and vBond from patched OVA or qcow2 images and migrate edges to the new infrastructure.
+Method 1: Review for Indication of Public Key Exchange for Root User
+Artifacts to review:
+/var/log/tmplog/vdebug
+/home/root/.ssh/authorized_keys
+/etc/ssh/sshd_config
+Process:
+
+Search auth logs for 'Accepted publickey for root' entries
+Confirm presence/changes in /home/root/.ssh/authorized_keys
+Corroborate with /etc/ssh/sshd_config 'PermitRootLogin yes'.
+
+Method 2: Review Indicators for Anomalous Users
+Artifacts to review:
+/var/log/tmplog/vdebug
+Process:
+
+Review the below indicators for anomalous users, particularly in the context of a version change/reboot:
+
+/usr/sbin/useradd
+cfgmgr_config_aaa_user
+
+
+Select and review 'system-login-change'/'system-logout-change' where username equals 'root' or matches known rogue/local usernames from related detections
+
+Method 3: Review (u|w|b)tmp Files for Root Account Activity Leveraging Last or utmpdump Commands
+Artifacts to review:
+/var/run/utmp
+/var/log/wtmp
+/var/log/btmp
+Process:
+
+Run the following commands:
+
+To review the utmp file, run one of the following:
+
+last -f /var/run/utmp
+utmpdump /var/run/utmp
+
+
+To review the wtmp file, run one of the following:
+
+last -f /var/log/wtmp
+utmpdump /var/log/wtmp
+
+
+To review the btmp file, run one of the following:
+
+sudo last -f /var/log/btmp
+sudo utmpdump /var/log/btmp
+
+
+
+
+For all files above, review for unusual root logins. For the btmp file specifically, look for repeated failed root login attempts
+
+Method 4: Review root account
+Artifacts to review: 
+/etc/passwd
+Process:
+
+Review the root account to determine if a password has been set.
+
+The root account should not have a password set.
+The password hash entry should be a * character and NOT a hash, e.g., root:*:20432:0:99999:7::: 
+
+
+
+Method 5: Review SSH configuration
+Artifacts to review: 
+/etc/ssh/sshd_config
+Process:
+
+ Review the file and ensure PermitRootLogin is set to No.
+
+F. Review Log Clearing
+Method 1: Review Clearing of Login Logs
+Artifacts to review:
+/var/log/lastlog
+/var/log/wtmp
+Process:
+
+Review command history to show cat /dev/null > wtmp
+Review command history to show cat /dev/null > lastlog
+Verify resulting file sizes of wtmp and/or lastlog are 0 bytes
+
+Method 2: Review Clearing of Shell History
+Artifacts to review:
+/home/<user>/.bash_history
+Process:
+
+Review bash history for each user file for the following sizes: 0, 1, 2 bytes
+Review /home/<user>/.bash_history for 0/1/2-byte files, especially where timestamps for /.bash_history modifications align with malicious activity
+
+Hardening Guidance
+Follow Cisco’s Hardening Guidance and CISA’s Emergency Directive
+Organizations should apply the patches released by Cisco and consult the instructions in CISA’s Emergency Directive and the Cisco Catalyst SD-WAN Hardening Guide. Specifically, CISA recommends the following actions from Cisco’s SD-WAN Hardening Guidance:
+A. Session Timeout
+Client and Server Session Timeouts
+CISA recommends 5 minutes for client timeouts and 5 minutes for server session timeouts, but organizations should implement the minimum amount of time that is operationally acceptable.
+Command Line Interface (CLI) Sessions
+CISA recommends 5 minutes for CLI session inactivity timeout, but organizations should implement the minimum amount of time that is operationally acceptable.
+B. Control and Data Plane Security
+Control Plane Security
+Organizations should configure Datagram Transport Layer Security (DTLS) data encryption for SD-WAN Manager connections and use SNMPv3 for data authentication and encryption. Organizations should never use older versions of SNMP.
+Data Plane Security
+Organizations should create and install pairwise keys to ensure secure communication between the Cisco SD-WAN Controller and edge devices. This is more secure and preferred from the default ‘traditional key exchange’ where the SD-WAN Controller send IPsec encryption keys to each edge device.
+C. SD-WAN Manager Access
+Replace the Self-Signed Certificate for the Web User Interface
+Organizations should immediately replace the default self-signed certificate used by the SD-WAN Manager web user interface. Organizations should replace the self-signed certificate by the organization’s Enterprise Root Certificate Authority (CA) (or trusted Public CA).
+D. Logging
+Implement Logging and Regularly Audit Received Logs
+Organizations should store logs collected from SD-WAN systems externally (not on the SD-WAN device), as threat actors could modify logs stored on the device. CISA recommends storing logs in an external Security Information and Event Management (SIEM).
+Establish Alerts for High-Risk Events
+Organizations must configure their SIEM to alert for the following events:
+
+Anomalous peering events: Configure an alert to detect peering of vManage and vSmart devices. Leverage 'peer-type:vmanage' or 'peer-type:vsmart' and 'new-state:up' to generate an alert for the peering and review the public IP for unknown infrastructure.
+Successful authentication events: Configure an alert to detect for successful authentication events. Utilize event string ‘Authentication succeeded for’ and match the username from the log to an authorized user. If the alert is for a root account, then assume the root account has been compromised.
+
+Participate in Cloud Logging Aggregation Warehouse (CLAW)
+FCEB agencies with cloud-hosted SD-WAN infrastructure must participate in CLAW and configuring the transfer of AWS logs. For questions or assistance with onboarding into CLAW please contact CLAWOperationsSupport@cisa.dhs.gov.
+E. Implement Strong Network Perimeter Controls
+Prevent Connections to SD-WAN From Untrusted Devices
+Organizations should deploy their Cisco SD-WAN in the most secure configuration possible and not expose the infrastructure publicly. While it is possible to configure Cisco SD-WAN to allow for vEdge devices with dynamic IPs to connect, this is not a secure deployment.
+Organizations should deploy a firewall in front of their Cisco SD-WAN and configure it to only allow known vEdge, vSmart, vBond, and vManage IPs to connect to the organization's infrastructure. While implementing this “allowlisting,” vEdge peered devices will inherently be audited. Organizations should take note of any unknown/unexpected peers and investigate thoroughly.
+Note: Organizations will need to assign static IPs to all vEdge appliances across their enterprise.
+For Cisco cloud-hosted SD-WAN deployments, follow Cisco’s instructions in the “Network Perimeter Controls” portion of the Cisco Catalyst SD-WAN Hardening Guide.Isolate Management Interface
+Organizations should deploy their VPN 512 management interfaces into an isolated internal management VLAN. This will ensure that the management interface is not exposed to the public internet, and administrators are required to authenticate into the internal network prior to accessing the management interface reducing the attack surface for threat actor exploitation.
+Host Infrastructure in GovCloud
+Federal organizations should migrate to FEDRAMP-compliant cloud infrastructure. 
+
+
+
+
+
+
+Tags
+
+Topics:
+                                                                                                                                                                                                                                                                                                                                                Cybersecurity Best Practices
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Directives
+
+
+
+
+
+
+Apr 23, 2026
+
+Emergency Directive
+
+
+
+V1: ED 25-03: Identify and Mitigate Potential Compromise of Cisco Devices
+ 
+
+
+
+
+
+
+
+Mar 11, 2026
+
+Emergency Directive
+
+
+
+V1: ED 26-03: Mitigate Vulnerabilities in Cisco SD-WAN Systems
+ 
+
+
+
+
+
+
+
+Feb 25, 2026
+
+Emergency Directive
+
+
+
+ED 26-03: Mitigate Vulnerabilities in Cisco SD-WAN Systems
+ 
+
+
+
+
+
+
+
+Jan 08, 2026
+
+Emergency Directive
+
+
+
+ED 24-02: Mitigating the Significant Risk from Nation-State Compromise of Microsoft Corporate Email System (Closed)
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Return to top
+
+
+
+
+
+
+Topics
+
+
+Spotlight
+
+
+Resources & Tools
+
+
+News & Events
+
+
+Careers
+
+
+About
+
+
+
+
+
+
+
+
+
+Cybersecurity & Infrastructure Security Agency
+ 
+
+
+
+Facebook
+
+
+X
+
+
+LinkedIn
+
+
+YouTube
+
+
+Instagram
+
+
+RSS
+
+
+
+CISA Central
+1-844-Say-CISA
+contact@cisa.dhs.gov
+
+
+
+
+
+
+
+
+
+
+DHS Seal
+
+CISA.gov
+An official website of the U.S. Department of Homeland Security
+
+
+
+
+About CISA
+
+
+Budget and Performance
+
+
+DHS.gov
+
+
+FOIA Requests
+
+
+No FEAR Act
+
+
+Office of Inspector General
+
+
+Privacy Policy
+
+
+Subscribe
+
+
+The White House
+
+
+USA.gov
+
+
+Website Feedback
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

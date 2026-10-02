@@ -1,0 +1,1347 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Trusted Connections, Hidden Risks: Token Management in the Third-Party Supply Chain
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Menu
+
+
+
+
+
+
+Tools
+ATOMs
+Security Consulting
+About Us
+Under Attack?
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  Threat Research CenterInsightsGeneral 
+ 
+General
+Trusted Connections, Hidden Risks: Token Management in the Third-Party Supply Chain
+
+
+  6  min read              
+
+
+
+
+
+
+
+
+
+
+
+By:Bill BatchelorEyal RafianNathaniel Quist 
+
+Published:September 12, 2025 Categories:GeneralInsights
+ Tags:Cloud SecuritySalesforceSalesloftSupply chain
+ 
+
+
+ 
+ 
+
+
+Share
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+A Day in the Life of a Security Defender
+You are about to log off for the weekend when a high-severity alert flashes on your cloud security tool’s dashboard. A single, unfamiliar OAuth token is making hundreds of connections from three different IP addresses, two of which are flagged as belonging to an unknown VPN service.
+The token belongs to a third-party application integrated with the company's Salesforce instance, one of those forgotten dormant integrations. A threat actor has stolen an OAuth token to bypass traditional defenses and is enumerating CRM accounts and exfiltrating sensitive data.
+A pit forms in your stomach; you are experiencing a supply chain attack.
+The incident is not just an internal issue. This supply chain threat involves a lack of monitoring by the third-party integration that exposed the third-party company and potentially its customers to a devastating, wide-reaching breach.
+This underscores a critical threat landscape of inconsistently managed integrations and tokens. Downstream clients of a third-party application may easily overlook dormant integrations, insecure token storage and long-lived tokens.
+In this situation, you immediately trigger the established security playbooks to revoke the token and rotate the associated credentials. But since the compromise targeted the third party application, you never really had full control over all the elements that led to the attack that kept you from logging out this evening. This scenario is a stark reminder of the significance of the third-party supply chain.
+Identity as a Critical Asset
+The widespread adoption of cloud-native, API driven architecture has made OAuth tokens a high-value target for threat actors. These tokens are the cornerstone of secure integration with third parties. In a cloud-centric world, nearly every service is integrated, often with third-party applications. As demonstrated by recent high-profile breaches such as Salesloft’s Drift, a single compromised token can have devastating consequences.
+We believe the path forward is not just about better perimeter defenses, but in treating every identity token as a critical asset that must be protected, monitored and frequently rotated. This includes not only API tokens, but also open authorization (OAuth) access tokens and their associated refresh tokens. By embracing a zero-trust approach to dynamic token management for our applications, cloud providers and identity providers, we can build a more resilient and protected digital ecosystem to protect against sophisticated threats.
+The Problem: Compromised OAuth Tokens
+
+The 2025 Salesloft Drift incident serves as a critical case study in modern software as a service (SaaS) supply-chain risk. A threat actor, UNC6395, stole an OAuth token from the Salesloft Drift integration, which bypassed traditional defenses like MFA. This single, compromised credential provided legitimate, persistent access to hundreds of customer Salesforce instances. From there, the threat actors exfiltrated sensitive data, including embedded credentials, which enabled them to pivot and access other critical systems.
+Our recent 2025 Unit 42 Global Incident Response Report named issues with the software supply chain as one of the threat landscape’s emerging trends. The report shared observations of identity and access management issues and highlighted how threat actors frequently use valid cloud accounts for initial access, privilege escalation and persistence.
+The problem is hardly new.
+When Trust is Broken: A Brief History of Token Misuse
+Tokens are the invisible currency of trust in modern cloud environments. They let applications talk to each other, enable automation and keep workflows seamless. But when that trust isn’t managed carefully, tokens become one of the most dangerous tools in a threat actor’s toolbox. Over the last few years, we’ve seen three recurring patterns that show exactly why.
+1. Dormant Integrations – Trust That Outlives Its Purpose
+Think of an unused integration like an old key you left under the doormat. You may have forgotten it’s there, but threat actors can still use it. In 2022, GitHub disclosed that threat actors had compromised OAuth tokens issued to Heroku and Travis CI integrations. Many organizations weren’t actively using those integrations anymore, but the OAuth authorizations still lingered in their environments. By exploiting that forgotten trust, threat actors were able to access private GitHub repositories, download source code and potentially harvest secrets hidden inside.
+Why It Matters
+Every integration you keep alive, even if unused, extends your attack surface. A dormant integration doesn’t mean a harmless integration.
+2. Insecure Token Storage – Keys Left in the Open
+Tokens are only as strong as the places they’re kept. In 2023, CircleCI reported a breach where threat actors gained access to internal systems and exfiltrated customer OAuth tokens, environment variables and SSH keys. Many of these secrets were stored unencrypted in build environments, making them low-hanging fruit once the threat actors were inside.
+The impact was serious. CircleCI had to inform every customer to rotate all tokens and secrets immediately, acknowledging that no stored credential could be considered safe. For many organizations, this meant postponing business IT priorities to focus on resetting keys across GitHub, AWS and other platforms before threat actors could exploit them.
+Why It Matters
+Storing tokens without encryption or adequate isolation is like leaving the keys to every room on the front desk of a hotel. Once a bad actor is inside, they don’t need to break into individual rooms because a key to every room is there, out in the open, for the taking.
+3. No Expiration or Rotation – Keys That Never Expire
+Even if a token is well protected, leaving it valid indefinitely creates a problem waiting to happen. The 2024 Internet Archive breach illustrated this risk. Threat actors exploited GitLab tokens that had remained valid for 22 months. With no rotation or expiration, threat actors had nearly two years of undisturbed access, ultimately exfiltrating 7 TB of data.
+Why It Matters
+Tokens must have a lifecycle. Without rotation and expiration, threat actors can turn one compromise into a prolonged, large-scale breach.
+OAuth Best Practices: Recommendations for Organizations
+Managing OAuth tokens and third-party integrations isn’t just technical housekeeping. It’s a core part of protecting your business. Tokens represent trust. If they’re stolen, misused or left unmanaged, threat actors can impersonate your identities and systems with potentially costly financial and reputational impact. To reduce this risk, organizations should adopt three pillars of token security: posture management, secure storage and active monitoring.
+1. Token Posture Management – Know What You Have and Control It
+The first step is visibility. Organizations must track how many OAuth tokens, API keys and service account credentials they have in circulation. Without an inventory, there’s no way to know what’s still in use or what’s potentially exposing you to compromise. Additionally, the longer a token remains valid, the more dangerous it becomes if compromised. By controlling token lifetimes, organizations reduce the window of opportunity for threat actors.
+
+Maintain an inventory: Build and maintain a clear, up-to-date catalog of all OAuth tokens and service credentials.
+Remove dormant integrations: Conduct regular audits of third-party apps and revoke tokens for those no longer in use. Dormant integrations are forgotten backdoors.
+Shorten token lifespans: Configure access tokens to expire quickly and limit refresh tokens wherever possible.
+Rotate and expire regularly: Enforce policies requiring tokens to expire and be rotated on a schedule, just like passwords.
+Build expiration into design: Treat token renewal as a deliberate, auditable action.
+
+2. Secure Token Storage – Protect the Keys Themselves
+Tokens should be treated like encryption keys. They should never be left in plaintext and never be stored within source code or readable in logs. Vendors and internal teams must be able to demonstrate secure storage practices. If not, compromise is only a matter of time.
+
+Enforce secure storage: Implement a secure secret management solution and strong token governance inside your organization. Require that all third-party vendors use proper secret management solutions and encryption for stored tokens.
+Audit vendor and internal practices: Build secure token storage requirements into internal IT policy, vendor risk assessments and supply-chain security reviews.
+
+3. Runtime Monitoring and Detection – Watch for Abuse and Act Fast
+Even with good hygiene, breaches still happen. Monitoring and rapid response are required. Being able to determine when a token has been compromised is essential. If a token is stolen, every minute during the response process counts to contain impact.
+
+Centralize logging: Capture OAuth and API authentication events from all providers and integrations in one place.
+Use IAM security tools: Implement platforms with built-in anomaly detection for token-based access.
+Detect and revoke quickly: Monitor for unusual activity such as mass data exports or unexpected geographic access and have playbooks ready to immediately revoke and rotate compromised tokens.
+Practice breach drills: Ensure security teams know how to execute revocations across multiple systems under time pressure.
+
+The Way Forward
+As the introduction story illustrates, a single compromised OAuth token can be a dangerous vulnerability.
+The breaches we've examined, from dormant OAuth apps at Microsoft to insecure token storage at CircleCI and long-lived credentials at the Internet Archive, all point to a shared problem: Token and integration management can be an industry weak spot.
+To reduce these risks, every organization must raise its baseline:
+
+Secure tokens like credentials
+Demand higher standards from vendors
+Enforce integration hygiene
+Improve monitoring
+Treat token compromises as if they were a supply chain threat
+
+In recognition of these widespread risks, Palo Alto Networks is aggressively strengthening our own token posture management and hygiene to secure the lifecycle of these critical credentials.
+Effective guidance exists in current industry frameworks for some of these risks. There remains a real need to enforce and build on existing frameworks. Additionally, organizations can take a leading role in creating internal security operational materials, such as manual and automated playbooks and enforcing policy guidance around third-party OAuth governance and integration hygiene.
+References
+
+Threat Brief: Salesloft Drift Integration Used To Compromise Salesforce Instances – Unit 42, Palo Alto Networks
+Security alert: Attack campaign involving stolen OAuth user tokens issued to two third-party integrators – The GitHub Blog
+CircleCI incident report for January 4, 2023 security incident – CircleCI
+The Internet Archive Breach – Nonhuman Identity Management Group
+Cybersecurity Framework – NIST
+NIST SP 800-53 Rev. 5.1.1 – Computer Security Resource Center, NIST
+SP 800-57 Part 1 Rev. 5, Recommendation for Key Management: Part 1 – General – Computer Security Resource Center, NIST
+SP 800-92 Rev. 1, Cybersecurity Log Management Planning Guide – Computer Security Resource Center, NIST
+SP 800-161 Rev. 1, Cybersecurity Supply Chain Risk Management Practices for Systems and Organizations – Computer Security Resource Center, NIST
+
+
+
+Back to top
+
+TagsCloud SecuritySalesforceSalesloftSupply chain
+
+
+
+Threat Research Center
+
+
+Next: AdaptixC2: A New Open-Source Framework Leveraged in Real-World Attacks
+
+
+
+
+
+
+
+Table of Contents
+
+
+
+
+
+
+Related Articles
+
+
+
+                      Connecting the Dots: Securing the Overlooked Corners of the Software Development Lifecycle (SDLC) Supply Chain                  
+
+
+
+                      The npm Threat Landscape: Attack Surface and Mitigations (Updated July 15)                  
+
+
+
+                      Phantom Squatting: AI-Hallucinated Domains as a Software Supply Chain Vector                  
+
+
+
+
+
+
+
+
+
+Related General Resources
+
+
+
+
+ 
+
+
+
+Insights September 16, 2026
+
+Atomic macOS (AMOS) Stealer Activity
+
+
+
+MacOS
+
+
+Threat intelligence
+
+
+Unit 42
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights September 2, 2026
+
+An AI-Assisted Cyber Attack: Inside a Unit 42 Investigation
+
+
+
+Agentic AI
+
+
+Frontier AI
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights August 28, 2026
+
+Perturbation Probing: A New Diagnostic for the Fragility of LLM Safety
+
+
+
+AI
+
+
+Jailbreak
+
+
+LLM
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights August 21, 2026
+
+Connecting the Dots: Securing the Overlooked Corners of the Software Development Lifecycle (SDLC) Supply Chain
+
+
+
+ChainDrop
+
+
+Npm packages
+
+
+Software supply-chain attack
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+High Profile Threats August 18, 2026
+
+Threat Brief: Mitigating Large-Scale Credential Attacks (Updated August 18)
+
+
+
+Credential theft
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights August 4, 2026
+
+The Frontier AI Vulnerability Burst: Industrializing Autonomous Zero-Day Discovery in Open-Source Software
+
+
+
+AI
+
+
+Frontier AI
+
+
+Vulnerability Exploitation
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights July 2, 2026
+
+How We Added WebAuthn to a Browser-Based RDP Client
+
+
+
+IDA Pro
+
+
+Microsoft
+
+
+RDP
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights June 12, 2026
+
+Tracing Digital Intent: New MacOS Tahoe 26 Artifact Discovered
+
+
+
+Digital forensics
+
+
+MacOS
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights June 8, 2026
+
+When “Hi, This Is IT” Comes Through Microsoft Teams
+
+
+
+Cloaked Ursa
+
+
+Identity
+
+
+Phishing
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights May 28, 2026
+
+2026 World Cup: Discussing The World’s Biggest Game’s Attack Surface
+
+
+
+Fiddling Scorpius
+
+
+Fighting Ursa
+
+
+Muddled Libra
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
+				Get updates from Unit 42			
+Peace of mind comes from staying ahead of threats. Subscribe today.
+
+
+
+
+
+
+
+
+
+
+Your Email
+
+
+Subscribe for email updates to all Unit 42 threat research.
+By submitting this form, you agree to our Terms of Use and acknowledge our Privacy Statement.
+
+                    This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.                            
+  
+
+Invalid captcha!
+ 
+					Subscribe					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Get the latest news, invites to events, and threat alerts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Enter your email now to subscribe!
+
+
+
+
+
+Sign up 
+
+
+
+
+                                
+                                
+                                
+                                    By submitting this form, I understand my personal data will be processed in accordance with
+                                        Palo Alto Networks Privacy Statement and Terms of Use.
+
+
+
+Sign up 
+
+
+
+
+
+
+
+
+
+
+
+
+Products and Services
+
+
+
+
+
+                                    AI-Powered Network Security Platform
+                                
+
+
+
+                                    Secure AI by Design
+                                
+
+
+
+                                    Prisma AIRS
+                                
+
+
+
+                                    AI Access Security
+                                
+
+
+
+                                    Cloud Delivered Security Services
+                                
+
+
+
+                                    Advanced Threat Prevention
+                                
+
+
+
+                                    Advanced URL Filtering
+                                
+
+
+
+                                    Advanced WildFire
+                                
+
+
+
+                                    Advanced DNS Security
+                                
+
+
+
+                                    Enterprise Data Loss Prevention
+                                
+
+
+
+                                    Enterprise IoT Security
+                                
+
+
+
+                                    Medical IoT Security
+                                
+
+
+
+                                    Industrial OT Security
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    Next-Generation Firewalls
+                                
+
+
+
+                                    Hardware Firewalls
+                                
+
+
+
+                                    Software Firewalls
+                                
+
+
+
+                                    Strata Cloud Manager
+                                
+
+
+
+                                    SD-WAN for NGFW
+                                
+
+
+
+                                    PAN-OS
+                                
+
+
+
+                                    Panorama
+                                
+
+
+
+                                    Secure Access Service Edge
+                                
+
+
+
+                                    Prisma SASE
+                                
+
+
+
+                                    Application Acceleration
+                                
+
+
+
+                                    Autonomous Digital Experience Management
+                                
+
+
+
+                                    Enterprise DLP
+                                
+
+
+
+                                    Prisma Access
+                                
+
+
+
+                                    Prisma Browser
+                                
+
+
+
+                                    Prisma SD-WAN
+                                
+
+
+
+                                    Remote Browser Isolation
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    AI-Driven Security Operations Platform
+                                
+
+
+
+                                    Cloud Security
+                                
+
+
+
+                                    Cortex Cloud
+                                
+
+
+
+                                    Application Security
+                                
+
+
+
+                                    Cloud Posture Security
+                                
+
+
+
+                                    Cloud Runtime Security
+                                
+
+
+
+                                    Prisma Cloud
+                                
+
+
+
+                                    AI-Driven SOC
+                                
+
+
+
+                                    Cortex XSIAM
+                                
+
+
+
+                                    Cortex XDR
+                                
+
+
+
+                                    Cortex XSOAR
+                                
+
+
+
+                                    Cortex Xpanse
+                                
+
+
+
+                                    Unit 42 Managed Detection & Response
+                                
+
+
+
+                                    Managed XSIAM
+                                
+
+
+
+                                    Observability
+                                
+
+
+
+                                    Cortex XCOR
+                                
+
+
+
+
+
+                                    Next-Generation Identity Security
+                                
+
+
+
+                                    Privileged Access Management
+                                
+
+
+
+                                    Identity and Access Management 
+                                
+
+
+
+                                    Endpoint Privilege Manager
+                                
+
+
+
+                                    Identity Governance
+                                
+
+
+
+                                    Workforce Password Management
+                                
+
+
+
+                                    Agentic Identities
+                                
+
+
+
+                                    Secrets Management
+                                
+
+
+
+                                    Unified Secrets Governance
+                                
+
+
+
+                                    Application Credentials Delivery
+                                
+
+
+
+                                    Vendor Privileged Access
+                                
+
+
+
+                                    Threat Intel and Incident Response Services
+                                
+
+
+
+                                    Prepare for Emerging Risks
+                                
+
+
+
+                                    Strengthen Your Defenses
+                                
+
+
+
+                                    Build Your Security Strategy
+                                
+
+
+
+                                    Understand the Adversary
+                                
+
+
+
+                                    Respond to a Cyber Attack
+                                
+
+
+
+
+
+
+Company
+
+
+
+
+
+                                    About Us
+                                
+
+
+
+                                    Careers
+                                
+
+
+
+                                    Contact Us
+                                
+
+
+
+                                    Corporate Responsibility
+                                
+
+
+
+                                    Customers
+                                
+
+
+
+                                    Investor Relations
+                                
+
+
+
+                                    Location
+                                
+
+
+
+                                    Newsroom
+                                
+
+
+
+
+
+
+Popular Links
+
+
+
+
+
+                                    Blog
+                                
+
+
+
+                                    Communities
+                                
+
+
+
+                                    Content Library
+                                
+
+
+
+                                    Cyberpedia
+                                
+
+
+
+                                    Event Center
+                                
+
+
+
+                                    Manage Email Preferences
+                                
+
+
+
+                                    Products A-Z
+                                
+
+
+
+                                    Product Certifications
+                                
+
+
+
+                                    Report a Vulnerability
+                                
+
+
+
+                                    Sitemap
+                                
+
+
+
+                                    Tech Docs
+                                
+
+
+
+                                    Unit 42
+                                
+
+
+
+                                    Do Not Sell or Share My Personal Information
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Privacy
+                            
+
+
+
+                                Trust Center
+                            
+
+
+
+                                Terms of Use
+                            
+
+
+
+                                Documents
+                            
+
+
+Copyright © 2026 Palo Alto Networks. All Rights Reserved
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+EN
+
+
+
+Select your language
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Your browser does not support the video tag.
+          
+
+Default Heading
+Read the article
+              
+
+
+
+
+Seekbar
+
+
+
+
+
+
+
+
+
+
+
+
+
+Volume
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,1297 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The Browser Defense Playbook: Stopping the Attacks That Start on Your Screen
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Menu
+
+
+
+
+
+
+Tools
+ATOMs
+Security Consulting
+About Us
+Under Attack?
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  Threat Research CenterInsightsGeneral 
+ 
+General
+The Browser Defense Playbook: Stopping the Attacks That Start on Your Screen
+
+
+  3  min read              
+
+
+Related ProductsPrisma AccessSecure Access Service Edge (SASE)Unit 42 Incident Response 
+
+
+
+
+
+
+
+
+By:Unit 42 
+
+Published:December 2, 2025 Categories:GeneralInsights
+ Tags:Cloud SecurityDefense
+ 
+
+
+ 
+ 
+
+
+Share
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+The Browser: The New Center of Work — and Risk
+The predominance of cloud-based apps and the trend towards remote work have made the browser the place where most work happens. In fact, about 85% of daily work takes place there.
+In many ways, it’s a win for all involved.
+Users can work from a wider range of locations and devices, accessing full “desktops” inside a browser tab. Organizations can manage apps and browser access easier than through localized desktop software. This all allows for greater central management, lower costs and better flexibility.
+But where work goes, attackers tend to follow.
+In Unit 42’s 2025 Global Incident Response Report, nearly half of the incidents we investigated involved malicious activity launched or facilitated through employees’ browsers. Popular tactics include phishing, abuse of URL redirects and malware downloads – each one exploiting the browser session without adequate detection or blocking.
+Securing the browser should be a high priority. In this blog, we’ll explain its unique risks and provide tips for defending it.
+Why Browsers Fail: Common Pitfalls and Security Lapses
+Google Chrome, Apple Safari, Mozilla Firefox and Microsoft Edge come from the biggest, most trusted names in tech. As such, users tend to treat the browser as a defense between the internet and the organization’s infrastructure.
+Though browsers do provide some security through TLS connections, sandboxing and automatic updates, attackers still plant malicious traps for unsuspecting users to trip.
+Social Engineering
+Fraudulent emails, fake websites and login portals, malicious links and files – phishing attacks are largely conducted through browsers.
+Browser Extensions
+Marketplaces like the Google Web Store offer tens of thousands of extensions. Many of these extensions aren’t secure, and some are outright malicious—in fact, a Stanford University study found that 280 million Google Chrome users installed extensions containing malware over a three-year period.
+Users who work on their personal device face more risk. Unlike managed corporate environments, personal devices often lack centralized security policies and monitoring to vet or block suspicious extension installations. For example, an extension for converting files or finding retail discounts may hold malware.
+Browser-Specific Tactics
+Session hijacking tactics allow malware on the endpoint to steal session tokens from the browser in order to impersonate the user. Once a session is compromised, numerous other security controls can be bypassed. Cross-site scripting allows attackers to inject scripts into web-based apps. These scripts can steal user sessions, modify transactions or show fake login screens.
+No Clicking Necessary
+“Don’t click anything suspicious” is no longer valid advice. Malicious assets seem more authentic than ever, and many don’t even need clicking. Simply visiting a malicious or compromised website can cause malware to be downloaded and installed without the user’s knowledge or interaction.
+A Lack of Policy
+For many organizations, the browser isn’t on their radar in terms of being part of the attack surface. As such, many organizations allow insecure protocols and lack an inventory of permissible extensions.
+Think of the browser as the new endpoint. Through the browser, users access internal systems, sensitive information, source code, financial transactions and more.
+Crucial Steps Every Defender Should Take
+New tools are emerging that help secure the browser. For example, enterprise-grade secure browsers come with strict extension allow lists. They conduct data loss prevention based on context directly in the browser, enable role-based browsing permissions and more.
+With or without these tools, organizations should still take steps to harden systems and pursue strategies that support browser security.
+See all traffic without needing to decrypt traffic, by analyzing the encrypted traffic’s behavior rather than its contents.
+Extend zero trust to the browser by implementing multi-factor authentication for every browser-based app and using step-up MFA for sensitive user actions. Tailor access rules according to context like device security posture, location, or network
+Bring the browser into the fold of security by implementing tools that detect suspicious behavior like credential misuse, sensitive access from unknown devices and malware hidden in large files before they are downloaded.
+Zero Trust: Implementation Strategies
+Just as organizations would implement zero trust in internal systems, they should verify identity and control access tightly within the browser.
+First things first: authenticate the user’s access permissions before they open the browser. Then, validate the user’s identity before granting access to any web app and apply conditional access.
+Apply the principle of least privilege to SaaS and web apps — which users can access which apps and what they can do inside them — with granular last-mile data controls.
+Assume all web traffic and extensions are risky. Only allow vetted, enterprise-approved extensions. Continuously monitor extensions and block them should they pose a risk.
+Continuously monitor browser sessions for risky behavior and log everything. Perform continuous risk assessment regarding device health, user behavior and application risk.
+Finalizing your Playbook: Achieving Superior Browser Security
+Our Prisma Browser combines zero trust principles by leveraging our cloud-delivered security services. It provides real-time traffic inspection without the need for encryption, malware prevention, URL filtering and data loss prevention across traffic — all without an agent. Working with Prisma Access secures access to internal applications without exposing them to the public internet, ensuring every user and device is continuously authenticated and authorized before granting access.
+
+
+Back to top
+
+TagsCloud SecurityDefense
+
+
+
+Threat Research Center
+
+
+Next: The Golden Scale: 'Tis the Season for Unwanted Gifts
+
+
+
+
+
+
+
+Table of Contents
+
+
+
+
+
+
+Related Articles
+
+
+
+                      Essential Data Sources for Detection Beyond the Endpoint                  
+
+
+
+                      Bring the Fight to the Edge: Turning Time Into an Advantage in OT Security                  
+
+
+
+                      "Shai-Hulud" Worm Compromises npm Ecosystem in Supply Chain Attack (Updated November 26)                  
+
+
+
+
+
+
+
+
+
+Related General Resources
+
+
+
+
+ 
+
+
+
+Insights September 16, 2026
+
+Atomic macOS (AMOS) Stealer Activity
+
+
+
+MacOS
+
+
+Threat intelligence
+
+
+Unit 42
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights September 2, 2026
+
+An AI-Assisted Cyber Attack: Inside a Unit 42 Investigation
+
+
+
+Agentic AI
+
+
+Frontier AI
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights August 28, 2026
+
+Perturbation Probing: A New Diagnostic for the Fragility of LLM Safety
+
+
+
+AI
+
+
+Jailbreak
+
+
+LLM
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights August 21, 2026
+
+Connecting the Dots: Securing the Overlooked Corners of the Software Development Lifecycle (SDLC) Supply Chain
+
+
+
+ChainDrop
+
+
+Npm packages
+
+
+Software supply-chain attack
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+High Profile Threats August 18, 2026
+
+Threat Brief: Mitigating Large-Scale Credential Attacks (Updated August 18)
+
+
+
+Credential theft
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights August 4, 2026
+
+The Frontier AI Vulnerability Burst: Industrializing Autonomous Zero-Day Discovery in Open-Source Software
+
+
+
+AI
+
+
+Frontier AI
+
+
+Vulnerability Exploitation
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights July 2, 2026
+
+How We Added WebAuthn to a Browser-Based RDP Client
+
+
+
+IDA Pro
+
+
+Microsoft
+
+
+RDP
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights June 12, 2026
+
+Tracing Digital Intent: New MacOS Tahoe 26 Artifact Discovered
+
+
+
+Digital forensics
+
+
+MacOS
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights June 8, 2026
+
+When “Hi, This Is IT” Comes Through Microsoft Teams
+
+
+
+Cloaked Ursa
+
+
+Identity
+
+
+Phishing
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights May 28, 2026
+
+2026 World Cup: Discussing The World’s Biggest Game’s Attack Surface
+
+
+
+Fiddling Scorpius
+
+
+Fighting Ursa
+
+
+Muddled Libra
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
+				Get updates from Unit 42			
+Peace of mind comes from staying ahead of threats. Subscribe today.
+
+
+
+
+
+
+
+
+
+
+Your Email
+
+
+Subscribe for email updates to all Unit 42 threat research.
+By submitting this form, you agree to our Terms of Use and acknowledge our Privacy Statement.
+
+                    This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.                            
+  
+
+Invalid captcha!
+ 
+					Subscribe					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Get the latest news, invites to events, and threat alerts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Enter your email now to subscribe!
+
+
+
+
+
+Sign up 
+
+
+
+
+                                
+                                
+                                
+                                    By submitting this form, I understand my personal data will be processed in accordance with
+                                        Palo Alto Networks Privacy Statement and Terms of Use.
+
+
+
+Sign up 
+
+
+
+
+
+
+
+
+
+
+
+
+Products and Services
+
+
+
+
+
+                                    AI-Powered Network Security Platform
+                                
+
+
+
+                                    Secure AI by Design
+                                
+
+
+
+                                    Prisma AIRS
+                                
+
+
+
+                                    AI Access Security
+                                
+
+
+
+                                    Cloud Delivered Security Services
+                                
+
+
+
+                                    Advanced Threat Prevention
+                                
+
+
+
+                                    Advanced URL Filtering
+                                
+
+
+
+                                    Advanced WildFire
+                                
+
+
+
+                                    Advanced DNS Security
+                                
+
+
+
+                                    Enterprise Data Loss Prevention
+                                
+
+
+
+                                    Enterprise IoT Security
+                                
+
+
+
+                                    Medical IoT Security
+                                
+
+
+
+                                    Industrial OT Security
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    Next-Generation Firewalls
+                                
+
+
+
+                                    Hardware Firewalls
+                                
+
+
+
+                                    Software Firewalls
+                                
+
+
+
+                                    Strata Cloud Manager
+                                
+
+
+
+                                    SD-WAN for NGFW
+                                
+
+
+
+                                    PAN-OS
+                                
+
+
+
+                                    Panorama
+                                
+
+
+
+                                    Secure Access Service Edge
+                                
+
+
+
+                                    Prisma SASE
+                                
+
+
+
+                                    Application Acceleration
+                                
+
+
+
+                                    Autonomous Digital Experience Management
+                                
+
+
+
+                                    Enterprise DLP
+                                
+
+
+
+                                    Prisma Access
+                                
+
+
+
+                                    Prisma Browser
+                                
+
+
+
+                                    Prisma SD-WAN
+                                
+
+
+
+                                    Remote Browser Isolation
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    AI-Driven Security Operations Platform
+                                
+
+
+
+                                    Cloud Security
+                                
+
+
+
+                                    Cortex Cloud
+                                
+
+
+
+                                    Application Security
+                                
+
+
+
+                                    Cloud Posture Security
+                                
+
+
+
+                                    Cloud Runtime Security
+                                
+
+
+
+                                    Prisma Cloud
+                                
+
+
+
+                                    AI-Driven SOC
+                                
+
+
+
+                                    Cortex XSIAM
+                                
+
+
+
+                                    Cortex XDR
+                                
+
+
+
+                                    Cortex XSOAR
+                                
+
+
+
+                                    Cortex Xpanse
+                                
+
+
+
+                                    Unit 42 Managed Detection & Response
+                                
+
+
+
+                                    Managed XSIAM
+                                
+
+
+
+                                    Observability
+                                
+
+
+
+                                    Cortex XCOR
+                                
+
+
+
+
+
+                                    Next-Generation Identity Security
+                                
+
+
+
+                                    Privileged Access Management
+                                
+
+
+
+                                    Identity and Access Management 
+                                
+
+
+
+                                    Endpoint Privilege Manager
+                                
+
+
+
+                                    Identity Governance
+                                
+
+
+
+                                    Workforce Password Management
+                                
+
+
+
+                                    Agentic Identities
+                                
+
+
+
+                                    Secrets Management
+                                
+
+
+
+                                    Unified Secrets Governance
+                                
+
+
+
+                                    Application Credentials Delivery
+                                
+
+
+
+                                    Vendor Privileged Access
+                                
+
+
+
+                                    Threat Intel and Incident Response Services
+                                
+
+
+
+                                    Prepare for Emerging Risks
+                                
+
+
+
+                                    Strengthen Your Defenses
+                                
+
+
+
+                                    Build Your Security Strategy
+                                
+
+
+
+                                    Understand the Adversary
+                                
+
+
+
+                                    Respond to a Cyber Attack
+                                
+
+
+
+
+
+
+Company
+
+
+
+
+
+                                    About Us
+                                
+
+
+
+                                    Careers
+                                
+
+
+
+                                    Contact Us
+                                
+
+
+
+                                    Corporate Responsibility
+                                
+
+
+
+                                    Customers
+                                
+
+
+
+                                    Investor Relations
+                                
+
+
+
+                                    Location
+                                
+
+
+
+                                    Newsroom
+                                
+
+
+
+
+
+
+Popular Links
+
+
+
+
+
+                                    Blog
+                                
+
+
+
+                                    Communities
+                                
+
+
+
+                                    Content Library
+                                
+
+
+
+                                    Cyberpedia
+                                
+
+
+
+                                    Event Center
+                                
+
+
+
+                                    Manage Email Preferences
+                                
+
+
+
+                                    Products A-Z
+                                
+
+
+
+                                    Product Certifications
+                                
+
+
+
+                                    Report a Vulnerability
+                                
+
+
+
+                                    Sitemap
+                                
+
+
+
+                                    Tech Docs
+                                
+
+
+
+                                    Unit 42
+                                
+
+
+
+                                    Do Not Sell or Share My Personal Information
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Privacy
+                            
+
+
+
+                                Trust Center
+                            
+
+
+
+                                Terms of Use
+                            
+
+
+
+                                Documents
+                            
+
+
+Copyright © 2026 Palo Alto Networks. All Rights Reserved
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+EN
+
+
+
+Select your language
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Your browser does not support the video tag.
+          
+
+Default Heading
+Read the article
+              
+
+
+
+
+Seekbar
+
+
+
+
+
+
+
+
+
+
+
+
+
+Volume
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

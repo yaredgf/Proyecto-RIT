@@ -1,0 +1,692 @@
+
+
+
+Multiple ransomware data leak sites experience DDoS attacks, facing intermittent outages and connectivity issues
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Multiple ransomware data leak sites experience DDoS attacks, facing intermittent outages and connectivity issues
+
+
+By 
+Colin Grady, 
+                Paul Eubanks, 
+                Azim Khodjibaev
+
+
+
+            Wednesday, September 7, 2022 11:00
+        
+
+
+                                Features
+                            
+
+                                ransomware
+                            
+
+
+
+
+Since Aug. 20, 2022, Cisco Talos has been monitoring suspected distributed denial-of-service (DDoS) attacks resulting in intermittent downtime and outages affecting several ransomware-as-a-service (RaaS) data leak sites.While the source and origin of this activity remain unknown, this appears to be a concentrated effort against RaaS leak sites to disrupt their efforts to announce and post new victim information.Actors' responses have varied, with LockBit and ALPHV implementing new measures to counteract DDoS attacks against their sites while other groups like Quantum have simply resorted to redirecting web traffic elsewhere. LockBit also appears to have co-opted this technique by advertising that they are now adding DDoS as an extortion tactic in addition to encrypting and leaking data.RaaS leak sites experience intermittent outagesIn late August, Talos became aware of several prominent ransomware operations, such as ALPHV (also referred to as BlackCat) and LockBit, experiencing suspected DDoS attacks against their public data leak sites. These leak sites are typically hosted on Tor hidden services where, in a tactic known as double extortion, RaaS affiliates post victim information if the ransom demand is not met. On Aug. 26, we also observed at least seven more RaaS leak sites for LV, Hive, Everest, BianLian, Yanluowang, Snatch and Lorenz become inaccessible and go offline intermittently and/or experience slow traffic. Security researchers have also identified additional RaaS leak sites for Ragnar Locker and Vice Society which may have also been affected by this activity. However, we have only verified the Ragnar Locker claim at this time, as their leak site continues to experience outages. At the time of analysis, many of the aforementioned groups are still affected by connectivity issues and continue to face a variety of intermittent outages to their data leak sites, including frequent disconnects and unreachable hosts, suggesting that this is part of a sustained effort to thwart updates to those sites.On Aug. 20, a LockBit representative, "LockBitSupp", reported that nearly 1,000 servers were targeting the LockBit data leak sites, with nearly 400 requests per second. After reporting that their leak sites became unavailable due to a DDoS attack, LockBit provided screenshots alleging that the attack began as soon as they started to publish data to their leak site for Entrust, a digital security company LockBit targeted in July.LockBit representative "LockBitSupp" reports on DDoS attack against LockBit.Translation: Almost 1000 servers are targeting me, logs shows 400 requests a second on each domain, f** expensesOn Aug. 23, in another forum post by LockBitSupp, they claimed that this was the worst DDoS attack the site experienced in three years, indicating that the effects were significant.LockBit representative commenting on DDoS attack impact.Translation:Kurisu: actually its pretty funny that the 'number 1 locker' can be held offline for 5 or how many days...not the best reputation. LockBitSupp: only the blogs and victim chats were held down a bit, nothing serious, the panel is working as always, because the links to it are not known by anyone. In 3 years, this is the first time I got DDoSed this hard, there is no sense in it, only hypes us up more, over 50 people from all over the world wrote to me in Tox with an offer to help with different things.In the same timeframe, we identified that ALPHV, another high-profile ransomware group, was also experiencing similar connectivity issues with their leak site. On Aug. 26, they publicly denied they were being DDoSed, claiming they were unsure and that the sites were not available. Talos also observed unconfirmed chatter that ALPHV was on vacation at this time.ALPHV ransomware group responds to claims of DDoS.Translation:unknown: who DDoSed you?ALPHV: Hello, no one DDoSed usunknown: how? didn't your blog go offline for a few days?ALPHV: I was not here during this time, but seems like it wasn't a DDoSTalos soon identified that ALPHV was among the ransomware groups affected, who quickly began to respond by adding additional website protections to their leak site.It is important to note that we have not observed RaaS customer or victim interaction sites affected by this activity, meaning that victim interactions and monetary payments can still take place. Several of the RaaS leak sites continue to appear to be offline intermittently, suggesting that this activity may be meant to disrupt and sow discord among RaaS operators and affiliates by interfering with attempts to post victim data to their respective sites. The possibility that these disruptions may be coming from a competitor or bring about unwanted law enforcement attention could create tension among some of the affected ransomware groups. The motivation and source of this activity still remains unknown, but given the limited timeframe and number of affected RaaS operators, it appears to be a concerted effort against RaaS data leak sites to disrupt efforts to announce and post new victim information. This activity is only affecting the data leak sites and not the ability to conduct ransomware operations, as it is hindering the ability for these ransomware affiliates and operators to post new victim information publicly.RaaS responseTalos has observed that some of the RaaS operations affected by this activity have quickly responded by implementing increased protections and measures to minimize outages from DDoS attacks.On Aug. 22, following the initial round of DDoS attacks against their site, LockBitSupp claimed they were enhancing existing DDoS protections on their site. In another forum post on Aug. 23, LockBitSupp announced that LockBit was now looking to add DDoS as a third extortion tactic on top of encrypting and leaking data. Few ransomware groups use DDoS attacks, and LockBit's adoption of the technique could appeal to operators and possibly help drive up future recruitment efforts.LockBitSupp claiming updated protections to LockBit's leak site.Translation: Unknown: how was your weekendLockBitSupp: hello, normal weekend, got motivated by ddos and now standing up 100500 mirrors and modernizing. not just a life but a party! its was boring before :-)Below is LockBit's official response following the DDoS attacks.LockBit's official response following DDoS attacks.Translation:1. What doesn't kill you, only makes you stronger. We are strengthening the infrastructure, increasing the number of mirrors that mirror servers, and new ddos protections.2. Please recommend a site where I can order ddos services against these stingy guys (or maybe someone local here does this? the site is entrust[.]com), that put in $5,000,000 and were ready to pay $1,000,000.3. Access to them was not bought, they got accessed through a 0day4. I'm loading all of their info (300gb) into a torrent seed, soon I'll share it with everyone who wants it in private in tox, and then will share the torrent link publicly. 5. We have already implemented the url randomization inside the ransomware, there will be a unique url generated within each locker build, which will not be detected by the DDoSer. 6. Developing a bulletproof storage system on the clearnet for all companies in addition to the tor ones. 7. Looking for a team of DDoSers, apparently we are now going to attack targets and offer triple extortion, encryption, data leak + ddos...now that i have felt the power of ddos and how refreshing and interesting it makes life Entrust, thank you for the motivation, you are making us stronger, but you will remain a hollow and stingy firm as you have been, and in a few days the whole world will know all of your secrets, if I were you I would pay before it is too late, we'd destroy your information, because so far no one has been able to download it due to the ddos.Shortly after, ALPHV also started implementing more robust anti-scrape technology to their leak site, an approach taken that appears to reduce the load of DDoS attacks and could be a component of added DDoS protections.ALPHV implementations to their data leak site.In this same timeframe, Talos identified that the Quantum ransomware operation had recently started to redirect traffic issued to their data leak blogs (both on the clear web and on TOR hidden services network) back to the localhost computer which made the web request, with the following response: "HTTP/1.1 301 Moved Permanently." This likely indicates that they understand there are active DDoS attempts directed against their site, although this traffic redirection didn't allow their site to continue serving traffic. Compared to LockBit's approach, this response may speak to a slightly more amateur skill level, suggesting limitations in Quantum's capabilities to respond to a DDoS attack by properly filtering attack traffic, while allowing their website to continue to respond to legitimate traffic.Given that this activity is continuing to interrupt and hinder the ability for these affiliates and operators to post new victim information publicly, we will likely continue to see various groups respond differently depending on the resources available to them.
+
+
+
+Share this post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Content
+
+
+"There is no business school class that would ever sit down and design Talos"
+July 31, 2024 07:55
+We look back on 10 years of Talos, in multiple interviews with Talos' leaders.
+
+
+
+
+A (somewhat) complete timeline of Talos’ history
+July 24, 2024 06:00
+Relive some of the major cybersecurity incidents and events that have shaped Talos over the past 10 years.
+
+
+
+
+Badgerboard: A PLC backplane network visibility module
+March 5, 2024 15:30
+Analysis of the traffic between networked devices has always been of interest since devices could even communicate with one another. 
+
+As the complexity of networks grew, the more useful dedicated traffic analysis tools became. Major advancements have been made over the years with tools like Snort or Wireshark, but these
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

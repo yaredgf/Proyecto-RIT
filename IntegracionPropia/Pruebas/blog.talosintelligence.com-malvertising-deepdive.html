@@ -1,0 +1,882 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Malvertising: Online advertising&#x27;s darker side</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/bootstrap.min.css?v=-xdjtZ-fV2QpS1r5">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/navigation.css?v=PhzoiGnw4ldwozL1">
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/footer.css?v=sVEdldiwj6rF6gHP">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/pagination.css?v=HruyeF1JUFuoy6Wu">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/banners.css?v=vI3KT68RWE95HKDs">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/style.css?v=idjnUZoOumC94rdj">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/prism.css?v=jqyaOB6z6CqMaOT4">
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/prism-vsc-dark-plus.css?v=xoEFwaYF1JkH_sqf">
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/prism-talos.css?v=kn8aYcNhO045nXac">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/landing-page.css?v=EPtrK0eJwYLqD25v">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/coverage-block.css?v=vBgCqINSTHrSh9PX">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/ghost-theme-utils@latest/dist/css/style.min.css" rel="stylesheet">
+
+
+    <link rel="icon" href="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w256h256/2022/07/talos_o_square.png" type="image/png">
+    <link rel="canonical" href="https://blog.talosintelligence.com/malvertising-deepdive/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta property="og:site_name" content="Cisco Talos Blog">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Malvertising: Online advertising&#x27;s darker side">
+    <meta property="og:description" content="Executive summary
+
+One of the trickiest challenges enterprises face is managing the balance between aggressively blocking malicious advertisements (aka malvertising) and allowing content to remain online, accessible for the average user. The days of installing a basic ad blocker on your web browser and expecting full protection are gone. Between">
+    <meta property="og:url" content="https://blog.talosintelligence.com/malvertising-deepdive/">
+    <meta property="og:image" content="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-U7PY-kvKzN8/XUGeiEUgDKI/AAAAAAAAB2A/Fq4NHJ68jLk7yE-XI5YljtPHmC0eFi8-QCLcBGAs/w1200-h630-p-k-no-nu/image10.jpg">
+    <meta property="article:published_time" content="2019-07-31T15:02:00.000Z">
+    <meta property="article:modified_time" content="2022-09-20T17:37:59.000Z">
+    <meta property="article:tag" content="Threat Spotlight">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Malvertising: Online advertising&#x27;s darker side">
+    <meta name="twitter:description" content="Executive summary
+
+One of the trickiest challenges enterprises face is managing the balance between aggressively blocking malicious advertisements (aka malvertising) and allowing content to remain online, accessible for the average user. The days of installing a basic ad blocker on your web browser and expecting full protection are gone. Between">
+    <meta name="twitter:url" content="https://blog.talosintelligence.com/malvertising-deepdive/">
+    <meta name="twitter:image" content="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-U7PY-kvKzN8/XUGeiEUgDKI/AAAAAAAAB2A/Fq4NHJ68jLk7yE-XI5YljtPHmC0eFi8-QCLcBGAs/w1200-h630-p-k-no-nu/image10.jpg">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Nick Biasini">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="Threat Spotlight">
+    <meta name="twitter:site" content="@TalosSecurity">
+    <meta name="twitter:creator" content="@infosec_nick">
+    <meta property="og:image:width" content="955">
+    <meta property="og:image:height" content="501">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Cisco Talos Blog",
+        "url": "https://blog.talosintelligence.com/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/11/TalosBrand_ukraine.svg"
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Nick Biasini",
+        "url": "https://blog.talosintelligence.com/author/nick-biasini/",
+        "sameAs": [
+            "https://x.com/infosec_nick"
+        ]
+    },
+    "contributor": [
+        {
+            "@type": "Person",
+            "name": "Chris Neal",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/11/ultraman.jpeg"
+            },
+            "url": "https://blog.talosintelligence.com/author/chris-neal/",
+            "sameAs": []
+        },
+        {
+            "@type": "Person",
+            "name": "Matthew Valites",
+            "url": "https://blog.talosintelligence.com/author/matthew-valites/",
+            "sameAs": []
+        }
+    ],
+    "headline": "Malvertising: Online advertising's darker side",
+    "url": "https://blog.talosintelligence.com/malvertising-deepdive/",
+    "datePublished": "2019-07-31T15:02:00.000Z",
+    "dateModified": "2022-09-20T17:37:59.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-U7PY-kvKzN8/XUGeiEUgDKI/AAAAAAAAB2A/Fq4NHJ68jLk7yE-XI5YljtPHmC0eFi8-QCLcBGAs/w1200-h630-p-k-no-nu/image10.jpg",
+        "width": 955,
+        "height": 501
+    },
+    "keywords": "Threat Spotlight",
+    "description": "Executive summary\n\nOne of the trickiest challenges enterprises face is managing the balance between aggressively blocking malicious advertisements (aka malvertising) and allowing content to remain online, accessible for the average user. The days of installing a basic ad blocker on your web browser and expecting full protection are gone. Between the sites that require them to be disabled and the ability for advertisers to pay to evade them, ad blockers alone are not sufficient.\n\nAs this blog wil",
+    "mainEntityOfPage": "https://blog.talosintelligence.com/malvertising-deepdive/"
+}
+    </script>
+
+    <meta name="generator" content="Ghost 6.68">
+    <link rel="alternate" type="application/rss+xml" title="Cisco Talos Blog" href="https://blog.talosintelligence.com/rss/">
+    
+    <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/sodo-search.min.js" data-key="4ffb0139d74ada998f4b141e4d" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/main.css" data-sodo-search="https://cisco-talos-blog.ghost.io/" data-locale="en" crossorigin="anonymous"></script>
+    
+    <link href="https://blog.talosintelligence.com/webmentions/receive/" rel="webmention">
+    <script defer src="/public/cards.min.js?v=ShRHxgy4po8zN-Wf"></script>
+    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=WwnU9jw5ancNC8Gc">
+    <script defer src="/public/ghost-stats.min.js?v=vFcCUf6ZQ0Hyhc8h" data-stringify-payload="false" data-datasource="analytics_events" data-storage="localStorage" data-host="https://blog.talosintelligence.com/.ghost/analytics/api/v1/page_hit"  tb_site_uuid="afa04ee3-414f-4481-8d23-7e7c146f192e" tb_post_uuid="8de00a52-41bb-448d-b82f-de56846f3528" tb_post_type="post" tb_member_uuid="undefined" tb_member_status="undefined" tb_gift_link=""></script><style>:root {--ghost-accent-color: #006db6;}</style>
+    <style type='text/css'>
+    img[src*="icon_check_white.svg"] { width: 20px; margin-left: 0px; margin-right: auto; }
+    
+    #ghost-portal-root { display: none; }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F45RVJG3BK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-F45RVJG3BK');
+</script>
+</head>
+
+<body class="post-template tag-threat-spotlight">
+
+    <div id="mobile-page-header" class="desktop-hide mobile-page-header">
+    <a class="mobile-nav-home-link" href="/">
+        <div class="mobile-logo-wrapper">
+        </div>
+        <div class="mobile-home-title">Blog</div>
+    </a>
+    <div id="mobile-search-wrapper">
+        <button class="search-button mobile-search-button" data-ghost-search>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        </button>
+    </div>
+</div>
+
+<nav id="nav">
+    <input id="nav-trigger" class="nav-trigger" type="checkbox"/>
+    <label for="nav-trigger">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="22px" height="16px" viewBox="0 0 22 16">
+            <g id="menu-icon">
+                <path fill="#FFFFFF" d="M20.5,3h-19C0.672,3,0,2.329,0,1.5S0.672,0,1.5,0h19C21.328,0,22,0.671,22,1.5S21.328,3,20.5,3z"></path>
+                <path fill="#FFFFFF" d="M20.5,9.5h-19C0.672,9.5,0,8.828,0,8c0-0.829,0.672-1.5,1.5-1.5h19C21.328,6.5,22,7.171,22,8   C22,8.828,21.328,9.5,20.5,9.5z"></path>
+                <path fill="#FFFFFF" d="M20.5,16h-19C0.672,16,0,15.328,0,14.5S0.672,13,1.5,13h19c0.828,0,1.5,0.672,1.5,1.5S21.328,16,20.5,16z"></path>
+            </g>
+        </svg>
+    </label>
+    <div id="top-nav-bar">
+    </div>
+
+    <div id="navigation">
+        <div class="navigation-logos-wrapper">
+            <div id="talos-logo-wrapper">
+                <a class="navbar-brand" href="https://talosintelligence.com">
+                </a>
+            </div>
+        </div>
+        <div class="navigation-links-wrapper">
+            <ul class="main-nav-list">
+                <li class="nav-item">
+                    <div class="primary-link-wrapper">
+                        <a class="primary_nav_link" href="https://talosintelligence.com/reputation">
+                            <div class="mobile-nav-icon"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" height="20px" width="20px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                            <style type="text/css">
+                                .white{fill:#FFFFFF;}
+                            </style>
+                            <g>
+                                <path class="white" d="M19.5,9.5h-1.1c-0.3-4.2-3.6-7.6-7.8-7.8V0.5C10.5,0.2,10.3,0,10,0l0,0C9.7,0,9.5,0.2,9.5,0.5l0,0v1.1   C5.3,1.9,1.9,5.3,1.6,9.5H0.5C0.2,9.5,0,9.7,0,10s0.2,0.5,0.5,0.5l0,0h1.1c0.3,4.2,3.6,7.6,7.8,7.8v1.1c0,0.3,0.2,0.5,0.5,0.5l0,0   c0.3,0,0.5-0.2,0.5-0.5l0,0v-1.1c4.2-0.3,7.6-3.6,7.8-7.8h1.1c0.3,0,0.5-0.2,0.5-0.5C20,9.7,19.8,9.5,19.5,9.5 M16.6,10.5h0.7   c-0.3,3.6-3.2,6.5-6.8,6.8v-0.8c0-0.3-0.2-0.5-0.5-0.5l0,0c-0.3,0-0.5,0.2-0.5,0.5v0.8C5.8,17,3,14.2,2.7,10.5h0.8   C3.8,10.5,4,10.3,4,10S3.8,9.5,3.5,9.5l0,0H2.7C3,5.8,5.8,3,9.5,2.7v0.8C9.5,3.7,9.7,4,10,4l0,0c0.3,0,0.5-0.2,0.5-0.5V2.7   C14.2,3,17,5.8,17.3,9.5h-0.7c-0.3,0-0.5,0.2-0.5,0.5C16.1,10.3,16.3,10.5,16.6,10.5L16.6,10.5"></path>
+                                                            <circle class="white" cx="10" cy="10" r="3.2"></circle>
+                            </g>
+                            </svg>
+                            </div>
+                            <span class="top-nav-link-text">
+                                Intelligence Center
+                            </span>
+                        </a>
+                    </div>
+                    <input class="sub-nav-trigger" id="intelligence-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="intelligence-sub-trigger">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+
+                    </label>
+                    <ul class="sub-nav sub-nav-single-list">
+                        <li class="desktop-hide">
+                            <a class="mobile_nav_link" href="https://talosintelligence.com/reputation"><h1>Intelligence Center</h1>
+                            </a></li>
+                        <li class="desktop-hide">
+                            <label class="subnav-back-button" for="intelligence-sub-trigger">BACK</label>
+                        </li>
+                        <li><a class="secondary_nav_link" href="https://talosintelligence.com/reputation_center">Intelligence Search</a></li>
+                        <li><a class="secondary_nav_link" href="https://talosintelligence.com/reputation_center/email_rep">Email &amp; Spam Trends</a></li>
+                    </ul>
+                    <div class="desktop-hide subnav-overlay"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" height="20px" width="20px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                        <style type="text/css">
+                            .white{fill:#FFFFFF;}
+                        </style>
+                                                <g>
+                            <path class="white" d="M19.5,9.5h-1.1c-0.3-4.2-3.6-7.6-7.8-7.8V0.5C10.5,0.2,10.3,0,10,0l0,0C9.7,0,9.5,0.2,9.5,0.5l0,0v1.1   C5.3,1.9,1.9,5.3,1.6,9.5H0.5C0.2,9.5,0,9.7,0,10s0.2,0.5,0.5,0.5l0,0h1.1c0.3,4.2,3.6,7.6,7.8,7.8v1.1c0,0.3,0.2,0.5,0.5,0.5l0,0   c0.3,0,0.5-0.2,0.5-0.5l0,0v-1.1c4.2-0.3,7.6-3.6,7.8-7.8h1.1c0.3,0,0.5-0.2,0.5-0.5C20,9.7,19.8,9.5,19.5,9.5 M16.6,10.5h0.7   c-0.3,3.6-3.2,6.5-6.8,6.8v-0.8c0-0.3-0.2-0.5-0.5-0.5l0,0c-0.3,0-0.5,0.2-0.5,0.5v0.8C5.8,17,3,14.2,2.7,10.5h0.8   C3.8,10.5,4,10.3,4,10S3.8,9.5,3.5,9.5l0,0H2.7C3,5.8,5.8,3,9.5,2.7v0.8C9.5,3.7,9.7,4,10,4l0,0c0.3,0,0.5-0.2,0.5-0.5V2.7   C14.2,3,17,5.8,17.3,9.5h-0.7c-0.3,0-0.5,0.2-0.5,0.5C16.1,10.3,16.3,10.5,16.6,10.5L16.6,10.5"></path>
+                                                    <circle class="white" cx="10" cy="10" r="3.2"></circle>
+                        </g>
+                        </svg>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="primary-link-wrapper">
+                        <a class="primary_nav_link" href="https://talosintelligence.com/vulnerability_info"><div class="mobile-nav-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px" height="20px" viewBox="0 0 26 20">
+                            <g id="vuln-icon" class="nav-icon">
+                                <path fill="#FFFFFF" d="M24.256,18.49L13.872,0.503C13.692,0.192,13.36,0,13,0c-0.359,0-0.692,0.192-0.872,0.503L1.744,18.49  c-0.18,0.312-0.18,0.695,0,1.006C1.924,19.809,2.257,20,2.616,20h20.769c0.359,0,0.691-0.191,0.871-0.504  C24.436,19.186,24.436,18.803,24.256,18.49 M14.268,18.215h-2.533v-1.85h2.533V18.215z M14.268,15.441h-2.533L10.89,6.515h4.222  L14.268,15.441z"></path>
+                            </g>
+                        </svg>
+                        </div>
+                            <span class="top-nav-link-text">
+                            Vulnerability Research
+                            </span>
+                        </a></div>
+                    <input class="sub-nav-trigger" id="vuln-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="vuln-sub-trigger">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+                        </div>
+                    </label>
+                    <ul class="sub-nav sub-nav-single-list">
+                        <li class="desktop-hide">
+                            <a href="https://talosintelligence.com/vulnerability_info"><h1>Vulnerability Research</h1>
+                            </a></li>
+                        <li class="desktop-hide">
+                            <label class="subnav-back-button" for="vuln-sub-trigger">BACK</label>
+                        </li>
+                        <li><a class="vulnerabilty-info-nav-link" href="https://talosintelligence.com/vulnerability_reports">Vulnerability Reports</a></li>
+                        <li><a class="vulnerabilty-info-nav-link" href="https://talosintelligence.com/ms_advisories">Microsoft Advisories</a></li>
+                    </ul>
+                    <div class="desktop-hide subnav-overlay">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px" height="20px" viewBox="0 0 26 20">
+                        <g id="vuln-icon" class="nav-icon">
+                            <path fill="#FFFFFF" d="M24.256,18.49L13.872,0.503C13.692,0.192,13.36,0,13,0c-0.359,0-0.692,0.192-0.872,0.503L1.744,18.49  c-0.18,0.312-0.18,0.695,0,1.006C1.924,19.809,2.257,20,2.616,20h20.769c0.359,0,0.691-0.191,0.871-0.504  C24.436,19.186,24.436,18.803,24.256,18.49 M14.268,18.215h-2.533v-1.85h2.533V18.215z M14.268,15.441h-2.533L10.89,6.515h4.222  L14.268,15.441z"></path>
+                        </g>
+                        </svg>
+                    </div>
+                </li>
+
+
+               <li class="nav-item">
+                   <div class="primary-link-wrapper">
+                        <a class="primary_nav_link" href="https://talosintelligence.com/incident_response">
+                           <div class="mobile-nav-icon">
+                               <svg xmlns="http://www.w3.org/2000/svg" width="111.588" height="148.311" viewBox="0 0 111.588 148.311">
+                                    <path d="M1.181,128.446v15.7a4.167,4.167,0,0,0,4.167,4.167h100.9a4.167,4.167,0,0,0,4.167-4.167v-15.7a4.167,4.167,0,0,0-4.167-4.167H5.348a4.167,4.167,0,0,0-4.167,4.166M55.8,63.109a3.277,3.277,0,1,1,0,6.553c-10.344,0-20.755,8.578-20.755,18.57a3.277,3.277,0,1,1-6.554,0C28.489,73.947,41.93,63.109,55.8,63.109Zm0-12.016c-21.787,0-39.325,17.81-39.325,39.937v26.7H95.122V91.03c0-22.128-17.537-39.937-39.324-39.937m52.365-38.3a3.291,3.291,0,0,0-2.254,1.024L88.432,31.294a3.283,3.283,0,0,0,4.642,4.644l17.478-17.479a3.278,3.278,0,0,0-2.389-5.666m-105.138,0a3.276,3.276,0,0,0-1.98,5.666L18.522,35.938a3.283,3.283,0,0,0,4.643-4.644L5.687,13.817A3.255,3.255,0,0,0,3.025,12.793ZM55.389.026a3.276,3.276,0,0,0-2.867,3.345V19.642a3.277,3.277,0,1,0,6.554,0V3.371A3.283,3.283,0,0,0,55.389.026Z" fill="#fff"></path>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text">
+                                Incident Response
+                            </span>
+                       </a>
+                   </div>
+                   <input class="sub-nav-trigger" id="ir-sub-trigger" type="checkbox">
+                   <label class="sub-nav-trigger-label" for="ir-sub-trigger">
+                       <div class="mobile-nav-icon">
+                           <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                                <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                               <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                               </g>
+                           </svg>
+                       </div>
+                   </label>
+                   <ul class="sub-nav sub-nav-single-list">
+                       <li class="desktop-hide">
+                           <a href="/incident_response">
+                               <h1>Incident Response</h1>
+                           </a>
+                        </li>
+                       <li class="desktop-hide">
+                           <label class="subnav-back-button" for="ir-sub-trigger">BACK</label>
+                       </li>
+                       <li>
+                           <a class="secondary_nav_link" href="https://talosintelligence.com/incident_response/services#reactive-services">Reactive Services</a>
+                       </li>
+                       <li>
+                           <a class="secondary_nav_link" href="https://talosintelligence.com/incident_response/services#proactive-services">Proactive Services</a></li>
+                       <li>
+                           <a href="https://talosintelligence.com/incident_response/contact">Emergency Support</a>
+                        </li>
+                   </ul>
+                   <div class="desktop-hide subnav-overlay"><svg xmlns="http://www.w3.org/2000/svg" width="111.588" height="148.311" viewBox="0 0 111.588 148.311">
+                     <path d="M1.181,128.446v15.7a4.167,4.167,0,0,0,4.167,4.167h100.9a4.167,4.167,0,0,0,4.167-4.167v-15.7a4.167,4.167,0,0,0-4.167-4.167H5.348a4.167,4.167,0,0,0-4.167,4.166M55.8,63.109a3.277,3.277,0,1,1,0,6.553c-10.344,0-20.755,8.578-20.755,18.57a3.277,3.277,0,1,1-6.554,0C28.489,73.947,41.93,63.109,55.8,63.109Zm0-12.016c-21.787,0-39.325,17.81-39.325,39.937v26.7H95.122V91.03c0-22.128-17.537-39.937-39.324-39.937m52.365-38.3a3.291,3.291,0,0,0-2.254,1.024L88.432,31.294a3.283,3.283,0,0,0,4.642,4.644l17.478-17.479a3.278,3.278,0,0,0-2.389-5.666m-105.138,0a3.276,3.276,0,0,0-1.98,5.666L18.522,35.938a3.283,3.283,0,0,0,4.643-4.644L5.687,13.817A3.255,3.255,0,0,0,3.025,12.793ZM55.389.026a3.276,3.276,0,0,0-2.867,3.345V19.642a3.277,3.277,0,1,0,6.554,0V3.371A3.283,3.283,0,0,0,55.389.026Z" fill="#fff"></path>
+                   </svg>
+                </div>
+               </li>
+
+
+
+
+
+                <li class="nav-item">
+                    <a class="primary_nav_link" href="https://blog.talosintelligence.com">
+                        <div class="mobile-nav-icon">
+                        <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="260px" height="296.5px" viewBox="0 0 260 296.5" enable-background="new 0 0 260 296.5" xml:space="preserve">
+                        <path fill="#FFFFFF" d="M243.586,42.404h-14.448c-0.943-4.513-3.143-8.813-6.616-12.33L201.793,9.098  c-4.7-4.757-10.972-7.377-17.66-7.377c-6.578,0-12.777,2.547-17.457,7.173l-33.875,33.511H17.586c-6.6,0-12,5.399-12,12V226.28  c0,6.6,5.4,12,12,12H153.83l84.21,56.278l-27.448-56.278h32.994c6.6,0,12-5.4,12-12V54.404  C255.586,47.804,250.186,42.404,243.586,42.404z M214.662,48.045c-0.01,0.2-0.021,0.399-0.044,0.599  c-0.008,0.069-0.021,0.139-0.031,0.207c-0.046,0.345-0.113,0.688-0.196,1.026c-0.034,0.137-0.063,0.273-0.103,0.408  c-0.039,0.135-0.087,0.267-0.133,0.399c-0.051,0.151-0.102,0.302-0.16,0.45c-0.049,0.126-0.105,0.249-0.16,0.373  c-0.068,0.153-0.139,0.307-0.216,0.457c-0.059,0.116-0.12,0.23-0.184,0.345c-0.088,0.157-0.181,0.312-0.278,0.465  c-0.065,0.104-0.13,0.206-0.2,0.308c-0.115,0.168-0.239,0.33-0.366,0.492c-0.064,0.081-0.124,0.165-0.19,0.244  c-0.199,0.238-0.409,0.472-0.635,0.694L82.458,182.308l-47.932,12.871l13.427-47.74L177.223,19.561  c1.917-1.895,4.414-2.84,6.911-2.84c2.534,0,5.068,0.975,6.99,2.92l20.726,20.974c0.545,0.552,1.002,1.156,1.39,1.79  c0.574,0.938,0.975,1.951,1.206,2.993c0.004,0.021,0.01,0.04,0.014,0.06c0.049,0.226,0.086,0.453,0.119,0.682  c0.008,0.06,0.017,0.118,0.024,0.178c0.026,0.211,0.045,0.424,0.058,0.636c0.004,0.077,0.007,0.153,0.009,0.23  c0.007,0.203,0.011,0.407,0.005,0.61C214.673,47.877,214.666,47.961,214.662,48.045z"></path>
+                        </svg>
+                    </div>
+                        <span class="top-nav-link-text">Blog</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="primary_nav_link" href="https://support.talosintelligence.com">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26px" height="20px" viewBox="0 0 123.17 159.292">
+                            <path d="M61.59,0,0,17.069v85.32c0,23.472,61.59,56.9,61.59,56.9s61.58-36.288,61.58-56.9V17.069Zm-.433,149.746C38.314,136.662,8.128,114.3,8.128,102.389V23.239l53.029-14.7Z" fill="#fff"></path>
+                        </svg>
+                        </div>
+                        <span class="top-nav-link-text">Support</span>
+                    </a>
+                </li>
+            </ul>
+
+
+<!--                <li class="nav-item desktop-hide">-->
+<!--                    <button class="search-button" data-ghost-search><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg> <span>Search Blog</span></button>-->
+<!--                </li>-->
+
+            <ul class="secondary-nav-list">
+                <div class="more-desktop-link">
+                    <div class="more-link-wrapper">
+                        <span class="more-nav-link">
+                            <div class="desktop-nav-icon more-menu-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="22px" height="16px" viewBox="0 0 22 16">
+                                <g id="menu-icon">
+                                    <path fill="#FFFFFF" d="M20.5,3h-19C0.672,3,0,2.329,0,1.5S0.672,0,1.5,0h19C21.328,0,22,0.671,22,1.5S21.328,3,20.5,3z"></path>
+                                    <path fill="#FFFFFF" d="M20.5,9.5h-19C0.672,9.5,0,8.828,0,8c0-0.829,0.672-1.5,1.5-1.5h19C21.328,6.5,22,7.171,22,8   C22,8.828,21.328,9.5,20.5,9.5z"></path>
+                                    <path fill="#FFFFFF" d="M20.5,16h-19C0.672,16,0,15.328,0,14.5S0.672,13,1.5,13h19c0.828,0,1.5,0.672,1.5,1.5S21.328,16,20.5,16z"></path>
+                                </g>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            More
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <li class="nav-item more-text-link">
+                    <div class="more-link-wrapper more-link-wrapper-mobile">
+                        <span class="more-nav-link">
+                            <div class="mobile-nav-icon"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" style="enable-background:new 0 0 20 20;" width="25px" height="25px" xml:space="preserve">
+                                <style type="text/css">
+                                    .white{fill:#FFFFFF;}
+                                </style>
+                                <path class="white" d="M19.4,17.1c0,0.1-0.1,0-0.2,0c0,0-1.3-0.9-2-1.4c-0.2-0.1-0.5-0.1-0.6,0.1c-0.3,0.3-0.6,0.8-0.9,1.3  c-0.1,0.2-0.1,0.5,0.1,0.6l2,1.5c0.1,0,0,0.1,0.1,0.2c0,0.1,0,0.1-0.1,0.2c-1.2,0.5-2.6,0.2-3.5-0.7c-0.8-0.9-1-2-0.7-3.1L4.5,6.5  c-1,0.3-2.3,0-3-0.9c-0.8-0.9-1.1-1.7-1-2.7c0-0.1,0-0.1,0.1-0.2c0.1,0,0.2,0.1,0.2,0.1l2,1.5C3,4.4,3.3,4.5,3.4,4.2  c0,0,0.5-0.8,0.9-1.3c0.1-0.2,0.1-0.5-0.1-0.6L2.3,0.9c-0.1,0,0-0.1-0.1-0.3c0-0.1,0-0.1,0.1-0.2C3.5-0.1,5,0.2,5.8,1.1  c0.8,0.9,1,2,0.7,3.1l9.1,9.3c1-0.3,2.3,0,3,0.9c0.7,0.7,0.9,1.5,0.9,2.5C19.5,16.9,19.5,17,19.4,17.1z"></path>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            Security Resources
+                            </span>
+                        </span>
+                    </div>
+                    <input class="sub-nav-trigger" id="security-resources-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="security-resources-sub-trigger">
+                        <div class="mobile-nav-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+                        </div>
+                    </label>
+                    <div class="sub-nav sub-nav-multiple-list sub-nav-multiple-list-left">
+                        <div class="sub-nav-multiple-wrapper">
+                            <div class="sub-nav-list-top-of-mobile-wrapper">
+                                <h1 class="sub-nav-list-header sub-nav-list-top-of-mobile">Security Resources</h1>
+                                <ul class="sub-nav-list">
+                                    <li class="desktop-hide">
+                                        <label class="subnav-back-button" for="security-resources-sub-trigger">BACK</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sub-nav-list-item-wrapper">
+                                <span class="sub-nav-desktop-header uppercase">Security Resources</span>
+                                <ul class="sub-nav-list">
+                                    <li>
+                                        <a href="https://talosintelligence.com/software"><span>Open Source Security Tools</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/categories"><span>Intelligence Categories Reference</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/secure-endpoint-naming"><span>Secure Endpoint Naming Reference</span>
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="desktop-hide subnav-overlay"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" style="enable-background:new 0 0 20 20;" width="25px" height="25px" xml:space="preserve">
+                        <style type="text/css">
+                            .white{fill:#FFFFFF;}
+                        </style>
+                                                <path class="white" d="M19.4,17.1c0,0.1-0.1,0-0.2,0c0,0-1.3-0.9-2-1.4c-0.2-0.1-0.5-0.1-0.6,0.1c-0.3,0.3-0.6,0.8-0.9,1.3  c-0.1,0.2-0.1,0.5,0.1,0.6l2,1.5c0.1,0,0,0.1,0.1,0.2c0,0.1,0,0.1-0.1,0.2c-1.2,0.5-2.6,0.2-3.5-0.7c-0.8-0.9-1-2-0.7-3.1L4.5,6.5  c-1,0.3-2.3,0-3-0.9c-0.8-0.9-1.1-1.7-1-2.7c0-0.1,0-0.1,0.1-0.2c0.1,0,0.2,0.1,0.2,0.1l2,1.5C3,4.4,3.3,4.5,3.4,4.2  c0,0,0.5-0.8,0.9-1.3c0.1-0.2,0.1-0.5-0.1-0.6L2.3,0.9c-0.1,0,0-0.1-0.1-0.3c0-0.1,0-0.1,0.1-0.2C3.5-0.1,5,0.2,5.8,1.1  c0.8,0.9,1,2,0.7,3.1l9.1,9.3c1-0.3,2.3,0,3,0.9c0.7,0.7,0.9,1.5,0.9,2.5C19.5,16.9,19.5,17,19.4,17.1z"></path>
+                        </svg>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="more-link-wrapper more-link-wrapper-mobile">
+                        <span class="more-nav-link">
+                            <div class="mobile-nav-icon"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" width="25px" height="25px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                                <style type="text/css">
+                                    .sticoncomment{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+                                </style>
+                                <path class="sticoncomment" d="M13.6,7.1H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,6.8,13.9,7.1,13.6,7.1L13.6,7.1z M13.6,9.4H6.4c-0.3,0-0.6-0.3-0.6-0.6s0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,9.2,13.9,9.4,13.6,9.4L13.6,9.4z M11.5,11.7H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6h5.1c0.3,0,0.6,0.3,0.6,0.6  C12.1,11.5,11.8,11.7,11.5,11.7z M15.8,3H4.2C3.5,3,3,3.5,3,4.2V17l2.8-2.3h10c0.6,0,1.2-0.5,1.2-1.2V4.2C17,3.5,16.5,3,15.8,3  L15.8,3z"></path>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            Media
+                            </span>
+                        </span>
+                    </div>
+                    <input class="sub-nav-trigger" id="media-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="media-sub-trigger">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                            </svg>
+                        </div>
+                    </label>
+                    <div class="sub-nav sub-nav-multiple-list sub-nav-multiple-list-middle">
+                        <div class="sub-nav-multiple-wrapper">
+                            <div class="sub-nav-list-top-of-mobile-wrapper">
+                                <h1 class="sub-nav-list-header sub-nav-list-top-of-mobile">Media</h1>
+                                <ul class="sub-nav-list">
+                                    <li class="desktop-hide">
+                                        <label class="subnav-back-button" for="media-sub-trigger">BACK</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sub-nav-list-item-wrapper">
+                                <span class="sub-nav-desktop-header uppercase">Media</span>
+                                <ul class="sub-nav-list">
+                                    <li>
+                                        <a href="https://blog.talosintelligence.com"><span>Talos Intelligence Blog</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://blog.talosintelligence.com/category/threat-source-newsletter/"><span>Threat Source Newsletter</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/podcasts/shows/beers_with_talos"><span>Beers with Talos Podcast</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/podcasts/shows/talos_takes"><span>Talos Takes Podcast</span>
+                                        </a></li>
+                                    <li>
+                                        <a target="_blank" href="https://www.youtube.com/channel/UCPZ1DtzQkStYBSG3GTNoyfg/featured"><span>Talos Videos</span>
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="desktop-hide subnav-overlay"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" width="25px" height="25px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                        <style type="text/css">
+                            .sticoncomment{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+                        </style>
+                        <path class="sticoncomment" d="M13.6,7.1H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,6.8,13.9,7.1,13.6,7.1L13.6,7.1z M13.6,9.4H6.4c-0.3,0-0.6-0.3-0.6-0.6s0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,9.2,13.9,9.4,13.6,9.4L13.6,9.4z M11.5,11.7H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6h5.1c0.3,0,0.6,0.3,0.6,0.6  C12.1,11.5,11.8,11.7,11.5,11.7z M15.8,3H4.2C3.5,3,3,3.5,3,4.2V17l2.8-2.3h10c0.6,0,1.2-0.5,1.2-1.2V4.2C17,3.5,16.5,3,15.8,3  L15.8,3z"></path>
+                        </svg>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="more-link-wrapper more-link-wrapper-mobile">
+                        <span class="more-nav-link">
+                            <div class="mobile-nav-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="25px" viewBox="0 0 55 55">
+                                <g>
+                                    <g class="mobile-nav-home">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M45.201,12.343c0.378,0.48,0.758,0.925,1.096,1.401    c2.975,4.207,4.543,8.876,4.494,14.044c-0.05,5.452-1.643,10.386-5.186,14.593c-3.484,4.133-7.929,6.73-13.182,7.895    c-6.313,1.398-12.216,0.275-17.695-3.131c-0.441-0.273-0.847-0.6-1.266-0.904c-0.11-0.078-0.208-0.174-0.337-0.287    c0.127-0.141,0.246-0.27,0.366-0.398c0.887-0.949,1.765-1.904,2.663-2.844c0.114-0.119,0.321-0.217,0.485-0.217    c3.658-0.006,7.318,0,10.975,0.008c3.458,0.006,6.913,0.02,10.369,0.02c0.957,0,1.871-0.193,2.62-0.844    c0.797-0.693,1.157-1.596,1.157-2.643c0.001-7.533,0.003-15.067-0.005-22.601c-0.002-0.309,0.088-0.524,0.3-0.743    C43.098,14.598,44.127,13.49,45.201,12.343"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M41.402,8.822c-0.99,1.027-1.994,2.021-2.935,3.072    c-0.312,0.35-0.616,0.416-1.036,0.415c-6.98-0.009-13.957-0.007-20.938-0.007c-2.039,0-3.561,1.514-3.561,3.557    c0,6.504,0.002,13.008,0.006,19.512c0.002,0.973,0.011,1.943,0.004,2.914c0,0.133-0.04,0.301-0.127,0.393    c-1.069,1.162-2.15,2.314-3.229,3.469c-0.021,0.023-0.052,0.039-0.109,0.08c-0.159-0.188-0.323-0.369-0.471-0.562    c-2.535-3.348-4.119-7.102-4.605-11.268c-0.61-5.229,0.194-10.229,2.835-14.839c2.669-4.664,6.655-7.805,11.618-9.75    c3.205-1.257,6.533-1.852,9.977-1.621c4.478,0.298,8.553,1.754,12.227,4.325c0.101,0.072,0.197,0.151,0.291,0.229    C41.364,8.755,41.374,8.778,41.402,8.822"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M39.799,12.47c0.873-0.911,1.749-1.829,2.676-2.797    c0.605,0.564,1.195,1.112,1.816,1.691c-0.941,0.985-1.817,1.903-2.703,2.83c-0.276-0.339-0.511-0.688-0.807-0.975    C40.492,12.941,40.145,12.728,39.799,12.47"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M10.35,43.279c0.969-1.016,1.885-1.977,2.76-2.893    c0.213,0.369,0.376,0.762,0.639,1.072c0.265,0.312,0.627,0.539,0.98,0.832c-0.853,0.891-1.713,1.791-2.624,2.746    C11.513,44.445,10.939,43.869,10.35,43.279"></path>
+                                    </g>
+                                </g>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            Company
+                            </span>
+                        </span>
+                    </div>
+                    <input class="sub-nav-trigger" id="company-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="company-sub-trigger">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+                        </div>
+                    </label>
+                    <div class="sub-nav sub-nav-multiple-list sub-nav-multiple-list-right">
+                        <div class="sub-nav-multiple-wrapper">
+                            <div class="sub-nav-list-top-of-mobile-wrapper">
+                                <h1 class="sub-nav-list-header sub-nav-list-top-of-mobile">Company</h1>
+                                <ul class="sub-nav-list">
+                                    <li class="desktop-hide">
+                                        <label class="subnav-back-button" for="company-sub-trigger">BACK</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sub-nav-list-item-wrapper">
+                                <span class="sub-nav-desktop-header uppercase">Company</span>
+                                <ul class="sub-nav-list">
+                                    <li>
+                                        <a href="https://talosintelligence.com/about"><span>About Talos</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/careers"><span>Careers</span>
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="desktop-hide subnav-overlay"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="25px" viewBox="0 0 55 55">
+                        <g>
+                            <g class="mobile-nav-home">
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M45.201,12.343c0.378,0.48,0.758,0.925,1.096,1.401    c2.975,4.207,4.543,8.876,4.494,14.044c-0.05,5.452-1.643,10.386-5.186,14.593c-3.484,4.133-7.929,6.73-13.182,7.895    c-6.313,1.398-12.216,0.275-17.695-3.131c-0.441-0.273-0.847-0.6-1.266-0.904c-0.11-0.078-0.208-0.174-0.337-0.287    c0.127-0.141,0.246-0.27,0.366-0.398c0.887-0.949,1.765-1.904,2.663-2.844c0.114-0.119,0.321-0.217,0.485-0.217    c3.658-0.006,7.318,0,10.975,0.008c3.458,0.006,6.913,0.02,10.369,0.02c0.957,0,1.871-0.193,2.62-0.844    c0.797-0.693,1.157-1.596,1.157-2.643c0.001-7.533,0.003-15.067-0.005-22.601c-0.002-0.309,0.088-0.524,0.3-0.743    C43.098,14.598,44.127,13.49,45.201,12.343"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M41.402,8.822c-0.99,1.027-1.994,2.021-2.935,3.072    c-0.312,0.35-0.616,0.416-1.036,0.415c-6.98-0.009-13.957-0.007-20.938-0.007c-2.039,0-3.561,1.514-3.561,3.557    c0,6.504,0.002,13.008,0.006,19.512c0.002,0.973,0.011,1.943,0.004,2.914c0,0.133-0.04,0.301-0.127,0.393    c-1.069,1.162-2.15,2.314-3.229,3.469c-0.021,0.023-0.052,0.039-0.109,0.08c-0.159-0.188-0.323-0.369-0.471-0.562    c-2.535-3.348-4.119-7.102-4.605-11.268c-0.61-5.229,0.194-10.229,2.835-14.839c2.669-4.664,6.655-7.805,11.618-9.75    c3.205-1.257,6.533-1.852,9.977-1.621c4.478,0.298,8.553,1.754,12.227,4.325c0.101,0.072,0.197,0.151,0.291,0.229    C41.364,8.755,41.374,8.778,41.402,8.822"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M39.799,12.47c0.873-0.911,1.749-1.829,2.676-2.797    c0.605,0.564,1.195,1.112,1.816,1.691c-0.941,0.985-1.817,1.903-2.703,2.83c-0.276-0.339-0.511-0.688-0.807-0.975    C40.492,12.941,40.145,12.728,39.799,12.47"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M10.35,43.279c0.969-1.016,1.885-1.977,2.76-2.893    c0.213,0.369,0.376,0.762,0.639,1.072c0.265,0.312,0.627,0.539,0.98,0.832c-0.853,0.891-1.713,1.791-2.624,2.746    C11.513,44.445,10.939,43.869,10.35,43.279"></path>
+                            </g>
+                        </g>
+                    </svg>
+                    </div>
+                </li>
+            </ul>
+            <div class="nav-search-wrapper" id="desktop-search-wrapper">
+                <button class="search-button desktop-search-button" data-ghost-search>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </button>
+            </div>
+        </div>
+
+
+
+    </div>
+</nav>
+
+    
+
+    <main id="site-main">
+
+            <div class="banner-content-wrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col threat-spotlight-graphic banner-post-graphic"></div>
+                    </div>
+                </div>
+            </div>
+                <div class="container-fluid">
+                    <div class="row banner-bg-container banner-bg-4">
+                    </div>
+                </div>
+
+
+        <div class="container-fluid px-0">
+            <div class="main-content-row">
+                <div class="main-content-col px-0">
+                    <div class="post-full-content">
+                        
+<article class="post tag-threat-spotlight  blog-series-article">
+
+    <h1 class="text-center">Malvertising: Online advertising&#x27;s darker side</h1>
+
+    <div class="text-center m-1">
+        <div class="post-author">
+            <span>By </span>
+                <a href="https://blog.talosintelligence.com/author/nick-biasini/">Nick Biasini</a>, 
+                <a href="https://blog.talosintelligence.com/author/chris-neal/">Chris Neal</a>, 
+                <a href="https://blog.talosintelligence.com/author/matthew-valites/">Matthew Valites</a>
+        </div>
+
+        <br/>
+        <time class="post-datetime" datetime="July 31, 2019 11:02">
+            Wednesday, July 31, 2019 11:02
+        </time>
+
+        <div class="m-3">
+                        <a href="https://blog.talosintelligence.com/category/threat-spotlight/" class="category primary-category">
+                            Threat Spotlight
+                        </a>
+                            </div>
+    </div>
+
+    <section class="post-content-wrapper mt-5">
+        <div class="post-content" id="post-content">
+            <h2 id="executive-summary">Executive summary </h2><p>One of the trickiest challenges enterprises face is managing the balance between aggressively blocking malicious advertisements (aka malvertising) and allowing content to remain online, accessible for the average user. The days of installing a basic ad blocker on your web browser and expecting full protection are gone. Between the sites that require them to be disabled and the ability for advertisers to pay to evade them, ad blockers alone are not sufficient.</p><p>As this blog will cover in detail, malvertising is a problem not strictly associated with basic web browsing. It can also come with other software programs including adware or potentially unwanted applications (PUA). These latter examples require the most attention. In today's enterprise, an aggressive approach to advertising is required to be protected against malicious threats. That may include securing your DNS or adding additional layers of inspection through a firewall, intrusion prevention system, or a web security platform. Regardless of the approach, it needs to be thorough and take into account not just the security impacts, but the potential of cascading impact on your users.</p><p>Advertising is a key part of the internet as a whole and, whether you realize it or not, is one of the most foundational aspects of it. It is one of the reasons that a large chunk of the content available on the internet is free. It allows people to support their passion projects, their small businesses, and the food blogs of people around the world. However, it is a highly complex and convoluted system that is ripe for abuse. This is an issue that should not be ignored by the public, as these malicious ads can deliver malware out of nowhere and trick traditional internet users who may not be aware of the threats that exist on some pages.</p><p>This blog is going to walk through how online advertising works, what malvertising is and why it's dangerous including real life examples, and finally the options that exist for organizations and private citizens to try and protect themselves from these threats.</p><h2 id="online-advertising-primer">Online advertising primer </h2><p>Online advertising is big business. In 2018, the United States digital advertising revenue exceeded $100 billion. To put that in perspective, that's as large as the annual revenues for leading aerospace and multinational banking companies. So how does this complicated industry operate and how are ads served to users? There are numerous types of online advertising and associated ways to make money from it. One common distinction is between sponsored content and banner ads. Most users are familiar with banner ads as they tend to be somewhat isolated from the content of the webpage. Sponsored content, on the other hand, can appear on a page mixed in among the original content on the page. It typically will have some sort of identifier saying "Sponsored Content" and when a user clicks the link they are typically taken through the ad network to another site. Inside of each of these categories there are a wide variety of options for the advertiser. However, for the purposes of this blog we are going to focus on the area of online advertising that is the most ripe for abuse, real time bidding (RTB).</p><p>Let's start by talking about the components of an RTB advertising network.</p><p>The first piece is the publisher, who gets paid to host ads on their site. To host ads, the publisher utilizes an advertising server. There are several ad servers to choose from, including self-hosted or service solutions. Self-hosted ad server options include open-source and paid solutions. The second key portion of an RTB network is an open ad exchange. This is a public digital marketplace where the publisher posts their site's ad spots that are available for bidding. The third and final portion of a basic advertising chain are the advertisers. These advertisers can include marketing companies, individuals, or other ad networks. These groups then bid in real time on the ad real estate available on content being rendered. Now, let's walk through how exactly this works.</p><p>When a random user requests a web page, the HTTP request is sent to the publisher and the bidding begins. The publisher leverages integrated code or their ad server to list the ads for bid via the advertising exchange. As part of the HTTP request and response, the publisher can gather additional information about the requestor, including things like demographics, URL, location, browser type, window size, and other identifiable pieces of information. All this information is then passed to the ad exchange where advertisers begin the bidding. The additional information provided by the publisher can allow the advertiser to target their ads more specifically and display only to those users that are likely to be engaged. The winning bid is then chosen and the advertiser provides the ad to the ad exchange. The ad exchange in turn returns the ad to the publisher and it is rendered to the user in the browser along with the remaining content on the page. Keep in mind this all happens in a matter of milliseconds and, as such, there is a potential for abuse.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-O8j1RagEYPw/XUGeqkFG58I/AAAAAAAAB2E/uhb_NLtwuRIRMomAHqIFSrwbKeMSlrQyACLcBGAs/s1600/image17.jpg" class="kg-image" alt loading="lazy"></figure><h3 id="monetization">Monetization </h3><p>There are several ways publishers can get paid. First, and most common, is pay per impression (PPI). This is basically receiving money any time an ad renders on your page, no user interaction required. Advertisers pay per thousand impressions, in what is known as cost-per-mile (CPM). Next is pay-per-click (PPC). In this scenario, the publisher gets paid every time a user clicks on an ad. This usually generates a higher revenue than PPI since user interaction is required, but for the same reason is also less likely to occur. Finally, there is a pay-per-order (PPO) monetization. This is the highest revenue generation of the monetization avenues but usually requires the user to complete some action. These actions can include things like installing software, signing up for a mailing list, completing a form, or any other actions that constitute an order to the advertiser. This is also the most difficult of the monetization routes because it requires a user to not only click the ad, but also complete an action afterwards.</p><h3 id="tracking">Tracking </h3><p>One final point before moving onto malicious intent: tracking. Since advertisers and marketers are spending significant amounts of money in online advertising, they want to know which methods work best and they get that information through tracking data. This provides an interesting glimpse into the ways that the traffic is sourced and driven. You may notice some of this tracking information being passed in the URLs that you visit. Below you will find an example of one of these URL additions.<br></p><pre><code>utm_term=2310109&amp;s=1&amp;utm_campaign=pps_News%20Anchors%20T3%20DS%20LLE%20-%20Desktop%20USA&amp;utm_source=taboola&amp;utm_medium=news_site&amp;pps_term=She%20Was%20Live%20Reporting%2C%20And%20Viewers%20Got%20Way%20More%20Than%20What%20They%20Bargained%20For&amp;utm_content=msn-ie11-us</code></pre><p><br> To better understand how this works we have modified the text formatting. The elements that start with utm are the tags associated with marketing. UTM stands for Urchin Tracking Module, the standard way to track marketing in digital advertising. As you can see there is a plethora of information provided in this context. The first couple of fields are tracking for the campaign and other numerical identifiers. Some of the other clues are more interesting. Note the utm_medium field which shows where the traffic originated, in this case news_site. Additionally, you can see what term may have been clicked from fox news' page. Now these links can be both traditional banner ads or could also be sponsored content, which you now will see commonly on most major websites. The last field is the one that deserves attention and shows why this could be valuable for a malicious actor. Attached to the utm_content variable is a key bit of information 'ie11-us' which identifies both the location and the web browser of the system accessing the link. Imagine if you were an exploit kit user and could make your landing pages target systems running specific web browsers or a specific geolocation. Enter malvertising.</p><h2 id="malvertising">Malvertising </h2><p>Malvertising refers to the method by which malicious actors are abusing the online advertising markets for nefarious gains. The process is largely the same as what is outlined above, but interspersed with legitimate advertisers are a handful of malicious actors, 'domainers', and traffic directors (TDS). These groups specialize in generating traffic to a destination, whatever that destination may be. Along the way, they employ multiple layers of obfuscation before finally serving malicious content. Effectively, they bid on ads at ad exchanges and then have those ads move through multiple layers of redirection techniques until landing on some sort of malicious content. That malicious deliverable can vary widely from fake flash players and tech support scams to exploit kits which compromise the requestors systems without user intervention.</p><p>What we commonly see is a user getting dumped out to an exploit kit landing page and in triaging the compromise we can see clearly how the ad campaigns try to obfuscate themselves.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-6hhKGUUBH7U/XUGe_TkmKXI/AAAAAAAAB2Q/eWoS2X1ethIpo2oumUUjKA03wEU8zJYFQCLcBGAs/s640/image13.png" class="kg-image" alt loading="lazy"></figure><p>This first image walks through the traffic director systems or TDS and the common redirection technique of using HTTP/1.1 302 requests. This technique, 302 cushioning, has been used for a long time with adversaries, but is also commonly used by most websites on the internet, which makes it an effective redirection mechanism.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-9QuBAe3fw14/XUGfFfTd-ZI/AAAAAAAAB2U/ycuXFr3516YN6asZG9pMeoihyDi7HWWIQCLcBGAs/s640/image12.png" class="kg-image" alt loading="lazy"></figure><p>Here is the final 302 redirection that actually points to an exploit kit landing page, in this particular case the RIG exploit kit. This is the first major challenge that faces advertising networks: validation of ads. How is an ad network able to verify the true purpose of an ad that relies on so many tiers of 302 redirection? Manipulation of any of the 302 redirects along the path the exploit kit could make it completely benign. For instance, if the adversary pointed the final 302 redirect to a legitimate ad and then only shifted it to a malicious location in targeted instances, it becomes increasingly difficult to defend.</p><p>Redirections can also happen server-side, as in the case of HTTP 301, 302, or response headers, as well as through client-side code such as JavaScript or HTML elements. Additionally, malicious actors can leverage the effects of certain redirects to their advantage. For instance, redirecting the browser to another site via a Javascript 'location.replace' will not leave evidence of the redirect in the browser history, a useful tactic for anyone trying to obfuscate their tracks.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-wCv_chI5kz0/XUGfLHPjPhI/AAAAAAAAB2Y/B-O1xGCBC-gPSzZXOHmFz3nSbtPFKIaAACLcBGAs/s640/image1.png" class="kg-image" alt loading="lazy"></figure><p>This malicious infection chain involves a large amount of components and moving pieces. This complex environment provides a malicious actor ample opportunity to divert traffic from legitimate sites into malicious territory. Below is an infographic covering this overall process and flow.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-nrfVPVkHbf8/XUGs8xDqTRI/AAAAAAAAB4c/ux4_U3WE7nIB_UafWD_ApF8ICsR_rBCUQCLcBGAs/s1600/malvertising-new-25282-2529.jpg" class="kg-image" alt loading="lazy"></figure><h2 id="use-case-1-large-scale-exploit-kit-campaign">Use Case 1: Large-scale exploit kit campaign </h2><p>Cisco Talos has noticed a marked increase over the past several weeks in the amount of global RIG activity largely driven by malvertising. Before we get too deep into the campaign itself, let's discuss why malvertising is an attractive avenue for exploit kit users.</p><p>Talos has observed three different ways to interact with exploit kits: malvertising, compromised websites and adware. Let's focus on malvertising to start. The large victim pool is one of the major advantages of malvertising. When leveraging a compromised website to deliver exploits, your victim pool is confined to only people navigating to that website. However, with malvertising you can hit a much larger array of different victims in different locations. Additionally, as we highlighted above, you can potentially target specific web browsers, greatly increasing your infection success rate. Below we can see one set of options presented to advertisers on an established ad service:</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-4kPraZV1_lc/XUGfWgitZKI/AAAAAAAAB2o/VNj1GZCekHUIEUnUmtuCJKQVw4gJwMauACLcBGAs/s640/image14.png" class="kg-image" alt loading="lazy"></figure><p>Another advantage of malvertising is its negative impact on defenders or threat researchers. An adversary using a compromised website to deliver an exploit kit creates a single point of failure: the compromised site. Defenders and researchers can find the malicious server and block the compromised web site, and potentially even engage the victim to remediate the compromised site, effectively containing the campaign. The same campaign powered by malvertising, on the other hand, has multiple different entry points from a variety of both related and unrelated web pages, making enumeration and mitigation more difficult. Additionally, malvertising networks commonly iterate through multiple ad networks when being served ads. Tracing the malicious ad back to a particular advertiser can be challenging. Trying to recreate the infection chain can be extremely difficult if not impossible, since real-time bidding introduces an element of randomness to the content served.</p><p>We've also seen a surge in adware delivering malicious ads to users. In today's world, anything that generates ad revenue could be leveraged by malicious actors. Let's walk through an example of this infection path that we discovered in <a href="https://www.cisco.com/c/en/us/products/security/threat-grid/index.html">Threat Grid</a> during our research into the ongoing campaign.</p><p>One of the challenges software developers have is the decision of how to monetize software. There are basically three options: sell it, bundle it, or open-source it. Selling and open-sourcing are fairly straightforward options resulting in either monetary gain from the sale or (hopefully) donations or other methods of support from the open-source community. Let's instead focus on bundling, or the process of adding additional software to the installation package.</p><p>Worms are just one type of threat that analysts are familiar with. Over time there have been high-profile examples of such threats like Conficker, Slammer, Code Red or the more recent <a href="https://blog.talosintelligence.com/wannacry/">WannaCry</a>. Difficult to contain, worms spread quickly and effectively. Due to both their prevalence and the potential difficulty associated with remediation, there are many software solutions to address these types of threats. A quick web search can result in a wide variety of results from the legitimate and expensive to the quasi-legitimate and free. One of those results could lead to a site like USB Guardian.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-_iB0GHUJmHM/XUGff5IsYhI/AAAAAAAAB2w/ixbJEQIY1ggjIvwSbEuaftUU6rPxzNNFACLcBGAs/s640/image18.png" class="kg-image" alt loading="lazy"></figure><p>As you can see, USB Guardian claims to be software designed to prevent you from getting infected with a worm and scan USB devices. This screen pops up when installing the software.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-Nn1eneMFuas/XUGf76EN41I/AAAAAAAAB3A/7RHkFhlRvKkU1vuYdR0J17Cy__1WOiPugCLcBGAs/s640/image4.png" class="kg-image" alt loading="lazy"></figure><p>This is where the bundled software comes into the picture, in this case the BestSecurityTips toolbar. This toolbar will be installed along with USB Guardian and is the source of the malicious activity. One red flag to the user should be when you click the toolbar end user license agreement you are met with a blank webpage.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-WDsA6mjy7p0/XUGgAucJNyI/AAAAAAAAB3E/W0iLBtzVre00-IK-tOujiRDsqs7C0Xw2QCLcBGAs/s400/image20.png" class="kg-image" alt loading="lazy"></figure><p>This particular toolbar is the Best Security Tips toolbar, and after some initial research, led to the conduit toolbar. Once installed, this toolbar will change the browser homepage and default search engine, allowing adversaries to change search results and other activities to promote click fraud and excessive advertising, which can lead to more damaging results including malware infection. These changes allow the ad networks to push content onto end systems with higher efficacy. This particular infection chain demonstrates some of the ways ads are requested by this software.</p><p>A series of web requests kick off immediately after installation. The first request is to an ad network called "daily ads" and it ends with the user being served an exploit kit landing page.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-XbMMq8kB6Oc/XUGgFMG5xuI/AAAAAAAAB3I/y7sYw8VxBI0l-yq0z-idMO1oC7f93b3sACLcBGAs/s640/image11.png" class="kg-image" alt loading="lazy"></figure><p>The request above is to a URL ending in "indexbst.php?idapp=198." However, there were other tiers of redirects that are occuring being the scenes.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-0waZg2Jm31c/XUGgKGLQqRI/AAAAAAAAB3M/oEo5qBzh7PMdCzkKnYzrXIPybiXz-agZwCLcBGAs/s640/image2.png" class="kg-image" alt loading="lazy"></figure><p>It begins with a request to daily ads for /version/version.php and is met with the first of many HTTP/1.1 302 requests pointing it to a series of other dailyads servers. This eventually results in a get request being delivered to ww7.dailyads[.]org, shown below.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-mOT-Wgl9-XA/XUGgSzmoSMI/AAAAAAAAB3Q/_HSF9LXdwA4wIm1eKtDdcVbFG9OEc8XsQCLcBGAs/s640/image8.png" class="kg-image" alt loading="lazy"></figure><p>There is one key piece of information to pull from the above packet capture: the header 'X-Adblock-Key'. This header includes an API key that allows dailyads to bypass one of the most popular ad blockers. In many cases, this ad blocker is the only thing preventing a user from being shown a malicious ad. So the presence of this key implies that at least one of the biggest ad blockers would not have stopped these ads from rendering to the user. Eventually, the user will end up with a request ending in 'indexbst.php?idapp=198' as shown above, which is when the user first starts down a malicious path.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-OephoaZgkZo/XUGgX8DxWxI/AAAAAAAAB3Y/zMXqsBSAa28qhqj2yawTqdn03Fl7tbS1ACLcBGAs/s640/image7.png" class="kg-image" alt loading="lazy"></figure><p>This presents the user with yet another 302 cushion. This time, it points to what appears to be an ad hosted on mybetterdl[.]com. That request is met with yet another 302 pointing to a different subdomain at mybetterdl[.]com.Hosting 91Hosting 91.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-HXfh10cu9BI/XUGgcmw4-YI/AAAAAAAAB3g/N9gMBSK4P3cl0EiFH1w7tGByB5yg3TfiACLcBGAs/s640/image6.png" class="kg-image" alt loading="lazy"></figure><p>That leads to another 302 cushion, which this time points to an apparent ad at a different domain bitcoinmaker[.]site — it's this final ad that results in one final 302 cushion that points the user to an actual exploit kit landing page, in this case, RIG.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-dQ9A_8p-ufM/XUGggp3Ih6I/AAAAAAAAB3k/03lMd3p8XLsGCGPQdvkNQVCixgZbcw2mACLcBGAs/s640/image9.png" class="kg-image" alt loading="lazy"></figure><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/--9zS_TlKBew/XUGgk8EzsJI/AAAAAAAAB3s/w8_AWAcR_zkjcjKv63KUHQkyoiwXqQ0CgCLcBGAs/s640/image15.png" class="kg-image" alt loading="lazy"></figure><p>Once the user completes the request after the series of 302 cushions, they will be presented with a landing page and eventually will be served a patched Adobe Flash or Internet Explorer vulnerability to deliver some sort of malicious payload.</p><h3 id="scope-and-impact">Scope and impact </h3><p>The specific example above walks through how a software installation can lead to a user hitting a series of malvertisements. However, most of these infections do not have a nexus of antivirus software or adware specifically and just involve users getting compromised by malicious ads.</p><p>These malicious campaigns have hit a wide variety of different sites in various different verticals from news to design, music, racing, and popular culture. Talos has observed sites ranging as high as in the top 5,000 websites, per Alexa. However, Talos has also found evidence of ways that sites in the top 100 have been indirectly linked to this malvertising campaign. These often start with sponsored content, links typically displayed on various high ranking web pages linking to other, smaller web pages. The utm tags that were discussed earlier in the blog are a prime example of this behavior.</p><p>We found several examples where a user would start at an Alexa top 50 site, including some of the biggest news sites on the internet. The user would then click on some sort of sponsored content, either wittingly or unwittingly. The user is then taken to a new site, well outside the Alexa top 50 to something in the Alexa top 10,000 instead. These sites will then have ads that move through multiple 302 cushions, similarly to what is described above.</p><h2 id="use-case-2-malicious-content-shot-from-the-hip">Use Case 2: Malicious content shot from the hip </h2><p>In June of 2019, Talos discovered a website redirecting Safari browsers to a domain delivering a malicious Flash Player installer. As opposed to the exploit kit use-case discussed above, the behavior for this malvertising campaign is somewhat repeatable, allowing Talos researchers to extract some additional information.</p><p>In this case of malvertising, the actors utilize a common service called "domain parking" to enable their campaign. Essentially, parking domainers don't wait for a user to click on an ad to generate PPC revenue, but take benign traffic that would otherwise return an error, and redirect it into their ad network, acting as an ad publisher.</p><p>The benefits of this type of malvertising are similar to the previous use case: ease of use, simple targeting and higher likelihood of traffic. Zero Click traffic is sold in "traffic marketplaces," where an owner of a domain can purchase traffic and have it directed to their domain. As in the previous use-case, using a parking service, a user can specify the category of the domain to affect bidding, user's target browser, operating system, geolocation and in some cases the age and demographic of the person viewing the ad.</p><p>At the time of the investigation, the initial domain was hosted with a parking service at a cloud provider in Lithuania. Cisco Threat Grid has nearly 700 malware samples with a threat score of 95 or above associated with this host. DNS history data shows the IP has hosted hundreds of domains over time. In a one-week span, 87 domains were pointed to the IP, including some obvious typo-squats such as:</p><ul><li>0utlook[.]com</li><li>yotub[.]com</li><li>gmyail[.]com</li><li>yspace[.]com</li><li>yyooutube[.]com During our investigation, more often than not, and while avoiding a server-side request rate limit, a Safari browser will be redirected through a series of sites ultimately landing at the fake Flash Player installer. A non-Safari browser, on the other hand, will redirect to a default domain parking page, offering the end user a chance to buy the domain through sedo.com, one of the long established domain parking providers with more than 16 million domains for sale.</li></ul><p>Several different redirect methods were used in the request chain that delivered malware, as can be seen in the example in the table below.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-_rHAubI_ZMs/XUGgxiEgVyI/AAAAAAAAB34/XXRK4nRz110XarwT2VchwL6Ho7PCTD0wQCLcBGAs/s640/image21.png" class="kg-image" alt loading="lazy"></figure><p>A number of domains are visited multiple times during the redirect chain, with different query paths on each visit. The HTTP flow shows how difficult and convoluted the online advertising process can be to follow and how easily it can be compromised.</p><p>When the visitor issues an HTTP GET for the site in the first sequence, client-side JavaScript redirects the host to two subsequent sites. Site 2 sets a tracking cookie containing a user ID and closes the connection. Site 3 redirects to site 4 using an HTTP response header:</p><pre><code>{"Cache-Control": "max-age=0, private, must-revalidate", "Content-Length": "11", "Date": "Wed, 03 Jul 2019 17:27:44 GMT", "Location": "http://usd.franciscus-ful[.]com/zcvisitor/de20fa7f-9db7-11e9-9522-1264782e7ac8?campaignid=77a8d2a0-8209-11e9-bf85-0a5f8f5656fe", "Server": "nginx", "X-Cache": "MISS from bc01", "Via": "1.1 bc01 (squid/3.5.27)", "Connection": "close"}</code></pre><p><br>Here, we can see a clue to the domain's role in Zero Click parked traffic via a response header for all requests to site 4:<br></p><pre><code>"Server": "ZeroPark-Traffic"</code></pre><p>The code on site 4 contains capabilities for both HTML and JavaScript redirect methods, and redirects to two more sites. Our test setup executed the JavaScript element to redirect to site 5, but not before collecting and attaching identifiable information about the browser such as page width and height, as well as whether the current window is the topmost window in the browser:<br></p><pre><code>&lt;script type="text/javascript"&gt;
+
+setTimeout(function () {
+
+var pageWidth = window.innerWidth ? window.innerWidth : (document.documentElement &amp;&amp; document.documentElement.clientWidth ? document.documentElement.clientWidth : document.getElementsByTagName('body')[0].clientWidth);
+
+var pageHeight = window.innerHeight ? window.innerHeight : (document.documentElement &amp;&amp; document.documentElement.clientHeight ? document.documentElement.clientHeight :
+
+
+
+var iframeDetected = window.self !== window.top;
+
+window.location="http://usd.franciscus-ful[.]com/zcredirect?visitid=de20fa7f-9db7-11e9-9522-1264782e7ac8&amp;type=js&amp;browserWidth=" + pageWidth +"&amp;browserHeight=" + pageHeight +"&amp;iframeDetected=" + iframeDetected;
+
+}, 1);
+
+&lt;/script&gt;</code></pre><p>Site 5's redirect via JavaScript to Site 6 is immediately redirected through two more HTTP redirects before ultimately being served the fake Flash Player.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-LZsmHaZjGjE/XUGg-dNFcTI/AAAAAAAAB38/qWSbYkPKQZMvgT6yHHIjh9fMGUicYUKHgCLcBGAs/s640/image19.png" class="kg-image" alt loading="lazy"></figure><p>All 3 buttons are HTML href's to the same path on the current domain, which, if clicked, would download the malicious .dmg installer. This particular installer would infect your system with a well-known piece of malware called "Shlayer."</p><h2 id="defending-against-malicious-advertising">Defending against malicious advertising </h2><p>Defending against malicious advertising is a difficult task for a variety of reasons. Online advertising is the reason that internet content is free, and there needs to be a balance between blocking ads and still allowing sites to generate revenue. In recent years, there have been some major shifts in this space, notably websites requiring users to turn off ad blockers to view content. While this is understandable from a revenue perspective, it does introduce risk and, in the campaigns we've seen, you can trace the infection path back to a user-clicked sponsored link on some of the most popular sites in the world. Additionally, there have also been <a href="https://www.businessinsider.com/google-microsoft-amazon-taboola-pay-adblock-plus-to-stop-blocking-their-ads-2015-2">reports</a> that some of the big advertisers have been paying a premium to bypass popular ad blockers. In fact, in both uses cases that Talos researched for this article, advertisers paid to bypass an ad blocker, thus rendering the ad blocker unable to stop any ad served from that advertiser.</p><p>In the end, this is no more than risk assessment, with various options available as a compensating control. On one end, you have an unfettered user experience with the highest possible risk associated with malicious advertising. As you add controls to address malicious advertising you will reduce risk, but also hinder your users. One step may be adding an ad blocker to web browsers, which will reduce risk with minimal impact to the user. However, some sites will no longer be available even at that low bar of protection. There is also a danger of a user whitelisting sites that eventually host malvertising or the aforementioned advertiser opt-out. The next phase could be to start adding other technologies like a web proxy or IDS/IPS to analyze the traffic on the wire. This again will increase the security and decrease risk, but comes with a significant cost increase and adds possible points of failure along the way. Then you have more aggressive options including attempting to block all ad networks. This will give you the greatest reduction to risk, but also has the largest impact on your users.</p><p>There are many different ways to block ad networks at the domain or nameserver level, but it does require you to make use of some sort of DNS product like <a href="https://umbrella.cisco.com/">Cisco Umbrella</a> to achieve that goal. Another advantage to a product like Umbrella is its ability to block the gate and TDS domains. This may allow the organization an extra layer of protection that will stop known bad domains from serving content to users, without blocking ads unilaterally. Below is a table illustrating how the controls need to balance between risk and user impact.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-TBsRT1DZxFQ/XUGhEOuMAfI/AAAAAAAAB4E/KFMxsYllGlIeHE9H24eUNYL4IGlMKR8aQCLcBGAs/s640/image5.png" class="kg-image" alt loading="lazy"></figure><p>From a consumer perspective there are plenty of options, including open-source solutions that can help mitigate the issue at home, as well. Among them is the <a href="https://github.com/pi-hole/pi-hole">pi-hole project </a>which leverages a raspberry pi to achieve ad protections. We at Cisco also <a href="https://www.opendns.com/home-internet-security/">offer some options</a> for consumers to take advantage of the protections available in Umbrella.</p><p>Regardless, of how you approach it, digital advertising is one of the biggest battlegrounds on the threat landscape for drive-by attacks delivering malicious content around the globe. Both enterprises and consumers need to be prepared and make a decision on how aggressive they want to be on blocking it. However, it's a unique challenge since the risk is eliminating large chunks of free content on the internet as it becomes increasingly difficult to generate revenue from that content. These are just a couple of the major issues we will be forced to confront over the next several years and the quicker you realize you are going to need to address it, the better served you will be.</p><h2 id="coverage">Coverage</h2><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-1NWjxA_MDUM/XUGhIng84OI/AAAAAAAAB4I/cGOvg0XnS9UxzFw6fX3hzS4DhXtnXS3DQCLcBGAs/s1600/image3.png" class="kg-image" alt loading="lazy"></figure><p>Advanced Malware Protection (<a href="https://www.cisco.com/c/en/us/products/security/advanced-malware-protection">AMP</a>) is ideally suited to prevent the execution of the malware detailed in this post. Below is a screenshot showing how AMP can protect customers from this threat. Try AMP for free <a href="http://cisco.com/go/tryamp">here.</a></p><p>Cisco Cloud Web Security (<a href="https://www.cisco.com/c/en/us/products/security/cloud-web-security/index.html">CWS</a>) or Web Security Appliance (<a href="https://www.cisco.com/c/en/us/products/security/web-security-appliance/index.html">WSA</a>) web scanning prevents access to malicious websites and detects malware used in these attacks.</p><p>Network Security appliances such as Next-Generation Firewall (<a href="https://www.cisco.com/c/en/us/products/security/firewalls/index.html">NGFW</a>), Next-Generation Intrusion Prevention System (<a href="https://www.cisco.com/c/en/us/products/security/intrusion-prevention-system-ips/index.html">NGIPS</a>), and <a href="https://meraki.cisco.com/products/appliances">Meraki MX</a> can detect malicious activity associated with this threat.</p><p><a href="https://www.cisco.com/c/en/us/solutions/enterprise-networks/amp-threat-grid/index.html">AMP Threat Grid</a> helps identify malicious binaries and build protection into all Cisco Security products.</p><p><a href="https://umbrella.cisco.com/">Umbrella</a>, our secure internet gateway (SIG), blocks users from connecting to malicious domains, IPs, and URLs, whether users are on or off the corporate network.</p><p>Additional protections with context to your specific environment and threat data are available from the <a href="https://www.cisco.com/c/en/us/products/security/firepower-management-center/index.html">Firepower Management Center</a>.</p><p>Open Source Snort Subscriber Rule Set customers can stay up to date by downloading the latest rule pack available for purchase on <a href="https://www.snort.org/products">Snort.org</a>.</p><h2 id="indicators-of-compromise-ioc-">Indicators of Compromise (IOC)</h2><h3 id="use-case-1-rig-exploit-kit-campaign">Use Case 1: Rig Exploit Kit Campaign</h3><h4 id="ip-addresses-">IP Addresses: </h4><p>185[.]246[.]65[.]115<br>185[.]246[.]65[.]118<br>185[.]246[.]65[.]119<br>176[.]57[.]217[.]135<br>92[.]53[.]124[.]156<br>185[.]246[.]64[.]222<br>185[.]246[.]64[.]233<br>185[.]246[.]64[.]236<br>176[.]57[.]214[.]193<br>176[.]57[.]217[.]89<br>185[.]43[.]4[.]106<br>185[.]246[.]64[.]155<br>92[.]53[.]124[.]176<br>82[.]146[.]49[.]141<br>188[.]225[.]25[.]248<br>92[.]53[.]124[.]167<br>185[.]43[.]4[.]66<br>188[.]225[.]35[.]239<br>188[.]225[.]18[.]213<br>188[.]225[.]34[.]73<br>188[.]225[.]34[.]66<br>37[.]230[.]117[.]169<br>37[.]230[.]117[.]43<br>37[.]230[.]117[.]77<br>37[.]230[.]117[.]87<br>188[.]225[.]35[.]55<br>188[.]225[.]24[.]229<br>185[.]246[.]64[.]144<br>185[.]246[.]64[.]148<br>185[.]246[.]64[.]157<br>188[.]225[.]25[.]246<br>176[.]57[.]217[.]134<br>185[.]43[.]7[.]162<br>94[.]250[.]253[.]147<br>94[.]250[.]253[.]29<br>188[.]225[.]33[.]219<br>185[.]43[.]6[.]90<br>185[.]43[.]6[.]106<br>188[.]225[.]26[.]80<br>176[.]57[.]220[.]7<br>176[.]57[.]220[.]28<br>37[.]46[.]135[.]254</p><h3 id="use-case-2-shoot2020-campaign">Use Case 2: Shoot2020 Campaign</h3><h4 id="domains-">Domains:</h4><p>shoot2020[.]com<br>axiomatic[.]world<br>charmolivia[.]com<br>sleepdiploma[.]pw<br>usd[.]franciscus-ful[.]com<br>cdn[.]formatlog[.]com<br>cdn[.]detectioncache[.]com<br>cdn[.]browsedisplay[.]com<br>cdn[.]essentialarchive[.]com<br>cdn[.]alphaelemnt[.]com<br>cdn[.]megaelemnt[.]com<br>cdn[.]originaloption[.]com<br>cdn[.]entrydisplay[.]com<br>cdn[.]initiatormaster[.]com</p>
+            
+                    </div>
+    </section>
+    <div class="social-media-wrapper">
+    <h5>Share this post</h5>
+    <ul class="social-media-share-list">
+        <li>
+            <a class="share-facebook" title="Share this on Facebook" data-text="Malvertising: Online advertising&#x27;s darker side" data-href="https://blog.talosintelligence.com/malvertising-deepdive/" rel="nofollow" target="_blank" href="https://www.facebook.com/sharer.php?u=https://blog.talosintelligence.com/malvertising-deepdive/"></a>
+        </li>
+        <li>
+            <a class="share-x" title="Post This" data-text="Malvertising: Online advertising&#x27;s darker side" data-href="https://blog.talosintelligence.com/malvertising-deepdive/" rel="nofollow" target="_blank" href="https://x.com/share?url=https://blog.talosintelligence.com/malvertising-deepdive/"></a>
+        </li>
+        <li>
+            <a class="share-linkedin" title="Share this on LinkedIn" data-text="Malvertising: Online advertising&#x27;s darker side" data-href="https://blog.talosintelligence.com/malvertising-deepdive/" rel="nofollow" target="_blank" href="https://www.linkedin.com/sharing/share-offsite/?url=https://blog.talosintelligence.com/malvertising-deepdive/"></a>
+        </li>
+        <li>
+            <a class="share-reddit" title="Reddit This" data-text="Malvertising: Online advertising&#x27;s darker side" data-href="https://blog.talosintelligence.com/malvertising-deepdive/" rel="nofollow" target="_blank" href="https://www.reddit/submit?url=https://blog.talosintelligence.com/malvertising-deepdive/"></a>
+        </li>
+        <li>
+            <a class="share-email" title="Email This" href="mailto:?body=Malvertising: Online advertising&#x27;s darker sidehttps://blog.talosintelligence.com/malvertising-deepdive/"></a>
+        </li>
+    </ul>
+</div></article>
+                    </div>
+                </div>
+                <div class="alt-layout-row-dk sidebar" id="side-bar">
+
+
+                            <h4>Related Content</h4>
+                                <div class="sidebar-snippet-wrapper">
+                                    <a href="/china-nexus-uat-11587-targets-government-and-policy-organizations-across-asia-with-antino-backdoor/">
+                                        <h3>China-nexus UAT-11587 targets government and policy organizations across Asia with Antino backdoor</h3>
+                                        <span  class="preview-attributes">September 30, 2026 06:00</span>
+                                        <p>Cisco Talos uncovered a cluster of activity we track as UAT-11587 targeting government and policy organizations across Asia, including in Taiwan, India, the Philippines, and Cambodia, to deliver a previously undocumented backdoor referred to as “Antino” in developer artifacts.</p>
+                                    </a>
+                                </div>
+                                <div class="sidebar-snippet-wrapper">
+                                    <a href="/the-closed-quorum-inside-the-first-reported-autonomous-ai-c2-implant/">
+                                        <h3>The Closed Quorum: Inside the first reported autonomous AI C2 implant</h3>
+                                        <span  class="preview-attributes">September 22, 2026 06:00</span>
+                                        <p>CLOSEDQUORUM, a malware binary discovered through Cisco Talos’ CAIRN project, exhibits fully autonomous command and control (C2). It represents a shift in effort displacement for attackers, in which expanding portions of the attack chain can be executed without operator involvement.</p>
+                                    </a>
+                                </div>
+                                <div class="sidebar-snippet-wrapper">
+                                    <a href="/ransomware-incidents-in-japan-in-the-first-half-of-2026/">
+                                        <h3>Ransomware incidents in Japan in the first half of 2026: Investigation of The Gentlemen’s infrastructure and evidence of Qilin&#x27;s AI use</h3>
+                                        <span  class="preview-attributes">September 17, 2026 06:00</span>
+                                        <p>Ransomware incidents in Japan rose 4.7% year over year. The Gentlemen was the most active group, with leak-site listings more than doubling from January to July. Qilin ranked second and appeared to use AI, while SMEs with capital under JPY 1 billion represented 80% of victims.</p>
+                                    </a>
+                                </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+    <footer id="footer">
+    <div class="container-fluid px-0">
+        <div class="row footer_nav_wrapper mx-0">
+            <div class="col-xl-10 col-12">
+                <div class="multi-col-list-wrapper">
+                    <ul class="footer-parent-list">
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6><a href="https://talosintelligence.com/reputation">Intelligence Center</a></h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/reputation_center">Intelligence Search</a></li>
+                                <li><a href="https://talosintelligence.com/reputation_center/email_rep">Email &amp; Spam Trends</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6><a href="https://talosintelligence.com/vulnerability_info">Vulnerability Research</a></h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/vulnerability_reports">Vulnerability Reports</a></li>
+                                <li><a href="https://talosintelligence.com/ms_advisories">Microsoft Advisories</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                             <ul>
+                                <li>
+                                    <h6><a href="https://talosintelligence.com/incident_response">Incident Response</a></h6>
+                                </li>
+                                <li>
+                                    <a href="https://talosintelligence.com/incident_response/services#reactive-services">Reactive Services</a>
+                                </li>
+                                <li>
+                                    <a href="https://talosintelligence.com/incident_response/services#proactive-services">Proactive Services</a>
+                                </li>
+                                <li>
+                                    <a href="https://talosintelligence.com/incident_response/contact">Emergency Support</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Security Resources</h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/software">Open Source Security Tools</a></li>
+                                <li><a href="https://talosintelligence.com/categories">Intelligence Categories Reference</a></li>
+                                <li><a href="https://talosintelligence.com/secure-endpoint-naming">Secure Endpoint Naming Reference</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Media</h6>
+                                </li>
+                                <li><a href="https://blog.talosintelligence.com">Talos Intelligence Blog</a></li>
+                                <li><a href="https://blog.talosintelligence.com/category/threat-source-newsletter/">Threat Source Newsletter</a></li>
+                                <li><a href="https://talosintelligence.com/podcasts/shows/beers_with_talos">Beers with Talos Podcast</a></li>
+                                <li><a href="https://talosintelligence.com/podcasts/shows/talos_takes">Talos Takes Podcast</a></li>
+                                <li><a target="_blank" href="https://www.youtube.com/channel/UCPZ1DtzQkStYBSG3GTNoyfg/featured">Talos Videos</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Support</h6>
+                                </li>
+                                <li><a href="https://support.talosintelligence.com">Support Documentation</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Company</h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/about">About Talos</a></li>
+                                <li><a href="https://talosintelligence.com/careers">Careers</a></li>
+                                <li><a target="_blank" href="https://www.cisco.com/c/en/us/products/security/product-listing.html">Cisco Security</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xl-2 col-12 connect_social">
+                <div class="connect-footer-section-wrapper">
+                    <h6>Follow us</h6>
+                    <ul>
+                        <li>
+                            <a target="_blank" href="https://x.com/talossecurity"><div class="footer-media-icon" id="footer-media-icon-x"></div>
+                            </a></li>
+                        <li>
+                            <a target="_blank" href="https://www.youtube.com/channel/UCPZ1DtzQkStYBSG3GTNoyfg/featured"><div class="footer-media-icon" id="footer-media-icon-youtube"></div>
+                            </a></li>
+                        <li>
+                            <a target="_blank" href="https://www.linkedin.com/company/cisco-talos-intelligence-group/"><div class="footer-media-icon" id="footer-media-icon-linkedin"></div>
+                            </a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row mx-0">
+            <div class="col-12 footer_corporate">
+                <a target="_blank" href="http://tools.cisco.com/security/center/home.x"><img alt="Cisco" src="https://blog.talosintelligence.com/assets/images/logo_cisco_white.svg">
+                </a><p class="copyright">
+                ©
+                <span id='current-year'></span>
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                <a target="_blank" class="underline" href="http://www.cisco.com/web/siteassets/legal/privacy_full.html">Privacy Policy.</a>
+            </p>
+            </div>
+        </div>
+    </div>
+</footer>
+    <script>
+  function coverageView() {
+    const coverageTable = document.getElementById('coverage-block');
+    const sidebar = document.getElementById('side-bar');
+    const postContent = document.getElementById('post-content');
+    const currentWidth = window.innerWidth;  
+  
+    if (coverageTable && sidebar && postContent) {
+      if (currentWidth < 1000) {
+        // For viewport less than 1000px, append to post content
+        postContent.appendChild(coverageTable);
+      } else {
+        // For viewport 1000px and wider, check for subscribe button
+        const subscribeButton = sidebar.querySelector('.subscribe-button');
+        
+        if (subscribeButton) {
+          // Insert coverage block after the subscribe button
+          subscribeButton.insertAdjacentElement('afterend', coverageTable);
+        } else {
+          // No subscribe button found, prepend to top of sidebar
+          sidebar.prepend(coverageTable);
+        }
+      }
+    }
+  }
+  
+  window.addEventListener("resize", coverageView);
+  window.addEventListener("load", coverageView);
+
+
+  (function() {
+    Array.from(document.querySelectorAll("a")).filter(a => {
+        return a.hostname && a.hostname !== location.hostname
+    }).forEach(a => a.setAttribute('target', '_blank'))
+})();
+</script>
+
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://blog.talosintelligence.com/assets/js/jquery-3.6.0.min.js?v=_xUj-3OJU5yExlq6"></script>
+<script src="https://blog.talosintelligence.com/assets/js/popper.min.js?v=ZvOgfh-ptkpoa2Y4"></script>
+<script src="https://blog.talosintelligence.com/assets/js/resize-styles.js?v=iB-0rQKwd6f_Dllp"></script>
+<script src="https://blog.talosintelligence.com/assets/js/bootstrap.bundle.min.js?v=JRXjfu4x9e89ZZsh"></script>
+<script src="https://blog.talosintelligence.com/assets/js/date.js?v=TlJWK1qtzFQeV9lL"></script>
+<script src="https://blog.talosintelligence.com/assets/js/prism.js?v=roQly8fYXhzQ4Osd"></script>
+<script src="https://cdn.jsdelivr.net/npm/ghost-theme-utils@latest/dist/js/ghost-theme-utils.min.js" async defer></script>
+<script src="https://blog.talosintelligence.com/assets/js/chart.min.js?v=dEAdc43T4D7l37O2"></script>
+<script src="https://blog.talosintelligence.com/assets/js/x-scroll.js?v=DuV8f5nlfWlGIAUr"></script>
+<script src="https://blog.talosintelligence.com/assets/js/2025_yir_chart.js?v=OSqUj45x6XXKWbZW"></script>
+
+
+</body>
+
+</html>

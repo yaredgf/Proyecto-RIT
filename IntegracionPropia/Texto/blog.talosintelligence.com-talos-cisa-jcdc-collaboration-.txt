@@ -1,0 +1,684 @@
+
+
+
+Talos joins CISA to counter cyber threats against non-profits, activists and other at-risk communities
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Talos joins CISA to counter cyber threats against non-profits, activists and other at-risk communities
+
+
+By 
+Jacob Finn
+
+
+
+            Tuesday, May 14, 2024 08:42
+        
+
+
+                                Headlines
+                            
+
+
+
+
+Cisco Talos is delighted to share updates about our ongoing partnership with the U.S. Cybersecurity and Infrastructure Security Agency (CISA) to combat cybersecurity threats facing civil society organizations.Talos has partnered with CISA on several initiatives through the Joint Cyber Defense Collaborative (JCDC), including sharing intelligence on strategic threats of interest.Adversaries are leveraging advancements in technology and the interconnectedness of the world’s networks to undermine democratic values and interests by targeting high-risk communities within civil society. According to CISA, these communities include activists, journalists, academics and organizations engaged in advocacy and humanitarian causes. Consequently, the U.S. government has elevated efforts in recent years to counter cyber threats that have placed the democratic freedoms of organizations and individuals at heightened risk.The JCDC’s High-Risk Community Protection (HRCP) initiative is one such measure that brings together government, technology companies, and civil society organizations to strengthen the security of entities at heightened risk of cyber threat targeting and transnational repression.The HRCP initiative’s outputs — including a threat mitigation guide for civil society, operational best practices, and online resources for communities at risk — aim to counter the threats posed by state-sponsored advanced persistent threats (APTs) and, increasingly, private-sector offensive actors (PSOA).Our ongoing partnership with CISA and contributions to the JCDC’s HRCP initiative are consistent with Cisco’s security mission to protect data, systems, and networks, and uphold and respect the human rights of all.Spyware threats persist despite government and private sector measuresAs we’ve written about, the use of commercially available spyware to target high-profile or at-risk individuals and organizations is a global problem. This software can often track targets’ exact location, steal their messages and personal information, or even listen in on phone calls. Private companies, commonly referred to as “PSOAs” or “cyber mercenaries,” have monetized the development of these offensive tools, selling their spyware to any government willing to pay regardless of the buyer's intended use.Commercial spyware tools can threaten democratic values by enabling governments to conduct covert surveillance on citizens, undermining privacy rights and freedom of expression. Lacking any international laws or norms around the use of commercial spyware, this surveillance can lead to the suppression of dissent, erosion of trust in democratic institutions, and consolidation of power in the hands of authoritarian governments.The U.S. and its partners have taken steps to curb the proliferation of these dangerous tools. These include executive orders banning the use of certain spyware by U.S. government agencies, export restrictions and sanctions on companies or individuals involved in the development and sale of spyware (such as the recent sanctioning of members of the Intellexa Commercial Spyware Consortium), and diplomatic efforts with international partners and allies to pressure countries that harbor or support such firms.Private industry has also played a substantial role in countering this threat, including by publishing research and publicly attributing PSOAs and countries involved in digital repression. Some companies have also developed countersurveillance technologies (such as Apple’s Lockdown Mode) to protect high-risk users and have initiated legal challenges through lawsuits against PSOAs alleging privacy violations. In March 2023, Cisco proudly became principal co-author of the Cybersecurity Tech Accord principles limiting offensive operations in cyberspace, joining several technology partners in calling for industry-wide principles to counter PSOAs.Talos intelligence fuels HRCP threat mitigation guide for civil societyTalos has tracked the evolution of the commercial spyware industry and APT targeting of high-risk industries, placing us in a strong position to contribute our knowledge to the HRCP effort. Our research on two key threat actors — the Intellexa Commercial Spyware Consortium and the China state-sponsored Mustang Panda group — informed the HRCP guide’s overview of tactics commonly used against high-risk communities.Talos has closely monitored threats stemming from the Intellexa Consortium, an umbrella group of organizations and individuals that offer commercial spyware tools to global customers, including authoritarian governments. In May 2023, we conducted a technical analysis of Intellaxa’s flagship PREDATOR spyware which was initially developed by a PSOA known as Cytrox. Our research specifically looked at two components of Intellexa's mobile spyware suite known as “ALIEN” and “PREDATOR,” which compose the backbone of the organization’s implant.Our findings included an in-depth walkthrough of the infection chain, including the implant’s various information-stealing capabilities and evasion techniques. Over time, we learned more about Intellexa’s inner workings, including their spyware development timelines, product offerings, operating paradigms and procedures.Our research on Mustang Panda also contributed to the mitigation guide by illustrating how government-sponsored threat actors have targeted civil society organizations with their own signature tools and techniques. This APT is heavily focused on political espionage and has targeted non-governmental organizations (NGOs), religious institutions, think tanks, and activist groups worldwide. Mustang Panda commonly sends spear phishing emails using enticing lures to gain access to victim networks and install custom implants, such as PlugX, that enable device control and user monitoring. The group has continuously evolved its delivery mechanisms and payloads to ensure long-term uninterrupted access, underscoring the threat posed to civil society and others.What is next for this growing threat?Threat actors with ties to Russia, China, and Iran have primarily been responsible for this heightened threat activity, according to industry reporting. But the threat is not limited to them. Last year, a U.K. National Cyber Security Centre (NCSC) estimate found that at least 80 countries have purchased commercial spyware, highlighting how the proliferation of these tools enables even more actors to join the playing field.Yet we are staying ahead of the game. Talos researchers are continuously identifying the latest trends in threat actor targeting which include not only the use of commercial spyware but other tools and techniques identified in the HRCP guide, such as spear phishing and trojanized applications. Our intelligence powers Cisco’s security portfolio, ensuring customer safety.Talos created a reporting resource where individuals or organizations suspected of being infected with commercial spyware can contact Talos’ research team (no-spyware@external.cisco.com) to assist in furthering the community’s knowledge of these threats.We are determined to continue our work with CISA, other agencies, and industry leaders, leveraging the power of partnerships to protect Cisco customers and strengthen community resilience against common adversaries.
+
+
+
+Share this post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Content
+
+
+Hypotheses, telemetry, and human judgment: Inside Cisco Talos Threat Hunting
+June 4, 2026 08:05
+Learn how Cisco Talos Threat Hunting uses hypothesis-driven methods and multi-domain telemetry correlation to find stealthy threats operating below automated detection thresholds.
+
+
+
+
+Backdoors & Breaches: How Talos is helping humanitarian aid NGOs prepare for cyber attacks
+August 4, 2025 12:00
+In 2023, Cisco Talos and partners created a special Backdoors & Breaches card deck to help NGOs improve their cybersecurity skills with practical, easy-to-use training tailored to their needs.
+
+
+
+
+What’s the deal with the massive backlog of vulnerabilities at the NVD?
+April 19, 2024 08:00
+Given the state of the NVD and vulnerability management, we felt it was worth looking at the current state of the NVD, how we got to this point, what it means for security teams, and where we go from here.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

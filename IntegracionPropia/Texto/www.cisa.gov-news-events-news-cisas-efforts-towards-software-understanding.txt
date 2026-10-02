@@ -1,0 +1,827 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CISA’s Efforts Towards Software Understanding | CISA
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+ 
+
+
+
+
+
+An official website of the United States government
+Here’s how you know
+
+Here’s how you know
+
+
+
+
+
+
+
+
+
+Official websites use .gov
+ A .gov website belongs to an official government organization in the United States.
+              
+
+
+
+
+
+
+Secure .gov websites use HTTPS
+ A lock (LockA locked padlock) or https:// means you’ve safely connected to the .gov website. Share sensitive information only on official, secure websites.
+              
+
+
+
+
+
+
+
+
+
+
+
+Staying Secure at Eventsno-cost Cyber ServicesCybersecurity Awareness MonthKEV CatalogReport A Cyber Issue 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Search
+
+
+
+ 
+
+
+Menu
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Close
+
+
+ 
+
+
+
+
+Topics
+
+
+
+Topics
+
+
+
+
+
+Cybersecurity Best Practices
+
+
+
+
+
+
+Cyber Threats and Response
+
+
+
+
+
+
+Critical Infrastructure Security and Resilience
+
+
+
+
+
+
+Election Security
+
+
+
+
+
+
+Emergency Communications
+
+
+
+
+
+
+Industrial Control Systems
+
+
+
+
+
+
+Information and Communications Technology Supply Chain Security
+
+
+
+
+
+
+Partnerships and Collaboration
+
+
+
+
+
+
+Physical Security
+
+
+
+
+
+
+Risk Management
+
+
+
+
+
+
+        How can we help?
+       
+GovernmentEducational InstitutionsIndustryState, Local, Tribal, and TerritorialIndividuals and FamiliesSmall and Medium BusinessesFind Help LocallyFaith-Based CommunityExecutivesHigh-Risk Communities
+
+
+
+
+
+Spotlight
+
+
+
+
+Resources & Tools
+
+
+
+Resources & Tools
+
+
+
+
+
+All Resources & Tools
+
+
+
+
+
+
+Services
+
+
+
+
+
+
+Programs
+
+
+
+
+
+
+Resources
+
+
+
+
+
+
+Training
+
+
+
+
+
+
+Groups
+
+
+
+
+
+
+
+
+News & Events
+
+
+
+News & Events
+
+
+
+
+
+Directives
+
+
+
+
+
+
+News
+
+
+
+
+
+
+Events
+
+
+
+
+
+
+Cybersecurity Alerts & Advisories
+
+
+
+
+
+
+Request a CISA Speaker
+
+
+
+
+
+
+Congressional Testimony
+
+
+
+
+
+
+CISA Conferences
+
+
+
+
+
+
+CISA Live!
+
+
+
+
+
+
+
+
+Careers
+
+
+
+Careers
+
+
+
+
+
+Benefits & Perks
+
+
+
+
+
+
+Hiring and Recruitment
+
+
+
+
+
+
+New Employee Orientation & Onboarding
+
+
+
+
+
+
+Students & Recent Graduates
+
+
+
+
+
+
+Veteran and Military Spouses
+
+
+
+
+
+
+
+
+About
+
+
+
+About
+
+
+
+
+
+Divisions & Offices
+
+
+
+
+
+
+Regions
+
+
+
+
+
+
+Leadership
+
+
+
+
+
+
+Doing Business with CISA
+
+
+
+
+
+
+Site Links
+
+
+
+
+
+
+CISA GitHub
+
+
+
+
+
+
+CISA Central
+
+
+
+
+
+
+Contact Us 
+
+
+
+
+
+
+Subscribe
+
+
+
+
+
+
+Transparency and Accountability
+
+
+
+
+
+
+Policies & Plans
+
+
+
+
+
+
+
+
+
+
+Staying Secure at Eventsno-cost Cyber ServicesCybersecurity Awareness MonthKEV CatalogReport A Cyber Issue 
+
+
+
+
+
+
+
+
+
+
+Breadcrumb
+
+
+Home
+
+
+News & Events
+
+
+News
+
+
+
+              CISA’s Efforts Towards Software Understanding
+            
+
+
+
+
+
+
+
+Share:
+
+
+
+
+
+
+
+    Opens in a new window
+  
+
+
+
+
+
+
+    Opens in a new window
+  
+
+
+
+
+
+
+    Opens in a new window
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+CISA’s Efforts Towards Software Understanding
+
+
+
+ReleasedApril 26, 2024
+
+
+
+By Christine Lai and Chris Butera, Office of the Technical Director 
+
+
+
+								Related topics:
+							
+
+Cybersecurity Best Practices
+										,
+																																																							Organizations and Cyber Safety
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Shifting the balance of cybersecurity risk from small organizations and consumers to technology providers and software developers is a priority for the Cybersecurity and Infrastructure Security Agency (CISA). Consistent with the National Cybersecurity Strategy’s goal of rebalancing the risks of insecure software, "Software Understanding" seeks to understand software’s potential behavior before the software is placed into use. Software Understanding compliments CISA’s Secure by Design initiative by enhancing software analysis. Software that is secure by design is designed for analysis – that is, designed to support independent efforts to scrutinize software artifacts to verify and validate the software before it is placed into use.  When your mission is national security or critical infrastructure, you need to do more than just trust; you need the ability to subject executable software to additional scrutiny before it is deployed. Together, Software Understanding and Secure by Design promise to give technology customers and end users additional tools to be able to demand better cybersecurity from their software developers.Last year, CISA, the National Security Agency (NSA), and the National Nuclear Security Administration (NNSA) convened a government-wide workshop on Software Understanding for National Security (SUNS) hosted by the DHS Science and Technology (S&T) Directorate. The purpose of the workshop was to explore the potential development of additional automated tools that would enable integrators and users of software to gain understanding without needing to rely so heavily on manual analysis, such as reverse engineering. A post-meeting report, which also contains findings and information on agency participation, summarizes the individual views of subject matter experts regarding:   The need and challenge of analyzing software artifacts and their potential behaviors, Impediments and catalysts to a future state for automated software analysis, andEstablishing a government-wide community of software understanding researchers.  Software Understanding is a difficult problem, but as workshop participants highlighted, much can likely be accomplished with comprehensive approaches to addressing the problem. CISA is committed to shepherding the development of Software Understanding and plans to lead another SUNS workshop this spring. For more on this effort, visit SUNS webpage. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Articles
+
+
+
+
+
+
+Jun 10, 2026
+
+Blog
+
+
+
+Patch Smarter, Not Harder
+ 
+
+
+
+
+
+
+
+Jul 15, 2025
+
+Blog
+
+
+
+Securing Core Cloud Identity Infrastructure: Addressing Advanced Threats through Public-Private Collaboration
+ 
+
+
+
+
+
+
+
+May 02, 2024
+
+Blog
+
+
+
+Under the Digital Radar: Defending Against People’s Republic of China’s Nation-State Cyber Threats to America’s Small Businesses
+ 
+
+
+
+
+
+
+
+Apr 29, 2024
+
+Blog
+
+
+
+During National Small Business Week, Take Steps to Secure Your Business 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Return to top
+
+
+
+
+
+
+Topics
+
+
+Spotlight
+
+
+Resources & Tools
+
+
+News & Events
+
+
+Careers
+
+
+About
+
+
+
+
+
+
+
+
+
+Cybersecurity & Infrastructure Security Agency
+ 
+
+
+
+Facebook
+
+
+X
+
+
+LinkedIn
+
+
+YouTube
+
+
+Instagram
+
+
+RSS
+
+
+
+CISA Central
+1-844-Say-CISA
+contact@cisa.dhs.gov
+
+
+
+
+
+
+
+
+
+
+DHS Seal
+
+CISA.gov
+An official website of the U.S. Department of Homeland Security
+
+
+
+
+About CISA
+
+
+Budget and Performance
+
+
+DHS.gov
+
+
+FOIA Requests
+
+
+No FEAR Act
+
+
+Office of Inspector General
+
+
+Privacy Policy
+
+
+Subscribe
+
+
+The White House
+
+
+USA.gov
+
+
+Website Feedback
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

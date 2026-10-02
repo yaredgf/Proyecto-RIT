@@ -1,0 +1,1197 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Muddled Libra: Why Are We So Obsessed With You?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Menu
+
+
+
+
+
+
+Tools
+ATOMs
+Security Consulting
+About Us
+Under Attack?
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  Threat Research CenterInsightsOpinions 
+ 
+Opinions
+Muddled Libra: Why Are We So Obsessed With You?
+
+
+  3  min read              
+
+
+Related ProductsCortexCortex XSIAM 
+
+
+
+
+
+
+
+
+By:Richard Emerson 
+
+Published:August 6, 2025 Categories:InsightsOpinions
+ Tags:DragonForceMuddled LibraScattered Spider
+ 
+
+
+ 
+ 
+
+
+Share
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+Why Do We Talk So Much About Muddled Libra?
+Many articles and presentations have covered the tactics, techniques and procedures of the group that Unit 42 tracks as Muddled Libra. Known for social engineering tactics, the group recently attacked organizations in industries including government, retail, insurance and aviation. There's an undeniable impact for the group’s victims, but I’ve also been pondering why this group seems to receive more media attention than other groups that also partner with Ransomware-as-a-Service (RaaS) programs.
+There are other affiliates that heavily target English-speaking countries, and that are just as fast and impactful. Reading Trend 3 of our recent 2025 Unit 42 Global Incident Response Report, for example, there are fast attacks in incident response cases related to a variety of threat groups.
+Here are some thoughts on why Muddled Libra has been a particular focus for the media:
+Distinct Playbook, Industry Targeting
+Even though Muddled Libra often uses publicly available tools and known techniques, their playbook is pretty consistent and their vishing is somewhat unique. This may make it easier to identify this group of hackers across cases versus other hacking teams. Muddled Libra has also attacked companies in waves by industry, which puts companies in those industries on high alert. It’s one thing to know that your organization may be attacked at any time, it’s another to know a specific threat actor is successfully targeting your peers and you may be getting attacked right now and not even know it. For other intrusions involving a RaaS affiliate, many of these groups have such similar techniques that it makes it difficult to differentiate them, and their targeting more opportunistic across industries, so there is not as coherent a story to tell.
+Successful Tactics
+Just looking at our cases in 2025 involving this threat actor this year, 50% of cases led to DragonForce ransomware deployment and data exfiltration, showing that Muddled Libra’s attacks are frequently successful. Granted, we don't know how many calls to Help Desks go nowhere for this group, so it may be harder to measure them against their "peers." But the urgency of requests from organizations express palpable fear of Muddled Libra, as if executives were really worried they simply could not stop this threat actor.
+The Power of Language
+The really differentiating factor for me for this group is the English-speaking fluency that they are able to employ. It’s not really possible to screen malicious calls and protect your help desk from ever receiving them. This may allow Muddled Libra to more surgically pick and choose which targets to go after within a victim environment. Seeing the success of this language fluency and these social engineering tactics makes me wonder what will happen as AI capabilities continue to mature. Could we see every RaaS affiliate gain the capability to act like Muddled Libra?
+Studying the Group Is Key to Defending Against It
+As described in our Muddled Libra Threat Assessment, we’ve seen organizations disrupt Muddled Libra through properly implementing Conditional Access Policies. There are many other recommendations that can make a difference to stopping or slowing this threat actor. For example, gathering information that can point to suspicious activities and intelligently making connections with it (with capabilities such as those of Cortex XSIAM) can help identify incidents that need a response.
+Focused study of Muddled Libra and sharing information around it helps us all stay aware of the sorts of defenses that could make a difference, against this threat actor and many others. Knowing what’s worked for organizations who have successfully stopped the group can show all organizations that there is hope for defense, even against persistent and successful threat actors.
+
+
+Back to top
+
+TagsDragonForceMuddled LibraScattered Spider
+
+
+
+Threat Research Center
+
+
+Next: When Good Accounts Go Bad: Exploiting Delegated Managed Service Accounts in Active Directory
+
+
+
+
+
+
+
+Table of Contents
+
+
+
+
+
+
+Related Articles
+
+
+
+                      2026 World Cup: Discussing The World’s Biggest Game’s Attack Surface                  
+
+
+
+                      A Peek Into Muddled Libra’s Operational Playbook                  
+
+
+
+                      Novel Technique to Detect Cloud Threat Actor Operations                  
+
+
+
+
+
+
+
+
+
+Related Opinions Resources
+
+
+
+
+ 
+
+
+
+Insights July 16, 2026
+
+AI, Automation and Attacks: Unpacking the Unit 42 2026 Global Incident Response Report
+
+
+
+AI
+
+
+LLM
+
+
+Unit 42 Incident Response Report
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights February 3, 2026
+
+Why Smart People Fall For Phishing Attacks
+
+
+
+AI
+
+
+Phishing
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights January 29, 2026
+
+Understanding the Russian Cyberthreat to the 2026 Winter Olympics
+
+
+
+AI
+
+
+IoT
+
+
+Russia
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights December 23, 2025
+
+Who Does Cybersecurity Need? You!
+
+
+
+Cybersecurity
+
+
+Opinion
+
+
+Unit 42
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights November 4, 2025
+
+Know Ourselves Before Knowing Our Enemies: Threat Intelligence at the Expense of Asset Management
+
+
+
+Network security
+
+
+Threat intelligence
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights October 28, 2025
+
+Bots, Bread and the Battle for the Web
+
+
+
+AI
+
+
+SEO
+
+
+SEO poisoning
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights August 25, 2025
+
+Insights: Telling You What We Really Think
+
+
+
+Insights
+
+
+Opinion
+
+
+Threat Research Communications
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
+				Get updates from Unit 42			
+Peace of mind comes from staying ahead of threats. Subscribe today.
+
+
+
+
+
+
+
+
+
+
+Your Email
+
+
+Subscribe for email updates to all Unit 42 threat research.
+By submitting this form, you agree to our Terms of Use and acknowledge our Privacy Statement.
+
+                    This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.                            
+  
+
+Invalid captcha!
+ 
+					Subscribe					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Get the latest news, invites to events, and threat alerts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Enter your email now to subscribe!
+
+
+
+
+
+Sign up 
+
+
+
+
+                                
+                                
+                                
+                                    By submitting this form, I understand my personal data will be processed in accordance with
+                                        Palo Alto Networks Privacy Statement and Terms of Use.
+
+
+
+Sign up 
+
+
+
+
+
+
+
+
+
+
+
+
+Products and Services
+
+
+
+
+
+                                    AI-Powered Network Security Platform
+                                
+
+
+
+                                    Secure AI by Design
+                                
+
+
+
+                                    Prisma AIRS
+                                
+
+
+
+                                    AI Access Security
+                                
+
+
+
+                                    Cloud Delivered Security Services
+                                
+
+
+
+                                    Advanced Threat Prevention
+                                
+
+
+
+                                    Advanced URL Filtering
+                                
+
+
+
+                                    Advanced WildFire
+                                
+
+
+
+                                    Advanced DNS Security
+                                
+
+
+
+                                    Enterprise Data Loss Prevention
+                                
+
+
+
+                                    Enterprise IoT Security
+                                
+
+
+
+                                    Medical IoT Security
+                                
+
+
+
+                                    Industrial OT Security
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    Next-Generation Firewalls
+                                
+
+
+
+                                    Hardware Firewalls
+                                
+
+
+
+                                    Software Firewalls
+                                
+
+
+
+                                    Strata Cloud Manager
+                                
+
+
+
+                                    SD-WAN for NGFW
+                                
+
+
+
+                                    PAN-OS
+                                
+
+
+
+                                    Panorama
+                                
+
+
+
+                                    Secure Access Service Edge
+                                
+
+
+
+                                    Prisma SASE
+                                
+
+
+
+                                    Application Acceleration
+                                
+
+
+
+                                    Autonomous Digital Experience Management
+                                
+
+
+
+                                    Enterprise DLP
+                                
+
+
+
+                                    Prisma Access
+                                
+
+
+
+                                    Prisma Browser
+                                
+
+
+
+                                    Prisma SD-WAN
+                                
+
+
+
+                                    Remote Browser Isolation
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    AI-Driven Security Operations Platform
+                                
+
+
+
+                                    Cloud Security
+                                
+
+
+
+                                    Cortex Cloud
+                                
+
+
+
+                                    Application Security
+                                
+
+
+
+                                    Cloud Posture Security
+                                
+
+
+
+                                    Cloud Runtime Security
+                                
+
+
+
+                                    Prisma Cloud
+                                
+
+
+
+                                    AI-Driven SOC
+                                
+
+
+
+                                    Cortex XSIAM
+                                
+
+
+
+                                    Cortex XDR
+                                
+
+
+
+                                    Cortex XSOAR
+                                
+
+
+
+                                    Cortex Xpanse
+                                
+
+
+
+                                    Unit 42 Managed Detection & Response
+                                
+
+
+
+                                    Managed XSIAM
+                                
+
+
+
+                                    Observability
+                                
+
+
+
+                                    Cortex XCOR
+                                
+
+
+
+
+
+                                    Next-Generation Identity Security
+                                
+
+
+
+                                    Privileged Access Management
+                                
+
+
+
+                                    Identity and Access Management 
+                                
+
+
+
+                                    Endpoint Privilege Manager
+                                
+
+
+
+                                    Identity Governance
+                                
+
+
+
+                                    Workforce Password Management
+                                
+
+
+
+                                    Agentic Identities
+                                
+
+
+
+                                    Secrets Management
+                                
+
+
+
+                                    Unified Secrets Governance
+                                
+
+
+
+                                    Application Credentials Delivery
+                                
+
+
+
+                                    Vendor Privileged Access
+                                
+
+
+
+                                    Threat Intel and Incident Response Services
+                                
+
+
+
+                                    Prepare for Emerging Risks
+                                
+
+
+
+                                    Strengthen Your Defenses
+                                
+
+
+
+                                    Build Your Security Strategy
+                                
+
+
+
+                                    Understand the Adversary
+                                
+
+
+
+                                    Respond to a Cyber Attack
+                                
+
+
+
+
+
+
+Company
+
+
+
+
+
+                                    About Us
+                                
+
+
+
+                                    Careers
+                                
+
+
+
+                                    Contact Us
+                                
+
+
+
+                                    Corporate Responsibility
+                                
+
+
+
+                                    Customers
+                                
+
+
+
+                                    Investor Relations
+                                
+
+
+
+                                    Location
+                                
+
+
+
+                                    Newsroom
+                                
+
+
+
+
+
+
+Popular Links
+
+
+
+
+
+                                    Blog
+                                
+
+
+
+                                    Communities
+                                
+
+
+
+                                    Content Library
+                                
+
+
+
+                                    Cyberpedia
+                                
+
+
+
+                                    Event Center
+                                
+
+
+
+                                    Manage Email Preferences
+                                
+
+
+
+                                    Products A-Z
+                                
+
+
+
+                                    Product Certifications
+                                
+
+
+
+                                    Report a Vulnerability
+                                
+
+
+
+                                    Sitemap
+                                
+
+
+
+                                    Tech Docs
+                                
+
+
+
+                                    Unit 42
+                                
+
+
+
+                                    Do Not Sell or Share My Personal Information
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Privacy
+                            
+
+
+
+                                Trust Center
+                            
+
+
+
+                                Terms of Use
+                            
+
+
+
+                                Documents
+                            
+
+
+Copyright © 2026 Palo Alto Networks. All Rights Reserved
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+EN
+
+
+
+Select your language
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Your browser does not support the video tag.
+          
+
+Default Heading
+Read the article
+              
+
+
+
+
+Seekbar
+
+
+
+
+
+
+
+
+
+
+
+
+
+Volume
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

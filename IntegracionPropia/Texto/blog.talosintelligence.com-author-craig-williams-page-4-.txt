@@ -1,0 +1,876 @@
+
+
+
+Craig Williams - Cisco Talos Blog (Page 4)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Craig Williams
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+April 14, 2015 07:40
+Microsoft Patch Tuesday for April 2015: 11 Bulletins Released
+Today, Microsoft has released their monthly set of security bulletins designed to address security vulnerabilities within their products.  This month’s release sees a total of 11 bulletins being released which address 26 CVEs.  The first 4 bulletins are rated Critical and address
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+April 9, 2015 03:30
+Threat Spotlight: SSHPsychos
+Introduction
+
+Talos has been monitoring a persistent threat for quite some time, a group we refer to as SSHPsychos or Group 93. This group is well known for creating significant amounts of scanning traffic across the Internet. Although our research efforts help inform and protect
+
+
+                    By
+                
+Nick Biasini, 
+                    Matt Olney, 
+                    Craig Williams
+
+
+
+                            Threat Spotlight
+                        
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+April 2, 2015 06:36
+Research Spotlight: FreeSentry Mitigating use-after-free Vulnerabilities
+This post was authored by Earl Carter & Yves Younan.
+
+Talos is constantly researching the ways in which threat actors take advantage of security weaknesses to exploit systems. Use-after-free vulnerabilities have become an important class of security problems due to the existe
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+April 1, 2015 01:40
+Research Spotlight: Project FTR
+Intro
+Historically, networks have always been at risk for new, undiscovered threats. The risk of state sponsored hackers or criminal organizations utilizing 0-day was a constant, and the best defense was simply to keep adding on technologies to maximize the odds of detecting
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+March 30, 2015 09:02
+Threat Spotlight: Dyre/Dyreza: An Analysis to Discover the DGA
+This post was authored by Alex Chiu & Angel Villegas.
+
+
+Overview
+Banking and sensitive financial information is a highly coveted target for attackers because of the high value and obvious financial implications.  In the past year, a large amount of attention has been centered
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+March 24, 2015 13:45
+Threat Spotlight: The Imperiosus Curse --A Tool of the Dark Arts
+Authors: William Largent, Jaeson Schultz, Craig Williams. Special thanks to Richard Harman for his contributions to this post.
+
+As consumers, we are constantly bombarded by advertising, especially on the World Wide Web. There is a lot of money to be made either pushing Internet t
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+March 20, 2015 07:57
+Threat Spotlight: PoSeidon, A Deep Dive Into Point of Sale Malware
+This post was authored by Andrea Allievi, Ben Baker, Nick Biasini, JJ Cummings, Douglas Goddard, William Largent, Angel Villegas, and Alain Zidouemba
+
+Cisco’s Security Solutions (CSS) consists of information security experts with a unique blend of law enforcement, enterprise secu
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+March 17, 2015 09:35
+Research Spotlight: Exploiting Use-After-Free Vulnerabilities
+This blog post was authored by Earl Carter & Yves Younan.
+
+Talos is constantly researching the ways in which threat actors take advantage of security weaknesses to exploit systems. Yves Younan of Talos will be presenting at CanSecWest on Friday March 20th. The topic of his ta
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+March 12, 2015 12:20
+Talos Discovery Spotlight: Hundreds of Thousands of Google AppsDomains’ Private WHOIS Information Disclosed
+This post was authored by Nick Biasini, Alex Chiu, Jaeson Schultz, and Craig Williams. Special thanks to William McVey for his contributions to this post.
+
+
+Overview
+In mid-2013, a problem occurred that slowly began unmasking the hidden registration information for owners' do
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+← Prev
+
+
+Next →
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

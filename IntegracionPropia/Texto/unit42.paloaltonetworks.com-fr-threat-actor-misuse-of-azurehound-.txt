@@ -1,0 +1,1730 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Cartographie des environnements cloud avec AzureHound
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Menu
+
+
+
+
+
+
+ATOMs
+Security Consulting
+Under Attack?
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+French
+
+
+
+
+
+English
+
+
+Spanish (LATAM)
+
+
+French
+
+
+Japanese
+
+
+
+
+
+  Threat Research CenterRecherche sur les menacesÉtudes sur la cybersécurité du cloud 
+ 
+Études sur la cybersécurité du cloud
+Cartographie des environnements cloud avec AzureHound
+
+
+  24  minutes de lecture              
+
+
+Related ProductsCortexCortex CloudCortex XSIAMPrisma SASESecure Access Service Edge (SASE)Unit 42 Incident Response 
+
+
+
+
+
+
+
+
+Par:Margaret KelleyBill BatchelorEyal Rafian 
+
+Publié:24 octobre 2025 CatégoriesÉtudes sur la cybersécurité du cloudRecherche sur les menaces
+ Tags:Control planeCurious SerpensData planeLoggingMicrosoft AzurePentest toolSecurity logging
+ 
+
+
+ 
+ 
+
+
+Partager
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+Avant-propos
+AzureHound est un outil de collecte de données destiné aux tests d’intrusion (ou pentesting) et intégré à la suite BloodHound. Des acteurs de la menace le détournent pour énumérer les ressources Azure et cartographier des chemins d’attaque potentiels, facilitant ainsi des opérations malveillantes plus poussées. Cet article a pour vocation d’aider les équipes de défense à comprendre le fonctionnement de cet outil et à se protéger contre son utilisation illégitime.
+Nous y détaillons les capacités et les usages les plus courants d’AzureHound, tout en reliant ses fonctionnalités au cadre MITRE ATT&CK. En nous concentrant sur les techniques ATT&CK pertinentes, nous présentons des exemples d’exécution et mettons en évidence la manière dont ces activités apparaissent dans les journaux Azure ainsi que dans Cortex XDR.
+Des outils comme AzureHound permettent aux acteurs de la menace d’agir rapidement et efficacement dans les environnements cloud. Toutefois, leur utilisation laisse souvent des traces détectables par les défenseurs avertis. Cet article fournit des renseignements exploitables pour affiner les détections, renforcer les processus de réponse à incident, mener des activités de chasse aux menaces et améliorer la gestion de la fonction sécurité.
+Les clients de Palo Alto Networks sont mieux protégés contre les menaces mentionnées dans cet article grâce aux produits et services suivants :
+
+Cortex Cloud
+Cortex XSIAM
+Prisma Browser
+
+Si vous pensez que votre entreprise a pu être compromise ou si vous faites face à une urgence, contactez l’équipe Unit 42 de réponse à incident.
+
+
+
+Unit 42 – Thématiques connexes
+Azure, Plan de contrôle, Plan de données, Journalisation en matière de sécurité 
+
+
+
+AzureHound : mise en contexte
+AzureHound est un outil open source de collecte de données, développé en langage Go. Il est disponible sous forme précompilée pour Windows, Linux et macOS.
+Cet outil collecte des données via les interfaces de programmation (API) Microsoft Graph et Azure REST. Il est conçu pour énumérer un environnement Microsoft Entra ID et Azure, et rassembler des informations sur les identités ainsi que sur diverses autres ressources. L’objectif de cette énumération est d’exploiter les données collectées afin d’identifier des chemins d’attaque potentiels menant à une escalade de privilèges dans l’environnement Azure ciblé.
+AzureHound peut exporter ses résultats au format JSON, que BloodHound peut ensuite ingérer. BloodHound est un outil de visualisation conçu pour révéler graphiquement les relations cachées et identifier les chemins d’attaque au sein d’un environnement Entra ID, Azure ou Active Directory (AD).
+L’API Microsoft Graph offre aux développeurs un accès programmatique aux données et identités organisationnelles au sein de Microsoft 365 et de Microsoft Entra ID.
+Fonctionnant au niveau de la couche d’infrastructure, la Rest API Azure permet d’accéder à Azure Resource Manager (ARM), le plan de contrôle de toutes les ressources Azure – telles que le stockage, les machines virtuelles et les réseaux.
+AzureHound n’a pas besoin d’être exécuté depuis l’environnement de la victime, car les API Microsoft Graph et Azure REST sont toutes deux accessibles de l’extérieur.
+Comment les acteurs de la menace utilisent AzureHound
+AzureHound est conçu pour être utilisé par des professionnels de la cybersécurité (équipes de défense, équipe rouges) afin d’identifier et de corriger de manière proactive les vulnérabilités cloud. Toutefois, des acteurs de la menace peuvent également s’en servir à des fins de découverte et de cartographie, après avoir obtenu un accès à l’environnement Azure d’une victime.
+Les cyberattaquants utilisent AzureHound pour automatiser des procédures complexes de découverte dans les environnements Azure. Cet outil leur permet de cartographier la hiérarchie des utilisateurs et d’identifier les cibles à forte valeur.
+La collecte d’informations internes sur Azure aide les acteurs de la menace à repérer des configurations erronées ou des opportunités d’escalade de privilèges indirectes, souvent difficiles à détecter sans cette vue d’ensemble complète de l’environnement cible.
+Les attaquants exécutent également l’outil après avoir obtenu un accès initial à l’environnement compromis, en téléchargeant et en lançant AzureHound sur les ressources auxquelles ils ont accès.
+Pas plus tard qu’en août 2025, l’activité observée autour de cet outil confirme l’attention constante portée par les acteurs de la menace aux environnements cloud, désormais considérés comme une surface d’attaque critique. Des recherches accessibles au public ont identifié AzureHound comme composant de plusieurs opérations post-compromission :
+
+Unit 42 suit Curious Serpens (également connu sous le nom de Peach Sandstorm), un groupe soutenu par l’Iran actif depuis au moins 2013 et ayant progressivement intégré le détournement des environnements cloud Azure dans sa chaîne d’attaque, notamment en exploitant AzureHound pour réaliser une découverte interne de l’environnement Microsoft Entra ID de ses cibles.
+En mai 2025, Microsoft a signalé l’existence de Void Blizzard, un acteur de la menace étatique ayant recours à AzureHound durant la phase de découverte de ses attaques afin d’énumérer les configurations Entra ID.
+En août 2025, Microsoft a également documenté une campagne menée par un opérateur de ransomware identifié sous le nom de Storm-0501. Opérant sur site dans un environnement Azure hybride et multi-locataire, cet acteur de la menace a utilisé AzureHound pour énumérer les clients Entra ID de sa cible.
+
+Tactique de découverte MITRE
+Le cadre MITRE ATT&CK est une base de connaissances portée par les praticiens de la sécurité et la communauté, qui décrit les comportements des acteurs de la menace sous forme de tactiques, techniques et procédures (TTP). Ce référentiel fournit un vocabulaire commun pour échanger sur les renseignements et les recherches. Il facilite l’analyse structurée des cyberattaques ainsi que le suivi des tendances liées aux activité des acteurs malveillants.
+Au sein du cadre MITRE ATT&CK, la découverte désigne les techniques que les acteurs de la menace utilisent pour apprendre à connaître leur environnement cible après avoir obtenu un accès initial. MITRE ATT&CK reconnaît que les techniques et procédures cloud diffèrent de leurs équivalents sur terminal. Pour identifier ce sous-ensemble axé sur le cloud de l’Enterprise Matrix, le nom de Cloud Matrix a été choisi. Nous nous concentrerons ici sur les techniques de découverte issues du Cloud Matrix.
+Dans Azure, la découverte consiste à rassembler des informations sur les éléments suivants :
+
+Utilisateurs
+Groupes
+Comptes de services
+Rôles
+Appareils
+Comptes de stockage
+Applications
+Autorisations
+
+Les acteurs de la menace cherchent à comprendre les ressources et les relations au sein de l’environnement Azure pour faciliter leur attaque.
+AzureHound accélère ce processus en offrant aux attaquants un moyen efficace de collecter des données, qu’ils utilisent ensuite pour cartographier des chemins d’attaque potentiels contre l’environnement Azure visé. Ces chemins d’attaque comprennent les éléments suivants :
+
+Opportunités d’escalade de privilèges
+Voies de mouvement latéral
+Relations entre comptes à haute valeur tels que Global Administrators ou autres rôles privilégiés
+
+Techniques de découverte MITRE
+Du point de vue d’un acteur de la menace utilisant AzureHound, chaque technique de découverte représente une étape dans la construction d’une compréhension complète de l’environnement cloud ciblé.
+Pour appréhender un outil en ligne de commande comme AzureHound, les utilisateurs se réfèrent généralement à la documentation en ligne ainsi qu’à la sortie du paramètre -h, --help ou autres options d’utilisation. Comparée à la documentation en ligne, une liste complète via le paramètre list -h dans la version 2.6.0 d’AzureHound révèle des options de découverte supplémentaires, utiles pour analyser un usage potentiellement malveillant. Parmi elles figurent des commandes particulièrement intéressantes pour un acteur de la menace, telles que :
+
+function-apps
+function-app-role-assignments
+storage-accounts
+storage-containers
+subscription-user-access-admins
+web-apps
+
+Les commandes ci-dessus fournissent aux acteurs de la menace des informations de base sur des services couramment exploités dans les environnements cloud. Les commandes détaillées dans cette analyse sont basées sur la sortie directe de l’outil.
+T1087.004 : Account Discovery : Cloud (Découverte de comptes : Cloud)
+
+Pour établir une compréhension de base de l’environnement cible, un acteur de la menace commencera souvent par repérer les identités qui y opèrent. Cette énumération initiale fournit un répertoire de cibles potentielles pour le vol de matériels d’authentification ou l’usurpation d’identité. L’outil automatise la collecte de l’ensemble des identités – utilisateurs, appareils et comptes de service – ainsi que leurs relations de propriété, offrant une vision détaillée des identités présentes dans le client.
+Les paramètres d’AzureHound qui facilitent la technique MITRE Account Discovery : Cloud Account comprennent les commandes suivantes :
+
+list users
+list devices
+list device-owners
+list service-principals
+list service-principal-owners
+
+AzureHound prend en charge plusieurs modes d’authentification, notamment :
+
+Nom d’utilisateur et mot de passe
+Jetons de rafraîchissement
+Jetons JSON web (JWT)
+Secrets de compte de service
+Certificats de compte de service
+
+La documentation Microsoft sur Entra ID propose un exposé complet des types de jetons Azure. Pour notre exemple, nous utiliserons un jeton de rafraîchissement Azure généré via le device code flow en suivant les indications des docs de référence AzureHound CE.
+Les acteurs de la menace utiliseront tout moyen d’authentification disponible. Ils peuvent combiner un nom d’utilisateur et un mot de passe volés avec une fatigue liée à l’authentification multifacteur (MFA) pour parvenir à une connexion réussie. Ils peuvent aussi se connecter à l’aide d’un jeton volé. Des infostealers tels que Racoon Stealer ou Redline peuvent extraire des cookies, des matériels d’authentification et des jetons de session depuis le navigateur d’un utilisateur. Des chercheurs de Flare ont montré que des jetons de session récupérés par ces infostealers ont conduit à des jetons Azure exposés.
+Comme l’illustre la requête list users dans la Figure 1, la sortie d’énumération en ligne de commande d’AzureHound peut révéler des informations précieuses pour un acteur de la menace. Cet exemple d’appel liste l’ensemble des utilisateurs Entra ID et écrit la sortie dans un fichier nommé « users.json ».
+Figure 1. Exécution d’AzureHound pour énumérer les utilisateurs.
+Parmi les champs renvoyés par défaut pour chaque utilisateur (lorsqu’ils sont présents dans l’enregistrement utilisateur Entra ID), on trouve :
+
+displayName
+jobTitle
+lastPasswordChangeDateTime
+mail
+userPrincipalName
+userType
+tenantId
+tenantName
+
+La Figure 2 montre une capture d’écran de la sortie brute d’AzureHound avec certains des champs listés ci-dessus.
+Figure 2. Sortie brute de la commande AzureHound « list users ».
+Ces données aident les acteurs de la menace à cibler des utilisateurs clés au sein de l’organisation pour les étapes suivantes de l’attaque. Par exemple, un attaquant peut exporter tous les utilisateurs dans un fichier JSON puis rechercher dans ce fichier les intitulés de poste suggérant des cibles à haute valeur, en filtrant sur des mots tels que :
+
+Administrator
+Application
+Identity
+Cloud
+
+Ces cibles sont considérées à haute valeur car les rôles correspondants confèrent généralement des privilèges élevés au sein du client Azure.
+T1069.003 : Permission Groups Discovery: Cloud Groups (Découverte des groupes d’autorisations : Groupes Cloud)
+
+Une fois que les acteurs de la menace connaissent les identités présentes dans l’environnement ciblé, ils doivent comprendre les relations entre ces identités en découvrant la structure des autorisations.
+Cette technique vise à cartographier les rôles administratifs et les appartenances aux groupes pour identifier des chemins d’escalade exploitables. Cela implique de collecter non seulement les groupes et les rôles eux-mêmes, mais aussi le réseau d’attributions de rôle qui relie les identités aux ressources, révélant ainsi qui a accès à quoi.
+Pour la technique Permission Groups Discovery : Cloud Accounts, AzureHound dispose des capacités suivantes :
+
+list groups
+list roles
+list group-members
+list group-owners
+list role-assignments
+list app-role-assignments
+list key-vault-access-policies
+list management-group-role-assignments
+list resource-group-role-assignments
+list subscription-role-assignments
+list virtual-machine-role-assignments
+
+Les données renvoyées par ces options dépendent de l’identité utilisée par AzureHound pour s’authentifier. AzureHound collecte des informations en fonction des autorisations accordées au compte sous lequel il s’exécute dans Azure. Ces comptes ne peuvent énumérer les définitions et attributions de stratégie que s’ils disposent de rôles tels que Reader ou d’un niveau supérieur au niveau de l’abonnement ou du groupe de ressources.
+La Figure 3 montre le résultat d’une commande d’énumération des groupes au sein d’un client.
+Figure 3. Exécution d’AzureHound pour énumérer les groupes.
+Les acteurs de la menace énumèrent les groupes, rôles et attributions de rôle d’Entra ID car, collectivement, ils définissent la répartition des accès et des autorisations entre utilisateurs, applications et ressources. Les attaquants peuvent ainsi identifier des rôles hautement privilégiés – par exemple Global Administrator ou Privileged Role Administrator – et déterminer quels utilisateurs ou comptes de service y sont affectés. Ces informations peuvent également révéler des chemins d’escalade via des appartenances imbriquées à des groupes.
+Les attributions de rôle peuvent révéler des autorisations excessives ou mal configurées. Ces informations aident les acteurs de la menace à repérer des opportunités d’escalade de privilèges, de mouvement latéral et de collecte de données supplémentaires.
+AzureHound s’intègre à BloodHound pour générer des graphes cartographiant visuellement les chemins d’escalade de privilèges et la topologie architecturale. Pour ce faire, il exploite d’importants volumes de données brutes – listes d’utilisateurs, de groupes, d’applications, d’abonnements et leurs autorisations.
+Relier ces éléments manuellement est chronophage et source d’erreurs : la GUI de BloodHound devient donc un outil d’analyse précieux pour les attaquants.
+En important les données collectées, l’outil transforme des lignes de texte en une carte vivante des relations importantes. Ces informations portant sur les utilisateurs hautement privilégiés fournissent aux acteurs de la menace une liste de cibles pour le vol d’identifiants. La Figure 4 montre les utilisateurs auxquels le rôle Global Administrator a été attribué directement, ou hérité via l’appartenance à un groupe.
+Figure 4. Chemins BloodHound vers Global Administrator.
+Par mesure de confidentialité, nous avons masqué ou obscurci les libellés des utilisateurs et des groupes ainsi que les informations liées au client (tenant).
+T1619 : Cloud Storage Object Discovery (Découverte des objets de stockage cloud)
+
+L’exfiltration de données est un objectif majeur pour de nombreux acteurs de la menace, d’où l’importance cruciale de localiser les emplacements de stockage. Cette technique consiste à découvrir les ressources de stockage cloud. Un acteur de la menace peut utiliser AzureHound pour cibler spécifiquement et énumérer les comptes de stockage Azure et les conteneurs blob qu’ils renferment, révélant ainsi l’emplacement de données potentiellement sensibles.
+AzureHound propose deux options pour la découverte d’objets de stockage, couvrant à la fois les comptes de stockage et les conteneurs :
+
+list storage-accounts
+list storage-containers
+
+La Figure 5 illustre un exemple de découverte de comptes de stockage via AzureHound, énumérant tous les comptes de stockage auxquels l’identité fournie à la commande a accès.
+Figure 5. Exécution d’AzureHound pour énumérer les comptes de stockage.
+La sortie de la commande list storage-accounts peut révéler des informations importantes sur la configuration du compte de stockage. La sortie comprend la définition complète de la ressource de compte de stockage, notamment :
+
+Le nom
+L’emplacement
+Les propriétés du coffre de clés
+Le type de réplication
+Les terminaux DNS
+Les listes ACL ( Contrôle d’accès réseau)
+
+La page de référence Microsoft propose des exemples de configurations complètes de comptes de stockage.
+Dans ces données, le nom du compte de stockage revêt une importance particulière car il est lié à ses terminaux de service – des noms DNS publiquement résolvables utilisés pour se connecter au compte de stockage. Par exemple, un conteneur blob d’un compte de stockage utilise par défaut le nom du compte de stockage, du conteneur et du blob pour définir son terminal de service comme suit :
+hxxps[:]//mystorageaccount.blob.core.windows[.]net/mycontainername/myblobname
+Les comptes de stockage peuvent également être associés à des noms de domaine personnalisés, figurant alors dans la paire clé-valeur customDomain de la sortie. Pour plus d’informations sur les domaines personnalisés et d’autres paramètres, reportez-vous à la page Microsoft storage account overview.
+Les acteurs de la menace cherchent à accéder aux données contenues dans les comptes de stockage pour procéder à leur exfiltration. Cependant, ces terminaux de service peuvent être protégés par des listes de contrôle d’accès réseau (ACL) configurées sur le pare-feu du compte de stockage. Ces informations offrent à l’acteur de la menace une visibilité sur les listes d’autorisation et de refus (allowlists et denylists) qui composent la configuration du pare-feu.
+La Figure 6 montre que le service de compte de stockage applique une stratégie de refus par défaut, n’autorisant l’accès qu’à deux plages réseau /24 et aux services Azure de confiance, tels qu’Azure Monitor, Backup et File Sync.
+Figure 6. Listes de contrôle d’accès réseau (ACL) du compte de stockage.
+Les services de confiance dans Azure désignent une liste prédéfinie de services Microsoft bénéficiant par défaut d’autorisations et d’un accès à d’autres ressources Azure, contournant les ACL réseau standard. Cette liste, gérée par Microsoft, varie selon le type de ressource (par exemple : blobs de stockage, coffres de clés).
+T1526 : Cloud Service Discovery T1526 (Découverte des services cloud)
+
+Au-delà du stockage et des identités, un acteur cherchera à connaître les services de plateforme déployés, car ceux-ci peuvent offrir des chemins d’attaque spécifiques. En énumérant des services comme Web Apps, Function Apps ou des clusters Kubernetes (AKS), un acteur de la menace peut repérer des plateformes applicatives mal configurées ou vulnérables. Cela constitue un catalogue de cibles potentielles à un niveau supérieur.
+Pour la technique Cloud Service Discovery, AzureHound dispose des capacités suivantes :
+
+list apps
+list web-apps
+list function-apps
+list logic-apps
+list automation-accounts
+list managed-clusters
+list vm-scale-sets
+list container-registries
+
+Avec une liste d’applications en main, la recherche de l’attaquant s’étend aux ressources sous-jacentes. Il peut ainsi cartographier des pipelines d’automatisation, des clusters Kubernetes et des registres de conteneurs abritant les « crown jewels » du cloud – ses ressources les plus précieuses. Un simple compte d’automatisation mal configuré peut permettre l’exécution de code arbitraire par l’attaquant avec des privilèges élevés.
+Cette recherche comprend également le test de registres de conteneurs exposés publiquement : téléchargement d’images pour analyse hors ligne afin de rechercher des identifiants codés en dur, des clés API ou des bibliothèques vulnérables. Elle peut aussi révéler des ressources abandonnées, ouvrant la voie à de nouvelles stratégies d’attaque.
+Par exemple, lorsqu’un acteur découvre un pipeline d’essai oublié, il peut exploiter l’identité puissante et les droits associés à ce pipeline sur un groupe de ressources. L’attaquant peut alors utiliser cette identité de confiance pour injecter du code malveillant dans le runbook de l’automatisation, attendre le déclenchement du pipeline et exécuter son code avec les privilèges élevés ainsi obtenus.
+Pour une analyse approfondie des menaces liées aux pipelines cloud, voir l’étude Unit 42 « Anatomie d’une attaque sur un pipeline de supply chain cloud ».
+T1580 : Cloud Infrastructure Discovery (Découverte de l’infrastructure cloud)
+
+Pour comprendre pleinement l’architecture de l’environnement ciblé, un acteur de la menace doit découvrir ces composants d’infrastructure de base. Cette technique consiste à énumérer les ressources centrales et les constructions de gestion qui les contiennent.
+Un acteur peut reconstituer une carte architecturale complète du déploiement cloud en listant notamment :
+
+Les machines virtuelles (VM)
+Les coffres de clés
+La hiérarchie des clients, abonnements et groupes de ressources
+
+Pour la technique Cloud Infrastructure Discovery, AzureHound dispose des capacités suivantes :
+
+list tenants
+list subscriptions
+list resource-groups
+list management-groups
+list virtual-machines
+list key-vaults
+
+À l’instar de la cartographie des utilisateurs via BloodHound présentée précédemment, ce cas d’usage montre comment les attaquants examinent visuellement les éléments d’infrastructure avec BloodHound. La Figure 7 illustre les résultats relatifs aux coffres de clés. Nous avons masqué ou obscurci les libellés et les informations liées au client par souci de confidentialité.
+Figure 7. Illustration BloodHound des coffres de clés disponibles.
+Plutôt que de parcourir la sortie ligne par ligne, l’acteur de la menace dispose désormais d’une vue d’ensemble (ou « bird’s eye view ») des coffres de clés au sein de l’infrastructure du client. Il peut naviguer visuellement dans la hiérarchie, depuis le client jusqu’aux ressources individuelles.
+Par exemple, en plus des coffres de clés, l’attaquant peut cliquer sur un nœud représentant l’abonnement Production, puis sélectionner « virtual machines » depuis la liste Descendent Objects pour afficher instantanément toutes les machines virtuelles qui y sont rattachées.
+Perspective du défenseur
+AzureHound s’appuie sur les API Microsoft Graph et Azure REST pour énumérer les utilisateurs, les rôles et les permissions. Cela signifie qu’une défense efficace nécessite une approche en couches combinant contrôle d’accès, sécurité des terminaux et visibilité sur l’activité des API. L’objectif est de rendre l’authentification, l’exécution et les opérations des acteurs de la menace nettement plus difficiles à réaliser sans détection dans l’environnement d’une organisation.
+Mesures d’atténuation
+Du point de vue du défenseur, des configurations sécurisées sont essentielles. Comme indiqué précédemment dans notre analyse des techniques de découverte MITRE, AzureHound peut être utilisé pour obtenir des informations sur les utilisateurs et les ressources Azure d’un client spécifique via des API publiquement documentées. Ces requêtes API peuvent également révéler des vulnérabilités de sécurité au sein d’un client. Par conception, ces informations sont accessibles, client par client, aux utilisateurs disposant d’un compte Entra ID avec des privilèges de lecture dans ce client.
+Pour renforcer la sécurité de votre compte Azure, nous recommandons aux clients de suivre les bonnes pratiques Microsoft. En outre, pour empêcher les accès non autorisés nécessaires à la réussite de cette technique, nous recommandons aux administrateurs de mettre en œuvre des mesures de sécurité supplémentaires.
+En complément des bonnes pratiques et des mesures de sécurité recommandées par Microsoft, les atténuations suivantes peuvent renforcer encore plus la protection de votre organisation. Certaines se recoupent avec les bonnes pratiques, tandis que d’autres constituent des contrôles complémentaires ou des orientations politiques visant à durcir davantage votre environnement.
+La première ligne de défense repose sur une gestion rigoureuse des identités et des accès, qui détermine ce qu’un utilisateur, un groupe ou un compte de service est autorisé à faire. Les organisations doivent déployer une MFA résistante au hameçonnage pour tous les comptes, en particulier ceux ayant accès à des données sensibles ou à des rôles administratifs. Les utilisateurs exécutant des tâches très privilégiées, comme Global Administrator ou Privileged Role Administrator, devraient conserver des comptes séparés dédiés à ces fonctions.
+Les solutions de gestion des identités privilégiées (PIM), comme Microsoft Entra ID PIM, ou des plateformes plus larges de gestion des accès à privilèges (PAM) permettent aux organisations de gérer, de contrôler et de surveiller l’accès aux identités privilégiées. Ces solutions limitent le risque qu’une compromission d’identifiants d’utilisateur standard n’octroie à un acteur de la menace des droits élevés.
+En complément de la gestion des identités et des accès, les stratégies d’accès conditionnel (CAP) contribuent à réduire l’exposition face à AzureHound en restreignant l’accès des utilisateurs et des applications. Les CAP font partie d’Entra ID et sont appliquées au moment de l’authentification : elles imposent des exigences définies (MFA, conformité des appareils, emplacements fiables, restrictions d’applications clientes, etc.). De ce fait, les CAP peuvent bloquer l’accès d’AzureHound aux API Microsoft Graph et à celles de gestion Azure, même si un attaquant possède des identifiants valides.
+Une autre mesure efficace est la liaison des jetons, qui garantit que les jetons d’authentification sont liés à un appareil spécifique. Cette fonctionnalité, disponible dans Entra ID sous le nom Token Protection, est passée en disponibilité générale en août 2025.
+Comme indiqué précédemment, Void Blizzard a utilisé des jetons d’authentification volés. Ces jetons peuvent servir à s’authentifier dans l’environnement cible, y compris pour AzureHound appelant l’API Microsoft Graph. Le « token binding » contribue à atténuer les attaques par vol de jetons en invalidant les exemplaires invalides s’ils sont utilisés depuis un autre appareil.
+De plus, les navigateurs sécurisés peuvent offrir une protection similaire en limitant l’accès aux applications privées ou privilégiées et en veillant à ce que les jetons émis ne soient valides qu’à partir de ce navigateur sécurisé. Cela rend les jetons inutilisables en ligne de commande, notamment pour des outils comme AzureHound.
+Outre les contrôles d’identité, la visibilité au niveau des terminaux reste essentielle pour détecter et prévenir les activités d’AzureHound et d’autres menaces. Il est impératif de déployer des outils de détection et de réponse sur les terminaux (EDR/XDR) sur l’ensemble des actifs, y compris sur les workloads cloud via des solutions de détection et de réponse dans le cloud (CDR).
+Le Rapport mondial Unit 42 sur la réponse à incident (2025) explique comment les acteurs de la menace ciblent les actifs non gérés, c’est-à-dire dépourvus de solutions de détection et de réponse (EDR/XDR/CDR) – où les menaces ont moins de chances d’être détectées.
+Les organisations doivent impérativement utiliser conjointement la gestion de la posture de sécurité du cloud (CSPM) et les outils CDR pour détecter la création de nouvelles instances de calcul (machines virtuelles, conteneurs ou fonctions serverless) par des attaquants. Cette approche garantit aussi que les agents de sécurité cloud sont correctement installés et configurés afin de maintenir la surveillance sur les nouvelles instances créées. Combler ces lacunes de visibilité réduit considérablement la capacité des acteurs de la menace à échapper à la détection.
+AzureHound indique quelles identités peuvent enregistrer des applications au sein du client Azure, ce qui fait du contrôle des enregistrements d’applications une autre mesure d’atténuation efficace. Les acteurs malveillants exploitent souvent les paramètres par défaut qui permettent aux utilisateurs d’enregistrer eux-mêmes des applications et de s’attribuer des permissions élevées. Cela peut leur conférer une large visibilité sur l’annuaire sans authentification interactive ni MFA.
+Désactiver l’enregistrement d’applications à l’initiative des utilisateurs et imposer un processus d’approbation administrateur réduit les risques qu’un acteur crée des comptes de service malveillants ou contourne la MFA via une authentification applicative par jeton.
+Considérations relatives à la journalisation
+Les journaux d’activité Microsoft Graph sont disponibles en préversion depuis octobre 2023 et sont passés en disponibilité générale en avril 2024. Cette fonctionnalité essentielle permet aux défenseurs de surveiller les requêtes HTTP adressées au service Graph et de détecter des schémas d’énumération suspects.
+Par défaut, les journaux d’activité Microsoft Graph ne sont pas activés. Les défenseurs doivent configurer Microsoft Entra ID pour exporter ces journaux vers des destinations telles qu’Azure Event Hubs, ce qui permet leur intégration avec des solutions de gestion des informations et événements de sécurité (SIEM), ainsi qu’avec des outils EDR, XDR et CDR. Ces journaux enregistrent des détails précis sur les appels API effectués via Microsoft Graph, notamment les terminaaux ciblés par des outils comme AzureHound.
+Certaines requêtes AzureHound appellent la Rest API Azure au niveau du terminal ARM management.azure[.]com. Ces requêtes vers le fournisseur ARM sont journalisées différemment des appels à l’API Graph, ce qui engendre des difficultés de visibilité.
+Les journaux d’activité collectent les événements au niveau de l’abonnement depuis le fournisseur ARM, tels que la création d’une nouvelle ressource ou la suppression d’un compte de stockage – des événements qui ne sont pas associés aux requêtes AzureHound. Les opérations de lecture et de liste (appels REST GET) exécutées par AzureHound ne sont pas enregistrées dans les journaux d’activité.
+Bien qu’il soit possible d’activer explicitement les paramètres de diagnostic pour différents types de ressources afin de capturer les journaux au niveau du fournisseur, cette configuration ne consigne que les opérations de lecture au niveau du plan de données (par ex. mystorage.blob.core.windows[.]net ou myvault.vault.azure[.]net). Cela ne couvre pas le plan de contrôle, où s’effectuent les requêtes vers le fournisseur ARM. Par conséquent, les appels d’énumération effectués par AzureHound vers la Rest API Azure (tels qu’azurehound list storage-accounts ou azurehound list key-vaults) n’apparaîtront ni dans les journaux d’activité ni dans les journaux de ressources.
+Le dépôt GitHub AzureHound fournit des informations complémentaires précisant quelle API chaque commande AzureHound utilise – et, par conséquent, dans quel journal rechercher les événements correspondants.
+Par exemple, les détails relatifs à la commande azurehound list storage-accounts évoquée plus haut figurent dans le code client AzureHound pour les comptes de stockage, qui montre comment le module interagit avec l’API REST Azure pour l’énumération des comptes de stockage. La Figure 8 illustre le code client AzureHound utilisant la Rest API Azure pour l’énumération des comptes de stockage.
+Figure 8. Code source d’énumération des comptes de stockage AzureHound.
+La Figure 9 illustre le code client AzureHound pour l’énumération des rôles, utilisant la commande list roles et s’appuyant sur l’API Graph.
+Figure 9. Code source d’énumération des rôles AzureHound.
+Les commandes list d’AzureHound qui passent par le terminal ARM de la Rest API Azure (et qui peuvent donc ne pas apparaître dans les journaux) incluent notamment :
+
+automation-accounts
+container-registries
+function-apps
+key-vaults
+logic-apps
+managed-clusters
+management-groups
+resource-groups
+storage-accounts
+storage-containers
+virtual-machines
+vm-scale-sets
+web-apps
+
+Cette faiblesse de journalisation met en évidence un comportement inattendu d’AzureHound : toutes les commandes azurehound list sont précédées d’appels de test vers les terminaux et les API qu’utilise l’outil. Les terminaux et API invoqués diffèrent selon l’environnement Azure (par ex. cloud Azure global, cloud gouvernemental américain, cloud chinois).
+Pour l’environnement Azure global, les terminaux d’authentification et d’API utilisés sont les suivants :
+
+Terminal de la plateforme d’identité Microsoft : login.microsoftonline[.]com
+API Microsoft Graph : graph.microsoft[.]com
+Terminal ARM de la Rest API Azure : management.azure[.]com
+
+La Figure 10 présente un extrait de la sortie détaillée de l’exécution d’AzureHound pour ces appels de test.
+Figure 10. Requêtes de test de l’API AzureHound.
+L’appel AzureHound vers le terminal de la plateforme d’identité Microsoft (endpoint login.microsoftonline[.]com) est enregistré dans les journaux de connexion non interactive Entra ID. Si la journalisation de l’API Graph est activée comme décrit précédemment, l’appel de test à l’API Microsoft Graph (hxxps[:]//graph.microsoft[.]com/v1.0/organization) sera visible dans les journaux d’activité Microsoft Graph. En revanche, en raison des limitations de journalisation mentionnées plus haut, l’appel de test à la Rest API Azure (management.azure[.]com) n’est pas enregistré.
+Le tableau 1 ci-dessous présente les informations issues des journaux pour une requête list storage-accounts effectuée à 22h57 et une requête list groups à 23h25. Pour rappel, l’énumération des comptes de stockage utilise la Rest API Azure.
+
+
+
+Ligne de commande AzureHound
+Appels API AzureHound
+Heure enregistrée
+RequestURI enregistrée
+User-Agent enregistré
+
+
+list storage-accounts
+Appel de test AzureHound à l’API Graph pour vérifier la connectivité[1]
+01/08/2025, 22:57:35.185
+hxxps[:]//graph.microsoft[.]com/v1.0/organization
+azurehound/v2.6.0
+
+
+Appel à la Rest API Azure pour énumérer les données des comptes de stockage.
+L’appel REST API à management.azure[.]com/[...]Microsoft.Storage/storageAccounts/list n’est pas enregistré.
+
+
+list groups
+Appel de test AzureHound à l’API Graph pour vérifier la connectivité[1]
+01/08/2025, 11:25:45.561
+hxxps[:]//graph.microsoft[.]com/v1.0/organization
+azurehound/v2.6.0
+
+
+Appel à l’API Microsoft Graph pour énumérer les données des groupes.
+01/08/2025, 11:25:45.651
+hxxps[:]//graph.microsoft[.]com/v1.0/groups?%24filter=securityEnabled+eq+true&%24top=99
+azurehound/v2.6.0
+
+
+Bien que seul l’appel de test à l’API Graph soit inclus dans le tableau, les trois appels de test mentionnés précédemment sont exécutés à chaque fois.
+
+
+
+Tableau 1. Journalisation des requêtes : API Microsoft Graph vs Rest API Azure.
+Les données montrent que si la commande list groups enregistre l’opération de lecture pour l’énumération des groupes (Graph API : hxxps[ :]//graph.microsoft[.]com/v1.0/groups ?[...]), la demande list storage-accounts n’a pas de RequestURI associée et enregistrée pour l’opération de lecture des comptes de stockage (Azure REST API : Microsoft.Storage/storageAccounts/list). C’est cette faiblesse dans la journalisation de la Rest API que nous évoquions précédemment. Cependant, il est possible de corréler ces appels de test à des informations issues d’autres journaux pour améliorer la visibilité sur cette activité.
+Pour les commandes list d’AzureHound utilisant la Rest API Azure, la requête initiale /organization adressée à l’API Graph pour tester la connexion est bien consignée. Elle peut être utilisée pour corréler les événements en recoupant des champs tels que l’ID de session, l’adresse IP, l’ID utilisateur et l’agent utilisateur avec d’autres activités enregistrées dans les journaux d’activité Microsoft Graph et les journaux de connexion Entra ID.
+En complément des journaux d’activité et de ressources liés aux API Microsoft Graph et Azure REST, les journaux de connexion et les journaux d’audit Entra ID peuvent fournir un contexte supplémentaire.
+Comme leur nom l’indique, les journaux de connexion Entra ID consignent les connexions réussies et échouées. Ils enregistrent également les éléments suivants :
+
+L’évaluation des stratégies d’accès conditionnel (CAP)
+L’émission de jetons pour les appels API
+L’agent utilisateur et l’appareil utilisés
+Les détails liés à la MFA
+
+Les informations contenues dans ces journaux permettent d’identifier des schémas de connexion suspects tels que :
+
+Des connexions depuis des zones géographiques inhabituelles
+Des déplacements impossibles
+Des connexions successives aux API Microsoft Graph et de gestion Azure dans un court laps de temps
+Des comptes se connectant sans MFA.
+
+Les journaux d’audit Entra ID suivent les modifications de configuration au niveau de l’annuaire Microsoft Entra ID, notamment :
+
+La création, la suppression ou la mise à jour d’utilisateurs et de groupes
+L’attribution et la suppression de rôles
+L’enregistrement ou la modification d’applications et de comptes de service
+Les consentements d’applications
+Les modifications de stratégies d’accès conditionnel
+L’activation et la désactivation de rôles PIM
+
+Ces journaux d’audit ne sont donc pas les plus adaptés pour détecter directement une activité AzureHound. Toutefois, ils se révèlent précieux pour identifier des activités consécutives à une élévation de privilèges – par exemple, lorsqu’un acteur malveillant crée un nouvel utilisateur pour établir la persistance et lui attribue des rôles privilégiés.
+Il convient également de noter qu’en juillet 2025, Defender XDR a introduit en préversion publique une nouvelle table de recherche avancée : GraphApiAuditEvents. Cette table allégée des journaux d’activité Microsoft Graph offre une visibilité sur les appels à l’API Graph d’Entra ID sans coût supplémentaire d’ingestion ni de stockage. Son schéma simplifié inclut des champs clés tels que RequestURI et les identifiants de jetons. Cependant, elle ne contient pas le champ UserAgent et sa rétention des données est limitée par défaut à 30 jours.
+Nous verrons dans la section suivante comment exploiter ces informations pour effectuer une recherche de traces d’activité d’acteurs de la menace dans Cortex XDR ou XSIAM.
+Chasse aux menaces
+Bien que Cortex Cloud intègre déjà plusieurs détections spécifiques à l’activité de découverte dans Azure, un intervenant en réponse à incident ou un analyste de la menace peut également utiliser des requêtes XQL Cortex pour examiner les données plus en détail, événement par événement. Au niveau le plus élémentaire, il est possible d’interroger le jeu de données cloud_audit_logs afin d’identifier les requêtes dont l’agent utilisateur contient un identifiant AzureHound (par défaut : azurehound/<version>).
+Les observations du secteur montrent que, dans de nombreux cas, les acteurs de la menace utilisent les outils avec leurs configurations par défaut – y compris la chaîne user-agent –, ce qui en fait un paramètre facile à exploiter pour une première recherche.
+
+
+
+
+
+dataset = cloud_audit_logs
+
+| filter lowercase(user_agent) contains "azurehound"
+
+
+
+
+123
+
+dataset = cloud_audit_logs | filter lowercase(user_agent) contains "azurehound"
+
+
+
+
+
+Il est ensuite possible d’ajouter un filtre sur l’opération API pour ne conserver que les résultats correspondant à une action donnée. L’exemple suivant recherche une activité AzureHound (azurehound list users) interrogeant l’API Microsoft Graph pour obtenir la liste des utilisateurs Entra ID.
+
+
+
+
+
+dataset = cloud_audit_logs
+
+| filter lowercase(user_agent) contains "azurehound"
+
+| filter operation_name_orig contains "1.0/users" or operation_name_orig contains "beta/users"
+
+
+
+
+12345
+
+dataset = cloud_audit_logs | filter lowercase(user_agent) contains "azurehound" | filter operation_name_orig contains "1.0/users" or operation_name_orig contains "beta/users"
+
+
+
+
+
+Cortex ingère les journaux issus d’Azure. L’activité Azure remonte via le journal d’activité Microsoft Graph d’Entra ID. Elle est liée aux capacités de suivi d’audit et de connexion. Cela offre une visibilité sur les requêtes HTTP adressées à l’API Microsoft Graph au sein d’un client.
+La Figure 11 ci-dessous illustre un extrait d’un journal d’activité brut représentant une requête Azurehound list users, anonymisée pour la publication. Les défenseurs peuvent exploiter nombre de champs pour construire des requêtes complémentaires adaptées au cas étudié, par exemple en filtrant sur un signInActivityId ou callerIpAddress.
+Figure 11. Extrait brut du journal d’activité Azure pour la commande AzureHound « list users ».
+Parmi les éléments utiles présents dans l’extrait de journal :
+
+La chaîne user-agent indique qu’AzureHound a très probablement été utilisée pour effectuer la requête.
+Le champ Request URI montre qu’AzureHound récupère des données utilisateur via un GET /users avec un large jeu d’attributs (accountEnabled, createdDateTime, displayName, mail, userPrincipalName, etc.), cohérent avec des opérations de découverte et de cartographie pour escalade de privilèges.
+Dans le champ App ID, la valeur 1950a258-227b-4e31-a9cf-717495945fc2 correspond à l’identifiant client Microsoft Azure PowerShell. À noter que PowerShell est souvent utilisé par des outils offensifs et des acteurs malveillants.
+Enfin, le UserPrincipalObjectID (454b1120-3507-4bbb-b559-87b7f64af7fa) est l’object ID Entra ID de l’utilisateur dont les identifiants ont été utilisés. Pour approfondir l’analyse, il est possible de corréler l’ID d’activité de connexion (frZ7H7lx8kSlDW0b-4MfAA) avec les journaux de connexion Entra ID.
+
+L’identification d’une forte volumétrie d’appels API émis par une seule identité constitue également une stratégie efficace pour repérer des activités de découverte suspectes. En effet, AzureHound peut générer des rafales de requêtes API dans un laps de temps très court lorsqu’il interroge les API Microsoft Graph ou Azure REST. Ce phénomène se produit notamment lors de requêtes portant sur des ressources volumineuses (utilisateurs, rôles, machines virtuelles, applications, etc.), ou encore lorsqu’un utilisateur exécute azurehound list pour énumérer l’ensemble de l’environnement Azure d’un seul coup. Combinée aux chaînes user-agent et à l’adresse IP de l’entité appelante, cette corrélation peut servir d’indicateur d’une énumération à grande échelle d’un environnement Azure.
+La requête XQL suivante permet de mettre en évidence ce type d’activité d’énumération. Les filtres operation_name et operation_name_orig restreignent les résultats aux requêtes GET de l’API Graph, utilisées par AzureHound comme expliqué précédemment.
+Les étapes bin et comp, associées à la fonction count(), servent à agréger les données par tranches de 60 minutes pour comparaison avec le seuil apiCallCount (500 appels sur 60 minutes dans l’exemple). Ce seuil doit être adapté à la taille de l’environnement Azure analysé. Les grandes organisations observeront probablement un volume de requêtes plus élevé, puisque le nombre d’utilisateurs, de rôles, de machines virtuelles et d’applications y est généralement supérieur à celui des structures plus petites.
+
+
+
+
+
+dataset = cloud_audit_logs
+
+| filter operation_name = "GET"
+
+| filter operation_name_orig contains "graph.microsoft.com"
+
+| bin _time span = 60m
+
+| comp count() as apiCallCount by identity_name, user_agent, caller_ip, _time
+
+| filter apiCallCount > 500 // adjust to your environment
+
+| sort desc apiCallCount
+
+
+
+
+12345678910111213
+
+dataset = cloud_audit_logs | filter operation_name = "GET" | filter operation_name_orig contains "graph.microsoft.com" | bin _time span = 60m | comp count() as apiCallCount by identity_name, user_agent, caller_ip, _time | filter apiCallCount > 500 // adjust to your environment | sort desc apiCallCount
+
+
+
+
+
+Les requêtes Cortex XQL permettent aux défenseurs d’explorer la télémétrie collectée depuis des sources telles que les journaux d’activité de l’API Microsoft Graph afin de mettre au jour des indicateurs précis d’activité AzureHound. Les requêtes corrélant le volume de requêtes, l’identité de l’utilisateur, l’adresse IP de l’appelant et l’agent utilisateur sur des fenêtres temporelles définies aident les défenseurs à identifier des schémas d’énumération inhabituels, caractéristiques de l’usage d’AzureHound.
+Conclusion
+Les acteurs de la menace exploitent les capacités d’AzureHound pour effectuer une découverte ciblée dans le cloud. Sa capacité à énumérer les utilisateurs, les groupes, les applications, les autorisations et les relations entre ressources s’aligne directement sur les TTP du référentiel MITRE ATT&CK&CK. Cela offre à des acteurs tels que Curious Serpens et Void Blizzard une méthode structurée pour cartographier les environnements, identifier les comptes propices à une escalade de privilèges et localiser les éléments les plus critiques (les fameux « crown jewels ») des environnements cloud.
+La détection de cette activité repose sur la visibilité télémétrique. Les journaux d’activité Microsoft Graph constituent une source d’informations riche sur les appels API, permettant aux défenseurs d’identifier les schémas caractéristiques de la découverte. Associés à d’autres journaux Azure et Entra ID, ces éléments forment une couche de surveillance complète, renforçant la détection des menaces et les capacités de réponse à incident.
+Pour un guide détaillé sur la configuration de la journalisation de l’API Graph, son intégration à Cortex XDR et l’exploitation de Cortex pour analyser l’activité Microsoft Graph, reportez-vous à notre publication Détection des menaces à l’aide des journaux d’activité Microsoft Graph.
+En alignant les détections sur le référentiel MITRE ATT&CK et en exploitant ces sources de journalisation, les défenseurs peuvent allier visibilité et contrôle proactif pour contrer efficacement l’utilisation malveillante d’AzureHound. Les actions suivantes sont essentielles pour renforcer la capacité d’une organisation à empêcher les cyberattaquants d’atteindre leurs objectifs :
+
+Cartographier les outils de découverte légitimes en fonction de scénarios de menace.
+Corréler les données entre différents systèmes.
+Appliquer des stratégies d’accès conditionnel (CAP).
+Suivre le principe du moindre privilège.
+Surveiller attentivement les écarts par rapport aux comportements habituels.
+
+Protection et atténuation des risques par Palo Alto Networks
+Les clients de Palo Alto Networks sont mieux protégés contre les menaces mentionnées ci-dessus grâce aux produits suivants :
+
+Cortex Cloud Identity Security, qui regroupe les fonctions de gestion des droits sur l’infrastructure cloud (CIEM), de gestion de la posture de sécurité des identités (ISPM), de gouvernance des accès aux données (DAG) ainsi que la détection et réponse aux menaces sur les identités (ITDR). Cette solution offre aux organisations les capacités nécessaires pour renforcer la sécurité liée aux identités : visibilité complète sur les identités et leurs permissions dans les environnements cloud, détection précise des configurations erronées, identification des accès indésirables aux données sensibles et analyse en temps réel des usages et des schémas d’accès.
+Prisma Browser, qui intègre des fonctionnalités de protection des jetons et contribue à sécuriser l’accès aux applications privées ou privilégiées en garantissant que les jetons émis ne sont valides qu’à partir du navigateur sécurisé.
+
+Si vous pensez que votre entreprise a pu être compromise ou si vous faites face à une urgence, contactez l’équipe Unit 42 de réponse à incident ou composez l’un des numéros suivants :
+
+Amérique du Nord : Gratuit : +1 (866) 486-4842 (866.4.UNIT42)
+Royaume-Uni : +44 20 3743 3660
+Europe et Moyen-Orient : +31.20.299.3130
+Asie : +65.6983.8730
+Japon : +81 50 1790 0200
+Australie : +61.2.4062.7950
+Inde : 00080005045107
+
+Indicateurs de compromission
+Chaînes d’agents utilisateurs :
+
+azurehound/<version>
+
+Pour aller plus loin
+
+Briefing sécurité : Hausse du cyber-risque lié à l’Iran (mis à jour le 30 juin) – Palo Alto Networks
+Rapport mondial Unit 42 sur la réponse à incident 2025 : Social Engineering Edition, Palo Alto Networks
+Anatomie d’une attaque sur le pipeline de supply chain cloud – Palo Alto Networks
+Détection des menaces avec les journaux d’activité Microsoft Graph – Palo Alto Networks
+Cortex XSIAM XQL – Palo Alto Networks
+Peach Sandstorm password spray campaigns enable intelligence collection at high-value targets – Microsoft
+New Russia-affiliated actor Void Blizzard targets critical sectors for espionage – Microsoft
+From Infection to Access: A 24-Hour Timeline of a Modern Stealer Campaign – The Hacker News
+Storm-0501’s evolving techniques lead to cloud-based ransomware – Microsoft
+SpecterOps/AzureHound – GitHub
+SpecterOps/BloodHound – GitHub
+Collection BloodHound CE – Specter Ops, Inc.
+ATT&CK® Matrix for Enterprise – MITRE
+ATT&CK® Cloud Matrix – MITRE
+Use the Microsoft Graph API – Microsoft
+What is Azure Resource Manager? – Microsoft
+
+
+
+Retour en haut de page
+
+ÉtiquettesControl planeCurious SerpensData planeLoggingMicrosoft AzurePentest toolSecurity logging
+
+
+
+Threat Research Center
+
+
+SuivantUn déluge de smishing : Une campagne chinoise inonde le monde de SMS frauduleux
+
+
+
+
+
+
+
+SOMMAIRE
+
+
+
+
+
+
+Sur le même thème
+
+
+
+                      L’évolution de la cybermenace iranienne : des wipers MBR à l’instrumentalisation des identités                  
+
+
+
+                      DNS OverDoS : Les points de terminaison privés sont-ils trop privés ?                  
+
+
+
+                      AdaptixC2 : Un nouveau framework open source exploité activement                  
+
+
+
+
+
+
+
+
+
+Associé Études sur la cybersécurité du cloud Ressources
+
+
+
+
+ 
+
+
+
+Recherche sur les menaces 23 avril 2026
+
+L’IA peut-elle s’attaquer au cloud ? Enseignements tirés de la construction d’un système multi-agents offensif autonome dans le cloud
+
+
+
+AI
+
+
+Cloud
+
+
+Data exfiltration
+ 
+
+
+                    Lire l’article                    
+
+
+
+
+
+
+
+ 
+
+
+
+Recherche sur les menaces 6 février 2026
+
+Une technique inédite pour détecter les opérations d’acteurs de la menace dans le cloud
+
+
+
+API
+
+
+IAM
+
+
+MITRE
+ 
+
+
+                    Lire l’article                    
+
+
+
+
+
+
+
+ 
+
+
+
+Recherche sur les menaces 20 janvier 2026
+
+DNS OverDoS : Les points de terminaison privés sont-ils trop privés ?
+
+
+
+Microsoft Azure
+
+
+Networking
+ 
+
+
+                    Lire l’article                    
+
+
+
+
+
+
+
+ 
+
+
+
+Recherche sur les menaces 22 octobre 2025
+
+Jingle Thief : Au cœur d'une campagne de fraude à la carte-cadeau centrée sur le cloud
+
+
+
+CL‑CRI‑1032
+
+
+Microsoft
+
+
+Phishing
+ 
+
+
+                    Lire l’article                    
+
+
+
+
+
+
+
+ 
+
+
+
+Recherche sur les menaces 3 septembre 2025
+
+Quand la réutilisation des espaces de noms met en péril l’intégrité de la supply chain de l’IA
+
+
+
+Azure
+
+
+GenAI
+
+
+Google
+ 
+
+
+                    Lire l’article                    
+
+
+
+
+
+
+
+ 
+
+
+
+Recherche sur les menaces 13 juin 2025
+
+Jetons sans serveur dans le cloud : Exploitation et détection
+
+
+
+AWS
+
+
+Google Cloud
+
+
+Microsoft Azure
+ 
+
+
+                    Lire l’article                    
+
+
+
+
+
+
+
+ 
+
+
+
+Recherche sur les menaces 10 juin 2025
+
+L’évolution des binaires Linux dans les opérations ciblées sur le cloud
+
+
+
+Endpoint
+
+
+Linux Malware
+
+
+Machine Learning
+ 
+
+
+                    Lire l’article                    
+
+
+
+
+
+
+
+ 
+
+
+
+Recherche sur les menaces 9 juin 2025
+
+Des rôles par ci, des rôles par là, des rôles partout ! Explorons la sécurité d'AWS IAM Roles Anywhere
+
+
+
+AWS
+
+
+Kubernetes
+ 
+
+
+                    Lire l’article                    
+
+
+
+
+
+
+
+ 
+
+
+
+Recherche sur les menaces 27 mars 2025
+
+Multiplication des menaces liées au cloud : les tendances en matière d'alertes montrent que les attaquants ciblent l'IAM et l'exfiltration en premier lieu
+
+
+
+API attacks
+
+
+Containers
+
+
+IAM
+ 
+
+
+                    Lire l’article                    
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
+				Abonnez-vous aux infos d’Unit 42			
+Gardez un coup d’avance sur les menaces pour évoluer en toute sérénité. Contactez-nous
+
+
+
+
+
+
+
+
+
+
+Your Email
+
+
+Abonnez-vous aux infos par e-mail sur les travaux de recherche Unit 42.L’envoi de ce formulaire implique l’acceptation de nos Conditions d’utilisation et de notre Politique de confidentialité.
+
+                    Ce site est protégé par reCAPTCHA et est soumis à la Politique de confidentialité et aux Conditions générales de Google.                            
+  
+
+Invalid captcha!
+ 
+					Je m’abonne					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Recevez toutes les dernières infos, invitations à des évènements et alertes de sécurité
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Saisissez votre adresse e-mail...
+
+
+
+
+
+Je m’abonne  
+
+
+
+
+                                
+                                
+                                
+                                    
+                                    
+                                        
+                                        En soumettant ce formulaire, j’accepte que mes données personnelles soient traitées conformément à la politique de confidentialité et aux conditions d’utilisation de Palo Alto Networks.
+                                    
+                                
+
+                                
+                                
+
+
+Je m’abonne  
+
+
+
+
+
+
+
+
+
+
+
+
+Produits et services
+
+
+
+
+
+                                    Plateforme de sécurité du réseau pilotée par IA 
+                                
+
+
+
+                                    Sécuriser l’IA à la conception 
+                                
+
+
+
+                                    Prisma AIRS
+                                
+
+
+
+                                    AI Access Security 
+                                
+
+
+
+                                    Services de sécurité cloud (CDSS) 
+                                
+
+
+
+                                    Advanced Threat Prevention 
+                                
+
+
+
+                                    Advanced URL Filtering 
+                                
+
+
+
+                                    Advanced WildFire 
+                                
+
+
+
+                                    Advanced DNS Security 
+                                
+
+
+
+                                    Enterprise Data Loss Prevention 
+                                
+
+
+
+                                    Sécurité IoT d’entreprise 
+                                
+
+
+
+                                    Sécurité IoT médical 
+                                
+
+
+
+                                    Industrial OT Security 
+                                
+
+
+
+                                     Sécurité SaaS 
+                                
+
+
+
+
+
+                                    Pare-feu nouvelle génération 
+                                
+
+
+
+                                    Pare-feu matériels 
+                                
+
+
+
+                                    Logiciels pare-feu 
+                                
+
+
+
+                                    Strata Cloud Manager 
+                                
+
+
+
+                                    SD-WAN pour NGFW 
+                                
+
+
+
+                                    PAN-OS 
+                                
+
+
+
+                                    Panorama 
+                                
+
+
+
+                                    Secure Access Service Edge 
+                                
+
+
+
+                                    Prisma SASE 
+                                
+
+
+
+                                    Accélération des applications 
+                                
+
+
+
+                                    Autonomous Digital Experience Management (ADEM) 
+                                
+
+
+
+                                    DLP d’entreprise 
+                                
+
+
+
+                                    Prisma Access 
+                                
+
+
+
+                                    Prisma Browser 
+                                
+
+
+
+                                    Prisma SD-WAN 
+                                
+
+
+
+                                    Isolation de navigateur à distance (RBI) 
+                                
+
+
+
+                                    Sécurité SaaS 
+                                
+
+
+
+
+
+                                    Plateforme SecOps pilotée par IA
+                                
+
+
+
+                                    Sécurité cloud
+                                
+
+
+
+                                    Cortex Cloud 
+                                
+
+
+
+                                    Sécurité des applications 
+                                
+
+
+
+                                    Posture de sécurité dans le cloud 
+                                
+
+
+
+                                    Sécurité du Runtime dans le cloud 
+                                
+
+
+
+                                    Prisma Cloud 
+                                
+
+
+
+                                    SOC piloté par IA 
+                                
+
+
+
+                                    Cortex XSIAM 
+                                
+
+
+
+                                    Cortex XDR 
+                                
+
+
+
+                                    Cortex XSOAR 
+                                
+
+
+
+                                    Cortex Xpanse 
+                                
+
+
+
+                                    Services managés détection et réponse Unit 42 
+                                
+
+
+
+                                    XSIAM managé 
+                                
+
+
+
+
+
+                                    Sécurité des identités nouvelle génération
+                                
+
+
+
+                                    Gestion des accès privilégiés (PAM)
+                                
+
+
+
+                                    Gestion des identités et des accès (IAM)
+                                
+
+
+
+                                    Endpoint Privilege Manager
+                                
+
+
+
+                                    Gouvernance des identités
+                                
+
+
+
+                                    Workforce Password Management
+                                
+
+
+
+                                    Identités agentiques
+                                
+
+
+
+                                    Gestion des secrets
+                                
+
+
+
+                                    Gouvernance unifiée des secrets
+                                
+
+
+
+                                    Déploiement d’identifiants applicatifs
+                                
+
+
+
+                                    Accès privilégiés des prestataires
+                                
+
+
+
+                                    Services de Threat Intelligence et de réponse à incident
+                                
+
+
+
+                                    Évaluations proactives
+                                
+
+
+
+                                    Réponse à incident
+                                
+
+
+
+                                    Transformez votre stratégie de sécurité
+                                
+
+
+
+                                    Découvrez la Threat Intelligence Entreprise Notre entreprise Carrières Nous contacter Responsabilité d’entreprise Clients Relations investisseurs Présence dans le monde
+                                
+
+
+
+
+
+
+Entreprise
+
+
+
+
+
+                                    Notre entreprise
+                                
+
+
+
+                                    Carrières
+                                
+
+
+
+                                    Nous contacter 
+                                
+
+
+
+                                    Responsabilité d’entreprise
+                                
+
+
+
+                                    Clients
+                                
+
+
+
+                                    Relations investisseurs
+                                
+
+
+
+                                    Présence dans le monde
+                                
+
+
+
+                                    Presse
+                                
+
+
+
+
+
+
+Pages les plus visitées
+
+
+
+
+
+                                    Article
+                                
+
+
+
+                                    Communautés
+                                
+
+
+
+                                    Bibliothèque de contenu
+                                
+
+
+
+                                    Cyberpedia
+                                
+
+
+
+                                    Évènements
+                                
+
+
+
+                                    Préférences de communication
+                                
+
+
+
+                                    Produits de A à Z
+                                
+
+
+
+                                    Certifications produits
+                                
+
+
+
+                                    Signaler une vulnérabilité
+                                
+
+
+
+                                    Plan du site
+                                
+
+
+
+                                    Documentation technique
+                                
+
+
+
+                                    Unit 42
+                                
+
+
+
+                                    Ne pas autoriser la vente ou le partage de mes données personnelles
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Politique de confidentialité
+                            
+
+
+
+                                Trust Center
+                            
+
+
+
+                                Conditions générales d'utilisation
+                            
+
+
+
+                                Documents
+                            
+
+
+Copyright © 2026 Palo Alto Networks. Tous droits réservés
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+FR
+
+
+
+Select your language
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Your browser does not support the video tag.
+          
+
+Default Heading
+Read the article
+              
+
+
+
+
+Seekbar
+
+
+
+
+
+
+
+
+
+
+
+
+
+Volume
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

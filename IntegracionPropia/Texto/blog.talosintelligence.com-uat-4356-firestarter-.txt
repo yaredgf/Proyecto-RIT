@@ -1,0 +1,735 @@
+
+
+
+UAT-4356's Targeting of Cisco Firepower Devices
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+UAT-4356's Targeting of Cisco Firepower Devices
+
+
+By 
+Cisco Talos
+
+
+
+            Thursday, April 23, 2026 11:10
+        
+
+
+                                Threat Advisory
+                            
+
+                                Threats
+                            
+
+                                APT
+                            
+
+
+
+
+Cisco Talos is aware of UAT-4356's continued active targeting of Cisco Firepower devices’ Firepower eXtensible Operating System (FXOS). UAT-4356 exploited n-day vulnerabilities (CVE-2025-20333 and CVE-2025-20362) to gain unauthorized access to vulnerable devices, where the threat actor deployed their custom-built backdoor dubbed “FIRESTARTER.” FIRESTARTER considerably overlaps with the technical capabilities of RayInitiator’s Stage 3 shellcode that processes incoming XML-based payloads to endpoint APIs.In early 2024, Cisco Talos attributed ArcaneDoor, a state-sponsored campaign focused on gaining access to network perimeter devices for espionage, to UAT-4356.Customers are advised to refer to Cisco’s Security Advisory for mitigation and detection guidance, indicators of compromise (IOCs), affected products, and applicable software upgrade recommendations.The FIRESTARTER backdoorFIRESTARTER is a malicious backdoor implanted by UAT-4356 that allows remote access and control to execute arbitrary code inside the LINA process, a core component of Cisco’s ASA and FTD appliances running FXOS.PersistenceUAT-4356 established persistence for FIRESTARTER on compromised devices by manipulating the mount list for Cisco Service Platform (CSP), namely “CSP_MOUNT_LIST”, to execute FIRESTARTER. The mount list allows programs and commands to be executed as part of the device’s boot sequence. The persistence mechanism triggers during graceful reboot (i.e., when a process termination signal is received). FIRESTARTER also checks the runlevel for value 6 (indicating device reboot) and in case of a match, writes itself to backup location “/opt/cisco/platform/logs/var/log/svc_samcore.log" and updates the CSP_MOUNT_LIST to copy itself back to “/usr/bin/lina_cs” and then be executed. When FIRESTARTER runs after a reboot, it restores the original CSP_MOUNT_LIST and removes the trojanized copy. Because the runlevel triggers establishment of this transient persistence mechanism, a hard reboot (for example, after the device has been unplugged from power) effectively removes the implant from the device.FIRESTARTER has used the following commands to establish persistence for itself using the transient persistence mechanism:When the implant injects itself into the LINA process, it removes the traces of its persistence mechanism by restoring the CSP_MOUNT_LIST from a temporary copy (“CSP_MOUNTLIST.tmp”), then removing the temporary copy and the FIRESTARTER file from disk (“/usr/bin/lina_cs”).FIRESTARTER’s backdoor capabilitiesFIRESTARTER can run arbitrary shellcode received by the device. A pre-defined handler function specified by a hardcoded offset in the LINA process’ memory is replaced by an unauthorized handler routine that parses the data being served to it. FIRESTARTER specifically looks for a WebVPN request XML. If the request data received matches a specific pattern of custom-defined prefixing then the shellcode that immediately follows it is executed in memory. If the prefixing bytes are not found, then the data is treated as regular request data and passed to the original handler function (if any).FIRESTARTER’s loading mechanism, Stage 2 shellcode (i.e., the actual request handler component), handler function replacement, XML parsing for magic bytes, and final payload execution display considerable overlaps with RayInitiator’s Stage 3 deployment actions and accompanying artifacts.Injecting and activating the malicious shellcode in LINAFIRESTARTER first reads the LINA process’ memory to search for and verify the presence of the bytes (long) 0x1, 0x2, 0x3, 0x4, 0x5 at specific locations in memory. If found, FIRESTARTER will then query the process’ memory to find an “r-xp” memory range for the shared library “libstdc++.so”. It then copies the next stage shellcode (Stage 2) to the last 0x200 bytes of the memory region. FIRESTARTER then overwrites an internal data structure in the LINA process’ memory to replace a pointer to a WebVPN-specific, legitimate XML handler function with the address of the malicious Stage 2 shellcode.The malicious shellcode is triggered as part of the authentication API’s request handling process and parses the incoming request data for magic markers signifying an executable payload. If found, the executable payload is then executed on the compromised device.Detection guidanceThe presence of the following artifacts - specifically the filenames “lina_cs” and “svc_samcore.log” - though somewhat brittle indicators, may indicate the presence of the FIRESTARTER on a Firepower device:Any output from the commands:show kernel process | include lina_csThe presence of the following files on disk:/usr/bin/lina_cs/opt/cisco/platform/logs/var/log/svc_samcore.logFor more comprehensive detection guidance, please refer to Cisco’s Security Advisory here. Please also refer to CISA’s update to V1: Emergency Directive (ED) 25-03: Identify and Mitigate Potential Compromise of Cisco Devices and FIRESTARTER Backdoor Malware Analysis Report for more information and guidance. Mitigation and coverageWe recommend that Cisco customers follow the steps recommended in Cisco's advisory, with particular attention to any applicable software upgrade recommendations. Organizations impacted can initiate a TAC request for Cisco support.A FIRESTARTER infection may be mitigated on all affected devices by reimaging the devices.On Cisco FTD software that is not in lockdown mode, there is also the option of killing the lina_cs process then reloading the device:
+
+
+> expert
+$ sudo kill -9 $(pidof lina_cs)
+$ exit
+> reboot
+
+
+Open-source Snort Subscriber Rule Set customers can stay up to date by downloading the latest rule pack available for purchase on Snort.org.The following Snort rules cover the vulnerabilities CVE-2025-20333 and CVE-2025-20362: 65340, 46897.Snort rules covering FIRESTARTER: 62949The following ClamAV signatures detect this threat: Unix.Malware.Generic-10059965-0
+
+Integrated Coverage
+
+Network Security
+
+
+                    Cisco Talos
+                    Network Intrusion Prevention
+                
+
+
+
+Malware Defense
+
+
+                            Cisco Talos
+                            Malware Protection
+                        
+
+
+
+                            Cisco Talos
+                            Antivirus
+                        
+
+
+
+
+                Read more about Cisco Talos Intelligence Integrations in our data sheet on Cisco.com.
+        
+
+
+
+
+Share this post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Content
+
+
+Active exploitation of Cisco Secure Firewall Management Center vulnerabilities
+September 9, 2026 12:08
+Cisco Talos is actively tracking the exploitation of two vulnerabilities in Cisco’s Secure Firewall Management Center (FMC) Software.
+
+
+
+
+ARToken: Inside an EvilTokens affiliate panel targeting Microsoft 365
+July 1, 2026 06:00
+Talos has identified "ARToken," a phishing-as-a-service platform that targets Microsoft 365. The ARToken panel exposes 80+ API endpoints for device code phishing, Primary Refresh Token persistence, email access, BEC operations, and SharePoint exfiltration.
+
+
+
+
+Ongoing exploitation of Cisco Catalyst SD-WAN vulnerabilities
+May 14, 2026 12:02
+Cisco Talos is tracking the active exploitation of CVE-2026-20182, an authentication bypass vulnerability in Cisco Catalyst SD-WAN Controller, formerly SD-WAN vSmart, and Cisco Catalyst SD-WAN Manager, formerly SD-WAN vManage.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

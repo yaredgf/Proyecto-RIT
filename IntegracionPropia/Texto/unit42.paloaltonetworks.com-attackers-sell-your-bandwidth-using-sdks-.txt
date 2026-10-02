@@ -1,0 +1,1631 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Your Connection, Their Cash: Threat Actors Misuse SDKs to Sell Your Bandwidth
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Menu
+
+
+
+
+
+
+Tools
+ATOMs
+Security Consulting
+About Us
+Under Attack?
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+English
+
+
+
+
+
+English
+
+
+Spanish (LATAM)
+
+
+French
+
+
+Japanese
+
+
+
+
+
+  Threat Research CenterThreat ResearchVulnerabilities 
+ 
+Vulnerabilities
+Your Connection, Their Cash: Threat Actors Misuse SDKs to Sell Your Bandwidth
+
+
+  10  min read              
+
+
+Related ProductsAdvanced DNS SecurityAdvanced Threat PreventionAdvanced URL FilteringAdvanced WildFireCloud-Delivered Security ServicesCortexCortex XpanseUnit 42 Incident Response 
+
+
+
+
+
+
+
+
+By:Zhibin ZhangYiheng AnChao LeiHaozhe Zhang 
+
+Published:August 21, 2025 Categories:Threat ResearchVulnerabilities
+ Tags:CVE-2024-36401
+ 
+
+
+ 
+ 
+
+
+Share
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+Executive Summary
+We have detected a campaign aimed at gaining access to victims’ machines and monetizing access to their bandwidth. It functions by exploiting the CVE-2024-36401 vulnerability in the GeoServer geospatial database. This Critical-severity remote code execution vulnerability has a CVSS score of 9.8. Criminals have used the vulnerability to deploy legitimate software development kits (SDKs) or modified apps to gain passive income via network sharing or residential proxies.
+This method of generating passive income is particularly stealthy. It mimics a monetization strategy used by some legitimate app developers who choose SDKs instead of displaying traditional ads. This can be a well-intentioned choice that protects the user experience and improves app retention.
+The applications we found in this malicious activity are nearly silent when operating. They consume minimal resources while monetizing victims' internet bandwidth, and without creating or distributing malware. This integration allows app developers to receive payments, while criminals profit from unused server resources, minimizing their risk of detection.
+Since March 2025, attackers have been probing GeoServer instances exposed to the internet. Cortex Xpanse reported 3,706 publicly accessible GeoServers in the first week of May 2025, indicating a potentially large attack surface for adversaries targeting CVE-2024-36401.
+Palo Alto Networks customers are better protected from the threats described through the following products and services:
+
+Advanced Threat Prevention
+Advanced WildFire
+Advanced URL Filtering and Advanced DNS Security
+Cortex XDR and XSIAM
+
+If you think you might have been compromised or have an urgent matter, contact the Unit 42 Incident Response team.
+
+
+
+Related Unit 42 Topics
+Vulnerabilities
+
+
+
+Campaign Dissection
+We have closely monitored a campaign that first emerged in early March 2025. The attackers have shifted infrastructure as well as tactics, techniques and procedures (TTPs) to maintain persistence.
+We detected that attackers misused an SDK and an app during their campaign:
+
+The SDK allowed developers to monetize other apps by collecting user data to earn passive income.
+The app allowed users to earn passive income by sharing their internet connection.
+
+The following timeline reveals how this threat has evolved.
+Phase 1: Initial Incursion (Early March 2025) With Misused SDKs
+The campaign began with exploit attempts targeting CVE-2024-36401, then delivered the misused app and the misused SDK payloads.
+
+March 8, 2025: The campaign began with exploit attempts originating from the source IP address 108.251.152[.]209. The attacker used an exploit that targeted CVE-2024-36401.
+Customized executable distribution: We observed these initial exploits fetching customized executables hosted at 37.187.74[.]75.
+Two primary executables were distributed from this host:
+
+The misused app: We detected variants of an application, including three that we have designated as a193, d193 and e193.
+The misused SDK: We detected variants of an SDK, including five that we have designated as a593, c593, d593, s593 and z593.
+
+
+
+Phase 2: Shifting Tactics (Late March - Early April 2025) With Misused SDKs
+Attackers shifted tactics during this phase of the campaign.
+
+March 24, 2025: A few vendors on VirusTotal flagged the distribution IP address 37.187.74[.]75 as malicious. This shift indicates that the security community began recognizing malicious activity originating from that IP address. We believe this is a key factor that drove the threat actor to move their infrastructure to a different IP address.
+March 26, 2025: The attackers appeared to stop distributing new misused app samples. The focus seemingly shifted entirely to the misused SDK.
+April 1, 2025: The threat actors switched their primary exploit delivery infrastructure to a new source IP address, 185.246.84[.]189. This was likely an attempt to evade blocklists and continue their operations unhindered.
+
+Phase 3: Infrastructure Expansion and Persistence (Mid-April 2025 - Ongoing)
+Attackers expanded their infrastructure during this phase of the campaign.
+
+April 17, 2025: The attackers further expanded their backend infrastructure. They brought online a new customized executable distribution IP address, 64.226.112[.]52.
+The original distribution IP address 37.187.74[.]75 remained live in mid-June.
+
+As of this writing, exploit attempts continue from 185.246.84[.]189, and the customized executable distribution hosts remain online.
+CVE-2024-36401 Exploit Analysis
+The core of this vulnerability lies in an attacker's ability to inject arbitrary code into JXPath query statements. JXPath is a library within the Apache Commons project that offers an XPath implementation.
+XPath is a widely adopted standard for querying and transforming XML documents. JXPath transparently extends the use of XPath expressions to various Java data structures beyond XML, including JavaBeans and multiple collections. From a security standpoint, this additional flexibility also introduces significant concerns.
+JXPath supports extension functionality, which an attacker can exploit if they gain control over the query statement, allowing them to execute arbitrary code. This poses a greater risk than typical query injection vulnerabilities.
+For instance, attackers have used Standard Extension Functions to invoke methods like getRuntime().exec().
+Figure 1 shows an example of malicious code that leverages JXPath's ability to evaluate expressions, allowing an attacker to inject and execute arbitrary system commands via the #{cmd} placeholder. By referencing exec(java.lang.Runtime.getRuntime() within context.getValue, an attacker triggers Java's runtime execution mechanism, leading to remote code execution on the target system.
+Figure 1. Malicious code containing a JXPath referencing a Java execution function.
+Figure 2 reveals the payload from this attack. We redacted the key part of the payload in Figure 2. The redacted portion forces the victim to execute a system command to download a file from the attacker's host distribution IP addresses.
+Figure 2. Payload from an exploit found in the wild.
+According to the NVD:
+This vulnerability has been confirmed to be exploitable through various Web Feature Service (WFS), Web Map Service (WMS), and Web Processing Service (WPS) requests, including GetFeature, GetPropertyValue, GetMap, GetFeatureInfo, GetLegendGraphic, and Execute requests.
+While analyzing an exploit used in this attack, we set up a GeoServer instance and used an in-the-wild exploit payload to analyze how the exploit works. We can see what is happening inside GeoServer by following its code flow.
+After we simulated sending an attack payload, our command was passed to the function GetPropertyValue. As shown at the bottom of Figure 3, the highlighted line takes the incoming request object and passes it to a run method. The command is carried by request.valueReference.
+Figure 3. Malicious payload entry point.
+Stepping into this function reveals that the payload from Figure 2 was passed to the object propertyNameNoIndexes, shown from the exploit code in Figure 4. Later, this object invokes the Geotools method evaluate.
+Figure 4. The malicious payload is sent to an unsafe Geotools method.
+Note that we have entered the GeoTools codebase. The evaluate method retrieves the value of the Geotools attribute from the given object. Within this method, a PropertyAccessor object is used to read the property. Figure 5 shows that PropertyAccessor is a core interface that defines operations for reading and writing property values of an object. GeoTools will attempt to find an accessor based on the provided parameters.
+Figure 5. The malicious payload is sent to the object PropertyAccessor method findPropertyAccessors.
+Once an accessor has been successfully found, it will use the object's get method to retrieve the property value. Figure 6 shows that our payload has been passed into that method via the parameter attPath.
+Figure 6. A malicious payload is passed to attPath.
+The object's get method invokes the JXPath library function iteratePointers. As shown in Figure 7, a payload is injected into the xpath variable, which is then passed to the context.iteratePointers method.
+Figure 7. JXPath function iteratePointers.
+The ExtensionFunction has been manipulated and uses computeValue to evaluate the expression. As shown in Figure 8, the function variable now points directly to javax.lang.Runtime.exec, which is Java's standard method for running operating system commands. The parameters to be passed to this function include the attacker's command, and the highlighted line executes the command.
+Figure 8. Malicious code execution.
+Exposed Vulnerable Servers
+Cortex Xpanse telemetry data from March and April 2025 revealed 7,126 publicly exposed GeoServer instances across 99 countries. The five countries where these instances are hosted the most are shown in Figure 9. The majority of the exposed servers are hosted in China.
+Figure 9. Exposed GeoServer distribution in the five countries where they are most commonly hosted.
+Attack Chain Analysis
+We have captured multiple distinct exploit strategies from this campaign. All strategies aim to deploy and run an SDK on the victim system. This analysis reviews an SDK variant we have designated as z593. Figure 10 shows that stage one leverages CVE-2024-36401 to download the second-stage payload z593 from a malicious host under the attacker’s control.
+Figure 10. Stage 1: the initial exploit used to download the second-stage payload.
+During stage two, the attacker uses CVE-2024-36401 again to execute the second-stage payload z593, as shown in Figure 11.
+Figure 11. Stage 2: the exploit that executes the second-stage payload.
+Instead of using a standard HTTP web server, the attackers deployed private instances of a file-sharing server using transfer.sh to distribute their payloads. As shown in Figure 12, the instance of transfer.sh is hosted on one of the attacker’s distribution IP addresses.
+Figure 12. Screenshot of the index page from a Transfer.sh server the attackers hosted on 64.226.112[.]52:8080.The deployments noted in Figure 12 were listening on port 8080 across two IP addresses under the attackers' control:
+
+64.226.112[.]52
+37.187.74[.]75
+
+If the initial exploit is successful, the script then acts as a stager, fetching two additional files, as shown in Figure 13.
+Figure 13. Content of file z593 from 64.226.112[.]52 leading to additional files.
+The first script named in Figure 13 is z401, which is designed for stealth, creating a hidden directory and placing the main executable within it as noted in Figure 14.
+Figure 14. Content of z401 from 64.226.112[.]52.
+Figure 15 shows how the second script from Figure 13, z402, establishes the environment and then launches the main executable, passing it the app key.
+Figure 15. Content of z402 from 64.226.112[.]52.Once running, the executable operates covertly in the background, monitoring device resources and illicitly sharing the victim's bandwidth whenever possible. This generates passive income for the attacker.
+The executable files from these exploit attempts are designed to interact with two legitimate services: the misused app and the misused SDK. Both services legitimately offer users a way to generate passive income by sharing the network resources of idle devices.
+In this context, attackers co-opt the app or SDK functionality. Similar to how cryptocurrency miners commandeer system resources for revenue, these exploited applications also use device resources for financial gain. However, unlike malicious cryptocurrency miners, this type of app or SDK misuse is typically with a lower profile. This attracts less attention and yields smaller profits for the threat actor, which can contribute to longer, undetected operations.
+Misused App Analysis
+Further analysis of the binary that attackers installed on the victim’s server reveals that the attackers have been using Dart as shown in Figure 16, Dart is an open-source programming language. Two key reasons likely motivated this choice:
+
+Monetization via SDK: The attackers used Dart to integrate the passive income SDK and interact with its service. This interaction is designed to ensure the generation and collection of passive income streams for the threat actor.
+Cross-platform capability for Linux: The attackers also used Dart’s inherent portability. They leveraged this feature to compile the executable specifically for Linux system architectures to expand their potential target environments.
+
+Adopting Dart for these purposes is noteworthy, as it may represent an attempt to potentially evade detection signatures primarily focused on languages more commonly associated with malware.
+Figure 16. Binary using Dart for multi-platform capability.
+Misused SDK Analysis
+To verify the nature of the SDK component used in this campaign, we compared the misused SDK binary employed by the threat attack and the official SDK version from the vendor’s website. Our analysis confirmed that the two files are identical. This suggests the attackers are using a legitimate, unmodified SDK, which could bypass endpoint detection.
+Conclusion
+This ongoing campaign showcases a significant evolution in how adversaries monetize compromised systems. The attackers' core strategy focuses on stealthy, persistent monetization rather than aggressive resource exploitation. They achieve this by deploying executables that exploit legitimate passive income services, discreetly using device resources for activities like bandwidth sharing. This approach favors long-term, low-profile revenue generation over easily detectable techniques.
+To combat this threat, we highly recommend applying patches and updates when possible.
+Palo Alto Networks customers are better protected against vulnerabilities and malware through the following products and services:
+
+Advanced Threat Prevention can block the attacks with best practices via Threat Prevention signatures 95463. In addition, ATP includes machine learning-based protection that can detect exploit traffic in real time.
+Advanced WildFire can stop the customized executable from being transferred.
+Advanced URL Filtering and Advanced DNS Security are able to block known malicious URLs associated with this activity.
+Cortex XDR and XSIAM can block the exploitation of the vulnerabilities mentioned in this article.
+
+If you think you may have been compromised or have an urgent matter, get in touch with the Unit 42 Incident Response team or call:
+
+North America: Toll Free: +1 (866) 486-4842 (866.4.UNIT42)
+UK: +44.20.3743.3660
+Europe and Middle East: +31.20.299.3130
+Asia: +65.6983.8730
+Japan: +81.50.1790.0200
+Australia: +61.2.4062.7950
+India: 000 800 050 45107
+
+Palo Alto Networks has shared these findings with our fellow Cyber Threat Alliance (CTA) members. CTA members use this intelligence to rapidly deploy protections to their customers and to systematically disrupt malicious cyber actors. Learn more about the Cyber Threat Alliance.
+Indicators of Compromise
+IP Addresses and TCP Ports Used for the Campaign Infrastructure
+
+37.187.74[.]75:8080
+64.226.112[.]52:8080
+
+Campaign Artifacts
+
+
+
+SHA256 Hash of the File
+URL Contacted by the File
+
+
+89f5e7d66098ae736c39eb36123adcf55851268973e6614c67e3589e73451b24
+hxxp://37.187.74[.]75:8080/w1wOYGVLEX/a101
+
+
+6db4b685f413a3e02113677eee10a29c7406414f7f4da611f31d13e3f595f85d
+hxxp://37.187.74[.]75:8080/IyxzymKCp2/a102
+
+
+4e4a467abe1478240cd34a1deaef019172b7834ad57d46f89a7c6c357f066fdb
+hxxp://37.187.74[.]75:8080/cE58oqrYGO/a193
+
+
+4e40a0df8f4ba4a87ab8fc64950c67f6725a7e8f14a0a84a4ed79b3a8924ba19
+hxxp://37.187.74[.]75:8080/YDjV1ocro3/a401
+
+
+663970530e764f91b0be43936331e6c0a93610db6b86c6c4b64de270ae4d4630
+hxxp://37.187.74[.]75:8080/3g5eBN8nqv/a402
+
+
+7c18fe9da63c86f696f9ad7b5fcc8292cac9d49973ba12050c0a3a18b7bd1cc9
+hxxp://37.187.74[.]75:8080/JadF0ucQNf/a593
+
+
+84ee11f40da3538e4601456912c3efa0e92a903948812fd17fe650c5f7ac33ad
+hxxp://37.187.74[.]75:8080/Do4YwzvAJN/alog
+
+
+0971264967ba8d461ce98f86b90810493c5e22fc80bf61f0d0eb7a2599a7f77a
+hxxp://37.187.74[.]75:8080/DQ5ydzkPnK/c401
+
+
+491f5af9d29f52a6df026159a8ebd27ee6e27151ea78c4782eb05b2c5d39bfc3
+hxxp://37.187.74[.]75:8080/a8HejAHngH/c402
+
+
+a852133ff7f24b14e4224e7052f6d309353b4838fe5f17d25c712d7a1dd6e80a
+hxxp://37.187.74[.]75:8080/vLs5vxpDgV/c593
+
+
+b66c64ccd7b9c96fad53f6d3aa0441e46eca899ad8d97964573e41c94fccddba
+hxxp://37.187.74[.]75:8080/KaMJw2fsDW/d101
+
+
+f340abe5689e51cf78b10165cb93ab8a2988d0fedd0e74c74fc23ac2dca93a13
+hxxp://37.187.74[.]75:8080/TMuAS1wp8m/d102
+
+
+fc28f97f818d07fd8824333de26e5a0ca0d3fe7233d86f7e227e4838cfea0ca4
+hxxp://37.187.74[.]75:8080/iKA3jGXk6x/d193
+
+
+7c0c69aa0dcfc937c1fef8d42c74f7e46d128898c1d99d3362f2d18397be36ae
+hxxp://37.187.74[.]75:8080/fK4SCflkNg/d401
+
+
+33aad585d6280d1921b5f46f8894ee05d426c7751c2133ed5484bf65af587576
+hxxp://37.187.74[.]75:8080/Y1WT747MRP/d402
+
+
+2c5581572ec4877df8ec3e5d2b30bfff5718ecd27d8b3dbe2f393aa5821e7ddd
+hxxp://37.187.74[.]75:8080/H0cwXMzCrJ/d593
+
+
+0e2b92991186bc8a817e0187a9b58928969350bc8d8ad7e6b6cd91c185a7e03c
+hxxp://37.187.74[.]75:8080/XA8Dkr1CJ4/dlog
+
+
+5bc5dfeaeb43fb1e967cad028f8d2c48f5db17ee6c23c383faee74455c2f1f33
+hxxp://37.187.74[.]75:8080/52F6SqfuuS/e101
+
+
+8b25144ad17d023f67477be4791db45d9197d7cfb666b3a5ccc1b1c0e4bae3af
+hxxp://37.187.74[.]75:8080/7kS5qiHwg8/e102
+
+
+8aafb9965e946e5d4be085a1373abc750a1488ff78e6e082cc36ff20ff328465
+hxxp://37.187.74[.]75:8080/ei0Ul7l75J/e193
+
+
+a13a07d15d94c996d8b7e8ed633073f6a3e2268a8d14363f16ad48160b85df08
+hxxp://37.187.74[.]75:8080/kGQtGhOpCP/elog
+
+
+cdae958629383c4dba22a115615d8a63211bbccb06335cd1c4b5e2c2aa3fee77
+hxxp://37.187.74[.]75:8080/wHNOFLazdK/glog (from d401)
+
+
+bbdda70f0c4a3de4ec955e134ad46895ac931e21b930837a85633277128ab7d2
+hxxp://37.187.74[.]75:8080/wlLiXFNtjU/hlog (from c401)
+
+
+4fd789a19db35e054a5135466d610452bea607a11b7ec765b5474847c22e637c
+hxxp://37.187.74[.]75:8080/gmhm4lmSLO/plog (from z401)
+
+
+43b49294b778d4489c69922ff3aca27964a04e0f08bcc830108dc83261a0b205
+hxxp://37.187.74[.]75:8080/QF8plwpY8Y/s401
+
+
+ae706c149497c2fc809682e8827996ea3ceb7bcecddd87be7543d1dca4853470
+hxxp://37.187.74[.]75:8080/zJ03zmSrz6/s402
+
+
+3fd7794be80782b11a09f51ac8cbf2147e9d79303923f279d610ee45e12506eb
+hxxp://37.187.74[.]75:8080/22mINruojN/s593
+
+
+e25d6134c6a0573ded1d340f609dd71d15934ca165ea79d47898aa37a5185415
+hxxp://37.187.74[.]75:8080/3pHrSu54Pf/slog (from s401)
+
+
+085da541d7555ac6afcacd5899027c3fa4132c1eccfb3d8223794c4e0e3eb361
+hxxp://37.187.74[.]75:8080/vPN5rgRMTz/wlog (from a401)
+
+
+2aa6f95dbe8d17e8e70db677808c96ee956c36b7cc8f274435173cfed0b1f5af
+hxxp://37.187.74[.]75:8080/T8VevroEJT/z401
+
+
+2b176eb8afa0b089ee8fb072c68c6fdcfe4b2f034c776cc32064f26c0e6c69a3
+hxxp://37.187.74[.]75:8080/uCX4Nl2Pwu/z402
+
+
+915d1bb1000a8726df87e0b15bea77c5476e3ec13c8765b43781d5935f1d2609
+hxxp://37.187.74[.]75:8080/3twwHaJzxo/z593
+
+
+fa2687f94955fbdc2c41f1cff8c7df24937aeb942e4d7856bf2ff52ebf2e61aa
+hxxp://64.226.112[.]52:8080/MFTYFuqKGU/a401
+
+
+663970530e764f91b0be43936331e6c0a93610db6b86c6c4b64de270ae4d4630
+hxxp://64.226.112[.]52:8080/cxtpjeM3KU/a402
+
+
+e0b886a39cf098a3c7daa021c7af022b0ceb6edcf3fa49e3c3b8f70b843423c2
+hxxp://64.226.112[.]52:8080/XEQS3MTzdS/a593
+
+
+9515df36a6d16c0a9fcca680d6b181539d80efd4cda85dacbfb30127a7f11736
+hxxp://64.226.112[.]52:8080/fAFUQgw7Py/c401
+
+
+491f5af9d29f52a6df026159a8ebd27ee6e27151ea78c4782eb05b2c5d39bfc3
+hxxp://64.226.112[.]52:8080/0rX20C97S6/c402
+
+
+b381e8355cf3a432e63064897cc7719e8b9c38e91c6151cd1e7aed4cd219a75b
+hxxp://64.226.112[.]52:8080/LuoHgydq6F/c593
+
+
+dec84a568b6393ccd863bb38851a76f54de6f59193660e4b88aa1f941b744469
+hxxp://64.226.112[.]52:8080/g1Gl1JWEUw/d401
+
+
+33aad585d6280d1921b5f46f8894ee05d426c7751c2133ed5484bf65af587576
+hxxp://64.226.112[.]52:8080/AORGz7zIzn/d402
+
+
+7620f22a5ed1a8ac2a1da732e55e14a13197b631e5abba6431f88e5cfa3ae2de
+hxxp://64.226.112[.]52:8080/rKS64mUmF7/d593
+
+
+3d7ac752bb0d54802f2def38f44e10854f70ab5a9a001b5c39ab0531b9ed74bf
+hxxp://64.226.112[.]52:8080/vbbdG8dpAw/s401
+
+
+ae706c149497c2fc809682e8827996ea3ceb7bcecddd87be7543d1dca4853470
+hxxp://64.226.112[.]52:8080/W7lJoMcuOu/s402
+
+
+6dd6751bae92dfa504f0ad5558ab8adfdfba3df5a7f218245627574bfac39f11
+hxxp://64.226.112[.]52:8080/6mXfFz7ltE/s593
+
+
+357ca4ad31132ad4bd605e3217968819b04d577884a4e9dd760ed0182c4609ed
+hxxp://64.226.112[.]52:8080/YbEYCqCFVl/z401
+
+
+2b176eb8afa0b089ee8fb072c68c6fdcfe4b2f034c776cc32064f26c0e6c69a3
+hxxp://64.226.112[.]52:8080/1Vt9KBLEFr/z402
+
+
+97c8ec63766ce63b8ace283928922cfceb7c8f3bc72edcbd255e157a1afb15fe
+hxxp://64.226.112[.]52:8080/09KvYAUSHm/z593
+
+
+
+Additional Resources
+
+The JXPath Component – Apache Commons
+
+Updated August 21 at 5:45 a.m. P.T. to add additional Cortex XDR and XSIAM coverage information.
+
+
+Back to top
+
+TagsCVE-2024-36401
+
+
+
+Threat Research Center
+
+
+Next: Logit-Gap Steering: A New Frontier in Understanding and Probing LLM Safety
+
+
+
+
+
+
+
+Table of Contents
+
+
+
+
+
+
+Related Articles
+
+
+
+
+
+
+
+
+
+Related Vulnerabilities Resources
+
+
+
+
+ 
+
+
+
+High Profile Threats September 30, 2026
+
+Threat Brief: NetScaler Zero Days CVE-2026-88771 and CVE-2026-88772 Exploited in the Wild (Updated September 30)
+
+
+
+Citrix
+
+
+CVE-2026-88771
+
+
+CVE-2026-88772
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights August 4, 2026
+
+The Frontier AI Vulnerability Burst: Industrializing Autonomous Zero-Day Discovery in Open-Source Software
+
+
+
+AI
+
+
+Frontier AI
+
+
+Vulnerability Exploitation
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research July 30, 2026
+
+Chinese-Speaking Threat Actor Harnesses AI Models for Autonomous Cyberattacks
+
+
+
+ChatGPT
+
+
+Claude code
+
+
+CVEs
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research July 17, 2026
+
+Three Steps to the Terminal: A Siemens ROX II Zero-Day Trilogy
+
+
+
+Command injection
+
+
+CVE-2025-40947
+
+
+CVE-2025-40948
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+High Profile Threats June 9, 2026
+
+Threat Brief: Active Exploitation of PAN-OS CVE-2026-0257
+
+
+
+CVE-2026-0257
+
+
+Vulnerability
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+High Profile Threats May 6, 2026
+
+Threat Brief: Exploitation of PAN-OS Captive Portal Zero-Day for Unauthenticated Remote Code Execution
+
+
+
+CVE-2026-0300
+
+
+EarthWorm
+
+
+PAN-OS
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+High Profile Threats May 5, 2026
+
+Copy Fail: What You Need to Know About the Most Severe Linux Threat in Years
+
+
+
+Containers
+
+
+CVE-2026-31431
+
+
+Kubernetes
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research April 16, 2026
+
+A Deep Dive Into Attempted Exploitation of CVE-2023-33538
+
+
+
+Botnet
+
+
+Command injection
+
+
+CVE-2023-33538
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+High Profile Threats February 19, 2026
+
+VShell and SparkRAT Observed in Exploitation of BeyondTrust Critical Vulnerability (CVE-2026-1731)
+
+
+
+Bash
+
+
+CVE-2026-1731
+
+
+PowerShell
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+High Profile Threats February 17, 2026
+
+Critical Vulnerabilities in Ivanti EPMM Exploited
+
+
+
+CVE-2026-1281
+
+
+CVE-2026-1340
+
+
+Ivanti
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
+				Get updates from Unit 42			
+Peace of mind comes from staying ahead of threats. Subscribe today.
+
+
+
+
+
+
+
+
+
+
+Your Email
+
+
+Subscribe for email updates to all Unit 42 threat research.
+By submitting this form, you agree to our Terms of Use and acknowledge our Privacy Statement.
+
+                    This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.                            
+  
+
+Invalid captcha!
+ 
+					Subscribe					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Get the latest news, invites to events, and threat alerts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Enter your email now to subscribe!
+
+
+
+
+
+Sign up 
+
+
+
+
+                                
+                                
+                                
+                                    By submitting this form, I understand my personal data will be processed in accordance with
+                                        Palo Alto Networks Privacy Statement and Terms of Use.
+
+
+
+Sign up 
+
+
+
+
+
+
+
+
+
+
+
+
+Products and Services
+
+
+
+
+
+                                    AI-Powered Network Security Platform
+                                
+
+
+
+                                    Secure AI by Design
+                                
+
+
+
+                                    Prisma AIRS
+                                
+
+
+
+                                    AI Access Security
+                                
+
+
+
+                                    Cloud Delivered Security Services
+                                
+
+
+
+                                    Advanced Threat Prevention
+                                
+
+
+
+                                    Advanced URL Filtering
+                                
+
+
+
+                                    Advanced WildFire
+                                
+
+
+
+                                    Advanced DNS Security
+                                
+
+
+
+                                    Enterprise Data Loss Prevention
+                                
+
+
+
+                                    Enterprise IoT Security
+                                
+
+
+
+                                    Medical IoT Security
+                                
+
+
+
+                                    Industrial OT Security
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    Next-Generation Firewalls
+                                
+
+
+
+                                    Hardware Firewalls
+                                
+
+
+
+                                    Software Firewalls
+                                
+
+
+
+                                    Strata Cloud Manager
+                                
+
+
+
+                                    SD-WAN for NGFW
+                                
+
+
+
+                                    PAN-OS
+                                
+
+
+
+                                    Panorama
+                                
+
+
+
+                                    Secure Access Service Edge
+                                
+
+
+
+                                    Prisma SASE
+                                
+
+
+
+                                    Application Acceleration
+                                
+
+
+
+                                    Autonomous Digital Experience Management
+                                
+
+
+
+                                    Enterprise DLP
+                                
+
+
+
+                                    Prisma Access
+                                
+
+
+
+                                    Prisma Browser
+                                
+
+
+
+                                    Prisma SD-WAN
+                                
+
+
+
+                                    Remote Browser Isolation
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    AI-Driven Security Operations Platform
+                                
+
+
+
+                                    Cloud Security
+                                
+
+
+
+                                    Cortex Cloud
+                                
+
+
+
+                                    Application Security
+                                
+
+
+
+                                    Cloud Posture Security
+                                
+
+
+
+                                    Cloud Runtime Security
+                                
+
+
+
+                                    Prisma Cloud
+                                
+
+
+
+                                    AI-Driven SOC
+                                
+
+
+
+                                    Cortex XSIAM
+                                
+
+
+
+                                    Cortex XDR
+                                
+
+
+
+                                    Cortex XSOAR
+                                
+
+
+
+                                    Cortex Xpanse
+                                
+
+
+
+                                    Unit 42 Managed Detection & Response
+                                
+
+
+
+                                    Managed XSIAM
+                                
+
+
+
+                                    Observability
+                                
+
+
+
+                                    Cortex XCOR
+                                
+
+
+
+
+
+                                    Next-Generation Identity Security
+                                
+
+
+
+                                    Privileged Access Management
+                                
+
+
+
+                                    Identity and Access Management 
+                                
+
+
+
+                                    Endpoint Privilege Manager
+                                
+
+
+
+                                    Identity Governance
+                                
+
+
+
+                                    Workforce Password Management
+                                
+
+
+
+                                    Agentic Identities
+                                
+
+
+
+                                    Secrets Management
+                                
+
+
+
+                                    Unified Secrets Governance
+                                
+
+
+
+                                    Application Credentials Delivery
+                                
+
+
+
+                                    Vendor Privileged Access
+                                
+
+
+
+                                    Threat Intel and Incident Response Services
+                                
+
+
+
+                                    Prepare for Emerging Risks
+                                
+
+
+
+                                    Strengthen Your Defenses
+                                
+
+
+
+                                    Build Your Security Strategy
+                                
+
+
+
+                                    Understand the Adversary
+                                
+
+
+
+                                    Respond to a Cyber Attack
+                                
+
+
+
+
+
+
+Company
+
+
+
+
+
+                                    About Us
+                                
+
+
+
+                                    Careers
+                                
+
+
+
+                                    Contact Us
+                                
+
+
+
+                                    Corporate Responsibility
+                                
+
+
+
+                                    Customers
+                                
+
+
+
+                                    Investor Relations
+                                
+
+
+
+                                    Location
+                                
+
+
+
+                                    Newsroom
+                                
+
+
+
+
+
+
+Popular Links
+
+
+
+
+
+                                    Blog
+                                
+
+
+
+                                    Communities
+                                
+
+
+
+                                    Content Library
+                                
+
+
+
+                                    Cyberpedia
+                                
+
+
+
+                                    Event Center
+                                
+
+
+
+                                    Manage Email Preferences
+                                
+
+
+
+                                    Products A-Z
+                                
+
+
+
+                                    Product Certifications
+                                
+
+
+
+                                    Report a Vulnerability
+                                
+
+
+
+                                    Sitemap
+                                
+
+
+
+                                    Tech Docs
+                                
+
+
+
+                                    Unit 42
+                                
+
+
+
+                                    Do Not Sell or Share My Personal Information
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Privacy
+                            
+
+
+
+                                Trust Center
+                            
+
+
+
+                                Terms of Use
+                            
+
+
+
+                                Documents
+                            
+
+
+Copyright © 2026 Palo Alto Networks. All Rights Reserved
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+EN
+
+
+
+Select your language
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Your browser does not support the video tag.
+          
+
+Default Heading
+Read the article
+              
+
+
+
+
+Seekbar
+
+
+
+
+
+
+
+
+
+
+
+
+
+Volume
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

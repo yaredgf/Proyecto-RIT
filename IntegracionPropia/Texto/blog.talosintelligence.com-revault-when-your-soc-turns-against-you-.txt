@@ -1,0 +1,778 @@
+
+
+
+ReVault! When your SoC turns against you…
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ReVault! When your SoC turns against you…
+
+
+By 
+Philippe Laulheret
+
+
+
+            Tuesday, August 5, 2025 09:00
+        
+
+
+                            Vulnerability Spotlight
+                        
+
+
+
+
+Talos reported 5 vulnerabilities to Broadcom and Dell affecting both the ControlVault3 Firmware and its associated Windows APIs that we are calling “ReVault”. 100+ models of Dell Laptops are affected by this vulnerability if left unpatched. The ReVault attack can be used as a post-compromise persistence technique that can remain even across Windows reinstalls.  The ReVault attack can also be used as a physical compromise to bypass Windows Login and/or for any local user to gain Admin/System privileges. For a full technical deep dive into these vulnerabilities, see this blog post.Dell ControlVault overview Dell ControlVault is “a hardware-based security solution that provides a secure bank that stores your passwords, biometric templates, and security codes within the firmware.” A daughter board provides this functionality and performs these security features in firmware. Dell refers to the daughter board as a Unified Security Hub (USH), as it is used as a hub to run ControlVault (CV), connecting various security peripherals such as a fingerprint reader, smart card reader and NFC reader. Here is a photographic example of a USH board:  ​​​​Picture of a USH Board running CV. This is the board in its natural environment:  USH board (highlighted in orange) inside a Dell Latitude laptop. The current iterations of the product are called ControlVault3 and ControlVault3+. and can be found in more than 100 different models of actively-supported Dell laptops (see DSA-2025-053), mostly from the business-centric Lattitude and Precision series. These laptop models are widely used in the cybersecurity industry, government settings and challenging environments in their Rugged version. Sensitive industries that require heightened security when logging in (via smartcard or NFC) are more likely to find ControlVault devices in their environment, as they are necessary to enable these security features. Findings Today, Talos is publishing five CVEs and their associated reports. The vulnerabilities include multiple out-of-bounds vulnerabilities (CVE-2025-24311, CVE-2025-25050) an arbitrary free (CVE-2025-25215) and a stack-overflow (CVE-2025-24922), all affecting the CV firmware. We also reported an unsafe-deserialization (CVE-2025-24919) that affects ControlVault’s Windows APIs. Impact With a lack of common security mitigations and the combination of some of the vulnerabilities mentioned above, the impact of these findings is significant. Let’s highlight two of the most critical attack scenarios we have uncovered. Post-compromise pivot On the Windows side, a non-administrative user can interact with the CV  firmware using its associated APIs and trigger an Arbitrary Code Execution on the CV firmware. From this vantage point, it becomes possible to leak key material essential to the security of the device, thus gaining the ability to permanently modify its firmware. This creates the risk of a so-called implant that could stay unnoticed in a laptop’s CV firmware and eventually be used as a pivot back onto the system in the case of a Threat Actor’s post-compromise strategy. The following video shows how a tampered CV firmware can be used to “hack Windows” by leveraging the unsafe deserialization bug mentioned previously. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+0:00
+
+                            /0:22
+
+
+1×
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Physical attack A local attacker with physical access to a user’s laptop can pry it open and directly access the USH board over USB with a custom connector. From there, all the vulnerabilities described previously become in-scope for the attacker without requiring the ability to log-in into the system or knowing a full-disk encryption password. While chassis-intrusion can be detected, this is a feature that needs to be enabled beforehand to be effective at warning of a potential tampering. Another interesting consequence of this scenario is that if a system is configured to be unlocked with the user’s fingerprint, it is also possible to tamper with the CV firmware to accept any fingerprint rather than only allowing a legitimate user’s.   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+0:00
+
+                            /0:07
+
+
+1×
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Remediation Mitigation To mitigate these attacks, Talos recommends the following: Keep your system up to date to ensure the latest firmware is installed. CV firmware can be automatically deployed via Windows Update, but new firmware usually gets released on the Dell website a few weeks prior. If not using any of the security peripherals (fingerprint reader, smart card reader and NFC reader) it is possible to disable the CV services (using the Service Manager) and/or the CV device (via the Device Manager).  It is also worth considering disabling fingerprint login when risks are heightened (e.g., leaving one’s laptop unattended in a hotel room). Windows also provides Enhanced Sign-in Security (ESS), which may help mitigate some of the physical attacks and detect inappropriate CV firmware. Detection To detect an attack, consider the following: Depending on your laptop model, chassis intrusion detection can be enabled in the computer’s BIOS. This would flag physical tampering and may require entering a password to clear the alert and restart the computer. In the Windows logs, unexpected crashes of the Windows Biometric Service or the various Credential Vault services could be a sign of compromise. Cisco customers using Cisco Secure Endpoint can be made aware of potential risks with the signature definition “bcmbipdll.dll Loaded by Abnormal Process”. Conclusion These findings highlight the importance of evaluating the security posture of all hardware components within your devices, not just the operating system or software. As Talos demonstrated, vulnerabilities in widely-used firmware such as Dell ControlVault can have far-reaching implications, potentially compromising even advanced security features like biometric authentication. Staying vigilant, patching your systems and proactively assessing risk are essential to safeguard your systems against evolving threats. 
+
+
+
+Share this post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Content
+
+
+Duping Cloud Functions: An emerging serverless attack vector
+May 20, 2025 06:00
+Cisco Talos built on Tenable’s discovery of a Google Cloud Platform vulnerability to uncover how attackers could exploit similar techniques across AWS and Azure.
+
+
+
+
+Badgerboard: A PLC backplane network visibility module
+March 5, 2024 15:30
+Analysis of the traffic between networked devices has always been of interest since devices could even communicate with one another. 
+
+As the complexity of networks grew, the more useful dedicated traffic analysis tools became. Major advancements have been made over the years with tools like Snort or Wireshark, but these
+
+
+
+
+The many vulnerabilities Talos discovered in SOHO and industrial wireless routers post-VPNFilter
+August 2, 2023 08:00
+Given the privileged position these devices occupy on the networks they serve, they are prime targets for attackers, so their security posture is of paramount importance.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

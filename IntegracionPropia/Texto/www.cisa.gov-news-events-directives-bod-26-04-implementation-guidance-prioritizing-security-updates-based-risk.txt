@@ -1,0 +1,1290 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+BOD 26-04: Implementation Guidance for Prioritizing Security Updates Based on Risk | CISA
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+ 
+
+
+
+
+
+An official website of the United States government
+Here’s how you know
+
+Here’s how you know
+
+
+
+
+
+
+
+
+
+Official websites use .gov
+ A .gov website belongs to an official government organization in the United States.
+              
+
+
+
+
+
+
+Secure .gov websites use HTTPS
+ A lock (LockA locked padlock) or https:// means you’ve safely connected to the .gov website. Share sensitive information only on official, secure websites.
+              
+
+
+
+
+
+
+
+
+
+
+
+Staying Secure at Eventsno-cost Cyber ServicesCybersecurity Awareness MonthKEV CatalogReport A Cyber Issue 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Search
+
+
+
+ 
+
+
+Menu
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Close
+
+
+ 
+
+
+
+
+Topics
+
+
+
+Topics
+
+
+
+
+
+Cybersecurity Best Practices
+
+
+
+
+
+
+Cyber Threats and Response
+
+
+
+
+
+
+Critical Infrastructure Security and Resilience
+
+
+
+
+
+
+Election Security
+
+
+
+
+
+
+Emergency Communications
+
+
+
+
+
+
+Industrial Control Systems
+
+
+
+
+
+
+Information and Communications Technology Supply Chain Security
+
+
+
+
+
+
+Partnerships and Collaboration
+
+
+
+
+
+
+Physical Security
+
+
+
+
+
+
+Risk Management
+
+
+
+
+
+
+        How can we help?
+       
+GovernmentEducational InstitutionsIndustryState, Local, Tribal, and TerritorialIndividuals and FamiliesSmall and Medium BusinessesFind Help LocallyFaith-Based CommunityExecutivesHigh-Risk Communities
+
+
+
+
+
+Spotlight
+
+
+
+
+Resources & Tools
+
+
+
+Resources & Tools
+
+
+
+
+
+All Resources & Tools
+
+
+
+
+
+
+Services
+
+
+
+
+
+
+Programs
+
+
+
+
+
+
+Resources
+
+
+
+
+
+
+Training
+
+
+
+
+
+
+Groups
+
+
+
+
+
+
+
+
+News & Events
+
+
+
+News & Events
+
+
+
+
+
+Directives
+
+
+
+
+
+
+News
+
+
+
+
+
+
+Events
+
+
+
+
+
+
+Cybersecurity Alerts & Advisories
+
+
+
+
+
+
+Request a CISA Speaker
+
+
+
+
+
+
+Congressional Testimony
+
+
+
+
+
+
+CISA Conferences
+
+
+
+
+
+
+CISA Live!
+
+
+
+
+
+
+
+
+Careers
+
+
+
+Careers
+
+
+
+
+
+Benefits & Perks
+
+
+
+
+
+
+Hiring and Recruitment
+
+
+
+
+
+
+New Employee Orientation & Onboarding
+
+
+
+
+
+
+Students & Recent Graduates
+
+
+
+
+
+
+Veteran and Military Spouses
+
+
+
+
+
+
+
+
+About
+
+
+
+About
+
+
+
+
+
+Divisions & Offices
+
+
+
+
+
+
+Regions
+
+
+
+
+
+
+Leadership
+
+
+
+
+
+
+Doing Business with CISA
+
+
+
+
+
+
+Site Links
+
+
+
+
+
+
+CISA GitHub
+
+
+
+
+
+
+CISA Central
+
+
+
+
+
+
+Contact Us 
+
+
+
+
+
+
+Subscribe
+
+
+
+
+
+
+Transparency and Accountability
+
+
+
+
+
+
+Policies & Plans
+
+
+
+
+
+
+
+
+
+
+Staying Secure at Eventsno-cost Cyber ServicesCybersecurity Awareness MonthKEV CatalogReport A Cyber Issue 
+
+
+
+
+
+
+
+
+
+
+Breadcrumb
+
+
+Home
+
+
+News & Events
+
+
+Cybersecurity Directives
+
+
+
+              BOD 26-04: Implementation Guidance for Prioritizing Security Updates Based on Risk
+            
+
+
+
+
+
+
+
+Share:
+
+
+
+
+
+
+
+    Opens in a new window
+  
+
+
+
+
+
+
+    Opens in a new window
+  
+
+
+
+
+
+
+    Opens in a new window
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Binding Operational Directives
+
+BOD 26-04: Implementation Guidance for Prioritizing Security Updates Based on Risk
+
+June 10, 2026
+
+
+
+								Related topics:
+							
+
+Cybersecurity Best Practices
+
+
+
+
+
+
+
+
+
+
+
+
+News & Events
+
+
+
+
+Directives
+
+
+
+
+News
+
+
+
+
+Events
+
+
+
+
+Cybersecurity Alerts & Advisories
+
+
+
+
+Request a CISA Speaker
+
+
+
+
+Congressional Testimony
+
+
+
+
+CISA Conferences
+
+
+
+
+CISA Live!
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+Updated: August 25, 2026
+Note: The Cybersecurity and Infrastructure Security Agency (CISA) will update this page to provide users and agencies with the latest information and guidance on Binding Operational Directive (BOD) implementation.
+
+
+
+Table of Contents
+
+
+
+
+Forensic Triage Steps     Step 1: Scoping     Step 2: Preserve and Collect Evidence     Step 3: Critical Patching and Stabilization     Step 4: Contain and Control     Step 5: Triage Analysis     Step 6: Escalation DecisionFrequently Asked Questions (FAQs)     Vulnerability Response Timeline     KEV Catalog     Mission Critical Assets and HVAs     Vendors, Third Party Vendors, and Cloud Service Providers     Vulnrichment Program and CVE Database     Cyber Hygiene     BOD 26-04 and other BODs     CISA SupportGlossary
+
+
+
+Forensic Triage Steps
+This implementation guidance establishes forensic triage steps for agencies to execute prompt vulnerability response actions aligning with BOD 26-04 requirements. These steps provide baseline guidance. In some cases, the Known Exploited Vulnerabilities (KEV) catalog may include specific triage steps for a Common Vulnerabilities and Exposures ID (CVE ID). In those cases, agencies should follow the KEV Catalog guidance.
+The forensic triage steps below aim to enable agencies to rapidly scope vulnerability notifications, gather sufficient evidence, implement containment, take control actions, perform analysis, and subsequently determine the need for response effort escalation.
+An essential facet of any incident response plan is preparedness. Agencies should establish an internal plan for managing critical assets when KEV additions require forensic triage analysis. These plans should document explicit, transparent risk decisions that weigh mission needs—especially availability and integrity of high value assets (HVAs) and mission critical functions—against potential impacts of exploitation.
+Note: The below timelines are recommended best practices to guide agencies through their forensic triage. The requirement of BOD 26-04 is that an adequate forensic triage analysis is performed; the specific timeline below is not required.
+Step 1: Scoping
+(Target timeline: within first two hours of KEV addition)
+CISA will initiate this step by adding the CVE entry to the KEV Catalog. Agencies must then identify whether the vulnerability meets the remediation threshold in fewer than three days and requires forensic triage to assess whether the systems or network infrastructure have been impacted or compromised.
+
+The cybersecurity vulnerability will be identifiable by its CVE ID in accordance with BOD 26-04.
+Activate forensic triage response team and other units as necessary.
+Scope the notification/incident to identify boundaries, systems, and services impacted.
+Establish a dedicated out-of-band communication channel that does not rely on potentially compromised infrastructure.
+
+Step 2: Preserve and Collect Evidence
+(Target timeline: within 2-24 hours of KEV addition)
+Prioritize immediate acquisition of volatile data. Volatile data includes any data stored in memory or existing in transit that will be lost when the computer is powered off. Volatile data resides in registries, cache, and random-access memory (RAM).
+Do not alter or remediate systems prior to evidence/artifact collection when possible.
+Collect less volatile and non-volatile data from impacted systems.
+
+Note: Due to time constraints, do not collect data beyond the incident/alert scope. Focus on systems at the center of the incident and involved in the alert. Persistent data includes data stored on a local hard drive (or another medium) and is preserved when the computer is powered off.
+
+Maintain an evidence/artifact collection log documenting each item collected, the system it came from, date/time of collection, and the collector’s name).
+Step 3: Critical Patching and Stabilization
+(Target timeline: within 2-24 hours of KEV addition)
+After identifying the in-scope devices and collecting evidence necessary to support triage analysis artifact data, apply critical available patches. Collect all required evidence prior to this step as patching may jeopardize the availability of artifacts.
+Work with internal teams to stabilize critical business systems and processes if impacted by patching steps.
+Step 4: Contain and Control
+(Target timeline: within 6-24 hours of KEV addition)
+Begin containment of in-scope systems and network infrastructure as soon as feasible (after completion of initial evidence collection).
+
+Ensure you closely coordinate containment actions with evidence collection and patching activities. Premature containment can destroy vital evidence.
+Containment activities must be conducted in a manner that does not alert the threat actor. If the threat actor knows they have been detected, they may take additional measures to conceal and maintain access.
+Isolate impacted and suspected impacted systems and network infrastructure. Reference CISA’s Cybersecurity Incident & Vulnerability Response Playbooks for guidance on conducting containment activities.
+Internally document containment and isolation activities.
+
+Step 5: Triage Analysis
+(Target timeline: within 24-48 hours of KEV addition)
+Begin evidence analysis to determine if a compromise occurred.
+Identify whether any of the following has occurred and document supporting evidence:
+
+Unauthorized access to systems, accounts, or data
+Threat actor access or presence
+Lateral movement from initial access vector or system identified above
+Persistence mechanisms
+Data staging and/or exfiltration
+
+Analyze and document all identified indicators of compromise (IOCs):
+
+Verify identified IOCs.
+Determine whether IOCs exist elsewhere in the environment.
+
+Note: See Table 1 of CISA’s Cybersecurity Incident & Vulnerability Response Playbooks for examples of IOCs and tactics they align to.
+
+
+Internally document all triage analysis steps.
+
+Step 6: Escalation Decision
+(Target timeline: within 48-72 hours of KEV addition)
+Produce a forensic triage report encompassing all information gathered and actions taken during previous steps. This report will serve as an agency record. Use the report to determine if escalation is required.
+The report should include:
+
+Incident timeline
+Timeline of actions taken in response to the vulnerability notification and forensic triage actions
+Technical findings in terms of “who, what, where, and when” For example, “admin user (who) logged into machine X (where) at 05-04-2026 06:03:04 (when) and immediately launched tool Y (what). The security operations center (SOC) confirmed with the associated user that they were not active at that time.”
+Containment and mitigation efforts taken to date
+Recommendation on next steps
+
+If the forensic triage identified:
+
+No Evidence of Compromise:
+
+Report requirements as established in BOD 26-04.
+Implement heightened monitoring activities.
+Complete vulnerability remediation as required in BOD 26-04.
+Conduct post-incident/vulnerability response improvement process as determined by agency guidelines.
+
+
+Compromised Confirmed:
+
+Report the incident to CISA via the CISA Incident Reporting System.
+Determine escalation path to pivot from triage to full incident response (IR).
+Coordinate with CISA on next steps for activation of a full IR effort.
+
+
+Compromise Suspected, but not yet confirmed:
+
+Continue to triage IOCs and anomalies.
+Determine escalation path to pivot from triage to IR.
+Coordinate with CISA on next steps for activation of an IR effort.
+
+
+
+In the event forensic triage leads to incident discovery, please refer to the Federal Incident Notification Guidelines.
+Frequently Asked Questions (FAQs)
+Vulnerability Response Timeline
+Q: How does CISA operationalize the definition of “Publicly Exposed?”
+A: In general, if an agency-owned or agency-managed IT asset is accessible to unauthenticated or untrusted entities via a public network (i.e., the internet), regardless of its physical or logical location, CISA considers the system publicly exposed. CISA and other agencies may use multiple overlapping capabilities to determine whether assets are publicly exposed, including the Continuous Diagnostics and Mitigation (CDM) program and Cyber Hygiene services. If any of these methods identifies a system as publicly exposed, agencies should set the decision point value to “yes.”
+Q: How should agencies provide information about their “Publicly Exposed” assets to CISA?
+A: CISA is prepared to consume this information in the CDM program as agencies provide several supported endpoint and network security applications.
+Within 60 days of issuance, CDM will publish data schema in accordance with BOD 26-04, required action 7.b. Agencies can use enterprise vulnerability management capabilities (e.g., vulnerability scanners) and cloud provider tagging and labeling features to consistently tag assets with agency, sub-agency, environment, exposure status, and asset type details. Define required tag keys, policies, and integrate tags with the CDM program to maintain an authoritative inventory list.
+Other discovery methods include active scanning (Nmap), findings identified by CISA’s Cyber Hygiene Service, passive network discovery, Endpoint Detection and Response (EDR), Network Access Control (NAC), Mobile Asset and Device Management (MADM) systems, and inventories maintained within cloud provider control planes.
+https://www.cisa.gov/known-exploited-vulnerabilities
+Q: What is the protocol when an information item about a vulnerable asset is not available?
+A: Agencies should provide “Publicly Exposed” information about each asset in CDM. In cases where agencies have not been able to provide this information yet, then CISA will make a “best effort” at determining a value for purposes of calculating patching timelines.
+That logic is as follows:
+
+Does the asset communicate on a publicly routable IP address (IPv4 or IPv6)? If yes, treat the asset as “public;” otherwise:
+Is the “asset type” tag have a value of “network”? If yes, treat the asset as “public;” otherwise:
+For KEV-listed CVEs, if CISA’s analysis indicates the affected software is generally public-facing, treat the asset as public; otherwise, continue to the next step.
+Treat the asset as “internal.”
+
+Agencies are encouraged to document assets that are not publicly exposed. If “Automatable” and “Technical Impact” information items about a CVE ID are not available and the CVE ID is not in the KEV Catalog, CISA will treat its values as “no” and “total,” respectively, until CISA or a third party provides metadata about the CVE ID. CISA will always provide the Vulnrichment data for a CVE ID listed in the KEV Catalog.
+Q: How does CISA operationalize the definition of “Technical Impact?”
+A: Technical Impact is based on the level of control the threat actor obtains over the vulnerable system. As some sample heuristics, if the answer to any of the following questions is “yes,” then the value of Technical Impact would be total impact:
+
+Can the attacker install and run arbitrary software?
+Can the attacker trigger all the actions that the vulnerable component can perform?
+Does the attacker get an account with full privileges to the vulnerable component (for example, administrator or root user accounts)?
+Are Common Vulnerability Scoring System (CVSS) metric values for confidentiality and integrity impact both “High?”
+
+If the value of Technical Impact is not total impact, it is partial impact. Heuristically, partial impact covers outcomes such as denial-of-service attacks (see Information Sources for SSVC: Technical Impact and SSVC How-To: Technical Impact). CISA provides analysis results publicly through the Vulnrichment Program. In the context of system information exposure, CISA will only mark a vulnerability as total impact if the information exposure is security-critical information that provides total control of the asset (e.g., log-in credentials).
+Q: How are brute-force denial-of-service (DoS) attacks accounted for in the definition of Technical Impact?
+A: Brute force resource exhaustion attacks are out of scope for this BOD as explained by CVE Numbering Authority rule #4.1.6.1 Such brute force attacks should not be assigned CVE IDs. Any vulnerability that is a DoS condition and receives a value of “partial control” for “Technical Impact” means that the adversary can exploit some flaw to create the DoS (e.g., crashing a service by sending a specially crafted request).
+1 CVE Numbering Authority rule 4.1.6: “Brute-force denial-of-service and brute-force resource exhaustion attacks, for example, high-rate or high-bandwidth denial-of-service attacks or jamming radio frequency spectrum, should not be determined as vulnerabilities. Failure to implement common defenses against such attacks may be determined to be a vulnerability (for example, an instance of CWE-770).” https://www.cve.org/ResourcesSupport/AllResources/CNARules. CNA rules version 4.1.0, May 14, 2025.
+Q: How does CISA define automatable?
+A: CISA defines automatable in alignment with community definitions from the CVSS (CVSS v4.2 User Guide) and the Stakeholder-Specific Vulnerability Categorization (SSVC) (see SSVC How-To: Automatable). As one heuristic, if there is a public proof-of-concept code sample that achieves remote code execution and reliably executes against a vulnerable system, then exploitation of the vulnerability is automatable (that is, “Automatable” = yes). CISA provides the analysis results through the Vulnrichment Program.
+Q: How did CISA determine Active Exploitation?
+A: CISA relies on several trusted sources to identify active exploitation, including security vendors, researchers, U.S. and international government partners, open-source research, and subscription-based threat intelligence services.
+When a vendor, researcher, or partner reports exploitation, CISA reviews the evidence. Vulnerabilities added to the KEV Catalog must meet the requirements described in Reducing the Significant Risk of Known Exploited Vulnerabilities. Vulnerabilities found during CISA’s own incident response work are also included.
+CISA analysts monitor open sources daily and review vendor advisories, press releases, and academic reports for accuracy. CISA only adds verifiable information to the KEV Catalog. CISA internally tracks unconfirmed reports until more evidence emerges. CISA also uses commercial threat intelligence platforms that provide data (i.e., honeypot detections and malware activity). These sources go through the same review process to validate active exploitation before CISA adds any vulnerability to the KEV Catalog.
+Q: What does CISA mean by “fix on system upgrade”?
+A: For items with the “fix on system upgrade” timeline, agencies do not need to prioritize these vulnerabilities and can wait for the next system upgrade.
+Q: May my agency patch vulnerable systems faster than required by this BOD?
+A: Yes. BOD timelines represent maximum duration until a remediation is applied, representing risk tolerance for unremediated vulnerabilities. Agencies with a lower tolerance for this risk may set shorter timelines.
+Q: What is the point of creating a new updating requirement? Should my agency still use CVSS for prioritization?
+A: This Directive supersedes and revokes BOD 19-02: Vulnerability Remediation Requirements for Internet-Accessible Systems (April 29, 2019), and BOD 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities (Nov. 3, 2021). BOD 26-04 consolidates and clarifies vulnerability remediation guidelines for agencies addressing cybersecurity vulnerabilities. BOD 26-04 also increases efficiency, streamlines federal processes, and leverages tools and practices unavailable three to six years ago. CISA is updating remediation requirements to leverage modern information assets and processes. This Directive helps the Federal Civilian Executive Branch (FCEB) reduce risk through more targeted, clear, and comprehensive prioritization guidance.
+Note: By revoking BOD 19-02, the FCEB no longer requires CVSS use for vulnerability prioritization.
+This Directive also aligns with the Forum of Incident Response and Security Teams (FIRST) CVSS SIG Consumer Implementation Guidance. Mature vulnerability prioritization uses technical, threat, and environmental information from the CVSS SIG Consumer Implementation Guidance to reach a prioritization decision. CISA operationalizes that goal through this Directive.
+Q: Does CISA intend to update remediation timelines?
+A: BODs are meant to be long-term, strategic initiatives. Agencies must make non-trivial changes in response to this BOD, and CISA wants to ensure that these changes are not frequent. CISA commits to reviewing the data on a recurring basis and will change the remediation timeline only if the evidence strongly supports it.
+Q: How does CISA know whether a vulnerability affects publicly exposed assets?
+A: CISA relies on multiple overlapping capabilities to determine whether assets are publicly exposed. These primary methods include the Continuous Diagnostics and Mitigation (CDM) Program and CISA’s Cyber Hygiene Program, both of which help assess whether assets are reachable from the public internet. For more information on CISA’s visibility into federal networks see BOD: 23-01: Improving Asset Visibility and Vulnerability Detection on Federal Networks. Agency asset management can enhance CDM data. Agencies can, for example, enter asset tags in CDM for public exposure. See NIST Cybersecurity Framework (CSF) 2.0 for more information on the role of asset management in cybersecurity risk management.
+Q: How do we assess the “Technical Impact” of a vulnerability that leaks credentials, such as Heartbleed or Citrixbleed?
+A: The technical impact of a vulnerability that enables an attacker to obtain log in credentials is assessed as “total,” because an attacker could use those credentials to obtain total control.
+KEV Catalog
+Q: How does CISA decide what goes in the KEV Catalog?
+A: CISA adds vulnerabilities to the catalog when our team identifies a vulnerability that meeting the following conditions:
+
+Has an assigned CVE ID.
+Has reliable evidence of active exploitation in the wild.
+Has clear remediation or mitigation available, such as a vendor-provided update.
+Carries significant risk to U.S. government information systems.
+
+Q: How quickly does CISA update the KEV Catalog after identifying a new in-scope vulnerability?
+A: CISA aims to update the KEV within 24 hours. However, several factors can delay additions, including necessary further research, insufficient evidence, unavailable mitigations, additional concerns, or an unassigned CVE.
+Q: Is a public proof-of-concept (POC) exploit required for inclusion in the KEV Catalog? 
+A: Although the percentage of listed vulnerabilities with public POCs exploit code samples may be high, an available POC is not a requirement for addition to the KEV Catalog.
+Q: CISA added an older CVE to the KEV Catalog. Does that mean the vulnerability is currently under active exploitation?
+A: No. Addition of a vulnerability to the KEV Catalog does not necessarily indicate that CISA is currently observing active exploitation. A vulnerability may qualify for inclusion in the KEV Catalog at any time, regardless of its age, if it meets the four conditions noted above.
+Q: Why is CISA adding old CVEs/CVEs in end-of-life products to the KEV Catalog?
+A: CISA does not assume that all running legacy products are fully patched. CISA also does not assume agencies have decommissioned all assets that have reached end-of-life. If an actor targets your network and you have a vulnerable legacy product known to be actively exploited, actors will continue exploiting vulnerabilities until they are remediated or mitigated. See BOD 26-02: Mitigating Risk from End-of-Support Edge Devices for further guidance on phasing out unsupported information systems and information system components.
+Q: Does CISA ever remove entries from the KEV Catalog?
+A: Rarely. CISA will only remove an entry due to an error or other problem (for example, if the vendor’s security update causes an unforeseen issue with greater impact than the vulnerability itself). After the vendor resolves the issue, CISA will typically restore the vulnerability to the catalog.
+Q: Is the KEV Catalog the only list of vulnerabilities that I need to worry about?
+A: No. Agencies should track and prioritize all vulnerabilities. Many vulnerabilities do not fall within scope of the KEV or may not qualify for a CVE ID, including configuration vulnerabilities. BOD 26-04 provides comprehensive guidance on how agencies should track and prioritize vulnerabilities with CVE IDs. Longer timelines are acceptable for unremediated or unmitigated vulnerabilities not in the KEV Catalog or assigned CVE IDs.
+Q: Will CISA share IOCs to enable agencies to support forensic triage for KEV additions?
+A: Yes, whenever CISA has IOCs or specific forensic guidance relevant to a KEV addition, CISA will add guidance to the KEV Catalog.
+Q: BOD 26-04 outlines timelines for remediation, and the KEV lists a due date for patching. Which “due date” do I listen to?
+A: Agencies should remediate the vulnerability by the “dueDate” as determined by the BOD 26-04 Vulnerability Response Timeline table. In determining the Known Exploited Vulnerabilities (KEV) Catalog due date for remediation, CISA calculates the due date according to the Vulnerability Response Timeline Table using available data to determine whether there is evidence that the vulnerability is present in a publicly exposed asset. For example, if CISA determines that the vulnerability is present in a publicly exposed asset, the technical impact is total, and that it is automatable by an adversary, the KEV’s due date will reflect a 3-day patching deadline. The final determination for asset exposure is determined by the agency and the remediation timelines in the Vulnerability Response Timeline will be determined and based on an asset-by-asset case.
+Asset exposure information may be provided by the CISA Cyber Hygiene Program to participating agencies or may be collected or provided by third-party asset management or vulnerability management services or scanners. CISA’s Vulnrichment Program provides information on whether a vulnerability is in the KEV, if it is automatable by an adversary, and its technical impact.
+Mission Critical Assets and HVAs
+Q: How should agencies apply these timelines to mission-critical or high-availability systems?
+A: Agency Authorizing Officials should establish change management processes and continuity of operations plans facilitating remediation timelines in BOD 26-04. For example, agencies may prioritize staff time on urgent patches to manual processes for testing and patching mission-critical systems while patching less critical systems via automated processes. CISA understands patching timelines will continue to evolve and improve. Agency risk management should evolve based on the increased cadence of cybersecurity threats to information systems while ensuring continuity of mission.  Agencies should promptly contact CyberDirectives@cisa.dhs.gov with special use cases so CISA can help understand the challenge, suggest options for mitigation, and provide an estimated timeframe for remediation.
+Q: What is more important to remediate first: critical/high or known exploited vulnerabilities?
+A: CISA, through this Directive, provides unified and comprehensive guidance on vulnerability triage by establishing clear remediation timelines. This Directive accounts for many aspects commonly used by vulnerability scoring systems. For example, CVSS contains related information about vulnerable system impact (similar to Technical Impact), the threat metric is related to whether a vulnerability is in the KEV, and “Automatable” is a CVSS version 4 supplemental metric. However, CVSS scores such as “critical” or “high” do not prescribe specific actions. To eliminate ambiguity, CISA replaces these labels with explicit timelines for required remediation under defined conditions. This approach aligns with CVSS guidance that system owners should use threat and environmental information to prioritize vulnerabilities for action.2 Table 1: Remediation Timelines specifies CISA’s expectations for prioritization using technical, environmental, and threat information. CISA uses vulnerability metadata, which helps define relevant time frames for vulnerability remediation and used reliably at scale.
+2 “CVSS Base (CVSS-B) scores are designed to measure the severity of a vulnerability and should not be used alone to assess risk.” CVSS User Guide, Section 2.2. https://www.first.org/cvss/v4-0/user-guide.
+Q: Are agencies required to quarantine assets until vendor dependent patches are released and agency change management steps are completed, to include high value assets (HVA)?
+A: Agencies should establish an internal plan for managing HVAs when KEV Catalog additions require forensic triage analysis. These plans should make explicit, transparent risk decisions between availability and integrity of HVAs or mission critical functions and the consequences of exploitation.
+Vendors, Third Party Vendors, and Cloud Service Providers
+Q: A vulnerability I need to patch/mitigate/remediate has a specific vendor and product listed. However, this product is embedded into a third-party product provided by a different security vendor, and they did not provide a patch. How should I proceed?
+A: CISA provides the original vendor and product attached to a particular vulnerability along with the original vendor-provided patch. If your environment contains a third-party product from a different security vendor, contact that vendor directly to obtain the patch or other operational guidance.
+Q: How will CISA encourage cloud service providers (CSPs) to commit to doing their part to patch these KEVs? How should agencies report vulnerabilities in federal assets hosted in third-party environments (such as the cloud)?
+A: CISA works closely with the Federal Risk and Authorization Management Program (FedRAMP) to coordinate the response to this Directive with FedRAMP-authorized CSPs. FedRAMP-authorized CSPs are informed they should coordinate with their agency customers. CISA is aware that some third parties without FedRAMP authorization are hosting federal assets covered by this Directive.
+Each agency is responsible for inventorying assets hosted in third-party environments (FedRAMP authorized or otherwise) and contacting service providers for status updates and to ensure compliance with CISA Directives.
+If instances of affected versions have been found in a third-party environment, reporting and remediation obligations will vary based on the type of service provided and whether the provider is another federal agency or a commercial provider.
+For reporting purposes:
+
+If the affected third-party service provider is another federal entity, the agency providing the service is responsible for submitting status reports under CISA Directives. The agency receiving the service may not have any further reporting obligation for that specific system.
+If the affected third-party service provider is a commercial provider (FedRAMP-authorized or otherwise), the service provider must report the status of outstanding vulnerabilities to the agency receiving the service. The agency receiving the service is then responsible for any reporting required by this Directive. Agencies remain responsible for engaging service providers directly, as needed, to ensure compliance with CISA Directives.
+
+Q: “Cloud assets” include what systems in item (8) for agency actions?
+A: Agencies must enforce BOD 26-04 across all assets governed by the shared responsibility model. BOD 26-04 requirements do not extend to services that fall outside FedRAMP’s scope or are not included in the shared responsibility model, as specified in OMB Memo M-24-15, Section III.
+Note: The shared responsibility model is intended as a high-level planning tool; for actual responsibilities, agencies should reference the system authorization boundary, contractual agreements, FedRAMP authorization package, service configuration, and BOD 26-04 implementation guidance.
+
+ 
+
+
+Responsibility Breakdown:
+
+On-premises & Infrastructure as a Service (IaaS): Agency retains full responsibility for managing vulnerabilities.
+Platform as a Service (PaaS): Agency is responsible for oversight of security, identity management, operations, access and authentication, guest OS/data/content, and audit logging. Network security falls under the purview of the CSP.
+Software as a Service (SaaS): The CSP is responsible for web application security, identity, operations, and network protection. Customers (i.e., agencies) are accountable for access and authentication, guest OS/data/content, and audit logging.
+
+CISA strongly recommends that agencies ensure appropriate remediation timelines are part of a service-level agreement or the service provider/CSP establishes a contractual arrangement.
+FedRAMP Exclusions:
+The following categories of cloud computing products and services are outside FedRAMP scope unless the FedRAMP Director with OMB authorizes the exceptions:
+
+Information systems utilized exclusively for a single agency’s operations, hosted on cloud infrastructure or platforms, not offered as a shared service, or not operating under a shared responsibility model
+Social media and communications platforms used according to agency policies
+Search engines
+Widely available commercial services that provide information to agencies without collecting federal data
+Ancillary services whose compromise would present negligible risk to federal information or systems (i.e., those making external measurements or ingesting only publicly accessible data). Any other product or service category identified for exclusion by the FedRAMP Board with approval from the Federal Chief Information Officer (CIO)
+
+Q: When affected assets cannot be updated per vendor recommendations, are there alternative mitigation actions available?
+A: Aside from removing affected assets from the network, the only known technical mitigation to vulnerabilities in the KEV Catalog is to apply the required actions listed in the catalog. If you cannot accomplish these actions within the required timeframe, remove the asset from the agency network. Depending on your environment, appropriate isolation techniques may include decommissioning, removal of the vulnerable software product, network segmentation, isolation, software-defined perimeters, and proxies.
+Q: Are the vulnerability scanning vendors automating the table and flowchart into a new or existing scoring system?
+A: Right now, there are no commitments on behalf of the vendor community. The individual vendors CISA have engaged throughout this directive development process have been supportive of this shift, a pivot that aligns with risks. The people with the power of the vendors are the customers.
+Data structures have worked to accept these data fields, including lower friction for adoption given open-source data systems.
+Q: How is CISA working with vendors to support agencies with implementing the requirements in BOD 26-04?
+A: For agencies that are receiving vulnerability scanning capabilities from the CDM program, the CDM PMO will be discussing the BOD with our suppliers (including Tenable and Qualys) to determine what, if any, additional features will be needed to facilitate customer success in this domain.
+CDM’s current requirements and development are focused on ensuring the reporting needs outlined in the BOD are complete and easy to implement in the CDM Dashboard and its data pipeline. This includes targetable “flags” indicating external exposure as well as enrichment processes to deliver (through CDM) SSVC parameters outlined in the BOD. The BOD schema is now published and available for all customers.
+Additionally, CISA is making open-source implementations of structured data sources available through its federal lab partners at SEI. The general structure is outlined in From Concept to Practice: How SSVC Has Evolved to Make Adoption Possible | CMU Software Engineering. There is a JSON data structure for the decision tree, the decision points, and their definitions publicly available.
+Q: How does BOD 26-04 apply to cloud software?
+A: An agency shares responsibility for securing their cloud software with the cloud service provider. For cloud software operations under the agency’s control, agencies will ensure that their risk management processes are aligned with BOD 26-04. Service Level Agreements (SLAs) outline risk management requirements for software operations managed by the cloud service provider.
+Q: How does BOD 26-04 affect FedRAMP requirements for cloud service providers?
+A: FedRAMP will require mandatory adoption of the new Vulnerability Detection and Response (VDR) and Vulnerability Evaluation and Reporting (VER) rules by December 7, 2026, to align with BOD 26-04. FedRAMP released the VDR and VER rules for public comment in August 2025 (RFC-0012). FedRAMP will update the Consolidated Rules for 2026 by the end of June. For more information on FedRAMP’s alignment with BOD 26-04 see FedRAMP Response to CISA BOD 26-04 (Prioritizing Security Updates Based on Risk).
+Vulnrichment Program and CVE Database
+Q: What is CISA’s Vulnrichment Program?
+A: CISA’s Vulnrichment Program enriches basic CVE data with actionable insights like SSVC decision points, Common Weakness Enumeration (CWE) IDs, and CVSS information, all bundled into CVE records currently available. This enriched data is automatically included in existing CVE feeds. Vulnrichment data ends up in the Authorized Data Publisher (ADP) container for individual CVEs. CVE data pulled from CVE via the API, or from GitHub at CVEProject/ cvelistV5 contains vulnrichment data. For technical details, see Unlocking Vulnrichment: Enriching CVE Data.
+Q: Is the CVE database or the Vulnrichment Program the full list of vulnerabilities I need to worry about? 
+A: No. The CVE program is not a comprehensive list of cybersecurity vulnerabilities. Some cybersecurity vulnerabilities are excluded from receiving CVE IDs. This decision is an important feature of the numbering rules that help keep the CVE system usable. For example, while web application vulnerabilities are often unique configurations of a web service that would not qualify for a CVE ID, agencies should still remediate. Another common example of important cybersecurity vulnerabilities without CVE IDs are exploitable configurations of authentication and identity management systems. Therefore, while BOD 26-04 provides more comprehensive vulnerability management guidance for CVE IDs, not every relevant cybersecurity vulnerability will receive a CVE ID.
+Q: I see a CVE in CDM that doesn’t include enriched details for Technical Impact or Automatable. How should I apply the BOD 26‑04 guidelines in these situations?
+A: If a CVE is identified in CDM and its BOD 26‑04 enrichment details, such as Technical Impact or Automatable are still pending, CISA will update CDM with this information upon completion of the enrichment process within three business day.
+Cyber Hygiene
+Q: BOD 26-04 requires agencies to ensure Cyber Hygiene scans are not blocked. What does that mean?
+A: Agencies should not grant preferential treatment for Cyber Hygiene scanning by explicitly whitelisting CISA source IPs or opening any ports/services other than what is normally available for agency systems.
+CISA performs scanning and discovery from the perspective of an attacker. This perspective enables CISA to help gauge exposure and inform the agency on the urgency of response needed to counter threats and address vulnerabilities. CISA focuses scanning on quickly identifying and detecting exposed vulnerabilities and makes no attempt at stealth.
+So that you can distinguish Cyber Hygiene scans from random internet noise, we share a link to our source IPs in the Methodology section of your Cyber Hygiene reports and upon request at vulnerability@cisa.dhs.gov. This allows you to properly triage and respond to alerts generated by your security information and event management (SIEM) application. To reduce alerts and conserve analyst resources, it may be prudent to configure your SIEM sensors to avoid generating alerts on traffic from our published addresses. These addresses may change without prior notice, so we recommend regular monitoring.
+Should any automatic blocking of our scanning addresses occur, remove the block and notify vulnerability@cisa.dhs.gov of addresses we were unable to connect to. This lets us restart scanning on those IPs.
+Q: What types of changes to my agency’s internet address space (scope) do I need to report?
+A: Once per quarter or upon CISA’s request, agencies are required to update CISA with their current publicly exposed IP addresses and agency-owned domain names via the Cyber Hygiene scope change process. Agency updates should include current IP addresses, domain names, and a list noting all asset additions and/or removals made from the previous quarter.
+Agencies must avoid adding Cyber Hygiene source addresses to blocklists, as CISA requires information derived from the Cyber Hygiene program as part of its mission to reduce FCEB cyber risk.
+BOD 26-04 and other BODs
+Q: How does BOD 26-04 interact with BOD 23-01?
+A: BOD 23-01 highlights that asset management is critical for cyber risk management. Managing external assets effectively will drive down overall risk. BOD 23-01 directs agencies to perform automated asset discovery every seven days. In conjunction with Action 7 of BOD 26-04, agencies should have an existing list of agency-managed and public-exposed assets that can be reported to CISA within seven days.
+Q: How does BOD 26-04 relate to BOD 20-01?
+A: BOD 20-01 refers to an agency's Vulnerability Disclosure Policy (VDP), a way for researchers and others to disclose previously unknown vulnerabilities to an agency. While the VDP covers all internet-accessible systems, BOD 20-01 is focused on specific vulnerabilities reported to an agency, whereas the KEV list in BOD 26-04 deals with vulnerabilities that could be present in multiple agencies.
+CISA Support
+Q: How will CISA support agencies as they begin identifying publicly exposed assets?
+A: CISA’s Cyber Hygiene services can support initial identification of publicly exposed assets by conducting Nmap scans on assets provided by agencies. These Nmap scans will identify some form of active/open/listening port and are therefore considered internet-exposed/public. If no active/open/listening ports are found, the asset could be unavailable or not public/internet-exposed. Our Cyber Hygiene methodology details the re-scan cadence for all asset scopes. After initial identification of publicly exposed assets, you may refer to the Continuous Diagnostics and Mitigation (CDM) Program Agency and Federal Dashboard or review the weekly report’s Attachment section for the most recently attested list of all IPs currently in your agency’s scan scope.
+Q: Will CISA approve a waiver if our agency faces severe difficulty implementing a specific patch?
+A: CISA does not issue waivers or exceptions for actions required in cyber directives. Agencies should promptly contact CyberDirectives@cisa.dhs.gov with any special use cases so CISA can help understand the challenge, suggest options for mitigation, and provide an estimated timeframe for remediation.
+Q: Are there any automated scripts that CISA can share instead of manually extracting that data from the GitHub?
+A: If you use the CDM dashboard, CISA has done all that automation for you already. If you would like to do it yourself, we recommend using the CVE database and the CVE JSON schema 5.2 or later for scripting and data processing.
+Glossary
+
+
+
+Acronym  
+Formal Title  
+
+
+ADP 
+Authorized Data Publisher 
+
+
+API 
+Application Programming Interface 
+
+
+BOD 
+Binding Operational Directive 
+
+
+CDM 
+Continuous Diagnostics and Mitigation 
+
+
+CIO 
+Chief Information Officer  
+
+
+CISA 
+Cybersecurity and Infrastructure Security Agency 
+
+
+CSP
+Cloud Service Providers 
+
+
+CVE 
+Common Vulnerabilities and Exposures 
+
+
+CVE ID 
+Common Vulnerabilities and Exposures ID 
+
+
+CVSS 
+Common Vulnerability Scoring System 
+
+
+CWE 
+Common Weakness Enumeration 
+
+
+EDR 
+Endpoint Detection and Response 
+
+
+FAQ 
+Frequently Asked Questions 
+
+
+FCEB 
+Federal Civilian Executive Branch 
+
+
+FedRAMP 
+Federal Risk and Authorization Management Program 
+
+
+FIRST 
+Forum of Incident Response and Security Teams 
+
+
+HVA
+High Value Assets 
+
+
+IaaS 
+Infrastructure as a Service 
+
+
+IOC
+Indicators of Compromise 
+
+
+IR 
+Incident Response 
+
+
+KEV 
+Known Exploited Vulnerabilities 
+
+
+MADM 
+Mobile Asset and Device Management 
+
+
+NAC 
+Network Access Control 
+
+
+Nmap 
+Network Mapper 
+
+
+OMB 
+Office of Management and Budget 
+
+
+PaaS 
+Platform as a Service 
+
+
+POC 
+Proof-of-concept 
+
+
+RAM 
+Random-access memory 
+
+
+SaaS 
+Software as a Service 
+
+
+SIEM 
+Security Information and Event Management 
+
+
+SIG 
+Special Interest Group 
+
+
+SSVC 
+Stakeholder-Specific Vulnerability Categorization  
+
+
+VDP 
+Vulnerability Disclosure Policy 
+
+
+
+
+
+
+
+
+
+Tags
+
+Topics:
+                                                                                                                                                                                                                                                                                                                                                Cybersecurity Best Practices
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Directives
+
+
+
+
+
+
+Jun 10, 2026
+
+Binding Operational Directive
+
+
+
+BOD 26-04: Prioritizing Security Updates Based on Risk
+ 
+
+
+
+
+
+
+
+Jun 10, 2026
+
+Binding Operational Directive
+
+
+
+BOD 19-02: Vulnerability Remediation Requirements for Internet-Accessible Systems (Revoked)
+ 
+
+
+
+
+
+
+
+Jun 10, 2026
+
+Binding Operational Directive
+
+
+
+BOD 22-01: Reducing the Significant Risk of Known Exploited Vulnerabilities (Revoked)
+ 
+
+
+
+
+
+
+
+Feb 05, 2026
+
+Binding Operational Directive
+
+
+
+BOD 26-02: Mitigating Risk From End-of-Support Edge Devices 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Return to top
+
+
+
+
+
+
+Topics
+
+
+Spotlight
+
+
+Resources & Tools
+
+
+News & Events
+
+
+Careers
+
+
+About
+
+
+
+
+
+
+
+
+
+Cybersecurity & Infrastructure Security Agency
+ 
+
+
+
+Facebook
+
+
+X
+
+
+LinkedIn
+
+
+YouTube
+
+
+Instagram
+
+
+RSS
+
+
+
+CISA Central
+1-844-Say-CISA
+contact@cisa.dhs.gov
+
+
+
+
+
+
+
+
+
+
+DHS Seal
+
+CISA.gov
+An official website of the U.S. Department of Homeland Security
+
+
+
+
+About CISA
+
+
+Budget and Performance
+
+
+DHS.gov
+
+
+FOIA Requests
+
+
+No FEAR Act
+
+
+Office of Inspector General
+
+
+Privacy Policy
+
+
+Subscribe
+
+
+The White House
+
+
+USA.gov
+
+
+Website Feedback
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

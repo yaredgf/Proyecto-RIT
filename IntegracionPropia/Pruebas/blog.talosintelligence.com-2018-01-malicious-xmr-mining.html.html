@@ -1,0 +1,895 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Ransom Where? Malicious Cryptocurrency Miners Takeover, Generating Millions</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/bootstrap.min.css?v=-xdjtZ-fV2QpS1r5">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/navigation.css?v=PhzoiGnw4ldwozL1">
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/footer.css?v=sVEdldiwj6rF6gHP">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/pagination.css?v=HruyeF1JUFuoy6Wu">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/banners.css?v=vI3KT68RWE95HKDs">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/style.css?v=idjnUZoOumC94rdj">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/prism.css?v=jqyaOB6z6CqMaOT4">
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/prism-vsc-dark-plus.css?v=xoEFwaYF1JkH_sqf">
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/prism-talos.css?v=kn8aYcNhO045nXac">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/landing-page.css?v=EPtrK0eJwYLqD25v">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/coverage-block.css?v=vBgCqINSTHrSh9PX">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/ghost-theme-utils@latest/dist/css/style.min.css" rel="stylesheet">
+
+
+    <link rel="icon" href="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w256h256/2022/07/talos_o_square.png" type="image/png">
+    <link rel="canonical" href="https://blog.talosintelligence.com/malicious-xmr-mining/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta property="og:site_name" content="Cisco Talos Blog">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Ransom Where? Malicious Cryptocurrency Miners Takeover, Generating Millions">
+    <meta property="og:description" content="his post was authored by Nick Biasini, Edmund Brumaghin, Warren Mercer and Josh Reynolds with contributions from Azim Khodijbaev and David Liebenberg.
+
+
+Executive Summary
+
+The threat landscape is constantly changing; over the last few years malware threat vectors, methods and payloads have rapidly evolved. Recently, as cryptocurrency values have exploded,">
+    <meta property="og:url" content="https://blog.talosintelligence.com/malicious-xmr-mining/">
+    <meta property="og:image" content="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-ZmEzpdA1pzU/WnG17Z6ncAI/AAAAAAAAAkM/v_-jqvA3Tx4v4Ifg6PSTn6xHAxs92brwgCLcBGAs/w1200-h630-p-k-no-nu/image7.png">
+    <meta property="article:published_time" content="2018-01-31T15:58:00.000Z">
+    <meta property="article:modified_time" content="2022-12-05T11:51:24.000Z">
+    <meta property="article:tag" content="Cryptocurrency">
+    <meta property="article:tag" content="ransomware">
+    <meta property="article:tag" content="Threats">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ransom Where? Malicious Cryptocurrency Miners Takeover, Generating Millions">
+    <meta name="twitter:description" content="his post was authored by Nick Biasini, Edmund Brumaghin, Warren Mercer and Josh Reynolds with contributions from Azim Khodijbaev and David Liebenberg.
+
+
+Executive Summary
+
+The threat landscape is constantly changing; over the last few years malware threat vectors, methods and payloads have rapidly evolved. Recently, as cryptocurrency values have exploded,">
+    <meta name="twitter:url" content="https://blog.talosintelligence.com/malicious-xmr-mining/">
+    <meta name="twitter:image" content="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1200/2022/12/image7-2.png">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Edmund Brumaghin">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="Cryptocurrency, ransomware, Threats">
+    <meta name="twitter:site" content="@TalosSecurity">
+    <meta property="og:image:width" content="323">
+    <meta property="og:image:height" content="170">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Cisco Talos Blog",
+        "url": "https://blog.talosintelligence.com/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/11/TalosBrand_ukraine.svg"
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Edmund Brumaghin",
+        "url": "https://blog.talosintelligence.com/author/edmund-brumaghin/",
+        "sameAs": []
+    },
+    "headline": "Ransom Where? Malicious Cryptocurrency Miners Takeover, Generating Millions",
+    "url": "https://blog.talosintelligence.com/malicious-xmr-mining/",
+    "datePublished": "2018-01-31T15:58:00.000Z",
+    "dateModified": "2022-12-05T11:51:24.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1200/2022/12/image7-2.png",
+        "width": 1200,
+        "height": 154
+    },
+    "keywords": "Cryptocurrency, ransomware, Threats",
+    "description": "his post was authored by Nick Biasini, Edmund Brumaghin, Warren Mercer and Josh Reynolds with contributions from Azim Khodijbaev and David Liebenberg.\n\n\nExecutive Summary\n\nThe threat landscape is constantly changing; over the last few years malware threat vectors, methods and payloads have rapidly evolved. Recently, as cryptocurrency values have exploded, mining related attacks have emerged as a primary interest for many attackers who are beginning to recognize that they can realize all of the f",
+    "mainEntityOfPage": "https://blog.talosintelligence.com/malicious-xmr-mining/"
+}
+    </script>
+
+    <meta name="generator" content="Ghost 6.68">
+    <link rel="alternate" type="application/rss+xml" title="Cisco Talos Blog" href="https://blog.talosintelligence.com/rss/">
+    
+    <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/sodo-search.min.js" data-key="4ffb0139d74ada998f4b141e4d" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/main.css" data-sodo-search="https://cisco-talos-blog.ghost.io/" data-locale="en" crossorigin="anonymous"></script>
+    
+    <link href="https://blog.talosintelligence.com/webmentions/receive/" rel="webmention">
+    <script defer src="/public/cards.min.js?v=ShRHxgy4po8zN-Wf"></script>
+    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=WwnU9jw5ancNC8Gc">
+    <script defer src="/public/ghost-stats.min.js?v=vFcCUf6ZQ0Hyhc8h" data-stringify-payload="false" data-datasource="analytics_events" data-storage="localStorage" data-host="https://blog.talosintelligence.com/.ghost/analytics/api/v1/page_hit"  tb_site_uuid="afa04ee3-414f-4481-8d23-7e7c146f192e" tb_post_uuid="f38939e7-8553-4030-aa09-99d387950b30" tb_post_type="post" tb_member_uuid="undefined" tb_member_status="undefined" tb_gift_link=""></script><style>:root {--ghost-accent-color: #006db6;}</style>
+    <style type='text/css'>
+    img[src*="icon_check_white.svg"] { width: 20px; margin-left: 0px; margin-right: auto; }
+    
+    #ghost-portal-root { display: none; }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F45RVJG3BK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-F45RVJG3BK');
+</script>
+</head>
+
+<body class="post-template tag-cryptocurrency tag-ransomware tag-threats">
+
+    <div id="mobile-page-header" class="desktop-hide mobile-page-header">
+    <a class="mobile-nav-home-link" href="/">
+        <div class="mobile-logo-wrapper">
+        </div>
+        <div class="mobile-home-title">Blog</div>
+    </a>
+    <div id="mobile-search-wrapper">
+        <button class="search-button mobile-search-button" data-ghost-search>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        </button>
+    </div>
+</div>
+
+<nav id="nav">
+    <input id="nav-trigger" class="nav-trigger" type="checkbox"/>
+    <label for="nav-trigger">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="22px" height="16px" viewBox="0 0 22 16">
+            <g id="menu-icon">
+                <path fill="#FFFFFF" d="M20.5,3h-19C0.672,3,0,2.329,0,1.5S0.672,0,1.5,0h19C21.328,0,22,0.671,22,1.5S21.328,3,20.5,3z"></path>
+                <path fill="#FFFFFF" d="M20.5,9.5h-19C0.672,9.5,0,8.828,0,8c0-0.829,0.672-1.5,1.5-1.5h19C21.328,6.5,22,7.171,22,8   C22,8.828,21.328,9.5,20.5,9.5z"></path>
+                <path fill="#FFFFFF" d="M20.5,16h-19C0.672,16,0,15.328,0,14.5S0.672,13,1.5,13h19c0.828,0,1.5,0.672,1.5,1.5S21.328,16,20.5,16z"></path>
+            </g>
+        </svg>
+    </label>
+    <div id="top-nav-bar">
+    </div>
+
+    <div id="navigation">
+        <div class="navigation-logos-wrapper">
+            <div id="talos-logo-wrapper">
+                <a class="navbar-brand" href="https://talosintelligence.com">
+                </a>
+            </div>
+        </div>
+        <div class="navigation-links-wrapper">
+            <ul class="main-nav-list">
+                <li class="nav-item">
+                    <div class="primary-link-wrapper">
+                        <a class="primary_nav_link" href="https://talosintelligence.com/reputation">
+                            <div class="mobile-nav-icon"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" height="20px" width="20px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                            <style type="text/css">
+                                .white{fill:#FFFFFF;}
+                            </style>
+                            <g>
+                                <path class="white" d="M19.5,9.5h-1.1c-0.3-4.2-3.6-7.6-7.8-7.8V0.5C10.5,0.2,10.3,0,10,0l0,0C9.7,0,9.5,0.2,9.5,0.5l0,0v1.1   C5.3,1.9,1.9,5.3,1.6,9.5H0.5C0.2,9.5,0,9.7,0,10s0.2,0.5,0.5,0.5l0,0h1.1c0.3,4.2,3.6,7.6,7.8,7.8v1.1c0,0.3,0.2,0.5,0.5,0.5l0,0   c0.3,0,0.5-0.2,0.5-0.5l0,0v-1.1c4.2-0.3,7.6-3.6,7.8-7.8h1.1c0.3,0,0.5-0.2,0.5-0.5C20,9.7,19.8,9.5,19.5,9.5 M16.6,10.5h0.7   c-0.3,3.6-3.2,6.5-6.8,6.8v-0.8c0-0.3-0.2-0.5-0.5-0.5l0,0c-0.3,0-0.5,0.2-0.5,0.5v0.8C5.8,17,3,14.2,2.7,10.5h0.8   C3.8,10.5,4,10.3,4,10S3.8,9.5,3.5,9.5l0,0H2.7C3,5.8,5.8,3,9.5,2.7v0.8C9.5,3.7,9.7,4,10,4l0,0c0.3,0,0.5-0.2,0.5-0.5V2.7   C14.2,3,17,5.8,17.3,9.5h-0.7c-0.3,0-0.5,0.2-0.5,0.5C16.1,10.3,16.3,10.5,16.6,10.5L16.6,10.5"></path>
+                                                            <circle class="white" cx="10" cy="10" r="3.2"></circle>
+                            </g>
+                            </svg>
+                            </div>
+                            <span class="top-nav-link-text">
+                                Intelligence Center
+                            </span>
+                        </a>
+                    </div>
+                    <input class="sub-nav-trigger" id="intelligence-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="intelligence-sub-trigger">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+
+                    </label>
+                    <ul class="sub-nav sub-nav-single-list">
+                        <li class="desktop-hide">
+                            <a class="mobile_nav_link" href="https://talosintelligence.com/reputation"><h1>Intelligence Center</h1>
+                            </a></li>
+                        <li class="desktop-hide">
+                            <label class="subnav-back-button" for="intelligence-sub-trigger">BACK</label>
+                        </li>
+                        <li><a class="secondary_nav_link" href="https://talosintelligence.com/reputation_center">Intelligence Search</a></li>
+                        <li><a class="secondary_nav_link" href="https://talosintelligence.com/reputation_center/email_rep">Email &amp; Spam Trends</a></li>
+                    </ul>
+                    <div class="desktop-hide subnav-overlay"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" height="20px" width="20px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                        <style type="text/css">
+                            .white{fill:#FFFFFF;}
+                        </style>
+                                                <g>
+                            <path class="white" d="M19.5,9.5h-1.1c-0.3-4.2-3.6-7.6-7.8-7.8V0.5C10.5,0.2,10.3,0,10,0l0,0C9.7,0,9.5,0.2,9.5,0.5l0,0v1.1   C5.3,1.9,1.9,5.3,1.6,9.5H0.5C0.2,9.5,0,9.7,0,10s0.2,0.5,0.5,0.5l0,0h1.1c0.3,4.2,3.6,7.6,7.8,7.8v1.1c0,0.3,0.2,0.5,0.5,0.5l0,0   c0.3,0,0.5-0.2,0.5-0.5l0,0v-1.1c4.2-0.3,7.6-3.6,7.8-7.8h1.1c0.3,0,0.5-0.2,0.5-0.5C20,9.7,19.8,9.5,19.5,9.5 M16.6,10.5h0.7   c-0.3,3.6-3.2,6.5-6.8,6.8v-0.8c0-0.3-0.2-0.5-0.5-0.5l0,0c-0.3,0-0.5,0.2-0.5,0.5v0.8C5.8,17,3,14.2,2.7,10.5h0.8   C3.8,10.5,4,10.3,4,10S3.8,9.5,3.5,9.5l0,0H2.7C3,5.8,5.8,3,9.5,2.7v0.8C9.5,3.7,9.7,4,10,4l0,0c0.3,0,0.5-0.2,0.5-0.5V2.7   C14.2,3,17,5.8,17.3,9.5h-0.7c-0.3,0-0.5,0.2-0.5,0.5C16.1,10.3,16.3,10.5,16.6,10.5L16.6,10.5"></path>
+                                                    <circle class="white" cx="10" cy="10" r="3.2"></circle>
+                        </g>
+                        </svg>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="primary-link-wrapper">
+                        <a class="primary_nav_link" href="https://talosintelligence.com/vulnerability_info"><div class="mobile-nav-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px" height="20px" viewBox="0 0 26 20">
+                            <g id="vuln-icon" class="nav-icon">
+                                <path fill="#FFFFFF" d="M24.256,18.49L13.872,0.503C13.692,0.192,13.36,0,13,0c-0.359,0-0.692,0.192-0.872,0.503L1.744,18.49  c-0.18,0.312-0.18,0.695,0,1.006C1.924,19.809,2.257,20,2.616,20h20.769c0.359,0,0.691-0.191,0.871-0.504  C24.436,19.186,24.436,18.803,24.256,18.49 M14.268,18.215h-2.533v-1.85h2.533V18.215z M14.268,15.441h-2.533L10.89,6.515h4.222  L14.268,15.441z"></path>
+                            </g>
+                        </svg>
+                        </div>
+                            <span class="top-nav-link-text">
+                            Vulnerability Research
+                            </span>
+                        </a></div>
+                    <input class="sub-nav-trigger" id="vuln-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="vuln-sub-trigger">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+                        </div>
+                    </label>
+                    <ul class="sub-nav sub-nav-single-list">
+                        <li class="desktop-hide">
+                            <a href="https://talosintelligence.com/vulnerability_info"><h1>Vulnerability Research</h1>
+                            </a></li>
+                        <li class="desktop-hide">
+                            <label class="subnav-back-button" for="vuln-sub-trigger">BACK</label>
+                        </li>
+                        <li><a class="vulnerabilty-info-nav-link" href="https://talosintelligence.com/vulnerability_reports">Vulnerability Reports</a></li>
+                        <li><a class="vulnerabilty-info-nav-link" href="https://talosintelligence.com/ms_advisories">Microsoft Advisories</a></li>
+                    </ul>
+                    <div class="desktop-hide subnav-overlay">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px" height="20px" viewBox="0 0 26 20">
+                        <g id="vuln-icon" class="nav-icon">
+                            <path fill="#FFFFFF" d="M24.256,18.49L13.872,0.503C13.692,0.192,13.36,0,13,0c-0.359,0-0.692,0.192-0.872,0.503L1.744,18.49  c-0.18,0.312-0.18,0.695,0,1.006C1.924,19.809,2.257,20,2.616,20h20.769c0.359,0,0.691-0.191,0.871-0.504  C24.436,19.186,24.436,18.803,24.256,18.49 M14.268,18.215h-2.533v-1.85h2.533V18.215z M14.268,15.441h-2.533L10.89,6.515h4.222  L14.268,15.441z"></path>
+                        </g>
+                        </svg>
+                    </div>
+                </li>
+
+
+               <li class="nav-item">
+                   <div class="primary-link-wrapper">
+                        <a class="primary_nav_link" href="https://talosintelligence.com/incident_response">
+                           <div class="mobile-nav-icon">
+                               <svg xmlns="http://www.w3.org/2000/svg" width="111.588" height="148.311" viewBox="0 0 111.588 148.311">
+                                    <path d="M1.181,128.446v15.7a4.167,4.167,0,0,0,4.167,4.167h100.9a4.167,4.167,0,0,0,4.167-4.167v-15.7a4.167,4.167,0,0,0-4.167-4.167H5.348a4.167,4.167,0,0,0-4.167,4.166M55.8,63.109a3.277,3.277,0,1,1,0,6.553c-10.344,0-20.755,8.578-20.755,18.57a3.277,3.277,0,1,1-6.554,0C28.489,73.947,41.93,63.109,55.8,63.109Zm0-12.016c-21.787,0-39.325,17.81-39.325,39.937v26.7H95.122V91.03c0-22.128-17.537-39.937-39.324-39.937m52.365-38.3a3.291,3.291,0,0,0-2.254,1.024L88.432,31.294a3.283,3.283,0,0,0,4.642,4.644l17.478-17.479a3.278,3.278,0,0,0-2.389-5.666m-105.138,0a3.276,3.276,0,0,0-1.98,5.666L18.522,35.938a3.283,3.283,0,0,0,4.643-4.644L5.687,13.817A3.255,3.255,0,0,0,3.025,12.793ZM55.389.026a3.276,3.276,0,0,0-2.867,3.345V19.642a3.277,3.277,0,1,0,6.554,0V3.371A3.283,3.283,0,0,0,55.389.026Z" fill="#fff"></path>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text">
+                                Incident Response
+                            </span>
+                       </a>
+                   </div>
+                   <input class="sub-nav-trigger" id="ir-sub-trigger" type="checkbox">
+                   <label class="sub-nav-trigger-label" for="ir-sub-trigger">
+                       <div class="mobile-nav-icon">
+                           <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                                <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                               <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                               </g>
+                           </svg>
+                       </div>
+                   </label>
+                   <ul class="sub-nav sub-nav-single-list">
+                       <li class="desktop-hide">
+                           <a href="/incident_response">
+                               <h1>Incident Response</h1>
+                           </a>
+                        </li>
+                       <li class="desktop-hide">
+                           <label class="subnav-back-button" for="ir-sub-trigger">BACK</label>
+                       </li>
+                       <li>
+                           <a class="secondary_nav_link" href="https://talosintelligence.com/incident_response/services#reactive-services">Reactive Services</a>
+                       </li>
+                       <li>
+                           <a class="secondary_nav_link" href="https://talosintelligence.com/incident_response/services#proactive-services">Proactive Services</a></li>
+                       <li>
+                           <a href="https://talosintelligence.com/incident_response/contact">Emergency Support</a>
+                        </li>
+                   </ul>
+                   <div class="desktop-hide subnav-overlay"><svg xmlns="http://www.w3.org/2000/svg" width="111.588" height="148.311" viewBox="0 0 111.588 148.311">
+                     <path d="M1.181,128.446v15.7a4.167,4.167,0,0,0,4.167,4.167h100.9a4.167,4.167,0,0,0,4.167-4.167v-15.7a4.167,4.167,0,0,0-4.167-4.167H5.348a4.167,4.167,0,0,0-4.167,4.166M55.8,63.109a3.277,3.277,0,1,1,0,6.553c-10.344,0-20.755,8.578-20.755,18.57a3.277,3.277,0,1,1-6.554,0C28.489,73.947,41.93,63.109,55.8,63.109Zm0-12.016c-21.787,0-39.325,17.81-39.325,39.937v26.7H95.122V91.03c0-22.128-17.537-39.937-39.324-39.937m52.365-38.3a3.291,3.291,0,0,0-2.254,1.024L88.432,31.294a3.283,3.283,0,0,0,4.642,4.644l17.478-17.479a3.278,3.278,0,0,0-2.389-5.666m-105.138,0a3.276,3.276,0,0,0-1.98,5.666L18.522,35.938a3.283,3.283,0,0,0,4.643-4.644L5.687,13.817A3.255,3.255,0,0,0,3.025,12.793ZM55.389.026a3.276,3.276,0,0,0-2.867,3.345V19.642a3.277,3.277,0,1,0,6.554,0V3.371A3.283,3.283,0,0,0,55.389.026Z" fill="#fff"></path>
+                   </svg>
+                </div>
+               </li>
+
+
+
+
+
+                <li class="nav-item">
+                    <a class="primary_nav_link" href="https://blog.talosintelligence.com">
+                        <div class="mobile-nav-icon">
+                        <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="260px" height="296.5px" viewBox="0 0 260 296.5" enable-background="new 0 0 260 296.5" xml:space="preserve">
+                        <path fill="#FFFFFF" d="M243.586,42.404h-14.448c-0.943-4.513-3.143-8.813-6.616-12.33L201.793,9.098  c-4.7-4.757-10.972-7.377-17.66-7.377c-6.578,0-12.777,2.547-17.457,7.173l-33.875,33.511H17.586c-6.6,0-12,5.399-12,12V226.28  c0,6.6,5.4,12,12,12H153.83l84.21,56.278l-27.448-56.278h32.994c6.6,0,12-5.4,12-12V54.404  C255.586,47.804,250.186,42.404,243.586,42.404z M214.662,48.045c-0.01,0.2-0.021,0.399-0.044,0.599  c-0.008,0.069-0.021,0.139-0.031,0.207c-0.046,0.345-0.113,0.688-0.196,1.026c-0.034,0.137-0.063,0.273-0.103,0.408  c-0.039,0.135-0.087,0.267-0.133,0.399c-0.051,0.151-0.102,0.302-0.16,0.45c-0.049,0.126-0.105,0.249-0.16,0.373  c-0.068,0.153-0.139,0.307-0.216,0.457c-0.059,0.116-0.12,0.23-0.184,0.345c-0.088,0.157-0.181,0.312-0.278,0.465  c-0.065,0.104-0.13,0.206-0.2,0.308c-0.115,0.168-0.239,0.33-0.366,0.492c-0.064,0.081-0.124,0.165-0.19,0.244  c-0.199,0.238-0.409,0.472-0.635,0.694L82.458,182.308l-47.932,12.871l13.427-47.74L177.223,19.561  c1.917-1.895,4.414-2.84,6.911-2.84c2.534,0,5.068,0.975,6.99,2.92l20.726,20.974c0.545,0.552,1.002,1.156,1.39,1.79  c0.574,0.938,0.975,1.951,1.206,2.993c0.004,0.021,0.01,0.04,0.014,0.06c0.049,0.226,0.086,0.453,0.119,0.682  c0.008,0.06,0.017,0.118,0.024,0.178c0.026,0.211,0.045,0.424,0.058,0.636c0.004,0.077,0.007,0.153,0.009,0.23  c0.007,0.203,0.011,0.407,0.005,0.61C214.673,47.877,214.666,47.961,214.662,48.045z"></path>
+                        </svg>
+                    </div>
+                        <span class="top-nav-link-text">Blog</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="primary_nav_link" href="https://support.talosintelligence.com">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26px" height="20px" viewBox="0 0 123.17 159.292">
+                            <path d="M61.59,0,0,17.069v85.32c0,23.472,61.59,56.9,61.59,56.9s61.58-36.288,61.58-56.9V17.069Zm-.433,149.746C38.314,136.662,8.128,114.3,8.128,102.389V23.239l53.029-14.7Z" fill="#fff"></path>
+                        </svg>
+                        </div>
+                        <span class="top-nav-link-text">Support</span>
+                    </a>
+                </li>
+            </ul>
+
+
+<!--                <li class="nav-item desktop-hide">-->
+<!--                    <button class="search-button" data-ghost-search><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg> <span>Search Blog</span></button>-->
+<!--                </li>-->
+
+            <ul class="secondary-nav-list">
+                <div class="more-desktop-link">
+                    <div class="more-link-wrapper">
+                        <span class="more-nav-link">
+                            <div class="desktop-nav-icon more-menu-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="22px" height="16px" viewBox="0 0 22 16">
+                                <g id="menu-icon">
+                                    <path fill="#FFFFFF" d="M20.5,3h-19C0.672,3,0,2.329,0,1.5S0.672,0,1.5,0h19C21.328,0,22,0.671,22,1.5S21.328,3,20.5,3z"></path>
+                                    <path fill="#FFFFFF" d="M20.5,9.5h-19C0.672,9.5,0,8.828,0,8c0-0.829,0.672-1.5,1.5-1.5h19C21.328,6.5,22,7.171,22,8   C22,8.828,21.328,9.5,20.5,9.5z"></path>
+                                    <path fill="#FFFFFF" d="M20.5,16h-19C0.672,16,0,15.328,0,14.5S0.672,13,1.5,13h19c0.828,0,1.5,0.672,1.5,1.5S21.328,16,20.5,16z"></path>
+                                </g>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            More
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <li class="nav-item more-text-link">
+                    <div class="more-link-wrapper more-link-wrapper-mobile">
+                        <span class="more-nav-link">
+                            <div class="mobile-nav-icon"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" style="enable-background:new 0 0 20 20;" width="25px" height="25px" xml:space="preserve">
+                                <style type="text/css">
+                                    .white{fill:#FFFFFF;}
+                                </style>
+                                <path class="white" d="M19.4,17.1c0,0.1-0.1,0-0.2,0c0,0-1.3-0.9-2-1.4c-0.2-0.1-0.5-0.1-0.6,0.1c-0.3,0.3-0.6,0.8-0.9,1.3  c-0.1,0.2-0.1,0.5,0.1,0.6l2,1.5c0.1,0,0,0.1,0.1,0.2c0,0.1,0,0.1-0.1,0.2c-1.2,0.5-2.6,0.2-3.5-0.7c-0.8-0.9-1-2-0.7-3.1L4.5,6.5  c-1,0.3-2.3,0-3-0.9c-0.8-0.9-1.1-1.7-1-2.7c0-0.1,0-0.1,0.1-0.2c0.1,0,0.2,0.1,0.2,0.1l2,1.5C3,4.4,3.3,4.5,3.4,4.2  c0,0,0.5-0.8,0.9-1.3c0.1-0.2,0.1-0.5-0.1-0.6L2.3,0.9c-0.1,0,0-0.1-0.1-0.3c0-0.1,0-0.1,0.1-0.2C3.5-0.1,5,0.2,5.8,1.1  c0.8,0.9,1,2,0.7,3.1l9.1,9.3c1-0.3,2.3,0,3,0.9c0.7,0.7,0.9,1.5,0.9,2.5C19.5,16.9,19.5,17,19.4,17.1z"></path>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            Security Resources
+                            </span>
+                        </span>
+                    </div>
+                    <input class="sub-nav-trigger" id="security-resources-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="security-resources-sub-trigger">
+                        <div class="mobile-nav-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+                        </div>
+                    </label>
+                    <div class="sub-nav sub-nav-multiple-list sub-nav-multiple-list-left">
+                        <div class="sub-nav-multiple-wrapper">
+                            <div class="sub-nav-list-top-of-mobile-wrapper">
+                                <h1 class="sub-nav-list-header sub-nav-list-top-of-mobile">Security Resources</h1>
+                                <ul class="sub-nav-list">
+                                    <li class="desktop-hide">
+                                        <label class="subnav-back-button" for="security-resources-sub-trigger">BACK</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sub-nav-list-item-wrapper">
+                                <span class="sub-nav-desktop-header uppercase">Security Resources</span>
+                                <ul class="sub-nav-list">
+                                    <li>
+                                        <a href="https://talosintelligence.com/software"><span>Open Source Security Tools</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/categories"><span>Intelligence Categories Reference</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/secure-endpoint-naming"><span>Secure Endpoint Naming Reference</span>
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="desktop-hide subnav-overlay"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" style="enable-background:new 0 0 20 20;" width="25px" height="25px" xml:space="preserve">
+                        <style type="text/css">
+                            .white{fill:#FFFFFF;}
+                        </style>
+                                                <path class="white" d="M19.4,17.1c0,0.1-0.1,0-0.2,0c0,0-1.3-0.9-2-1.4c-0.2-0.1-0.5-0.1-0.6,0.1c-0.3,0.3-0.6,0.8-0.9,1.3  c-0.1,0.2-0.1,0.5,0.1,0.6l2,1.5c0.1,0,0,0.1,0.1,0.2c0,0.1,0,0.1-0.1,0.2c-1.2,0.5-2.6,0.2-3.5-0.7c-0.8-0.9-1-2-0.7-3.1L4.5,6.5  c-1,0.3-2.3,0-3-0.9c-0.8-0.9-1.1-1.7-1-2.7c0-0.1,0-0.1,0.1-0.2c0.1,0,0.2,0.1,0.2,0.1l2,1.5C3,4.4,3.3,4.5,3.4,4.2  c0,0,0.5-0.8,0.9-1.3c0.1-0.2,0.1-0.5-0.1-0.6L2.3,0.9c-0.1,0,0-0.1-0.1-0.3c0-0.1,0-0.1,0.1-0.2C3.5-0.1,5,0.2,5.8,1.1  c0.8,0.9,1,2,0.7,3.1l9.1,9.3c1-0.3,2.3,0,3,0.9c0.7,0.7,0.9,1.5,0.9,2.5C19.5,16.9,19.5,17,19.4,17.1z"></path>
+                        </svg>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="more-link-wrapper more-link-wrapper-mobile">
+                        <span class="more-nav-link">
+                            <div class="mobile-nav-icon"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" width="25px" height="25px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                                <style type="text/css">
+                                    .sticoncomment{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+                                </style>
+                                <path class="sticoncomment" d="M13.6,7.1H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,6.8,13.9,7.1,13.6,7.1L13.6,7.1z M13.6,9.4H6.4c-0.3,0-0.6-0.3-0.6-0.6s0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,9.2,13.9,9.4,13.6,9.4L13.6,9.4z M11.5,11.7H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6h5.1c0.3,0,0.6,0.3,0.6,0.6  C12.1,11.5,11.8,11.7,11.5,11.7z M15.8,3H4.2C3.5,3,3,3.5,3,4.2V17l2.8-2.3h10c0.6,0,1.2-0.5,1.2-1.2V4.2C17,3.5,16.5,3,15.8,3  L15.8,3z"></path>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            Media
+                            </span>
+                        </span>
+                    </div>
+                    <input class="sub-nav-trigger" id="media-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="media-sub-trigger">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                            </svg>
+                        </div>
+                    </label>
+                    <div class="sub-nav sub-nav-multiple-list sub-nav-multiple-list-middle">
+                        <div class="sub-nav-multiple-wrapper">
+                            <div class="sub-nav-list-top-of-mobile-wrapper">
+                                <h1 class="sub-nav-list-header sub-nav-list-top-of-mobile">Media</h1>
+                                <ul class="sub-nav-list">
+                                    <li class="desktop-hide">
+                                        <label class="subnav-back-button" for="media-sub-trigger">BACK</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sub-nav-list-item-wrapper">
+                                <span class="sub-nav-desktop-header uppercase">Media</span>
+                                <ul class="sub-nav-list">
+                                    <li>
+                                        <a href="https://blog.talosintelligence.com"><span>Talos Intelligence Blog</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://blog.talosintelligence.com/category/threat-source-newsletter/"><span>Threat Source Newsletter</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/podcasts/shows/beers_with_talos"><span>Beers with Talos Podcast</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/podcasts/shows/talos_takes"><span>Talos Takes Podcast</span>
+                                        </a></li>
+                                    <li>
+                                        <a target="_blank" href="https://www.youtube.com/channel/UCPZ1DtzQkStYBSG3GTNoyfg/featured"><span>Talos Videos</span>
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="desktop-hide subnav-overlay"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" width="25px" height="25px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                        <style type="text/css">
+                            .sticoncomment{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+                        </style>
+                        <path class="sticoncomment" d="M13.6,7.1H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,6.8,13.9,7.1,13.6,7.1L13.6,7.1z M13.6,9.4H6.4c-0.3,0-0.6-0.3-0.6-0.6s0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,9.2,13.9,9.4,13.6,9.4L13.6,9.4z M11.5,11.7H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6h5.1c0.3,0,0.6,0.3,0.6,0.6  C12.1,11.5,11.8,11.7,11.5,11.7z M15.8,3H4.2C3.5,3,3,3.5,3,4.2V17l2.8-2.3h10c0.6,0,1.2-0.5,1.2-1.2V4.2C17,3.5,16.5,3,15.8,3  L15.8,3z"></path>
+                        </svg>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="more-link-wrapper more-link-wrapper-mobile">
+                        <span class="more-nav-link">
+                            <div class="mobile-nav-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="25px" viewBox="0 0 55 55">
+                                <g>
+                                    <g class="mobile-nav-home">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M45.201,12.343c0.378,0.48,0.758,0.925,1.096,1.401    c2.975,4.207,4.543,8.876,4.494,14.044c-0.05,5.452-1.643,10.386-5.186,14.593c-3.484,4.133-7.929,6.73-13.182,7.895    c-6.313,1.398-12.216,0.275-17.695-3.131c-0.441-0.273-0.847-0.6-1.266-0.904c-0.11-0.078-0.208-0.174-0.337-0.287    c0.127-0.141,0.246-0.27,0.366-0.398c0.887-0.949,1.765-1.904,2.663-2.844c0.114-0.119,0.321-0.217,0.485-0.217    c3.658-0.006,7.318,0,10.975,0.008c3.458,0.006,6.913,0.02,10.369,0.02c0.957,0,1.871-0.193,2.62-0.844    c0.797-0.693,1.157-1.596,1.157-2.643c0.001-7.533,0.003-15.067-0.005-22.601c-0.002-0.309,0.088-0.524,0.3-0.743    C43.098,14.598,44.127,13.49,45.201,12.343"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M41.402,8.822c-0.99,1.027-1.994,2.021-2.935,3.072    c-0.312,0.35-0.616,0.416-1.036,0.415c-6.98-0.009-13.957-0.007-20.938-0.007c-2.039,0-3.561,1.514-3.561,3.557    c0,6.504,0.002,13.008,0.006,19.512c0.002,0.973,0.011,1.943,0.004,2.914c0,0.133-0.04,0.301-0.127,0.393    c-1.069,1.162-2.15,2.314-3.229,3.469c-0.021,0.023-0.052,0.039-0.109,0.08c-0.159-0.188-0.323-0.369-0.471-0.562    c-2.535-3.348-4.119-7.102-4.605-11.268c-0.61-5.229,0.194-10.229,2.835-14.839c2.669-4.664,6.655-7.805,11.618-9.75    c3.205-1.257,6.533-1.852,9.977-1.621c4.478,0.298,8.553,1.754,12.227,4.325c0.101,0.072,0.197,0.151,0.291,0.229    C41.364,8.755,41.374,8.778,41.402,8.822"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M39.799,12.47c0.873-0.911,1.749-1.829,2.676-2.797    c0.605,0.564,1.195,1.112,1.816,1.691c-0.941,0.985-1.817,1.903-2.703,2.83c-0.276-0.339-0.511-0.688-0.807-0.975    C40.492,12.941,40.145,12.728,39.799,12.47"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M10.35,43.279c0.969-1.016,1.885-1.977,2.76-2.893    c0.213,0.369,0.376,0.762,0.639,1.072c0.265,0.312,0.627,0.539,0.98,0.832c-0.853,0.891-1.713,1.791-2.624,2.746    C11.513,44.445,10.939,43.869,10.35,43.279"></path>
+                                    </g>
+                                </g>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            Company
+                            </span>
+                        </span>
+                    </div>
+                    <input class="sub-nav-trigger" id="company-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="company-sub-trigger">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+                        </div>
+                    </label>
+                    <div class="sub-nav sub-nav-multiple-list sub-nav-multiple-list-right">
+                        <div class="sub-nav-multiple-wrapper">
+                            <div class="sub-nav-list-top-of-mobile-wrapper">
+                                <h1 class="sub-nav-list-header sub-nav-list-top-of-mobile">Company</h1>
+                                <ul class="sub-nav-list">
+                                    <li class="desktop-hide">
+                                        <label class="subnav-back-button" for="company-sub-trigger">BACK</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sub-nav-list-item-wrapper">
+                                <span class="sub-nav-desktop-header uppercase">Company</span>
+                                <ul class="sub-nav-list">
+                                    <li>
+                                        <a href="https://talosintelligence.com/about"><span>About Talos</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/careers"><span>Careers</span>
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="desktop-hide subnav-overlay"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="25px" viewBox="0 0 55 55">
+                        <g>
+                            <g class="mobile-nav-home">
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M45.201,12.343c0.378,0.48,0.758,0.925,1.096,1.401    c2.975,4.207,4.543,8.876,4.494,14.044c-0.05,5.452-1.643,10.386-5.186,14.593c-3.484,4.133-7.929,6.73-13.182,7.895    c-6.313,1.398-12.216,0.275-17.695-3.131c-0.441-0.273-0.847-0.6-1.266-0.904c-0.11-0.078-0.208-0.174-0.337-0.287    c0.127-0.141,0.246-0.27,0.366-0.398c0.887-0.949,1.765-1.904,2.663-2.844c0.114-0.119,0.321-0.217,0.485-0.217    c3.658-0.006,7.318,0,10.975,0.008c3.458,0.006,6.913,0.02,10.369,0.02c0.957,0,1.871-0.193,2.62-0.844    c0.797-0.693,1.157-1.596,1.157-2.643c0.001-7.533,0.003-15.067-0.005-22.601c-0.002-0.309,0.088-0.524,0.3-0.743    C43.098,14.598,44.127,13.49,45.201,12.343"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M41.402,8.822c-0.99,1.027-1.994,2.021-2.935,3.072    c-0.312,0.35-0.616,0.416-1.036,0.415c-6.98-0.009-13.957-0.007-20.938-0.007c-2.039,0-3.561,1.514-3.561,3.557    c0,6.504,0.002,13.008,0.006,19.512c0.002,0.973,0.011,1.943,0.004,2.914c0,0.133-0.04,0.301-0.127,0.393    c-1.069,1.162-2.15,2.314-3.229,3.469c-0.021,0.023-0.052,0.039-0.109,0.08c-0.159-0.188-0.323-0.369-0.471-0.562    c-2.535-3.348-4.119-7.102-4.605-11.268c-0.61-5.229,0.194-10.229,2.835-14.839c2.669-4.664,6.655-7.805,11.618-9.75    c3.205-1.257,6.533-1.852,9.977-1.621c4.478,0.298,8.553,1.754,12.227,4.325c0.101,0.072,0.197,0.151,0.291,0.229    C41.364,8.755,41.374,8.778,41.402,8.822"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M39.799,12.47c0.873-0.911,1.749-1.829,2.676-2.797    c0.605,0.564,1.195,1.112,1.816,1.691c-0.941,0.985-1.817,1.903-2.703,2.83c-0.276-0.339-0.511-0.688-0.807-0.975    C40.492,12.941,40.145,12.728,39.799,12.47"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M10.35,43.279c0.969-1.016,1.885-1.977,2.76-2.893    c0.213,0.369,0.376,0.762,0.639,1.072c0.265,0.312,0.627,0.539,0.98,0.832c-0.853,0.891-1.713,1.791-2.624,2.746    C11.513,44.445,10.939,43.869,10.35,43.279"></path>
+                            </g>
+                        </g>
+                    </svg>
+                    </div>
+                </li>
+            </ul>
+            <div class="nav-search-wrapper" id="desktop-search-wrapper">
+                <button class="search-button desktop-search-button" data-ghost-search>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </button>
+            </div>
+        </div>
+
+
+
+    </div>
+</nav>
+
+    
+
+    <main id="site-main">
+        <div class="container-fluid px-0">
+            <div class="main-content-row">
+                <div class="main-content-col px-0">
+                    <div class="post-full-content">
+                        
+<article class="post tag-cryptocurrency tag-ransomware tag-threats ">
+        <div class="feature-image-wrapper my-5">
+            <figure>
+                <img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image7-2.png" alt="" class="img-fluid" />
+            </figure>
+        </div>
+
+    <h1 class="text-center">Ransom Where? Malicious Cryptocurrency Miners Takeover, Generating Millions</h1>
+
+    <div class="text-center m-1">
+        <div class="post-author">
+            <span>By </span>
+                <a href="https://blog.talosintelligence.com/author/edmund-brumaghin/">Edmund Brumaghin</a>
+        </div>
+
+        <br/>
+        <time class="post-datetime" datetime="January 31, 2018 10:58">
+            Wednesday, January 31, 2018 10:58
+        </time>
+
+        <div class="m-3">
+                            <a href="/category/cryptocurrency/" class="category primary-category">
+                                Cryptocurrency
+                            </a>
+                                                    <a href="/category/ransomware/" class="category primary-category">
+                                ransomware
+                            </a>
+                                                    <a href="/category/threats/" class="category primary-category">
+                                Threats
+                            </a>
+                                </div>
+    </div>
+
+    <section class="post-content-wrapper mt-5">
+        <div class="post-content" id="post-content">
+            <p><em>his post was authored by <a href="https://twitter.com/infosec_nick">Nick Biasini</a>, <a href="https://www.blogger.com/profile/10442669663667294759">Edmund Brumaghin</a>, <a href="https://twitter.com/securitybeard?lang%3Den">Warren Mercer</a> and <a href="https://www.twitter.com/JershMagersh">Josh Reynolds</a> with contributions from <a href="https://twitter.com/ashukuhi">Azim Khodijbaev</a> and <a href="https://twitter.com/ChinaHandDave">David Liebenberg</a>.</em></p><h2 id="executive-summary">Executive Summary</h2><p>The threat landscape is constantly changing; over the last few years malware threat vectors, methods and payloads have rapidly evolved. Recently, as cryptocurrency values have exploded, mining related attacks have emerged as a primary interest for many attackers who are beginning to recognize that they can realize all of the financial upside of previous attacks, like ransomware, without needing to actually engage the victim and without the extraneous law enforcement attention that comes with ransomware attacks.<br><br>This focus on mining isn't entirely surprising, considering that various cryptocurrencies along with "blockchain" have been all over the news as the value of these currencies has exponentially increased. Adversaries have taken note of these gains and have been creating new attacks that help them monetize this growth. Over the past several months Talos has observed a marked increase in the volume of cryptocurrency mining software being maliciously delivered to victims.<br><br>In this new business model, attackers are no longer penalizing victims for opening an attachment, or running a malicious script by taking systems hostage and demanding a ransom. Now attackers are actively leveraging the resources of infected systems for cryptocurrency mining. In these cases the better the performance and computing power of the targeted system, the better for the attacker from a revenue generation perspective. IoT devices, with their lack of monitoring and lack of day to day user engagement, are fast becoming an attractive target for these attackers, as they offer processing power without direct victim oversight. While the computing resources within most IoT devices are generally limited, the number of exposed devices that are vulnerable to publicly available exploits is high which may make them attractive to cyber criminals moving forward.<br><br>To put the financial gains in perspective, an average system would likely generate about $0.25 of Monero per day, meaning that an adversary who has enlisted 2,000 victims (not a hard feat), could generate $500 per day or $182,500 per year. Talos has observed botnets consisting of millions of infected systems, which using our previous logic means that these systems could be leveraged to generate more than $100 million per year theoretically. It is important to note that due to volatility present across cryptocurrency markets, these values may change drastically from day to day. All calculations in this blog were made based on XMR/USD at the time of this writing.<br><br>This is all done with minimal effort following the initial infection. More importantly, with little chance of being detected, this revenue stream can continue in perpetuity. While these are impressive figures, it's also important to factor in a few details that can further increase the value of these attacks exponentially:</p><ul><li>The value of many cryptocurrencies are skyrocketing. Monero, one of the most popular mining targets, saw a 3000% increase over the last 12 months.</li><li>These attacks are much stealthier than their predecessors. Attackers are not stealing anything more than computing power from their victims and the mining software isn't technically malware -- So theoretically, the victims could remain part of the adversary's botnet for as long as the attacker chooses.</li><li>Once the currency is mined, there is no telling what the attacker might do with it. This could become a long term investment (or even retirement) scheme for these attackers – sitting on this currency until it hits such a point where the attacker decides to cash in.</li></ul><h2 id="introduction">Introduction</h2><p>Throughout the past couple of years ransomware has dominated the threat landscape and for good reason. It creates a highly profitable business model that allows attackers to directly monetize their nefarious activities. However, there are a couple of limitations with the use of ransomware. First is the fact that only a small percentage of infected users will actually pay the ransom demanded by the attacker. Second, as systems and technology get better at detecting and blocking ransomware attacks the pool of possible victims is changing. Potential victims in many countries lack the financial capabilities to pay $300-$500 to retrieve their data. Possibly related to these aforementioned limitations, we have begun to see a steady shift in the payloads that are being delivered. This is especially true for some of the most common methods for malware distribution such as exploit kits and spam campaigns.<br><br>Over the past several months Talos has started to observe a marked increase in the volume of cryptocurrency miners being delivered to victims. Cryptocurrency and "blockchain" have been all over the news over the past several months as the value of these currencies has increased on an exponential path. One of the most effective ways to generate these currencies is through mining and adversaries are obviously paying attention.</p><h2 id="what-is-mining-">What is 'Mining'?</h2><p>At a high level mining is simply using system resources to solve large mathematical calculations which result in some amount of cryptocurrency being awarded to the solvers. Before we get too deep into mining let's address the currencies that make sense to mine.</p><p>Bitcoin (BTC) is the most well known and widely used cryptocurrency by a wide margin. It's been mined since its inception, but today mining isn't an effective way to generate value. If you look across all of the cryptocurrencies, there are only a couple that are worth mining without specialized hardware called ASICs (Application Specific Integrated Circuits). The differences across the different cryptocurrencies are based on the hashing algorithm used. Some have been specifically designed in an attempt to prevent or hinder the use of such specialised hardware and are more focused on consumer grade equipment such as CPU &amp; GPU hardware. Currently, the most valuable currency to mine with standard systems is Monero (XMR) and adversaries have done their research. In addition Monero is extremely privacy conscious and as governments have started to scrutinize Bitcoin more closely, Monero and other coins with heavy emphasis on privacy may become a safe haven for threat actors.<br><br>There are two ways that mining can be performed, either with a stand alone miner or by leveraging mining pools. Pool-based crypto mining allows you to pool the resources of multiple systems resulting in a higher hashrate and theoretically the production of increased amounts of currency. It's pool-based mining of Monero that we have seen most frequently leveraged by attackers as it allows for the greatest amount of return on investment and the required mining software can be easily delivered to victims. The use of pooled mining also maximizes the effectiveness of the computing resources found in standard systems that attackers attempt to compromise. This is similar to launching Distributed Denial of Service (DDoS) attacks where 100,000 machines flooding a target with bogus traffic becomes much more effective compared to a single system under the attacker's control sending bogus traffic.</p><h2 id="how-does-pool-based-mining-work">How does pool based mining work?</h2><p>Pool-based mining is coordinated through the use of 'Worker IDs'. These IDs are what tie an individual system to a larger pool and ensures the coin mined by the pool that is associated with a particular Worker ID are delivered to the correct user. It's these Worker IDs that allowed us to determine the size and scale of some of the malicious operations as well as get an idea of the amount of revenue adversaries are generating. For the purposes of this discussion we will be assuming the following:</p><ol><li>The amount of hashes per second that a typical computer can compute will be assumed to be ~125 H/s.</li><li>While in reality mining does not always guarantee successful generation of the cryptocurrency being mined, we will assume that for our purposes it is successful as it allows for a better understanding of the earning potential for these malicious mining pools.</li></ol><p>These miners typically operate from the command line and make use of a series of arguments used to establish how the mining should be performed. A typical example of the command line syntax used to execute the mining software and specify the arguments is below: (note that there are variations in the parameter names used based on the specific mining software being used.)<br></p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image7-3.png" class="kg-image" alt loading="lazy" width="1321" height="170" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image7-3.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2022/12/image7-3.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image7-3.png 1321w" sizes="(min-width: 720px) 720px"><figcaption>Example Command Line Syntax</figcaption></figure><p>As you can see there are two primary argument values required: The URL for the mining pool and the 'Worker ID' that is used to tie the mining activity taking place on the system to a specific mining pool which is used to manage how payouts are conducted. However, through our investigation we have found a plethora of other parameters that attackers or miners can specify in an attempt to hide their activities. If the mining software is executed without these options, victims might notice significant performance degradation on their systems as no computing resource limits are enforced. These options include:</p><ul><li>Limits on CPU Usage.</li><li>Limits on System Temperature.</li><li>Amount of cores being used.</li><li>Sleep periods.</li></ul><p>Each mining program comes with its own set of flags that are taken advantage of in various ways by both legitimate and malicious miners. We have observed that these options are typically deployed by the attackers when they achieve persistence (i.e. through the creation of Scheduled Tasks or Run keys that execute the miner using the Windows Command Processor specifying the arguments to use).</p><h2 id="origins-on-the-underground">Origins on the Underground</h2><p>Talos has been observing discussions regarding the use of crypto miners as malicious payloads by both Chinese and Russian crimeware groups. We first observed Chinese actors discussing miners and the associated mining botnets in November 2016 and the interest has been steadily building since that time.</p><p>From a Russian underground perspective there has been significant movement related to mining in the last six months. There have been numerous discussions and several offerings on top-tier Russian hacking forums. The discussions have been split with the majority of the discussion around the sale of access to mining bots as well as bot developers looking to buy access to compromised hosts for the intended purpose of leveraging them for crypto mining. The popularity increase has also been accompanied with a learning curve associated with mining, including a better understanding around how much coin can be mined and the opportune times to conduct the mining activity. As far as the malware that can be used to conduct mining, most of them are written in C# or C++ and as is common on these forums they are advertised with low detection rate, persistence, and constant development. In many cases we are observing updates to these threats on a daily or weekly basis.<br><br>In general the attackers have been pleased with the amount of revenue the bots generate as well as the potential to grow that revenue. This is indicative of a threat that is poised to become more pervasive over time. Let's take a look at how malicious mining works and the threats that are delivering them.</p><h2 id="malicious-mining">Malicious Mining</h2><p>Malicious mining is the focus of this post since its an emerging trend across the threat landscape. Adversaries are always looking for ways to monetize their nefarious activities and malicious mining is quickly becoming a cash cow for the bad guys.<br><br>Over the past several years ransomware has dominated the threat landscape from a financially motivated malware perspective and with good reason. It is an extremely profitable business model as we've shown through our Angler Exploit Kit <a href="https://www.talosintelligence.com/angler-exposed/">research</a> where we estimate that the adversaries behind Angler could have been conservatively making at least $30 million annually. However, with success comes attention and with that attention came an increased focus on stopping this type of activity. Both operating systems and security vendors got better at stopping ransomware before it affected much of the system.</p><p>Adversaries are left with an interesting decision, continue leveraging ransomware as a primary source of revenue as the pool of users and vulnerable systems continues to shrink or begin leveraging other payloads. There are no shortage of options available to bad guys including banking trojans, bots, credential stealers, and click-fraud malware to name a few.<br><br>So why choose crypto mining software?<br><br>There are many reasons why adversaries might choose to leverage crypto mining to generate revenue. One likely reason is that this is a largely hands off infection to manage. Once a system has a miner dropped on it and starts mining nothing else is needed from an adversary perspective. There isn't any command and control activity and it generates revenue consistently until its removed. So if an adversary notices a drop off in nodes mining to their pool it's time to infect more systems. Another is that it's largely unnoticed by the majority of users. Is a user really going to notice that mining is going on while they are reading their email, browsing the web, or writing up their latest proposal? From this perspective miners are the polar opposite of ransomware, hiding under the users purview for as long as possible. The longer the user doesn't notice the miner running the larger potential payout for the activity.<br><br>The biggest reason of them all is the potential monetary payout associated with mining activity. If it didn't generate a profit, the bad guys wouldn't take advantage of it. In this particular vein malicious miners could be a pretty large source of revenue. The biggest cost associated with mining is the hardware to mine and the electricity to power the mining hardware. By leveraging malicious miners attackers can take both of those costs out of the equation altogether. Since they are able to take advantage of computing resources present in infected systems, there is no cost for power or hardware and attackers receive all the benefits of the mined coin.<br><br>Let's take a deeper dive on the amount of revenue these systems can potentially generate. As mentioned earlier the hashrate for computers can vary widely depending on the type of hardware being used and the average system load outside of the miners. An average system would likely compute somewhere around 125 hashes per second. One system alone without any hardware or electricity cost would generate about $0.25 of Monero a day, which doesn't seem like a lot but when you start pooling systems the amount of earning potential increases rapidly.<br><br>Some of the largest botnets across the threat landscape consist of millions of infected systems under the control of an attacker. Imagine controlling a small fraction of the systems that are part of one of these botnets (~2,000 hosts). The amount of revenue that can be generated per day increases considerably to more than $500 in Monero per day or $182,500 per year. As we will demonstrate later in the post we have seen malicious pools that far exceed the 125 KH/s necessary to generate this type of revenue.</p><p>In one campaign that we analyzed, the attacker had managed to amass enough computing resources to reach a hash rate of 55.20 KH/s. As can be seen in the below screenshot the Total Paid value was 528 XMR, which converts to approximately $167,833 USD. In this particular case the mining pool realized that the 'Worker ID' was being used by a botnet to mine Monero.<br></p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image21-1.png" class="kg-image" alt loading="lazy" width="1166" height="476" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image21-1.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2022/12/image21-1.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image21-1.png 1166w" sizes="(min-width: 720px) 720px"><figcaption>Worker ID Statistics</figcaption></figure><p>In a series of attacks that we observed that began at the end of December 2017, attackers were leveraging exploits targeting Oracle WebLogic vulnerabilities (CVE-2017-3506 / CVE-2017-10271). In these cases, successful exploitation would often lead to the installation and execution of mining software.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image31-1.png" class="kg-image" alt loading="lazy" width="1154" height="489" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image31-1.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2022/12/image31-1.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image31-1.png 1154w" sizes="(min-width: 720px) 720px"><figcaption>Historical Hash Rate</figcaption></figure><p>In analyzing the size and scope of this campaign, we observed that shortly after these attacks began the 'Worker ID' being used was generating over 500 KH/s. At the time of this writing, this particular attacker is still generating approximately 350 KH/s.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image11-2.png" class="kg-image" alt loading="lazy" width="1154" height="567" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image11-2.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2022/12/image11-2.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image11-2.png 1154w" sizes="(min-width: 720px) 720px"><figcaption>Current Hash Rate</figcaption></figure><p>Using an online calculator that takes hash rate, power consumption and cost then estimates profitability. Given a hash rate of 350 KH/s, the estimated amount of Monero that would be mined per day was 2.24 XMR. This means that an attacker could generate approximately $704 USD per day, which equals $257,000 per year. This clearly indicates how lucrative this sort of operation could be for attackers.</p><p>Analyzing the statistical data and payment history information associated with this 'Worker ID' shows that a total of 654 XMR have been received. At the time of this writing, that would be worth approximately $207,884.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image5-2.png" class="kg-image" alt loading="lazy" width="1155" height="325" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image5-2.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2022/12/image5-2.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image5-2.png 1155w" sizes="(min-width: 720px) 720px"><figcaption>Worker ID Payment History</figcaption></figure><p>While analyzing the malware campaigns associated with the distribution of mining software, we identified dozens of high volume 'Worker IDs'. Taking a closer look at 5 of the largest operations we analyzed shows just how much money can be made by taking this approach.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/table.png" class="kg-image" alt loading="lazy" width="627" height="415" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/table.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/table.png 627w"><figcaption>High Volume Calculations</figcaption></figure><p>One additional benefit is that the value of the Monero mined has continued to rise over time. Much like Bitcoin, Monero valuation has exploded over the last year from $13 in January 2017 to over $300 at the time of this article and at times has approached $500. As long as the cryptocurrency craze continues and the value continues to increase, every piece of cryptocurrency mined increases in value which in turn increases the amount of revenue generated. That covers some of the financial reasons adversaries leverage malicious mining, but how are these miners getting on to systems in the first place.</p><h2 id="threats-delivering-miners">Threats Delivering Miners</h2><p>Cryptocurrency miners are a new favorite of miscreants and are being delivered to end users in many different ways. The common ways we have seen miners delivered include spam campaigns, exploit kits, and directly via exploitation.</p><h3 id="email-based">Email Based</h3><p>There are ongoing spam campaigns that deliver a wide variety of payloads such as ransomware, banking trojans, miners, and much more. Below are examples of campaigns we've seen delivering miners. The way these infections typically work is that a user is sent an email with an attachment. These attachments typically have an archive containing a Word document that downloads the miner via a malicious macro or unpacks a compressed executable that initiates the mining infection. In many of the campaigns Talos observed, the binary that is included is a widely distributed Monero miner which is executed with the miscreants worker ID and pool, allowing attackers to reap the mining benefits.</p><p>Below is an example, from late 2017, of one of these campaigns. It's a job application spoof that includes a Word document purporting to be a resume of a potential candidate.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image24-1.png" class="kg-image" alt loading="lazy" width="891" height="348" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image24-1.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image24-1.png 891w" sizes="(min-width: 720px) 720px"><figcaption>Example Malicious Email</figcaption></figure><p>As you can see the email contains a word document which, when opened, looks like the following.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image4-1.png" class="kg-image" alt loading="lazy" width="793" height="543" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image4-1.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image4-1.png 793w" sizes="(min-width: 720px) 720px"><figcaption>Example Word Document</figcaption></figure><p>As is common for malicious Word documents, opening the document results in a file being downloaded. This is an example of a larger miner campaign dubbed 'bigmac' based on the naming conventions used.</p><p>This image entices the user to enable macro content within the document that is blocked by default. Once clicked, Word executes a series of highly obfuscated VBA macros using the Document_Open function:</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image22-1.png" class="kg-image" alt loading="lazy" width="949" height="1024" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image22-1.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image22-1.png 949w" sizes="(min-width: 720px) 720px"><figcaption>Highly Obfuscated VBA Macros Using Document_Open()</figcaption></figure><p>The macro leads to a call to a Shell command:</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image32-2.png" class="kg-image" alt loading="lazy" width="885" height="191" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image32-2.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image32-2.png 885w" sizes="(min-width: 720px) 720px"><figcaption>Highly Obfuscated VBA Macro VBA.Shell Call</figcaption></figure><p>We can see what is executed by this command after it is de-obfuscated by setting the first parameter into a MsgBox call:</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image30.png" class="kg-image" alt loading="lazy" width="956" height="452" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image30.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image30.png 956w" sizes="(min-width: 720px) 720px"><figcaption>MsgBox for Shell Replacement</figcaption></figure><p>This will retrieve an executable remotely using System.Net.WebClient and execute it using Start-Process. This can also be seen through the dynamic activity in Threat Grid:</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image10-2.png" class="kg-image" alt loading="lazy" width="1024" height="229" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image10-2.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2022/12/image10-2.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image10-2.png 1024w" sizes="(min-width: 720px) 720px"><figcaption>Office Document Launches a Powershell Indicator in Threat Grid</figcaption></figure><p>We also identify that the downloaded binary is attempting to masquerade itself through its use of an image extension:</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image19-1.png" class="kg-image" alt loading="lazy" width="1024" height="206" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image19-1.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2022/12/image19-1.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image19-1.png 1024w" sizes="(min-width: 720px) 720px"><figcaption>Portable Executable Image Extension Identification Threat Grid</figcaption></figure><p>In this case the binary that is downloaded is a portable executable written in VB6 that executes a variant of the xmrig XMR CPU miner. This activity can be seen dynamically within Threat Grid:</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image20-1.png" class="kg-image" alt loading="lazy" width="1024" height="560" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image20-1.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2022/12/image20-1.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image20-1.png 1024w" sizes="(min-width: 720px) 720px"><figcaption>xmrig Execution in Threat Grid</figcaption></figure><p>Dynamic miner activity can also be observed within the AMP for Endpoints product line. An example below can be seen within the portal's Device Trajectory:</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image13-1.png" class="kg-image" alt loading="lazy" width="944" height="834" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image13-1.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image13-1.png 944w" sizes="(min-width: 720px) 720px"><figcaption>Dynamic Miner Execution in AMP for Endpoint's Device Trajectory</figcaption></figure><p>Mining network traffic can also be classified using Cognitive Threat Analytics to identify miners within enterprise environments:</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image12-1-1.png" class="kg-image" alt loading="lazy" width="972" height="291" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image12-1-1.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image12-1-1.png 972w" sizes="(min-width: 720px) 720px"><figcaption>Mining Traffic Classification using Cognitive Threat Analytics</figcaption></figure><h3 id="dark-test-cryptomining-malware">Dark Test Cryptomining Malware</h3><p>Dark Test (the name taken from the decompiled source code) is an example of Cryptomining malware written in C# that drops a UPX packed variant of the xmrig XMR CPU miner. Being written in C#, the binary contains .NET IL (Intermediate Language) which can be decompiled back into source code. The C# code is highly obfuscated containing an encrypted resource section for all referenced strings, and functions that are resolved at runtime. The following section will discuss these techniques in detail.</p><h3 id="dark-test-obfuscation">Dark Test Obfuscation</h3><p>Dark Test makes use of a packer which, after unpacking, creates a suspended version of itself using CreateProcessA and overwrites itself in memory with the unpacked version of the binary using WriteProcessMemory. The original binary can be recovered simply by setting a breakpoint on WriteProcessMemory within a debugger and dumping from the address of lpBuffer buffer up to nSize.<br><br>Dark Test contains highly obfuscated C# code made up of a large amount of garbage instructions, arithmetic for branching to varying code sections, encrypted strings stored within its resource section, and functions that are resolved at runtime. Functions are resolved on load using arithmetic operations resulting in the metadataToken passed to Method.ResolveMethod and MethodHandle.GetFunctionPointer:<br></p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image29-1.png" class="kg-image" alt loading="lazy" width="1024" height="45" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image29-1.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2022/12/image29-1.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image29-1.png 1024w" sizes="(min-width: 720px) 720px"><figcaption>Dynamic Method Resolution Using metadataToken Integer</figcaption></figure><p>Functions are also indirectly called using the calli function which is passed a pointer to an entry point of a function and its accompanying parameters:</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image6-1.png" class="kg-image" alt loading="lazy" width="1024" height="26" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image6-1.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2022/12/image6-1.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image6-1.png 1024w" sizes="(min-width: 720px) 720px"><figcaption>Runtime Resolved Function Calls using calli</figcaption></figure><p>The decryption function takes three integer parameters. The first two make up the seek offset for the length and offset of the string to be decrypted, and the third is the XOR key for the string at this offset:</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image27-1.png" class="kg-image" alt loading="lazy" width="684" height="360" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image27-1.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image27-1.png 684w"><figcaption>Dark Test String Decryption Function</figcaption></figure><p>At the calculated offset, the first four bytes is the offset of the ciphertext, and the next four is length of the string being decrypted. It then iterates for this length within an XOR for loop to decrypt the string at this offset. These integer parameters are calculated at runtime, typically through a series of arithmetic operations and referenced runtime objects:</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image17-1.png" class="kg-image" alt loading="lazy" width="1024" height="20" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image17-1.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2022/12/image17-1.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image17-1.png 1024w" sizes="(min-width: 720px) 720px"><figcaption>Dark Test String Decryption Function Call</figcaption></figure><p>The result, in this case, being the string "-o pool.minexmr.com:4444 -u" which is the domain and port combination for the mining pool the miner is participating in and the username parameter without a value. Although these strings are decrypted at runtime they are easily seen through the dynamic activity execution within Threat Grid (in this case another pool is chosen from the config for use):</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image2-1-1.png" class="kg-image" alt loading="lazy" width="1024" height="398" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image2-1-1.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2022/12/image2-1-1.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image2-1-1.png 1024w" sizes="(min-width: 720px) 720px"><figcaption>Dynamic Miner Activity Command Line Arguments</figcaption></figure><p>Runtime resolved objects and functions make it difficult to extract all strings as the decompilation is not always perfect, and not all strings are decoded during dynamic analysis due to different code branches (as seen in the example above). The num6 length calculation produces three unique bytes (in decimal): [106, 242, 28] for each length. The result is that we can search for these bytes (being the first three of the length calculation) to find runtime calculated offsets. Once we know the length we can glean the ciphertext offset from the previous four bytes, and then brute force the XOR key at this offset by iterating over all possibilities and checking for resulting valid ASCII ranges:</p><pre><code>#!/usr/bin/ruby
+
+fr = File.read(ARGV[0])
+fb = fr.bytes
+
+for i in 0..fb.length-4
+  #Through their obfuscation technique we get an egg for obfuscated string lengths and offsets to find in the resource
+  if fb[i] == 106 &amp;&amp; fb[i+1] == 242 &amp;&amp; fb[i+2] == 28
+    #Perform their arithmetic with provided bytes into an 32-bit int
+    length = [fb[i-1], 106, 242, 28].pack("V*").split("\x00").join.unpack("V")[0] - 5 ^ 485648943
+    seek_offset_bytes = [fb[i-5], fb[i-4], fb[i-3], fb[i-2]]
+    seek_offset = (seek_offset_bytes.pack("V*").split("\x00").join.unpack("V")[0] ^ 2100157544) - 100
+    puts "Found length of: #{length}"
+    puts "Seek offset bytes: #{seek_offset_bytes.inspect}"
+    ciphertext = []
+    for j in 0..length-1
+      ciphertext &lt;&lt; fb[seek_offset+j]
+    end
+    if length &gt; 2    
+      for x in 0x00..0xFF
+        finished = true
+        result = []
+        for c in ciphertext
+         unless((x ^ c).between?(0x20,0x7E))
+          finished = false
+          break
+         end
+         result &lt;&lt; (x ^ c)
+        end
+        if finished
+          puts "Found possible XOR key for string: #{result.pack("I*").split("\x00").join} of length: #{length}"
+        end
+      end
+    end
+  end
+end
+</code></pre><p>This brute force approach provides some invalid results, however, also provides clear-text strings after manual review, all of which are available in the appendix. Some interesting strings to highlight are those intended to keep the computer online to continue mining:</p><pre><code>/C net accounts /forcelogoff:no</code></pre><p>This prevents forced logoffs from remote administrators.</p><pre><code>/C net accounts /maxpwage:unlimited</code></pre><p>This sets the maximum password age to unlimited, which in turn prevents password expiry.</p><pre><code>/C powercfg /x /standby-timeout-ac 0</code></pre><p>This will prevent the computer from entering standby mode, thus continuing mining operations when the computer is idle.</p><pre><code>/C reg add "HKEY_CURRENT_USER\Control Panel\Desktop" /v ScreenSaveTimeOut /t REG_SZ /d 600000000 /f of length: 99</code></pre><p>This will prevent the screensaver from starting.<br><br>Further, observed strings are those for anti-analysis:</p><pre><code>procexp
+PROCEXP
+pROCESShACKER
+ProcessHacker
+procexp64
+Detect detector!
+Clear!
+taskmgr</code></pre><h3 id="dark-test-network-traffic">Dark Test Network traffic</h3><p>Two GET requests are sent to the api.ipfy.org used for public IP address identification. This is then followed by a GET request to qyvtls749tio[.]com which sends HwProfileInfo.szHwProfileGuid for identification, a 64-bit flag, a video card parameter (which is always null), and the number of CPU cores. The server response provides youronionlink[.]onion URL locations of two executable files: bz.exe and cpu.zip</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image18-1.png" class="kg-image" alt loading="lazy" width="819" height="267" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image18-1.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image18-1.png 819w" sizes="(min-width: 720px) 720px"><figcaption>Dynamic Miner Activity Command Line Arguments</figcaption></figure><p>Oddly enough this is not a valid .onion address, and is likely a placeholder from the server for this dropper, or a kiddie who set this up without replacing what the gateway was returning to the dropper on request. When searching for this pattern we came across a valid pastebin address containing a number of SQL commands for setting up a database with these domains with Russian comments:</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image33-1.png" class="kg-image" alt loading="lazy" width="722" height="914" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image33-1.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image33-1.png 722w" sizes="(min-width: 720px) 720px"><figcaption>Pastebin SQL Commands</figcaption></figure><p>This further implies the possibility of a builder or distributed gateway being used. Further searches turned up a number of in-the-wild filenames which correspond to wares:</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image15-1.png" class="kg-image" alt loading="lazy" width="488" height="636"><figcaption>Dark Test VirusTotal Observed in-the-wild Filenames</figcaption></figure><p>This could indicate warez as being a possible distribution vector for this malware.</p><h3 id="dark-test-version-2">Dark Test Version 2</h3><p>Throughout the month of November, we started observing a sample with the same command and control parameters, mining pool, and persistence executable name as Dark Test. However, it did not drop and execute a separate xmrig binary but contained a statically linked version instead. Due to shared attributes with the first version of Dark Test we believe this is a new iteration written in Visual C++ rather than C#. The binary is shipped within an NSIS self-extracting installer, which launches unpacking code that writes into a newly spawned suspended process and resumes the main thread. A notable difference is a more extensive list of anti-analysis strings which are searched for using Process32FirstW:<br></p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image14-1.png" class="kg-image" alt loading="lazy" width="307" height="286"><figcaption><strong>Anti-Analysis Strings</strong></figcaption></figure><p>An interesting addition being vnc.exe to possibly detect VPS or analysis systems connected to using VNC.</p><h3 id="exploit-kit-based">Exploit Kit Based</h3><p>In addition to the spam campaigns above Talos has also been observing RIG exploit kit delivering miners via smokeloader over the last couple months. The actual infection via the exploit kit is pretty standard for RIG activity. However, the great thing about mining is there are easily trackable elements left on the system, namely the 'Worker ID', as shown below:</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image23-1.png" class="kg-image" alt loading="lazy" width="1015" height="42" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image23-1.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2022/12/image23-1.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image23-1.png 1015w" sizes="(min-width: 720px) 720px"><figcaption>Command Line Syntax</figcaption></figure><p>Using the Worker ID of:</p><pre><code>43Z8WW3Pt1fiBhxyizs3HxbGLovmqAx5Ref9HHMhsmXR2qGr6Py1oG2QAaMTrmqWQw85sd1oteaThcqreW4JucrLGAqiVQD</code></pre><p>we began digging into the amount of hashes this system is mining. What we found was a worker that was fluctuating between 25 KH/s and 60 KH/s. Taking the average at 42.5 KH/s, this actor was earning about $85/Day.<br><br>That may not seem like a substantial amount of money, but consider that the miner could remain running for months, if not years without being impacted without additional maintenance required by the actor. The only operational costs are associated with renting the exploit kit and associated infrastructure. Once victims are compromised, the activity continues for a cool $31,000 annually.<br><br>However, when we started looking further back, this campaign has been ongoing off and on over the last six months with peak hash rates in excess of 100 KH/sec.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image16-1.png" class="kg-image" alt loading="lazy" width="1073" height="354" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image16-1.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2022/12/image16-1.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image16-1.png 1073w" sizes="(min-width: 720px) 720px"><figcaption>Historical Hash Rate</figcaption></figure><p>The campaign appeared to pick up steam beginning in September 2017, but we have evidence of the miners being deployed from as far back as June or July of 2017. Suddenly, mining activity completely stopped toward the end of October, and started back up again in mid December. It's currently still running as of the writing of this post. This shows the earning potential of using an exploit kit to deploy miners via a malware loader like smokeloader.</p><h3 id="active-exploitation">Active Exploitation</h3><p>In addition to threats targeting users, Talos has also observed coin miners being delivered via active exploitation in our honeypot infrastructure. This includes leveraging multiple different exploits to deliver these types of payloads. There have been widespread reports of EternalBlue being used to install miners, as well as various Apache Struts2 exploits, and most recently a Oracle WebLogic exploit. This type of payload is perfect for active exploitation since it doesn't require persistent access to the end system, it is largely transparent to the end user, and finally can result in significant financial gain.<br><br>When you take threats being delivered to users via email and web as well as internet connected systems being compromised to deliver a miner payload, it's obvious that miners are being pushed by adversaries today much like ransomware was being pushed to systems a year ago. Based on this evidence, we began digging a little bit deeper on the actual mining activity and the systems that have already been mining.</p><h2 id="deeper-dive-on-mining-and-workers">Deeper Dive on Mining and Workers</h2><p><br>Over the course of several months, we began looking for crypto miner activity on systems and uncovered prevalent threats associated with multiple different groups relying on familiar tricks to run on systems. Additionally, we found a large number of enterprise users running or attempting to run miners on their systems for potential personal gain.<br><br>One thing that has been common with most of the malicious miners we found were the filename choices. Threat actors have chosen filenames that look harmless, such as "Windows 7.exe" and "Windows 10.exe". Additionally, Talos commonly saw "taskmgrss.exe", "AdobeUpdater64.exe", and "svchost.exe". Talos also found examples of miners being pulled dynamically and run via the command line, an example of which is shown below.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image28-1.png" class="kg-image" alt loading="lazy" width="1193" height="121" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image28-1.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2022/12/image28-1.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image28-1.png 1193w" sizes="(min-width: 720px) 720px"><figcaption>Command Line Syntax</figcaption></figure><p>Interestingly, we also found miners purporting to be anti-virus software, including our own free anti-virus product <a href="http://www.immunet.com/index">Immunet</a>.</p><h2 id="mining-as-a-payload-for-the-future">Mining as a Payload for the Future</h2><p>Cryptocurrency miner payloads could be among some of the easiest money makers available for attackers. This is not to try and encourage the attackers, of course, but the reality is that this approach is very effective at generating long-term passive revenue for attackers. Attackers simply have to infect as many systems as possible, execute the mining software in a manner that makes it difficult to detect, and they can immediately begin generating revenue. Attackers will be likely be just as happy computing 10KH/s as 500KH/s. If they have a specific hashrate goal, they can simply continue distributing miners to victims until they reach that goal.<br><br>The sheer volume of infected machines is how attackers can measure success with these campaigns. Since financial gain via mining is the mission objective there is no need to attempt to compromise hosts to steal documents, passwords, wallets, private keys, as we've grown accustomed to seeing from financially motivated attackers. We have commonly seen ransomware delivered with additional payloads. These can either provide secondary financial benefit or, in some cases, deliver the real malicious payload. In the later case ransomware can be used a smoke screen designed to distract. While we have seen active vulnerability exploitation used as the initial vector for infecting systems with cryptocurrency mining software, that is the extent of the overtly malicious activity. Once a system has become infected in this scenario, attackers are typically focused on maximizing their hash rates and nothing more.<br><br>Simply leveraging the resources of a single infected system is likely not profitable enough for most attackers. However consider 100,000 systems and the profitability of this approach skyrockets. In most cases attackers attempt to generate as much revenue as easily and cheaply as possible. With mining software they already have their method of gains in the form of the control of system resources and the volume of hashes that can be generated by it.<br><br>Recurring revenue is not just something a legitimate business strives for. Malicious adversaries do as well. Complex malware is expensive to design, create, test, and then deliver to victims. Complex malware is often reserved for very complex attacks and rarely is this type of malware used to attack 100,000s of users. As such a recurring revenue model isn't really applicable to these complex malware attacks, generally speaking. With cryptominers attackers have created an entire solution specifically designed to do one thing: generate recurring revenue.<br><br>Continuing use of cryptominers as a payload and ensuring the system is running at full capacity will continue to evolve. Talos has observed attacks where the attacker has cleaned up the machine by removing other miners before then infecting the user and installing their own mining software. Attackers are already fighting for these resources as the potential monetary value and ongoing revenue stream is massive.</p><h2 id="are-miners-malware">Are Miners Malware?</h2><p>Mining client software itself should not be considered malware or a Potentially Unwanted Application/Potentially Unwanted Program (PUA/PUP). The legitimate mining client software is simply being leveraged in a malicious way by actors to ensure that they are able to generate revenue by mining on infected machines. Mining software is written specifically to ensure that the cryptocurrencies being used are available to people, to ensure consensus on the network, perform and validate transactions and reward miners performing the complex mathematical calculations to ensure the integrity and security of the cryptocurrency ecosystem &amp; network.<br><br>If a legitimate user runs the mining software locally they can run their own mining platform; likewise a legitimate user can become part of a pool to try and maximize their chances of receiving a payout. The difference between the legitimate user and a threat actor is that they are performing this task intentionally. The malicious actor is performing this task, in the exact same manner as the legitimate user, but without the user's knowledge or consent. The difference is the deception that occurs for the end user and the intent behind mining the cryptocurrencies. The software itself is unfortunately part of the malicious arsenal the attacker chooses to use, but, much like when Powershell or PSExec is used in malicious attacks, the software itself is not malicious by design. It is the intent with which it is used that is important. When these miners are leveraged by attackers, victims are unwittingly forced to pay for the electricity used during the mining process and are having their computational resources abused to generate revenue for the actors.</p><h2 id="enterprise-impacts">Enterprise Impacts</h2><p>Regardless of whether the miner was deployed using malicious methods or simply by an enterprise user trying to generate some coin from their work computer, enterprises have to decide if miners are malware within their environments.<br><br>This is an interesting challenge because generally the only thing miners do is utilize CPU/GPU cycles to complete complex math problems. However, it is wasted or stolen resources for an organization and depending on the configuration of these systems, it could have larger impacts. Obviously if a miner is placed onto a system via one of the methods discussed above it is a malicious payload. However, Talos found large numbers of users that appeared to willingly run these miners on enterprise systems to generate coin.<br><br>Due to the large amount of willing users, it might warrant an organization crafting a policy or adding a section to existing policy regarding the use of miners on enterprise systems and how it will be handled. Additionally, it is up to each organization to decide whether or not these file should be treated as malware, and removed/quarantined as such.</p><h2 id="fails-we-found">Fails we Found</h2><p><br>While investigating malware campaigns that were distributing Monero mining software we observed an interesting case where the attacker used an open-source mining client called 'NiceHash Miner' and began distributing it. In this particular case, the command line syntax used to execute the miner on infected systems is below:</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image9-1.png" class="kg-image" alt loading="lazy" width="1141" height="64" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image9-1.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2022/12/image9-1.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image9-1.png 1141w" sizes="(min-width: 720px) 720px"><figcaption>Command Line Syntax</figcaption></figure><p>Interestingly, the userpass parameter that is used to register the mining client to the specific Worker ID being used is '3DJhaQaKA6oyRaGyDZYdkZcise4b9DrCi2.Nsikak01'. When analyzing this particular campaign, we identified that this userpass is actually the default userpass specified in the mining software source code as released on GitHub. The attacker didn't bother to change it, resulting in all of the machines infected mining Monero which was being sent to the mining application's author - not the attacker themselves.<br></p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image34-1.png" class="kg-image" alt loading="lazy" width="655" height="254" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image34-1.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image34-1.png 655w"><figcaption>Source Code Default Values</figcaption></figure><p>In several other cases we observed attackers utilizing default values within the command line syntax being used to execute their miners. A few examples are below:</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image25-1.png" class="kg-image" alt loading="lazy" width="1051" height="61" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image25-1.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2022/12/image25-1.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image25-1.png 1051w" sizes="(min-width: 720px) 720px"><figcaption>Mining Fail Example #1</figcaption></figure><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image8-2.png" class="kg-image" alt loading="lazy" width="1211" height="87" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image8-2.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2022/12/image8-2.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image8-2.png 1211w" sizes="(min-width: 720px) 720px"><figcaption>Mining Fail Example #2</figcaption></figure><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image3-1.png" class="kg-image" alt loading="lazy" width="1192" height="75" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image3-1.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2022/12/image3-1.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image3-1.png 1192w" sizes="(min-width: 720px) 720px"><figcaption>Mining Fail Example #3</figcaption></figure><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image1-2.png" class="kg-image" alt loading="lazy" width="1005" height="41" srcset="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w600/2022/12/image1-2.png 600w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1000/2022/12/image1-2.png 1000w, https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/12/image1-2.png 1005w" sizes="(min-width: 720px) 720px"><figcaption>Mining Fail Example #4</figcaption></figure><p>This clearly indicates that many of the attackers leveraging cryptocurrency miners are extensively using code and command line syntax they find online, and in some cases may not actually understand the code they are working with or how cryptocurrency mining even works. As a result, default values and placeholders are not always being updated to enable them to monetize or generate revenue from these sorts of attacks.<br><br>Additionally, while performing our research we found an interesting way that could, in theory, allow one to manipulate the payouts received by the attackers. Currently, within the web interface used by many of the mining pools (and exposed via an API), there is a "Personal Threshold" value that is publicly editable. This setting determines how much coin must be mined before the payout will be sent to the attacker's wallet. By setting this value to a large amount (e.g. 50 XMR) the attacker would have to wait an extended period before receiving their next payout. While the attacker could just change this value back, it could be changed right back to 50 XMR using a GET request as long as the request is made to the mining pool's URL using the following structure:</p><pre><code>"https://p5[.]minexmr[.]com/set_info?address=$WORKER&amp;type=thold&amp;amount=50000000000000"</code></pre><p>Where $WORKER is the 'Worker ID' that is being modified. This same parameter is available on many of the major mining pool websites that we analyzed. Note that the syntax could be different depending on the pool that is being used by the adversary.</p><h2 id="conclusion">Conclusion</h2><p>The number of ways adversaries are delivering miners to end users is staggering. It is reminiscent of the explosion of ransomware we saw several years ago. This is indicative of a major shift in the types of payloads adversaries are trying to deliver. It helps show that the effectiveness of ransomware as a payload is limited. It will always be effective to ransom specific organizations or to use in targeted attacks, but as a payload to compromise random victims its reach definitely has limits. At some point the pool of potential victims becomes too small to generate the revenue expected.<br><br>Crypto miners may well be the new payload of choice for adversaries. It has been and will always be about money and crypto mining is an effective way to generate revenue. It's not going to generate large sums of money for each individual system, but when you group together hundreds or thousands of systems it can be extremely profitable. It's also a more covert threat than ransomware. A user is far less likely to know a malicious miner is installed on the system other than some occasional slow down. This increases the time a system is infected and generating revenue. In many ways its the exact opposite of ransomware. Ransomware is designed to generate revenue in a couple of days from a victim and the payoff is immediate. Malicious miners are designed to exist on a system for weeks, months, or ideally years.<br><br>It also introduces a new challenge to enterprises. A decision needs to be made on how to treat things like miners and whether they should be judged exclusively as malware. Each enterprise needs to decide how to handle these threats. The first step is determining how prevalent they are in your environment and then deciding how to handle it going forward.</p><h2 id="coverage">Coverage</h2><p>There are different ways to address miners and there is detection built in to Cisco security products to detect this activity. There is a specific detection name in AMP for coin miners, W32.BitCoinMiner. However, as these miners can be added as modules to various other threats, the detection names may vary. Additionally there are a couple NGIPS signatures designed to detect mining activity as well. However, these rules may not be enabled by default in your environment depending on the importance of potentially unwanted applications (PUA) in your network. The signatures that detect this type of activity includes, but isn't limited to: 40841-40842, 45417, and 45548-45550.<br><br>Also, technologies like Threat Grid have created indicators to clearly identify when mining activity is present when a sample is submitted.</p><h2 id="ioc-section">IOC Section</h2><h3 id="ip-addresses-">IP Addresses:</h3><p>89.248.169[.]136<br>128.199.86[.]57</p><h3 id="domains-">Domains:</h3><p>qyvtls749tio[.]com<br>youronionlink[.]onion</p><p><a href="https://alln-extcloud-storage.cisco.com/ciscoblogs/5a71e1c64654d.txt">File Hashes</a></p>
+
+            
+        </div>
+    </section>
+    <div class="social-media-wrapper">
+    <h5>Share this post</h5>
+    <ul class="social-media-share-list">
+        <li>
+            <a class="share-facebook" title="Share this on Facebook" data-text="Ransom Where? Malicious Cryptocurrency Miners Takeover, Generating Millions" data-href="https://blog.talosintelligence.com/malicious-xmr-mining/" rel="nofollow" target="_blank" href="https://www.facebook.com/sharer.php?u=https://blog.talosintelligence.com/malicious-xmr-mining/"></a>
+        </li>
+        <li>
+            <a class="share-x" title="Post This" data-text="Ransom Where? Malicious Cryptocurrency Miners Takeover, Generating Millions" data-href="https://blog.talosintelligence.com/malicious-xmr-mining/" rel="nofollow" target="_blank" href="https://x.com/share?url=https://blog.talosintelligence.com/malicious-xmr-mining/"></a>
+        </li>
+        <li>
+            <a class="share-linkedin" title="Share this on LinkedIn" data-text="Ransom Where? Malicious Cryptocurrency Miners Takeover, Generating Millions" data-href="https://blog.talosintelligence.com/malicious-xmr-mining/" rel="nofollow" target="_blank" href="https://www.linkedin.com/sharing/share-offsite/?url=https://blog.talosintelligence.com/malicious-xmr-mining/"></a>
+        </li>
+        <li>
+            <a class="share-reddit" title="Reddit This" data-text="Ransom Where? Malicious Cryptocurrency Miners Takeover, Generating Millions" data-href="https://blog.talosintelligence.com/malicious-xmr-mining/" rel="nofollow" target="_blank" href="https://www.reddit/submit?url=https://blog.talosintelligence.com/malicious-xmr-mining/"></a>
+        </li>
+        <li>
+            <a class="share-email" title="Email This" href="mailto:?body=Ransom Where? Malicious Cryptocurrency Miners Takeover, Generating Millionshttps://blog.talosintelligence.com/malicious-xmr-mining/"></a>
+        </li>
+    </ul>
+</div></article>
+                    </div>
+                </div>
+                <div class="alt-layout-row-dk sidebar" id="side-bar">
+                            <h4>Related Content</h4>
+
+                                <div class="sidebar-snippet-wrapper">
+                                    <a href="/how-do-cryptocurrency-drainer-phishing-scams-work/">
+                                        <h3>How do cryptocurrency drainer phishing scams work?</h3>
+                                        <span  class="preview-attributes">July 9, 2024 08:00</span>
+                                        <p>In recent months, a surge in cryptodrainer phishing attacks has been observed, targeting cryptocurrency holders with sophisticated schemes aimed at tricking them into divulging their valuable credentials.</p>
+                                    </a>
+                                </div>
+                                <div class="sidebar-snippet-wrapper">
+                                    <a href="/cryptomining-analysis/">
+                                        <h3>Following the Money: Comparing cryptocurrency value to illicit mining activity</h3>
+                                        <span  class="preview-attributes">July 14, 2021 08:20</span>
+                                        <p>By Nick Biasini
+
+In the age of meme stocks, Robinhood and Elon Musk&#39;s tweets influencing the global economy, cryptocurrency mining has not seemed as fringe as it once did. Mining has been around as long as these crytocurrencies have, but only really started to gather the attention of</p>
+                                    </a>
+                                </div>
+                                <div class="sidebar-snippet-wrapper">
+                                    <a href="/lemon-duck-brings-cryptocurrency-miners/">
+                                        <h3>Lemon Duck brings cryptocurrency miners back into the spotlight</h3>
+                                        <span  class="preview-attributes">October 13, 2020 10:59</span>
+                                        <p>By Vanja Svajcer, with contributions from Caitlin Huey.
+
+ * We are used to ransomware attacks and big-game hunting making headlines, but there are still methods adversaries use to monetize their efforts in less intrusive ways.
+ * Cisco Talos recently recorded increased activity of the Lemon Duck cryptocurrency-mining botnet using several</p>
+                                    </a>
+                                </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <footer id="footer">
+    <div class="container-fluid px-0">
+        <div class="row footer_nav_wrapper mx-0">
+            <div class="col-xl-10 col-12">
+                <div class="multi-col-list-wrapper">
+                    <ul class="footer-parent-list">
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6><a href="https://talosintelligence.com/reputation">Intelligence Center</a></h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/reputation_center">Intelligence Search</a></li>
+                                <li><a href="https://talosintelligence.com/reputation_center/email_rep">Email &amp; Spam Trends</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6><a href="https://talosintelligence.com/vulnerability_info">Vulnerability Research</a></h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/vulnerability_reports">Vulnerability Reports</a></li>
+                                <li><a href="https://talosintelligence.com/ms_advisories">Microsoft Advisories</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                             <ul>
+                                <li>
+                                    <h6><a href="https://talosintelligence.com/incident_response">Incident Response</a></h6>
+                                </li>
+                                <li>
+                                    <a href="https://talosintelligence.com/incident_response/services#reactive-services">Reactive Services</a>
+                                </li>
+                                <li>
+                                    <a href="https://talosintelligence.com/incident_response/services#proactive-services">Proactive Services</a>
+                                </li>
+                                <li>
+                                    <a href="https://talosintelligence.com/incident_response/contact">Emergency Support</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Security Resources</h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/software">Open Source Security Tools</a></li>
+                                <li><a href="https://talosintelligence.com/categories">Intelligence Categories Reference</a></li>
+                                <li><a href="https://talosintelligence.com/secure-endpoint-naming">Secure Endpoint Naming Reference</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Media</h6>
+                                </li>
+                                <li><a href="https://blog.talosintelligence.com">Talos Intelligence Blog</a></li>
+                                <li><a href="https://blog.talosintelligence.com/category/threat-source-newsletter/">Threat Source Newsletter</a></li>
+                                <li><a href="https://talosintelligence.com/podcasts/shows/beers_with_talos">Beers with Talos Podcast</a></li>
+                                <li><a href="https://talosintelligence.com/podcasts/shows/talos_takes">Talos Takes Podcast</a></li>
+                                <li><a target="_blank" href="https://www.youtube.com/channel/UCPZ1DtzQkStYBSG3GTNoyfg/featured">Talos Videos</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Support</h6>
+                                </li>
+                                <li><a href="https://support.talosintelligence.com">Support Documentation</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Company</h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/about">About Talos</a></li>
+                                <li><a href="https://talosintelligence.com/careers">Careers</a></li>
+                                <li><a target="_blank" href="https://www.cisco.com/c/en/us/products/security/product-listing.html">Cisco Security</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xl-2 col-12 connect_social">
+                <div class="connect-footer-section-wrapper">
+                    <h6>Follow us</h6>
+                    <ul>
+                        <li>
+                            <a target="_blank" href="https://x.com/talossecurity"><div class="footer-media-icon" id="footer-media-icon-x"></div>
+                            </a></li>
+                        <li>
+                            <a target="_blank" href="https://www.youtube.com/channel/UCPZ1DtzQkStYBSG3GTNoyfg/featured"><div class="footer-media-icon" id="footer-media-icon-youtube"></div>
+                            </a></li>
+                        <li>
+                            <a target="_blank" href="https://www.linkedin.com/company/cisco-talos-intelligence-group/"><div class="footer-media-icon" id="footer-media-icon-linkedin"></div>
+                            </a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row mx-0">
+            <div class="col-12 footer_corporate">
+                <a target="_blank" href="http://tools.cisco.com/security/center/home.x"><img alt="Cisco" src="https://blog.talosintelligence.com/assets/images/logo_cisco_white.svg">
+                </a><p class="copyright">
+                ©
+                <span id='current-year'></span>
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                <a target="_blank" class="underline" href="http://www.cisco.com/web/siteassets/legal/privacy_full.html">Privacy Policy.</a>
+            </p>
+            </div>
+        </div>
+    </div>
+</footer>
+    <script>
+  function coverageView() {
+    const coverageTable = document.getElementById('coverage-block');
+    const sidebar = document.getElementById('side-bar');
+    const postContent = document.getElementById('post-content');
+    const currentWidth = window.innerWidth;  
+  
+    if (coverageTable && sidebar && postContent) {
+      if (currentWidth < 1000) {
+        // For viewport less than 1000px, append to post content
+        postContent.appendChild(coverageTable);
+      } else {
+        // For viewport 1000px and wider, check for subscribe button
+        const subscribeButton = sidebar.querySelector('.subscribe-button');
+        
+        if (subscribeButton) {
+          // Insert coverage block after the subscribe button
+          subscribeButton.insertAdjacentElement('afterend', coverageTable);
+        } else {
+          // No subscribe button found, prepend to top of sidebar
+          sidebar.prepend(coverageTable);
+        }
+      }
+    }
+  }
+  
+  window.addEventListener("resize", coverageView);
+  window.addEventListener("load", coverageView);
+
+
+  (function() {
+    Array.from(document.querySelectorAll("a")).filter(a => {
+        return a.hostname && a.hostname !== location.hostname
+    }).forEach(a => a.setAttribute('target', '_blank'))
+})();
+</script>
+
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://blog.talosintelligence.com/assets/js/jquery-3.6.0.min.js?v=_xUj-3OJU5yExlq6"></script>
+<script src="https://blog.talosintelligence.com/assets/js/popper.min.js?v=ZvOgfh-ptkpoa2Y4"></script>
+<script src="https://blog.talosintelligence.com/assets/js/resize-styles.js?v=iB-0rQKwd6f_Dllp"></script>
+<script src="https://blog.talosintelligence.com/assets/js/bootstrap.bundle.min.js?v=JRXjfu4x9e89ZZsh"></script>
+<script src="https://blog.talosintelligence.com/assets/js/date.js?v=TlJWK1qtzFQeV9lL"></script>
+<script src="https://blog.talosintelligence.com/assets/js/prism.js?v=roQly8fYXhzQ4Osd"></script>
+<script src="https://cdn.jsdelivr.net/npm/ghost-theme-utils@latest/dist/js/ghost-theme-utils.min.js" async defer></script>
+<script src="https://blog.talosintelligence.com/assets/js/chart.min.js?v=dEAdc43T4D7l37O2"></script>
+<script src="https://blog.talosintelligence.com/assets/js/x-scroll.js?v=DuV8f5nlfWlGIAUr"></script>
+<script src="https://blog.talosintelligence.com/assets/js/2025_yir_chart.js?v=OSqUj45x6XXKWbZW"></script>
+
+
+</body>
+
+</html>

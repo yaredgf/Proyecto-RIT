@@ -1,0 +1,712 @@
+
+
+
+Exploring vulnerable Windows drivers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Exploring vulnerable Windows drivers
+
+
+By 
+Vanja Svajcer, 
+                James Nutland, 
+                Nicole Hoffman, 
+                Chris Neal
+
+
+
+            Thursday, December 19, 2024 06:04
+        
+
+
+                                Threats
+                            
+
+                                vulnerability
+                            
+
+                                drivers
+                            
+
+
+
+
+This post is the result of research into the real-world application of the Bring Your Own Vulnerable Driver (BYOVD) technique along with Cisco Talos’ series of posts about  malicious Windows drivers. Some of this research was presented at the AVAR conference in Chennai at the beginning of December 2024. We would like to send a special thanks to Connor McGarr, Russell Sanford, Ryan Warns, Tim Harrison and Michal Poslušný for their previous work on analyzing vulnerabilities in drivers.  During our research into vulnerable Windows drivers, we investigated classes of vulnerabilities typically exploited by threat actors as well as the payloads they typically deploy post-exploitation. The attacks in which attackers are deliberately installing known vulnerable drivers only to later exploit them is a technique referred to as Bring Your Own Vulnerable Driver (BYOVD). How are threat actors using BYOVD? Malicious actors use these drivers to perform a myriad of actions that help them achieve their goals. In our research, we identified three major payloads used, which we describe below.  Along with these payloads, we also identified recent activity linked to ransomware groups, which demonstrates real-world cases of malicious actors exploiting vulnerable Windows drivers to achieve their objectives. Vulnerable drivers and common payloads Local escalation of privileges (admin to kernel/system) One of the most common payloads, when we consider vulnerable drivers with arbitrary kernel memory write vulnerabilities, is escalating the privileges of a malicious process. The access privileges for any process are stored in the primary access token structure, which is contained at an undocumented offset in the _EPROCESS structure, the kernel mode structure used to maintain information about each individual process by the Windows kernel. Vergilius Project contains the documentation and offsets of almost all undocumented Windows structures, including _EPROCESS, and can be used as a reference, equally by offensive researchers and defenders.    A common strategy for escalating privileges of an unprivileged process is to find the _EPROCESS structure of a higher privileged process in kernel memory and replace the access token of the unprivileged process with the access token of the privileged process, which is relatively simple if a vulnerable drivers can be used for reading and writing kernel memory space.  _EPROCESS structure contains Windows Process Primary access token (credit: Windows Internals 7th edition)For example, a privilege escalation may be done by following the steps below: Find one _EPROCESS structure/object For example, load ntoskernel.exe in user mode and calculate RVA to PsInitialSystemProcess, which points to the System process (id: 0x04) _EPROCESS structure when ntoskernel.exe is loaded in memory during the boot process. Use NtQuerySystemInformation((SYSTEM_INFORMATION_CLASS) 11, ModuleInfo, 1024 * 1024, NULL))) // 11 = SystemModuleInformation to find ntoskernel VA – use the vuln driver to read the offset, add the RVA to find the _EPROCESS structure in kernel memory. Read the token from the known offset using the vulnerable driver read or memory copy functionality. Parse _EPROCESS to find the  ActiveProcess links member that points to a linked list of other _EPROCESSES and iterate until the low privilege process is found. Overwrite the unprivileged process access token with the one previously saved from the SYSTEM process, using a vulnerable driver kernel memory write functionality.  Loading of unsigned kernel code Arbitrary kernel memory write vulnerabilities in drivers can be used to deploy unsigned malicious code into the kernel memory space, either in the shellcode format or a format of the unsigned malicious driver. There are several open-source unsigned device drivers loading utilities. In one instance, Lenovo Mapper was used as a base to develop a game cheat utility “sexy_girl_addy.exe”, which was uploaded to VirusTotal in May 2024. The utility used the code in Lenovo Mapper to load a driver which seems to attempt to disable the TPM-based license check in the game Valorant.  Lenovo Mapper code is used to deploy an unsigned cheat driver using the previously mentioned arbitrary memory write vulnerability CVE-2022-3699TPM driver functionality was disabled to prevent Valorant license check by the cheatBypass EDR software or game anti cheat software To showcase an example of malware exploiting vulnerable drivers to terminate EDR tools, we chose a Gh0stRAT campaign from September 2024. The dropper drops an executable “nthandlecallback.exe”, a vulnerable Dell binary utilities driver “dbutil_2_3.sys”, and a ZIP file with the name “tree.exe”. The ZIP contains an executable file “EDR.exe”, a DLL file “irrlicht.dll” and an encrypted file “server.log”. “EDR.exe” is a variant of the open-source tool RealBlindingEDR used to disable EDR programs by exploiting arbitrary memory write vulnerability in Dell’s binary utility driver while the first executable loads the DLL, which decrypts the final Gh0stRAT payload from the encrypted file.  In September 2024, a Gh0stRAT campaign used RealBlindingEDR to disable EDR driversRealBlindingEDR is just one of many open-source tools developed for the purpose of disabling endpoint security software, and they are used by both threat actors and in red team-based exercises. Dbutil_2_3.sys is one of the drivers supported for disabling EDR tools by RealBlindingEDRMiscellaneous other payloads Vulnerable drivers, mostly in the category of drivers with insufficient access controls, have been used in some advanced attacks. For example, in the Shamoon campaign, a RawDisk driver from Eldos was used to overwrite hard drives, while in February 2022, HermeticWiper used a proxy physical disk writing driver from “EaseUS Partition Master” driver partition manager “empntdrv.sys” for overwriting drives. HermeticWiper contained four embedded resources, which are compressed copies of drivers used by the wiper, depending on the Windows version and the default word memory size for the operating system.  Different versions of “EaseUS Partition Master” partition manager driver are embedded as resources into HermeticWiper code Ransomware examples of malicious actors' use of BYOD With the wide availability of EDR bypassing tools exploiting vulnerable drivers, it is not a surprise that the exploitation moved from the domain of advanced threat actors into the domain of commodity threats, primarily ransomware. We document here some of the known ransomware groups employing the BYOVD technique.  January - Kasseika  In January 2024, Kasseika ransomware operators abused a vulnerable driver, “viragt64.sys”, which is part of the legitimate VirIT antivirus software, to disable a pre-determined list of 991 processes related to security tools and system utilities. The ransomware-as-a-service (RaaS) operation has been active since 2023 and uses double extortion techniques but does not operate a data leak site. In recent attacks, the ransomware first executes a script to load various tools, such as a malicious executable named “Martini.exe” and the vulnerable driver that is renamed “Martini.sys”. Next, Kasseika will create and start a new service whereby the driver is loaded into the malicious executable.   The executable starts scanning the environment for the hard-coded list of processes and, if detected, a control code is sent to the driver enabling it to terminate processes.  March – Akira  In March 2024, Akira has been observed abusing the legitimate, signed Zemana anti-malware kernel driver “zamguard64.sys” via PowerTool to disable EDR at the kernel level. The exploitation of the Zemana zamguard driver was a main component of the popular Terminator EDR killer tool listed for sale on illicit marketplaces beginning May 2023.  July – Qilin   In July 2024, the Qilin ransomware group, another group operating under a Raas model, was observed using a new malware dubbed “Killer Ultra” within an attack. Killer Ultra has a plethora of capabilities, including the ability to terminate security tools with a BYOVD technique, abusing a known arbitrary process termination vulnerability impacting Zemana Anti-Keylogger driver “	”, tracked as CVE-2024-1853. The vulnerability enables attackers with the ability to terminate processes. Upon execution, Killer Ultra unpacks the vulnerable driver and creates a new service to looks for and disable a list of security tools.    July – BlackByte  Talos recently observed and documented developments in recent BlackByte attacks in July 2024 leveraging BYOVD to facilitate host encryption. The newer encryptor variant was observed dropping four vulnerable drivers as part of BlackByte’s usual BYOVD attack chain, which is an increase from the two or three drivers described in previous reports.These drivers consisted of RtCore64.sys, a driver originally used by MSI Afterburner a system overclocking utility, DBUtil_2_3.sys, a driver that is part of the Dell Client firmware update utility, zamguard64.sys, a part of the previously mentioned Zemana Anti-Malware (ZAM) application exploited by other threat actors, and gdrv.sys, a component of is the GIGABYTE tools software package for GIGABYTE motherboards. These four drivers were renamed and dropped by the encryptor binary in all BlackByte attacks investigated by Cisco Talos Incident Response (Talos IR), each with a similar naming convention. The nomenclature for the vulnerable drivers consisted of eight random alphanumeric characters followed by an underscore and an iterating number value.  August - RansomHub  In August 2024, RansomHub ransomware actors were observed using a new malware known as EDRKillShifter to disable security tools prior to executing the ransomware binary. The EDRKillShifter can act as a loader for a vulnerable legitimate driver that, once exploited, can facilitate persistent defense evasion. Recent exploits used by the adversary are related to POCs found on Github leveraging RentDrv2, while the other exploited a driver called ThreatFireMonitor. The adversary initiated the process by launching the password-protected EDRKillShifter binary, which decrypts and executes an embedded resource in memory, unpacking and executing a payload to exploit the target vulnerable legitimate driver to escalate privileges and disable active EDR processes.  The malware then created and started a new service for the driver, loading it into the system. Finally, it continuously scanned for and terminated processes that match a hardcoded list of targets, for persistent defense evasion even on reboot.  The adoption of the BYOVD technique by RansomHub and Qilin may be linked to members of the financially motivated threat group Scattered Spider joining forces with these ransomware groups.  The new partnership was identified and disclosed in public reporting in July 2024, but it is possible the relationship was already well established before then. Scattered Spider members are known for employing BYOVD tactics since at least December 2022.   Windows drivers and vulnerabilities Creating malicious Windows drivers is increasingly difficult Creating a new malicious Windows kernel driver is becoming increasingly difficult. New Windows drivers must be signed with a valid extended validation (EV) certificate by the developer, pass the Microsoft Hardware Lab Kit (HLK) compatibility tests, and be signed by the Microsoft Dev Portal.  However, this complex process, introduced for any newly created Windows kernel or user mode driver, does not apply to existing drivers, which means that legacy drivers signed with valid certificates will still be loaded into the Windows kernel space.  Installing and exploiting existing legacy vulnerable drivers may be one of the very few ways to make changes to kernel data structures or execute code in kernel, as drivers have the same permissions as any other Windows kernel component.  Exploiting vulnerability in a legacy driver is the same as exploiting any kernel vulnerabilityMicrosoft introduced a blocklist of known vulnerable drivers to tackle this issue. At the beginning, the list was included into the Windows Defender Application Control feature and was superseded by the Windows Security application in newer Windows versions.  Although the vulnerable drivers block list is turned on by default in systems running the Windows 11 2022 update or with systems with hardware virtualization code integrity (HVCI) turned on, there are still many systems which can be attacked by deploying a vulnerable driver or any newly discovered vulnerable driver that is not already on the blocklist.   Common classes of vulnerabilities in BYOVD drivers While investigating vulnerable Windows kernel drivers commonly used by threat actors for BYOVD campaigns, we identified three classes of vulnerabilities that are typically exploited: arbitrary MSR writes, arbitrary kernel memory writes, and insufficient access controls to driver’s functionality. This classification is not strict, and one driver can belong to multiple classes of vulnerabilities.  Arbitrary MSR read/write vulnerabilities To consider this class of vulnerabilities, we first need to introduce CPU model specific registers (MSRs). MSRs are additional CPU registers that are used by the CPU and the operating system for various purposes, including regulation of caching mechanism, regulation of fan speed, or transition from user mode into kernel mode. The MSRs can be addressed by their specific number, and some of them also have human readable names.  A specific MSR is key for making transition from user to kernel modes after calling a win32 API function As a reminder, the transition from kernel to user mode happens in the lowest user mode DLL layer, usually “ntdll.dll”, when a system call number is placed into register rax and the syscall or the “int 0x2e” instruction is executed. During the transition, the syscall instruction updates the Instruction Pointer (RIP) and sets it to the address of the system call handler in the kernel as well as the Stack Pointer (RSP) to point to a stack in kernel space. The first function to run is “KiSystemCall64”, and a question one can ask is how do Windows know where to start the execution in kernel mode? The answer lies in a MSR specifically used during user to kernel mode transition. For 64-bit Windows systems, it is the IA32_LSTAR (MSR 0xC0000082), which contains the address of the kernel-mode entry point for the syscall instruction, typically the KiSystemCall64 function. MSR 0xc0000082 contains the address of the first instruction to execute in kernel modeBy having the ability to write content into arbitrary MSRs, attackers may be able to replace the pointer to KiSystemCall64 with the pointer to a malicious function that can run code in the kernel context.  As an example of a driver vulnerable to arbitrary MSR modifications, we chose WinRing0 driver, which is commonly used by XMRig cryptocurrency mining software to disable some processor features such as caching, to increase the performance of the miner. WinRing0 is also included in many open and closed source programs. Unfortunately, the driver is also exposed to an arbitrary MSR write vulnerability which can lead to kernel mode code execution in versions of Windows prior to Windows 8 or to escalation of privileges in later Windows versions. This method is mitigated in the latest Windows versions with the latest exploit mitigations, such as Virtualization Based Security (which will be discussed later in the post), which is enabled by default.    WinRing0 driver is vulnerable to an arbitrary MSR write vulnerabilityArbitrary kernel physical memory read/write vulnerabilities The second class of vulnerabilities in frequently used BYOVD drivers is the arbitrary kernel memory write class. Here, a driver functionality to write arbitrary memory is used as a write primitive to deploy shellcode into kernel memory or change important kernel data structures to achieve escalation of privileges for a malicious user mode process.  A significant number of drivers with this class of vulnerability exists, and most of them are well documented. Readers are referred to the loldrivers project to find examples of vulnerable drivers allowing kernel memory write.  Any driver that uses one of the following kernel functions for may be regarded as a candidate for this class of vulnerabilities, although further analysis is almost always required to conclude that a user buffer and the target address can be supplied to the driver through a user-accessible device I/O control code (IOCTL): 
+
+Access to Physical Memory 
+MmMapIOSpace() 
+ZwMapViewOfSection()
+  
+PCI Config Space Access 
+HalSetBusDataByOffset() 
+HalGetBusDataByOffset()
+  
+Memory Copying Operations 
+memcpy() 
+memmove() 
+
+
+
+A good example of this vulnerability group is CVE-2022-3699, a vulnerability in a Lenovo driver that allows arbitrary memory reading and writing.  CVE-2022-3699 - memory write via exposed MmMapIoSpace function in a Lenovo driver Misusing existing functionality in Windows drivers with insufficient access controls The third and the last class of vulnerabilities used by threat actors in attacks using BYOVD drivers is misusing existing driver functionality caused by insufficient access controls.  INF files are files used during a driver’s installation, and among other things, they also contain permissions for the driver, specified using the SDDL language. The Security Descriptor Definition Language (SDDL) is a domain specific language that allows components to generate access control lists (ACLs) using a string format. It is utilized in both user-mode and kernel-mode programming. The diagram below illustrates how SDDL strings are structured for device objects. The access value specifies the type of access allowed. The SID value specifies a security identifier that determines to whom the access value applies (for example, a user or group). For example, string “D:P(A;;GA;;;SY)(A;;GR;;;WD)” allows the system (SY) access to everything and allows everyone else (WD) only read access.   Security Descriptor Definition Language string format manages access permissions to driver objectsProgramming Windows kernel drivers has a steep learning curve and, as a consequence, many drivers contain code that is copied from templates and example drivers, including their SDDL access permissions. When a driver is created, it is likely that its access permissions will be inadequate and will allow unprivileged users access to functionality that should otherwise be available to users with higher privilege levels.  A good example of a vulnerable driver with insufficient permissions would be an old version of an antimalware software driver “viragt64.sys” (VirIT Agent System) developed by TG Soft, which exposes the functionality of terminating a process from the kernel mode to users with lower levels of privileges. This driver is used by ransomware threat actors such as Kasseika to terminate other antimalware and EDR products.  The device IOCTL control code 0x82730030 is used to terminate an arbitrary process from the kernel modeViragt64.sys used ZwTerminateProcess to terminate arbitrary process, which can be misused by threat actors due to insufficient access permissionsIn addition to documenting different classes of vulnerabilities in frequently used BYOVD drivers, we also investigated the most common payloads delivered by threats and potentially unwanted applications after exploiting vulnerable drivers and classified them into several groups including local escalation privileges, loading of unsigned code and bypassing EDR functionality.   Modern Windows mitigations and vulnerable drivers Loading malicious code into kernel memory is one of the most powerful payloads attackers can use. This approach was frequently employed in the early days of Windows, prior to Windows Vista, when there were no requirements to sign drivers. The ability to load unsigned code into kernel mode was an incentive for the creation of several Windows kernel rootkits, such as Sinowal or TDL4, designed to hide the presence of malicious payloads from defenders by modifying kernel programs and data structures.  To respond to those threats and kernel exploitation in general, Microsoft introduced kernel patch protection (KPP), better known as Patch Guard, in x64 versions of Windows XP SP3. This was followed by the requirement for drivers to be signed in x64 Windows Vista.  The introduction of the mitigations into the Windows kernel sparked a race between threat actors and Microsoft. Attackers quickly responded to newly introduced mitigations by showing how digital signature enforcement can be turned off in a race with the Patch Guard, and Microsoft responded with more mitigations. Over time, the exploitation of Windows kernels became increasingly challenging.   Next, we will briefly describe only four significant anti-exploitation features implemented with Windows 10 and 11.  Virtualization-Based Security (VBS) Virtual Trust Levels (VTLs) are a key concept within Virtualization-Based Security (VBS), designed to enhance system security by creating isolated execution environments. VTLs leverage hardware virtualization to separate and protect sensitive processes from potentially less secure code running in the main operating system. VTLs are essentially different security levels or "worlds" within the same physical machine, each providing a different level of trust. The main goal of VTLs is to isolate trusted operations and data from the rest of the system to prevent tampering. In Windows, there are two main VTL levels.  •	VTL0: This is the standard trust level, where the traditional operating system and all user-mode and kernel-mode applications run.  •	VTL1: This is a higher trust level used to execute sensitive security functions and store critical data. It is isolated from VTL0, meaning that operations in VTL0 cannot directly access or modify the code and data in VTL1. VTL1 is used to store sensitive information like encryption keys, password hashes, and security tokens (credentials guard).   High level architecture of Virtualization-based security concepts, credit: Windows Internals 7th edition, part 1 By running different parts of the kernel in different trust levels, effectively different virtual machines, Windows can use Second Level Address Translation (SLAT) to create different access permissions for memory pages depending on the source of access.  Essentially, in a process similar to shadowing page tables, VBS enforces exclusive write or execute page access permission. In other words, if a code from VTL0 attempts to change its own page table permissions from writable to executable this will be detected by the VTL1 and the data in the page still won’t be able to execute.  This mechanism is one of the key features of another important mitigation, Hypervisor-Protected Code Integrity (HVCI). Hypervisor-Protected Code Integrity (HVCI) When Hypervisor-protected Code Integrity (HVCI) is enabled on a Windows system, it enforces control over memory page permissions to mitigate executable code injection. HVCI is designed so that only verified and trusted code is executed in kernel mode, and it applies policies to manage how memory pages can be used and modified. One of the important features enforced by HVCI (and supported by modern CPUs) is the prevention of pages being simultaneously writable and executable. This policy is known as Write XOR Execute (W^X), which prevents memory pages from being both writable and executable at the same time.  HVCI prevents direct execution of code from pages that were recently writable, unless specific security checks are passed. Before any code can execute from a page that has had its permissions altered, it must pass a code integrity check, ensuring it is signed by a trusted certificate. If the code does not meet these integrity requirements, execution will be blocked. HVCI attempts to ensure that any code running in kernel mode is signed with a valid certificate.  Kernel Control Flow Guard (kCFG) Kernel Control Flow Guard (kCFG) is a security feature in Windows designed to protect the operating system's kernel from certain types of attacks that attempt to manipulate the control flow of kernel-mode code. It builds on the principles of Control Flow Guard (CFG), used to secure user-mode applications. kCFG aims to prevent exploits that involve redirecting the control flow of kernel code to unintended or malicious locations which should prevent exploits that hijack the control flow by overwriting function pointers and other data used for indirect code execution.  During the compilation of the Windows kernel, kCFG instruments the code to create valid address bitmap and any indirect call must finish at a target known at compile time. If the call is directed outside know target the system will cause a security check failure.   Kernel shadow stack The primary purpose of the Windows kernel shadow stack is to ensure that the return addresses on the call stack cannot be tampered with, specifically to mitigate exploitation using Return Oriented Programming (ROP). The shadow stack maintains a separate, copy of return addresses parallel to the regular call stack. When a function call occurs, the return address is pushed onto both the regular stack and the shadow stack. Upon function return, the system verifies the return address against the shadow stack to ensure it has not been altered. The shadow stack in Windows is hardware assisted for better performance through Intel Control-Flow Enforcement Technology (CET) and AMD Shadow Stacks.  Conclusion In recent years, Windows platform security has improved to effectively prevent deployment of newly developed malicious drivers. However, kernel mode threats of vulnerable legacy drivers remain a concern. Luckily there are a few things we can do to mitigate the risks and detect potential campaigns using BYOVD technique. This could include enforcement of Extended Validation (EV) and Windows Hardware Quality Labs (WHQL) certified drivers, preventing risks associated with legacy drivers. If the blocking of all legacy drivers is not possible, employing the Windows Defender Application Control (Windows Security) drivers blocklist is recommended way to prevent the execution of known vulnerable drivers. Apart from the above, for threat detection and response, it recommended to develop a capability to monitor driver load events, such as those recorded by Sysmon’s event ID 6.  In summary, while Windows security has improved, maintaining vigilance against kernel mode threats requires adoption of best practices and monitoring techniques to protect against known and unknown driver vulnerabilities.  References and further reading Posts and papers Exploring Malicious Drivers Part 1 - Cisco Talos Exploring Malicious Drivers Part 2 - Cisco Talos The Current State of Exploit Development, Part 1 – Connor McGarr, Crowdstrike The Current State of Exploit Development, Part 2 – Connor McGarr, Crowdstrike No Code Execution? No Problem! Living The Age of VBS, HVCI, and Kernel CFG – Connor McGarr Signed kernel drivers – Unguarded gateway to Windows’ core – Michal Poslušný, ESET An In-Depth Look At Windows Kernel Threats - TrendMicro Windows security model for driver developers - Microsoft Driver Signing Policy – Microsoft  Driver code signing requirements – Microsoft Videos A Look at Modern Windows Kernel Exploitation/Hacking - Off By One Security podcast with Connor McGarr Windows Internals - By Alex Sotirov Kernel Mode Threats and Practical Defenses – Joe Desimone, Gabriel Landau, Endgame (now Elastic) Device Driver Debauchery and MSR Madness - Ryan Warns, Timothy Harrison - INFILTRATE 2019  No Code Execution? No Problem!  - Connor McGarr Get Off the Kernel if You Can't Drive - Jesse Michael, DEF CON 27 Conference  Books Windows Internals 7th Edition - Pavel Yosifovich, Alex Ionescu, Mark E. Russinovich, David A. Solomon, Published by Microsoft Press Windows NT Device Driver Development – Peter G. Viscarola & W. Anthony Mason, Published by New Riders Publishing Windows Kernel Programming – Pavel Yosifovich, Published by Pavel Yosifovich 
+
+
+
+Share this post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Content
+
+
+ClearFake WebDAV infection chain delivers Amatera stealer, ZigCryptoStealer, and NetSupport Manager
+September 8, 2026 06:01
+We assess with moderate confidence that the attacks are not targeted at a particular organization, but are a part of a cryptocurrency and credentials-stealing operation using the Amatera stealer as the primary payload.
+
+
+
+
+“Keep going, bro. You’ve got this!” A data-driven look at how adversaries are weaponizing AI
+August 4, 2026 06:00
+Talos has collected prompt logs from threat actor endpoints running various applications, such as Claude Code, CodeX, Cursor, or Gemini. This blog is an analysis of the ways we've seen bad actors leveraging cloud-based AI.
+
+
+
+
+The Hunter's Paradox: Is it time to embrace automated threat hunting?
+July 16, 2026 06:00
+Humans can no longer keep up with the volume and velocity of security data on their own, but AI can't be fully trusted. David discusses the merits of both and muses on what the future might look like.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

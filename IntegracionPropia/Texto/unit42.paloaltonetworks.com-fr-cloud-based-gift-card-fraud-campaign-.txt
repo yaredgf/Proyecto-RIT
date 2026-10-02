@@ -1,0 +1,1525 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Jingle Thief : Au cœur d'une campagne de fraude à la carte-cadeau centrée sur le cloud
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Menu
+
+
+
+
+
+
+ATOMs
+Security Consulting
+Under Attack?
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+French
+
+
+
+
+
+English
+
+
+Spanish (LATAM)
+
+
+French
+
+
+Japanese
+
+
+
+
+
+  Threat Research CenterRecherche sur les menacesCybercrime 
+ 
+Cybercrime
+Jingle Thief : Au cœur d'une campagne de fraude à la carte-cadeau centrée sur le cloud
+
+
+  13  minutes de lecture              
+
+
+Related ProductsCortexUnit 42 Incident Response 
+
+
+
+
+
+
+
+
+Par:Stav SettyShachar Roitman 
+
+Publié:22 octobre 2025 CatégoriesCybercrimeÉtudes sur la cybersécurité du cloudRecherche sur les menaces
+ Tags:CL‑CRI‑1032MicrosoftPhishingSmishing
+ 
+
+
+ 
+ 
+
+
+Partager
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+Synthèse
+Nous avons enquêté sur une campagne menée par des acteurs de la menace motivés par le gain financier, opérant depuis le Maroc. Nous avons baptisé cette campagne « Jingle Thief » en raison du mode opératoire des attaquants, qui consiste à commettre des fraudes à la carte-cadeau pendant les périodes de fêtes. Les attaquants de Jingle Thief utilisent l'hameçonnage (phishing) et l'hameçonnage par SMS (smishing) pour dérober des identifiants afin de compromettre les organisations qui émettent des cartes-cadeaux. Leurs opérations ciblent principalement des entreprises mondiales des secteurs de la vente au détail et des services à la consommation. Une fois qu'ils ont accédé à une organisation, ils cherchent à obtenir le type et le niveau d'accès nécessaires pour émettre des cartes-cadeaux non autorisées.
+L'activité liée à cette campagne est suivie par l'Unit 42 sous l'identifiant de cluster CL‑CRI‑1032. Les acteurs de la menace derrière cette activité ciblent des organisations qui s'appuient principalement sur des services et une infrastructure basés sur le cloud. Ils exploitent ensuite les fonctionnalités de Microsoft 365 pour mener des reconnaissances, maintenir une persistance à long terme et exécuter des fraudes à la carte-cadeau à grande échelle. Nous estimons, avec une confiance modérée, que le cluster d'activités que nous suivons sous le nom de CL-CRI-1032 recoupe l'activité d'acteurs de la menace publiquement connus sous les noms d'Atlas Lion et STORM-0539.
+Ce qui rend l'acteur de la menace derrière cette activité particulièrement dangereux, c'est sa capacité à maintenir une présence au sein des organisations pendant de longues périodes, parfois plus d'un an. Pendant ce temps, il acquiert une connaissance approfondie de l'environnement, y compris la manière d'accéder aux infrastructures critiques, ce qui rend la détection et la remédiation particulièrement difficiles. En avril et mai 2025, l'acteur de la menace derrière la campagne Jingle Thief a lancé une vague d'attaques coordonnées contre plusieurs entreprises mondiales.
+Cet article présente une analyse de bout en bout du cycle de vie de la campagne Jingle Thief, basée sur la télémétrie et les détections d'incidents réels. Nous offrons une vision claire des méthodes impliquées dans cette activité et des conseils pratiques pour atténuer les menaces basées sur l'identité (attaques ciblant les comptes utilisateurs et les identifiants) dans les environnements cloud. Alors que l'identité remplace de plus en plus le périmètre traditionnel, la compréhension de campagnes comme Jingle Thief est essentielle pour sécuriser l'infrastructure d'entreprise moderne.
+Cette activité a été identifiée grâce à des anomalies comportementales détectées par Cortex User Entity Behavior Analytics (UEBA) et Identity Threat Detection and Response (ITDR). Les clients sont mieux protégés contre cette activité grâce au nouveau module Cortex Advanced Email Security.
+Si vous pensez avoir été compromis ou si vous avez une question urgente, contactez l'équipe d'intervention sur incident de l'Unit 42.
+
+
+
+Sujets connexes de l'Unit 42
+Ingénierie sociale, hameçonnage
+
+
+
+Qui est derrière la campagne Jingle Thief ?
+Nous estimons avec une confiance modérée que la campagne Jingle Thief a été créée par des attaquants basés au Maroc, motivés par le gain financier et actifs depuis 2021. Leurs opérations ciblent principalement des entreprises mondiales des secteurs de la vente au détail et des services à la consommation. Bien qu'elle ne soit pas affiliée à un État-nation, l'activité que nous suivons sous le nom de CL‑CRI‑1032 comprend des tactiques avancées, de la persistance et une concentration opérationnelle.
+Contrairement aux acteurs de la menace qui s'appuient sur des logiciels malveillants courants ou l'exploitation des terminaux (endpoints), les attaquants derrière CL‑CRI‑1032 opèrent presque exclusivement dans des environnements cloud une fois qu'ils ont obtenu des identifiants par hameçonnage. Ils exploitent l'infrastructure cloud pour usurper l'identité d'utilisateurs légitimes, obtenir un accès non autorisé à des données sensibles et commettre des fraudes à la carte-cadeau à grande échelle.
+Anatomie de la campagne Jingle Thief
+Au cours d'une campagne que nous avons observée, les acteurs de la menace ont maintenu leur accès pendant environ 10 mois et compromis plus de 60 comptes utilisateurs au sein d'une seule entreprise mondiale. L'activité impliquait l'utilisation de services Microsoft 365, notamment SharePoint, OneDrive, Exchange et Entra ID. Cela a démontré un haut degré d'adaptabilité et de patience opérationnelle. La détection de cette approche nécessite une observation attentive des actions des adversaires sur une longue période. Les acteurs de la menace derrière la campagne Jingle Thief alignent souvent leur activité sur les périodes de vacances, intensifiant leurs opérations pendant les périodes de réduction des effectifs et d'augmentation des dépenses en cartes-cadeaux.
+Ayant obtenu l'accès initial, les acteurs de la menace ont effectué une reconnaissance pour cartographier l'environnement, se sont déplacés latéralement pour accéder à des zones plus sensibles et ont identifié des opportunités d'exécuter une fraude financière à grande échelle. La figure 1 illustre le cycle de vie de l'attaque de bout en bout dans Microsoft 365, soulignant comment les acteurs de la menace sont passés d'une entrée basée sur l'hameçonnage à un accès persistant via l'enregistrement d'appareils.
+Figure 1. Chaîne d'attaque par hameçonnage de Jingle Thief dans Microsoft 365.
+L'étape finale de l'attaque, l'enregistrement de l'appareil, crée une tête de pont que les acteurs de la menace exploitent pour émettre des cartes-cadeaux, qu'ils utilisent ensuite à des fins lucratives.
+Pourquoi les cartes-cadeaux ? La cible de choix
+Les cartes-cadeaux sont très attrayantes pour les acteurs motivés par le gain financier en raison de leur facilité d'utilisation et de leur monétisation rapide. Les acteurs de la menace revendent les cartes-cadeaux sur des forums du marché gris à des tarifs réduits, permettant un flux de trésorerie quasi instantané.
+D'autres facteurs qui rendent les cartes-cadeaux attrayantes incluent :
+
+Peu d'informations personnelles requises pour leur utilisation
+Difficiles à tracer, ce qui rend la fraude plus difficile à investiguer ou à recouvrer
+Largement acceptées, souvent indiscernables d'une utilisation légitime
+Utiles pour le blanchiment d'argent à faible risque, en particulier entre différentes juridictions
+Fréquemment émises via des systèmes avec des contrôles d'accès faibles, des autorisations internes larges et une surveillance ou une journalisation limitée
+
+Les environnements de vente au détail sont particulièrement vulnérables à ce type d'attaque, car les systèmes de cartes-cadeaux sont souvent accessibles à un large éventail d'utilisateurs internes, tels que les employés de magasin. Ces systèmes peuvent prendre en charge plusieurs fournisseurs ou programmes, ce qui rend les voies d'accès plus larges et plus difficiles à contrôler.
+La fraude à la carte-cadeau combine furtivité, rapidité et scalabilité, surtout lorsqu'elle est associée à un accès à des environnements cloud où résident les flux d'émission. Pour exploiter ces systèmes, les acteurs de la menace ont besoin d'accéder à la documentation et aux communications internes. Ils peuvent s'en assurer en volant des identifiants et en maintenant une présence discrète et persistante dans les environnements Microsoft 365 des organisations ciblées qui fournissent des services de cartes-cadeaux.
+Dans la campagne que nous avons observée, les attaquants ont fait des tentatives d'accès répétées contre plusieurs applications d'émission de cartes-cadeaux. Ils ont essayé d'émettre des cartes de grande valeur à travers différents programmes afin de les monétiser, et peut-être d'utiliser les cartes comme garantie dans des schémas de blanchiment d'argent — transformant ainsi le vol numérique en espèces intraçables ou en prêts à court terme. Ces opérations ont été mises en scène de manière à minimiser la journalisation et les traces forensiques, réduisant ainsi les chances de détection rapide.
+Des attaques hautement ciblées et personnalisées
+Les acteurs de la menace derrière la campagne Jingle Thief investissent massivement dans la reconnaissance avant de lancer des attaques. Ils collectent des renseignements sur chaque cible, y compris l'image de marque, les portails de connexion, les modèles d'e-mails et les conventions de nommage de domaine. Cela leur permet de créer un contenu d'hameçonnage très convaincant qui semble authentique à la fois pour les utilisateurs et les outils de sécurité.
+Les URL d'hameçonnage incluent souvent le nom de l'organisation, un outil ou un logiciel tiers de confiance, et des pages de destination qui imitent fidèlement les écrans de connexion légitimes. Cette approche d'ingénierie sociale hautement personnalisée augmente la probabilité de compromission et met en évidence l'utilisation par les acteurs de techniques sophistiquées.
+La figure 2 montre une page d'hameçonnage d'identifiants conçue par les acteurs de la menace pour usurper l'identité d'un portail de connexion Microsoft 365 légitime, adaptée à l'image de marque de l'organisation victime.
+Figure 2. Fausse page de connexion Microsoft 365 adaptée à l'organisation cible.
+Accès initial : hameçonnage et hameçonnage par SMS pour obtenir des identifiants cloud
+Les acteurs de la menace derrière la campagne Jingle Thief commencent généralement leurs opérations par des attaques d'hameçonnage ou de smishing (hameçonnage par SMS) personnalisées. Ces messages attirent les victimes vers de faux portails de connexion Microsoft 365 qui imitent les pages de connexion légitimes. Certains leurres usurpent l'identité d'organisations à but non lucratif ou non gouvernementales (ONG), probablement pour donner une apparence de crédibilité et augmenter l'engagement des victimes.
+Notamment, de nombreux messages sont délivrés à l'aide de scripts d'envoi d'e-mails PHP auto-hébergés, souvent envoyés depuis des serveurs WordPress compromis ou détournés, ce qui masque l'origine des attaquants et améliore la délivrabilité.
+Les acteurs de la menace emploient également un formatage d'URL trompeur, tel que :
+https://organization[.]com@malicious.cl[/]workspace
+Bien que l'URL ci-dessus semble pointer vers le domaine légitime de l'organisation (organisation.com), les navigateurs interprètent tout ce qui précède le @ comme des informations d'identification utilisateur, et naviguent en fait vers le domaine qui le suit (malicious.cl). Cette tactique aide à déguiser la véritable destination du lien et augmente la probabilité que les victimes cliquent.
+Après avoir collecté des identifiants dans la campagne que nous avons observée, les attaquants se sont authentifiés directement auprès de Microsoft 365 et ont commencé à naviguer dans l'environnement, sans qu'aucun logiciel malveillant ne soit nécessaire. La figure 3 montre une tentative de smishing utilisée pour collecter des identifiants, capturée à partir d'un journal d'envoi d'e-mails PHP malveillant de l'infrastructure des attaquants. Le message provenait d'une adresse IP marocaine et était envoyé à une passerelle SMS de Verizon (vtext.com).
+Figure 3. Hameçonnage d'identifiants par smishing, journalisé depuis l'infrastructure des attaquants.
+Reconnaissance dans le cloud : exploration de SharePoint et OneDrive à la recherche d'informations sur les cartes-cadeaux
+Après l'accès initial, les attaquants derrière Jingle Thief effectuent une reconnaissance approfondie au sein de l'environnement Microsoft 365, en se concentrant particulièrement sur SharePoint et OneDrive. Ces services contiennent fréquemment de la documentation interne relative aux opérations commerciales, aux processus financiers et aux flux de travail informatiques.
+Les acteurs de la menace recherchent :
+
+Les flux d'émission de cartes-cadeaux
+Les exports ou instructions du système de tickets
+Les guides de configuration et d'accès VPN
+Les feuilles de calcul ou outils internes utilisés pour émettre ou suivre les cartes-cadeaux
+Les machines virtuelles organisationnelles, les environnements Citrix
+
+La figure 4 montre les fichiers SharePoint auxquels les acteurs de la menace ont accédé après la compromission du compte, révélant leur concentration sur la documentation interne liée aux flux de travail des cartes-cadeaux et à l'infrastructure d'accès à distance.
+Figure 4. Fichiers SharePoint internes consultés par Jingle Thief après la compromission.
+Plutôt que d'élever leurs privilèges, les acteurs de la menace développent une connaissance de la situation en accédant aux données facilement disponibles sur les utilisateurs compromis. Cette approche discrète aide à échapper à la détection tout en préparant le terrain pour de futures fraudes.
+Hameçonnage interne pour les mouvements latéraux
+Au lieu de déployer des logiciels malveillants ou des frameworks de post-exploitation, Jingle Thief s'appuie sur l'hameçonnage interne pour étendre sa présence au sein des environnements cibles. Lors d'une tentative d'attaque contre l'un de nos clients, après avoir compromis le compte Microsoft 365 d'un utilisateur, les attaquants ont envoyé des e-mails d'hameçonnage depuis le compte légitime à du personnel au sein de la même organisation. Ces messages imitaient des notifications de service informatique ou des mises à jour de tickets, tirant souvent parti des informations recueillies dans la documentation interne ou les communications précédentes pour paraître légitimes.
+Leurres courants :
+
+Fausses alertes ServiceNow : « INCIDENT REQ07672026 a été complété »
+Notifications d'accès informatique : « Avis d'inactivité du compte ServiceNow »
+Invites d'approbation génériques : « Incident en attente de votre examen »
+
+Ces e-mails renvoient vers de faux portails de connexion arborant l'identité de l'organisation, exploitant la confiance interne pour échapper aux soupçons et se propager latéralement.
+La figure 5 montre un e-mail d'hameçonnage interne envoyé depuis un compte compromis, usurpant une notification d'inactivité de ServiceNow pour inciter les utilisateurs à saisir leurs identifiants.
+Figure 5. E-mail d'hameçonnage interne imitant une notification ServiceNow.
+Contrôler la boîte de réception pour une exfiltration silencieuse d'e-mails
+Pour surveiller passivement les communications internes, les attaquants responsables de la campagne Jingle Thief créent souvent des règles de boîte de réception pour transférer automatiquement les e-mails vers des adresses contrôlées par l'attaquant.
+Ils surveillent :
+
+Les approbations de cartes-cadeaux
+Les flux financiers
+La billetterie informatique ou les modifications de compte
+
+Cette approche réduit le besoin d'interaction active de l'attaquant et aide à maintenir la furtivité. La figure 6 montre une alerte signalant la création d'une règle de transfert de boîte de réception malveillante, qui est l'une des tactiques furtives employées par ces acteurs de la menace pour surveiller les communications internes.
+Figure 6. Alerte Cortex XDR montrant une règle de transfert automatique d'e-mails configurée par les acteurs de la menace.
+Activité e-mail furtive : se cacher à la vue de tous
+Pour couvrir leurs traces, les attaquants gèrent activement les dossiers de la boîte aux lettres :
+
+Déplacement immédiat des e-mails d'hameçonnage envoyés des Éléments envoyés vers les Éléments supprimés
+Déplacement des réponses des utilisateurs de la Boîte de réception vers les Éléments supprimés
+
+Cela garantit que les victimes ne verront pas les messages d'hameçonnage ou les réponses, retardant la découverte à la fois par les victimes et les défenseurs.
+Les journaux d'audit Exchange de la figure 7 montrent les attaquants déplaçant les réponses aux e-mails d'hameçonnage du dossier Boîte de réception vers le dossier Éléments supprimés.
+Figure 7. Éléments déplacés de la Boîte de réception vers les Éléments supprimés.
+Dominer les appareils non autorisés pour la persistance
+La plupart des intrusions que nous avons observées dans la campagne Jingle Thief reposaient sur des identifiants volés ou des jetons de session pour un accès temporaire. Cependant, les acteurs ont également démontré des techniques pour établir une persistance à plus long terme au sein des environnements compromis.
+Dans certaines intrusions, les acteurs de la menace ont pris le contrôle de l'infrastructure d'identité en détournant les mécanismes légitimes de libre-service utilisateur et d'enregistrement d'appareils dans Microsoft Entra ID. Ces tactiques leur ont permis de maintenir l'accès même après la réinitialisation des mots de passe ou la révocation des sessions.
+Les tactiques comprennent :
+
+L'enregistrement d'applications d'authentification frauduleuses pour contourner le MFA (authentification multifacteur)
+La réinitialisation des mots de passe via les flux de libre-service
+L'enrôlement d'appareils contrôlés par l'attaquant dans Entra ID
+
+La figure 8 montre l'interface utilisateur pour enregistrer un appareil dans Microsoft Entra ID à l'aide de l'application Authenticator. Les attaquants ont détourné ce processus légitime pour enrôler silencieusement des appareils non autorisés et maintenir un accès résistant au MFA.
+Figure 8. Flux d'enregistrement d'appareil dans Microsoft Entra ID.
+L'objectif ultime de ces diverses tactiques – hameçonnage, contrôle de la boîte de réception, exfiltration d'e-mails et enregistrement d'appareils non autorisés – est d'obtenir et de monétiser des cartes-cadeaux à grande échelle.
+Remonter aux racines marocaines de Jingle Thief
+Les activités de la campagne que nous avons observées provenaient presque exclusivement d'adresses IP géolocalisées au Maroc. À travers les incidents, les journaux Microsoft 365 ont montré des empreintes d'appareils et des comportements de connexion récurrents associés à ces adresses IP. Contrairement à de nombreux acteurs qui se cachent derrière des VPN, ces acteurs de la menace n'ont souvent fait aucune tentative pour masquer leur origine, et n'ont que parfois utilisé Mysterium VPN lors de l'accès aux comptes compromis.
+Les métadonnées du numéro de système autonome (ASN) des connexions correspondaient également de manière cohérente aux fournisseurs de télécommunications marocains, notamment :
+
+MT-MPLS
+ASMedi
+MAROCCONNECT
+
+En plus de l'infrastructure IP et ASN, Jingle Thief réutilise des structures de domaine et d'URL distinctives à travers les campagnes. Ces schémas récurrents dans la dénomination de domaine et l'infrastructure soutiennent davantage l'attribution à un groupe de menace basé au Maroc.
+Conclusion
+La campagne Jingle Thief démontre une concentration claire sur les systèmes d'émission de cartes-cadeaux des grands détaillants. Les attaquants ont ciblé plusieurs applications d'émission pour générer des cartes de grande valeur, probablement pour les revendre sur les marchés gris, ou comme actifs fongibles dans des chaînes de blanchiment d'argent. Les systèmes de cartes-cadeaux sont souvent sous-surveillés et largement accessibles en interne, ce qui en fait une extension attrayante des attaques basées sur l'identité : en compromettant les bons comptes, les acteurs de la menace peuvent émettre et voler des cartes-cadeaux, tout en ne laissant presque aucune trace de leurs opérations malveillantes.
+Le cluster d'activité derrière la campagne Jingle Thief recoupe l'activité d'acteurs de la menace publiquement connus sous le nom d'Atlas Lion. Ce cluster — suivi par l'Unit 42 sous le nom de CL-CRI-1032 — privilégie l'abus d'identité aux logiciels malveillants, et exploite les services cloud de confiance plutôt que la compromission des terminaux. Leurs campagnes soulignent comment les attaquants peuvent opérer entièrement dans des environnements cloud, abusant des fonctionnalités légitimes pour l'hameçonnage, la persistance et la fraude.
+En comprenant les tactiques utilisées dans la campagne Jingle Thief, les défenseurs peuvent mieux prioriser la surveillance basée sur l'identité et s'adapter à la transition de l'industrie vers le traitement de l'identité comme nouveau périmètre de sécurité. Comprendre le comportement des utilisateurs, les schémas de connexion et l'abus d'identité est de plus en plus essentiel pour une détection et une réponse précoces.
+Les clients de Palo Alto Networks sont mieux protégés contre cette activité avec le nouveau module Cortex Advanced Email Security, ainsi que Cortex UEBA et ITDR.
+Si vous pensez avoir été compromis ou si vous avez une question urgente, contactez l'équipe d'intervention sur incident de l'Unit 42 ou appelez :
+
+Amérique du Nord : Numéro gratuit : +1 (866) 486-4842 (866.4.UNIT42)
+Royaume-Uni : +44.20.3743.3660
+Europe et Moyen-Orient : +31.20.299.3130
+Asie : +65.6983.8730
+Japon : +81.50.1790.0200
+Australie : +61.2.4062.7950
+Inde : 00080005045107
+
+Palo Alto Networks a partagé ces découvertes avec les autres membres de la Cyber Threat Alliance (CTA). Les membres de la CTA utilisent ces renseignements pour déployer rapidement des protections à leurs clients et pour perturber systématiquement les cyberacteurs malveillants. En savoir plus sur la Cyber Threat Alliance.
+Indicateurs de compromission
+Infrastructure marocaine (Signal d'attribution)
+
+105.156.109[.]227
+105.156.234[.]139​​
+105.157.86[.]136
+105.158.226[.]49
+105.158.237[.]165
+160.176.128[.]242
+160.178.201[.]89
+160.179.102[.]157
+196.64.165[.]160
+196.65.139[.]51
+196.65.146[.]114
+196.65.172[.]48
+196.65.237[.]97
+196.74.125[.]243
+196.74.183[.]81
+196.77.47[.]232
+196.89.141[.]80
+41.141.201[.]19
+41.250.180[.]114
+41.250.190[.]104
+
+Organisations ASN associées (Géolocalisées au Maroc)
+
+MT-MPLS
+ASMedi
+MAROCCONNECT
+
+Infrastructure américaine (Hôtes proxy potentiels ou compromis)
+
+70.187.192[.]236
+72.49.91[.]23
+
+Schémas d'URL d'hameçonnage 
+
+hxxps://*.com.ng/*[brand-name].com/home/
+hxxps://*.[brand-name].servicenow.*/*access
+hxxps://[brand-name].com@*.*/portal/
+hxxps://[brand-name].com@*.*/workspace
+hxxps://*/home
+hxxps://*/workspace/home
+
+Ressources supplémentaires
+
+Cyber Signals: Into the Lion's Den – Microsoft
+Threat Actors Target Gift Card Issuing Systems – Intel471
+
+Alertes Cortex XDR/XSIAM sur l'activité Jingle Thief
+Le tableau 1 montre les alertes Cortex pour cette activité, en utilisant Identity Analytics, y compris les indicateurs de compromission comportementaux (BIOC) et le module ITDR.
+
+
+
+Nom de l'alerte
+Source de l'alerte
+Technique MITRE ATT&CK
+
+
+Règle de transfert de boîte de réception Exchange configurée
+XDR Analytics BIOC, Module Identity Threat (ITDR)
+Dissimulation d'artefacts : Règles de masquage d'e-mails (T1564.008)
+
+
+Utilisateur a déplacé des messages envoyés Exchange vers les éléments supprimés
+XDR Analytics, Module Identity Threat (ITDR)
+Suppression d'indicateurs : Effacer les données de la boîte aux lettres (T1070.008)
+
+
+Première connexion depuis un pays dans l'organisation
+XDR Analytics BIOC, Identity Analytics
+Compromission de comptes (T1586)
+
+
+Premier accès SSO depuis un ASN dans l'organisation
+XDR Analytics BIOC, Identity Analytics
+Comptes valides : Comptes de domaine (T1078.002)
+
+
+Voyageur impossible - SSO
+XDR Analytics, Identity Analytics
+Compromission de comptes (T1586)
+
+
+Un utilisateur s'est connecté depuis un nouveau pays
+XDR Analytics BIOC, Identity Analytics
+Compromission de comptes (T1586)
+
+
+Premier accès SSO depuis un ASN pour l'utilisateur
+XDR Analytics BIOC, Identity Analytics
+Comptes valides : Comptes de domaine (T1078.002)
+
+
+Un utilisateur s'est connecté à un VPN depuis un nouveau pays
+XDR Analytics BIOC, Identity Analytics
+Compromission de comptes (T1586)
+
+
+Accès VPN avec un système d'exploitation anormal
+XDR Analytics BIOC, Identity Analytics
+Comptes valides : Comptes de domaine (T1078.002)
+
+
+Premier accès VPN depuis un ASN dans l'organisation
+XDR Analytics BIOC, Identity Analytics
+Comptes valides : Comptes de domaine (T1078.002)
+
+
+Premier accès à une ressource SSO dans l'organisation
+XDR Analytics BIOC, Identity Analytics
+Comptes valides : Comptes de domaine (T1078.002)
+
+
+Accès SSO suspect depuis un ASN
+XDR Analytics BIOC, Identity Analytics
+Comptes valides : Comptes de domaine (T1078.002)
+
+
+Une connexion possiblement risquée à Azure
+XDR Analytics BIOC, Identity Analytics
+Compromission de comptes (T1586)
+
+
+Utilisateur a tenté de se connecter depuis un pays suspect
+XDR Analytics BIOC, Identity Analytics
+Compromission de comptes (T1586)
+
+
+SSO avec un nouveau système d'exploitation
+XDR Analytics BIOC, Identity Analytics
+Comptes valides : Comptes de domaine (T1078.002)
+
+
+Téléchargements massifs de fichiers depuis un service SaaS
+XDR Analytics, Module Identity Threat (ITDR)
+Données depuis le stockage cloud (T1530)
+
+
+
+ 
+
+
+Retour en haut de page
+
+ÉtiquettesCL‑CRI‑1032MicrosoftPhishingSmishing
+
+
+
+Threat Research Center
+
+
+SuivantQuand l’IA a trop bonne mémoire : abus de la persistance des agents
+
+
+
+
+
+
+
+SOMMAIRE
+
+
+
+
+
+
+Sur le même thème
+
+
+
+                      Bulletin sécurité : Hausse du cyber-risque lié à l’Iran en 2026 (mis à jour le 17 avril)                  
+
+
+
+                      Briefing sécurité : un stratagème de recrutement usurpe l’identité de l’équipe d’acquisition des talents de Palo Alto Networks                  
+
+
+
+                      Les Campagnes de l'ombre : Révélation d'un espionnage mondial                  
+
+
+
+
+
+
+
+
+
+Associé  Ressources
+
+
+
+
+ 
+
+
+
+Recherche sur les menaces 23 avril 2026
+
+L’IA peut-elle s’attaquer au cloud ? Enseignements tirés de la construction d’un système multi-agents offensif autonome dans le cloud
+
+
+
+AI
+
+
+Cloud
+
+
+Data exfiltration
+ 
+
+
+                    Lire l’article                    
+
+
+
+
+
+
+
+ 
+
+
+
+Recherche sur les menaces 6 février 2026
+
+Une technique inédite pour détecter les opérations d’acteurs de la menace dans le cloud
+
+
+
+API
+
+
+IAM
+
+
+MITRE
+ 
+
+
+                    Lire l’article                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights 29 janvier 2026
+
+Comprendre la cybermenace russe pesant sur les Jeux Olympiques d'hiver de 2026
+
+
+
+AI
+
+
+IoT
+
+
+Russia
+ 
+
+
+                    Lire l’article                    
+
+
+
+
+
+
+
+ 
+
+
+
+Recherche sur les menaces 20 janvier 2026
+
+DNS OverDoS : Les points de terminaison privés sont-ils trop privés ?
+
+
+
+Microsoft Azure
+
+
+Networking
+ 
+
+
+                    Lire l’article                    
+
+
+
+
+
+
+
+ 
+
+
+
+Recherche sur les menaces 10 décembre 2025
+
+01flip : un ransomware multi-plateforme écrit en langage Rust
+
+
+
+Bitcoin
+
+
+CL-CRl-103
+
+
+Cryptocurrency
+ 
+
+
+                    Lire l’article                    
+
+
+
+
+
+
+
+ 
+
+
+
+Recherche sur les menaces 25 novembre 2025
+
+Une arme à double tranchant : Les LLM malveillants
+
+
+
+Credential Harvesting
+
+
+Data exfiltration
+
+
+LLM
+ 
+
+
+                    Lire l’article                    
+
+
+
+
+
+
+
+ 
+
+
+
+Recherche sur les menaces 24 octobre 2025
+
+Cartographie des environnements cloud avec AzureHound
+
+
+
+Control plane
+
+
+Curious Serpens
+
+
+Data plane
+ 
+
+
+                    Lire l’article                    
+
+
+
+
+
+
+
+ 
+
+
+
+Recherche sur les menaces 3 septembre 2025
+
+Quand la réutilisation des espaces de noms met en péril l’intégrité de la supply chain de l’IA
+
+
+
+Azure
+
+
+GenAI
+
+
+Google
+ 
+
+
+                    Lire l’article                    
+
+
+
+
+
+
+
+ 
+
+
+
+Groupes cybercriminels 31 juillet 2025
+
+Le cadre d’attribution de l’Unit 42
+
+
+
+Advanced Persistent Threat
+
+
+Bookworm
+
+
+Nomenclature
+ 
+
+
+                    Lire l’article                    
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
+				Abonnez-vous aux infos d’Unit 42			
+Gardez un coup d’avance sur les menaces pour évoluer en toute sérénité. Contactez-nous
+
+
+
+
+
+
+
+
+
+
+Your Email
+
+
+Abonnez-vous aux infos par e-mail sur les travaux de recherche Unit 42.L’envoi de ce formulaire implique l’acceptation de nos Conditions d’utilisation et de notre Politique de confidentialité.
+
+                    Ce site est protégé par reCAPTCHA et est soumis à la Politique de confidentialité et aux Conditions générales de Google.                            
+  
+
+Invalid captcha!
+ 
+					Je m’abonne					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Recevez toutes les dernières infos, invitations à des évènements et alertes de sécurité
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Saisissez votre adresse e-mail...
+
+
+
+
+
+Je m’abonne  
+
+
+
+
+                                
+                                
+                                
+                                    
+                                    
+                                        
+                                        En soumettant ce formulaire, j’accepte que mes données personnelles soient traitées conformément à la politique de confidentialité et aux conditions d’utilisation de Palo Alto Networks.
+                                    
+                                
+
+                                
+                                
+
+
+Je m’abonne  
+
+
+
+
+
+
+
+
+
+
+
+
+Produits et services
+
+
+
+
+
+                                    Plateforme de sécurité du réseau pilotée par IA 
+                                
+
+
+
+                                    Sécuriser l’IA à la conception 
+                                
+
+
+
+                                    Prisma AIRS
+                                
+
+
+
+                                    AI Access Security 
+                                
+
+
+
+                                    Services de sécurité cloud (CDSS) 
+                                
+
+
+
+                                    Advanced Threat Prevention 
+                                
+
+
+
+                                    Advanced URL Filtering 
+                                
+
+
+
+                                    Advanced WildFire 
+                                
+
+
+
+                                    Advanced DNS Security 
+                                
+
+
+
+                                    Enterprise Data Loss Prevention 
+                                
+
+
+
+                                    Sécurité IoT d’entreprise 
+                                
+
+
+
+                                    Sécurité IoT médical 
+                                
+
+
+
+                                    Industrial OT Security 
+                                
+
+
+
+                                     Sécurité SaaS 
+                                
+
+
+
+
+
+                                    Pare-feu nouvelle génération 
+                                
+
+
+
+                                    Pare-feu matériels 
+                                
+
+
+
+                                    Logiciels pare-feu 
+                                
+
+
+
+                                    Strata Cloud Manager 
+                                
+
+
+
+                                    SD-WAN pour NGFW 
+                                
+
+
+
+                                    PAN-OS 
+                                
+
+
+
+                                    Panorama 
+                                
+
+
+
+                                    Secure Access Service Edge 
+                                
+
+
+
+                                    Prisma SASE 
+                                
+
+
+
+                                    Accélération des applications 
+                                
+
+
+
+                                    Autonomous Digital Experience Management (ADEM) 
+                                
+
+
+
+                                    DLP d’entreprise 
+                                
+
+
+
+                                    Prisma Access 
+                                
+
+
+
+                                    Prisma Browser 
+                                
+
+
+
+                                    Prisma SD-WAN 
+                                
+
+
+
+                                    Isolation de navigateur à distance (RBI) 
+                                
+
+
+
+                                    Sécurité SaaS 
+                                
+
+
+
+
+
+                                    Plateforme SecOps pilotée par IA
+                                
+
+
+
+                                    Sécurité cloud
+                                
+
+
+
+                                    Cortex Cloud 
+                                
+
+
+
+                                    Sécurité des applications 
+                                
+
+
+
+                                    Posture de sécurité dans le cloud 
+                                
+
+
+
+                                    Sécurité du Runtime dans le cloud 
+                                
+
+
+
+                                    Prisma Cloud 
+                                
+
+
+
+                                    SOC piloté par IA 
+                                
+
+
+
+                                    Cortex XSIAM 
+                                
+
+
+
+                                    Cortex XDR 
+                                
+
+
+
+                                    Cortex XSOAR 
+                                
+
+
+
+                                    Cortex Xpanse 
+                                
+
+
+
+                                    Services managés détection et réponse Unit 42 
+                                
+
+
+
+                                    XSIAM managé 
+                                
+
+
+
+
+
+                                    Sécurité des identités nouvelle génération
+                                
+
+
+
+                                    Gestion des accès privilégiés (PAM)
+                                
+
+
+
+                                    Gestion des identités et des accès (IAM)
+                                
+
+
+
+                                    Endpoint Privilege Manager
+                                
+
+
+
+                                    Gouvernance des identités
+                                
+
+
+
+                                    Workforce Password Management
+                                
+
+
+
+                                    Identités agentiques
+                                
+
+
+
+                                    Gestion des secrets
+                                
+
+
+
+                                    Gouvernance unifiée des secrets
+                                
+
+
+
+                                    Déploiement d’identifiants applicatifs
+                                
+
+
+
+                                    Accès privilégiés des prestataires
+                                
+
+
+
+                                    Services de Threat Intelligence et de réponse à incident
+                                
+
+
+
+                                    Évaluations proactives
+                                
+
+
+
+                                    Réponse à incident
+                                
+
+
+
+                                    Transformez votre stratégie de sécurité
+                                
+
+
+
+                                    Découvrez la Threat Intelligence Entreprise Notre entreprise Carrières Nous contacter Responsabilité d’entreprise Clients Relations investisseurs Présence dans le monde
+                                
+
+
+
+
+
+
+Entreprise
+
+
+
+
+
+                                    Notre entreprise
+                                
+
+
+
+                                    Carrières
+                                
+
+
+
+                                    Nous contacter 
+                                
+
+
+
+                                    Responsabilité d’entreprise
+                                
+
+
+
+                                    Clients
+                                
+
+
+
+                                    Relations investisseurs
+                                
+
+
+
+                                    Présence dans le monde
+                                
+
+
+
+                                    Presse
+                                
+
+
+
+
+
+
+Pages les plus visitées
+
+
+
+
+
+                                    Article
+                                
+
+
+
+                                    Communautés
+                                
+
+
+
+                                    Bibliothèque de contenu
+                                
+
+
+
+                                    Cyberpedia
+                                
+
+
+
+                                    Évènements
+                                
+
+
+
+                                    Préférences de communication
+                                
+
+
+
+                                    Produits de A à Z
+                                
+
+
+
+                                    Certifications produits
+                                
+
+
+
+                                    Signaler une vulnérabilité
+                                
+
+
+
+                                    Plan du site
+                                
+
+
+
+                                    Documentation technique
+                                
+
+
+
+                                    Unit 42
+                                
+
+
+
+                                    Ne pas autoriser la vente ou le partage de mes données personnelles
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Politique de confidentialité
+                            
+
+
+
+                                Trust Center
+                            
+
+
+
+                                Conditions générales d'utilisation
+                            
+
+
+
+                                Documents
+                            
+
+
+Copyright © 2026 Palo Alto Networks. Tous droits réservés
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+FR
+
+
+
+Select your language
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Your browser does not support the video tag.
+          
+
+Default Heading
+Read the article
+              
+
+
+
+
+Seekbar
+
+
+
+
+
+
+
+
+
+
+
+
+
+Volume
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

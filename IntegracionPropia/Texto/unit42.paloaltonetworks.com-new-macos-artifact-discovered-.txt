@@ -1,0 +1,1268 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Tracing Digital Intent: New MacOS Tahoe 26 Artifact Discovered
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Menu
+
+
+
+
+
+
+Tools
+ATOMs
+Security Consulting
+About Us
+Under Attack?
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  Threat Research CenterInsightsGeneral 
+ 
+General
+Tracing Digital Intent: New MacOS Tahoe 26 Artifact Discovered
+
+
+  3  min read              
+
+
+Related ProductsUnit 42 Incident Response 
+
+
+
+
+
+
+
+
+By:Chip Riley 
+
+Published:June 12, 2026 Categories:GeneralInsights
+ Tags:Digital forensicsMacOS
+ 
+
+
+ 
+ 
+
+
+Share
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+Surfacing a New Artifact
+Forensic examiners are constantly hunting for data that reveals not just what happened on a system, but the user's intent behind it. With the release of macOS Tahoe 26, a new artifact has surfaced that provides exactly this level of granularity. We have identified a new Biome stream, App.MenuItem, which logs specific menu selections made by users across the operating system.
+This artifact offers a step-by-step record of user actions — from compressing files to emptying the trash — providing critical context for user activity across the operating system. This blog outlines where to find this artifact, how to process it and what stories the data can tell.
+Apple Biome – A Gold Mine for Forensic Investigators
+The Apple Biome system has long been a gold mine for forensic investigators, tracking everything from app usage to media consumption. In macOS Tahoe 26.x, Apple appears to have introduced a new stream specifically designed to track menu selections, likely to facilitate user suggestions or learning behavior.
+Location and Structure
+The artifact is located at ~/Library/Biome/streams/restricted/App.MenuItem/local. Unlike simple logs, this file contains SEGB-encapsulated protobuf entries. SEGB is the file format used by the Biome. While this format requires specific tooling to parse, the payoff is significant. The stream captures the exact text of menu items selected by the user, along with the timestamp of the activity, providing a narrative of their interaction with the interface.
+Parsing the Artifact
+Because standard forensic tools may not yet parse this specific stream, examiners can utilize open-source tools like ccl-segb to extract the raw data. In our testing, this artifact is not parsed by the most common commercially available digital forensic tools available.
+To process the file:
+
+Export the file(s) from the directory ~/Library/Biome/streams/restricted/App.MenuItem/local.
+Run the ccl-segb Python script: python ccl_segb_cli.py <exportedfilename> > outputfilename.txt.
+Convert the resulting text output into a CSV format for easier filtering and analysis using a Python script.
+
+Analyzing User Intent
+The true value of App.MenuItem lies in its ability to reconstruct a user's workflow. Where a file system event might simply show a file was deleted, this artifact can show the deliberate action of selecting "Move to Trash" followed by "Empty Trash.”
+Consider the following sequence of events observed in our sample analysis:
+
+18:32:37: The user navigates using Go > Go to Folder… in Finder.
+18:36:59: In TextEdit, the user selects File > Save…, followed by typing "u42validation".
+18:37:54: The user highlights a folder named "stolendata" and selects Compress “stolendata”.
+18:38:19: The user selects Move to Trash.
+18:38:41: The user interacts with the Dock to select Empty Trash.
+
+In this scenario, we see a clear pattern: data creation, compression (likely for exfiltration) and subsequent cleanup. We even see interaction with specific UI elements, such as Copy and Paste Item later in the timeline.
+Limitations
+While powerful, this artifact is not without limitations. It relies on the menu item text itself. If a menu option does not explicitly contain the file or folder name (e.g., a generic "Open" command vs. "Compress 'Report'"), the specific target of the action might not be visible in this stream alone. However, when correlated with file system logs, App.MenuItem provides the "human" context that technical logs often miss.
+Final Thoughts
+The discovery of the App.MenuItem artifact in MacOS Tahoe 26 adds a powerful new layer to forensic investigations. By capturing the specific menu choices a user makes, examiners can reconstruct digital intent with greater precision than before. Whether you are investigating data exfiltration or trying to understand a sequence of events, this Biome stream provides a narrative view of user behavior.
+As macOS continues to evolve, so must our forensic methodologies. We encourage all examiners working with Tahoe images to verify if this artifact is present and incorporate it into their standard analysis workflows.
+
+
+Back to top
+
+TagsDigital forensicsMacOS
+
+
+
+Threat Research Center
+
+
+Next: Trust No Skill: Integrity Verification for AI Agent Supply Chains
+
+
+
+
+
+
+
+Table of Contents
+
+
+
+
+
+
+Related Articles
+
+
+
+                      Atomic macOS (AMOS) Stealer Activity                  
+
+
+
+                      Operation FlutterBridge: macOS Malvertising Campaign Spreads New FlutterShell Backdoor                  
+
+
+
+                      RustDoor and Koi Stealer for macOS Used by North Korea-Linked Threat Actor to Target the Cryptocurrency Sector                  
+
+
+
+
+
+
+
+
+
+Related General Resources
+
+
+
+
+ 
+
+
+
+Insights September 16, 2026
+
+Atomic macOS (AMOS) Stealer Activity
+
+
+
+MacOS
+
+
+Threat intelligence
+
+
+Unit 42
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights September 2, 2026
+
+An AI-Assisted Cyber Attack: Inside a Unit 42 Investigation
+
+
+
+Agentic AI
+
+
+Frontier AI
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights August 28, 2026
+
+Perturbation Probing: A New Diagnostic for the Fragility of LLM Safety
+
+
+
+AI
+
+
+Jailbreak
+
+
+LLM
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights August 21, 2026
+
+Connecting the Dots: Securing the Overlooked Corners of the Software Development Lifecycle (SDLC) Supply Chain
+
+
+
+ChainDrop
+
+
+Npm packages
+
+
+Software supply-chain attack
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+High Profile Threats August 18, 2026
+
+Threat Brief: Mitigating Large-Scale Credential Attacks (Updated August 18)
+
+
+
+Credential theft
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights August 4, 2026
+
+The Frontier AI Vulnerability Burst: Industrializing Autonomous Zero-Day Discovery in Open-Source Software
+
+
+
+AI
+
+
+Frontier AI
+
+
+Vulnerability Exploitation
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights July 2, 2026
+
+How We Added WebAuthn to a Browser-Based RDP Client
+
+
+
+IDA Pro
+
+
+Microsoft
+
+
+RDP
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights June 8, 2026
+
+When “Hi, This Is IT” Comes Through Microsoft Teams
+
+
+
+Cloaked Ursa
+
+
+Identity
+
+
+Phishing
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights May 28, 2026
+
+2026 World Cup: Discussing The World’s Biggest Game’s Attack Surface
+
+
+
+Fiddling Scorpius
+
+
+Fighting Ursa
+
+
+Muddled Libra
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
+				Get updates from Unit 42			
+Peace of mind comes from staying ahead of threats. Subscribe today.
+
+
+
+
+
+
+
+
+
+
+Your Email
+
+
+Subscribe for email updates to all Unit 42 threat research.
+By submitting this form, you agree to our Terms of Use and acknowledge our Privacy Statement.
+
+                    This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.                            
+  
+
+Invalid captcha!
+ 
+					Subscribe					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Get the latest news, invites to events, and threat alerts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Enter your email now to subscribe!
+
+
+
+
+
+Sign up 
+
+
+
+
+                                
+                                
+                                
+                                    By submitting this form, I understand my personal data will be processed in accordance with
+                                        Palo Alto Networks Privacy Statement and Terms of Use.
+
+
+
+Sign up 
+
+
+
+
+
+
+
+
+
+
+
+
+Products and Services
+
+
+
+
+
+                                    AI-Powered Network Security Platform
+                                
+
+
+
+                                    Secure AI by Design
+                                
+
+
+
+                                    Prisma AIRS
+                                
+
+
+
+                                    AI Access Security
+                                
+
+
+
+                                    Cloud Delivered Security Services
+                                
+
+
+
+                                    Advanced Threat Prevention
+                                
+
+
+
+                                    Advanced URL Filtering
+                                
+
+
+
+                                    Advanced WildFire
+                                
+
+
+
+                                    Advanced DNS Security
+                                
+
+
+
+                                    Enterprise Data Loss Prevention
+                                
+
+
+
+                                    Enterprise IoT Security
+                                
+
+
+
+                                    Medical IoT Security
+                                
+
+
+
+                                    Industrial OT Security
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    Next-Generation Firewalls
+                                
+
+
+
+                                    Hardware Firewalls
+                                
+
+
+
+                                    Software Firewalls
+                                
+
+
+
+                                    Strata Cloud Manager
+                                
+
+
+
+                                    SD-WAN for NGFW
+                                
+
+
+
+                                    PAN-OS
+                                
+
+
+
+                                    Panorama
+                                
+
+
+
+                                    Secure Access Service Edge
+                                
+
+
+
+                                    Prisma SASE
+                                
+
+
+
+                                    Application Acceleration
+                                
+
+
+
+                                    Autonomous Digital Experience Management
+                                
+
+
+
+                                    Enterprise DLP
+                                
+
+
+
+                                    Prisma Access
+                                
+
+
+
+                                    Prisma Browser
+                                
+
+
+
+                                    Prisma SD-WAN
+                                
+
+
+
+                                    Remote Browser Isolation
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    AI-Driven Security Operations Platform
+                                
+
+
+
+                                    Cloud Security
+                                
+
+
+
+                                    Cortex Cloud
+                                
+
+
+
+                                    Application Security
+                                
+
+
+
+                                    Cloud Posture Security
+                                
+
+
+
+                                    Cloud Runtime Security
+                                
+
+
+
+                                    Prisma Cloud
+                                
+
+
+
+                                    AI-Driven SOC
+                                
+
+
+
+                                    Cortex XSIAM
+                                
+
+
+
+                                    Cortex XDR
+                                
+
+
+
+                                    Cortex XSOAR
+                                
+
+
+
+                                    Cortex Xpanse
+                                
+
+
+
+                                    Unit 42 Managed Detection & Response
+                                
+
+
+
+                                    Managed XSIAM
+                                
+
+
+
+                                    Observability
+                                
+
+
+
+                                    Cortex XCOR
+                                
+
+
+
+
+
+                                    Next-Generation Identity Security
+                                
+
+
+
+                                    Privileged Access Management
+                                
+
+
+
+                                    Identity and Access Management 
+                                
+
+
+
+                                    Endpoint Privilege Manager
+                                
+
+
+
+                                    Identity Governance
+                                
+
+
+
+                                    Workforce Password Management
+                                
+
+
+
+                                    Agentic Identities
+                                
+
+
+
+                                    Secrets Management
+                                
+
+
+
+                                    Unified Secrets Governance
+                                
+
+
+
+                                    Application Credentials Delivery
+                                
+
+
+
+                                    Vendor Privileged Access
+                                
+
+
+
+                                    Threat Intel and Incident Response Services
+                                
+
+
+
+                                    Prepare for Emerging Risks
+                                
+
+
+
+                                    Strengthen Your Defenses
+                                
+
+
+
+                                    Build Your Security Strategy
+                                
+
+
+
+                                    Understand the Adversary
+                                
+
+
+
+                                    Respond to a Cyber Attack
+                                
+
+
+
+
+
+
+Company
+
+
+
+
+
+                                    About Us
+                                
+
+
+
+                                    Careers
+                                
+
+
+
+                                    Contact Us
+                                
+
+
+
+                                    Corporate Responsibility
+                                
+
+
+
+                                    Customers
+                                
+
+
+
+                                    Investor Relations
+                                
+
+
+
+                                    Location
+                                
+
+
+
+                                    Newsroom
+                                
+
+
+
+
+
+
+Popular Links
+
+
+
+
+
+                                    Blog
+                                
+
+
+
+                                    Communities
+                                
+
+
+
+                                    Content Library
+                                
+
+
+
+                                    Cyberpedia
+                                
+
+
+
+                                    Event Center
+                                
+
+
+
+                                    Manage Email Preferences
+                                
+
+
+
+                                    Products A-Z
+                                
+
+
+
+                                    Product Certifications
+                                
+
+
+
+                                    Report a Vulnerability
+                                
+
+
+
+                                    Sitemap
+                                
+
+
+
+                                    Tech Docs
+                                
+
+
+
+                                    Unit 42
+                                
+
+
+
+                                    Do Not Sell or Share My Personal Information
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Privacy
+                            
+
+
+
+                                Trust Center
+                            
+
+
+
+                                Terms of Use
+                            
+
+
+
+                                Documents
+                            
+
+
+Copyright © 2026 Palo Alto Networks. All Rights Reserved
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+EN
+
+
+
+Select your language
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Your browser does not support the video tag.
+          
+
+Default Heading
+Read the article
+              
+
+
+
+
+Seekbar
+
+
+
+
+
+
+
+
+
+
+
+
+
+Volume
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

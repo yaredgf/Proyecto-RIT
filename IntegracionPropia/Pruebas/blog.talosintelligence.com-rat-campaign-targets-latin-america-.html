@@ -1,0 +1,1085 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Malicious Campaign Targets Latin America: The seller, The operator and a curious link</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/bootstrap.min.css?v=-xdjtZ-fV2QpS1r5">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/navigation.css?v=PhzoiGnw4ldwozL1">
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/footer.css?v=sVEdldiwj6rF6gHP">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/pagination.css?v=HruyeF1JUFuoy6Wu">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/banners.css?v=vI3KT68RWE95HKDs">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/style.css?v=idjnUZoOumC94rdj">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/prism.css?v=jqyaOB6z6CqMaOT4">
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/prism-vsc-dark-plus.css?v=xoEFwaYF1JkH_sqf">
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/prism-talos.css?v=kn8aYcNhO045nXac">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/landing-page.css?v=EPtrK0eJwYLqD25v">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/coverage-block.css?v=vBgCqINSTHrSh9PX">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/ghost-theme-utils@latest/dist/css/style.min.css" rel="stylesheet">
+
+
+    <link rel="icon" href="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w256h256/2022/07/talos_o_square.png" type="image/png">
+    <link rel="canonical" href="https://blog.talosintelligence.com/rat-campaign-targets-latin-america/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta property="og:site_name" content="Cisco Talos Blog">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Malicious Campaign Targets Latin America: The seller, The operator and a curious link">
+    <meta property="og:description" content="By Asheer Malhotra and Vitor Ventura, with contributions from Vanja Svajcer.
+
+
+ * Cisco Talos has observed a new malware campaign delivering commodity RATs, including njRAT and AsyncRAT.
+ * The campaign targets travel and hospitality organizations in Latin America.
+ * Techniques utilized in this campaign bear a resemblance to those of the Aggah group">
+    <meta property="og:url" content="https://blog.talosintelligence.com/rat-campaign-targets-latin-america/">
+    <meta property="og:image" content="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-ngCE5hUAHSM/YRxTk-_YG_I/AAAAAAAAAT8/ipbYIhm7XJcSbr8glXMtsF35z72pM7RYwCLcBGAsYHQ/w1200-h630-p-k-no-nu/image6.jpg">
+    <meta property="article:published_time" content="2021-08-19T11:58:00.000Z">
+    <meta property="article:modified_time" content="2022-12-22T16:53:13.000Z">
+    <meta property="article:tag" content="RAT">
+    <meta property="article:tag" content="SecureX">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Malicious Campaign Targets Latin America: The seller, The operator and a curious link">
+    <meta name="twitter:description" content="By Asheer Malhotra and Vitor Ventura, with contributions from Vanja Svajcer.
+
+
+ * Cisco Talos has observed a new malware campaign delivering commodity RATs, including njRAT and AsyncRAT.
+ * The campaign targets travel and hospitality organizations in Latin America.
+ * Techniques utilized in this campaign bear a resemblance to those of the Aggah group">
+    <meta name="twitter:url" content="https://blog.talosintelligence.com/rat-campaign-targets-latin-america/">
+    <meta name="twitter:image" content="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-ngCE5hUAHSM/YRxTk-_YG_I/AAAAAAAAAT8/ipbYIhm7XJcSbr8glXMtsF35z72pM7RYwCLcBGAsYHQ/w1200-h630-p-k-no-nu/image6.jpg">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Asheer Malhotra">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="RAT, SecureX">
+    <meta name="twitter:site" content="@TalosSecurity">
+    <meta name="twitter:creator" content="@asheermalhotra">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Cisco Talos Blog",
+        "url": "https://blog.talosintelligence.com/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/11/TalosBrand_ukraine.svg"
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Asheer Malhotra",
+        "url": "https://blog.talosintelligence.com/author/asheer-malhotra/",
+        "sameAs": [
+            "https://x.com/asheermalhotra"
+        ]
+    },
+    "headline": "Malicious Campaign Targets Latin America: The seller, The operator and a curious link",
+    "url": "https://blog.talosintelligence.com/rat-campaign-targets-latin-america/",
+    "datePublished": "2021-08-19T11:58:00.000Z",
+    "dateModified": "2022-12-22T16:53:13.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-ngCE5hUAHSM/YRxTk-_YG_I/AAAAAAAAAT8/ipbYIhm7XJcSbr8glXMtsF35z72pM7RYwCLcBGAsYHQ/w1200-h630-p-k-no-nu/image6.jpg",
+        "width": 1200,
+        "height": 630
+    },
+    "keywords": "RAT, SecureX",
+    "description": "By Asheer Malhotra and Vitor Ventura, with contributions from Vanja Svajcer.\n\n\n * Cisco Talos has observed a new malware campaign delivering commodity RATs, including njRAT and AsyncRAT.\n * The campaign targets travel and hospitality organizations in Latin America.\n * Techniques utilized in this campaign bear a resemblance to those of the Aggah group but are operated by a distinct threat actor based out of Brazil.\n * We've also discovered a builder/crypter known as “Crypter 3losh rat” used to ge",
+    "mainEntityOfPage": "https://blog.talosintelligence.com/rat-campaign-targets-latin-america/"
+}
+    </script>
+
+    <meta name="generator" content="Ghost 6.68">
+    <link rel="alternate" type="application/rss+xml" title="Cisco Talos Blog" href="https://blog.talosintelligence.com/rss/">
+    
+    <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/sodo-search.min.js" data-key="4ffb0139d74ada998f4b141e4d" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/main.css" data-sodo-search="https://cisco-talos-blog.ghost.io/" data-locale="en" crossorigin="anonymous"></script>
+    
+    <link href="https://blog.talosintelligence.com/webmentions/receive/" rel="webmention">
+    <script defer src="/public/cards.min.js?v=ShRHxgy4po8zN-Wf"></script>
+    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=WwnU9jw5ancNC8Gc">
+    <script defer src="/public/ghost-stats.min.js?v=vFcCUf6ZQ0Hyhc8h" data-stringify-payload="false" data-datasource="analytics_events" data-storage="localStorage" data-host="https://blog.talosintelligence.com/.ghost/analytics/api/v1/page_hit"  tb_site_uuid="afa04ee3-414f-4481-8d23-7e7c146f192e" tb_post_uuid="18f5c12c-d724-4b55-86fa-c09484e0ca05" tb_post_type="post" tb_member_uuid="undefined" tb_member_status="undefined" tb_gift_link=""></script><style>:root {--ghost-accent-color: #006db6;}</style>
+    <style type='text/css'>
+    img[src*="icon_check_white.svg"] { width: 20px; margin-left: 0px; margin-right: auto; }
+    
+    #ghost-portal-root { display: none; }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F45RVJG3BK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-F45RVJG3BK');
+</script>
+</head>
+
+<body class="post-template tag-rat tag-securex-3">
+
+    <div id="mobile-page-header" class="desktop-hide mobile-page-header">
+    <a class="mobile-nav-home-link" href="/">
+        <div class="mobile-logo-wrapper">
+        </div>
+        <div class="mobile-home-title">Blog</div>
+    </a>
+    <div id="mobile-search-wrapper">
+        <button class="search-button mobile-search-button" data-ghost-search>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        </button>
+    </div>
+</div>
+
+<nav id="nav">
+    <input id="nav-trigger" class="nav-trigger" type="checkbox"/>
+    <label for="nav-trigger">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="22px" height="16px" viewBox="0 0 22 16">
+            <g id="menu-icon">
+                <path fill="#FFFFFF" d="M20.5,3h-19C0.672,3,0,2.329,0,1.5S0.672,0,1.5,0h19C21.328,0,22,0.671,22,1.5S21.328,3,20.5,3z"></path>
+                <path fill="#FFFFFF" d="M20.5,9.5h-19C0.672,9.5,0,8.828,0,8c0-0.829,0.672-1.5,1.5-1.5h19C21.328,6.5,22,7.171,22,8   C22,8.828,21.328,9.5,20.5,9.5z"></path>
+                <path fill="#FFFFFF" d="M20.5,16h-19C0.672,16,0,15.328,0,14.5S0.672,13,1.5,13h19c0.828,0,1.5,0.672,1.5,1.5S21.328,16,20.5,16z"></path>
+            </g>
+        </svg>
+    </label>
+    <div id="top-nav-bar">
+    </div>
+
+    <div id="navigation">
+        <div class="navigation-logos-wrapper">
+            <div id="talos-logo-wrapper">
+                <a class="navbar-brand" href="https://talosintelligence.com">
+                </a>
+            </div>
+        </div>
+        <div class="navigation-links-wrapper">
+            <ul class="main-nav-list">
+                <li class="nav-item">
+                    <div class="primary-link-wrapper">
+                        <a class="primary_nav_link" href="https://talosintelligence.com/reputation">
+                            <div class="mobile-nav-icon"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" height="20px" width="20px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                            <style type="text/css">
+                                .white{fill:#FFFFFF;}
+                            </style>
+                            <g>
+                                <path class="white" d="M19.5,9.5h-1.1c-0.3-4.2-3.6-7.6-7.8-7.8V0.5C10.5,0.2,10.3,0,10,0l0,0C9.7,0,9.5,0.2,9.5,0.5l0,0v1.1   C5.3,1.9,1.9,5.3,1.6,9.5H0.5C0.2,9.5,0,9.7,0,10s0.2,0.5,0.5,0.5l0,0h1.1c0.3,4.2,3.6,7.6,7.8,7.8v1.1c0,0.3,0.2,0.5,0.5,0.5l0,0   c0.3,0,0.5-0.2,0.5-0.5l0,0v-1.1c4.2-0.3,7.6-3.6,7.8-7.8h1.1c0.3,0,0.5-0.2,0.5-0.5C20,9.7,19.8,9.5,19.5,9.5 M16.6,10.5h0.7   c-0.3,3.6-3.2,6.5-6.8,6.8v-0.8c0-0.3-0.2-0.5-0.5-0.5l0,0c-0.3,0-0.5,0.2-0.5,0.5v0.8C5.8,17,3,14.2,2.7,10.5h0.8   C3.8,10.5,4,10.3,4,10S3.8,9.5,3.5,9.5l0,0H2.7C3,5.8,5.8,3,9.5,2.7v0.8C9.5,3.7,9.7,4,10,4l0,0c0.3,0,0.5-0.2,0.5-0.5V2.7   C14.2,3,17,5.8,17.3,9.5h-0.7c-0.3,0-0.5,0.2-0.5,0.5C16.1,10.3,16.3,10.5,16.6,10.5L16.6,10.5"></path>
+                                                            <circle class="white" cx="10" cy="10" r="3.2"></circle>
+                            </g>
+                            </svg>
+                            </div>
+                            <span class="top-nav-link-text">
+                                Intelligence Center
+                            </span>
+                        </a>
+                    </div>
+                    <input class="sub-nav-trigger" id="intelligence-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="intelligence-sub-trigger">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+
+                    </label>
+                    <ul class="sub-nav sub-nav-single-list">
+                        <li class="desktop-hide">
+                            <a class="mobile_nav_link" href="https://talosintelligence.com/reputation"><h1>Intelligence Center</h1>
+                            </a></li>
+                        <li class="desktop-hide">
+                            <label class="subnav-back-button" for="intelligence-sub-trigger">BACK</label>
+                        </li>
+                        <li><a class="secondary_nav_link" href="https://talosintelligence.com/reputation_center">Intelligence Search</a></li>
+                        <li><a class="secondary_nav_link" href="https://talosintelligence.com/reputation_center/email_rep">Email &amp; Spam Trends</a></li>
+                    </ul>
+                    <div class="desktop-hide subnav-overlay"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" height="20px" width="20px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                        <style type="text/css">
+                            .white{fill:#FFFFFF;}
+                        </style>
+                                                <g>
+                            <path class="white" d="M19.5,9.5h-1.1c-0.3-4.2-3.6-7.6-7.8-7.8V0.5C10.5,0.2,10.3,0,10,0l0,0C9.7,0,9.5,0.2,9.5,0.5l0,0v1.1   C5.3,1.9,1.9,5.3,1.6,9.5H0.5C0.2,9.5,0,9.7,0,10s0.2,0.5,0.5,0.5l0,0h1.1c0.3,4.2,3.6,7.6,7.8,7.8v1.1c0,0.3,0.2,0.5,0.5,0.5l0,0   c0.3,0,0.5-0.2,0.5-0.5l0,0v-1.1c4.2-0.3,7.6-3.6,7.8-7.8h1.1c0.3,0,0.5-0.2,0.5-0.5C20,9.7,19.8,9.5,19.5,9.5 M16.6,10.5h0.7   c-0.3,3.6-3.2,6.5-6.8,6.8v-0.8c0-0.3-0.2-0.5-0.5-0.5l0,0c-0.3,0-0.5,0.2-0.5,0.5v0.8C5.8,17,3,14.2,2.7,10.5h0.8   C3.8,10.5,4,10.3,4,10S3.8,9.5,3.5,9.5l0,0H2.7C3,5.8,5.8,3,9.5,2.7v0.8C9.5,3.7,9.7,4,10,4l0,0c0.3,0,0.5-0.2,0.5-0.5V2.7   C14.2,3,17,5.8,17.3,9.5h-0.7c-0.3,0-0.5,0.2-0.5,0.5C16.1,10.3,16.3,10.5,16.6,10.5L16.6,10.5"></path>
+                                                    <circle class="white" cx="10" cy="10" r="3.2"></circle>
+                        </g>
+                        </svg>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="primary-link-wrapper">
+                        <a class="primary_nav_link" href="https://talosintelligence.com/vulnerability_info"><div class="mobile-nav-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px" height="20px" viewBox="0 0 26 20">
+                            <g id="vuln-icon" class="nav-icon">
+                                <path fill="#FFFFFF" d="M24.256,18.49L13.872,0.503C13.692,0.192,13.36,0,13,0c-0.359,0-0.692,0.192-0.872,0.503L1.744,18.49  c-0.18,0.312-0.18,0.695,0,1.006C1.924,19.809,2.257,20,2.616,20h20.769c0.359,0,0.691-0.191,0.871-0.504  C24.436,19.186,24.436,18.803,24.256,18.49 M14.268,18.215h-2.533v-1.85h2.533V18.215z M14.268,15.441h-2.533L10.89,6.515h4.222  L14.268,15.441z"></path>
+                            </g>
+                        </svg>
+                        </div>
+                            <span class="top-nav-link-text">
+                            Vulnerability Research
+                            </span>
+                        </a></div>
+                    <input class="sub-nav-trigger" id="vuln-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="vuln-sub-trigger">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+                        </div>
+                    </label>
+                    <ul class="sub-nav sub-nav-single-list">
+                        <li class="desktop-hide">
+                            <a href="https://talosintelligence.com/vulnerability_info"><h1>Vulnerability Research</h1>
+                            </a></li>
+                        <li class="desktop-hide">
+                            <label class="subnav-back-button" for="vuln-sub-trigger">BACK</label>
+                        </li>
+                        <li><a class="vulnerabilty-info-nav-link" href="https://talosintelligence.com/vulnerability_reports">Vulnerability Reports</a></li>
+                        <li><a class="vulnerabilty-info-nav-link" href="https://talosintelligence.com/ms_advisories">Microsoft Advisories</a></li>
+                    </ul>
+                    <div class="desktop-hide subnav-overlay">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px" height="20px" viewBox="0 0 26 20">
+                        <g id="vuln-icon" class="nav-icon">
+                            <path fill="#FFFFFF" d="M24.256,18.49L13.872,0.503C13.692,0.192,13.36,0,13,0c-0.359,0-0.692,0.192-0.872,0.503L1.744,18.49  c-0.18,0.312-0.18,0.695,0,1.006C1.924,19.809,2.257,20,2.616,20h20.769c0.359,0,0.691-0.191,0.871-0.504  C24.436,19.186,24.436,18.803,24.256,18.49 M14.268,18.215h-2.533v-1.85h2.533V18.215z M14.268,15.441h-2.533L10.89,6.515h4.222  L14.268,15.441z"></path>
+                        </g>
+                        </svg>
+                    </div>
+                </li>
+
+
+               <li class="nav-item">
+                   <div class="primary-link-wrapper">
+                        <a class="primary_nav_link" href="https://talosintelligence.com/incident_response">
+                           <div class="mobile-nav-icon">
+                               <svg xmlns="http://www.w3.org/2000/svg" width="111.588" height="148.311" viewBox="0 0 111.588 148.311">
+                                    <path d="M1.181,128.446v15.7a4.167,4.167,0,0,0,4.167,4.167h100.9a4.167,4.167,0,0,0,4.167-4.167v-15.7a4.167,4.167,0,0,0-4.167-4.167H5.348a4.167,4.167,0,0,0-4.167,4.166M55.8,63.109a3.277,3.277,0,1,1,0,6.553c-10.344,0-20.755,8.578-20.755,18.57a3.277,3.277,0,1,1-6.554,0C28.489,73.947,41.93,63.109,55.8,63.109Zm0-12.016c-21.787,0-39.325,17.81-39.325,39.937v26.7H95.122V91.03c0-22.128-17.537-39.937-39.324-39.937m52.365-38.3a3.291,3.291,0,0,0-2.254,1.024L88.432,31.294a3.283,3.283,0,0,0,4.642,4.644l17.478-17.479a3.278,3.278,0,0,0-2.389-5.666m-105.138,0a3.276,3.276,0,0,0-1.98,5.666L18.522,35.938a3.283,3.283,0,0,0,4.643-4.644L5.687,13.817A3.255,3.255,0,0,0,3.025,12.793ZM55.389.026a3.276,3.276,0,0,0-2.867,3.345V19.642a3.277,3.277,0,1,0,6.554,0V3.371A3.283,3.283,0,0,0,55.389.026Z" fill="#fff"></path>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text">
+                                Incident Response
+                            </span>
+                       </a>
+                   </div>
+                   <input class="sub-nav-trigger" id="ir-sub-trigger" type="checkbox">
+                   <label class="sub-nav-trigger-label" for="ir-sub-trigger">
+                       <div class="mobile-nav-icon">
+                           <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                                <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                               <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                               </g>
+                           </svg>
+                       </div>
+                   </label>
+                   <ul class="sub-nav sub-nav-single-list">
+                       <li class="desktop-hide">
+                           <a href="/incident_response">
+                               <h1>Incident Response</h1>
+                           </a>
+                        </li>
+                       <li class="desktop-hide">
+                           <label class="subnav-back-button" for="ir-sub-trigger">BACK</label>
+                       </li>
+                       <li>
+                           <a class="secondary_nav_link" href="https://talosintelligence.com/incident_response/services#reactive-services">Reactive Services</a>
+                       </li>
+                       <li>
+                           <a class="secondary_nav_link" href="https://talosintelligence.com/incident_response/services#proactive-services">Proactive Services</a></li>
+                       <li>
+                           <a href="https://talosintelligence.com/incident_response/contact">Emergency Support</a>
+                        </li>
+                   </ul>
+                   <div class="desktop-hide subnav-overlay"><svg xmlns="http://www.w3.org/2000/svg" width="111.588" height="148.311" viewBox="0 0 111.588 148.311">
+                     <path d="M1.181,128.446v15.7a4.167,4.167,0,0,0,4.167,4.167h100.9a4.167,4.167,0,0,0,4.167-4.167v-15.7a4.167,4.167,0,0,0-4.167-4.167H5.348a4.167,4.167,0,0,0-4.167,4.166M55.8,63.109a3.277,3.277,0,1,1,0,6.553c-10.344,0-20.755,8.578-20.755,18.57a3.277,3.277,0,1,1-6.554,0C28.489,73.947,41.93,63.109,55.8,63.109Zm0-12.016c-21.787,0-39.325,17.81-39.325,39.937v26.7H95.122V91.03c0-22.128-17.537-39.937-39.324-39.937m52.365-38.3a3.291,3.291,0,0,0-2.254,1.024L88.432,31.294a3.283,3.283,0,0,0,4.642,4.644l17.478-17.479a3.278,3.278,0,0,0-2.389-5.666m-105.138,0a3.276,3.276,0,0,0-1.98,5.666L18.522,35.938a3.283,3.283,0,0,0,4.643-4.644L5.687,13.817A3.255,3.255,0,0,0,3.025,12.793ZM55.389.026a3.276,3.276,0,0,0-2.867,3.345V19.642a3.277,3.277,0,1,0,6.554,0V3.371A3.283,3.283,0,0,0,55.389.026Z" fill="#fff"></path>
+                   </svg>
+                </div>
+               </li>
+
+
+
+
+
+                <li class="nav-item">
+                    <a class="primary_nav_link" href="https://blog.talosintelligence.com">
+                        <div class="mobile-nav-icon">
+                        <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="260px" height="296.5px" viewBox="0 0 260 296.5" enable-background="new 0 0 260 296.5" xml:space="preserve">
+                        <path fill="#FFFFFF" d="M243.586,42.404h-14.448c-0.943-4.513-3.143-8.813-6.616-12.33L201.793,9.098  c-4.7-4.757-10.972-7.377-17.66-7.377c-6.578,0-12.777,2.547-17.457,7.173l-33.875,33.511H17.586c-6.6,0-12,5.399-12,12V226.28  c0,6.6,5.4,12,12,12H153.83l84.21,56.278l-27.448-56.278h32.994c6.6,0,12-5.4,12-12V54.404  C255.586,47.804,250.186,42.404,243.586,42.404z M214.662,48.045c-0.01,0.2-0.021,0.399-0.044,0.599  c-0.008,0.069-0.021,0.139-0.031,0.207c-0.046,0.345-0.113,0.688-0.196,1.026c-0.034,0.137-0.063,0.273-0.103,0.408  c-0.039,0.135-0.087,0.267-0.133,0.399c-0.051,0.151-0.102,0.302-0.16,0.45c-0.049,0.126-0.105,0.249-0.16,0.373  c-0.068,0.153-0.139,0.307-0.216,0.457c-0.059,0.116-0.12,0.23-0.184,0.345c-0.088,0.157-0.181,0.312-0.278,0.465  c-0.065,0.104-0.13,0.206-0.2,0.308c-0.115,0.168-0.239,0.33-0.366,0.492c-0.064,0.081-0.124,0.165-0.19,0.244  c-0.199,0.238-0.409,0.472-0.635,0.694L82.458,182.308l-47.932,12.871l13.427-47.74L177.223,19.561  c1.917-1.895,4.414-2.84,6.911-2.84c2.534,0,5.068,0.975,6.99,2.92l20.726,20.974c0.545,0.552,1.002,1.156,1.39,1.79  c0.574,0.938,0.975,1.951,1.206,2.993c0.004,0.021,0.01,0.04,0.014,0.06c0.049,0.226,0.086,0.453,0.119,0.682  c0.008,0.06,0.017,0.118,0.024,0.178c0.026,0.211,0.045,0.424,0.058,0.636c0.004,0.077,0.007,0.153,0.009,0.23  c0.007,0.203,0.011,0.407,0.005,0.61C214.673,47.877,214.666,47.961,214.662,48.045z"></path>
+                        </svg>
+                    </div>
+                        <span class="top-nav-link-text">Blog</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="primary_nav_link" href="https://support.talosintelligence.com">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26px" height="20px" viewBox="0 0 123.17 159.292">
+                            <path d="M61.59,0,0,17.069v85.32c0,23.472,61.59,56.9,61.59,56.9s61.58-36.288,61.58-56.9V17.069Zm-.433,149.746C38.314,136.662,8.128,114.3,8.128,102.389V23.239l53.029-14.7Z" fill="#fff"></path>
+                        </svg>
+                        </div>
+                        <span class="top-nav-link-text">Support</span>
+                    </a>
+                </li>
+            </ul>
+
+
+<!--                <li class="nav-item desktop-hide">-->
+<!--                    <button class="search-button" data-ghost-search><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg> <span>Search Blog</span></button>-->
+<!--                </li>-->
+
+            <ul class="secondary-nav-list">
+                <div class="more-desktop-link">
+                    <div class="more-link-wrapper">
+                        <span class="more-nav-link">
+                            <div class="desktop-nav-icon more-menu-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="22px" height="16px" viewBox="0 0 22 16">
+                                <g id="menu-icon">
+                                    <path fill="#FFFFFF" d="M20.5,3h-19C0.672,3,0,2.329,0,1.5S0.672,0,1.5,0h19C21.328,0,22,0.671,22,1.5S21.328,3,20.5,3z"></path>
+                                    <path fill="#FFFFFF" d="M20.5,9.5h-19C0.672,9.5,0,8.828,0,8c0-0.829,0.672-1.5,1.5-1.5h19C21.328,6.5,22,7.171,22,8   C22,8.828,21.328,9.5,20.5,9.5z"></path>
+                                    <path fill="#FFFFFF" d="M20.5,16h-19C0.672,16,0,15.328,0,14.5S0.672,13,1.5,13h19c0.828,0,1.5,0.672,1.5,1.5S21.328,16,20.5,16z"></path>
+                                </g>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            More
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <li class="nav-item more-text-link">
+                    <div class="more-link-wrapper more-link-wrapper-mobile">
+                        <span class="more-nav-link">
+                            <div class="mobile-nav-icon"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" style="enable-background:new 0 0 20 20;" width="25px" height="25px" xml:space="preserve">
+                                <style type="text/css">
+                                    .white{fill:#FFFFFF;}
+                                </style>
+                                <path class="white" d="M19.4,17.1c0,0.1-0.1,0-0.2,0c0,0-1.3-0.9-2-1.4c-0.2-0.1-0.5-0.1-0.6,0.1c-0.3,0.3-0.6,0.8-0.9,1.3  c-0.1,0.2-0.1,0.5,0.1,0.6l2,1.5c0.1,0,0,0.1,0.1,0.2c0,0.1,0,0.1-0.1,0.2c-1.2,0.5-2.6,0.2-3.5-0.7c-0.8-0.9-1-2-0.7-3.1L4.5,6.5  c-1,0.3-2.3,0-3-0.9c-0.8-0.9-1.1-1.7-1-2.7c0-0.1,0-0.1,0.1-0.2c0.1,0,0.2,0.1,0.2,0.1l2,1.5C3,4.4,3.3,4.5,3.4,4.2  c0,0,0.5-0.8,0.9-1.3c0.1-0.2,0.1-0.5-0.1-0.6L2.3,0.9c-0.1,0,0-0.1-0.1-0.3c0-0.1,0-0.1,0.1-0.2C3.5-0.1,5,0.2,5.8,1.1  c0.8,0.9,1,2,0.7,3.1l9.1,9.3c1-0.3,2.3,0,3,0.9c0.7,0.7,0.9,1.5,0.9,2.5C19.5,16.9,19.5,17,19.4,17.1z"></path>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            Security Resources
+                            </span>
+                        </span>
+                    </div>
+                    <input class="sub-nav-trigger" id="security-resources-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="security-resources-sub-trigger">
+                        <div class="mobile-nav-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+                        </div>
+                    </label>
+                    <div class="sub-nav sub-nav-multiple-list sub-nav-multiple-list-left">
+                        <div class="sub-nav-multiple-wrapper">
+                            <div class="sub-nav-list-top-of-mobile-wrapper">
+                                <h1 class="sub-nav-list-header sub-nav-list-top-of-mobile">Security Resources</h1>
+                                <ul class="sub-nav-list">
+                                    <li class="desktop-hide">
+                                        <label class="subnav-back-button" for="security-resources-sub-trigger">BACK</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sub-nav-list-item-wrapper">
+                                <span class="sub-nav-desktop-header uppercase">Security Resources</span>
+                                <ul class="sub-nav-list">
+                                    <li>
+                                        <a href="https://talosintelligence.com/software"><span>Open Source Security Tools</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/categories"><span>Intelligence Categories Reference</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/secure-endpoint-naming"><span>Secure Endpoint Naming Reference</span>
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="desktop-hide subnav-overlay"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" style="enable-background:new 0 0 20 20;" width="25px" height="25px" xml:space="preserve">
+                        <style type="text/css">
+                            .white{fill:#FFFFFF;}
+                        </style>
+                                                <path class="white" d="M19.4,17.1c0,0.1-0.1,0-0.2,0c0,0-1.3-0.9-2-1.4c-0.2-0.1-0.5-0.1-0.6,0.1c-0.3,0.3-0.6,0.8-0.9,1.3  c-0.1,0.2-0.1,0.5,0.1,0.6l2,1.5c0.1,0,0,0.1,0.1,0.2c0,0.1,0,0.1-0.1,0.2c-1.2,0.5-2.6,0.2-3.5-0.7c-0.8-0.9-1-2-0.7-3.1L4.5,6.5  c-1,0.3-2.3,0-3-0.9c-0.8-0.9-1.1-1.7-1-2.7c0-0.1,0-0.1,0.1-0.2c0.1,0,0.2,0.1,0.2,0.1l2,1.5C3,4.4,3.3,4.5,3.4,4.2  c0,0,0.5-0.8,0.9-1.3c0.1-0.2,0.1-0.5-0.1-0.6L2.3,0.9c-0.1,0,0-0.1-0.1-0.3c0-0.1,0-0.1,0.1-0.2C3.5-0.1,5,0.2,5.8,1.1  c0.8,0.9,1,2,0.7,3.1l9.1,9.3c1-0.3,2.3,0,3,0.9c0.7,0.7,0.9,1.5,0.9,2.5C19.5,16.9,19.5,17,19.4,17.1z"></path>
+                        </svg>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="more-link-wrapper more-link-wrapper-mobile">
+                        <span class="more-nav-link">
+                            <div class="mobile-nav-icon"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" width="25px" height="25px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                                <style type="text/css">
+                                    .sticoncomment{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+                                </style>
+                                <path class="sticoncomment" d="M13.6,7.1H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,6.8,13.9,7.1,13.6,7.1L13.6,7.1z M13.6,9.4H6.4c-0.3,0-0.6-0.3-0.6-0.6s0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,9.2,13.9,9.4,13.6,9.4L13.6,9.4z M11.5,11.7H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6h5.1c0.3,0,0.6,0.3,0.6,0.6  C12.1,11.5,11.8,11.7,11.5,11.7z M15.8,3H4.2C3.5,3,3,3.5,3,4.2V17l2.8-2.3h10c0.6,0,1.2-0.5,1.2-1.2V4.2C17,3.5,16.5,3,15.8,3  L15.8,3z"></path>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            Media
+                            </span>
+                        </span>
+                    </div>
+                    <input class="sub-nav-trigger" id="media-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="media-sub-trigger">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                            </svg>
+                        </div>
+                    </label>
+                    <div class="sub-nav sub-nav-multiple-list sub-nav-multiple-list-middle">
+                        <div class="sub-nav-multiple-wrapper">
+                            <div class="sub-nav-list-top-of-mobile-wrapper">
+                                <h1 class="sub-nav-list-header sub-nav-list-top-of-mobile">Media</h1>
+                                <ul class="sub-nav-list">
+                                    <li class="desktop-hide">
+                                        <label class="subnav-back-button" for="media-sub-trigger">BACK</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sub-nav-list-item-wrapper">
+                                <span class="sub-nav-desktop-header uppercase">Media</span>
+                                <ul class="sub-nav-list">
+                                    <li>
+                                        <a href="https://blog.talosintelligence.com"><span>Talos Intelligence Blog</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://blog.talosintelligence.com/category/threat-source-newsletter/"><span>Threat Source Newsletter</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/podcasts/shows/beers_with_talos"><span>Beers with Talos Podcast</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/podcasts/shows/talos_takes"><span>Talos Takes Podcast</span>
+                                        </a></li>
+                                    <li>
+                                        <a target="_blank" href="https://www.youtube.com/channel/UCPZ1DtzQkStYBSG3GTNoyfg/featured"><span>Talos Videos</span>
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="desktop-hide subnav-overlay"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" width="25px" height="25px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                        <style type="text/css">
+                            .sticoncomment{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+                        </style>
+                        <path class="sticoncomment" d="M13.6,7.1H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,6.8,13.9,7.1,13.6,7.1L13.6,7.1z M13.6,9.4H6.4c-0.3,0-0.6-0.3-0.6-0.6s0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,9.2,13.9,9.4,13.6,9.4L13.6,9.4z M11.5,11.7H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6h5.1c0.3,0,0.6,0.3,0.6,0.6  C12.1,11.5,11.8,11.7,11.5,11.7z M15.8,3H4.2C3.5,3,3,3.5,3,4.2V17l2.8-2.3h10c0.6,0,1.2-0.5,1.2-1.2V4.2C17,3.5,16.5,3,15.8,3  L15.8,3z"></path>
+                        </svg>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="more-link-wrapper more-link-wrapper-mobile">
+                        <span class="more-nav-link">
+                            <div class="mobile-nav-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="25px" viewBox="0 0 55 55">
+                                <g>
+                                    <g class="mobile-nav-home">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M45.201,12.343c0.378,0.48,0.758,0.925,1.096,1.401    c2.975,4.207,4.543,8.876,4.494,14.044c-0.05,5.452-1.643,10.386-5.186,14.593c-3.484,4.133-7.929,6.73-13.182,7.895    c-6.313,1.398-12.216,0.275-17.695-3.131c-0.441-0.273-0.847-0.6-1.266-0.904c-0.11-0.078-0.208-0.174-0.337-0.287    c0.127-0.141,0.246-0.27,0.366-0.398c0.887-0.949,1.765-1.904,2.663-2.844c0.114-0.119,0.321-0.217,0.485-0.217    c3.658-0.006,7.318,0,10.975,0.008c3.458,0.006,6.913,0.02,10.369,0.02c0.957,0,1.871-0.193,2.62-0.844    c0.797-0.693,1.157-1.596,1.157-2.643c0.001-7.533,0.003-15.067-0.005-22.601c-0.002-0.309,0.088-0.524,0.3-0.743    C43.098,14.598,44.127,13.49,45.201,12.343"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M41.402,8.822c-0.99,1.027-1.994,2.021-2.935,3.072    c-0.312,0.35-0.616,0.416-1.036,0.415c-6.98-0.009-13.957-0.007-20.938-0.007c-2.039,0-3.561,1.514-3.561,3.557    c0,6.504,0.002,13.008,0.006,19.512c0.002,0.973,0.011,1.943,0.004,2.914c0,0.133-0.04,0.301-0.127,0.393    c-1.069,1.162-2.15,2.314-3.229,3.469c-0.021,0.023-0.052,0.039-0.109,0.08c-0.159-0.188-0.323-0.369-0.471-0.562    c-2.535-3.348-4.119-7.102-4.605-11.268c-0.61-5.229,0.194-10.229,2.835-14.839c2.669-4.664,6.655-7.805,11.618-9.75    c3.205-1.257,6.533-1.852,9.977-1.621c4.478,0.298,8.553,1.754,12.227,4.325c0.101,0.072,0.197,0.151,0.291,0.229    C41.364,8.755,41.374,8.778,41.402,8.822"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M39.799,12.47c0.873-0.911,1.749-1.829,2.676-2.797    c0.605,0.564,1.195,1.112,1.816,1.691c-0.941,0.985-1.817,1.903-2.703,2.83c-0.276-0.339-0.511-0.688-0.807-0.975    C40.492,12.941,40.145,12.728,39.799,12.47"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M10.35,43.279c0.969-1.016,1.885-1.977,2.76-2.893    c0.213,0.369,0.376,0.762,0.639,1.072c0.265,0.312,0.627,0.539,0.98,0.832c-0.853,0.891-1.713,1.791-2.624,2.746    C11.513,44.445,10.939,43.869,10.35,43.279"></path>
+                                    </g>
+                                </g>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            Company
+                            </span>
+                        </span>
+                    </div>
+                    <input class="sub-nav-trigger" id="company-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="company-sub-trigger">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+                        </div>
+                    </label>
+                    <div class="sub-nav sub-nav-multiple-list sub-nav-multiple-list-right">
+                        <div class="sub-nav-multiple-wrapper">
+                            <div class="sub-nav-list-top-of-mobile-wrapper">
+                                <h1 class="sub-nav-list-header sub-nav-list-top-of-mobile">Company</h1>
+                                <ul class="sub-nav-list">
+                                    <li class="desktop-hide">
+                                        <label class="subnav-back-button" for="company-sub-trigger">BACK</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sub-nav-list-item-wrapper">
+                                <span class="sub-nav-desktop-header uppercase">Company</span>
+                                <ul class="sub-nav-list">
+                                    <li>
+                                        <a href="https://talosintelligence.com/about"><span>About Talos</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/careers"><span>Careers</span>
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="desktop-hide subnav-overlay"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="25px" viewBox="0 0 55 55">
+                        <g>
+                            <g class="mobile-nav-home">
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M45.201,12.343c0.378,0.48,0.758,0.925,1.096,1.401    c2.975,4.207,4.543,8.876,4.494,14.044c-0.05,5.452-1.643,10.386-5.186,14.593c-3.484,4.133-7.929,6.73-13.182,7.895    c-6.313,1.398-12.216,0.275-17.695-3.131c-0.441-0.273-0.847-0.6-1.266-0.904c-0.11-0.078-0.208-0.174-0.337-0.287    c0.127-0.141,0.246-0.27,0.366-0.398c0.887-0.949,1.765-1.904,2.663-2.844c0.114-0.119,0.321-0.217,0.485-0.217    c3.658-0.006,7.318,0,10.975,0.008c3.458,0.006,6.913,0.02,10.369,0.02c0.957,0,1.871-0.193,2.62-0.844    c0.797-0.693,1.157-1.596,1.157-2.643c0.001-7.533,0.003-15.067-0.005-22.601c-0.002-0.309,0.088-0.524,0.3-0.743    C43.098,14.598,44.127,13.49,45.201,12.343"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M41.402,8.822c-0.99,1.027-1.994,2.021-2.935,3.072    c-0.312,0.35-0.616,0.416-1.036,0.415c-6.98-0.009-13.957-0.007-20.938-0.007c-2.039,0-3.561,1.514-3.561,3.557    c0,6.504,0.002,13.008,0.006,19.512c0.002,0.973,0.011,1.943,0.004,2.914c0,0.133-0.04,0.301-0.127,0.393    c-1.069,1.162-2.15,2.314-3.229,3.469c-0.021,0.023-0.052,0.039-0.109,0.08c-0.159-0.188-0.323-0.369-0.471-0.562    c-2.535-3.348-4.119-7.102-4.605-11.268c-0.61-5.229,0.194-10.229,2.835-14.839c2.669-4.664,6.655-7.805,11.618-9.75    c3.205-1.257,6.533-1.852,9.977-1.621c4.478,0.298,8.553,1.754,12.227,4.325c0.101,0.072,0.197,0.151,0.291,0.229    C41.364,8.755,41.374,8.778,41.402,8.822"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M39.799,12.47c0.873-0.911,1.749-1.829,2.676-2.797    c0.605,0.564,1.195,1.112,1.816,1.691c-0.941,0.985-1.817,1.903-2.703,2.83c-0.276-0.339-0.511-0.688-0.807-0.975    C40.492,12.941,40.145,12.728,39.799,12.47"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M10.35,43.279c0.969-1.016,1.885-1.977,2.76-2.893    c0.213,0.369,0.376,0.762,0.639,1.072c0.265,0.312,0.627,0.539,0.98,0.832c-0.853,0.891-1.713,1.791-2.624,2.746    C11.513,44.445,10.939,43.869,10.35,43.279"></path>
+                            </g>
+                        </g>
+                    </svg>
+                    </div>
+                </li>
+            </ul>
+            <div class="nav-search-wrapper" id="desktop-search-wrapper">
+                <button class="search-button desktop-search-button" data-ghost-search>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </button>
+            </div>
+        </div>
+
+
+
+    </div>
+</nav>
+
+    
+
+    <main id="site-main">
+        <div class="container-fluid px-0">
+            <div class="main-content-row">
+                <div class="main-content-col px-0">
+                    <div class="post-full-content">
+                        
+<article class="post tag-rat tag-securex-3 ">
+        <div class="feature-image-wrapper my-5">
+            <figure>
+                <img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-ngCE5hUAHSM/YRxTk-_YG_I/AAAAAAAAAT8/ipbYIhm7XJcSbr8glXMtsF35z72pM7RYwCLcBGAsYHQ/w1200-h630-p-k-no-nu/image6.jpg" alt="" class="img-fluid" />
+            </figure>
+        </div>
+
+    <h1 class="text-center">Malicious Campaign Targets Latin America: The seller, The operator and a curious link</h1>
+
+    <div class="text-center m-1">
+        <div class="post-author">
+            <span>By </span>
+                <a href="https://blog.talosintelligence.com/author/asheer-malhotra/">Asheer Malhotra</a>
+        </div>
+
+        <br/>
+        <time class="post-datetime" datetime="August 19, 2021 07:58">
+            Thursday, August 19, 2021 07:58
+        </time>
+
+        <div class="m-3">
+                            <a href="/category/rat/" class="category primary-category">
+                                RAT
+                            </a>
+                                                    <a href="/category/securex-3/" class="category primary-category">
+                                SecureX
+                            </a>
+                                </div>
+    </div>
+
+    <section class="post-content-wrapper mt-5">
+        <div class="post-content" id="post-content">
+            <p></p><p>By <a href="https://twitter.com/asheermalhotra">Asheer Malhotra</a> and <a href="https://twitter.com/_vventura">Vitor Ventura</a>, with contributions from <a href="https://twitter.com/vanjasvajcer">Vanja Svajcer</a>.<br></p><ul><li>Cisco Talos has observed a new malware campaign delivering commodity RATs, including njRAT and AsyncRAT.</li><li>The campaign targets travel and hospitality organizations in Latin America.</li><li>Techniques utilized in this campaign bear a resemblance to those of the <a href="https://blog.talosintelligence.com/2020/04/upgraded-aggah-malspam-campaign.html">Aggah group</a> but are operated by a distinct threat actor based out of Brazil.</li><li>We've also discovered a builder/crypter known as “Crypter 3losh rat” used to generate various stages of the highly modularized infection chain used by the campaign operators.</li><li>We’ve also seen instances where the crypter author has operated their own malicious campaigns abusing archive[.]org.</li></ul><h1 id="what-s-new">What’s new?</h1><p>Cisco Talos recently observed a new set of campaigns targeting Latin American countries. These campaigns use a multitude of infection components to deliver two widely popular commodity malware and remote access trojans (RATs): njRAT and AsyncRAT.<br></p><p>We also discovered a .NET-based infection chain builder/crypter binary used to generate the malicious infection artifacts used in recent campaigns, including the ones targeting Latin America. Such builders indicate the author’s intent to bundle malware generation functionalities for easy distribution and use by operators, customers and affiliates.<br></p><p>We’ve also observed some resemblance to the tactics and techniques used by a known crimeware actor “<a href="https://blog.talosintelligence.com/2020/04/upgraded-aggah-malspam-campaign.html">Aggah</a>,” especially the final payload delivery stages. Aggah has traditionally utilized highly modular infection chains with a focus on hosting malicious payloads on public repositories such as Pastebin, Web Archive and Blogger.<br></p><h1 id="how-did-it-work">How did it work?</h1><p>The campaigns targeting Latin American countries consist of macro-enabled Office documents that act as the entry points into the infection. What follows is a modular chain of PowerShell and VB scripts, all working towards disabling anti-virus protection features such as <a href="https://docs.microsoft.com/en-us/windows/win32/amsi/antimalware-scan-interface-portal">AMSI</a> and eventually delivering the RAT payloads.<br></p><p>We’ve also observed some Aggah campaigns using similar infection chains including scripts and similar commodity malware. However, unlike Aggah, the operators working the Latin American campaigns tend to use either compromised or attacker-controlled websites to host their components and payloads instead of using public hosting services such as Blogger, Pastebin and Web Archive.<br></p><p>The infection chains used in these campaigns are built using a .NET-based crypter called “3losh crypter rat” [SIC]. This crypter has been actively advertised on social media by the authors and used to generate infection chains for campaigns operated by the crypter’s authors themselves.<br></p><h1 id="so-what">So what?</h1><p>It is important for defenders to identify distinct adversaries and their tactics. The usage of crypters makes it <a href="https://blog.talosintelligence.com/2020/08/attribution-puzzle.html">difficult to do so</a> since completely disjointed actors can now generate identical infection chains for unrelated campaigns. Our research uncovers one such scenario where there are three distinct campaigns identified using the 3losh crypter: the Latin American campaigns, the Aggah campaigns and those operated by the crypter authors.<br></p><p>All these campaigns however, aim to distribute commodity RAT families. Commodity malware families are increasingly being used by both crimeware and <a href="https://blog.talosintelligence.com/2021/07/sidecopy.html">APT groups</a> to infect their targets. RATs in particular are extremely popular since they provide a wide range of functionalities to their operators to take advantage of the infected systems. These functionalities can be used for malicious activities such as:<br></p><ul><li>Performing preliminary reconnaissance to scope out victim networks and infrastructure.</li><li>Deploying more malware such as <a href="https://blog.talosintelligence.com/2020/11/crat-and-plugins.html">ransomware</a> and wipers to disrupt enterprise operations.</li><li>Executing arbitrary commands.</li><li>Exfiltrating confidential and proprietary information from enterprises.</li><li>Stealing credentials, opening up more systems and services to unauthorized access.</li></ul><h1 id="dropper-crypter-developer-threat-actor">Dropper/Crypter developer threat actor</h1><p>This threat actor uses the nickname “alosh.” We have found indications that they’ve been active since at least 2018. This actor is the developer of the “3losh crypter rat” crypter. They advertise services on Facebook and YouTube where they keep several videos demonstrating evasion capabilities of the 3losh crypter or 3losh RAT. Although we can't establish a direct link between the actor and the current campaign, there are several links between this actor and previous campaigns, making this actor the developer and operator of some malware campaigns.<br></p><figure class="kg-card kg-image-card"><img src="https://lh6.googleusercontent.com/q0QhkqtSiFQR9mw9f7rNCdY8-UhJXqVlN3dspnGAb3bc1kq6rS2t7XL8ov-KQF_wARjyETJsuedeN8PriLnPPkYBle1CV-unBZPScipCvTB-5e0sopXcyavgeliyQivNBzJIiy5SRxRD1NTkqPlW7KhG6jXpkc6yKVjHbyuzTb_fXhCeWJ29tAvtLlsR" class="kg-image" alt loading="lazy" width="624" height="281"></figure><p>Facebook image advertising the infection builder.<br></p><p>Their YouTube page shows several videos that explain how to use similar builders to bypass several commercial anti-virus products.<br></p><figure class="kg-card kg-image-card"><img src="https://lh6.googleusercontent.com/fNzlfjeDth547wrWy_Emje_ErbTpTDdy3yPP-XOvF_weAAm8RmRaP2KQkdN26F9lMwZBneXx48xXgkzduUYWS5ClulXIAa8UHkKKFvIinleW4iebTSkiwmtOSloeQtd-8Kn8_tgeDZblQLmIFd8NvONRYj370FeHDS7qaAY1PTwIH_F4eXHVNDkRmLnm" class="kg-image" alt loading="lazy" width="624" height="419"></figure><p>The crypter author’s YouTube page.<br></p><p>We discovered an email address of the crypter author inside one of these videos. Pivoting off this email, we found a huge number of payloads hosted at archive[.]org.<br></p><figure class="kg-card kg-image-card"><img src="https://lh5.googleusercontent.com/Wc8xLm0Tdgsr6yO7NFyG8WJe2RaNF_J-dJET2KWT0PtZmexTAAUSXWMgVEjbdMF9PitYy4DvcaVvdupz076FAT00WPwQb65ddoTBNsENDPZ9SDkfqdobLp31oUIEzMD_w3u2VT2e3hOiDgyURvmVyWpgGnclyGQFQPHD7IGPIwQQo03rAeKLHNUonzrz" class="kg-image" alt loading="lazy" width="624" height="329"></figure><p>YouTube video still from the crypter’s author displaying their email ID.<br></p><p>This leads us to conclude that, in some cases, the actor is the developer and operator — there are also plenty of videos on Instagram and YouTube where the developer demonstrates that they have compromised several websites.<br></p><p>On the Web Archive, the actor uses two different usernames: 3losh-rat and alo0ch0011. During our research, the payloads were removed from the archive due to breach of terms and conditions. However, we still listed them based on the cache. Most of these payloads had several stages finally delivering <a href="https://malpedia.caad.fkie.fraunhofer.de/details/win.njrat">njrat</a>.</p><figure class="kg-card kg-image-card"><img src="https://lh4.googleusercontent.com/pLzdRm7hjIGfzZgHFfJdfZfMzmGLB8gf6QcRJp1c6t5C7l06NsDSj8TvuS55T5D-uxt17s7rzPK9PSziHIXkiUpHmmbhYv-xjpucqYmg0ynoncsiybV9qjh4cgZYWlFYalEAhUqCCHHeauieKgJHcKWQedapu0PVcZwVsj1lo7PnKmbP9C0Vg5OZGe7E" class="kg-image" alt loading="lazy" width="624" height="611"></figure><p>Crypter author hosting malicious artifacts on archive[.]org.<br></p><h1 id="the-current-campaign">The current campaign</h1><h2 id="the-threat-actor">The threat actor</h2><p>We believe the threat actor behind the current campaign targeting Latin America is not the crypter developer. In fact, there are several indications that this actor is, in fact, a Brazilian. There are several technical and tactical links that support this assertion. <br></p><p>To begin with, one of the most prolific domains owned and operated by the threat actors  (updatewin32[.]xyz) was registered in Brazil.</p><figure class="kg-card kg-image-card"><img src="https://lh4.googleusercontent.com/Dq1f4cQWXkIsSBXTrOsbrvAWDz_M_AGc1AnG8Ogd9hhbsR127jH07vf3t3kyoOndBaHtHU2RiltDIN8w6y0dfNBImcjQhHvdHk5bri85a4AMqXdJJsx-KLDN3qirUS4p4VdAPWJb-C9RimYD87UU3AW_e70tgh2BKK0wAXTC3V2ID0uuG0O4PTmnDuaB" class="kg-image" alt loading="lazy" width="624" height="329"></figure><p>Whois record for domain updatewin32[.]xyz.<br></p><p>Talos discovered several maldocs predominantly named in Portuguese. One such malicious document was called “Documento.doc” (Portuguese for “document”). Looking at the several files that constitute the doc file, there are two files called “AquiTaLimpo,” one with the XML extension and another with “.xml.rels” extension. “AquiTaLimpo” is Portuguese slang for “here is clean.” <br></p><figure class="kg-card kg-image-card"><img src="https://lh5.googleusercontent.com/g2OkFuujTuqM3aGIq31Pof3J-SSOKwHRdymSbJcJQADJHLggY30fK98plP1lLl1ax_F7FVu3m-F28W86tgQbO9Dqa81nD1HURBlFJIaeUysVwJzmJBP_LlvOIlEs3RPVNvN9Yyg2RGor57d2g7oeJIteJATBerGoaUSkn91L2ed0g4j_4d3miCqMOuzj" class="kg-image" alt loading="lazy" width="624" height="112"></figure><p>Constituent files in the open XML-based maldoc.<br><br></p><p>These XLSM files had VBA macro code that would download the main payload. The macro name is “EstaPastaDeTrabalho,” as it can be seen in the screenshot below, which roughly translates to “this work folder” — again translated from Portuguese.<br></p><figure class="kg-card kg-image-card"><img src="https://lh4.googleusercontent.com/_d2w9gZH0f2hsfkb5afX-mMkL84TJvC4-embvco9MuQnbVqbIIS9J18m4N6g7bbMaA9TNiYqEDvsx-ZeHkKXveHKZk-7cXTdNCceWMcZ74ajTXr41t09mhbHlGVMHqUrlmfmFC9c2Egttxlpt19EjggcK6rWIEwcKeDK1JAuxL8gv7ZNi_Wi3mR6Jhlp" class="kg-image" alt loading="lazy" width="624" height="217"></figure><p>Portuguese stream and macro names used in the maldocs. <br></p><p>Additional metadata indicates the creator and the last modified tags of the maldoc are also written in Portuguese, as can be seen below. These findings indicate that the operating environment, especially the maldoc generation systems of the actor use the Portuguese language.<br></p><figure class="kg-card kg-image-card"><img src="https://lh6.googleusercontent.com/Cg6V4ya51KDjfDyAQwVTI8RyUhir4yAREKcOx9dakQOk80e1aF5LXxVvndWX-CgFa3IHlIJUEeI_kqZxiAoIRkdAG7lrZ8GRdgfHPyPUOzVe1pW_pCp4VgVhw1RCYDORFVbUl2lGipJJOn7tqOVDg4zguFoEgKvPbcZlaPTUfYRD6cg59nEAf9AZGHEf" class="kg-image" alt loading="lazy" width="624" height="101"></figure><p>Maldoc metadata showing the creator and “last modified by” party names in Portuguese.<br></p><p>The creator is a common Portuguese language name, however, the “last modified by” tag can be translated to “Knight from Troy,” implying a trojan. The same name appears on the properties of the XLSM files.<br></p><p>Malware authors and campaign operators will frequently submit their payloads to public detection systems such as VirusTotal to check the efficacy of anti-virus products against its malware. This is a practice seen frequently across many crimeware groups.<br></p><p>The Brazilian threat actor used this practice to submit test files with Portuguese names to VirusTotal in June and July 2021 — all files submitted from Brazil. These files are named “Exploit pronto para envio.rar,” which translates to “exploit ready to be sent.”</p><p>Early versions of the test maldocs were true test copies, simply executed calc.exe. At the time of writing, there were approximately 11 files submitted with slight differences, all submitted from the same Brazilian origin around the same time.<br></p><figure class="kg-card kg-image-card"><img src="https://lh4.googleusercontent.com/k7cmXRhwHA6ArjyBTG6WhdqGV2xMrwd7-9orSH1DVjv9yWjpxa5wrnXeq67EB6lAm2QlkFTBHYF77k6LH-GLq7tY7koyz0t4okYPq_0-t17TRFcpJl1DIMXV-bElGgzVwb_KdcTeQ_N50VHkXnQF2mO3zzZBCbobd6LLCfyXWmM4xTddk9-Wp3PAM_4w" class="kg-image" alt loading="lazy" width="624" height="455"></figure><p>Preliminary versions of the test maldcos executing calc.exe.<br></p><p>Ongoing testing conducted by the actors consists of the same file names, author name, malicious domains and URLs as those used in the Latin American campaign embedded in them.<br></p><p>A quick look at the metadata of these test files also confirms the usage of Brazilian Portuguese to build the test maldocs.<br></p><figure class="kg-card kg-image-card"><img src="https://lh3.googleusercontent.com/Phg0mI--fCDH5W0_B964F6VWVMfoitwv_JMY5mbTyUssspLFvE9ImvIhVuWH7rVmqrQiqDprv2TlmiWgnqpScF805QcyLrcF48QPEz4pm6jKN48zGEneDTw6T5unQfmPUqphCVFsxFtO6EuuI7s9s87x1TwtlUuuAXvT6Z2XR4kzepbHy-_X3QONZHjt" class="kg-image" alt loading="lazy" width="624" height="157"></figure><p>Brazilian Portuguese language code in the test maldocs.<br></p><p>As we said above, the crypter author advertises the crypter on social networks like Facebook, Instagram or YouTube. We’ve found Portuguese-speaking users either praising the crypter or asking for it.<br></p><p>As described in subsequent sections, the text on the email is in near perfect Brazilian Portuguese, the Visual Basic for Applications (VBA) code in the PPAM file attached to the email, shows that it was written in a Portuguese language office installation, since the VBA module is called “Módulo1,” which is Portuguese for “module1.”<br><br></p><h2 id="victimology">Victimology<br></h2><p>The countries targeted by this set of attacks are primarily based in Latin America:<br></p><figure class="kg-card kg-image-card"><img src="https://lh5.googleusercontent.com/hRMcUJaLveqH7NaXG7UZ4WkdjNORtaG9HIi-uWpGMNExOqe7u06BShYkaJ4qWYEs2QH1V3_DxKpouF_mrIqmWkJLEk0lZqz-IdIkPJ8uOQm8o0krM9GGpO-XecBEK1bKuFkmFZEanhbVqa1QkD59OPXln_IBIekmtECtjNeFLpLI2RrrogCC89szRNJK" class="kg-image" alt loading="lazy" width="624" height="636"></figure><p>Targeted countries.<br></p><p>The campaign uses maldocs posing as something as inconspicuous as reservation dates for hotels.</p><p>A good example of a maldoc’s file name is “Fechas informativas para reservar Amérian Portal del Iguazú,'' which roughly translates to “Informative dates to reserve Amérian Portal del Iguazú”  (“Amérian Portal del Iguazú'' is a hotel in Argentina.). It is worth noting that the content of the email is in near perfect Brazilian Portuguse.<br></p><p>These campaigns focussing on Latin American countries usually use malspam as a means to deliver the malicious macro-enabled document to their victims.<br></p><figure class="kg-card kg-image-card"><img src="https://lh5.googleusercontent.com/JxSppzkCZouj6HlZFHSL7-Vj_z0OdUgi4rQ8BXjHo5eBTw08Y_SI3127jsuQMZP0KwHBPmgJqYs3gjZ_i4vQ4-9q0jixc05Et7A5s-cF99yB1nXHvjD3I6504qwXeEjJ6aQhggRIH8JhoVvHIng1-oSvO06IsS_lews2vUGcX_Ktu7ATSgOPaYGh3n9i" class="kg-image" alt loading="lazy" width="624" height="572"></figure><p>An example of a malspam email delivering a PPAM maldoc as early as Jan. 19, 2021.<br><br><br></p><h2 id="infection-chain">Infection chain<br></h2><p>Some of the Word documents discovered for this campaign use a chain of relationships definitions to load embedded XLSM files which contain the actual VBA code that will download the payloads. <br></p><figure class="kg-card kg-image-card"><img src="https://lh3.googleusercontent.com/APjdJDk54lNm6iUS8LTR7vCQZQp68Wu71KH-d1FiMuVWTyxFl2Bd8E1zyrHJCXVBcMT8jP5GfwzFqF5o21VpAg3DgnL9wbF9r_VV5eBNA3avAh2HEFhFPsAV2QBV6cuW1ZypTi8sT-wtZqruMcru9aGj_jywAfpTer5aciUEZC3dJiDzKzOnv9aED1tt" class="kg-image" alt loading="lazy" width="624" height="404"></figure><p>Additional malicious XLSM files loaded during runtime.<br></p><p>The maldocs are Office Open XML documents consisting of two key relationship definition files -  the main one called “AquiTaLimpo.xml.rels,” and another one called “comments.xml.rels,” which will load the embedded XLSM files which contain the VBA code.<br></p><figure class="kg-card kg-image-card"><img src="https://lh6.googleusercontent.com/HwQV3aThBTzaaJbTghWorgGTwa5O9UskyYymSNMSrG1zqmFcgIx5b3YVXyKPNEezTFs5JtA4HpTlKy-uN1J5-eyX0HtXnrHO6HVoiiwAa-Z2-32QzxfyZCf5Y6Wk6DoTaCq-smvy9RkKDzDNXhtaGO5G0veW8XL1Ic3XJCyu2AodRcVFeWsUAmcMrhUa" class="kg-image" alt loading="lazy" width="624" height="159"></figure><p>Malicious relationship file linking to the embedded XLSM files.<br></p><p>When the Word document is open, Excel is also loaded to open the XLSM files embedded in the document and will launch the macro to download the payloads.<br></p><p>We also discovered a variety of the maldocs that are macro-enabled files such as PPAM and XLAM serving as entry points of the infection chain. PPAM files are add-on files used by Microsoft PowerPoint to add additional functionality such as custom macros, tools and commands. These macros enabled maldocs act as entry points to the infection chain. Finally, the infection chain drops a popular RAT that can be njRAT or AsyncRAT.<br></p><p>The earliest infection chain discovered contains a macro that downloads and executes a remote HTA file from an attacker-controlled location.<br></p><figure class="kg-card kg-image-card"><img src="https://lh5.googleusercontent.com/uM-GTCcwq1neZ-HryX53-WtayuPISafRMc-TxdUSrNbUCT2khf3gCzDAyDjYcZLoGoWNGibTPsVaPAeVYkmW7sVhUlgPoAHyK3kpI8sIVRErZYJwHWzz5Jo0-0SXps9ouy9SXJC-3RV3umzY1iQmtc5uFbI8jW2l9SSdjof00z9zCCiJG4F_fbi5rf6e" class="kg-image" alt loading="lazy" width="624" height="229"></figure><p>Malicious macro in the PPAM.<br></p><h3 id="stage-1a-malicious-hta">Stage 1A: Malicious HTA</h3><p>The malicious HTA is simply an escaped JavaScript snippet that, in turn, executes a VBScript (embedded in an HTA) to download and execute the next stage (Stage #2 PowerShell script) of the infection chain.<br></p><figure class="kg-card kg-image-card"><img src="https://lh3.googleusercontent.com/F41d1qebjVtqgq1L-TPa5ZPPXZCVkoz3uhuK7G-A4aOqIrOQmt19d2qFI1gIqGSLoR0TSvH0WCCe-DxIw5PIojnLan6uvpoZG6OLtMLusQm4cUvZdqTxjVHCN4stVaxA0dYLKB-NcHwvYdUxXCQOBp5hU0qteUmlBEU29hQF_rVG_EFolYhXTYmpFE0k" class="kg-image" alt loading="lazy" width="624" height="389"></figure><p>Stage #1A malicious HTA containing escaped JavaScript code.<br><br><br></p><figure class="kg-card kg-image-card"><img src="https://lh3.googleusercontent.com/bDbldIsg_83OZiLE7Z3o5HDvx68ck7z6L3w4lC6QZgCQsUPE3iXXeMSrqrsXC1XdZgvsVoKk4rmxCHNBLwmsbyUh2n0nrADp2tB1yiSNJ5Ag-7TbJycftIb_t5T0vYQFOAyoop_WlZUCRgYjmGcdgL5U35cUTijXXw9BoQD16AuFxhsjArPTojAvtQ3r" class="kg-image" alt loading="lazy" width="624" height="669"></figure><p>Un-escaped VB code used to download and execute Stage 2 on the endpoint.<br><br><br><br></p><h3 id="stage-2-ps1-script">Stage 2: PS1 Script</h3><p>The powershell script executed on the endpoint is the de-facto instrumentor of the infection chain.<br></p><p>This script performs the following actions on the endpoint:<br></p><ol><li>Change the current user’s Startup folders to those specified in the script by modify the registry values:<br></li></ol><!--kg-card-begin: markdown--><p>HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders | Startup = &lt;custom_directory&gt;<br>
+HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders | Startup = &lt;custom_directory&gt;<br>
+where<br>
+&lt;custom_directory&gt; = Directory created by the malicious ps1 script.</p>
+<!--kg-card-end: markdown--><ol><li>Create a custom VBS (Stage #2A) in this modified Startup directory to execute a downloaded Powershell (ps1) script (Stage #3 e.g. “msi.ps1”) across reboots.<br></li></ol><figure class="kg-card kg-image-card"><img src="https://lh5.googleusercontent.com/mPZ4ol9nbhvw44b5KgJ_CZJlimXoDPiYrqZZaZSBVNVisZIncDhBtLzU-yrN_4JxEIc8Fon4ojpGu2lWB94buiKMWjEpcgQwMAw6QjaTb_6PfIDV679XvPwPxDTduW1eb3yOgVOAVAjVkxVLdYVT9ReFX9wv-OXiB1rP74-1ZMGhZQARbZ_H4QZQMOwm" class="kg-image" alt loading="lazy" width="624" height="149"></figure><p>VBScript created in a custom Startup folder to run a ps1 downloaded subsequently.<br></p><ol><li>The script will then check for the presence of five Anti-Virus products on the endpoint. Based on the AV found it will download a specific version of the ps1 specified in the previous step (Step 2 and Stage 3 — <em>msi.ps1</em> above) and execute the VB script created in Stage 2A.</li></ol><figure class="kg-card kg-image-card"><img src="https://lh5.googleusercontent.com/J01p2jvKj8XWi0w_kqbNRKCkZPmcZmrnyCKx9QESYEFH7TgoenqLXMIAIsLVKDWssZzIittXuuGish-OpxTbd4hf8LK7oj1ccGhf7dYbUNBuLn_eVioDieAYbuMza7k2iqHF9ReaFNoKaKHTIr13k4uamJoqAM66tosoRJtudBjVfCoYE24A4455vp5T" class="kg-image" alt loading="lazy" width="624" height="439"></figure><p>AV product-based Stage 4 script download and execution.<br></p><p>The AV products checked by the script are:<br></p><ul><li>ESET Security</li><li>Avast</li><li>McAfee</li><li>Malwarebytes</li><li>AVG<br></li></ul><ol><li>If no AV products are found on the endpoint, the script will perform the following actions:<br></li></ol><p> a. Create four configuration scripts on the endpoint.</p><p> b. Script 1 is used to modify the “windir” path to execute itself when a user or application accesses the “windir” environment variable. The script also runs Script 3 if the current user is an Administrator.</p><figure class="kg-card kg-image-card"><img src="https://lh3.googleusercontent.com/_AXTdOIs1mSDn1o48JT_ol6_RdnhLDwHmyyOsscX0jl0RRgCdmsfzM2gm7W2K0-WaUWFAeMv6KC1AY6hqY8Vv26blOuQtMbCp8gtRKBV7VxN4TTusfOZk3zIcicgsmLpfjrgCEUEJ9HKppD4JjY6NddZeeki4oZ-RaOlulwFijjrIColnXNIv-a21jq_" class="kg-image" alt loading="lazy" width="613" height="146"></figure><p>Figure 12: Modify the “windir” path to execute itself.<br></p><p> c. Script 2 is used to create exclusions for Microsoft Defender for specific paths, executables and to deploy a specific .Net framework:</p><!--kg-card-begin: markdown--><p>Add-MpPreference -ExclusionPath  C:<br>
+Add-MpPreference -ExclusionProcess powershell.exe<br>
+Add-MpPreference -ExclusionProcess Wscript.exe<br>
+Dism /online /enable-feature /featurename:NetFX3</p>
+<!--kg-card-end: markdown--><p> d. Script 3 is used to run Script 2.</p><p> e. Script 4 is used to run Script 1.</p><p> f. Execute Script 4 on the endpoint.<br></p><p>The execution of these scripts is convoluted and the following diagram illustrates the executions:</p><figure class="kg-card kg-image-card"><img src="https://lh3.googleusercontent.com/9xcSYL7boYKZVm-EEEtcj8XUUshcNcVLwwi_-GT1O4lIujsEycqTs77WeS915MjzY2kvU5PBN3sBOvckQz3MheL8lazrHCOHND65g6VFShdIcfsZ6mgMVZo88xl_6_lS_sIfscEZwMByFoDj6aLjdNwWK05T9XzFDMS6_aR5QCR2C53LUaJc1a7xkYFA" class="kg-image" alt loading="lazy" width="624" height="388"></figure><p>Mini-scripts execution order.<br><br></p><p> g. Finally, the parent ps1 script will download another version of the Stage 4 script and execute it via the Stage 2A VB script.</p><p> h. Once the configuration scripts have completed execution, they are deleted from the endpoint.<br><br><br></p><h3 id="stage-3-ps1">Stage 3: PS1</h3><p>The Stage 3 ps1 is simple and consists of three key components:</p><ol><li>Hexlified injector DLL: This DLL is used to run a specified process and inject the accompanying malware into it.</li><li>Hexlified malware payload: either njRAT or AsyncRAT.</li><li>Base64-encoded or plaintext command to reflective load the injector DLL into the powershell process with the target process’ image path and malware payload bytes passed as an argument to the injector. An example of the reflective loading command used is:<br></li></ol><!--kg-card-begin: html--><codeblock>
+    [Reflection.Assembly]::Load($H5).GetType('VBNET.PE').GetMethod('Run').Invoke($null,[object[]] ( 'C:\Windows\Microsoft.NET\Framework\v4.0.30319\aspnet_compiler.exe',$H1))
+    </br>
+Where
+    </br>
+$H5 = injector DLL bytes
+    </br>
+$H1 = malware payload bytes
+    </br>
+aspnet_compiler.exe = target process to inject the payload into. May vary for different instances of the infections.
+</codeblock><!--kg-card-end: html--><figure class="kg-card kg-image-card"><img src="https://lh5.googleusercontent.com/75KxwFMa1_n2P4YkiYUDAqkXTtLwhb2AAflPrOH0ZKacgkMK_Gz-YxwU-XtT8L2LpSy6scQeLfS18z_bj1eQbiT-OxYRkaPOgL5YQvb8ZpZpr3mKTBNNSKhUoFJG0gJF5w6Ab9TM7nIgJedV6dU2sx6Nxvp77NgYiunmTtyAbww2WP9GrFK3IUQRsZ2q" class="kg-image" alt loading="lazy" width="624" height="455"></figure><p>Stage 3 ps1 script.<br></p><p>The overall infection chain is:</p><figure class="kg-card kg-image-card"><img src="https://lh5.googleusercontent.com/9EM3aGO59L-phPGtuxaK9RaOjMG1FtbBiH-EgERwH9Q0KNFOVl9XGpQVqnViiJW-h5R6aYGEbu7B6hHOmcYpVYHvYm4OKNUs6vTuCYU-8P6xjwJ-FMUerJSdrtv6DtOllBMdaEBNshvqWrGow90TZSLIBNjAf9jbytS-HvGQCcAJidgsomGQ-Q9xmdZZ" class="kg-image" alt loading="lazy" width="624" height="329"></figure><p>Complete infection chain.<br></p><p>We have also observed minor variations in the infection chains where some of the (mini) scripts used in Stage 2 are hosted independently, downloaded and executed during the infection process. This is another example of a threat actor modularizing their infection chains to be able to control/update different stages of its attack.<br></p><p>The executables accompanying the Stage 3 PowerShell script consist of:<br></p><ul><li>Injector DLL: This DLL accepts two arguments:</li><li>The filepath of a process to be spawned, hollowed and replaced with the accompanying malware payload.</li><li>Malware payload bytes to be injected into the hollowed out target process.<br></li><li>Malware payload: The actual malware payload to be deployed on the endpoint.<br></li></ul><p>The DLL is a simple injector based on .NET. The DLL is usually obfuscated with .NET Reactor which can be easily deobfuscated using de4dot. There is only one exported method that takes the two arguments mentioned above and deploys the malware payload into the target process.</p><p>The injection method is a straight process hollowing, following all the usual steps. If any error occurs during the injection it will kill the target process and retry five times before giving up.</p><p>Interestingly, the DLL which is a modified version of <a href="https://github.com/NYAN-x-CAT/CSharp-RunPE/blob/master/RunPE/RunPE.cs">RunPE</a>, also contains code to change ACL to kernel objects, which is never called, indicating either a work-in-progress or redundant code borrowed from somewhere else but never used.</p><p></p><h2 id="malware-payloads">Malware Payloads</h2><p>The malware payloads found so far belong to two families <a href="https://malpedia.caad.fkie.fraunhofer.de/details/win.asyncrat">AsyncRAT</a> and <a href="https://malpedia.caad.fkie.fraunhofer.de/details/win.njrat">njRAT</a>.<br></p><p>AsyncRAT and njRAT are well-known and highly prolific RATs used by crimeware groups and APTs.<br></p><p>Many malware families use victim names or group IDs to identify different types of infections. This is done so that campaign operators can easily identify infections for administration and deploy additional malware to their victims.<br></p><p>Now, AsyncRAT and njRAT both use these victim identification methods. While njRAT identifies victims using the “victim name,” AsyncRAT uses a “group name” to keep track of infections and their respective groups.<br></p><p>The victim identifiers found embedded in the RATs were indicative of their targeting of Latin American countries. This finding matches with the targeting tactics, themes and languages used in the maldocs employed in these attacks. Some of these victim identifiers (specific to Latin America) used are:<br></p><figure class="kg-card kg-image-card"><img src="https://lh5.googleusercontent.com/f6N6-fjYNC4qSUOvX2zoeN4K0tDYljvloBzf81kiOwP3RhQi2UszlijXieZUNahZXehDa3hJeOcpqOXKysoSPEQdOA9arE6o1GUZZy8xPb3E7KXYYOkk-Vm23NXuMfdhn7fUJp9mKmeJZE38qxpgLTHfraCVr9MEHAvRnZ9hG6ZTAIYimxhvfVsbKx2V" class="kg-image" alt loading="lazy" width="624" height="451"></figure><p><br></p><h2 id="the-infection-chain-builder">The infection chain builder</h2><p>Talos also discovered a builder used by the operators of the attacks to create multiple scripts used in various stages of the attack chain. This builder is named “Crypter 3losh RAT.” This builder contains a set of malicious scripts embedded in it in the form of resources which are modified based on the inputs provided by the operator to generate the various scripts. The builder is built in .NET and can carry out a variety of malicious actions, which we will outline below.</p><h3 id="build-stage-1a-scripts">Build Stage 1A scripts</h3><p>The builder only supports the generation of the VBScripts used in the Stage 1A HTAs. The embedded VBScript modified is an older version used in previous attack campaigns by the operators.<br></p><p>The builder accepts the URL for the next stage and generates a VBScript. The VBScript is displayed to the user in a textbox on the UI but also saved to the builder’s working directory with the name “alosh-rat.vbs.”</p><figure class="kg-card kg-image-card"><img src="https://lh3.googleusercontent.com/5yKQHhXnsyB907f64cTNiY1LOm_5FDhSY8DGCKcPU-pSlwyPqqVCAa0E4rZxh2FNnbAYZ6C9HkB5fiJQR_qByC58MJhZA86G-v3pNipWIii0ThnUQrpckW2lg1zVSBCTaZJZl8v137obs5WWXAsz9DVVo7EeKmS6XU3MlfP7NZ6JtMJ4VgT6YFfS_3LJ" class="kg-image" alt loading="lazy" width="488" height="495"></figure><p>Stage 1A VBScript generated in the bottom left text box based on the Stage 2 URL specified in the text box at the top.</p><h3 id="build-stage-2-scripts">Build Stage 2 scripts</h3><p>The second-stage scripts are built using an embedded PS1 script. This UI accepts two URLs for the Stage 3 PS1 scripts and spits out a file called “3.txt” in the current user’s Desktop folder.<br></p><figure class="kg-card kg-image-card"><img src="https://lh5.googleusercontent.com/pvuU3yeWtwJ7lwQPjvUa-z97swGv6bVpKgoRrtUsiELUK59lIBWXtOpRAMp-KfC5yz0_4J8kI6ecng1gt53Ncw8_EV02dgFyNPCm5EfkM5gHdr-_g835xTxGpSdL-KeMclPnQDudu-vPsMSdhGvJTzi6iyQdTEkSsT1CgMNiAvucxCxgf_6aQj_96SNR" class="kg-image" alt loading="lazy" width="624" height="489"></figure><p>Builder UI for creating the Stage 2 scripts with the Stage 3 scripts being used as inputs.<br></p><h3 id="build-stage-3-scripts">Build Stage 3 scripts</h3><p>The Stage 3 scripts are perhaps the most important part of the infection chain. These scripts are responsible for unhexlifying the injector DLL and malware payload and in turn deploying both to infect the victim’s endpoint.<br></p><p>Again, the builder here uses two embedded PS1 scripts as templates. These templates already contain the hex representation of the injector DLL. This builder UI accepts the a local filepath of (upto) two malware payloads to be embedded in the generated Stage 3 scripts called “1.txt” and “2.txt,” respectively.<br></p><figure class="kg-card kg-image-card"><img src="https://lh6.googleusercontent.com/-kRqgIWEu7olKI_x5B3vDJFcY7sQOJ4n9L601gDhk7howB1NypCtSuEpKnHpyI4uPn__Mp4B_yznq6zzGz8HdmO-jjyNBx12gDrA4wIQXO17O9wM3NLfAkMR57F9Y2xmEUgFX9TcJtA1RwsSj6l3nV3GUNP7rNOaoES2j2q574sn0e9V2-2KD5Zos1Q4" class="kg-image" alt loading="lazy" width="624" height="471"></figure><p>Stage 3 builder UI accepting path to the RAT binaries.<br><br></p><p>The builder contains references to its creator on Facebook, YouTube and Skype. The YouTube page shows several videos which explain how to use the builder to bypass several commercial anti-virus.<br><br><br><br><br></p><h1 id="the-aggah-connection">The Aggah connection</h1><p>Many distinct malware campaigns sometimes tend to have commonalities and overlap in their TTPs. At times, this is due to the use of the same publicly or semi-privately available tools, builders and malware-as-a-service. An interesting commonality between the Latin American and Aggah campaigns seen recently are the Stage 3 PowerShell scripts. They utilize the same structure, syntax and semantics, down to the exact variable names. Identical Stage 3 PowerShell scripts are also present in the “3losh rat” crypter/Builder described previously. This indicates a common source of malicious code base for both these campaign sets or the use of a common crypter to build infection chains.<br></p><p>The malware families distributed by Aggah are also very similar to those seen in the Latin American campaigns, i.e. AsyncRAT and njRAT.<br></p><p>There are, however, a few distinctions between the two campaigns sets:<br></p><ul><li>Aggah relies heavily on the use of URL redirection services in their campaigns. Specifically using bitly, j[.]mp etc. We have not observed the use of these services in the Latin American campaigns.<br></li><li>Aggah is also known to heavily abuse public hosting services such as Blogger, Pastebin, Web Archive etc. to host their malicious components. The Latin American campaigns however, indicate that the operators tend to use either compromised or attacker controlled websites to host their components and payloads.<br></li></ul><p>Thus there are three distinct campaigns utilizing the same Crypter and infection scripts:<br></p><ul><li>The campaigns conducted by the crypter author “Alosh” — also seen abusing archive[.]org to host their malicious payloads.</li><li>The campaigns conducted by the Bralizian threat actor targeting Latin America.</li><li>The campaigns were conducted by the crimeware group “Aggah” using the same scripts found in the “3losh rat” crypter.<br></li></ul><h1 id="conclusion">Conclusion</h1><p>This campaign details a crypter used by operators to build infection artifacts for spreading malware in Latin America with a focus on the travel and hospitality industry. The campaign started in October 2020 and is currently ongoing. The fact that the actor is regional does provide the advantage of being able to write more targeted and perfect emails. This is a good example on how an actor can inflict losses to organizations without being part of an APT or a crimeware syndicate.</p><p>The variety and the ease of generating infection artifacts via Crypters indicates that the attackers will likely expand their net of victims to more industries and geographies. <br></p><p>The threat actor authoring the crypter primarily aims to sell it as a service. We’ve observed the authors’ advertise their crypters on Facebook, YouTube and other social media. However, we’ve also discovered that the crypter’s authors have conducted their own malware campaigns abusing archive[.]org to deliver commodity RATs. <br></p><p>The highly modular structure of the Latin American attack indicates a focus on stealth to deliver two widely popular RAT families of AsynRAT and njRAT. These techniques along with other indicators are shared with the Aggah group indicating that the crypter author might have sold it to both parties.<br></p><p>Organizations should remain vigilant against such threats as they are likely to proliferate in the future.<br><br></p><h1 id="coverage">Coverage</h1><p>Ways our customers can detect and block this threat are listed below.</p><figure class="kg-card kg-image-card"><img src="https://lh3.googleusercontent.com/zC10gy7KfKEtg27FVSLMrEQYP9_PnPr1AD6jqrP8hETK5HmFRYxx4XUwk8Gk9uCnqq4btLDbnjS4eY1pgDBP1XNWoxPCaXcveihc7JHnSxP4RdkfIjWcvNNeLrhJN4TJOt8jNmOlQ1miVAPkvqtINrPlU32Peb0KN37GZwy1vdmoUC8SAFx3FzYh-mJj" class="kg-image" alt loading="lazy" width="624" height="739"></figure><p><br></p><p><a href="https://www.cisco.com/c/en/us/products/security/amp-for-endpoints/index.html">Cisco Secure Endpoint</a> (formerly AMP for Endpoints) is ideally suited to prevent the execution of the malware detailed in this post. Try Secure Endpoint for free <a href="https://www.cisco.com/c/en/us/products/security/amp-for-endpoints/free-trial.html?utm_medium=web-referral?utm_source=cisco&amp;utm_campaign=amp-free-trial&amp;utm_term=pgm-talos-trial&amp;utm_content=amp-free-trial">here.</a><br></p><p><a href="https://www.cisco.com/c/en/us/products/security/web-security-appliance/index.html">Cisco Secure Web Appliance</a> web scanning prevents access to malicious websites and detects malware used in these attacks.<br></p><p><a href="https://www.cisco.com/c/en/us/products/security/email-security/index.html">Cisco Secure Email</a> (formerly Cisco Email Security) can block malicious emails sent by threat actors as part of their campaign. You can try Secure Email for free <a href="https://www.cisco.com/c/en/us/products/security/cloud-mailbox-defense?utm_medium=web-referral&amp;utm_source=cisco&amp;utm_campaign=cmd-free-trial-request&amp;utm_term=pgm-talos-trial">here</a>.<br></p><p><a href="https://www.cisco.com/c/en/us/products/security/firewalls/index.html">Cisco Secure Firewall</a> (formerly Next-Generation Firewall and Firepower NGFW) appliances such as <a href="https://www.cisco.com/c/en/us/products/collateral/security/firepower-ngfw-virtual/datasheet-c78-742858.html">Threat Defense Virtual</a>, <a href="https://www.cisco.com/c/en/us/products/security/adaptive-security-appliance-asa-software/index.html">Adaptive Security Appliance</a> and <a href="https://meraki.cisco.com/products/appliances">Meraki MX</a> can detect malicious activity associated with this threat.<br></p><p><a href="https://www.cisco.com/c/en/us/products/security/stealthwatch/index.html">Cisco Secure Network/Cloud Analytics</a> (Stealthwatch/Stealthwatch Cloud) analyzes network traffic automatically and alerts users of potentially unwanted activity on every connected device.<br></p><p><a href="https://www.cisco.com/c/en/us/products/security/threat-grid/index.html">Cisco Secure Malware Analytics</a> (Threat Grid) identifies malicious binaries and builds protection into all Cisco Secure products.<br></p><p><a href="https://umbrella.cisco.com/">Umbrella</a>, Cisco’s secure internet gateway (SIG), blocks users from connecting to malicious domains, IPs and URLs, whether users are on or off the corporate network. Sign up for a free trial of Umbrella <a href="https://signup.umbrella.com/?utm_medium=web-referral?utm_source=cisco&amp;utm_campaign=umbrella-free-trial&amp;utm_term=pgm-talos-trial&amp;utm_content=automated-free-trial">here</a>.<br></p><p><a href="https://www.cisco.com/c/en/us/products/security/web-security-appliance/index.html">Cisco Secure Web Appliance</a> (formerly Web Security Appliance) automatically blocks potentially dangerous sites and tests suspicious sites before users access them. <br></p><p>Additional protections with context to your specific environment and threat data are available from the <a href="https://www.cisco.com/c/en/us/products/security/firepower-management-center/index.html">Firewall Management Center</a>.<br></p><p><a href="https://signup.duo.com/?utm_source=talos&amp;utm_medium=referral&amp;utm_campaign=duo-free-trial">Cisco Duo</a> provides multi-factor authentication for users to ensure only those authorized are accessing your network. <br></p><p>Open-source Snort Subscriber Rule Set customers can stay up to date by downloading the latest rule pack available for purchase on <a href="https://www.snort.org/products">Snort.org</a>.</p><h3 id="orbital-queries">Orbital Queries</h3><p>Cisco Secure Endpoint users can use <a href="https://orbital.amp.cisco.com/help/#:~:text=Cisco%20Orbital%20(%E2%80%9COrbital%E2%80%9D),(Creators%20Update)%20or%20later.">Orbital Advanced Search</a> to run complex OSqueries to see if their endpoints are infected with this specific threat. For specific OSqueries on this threat, click below:</p><ul><li><a href="https://github.com/Cisco-Talos/osquery_queries/blob/master/win_malware/malware_njrat_filepath.yaml">njRAT</a></li><li><a href="https://github.com/Cisco-Talos/osquery_queries/blob/master/win_malware/malware_asyncrat_mutex_detected.yaml">AsyncRAT</a><br><br><br><br><br><br></li></ul><h1 id="iocs">IOCs<br></h1><h2 id="hashes">Hashes<br></h2><h3 id="malicious-emails">Malicious Emails</h3><p>9080f4537909efb164d08911e81e67def4939543605456357ea50f076291fd85</p><h3 id="ppam-and-xlam-files">PPAM and XLAM files</h3><!--kg-card-begin: markdown--><p>00627edeb9ce2f53fa615e6670ee58415be60f9a04c483b788e0e7add2992aba<br>
+56aa47ed75e94dad361eacb1b5bc40044ae34e120d2cbd15105283c2c6727948<br>
+ac88d9e338570b2b79c60970db289beeaf8aa39e3f44d412c5a9f5881b480c5c<br>
+147a300e77514e4ed827c6e250f781fbf8d7f0360b5e5d995e0242a3e81a0075<br>
+fa6a0108e64c04d4510afc3e54a367196bfb21dda3638971489b7705687aa65c<br>
+72c90f13ae2ae87c374ffb5b2e2db003882fadc040155149231587750f5ddbc7<br>
+bdc3fd3eee890e62d0a81d80ae73b64c56c111940c4aea6fc5c367203dcd5513<br>
+eef5993a740d3420cbb18375600f40aafa098958be5a71c0105f12c7b9df1887<br>
+61f1b9be329e3e6080f14c4af49acf641858157d3d94f7095ce64bbc1c6e7610<br>
+f686254e7d47ad3bfa75a81ab7e0c7f97f786351fcf601ea8a001772e5c907d6<br>
+e4d4cc7c45257ece991a5b93a713b78090aed990020d2c31fc5cf6f4bac99420<br>
+e53ddc8d759efe84def8137b7ffb0e63740c1d24fb232d91028f4a7e4a01d4f1<br>
+1c1975beb0ebd44f954ac7824c4f2687386dd1cda1e9b7133271537457fedc02<br>
+73ac27b9c82d1ba56e9b632ab902220cffa20f33b5263c543c73b67b8e77219c<br>
+f7bb7c7e066cea1a6874521cc8a5eef1714b758ae213b1b19026104c21ce01f1<br>
+05f0bf4bbaf08e709c7dbcbfc40e562b714b590f9b9e8dd9dfe9fe550663642a<br>
+b8fe3837f4a592788f5b9ca3b4f6bcd0515df4bbaeefdbf9f44b2ae214acb4b6<br>
+a448a9b6e883cf9c3bb5beef9764d22685e69e2ec213c91ad5d5bbc120634c0b<br>
+f1b7bd87ea04aa5162b4baa2f37ea061bb9bddf14485a4a548850a0b44b2aa75<br>
+4b3d35a8df8a029f52e5ebc6ae981d427691c9d536dcef4178c4424bc046f57c<br>
+a3abcf60dc3dcee74e9329ab48f71acfcd63653f2b47dd0846c38a208aac0d64<br>
+07b5910e731c2f4bde25d9919703031d8ac73b6344d9c0abf2b39a7e9f8d3b4f<br>
+fc40cc9e5547c3ea65850419c19c72af81073289e94421139166eaa228993126<br>
+2f3b0ab840cdbfff6a0404f1049f9a6cee0184801f4554c4dec3165724be19bc</p>
+<!--kg-card-end: markdown--><h3 id="stage-1a-hta">Stage 1A - HTA</h3><!--kg-card-begin: markdown--><p>7670bba115c1df8eab2509e0d4f53c90f8f8fd22e09a730c3d495d9c951a1f03<br>
+ce733816ccb171af8e89f3a334bd00f82c63c20b02fa6345ba67d1bd6365addb<br>
+7da245d4eeb382d2cb53de5c7bca042587887c7b52a2df784d58d843470e9c8e<br>
+24ff6109c93174a7be6eaf11bb359394be235666241a6f1fd78581b18334ec5d<br>
+e7abfae672aad5700fd71c9117b727f90b0de271f5232995d261324d708fb2cc<br>
+7442306336019d939e92c7c0a2562be2198872bd7a7a12cbed29a1cdd2d11948<br>
+f927ac2182f2a5b8d0da62608c9565ef856534051996c6a3c61f426df4d6f272<br>
+038384b895edc2a8ff3090d3a13261871562eb6caab74b9101d416be7bfae139<br>
+ff93194ce80707a9f4e8ea4f2e63f8b3a48691ae3ae6cb2867a8c14301683b22<br>
+fc78f0ca8c0a89722c66c029df32a2a8f3b07079d9afab57138a50032deb86d3<br>
+c2577967641d4c528da21e257ddf399542cb5353b8f717e0cec1200ed8b04389<br>
+3d43ad8d86b3c38e68477238cb2cf53bf0c87da437f0fab6f224a04b38376a81</p>
+<!--kg-card-end: markdown--><h3 id="stage-2-ps1">Stage 2 - PS1</h3><!--kg-card-begin: markdown--><p>624c271f9c06ab2300bb19b6555cf834d5c9a56cc3d0fa2b2fb916b63f73d416<br>
+cb94afd551f9cf0c607c85415ed62d51c8c52c098c759544052281a6b7037032<br>
+2c47541dd62d14f5495b23b60b414e2f86cc7b9d27822b88f65e423e041b8645<br>
+e4171f3de977b6748459975c555126cafc578faffefa7dc93b1e46dd5b6d08ba<br>
+37cd7836f979bb993cb9c38da0c4edad72f70eeb876faf1b2e21660e4efb7f6d<br>
+d4bcd6ff073ae1a032b43c46440a6e1a70f3d3450106e0cf65c69a299417de23<br>
+84c7cbd4484c84fa0fa8daebdf3aa0dd7eb0edc5be0957f224dbfe552b07144e<br>
+e2129853b08f99aa4de49ff396608af37dc03dda6efa1fae1f82c5c4e7ab7fcd</p>
+<!--kg-card-end: markdown--><h3 id="stage-2a-vbs">Stage 2A - VBS</h3><p>6acba6585f5ae7cae0f1dac3af605861ae1f79847d75c082949ab8d2949aeff3<br></p><h3 id="stage-3-ps1-1">Stage 3 - PS1</h3><!--kg-card-begin: markdown--><p>782af49032f0fffb21ff0f5c38d56e566f4a8b2e53f3a2e1986349cdde7f8e2e<br>
+486e4f7f5219e6fb03e01a0b488b87a2d85663937a7cd972871ee8ba175cd4f1<br>
+a3643cb237606aaec04deff8246c539d3ccb72bfa0ce9c02a235c04d08b87909<br>
+06e2db6aa09791067071c4082dba6863de879852e95e678dab267026d7005770<br>
+cd1be7351b0175c83ce3f8a7cede5a4fbe39ef750bfa31c2b8707ad2e6217948<br>
+e91de341151086d4381599bc0129709b5d67ca4a5ef4a8dc085839e7b903f701<br>
+7f9b7d0a8b2d45728c729fcd8100726fd173ae089943349c5cc4162088cbf6e7<br>
+4c6951ea6db1d70a6bb016ee2bff6473e83f5cc064699e53bd99ec68dc11c8ad<br>
+f6860ba876f3a50faf37e5498c859d40ac4f3fe90c379245b35b74f84c28137a<br>
+7be08b532949ac03c0861f63cdfe79395ee75d99ef040f1b921409338243b849<br>
+0459d34b98ffd24f0b9ad063a36d62e6b699041c0eba211ddf6e7a25a063f0e3<br>
+b56e6c2513a4f50e8d15bccbeb252ae087f34556c144578cd20b830bb3c69b45<br>
+87183315cbf7b56aec5e47c658bce8890f04ce8355801d81d0ef93b90d6a3fff<br>
+21170aca6f904d55c88e4809f28c844c2daa5ad0ebd96a2e479f28725fc417eb<br>
+47b2d8028bf85302ed24bf9c145bbce184c756a6648d996085b9d0f93b1e50b5<br>
+d4b2896b62990a75b9d5f858e575c039344a9fc9d219f7c25571f9c75c80b0b6<br>
+60cd0888629e035c94a74ab6ba475e6a306a58eaf554dd5e35973d06401dcade<br>
+46a571bee09c8b7284212a3e5f7054c6ffb3ccaafea93730253950279dff3363<br>
+777ee27781b10eda1626b32433ed99dbcc969c4360734bbcc744789d38ef0cea<br>
+7b701642379ec4270aaa6f436c969a60be516c5d48dc874a7a46114d7bc29edd<br>
+edaab1e2458537d43981a1496c3eb7bd1d08876b42a36cebcbc538581c1f1bcc<br>
+d1321dc8680d9ded1430b55eca3cd9fb8587eb4da27f522a87ec0fe9cbe08b42<br>
+786c44c88fa9a51d69e1f110b47b0b6c33f504969f8e49de3835f0497f0ab8ea</p>
+<!--kg-card-end: markdown--><h3 id="injector-dlls">Injector DLLs</h3><!--kg-card-begin: markdown--><p>eb4616d6234927f1763fabe82d7f73f26980323af6411951f2db4e244ef29654<br>
+a25771c577fbbfb5cc28cdb598deb82192765e8bd376e78bc87909f62621b7a0<br>
+d5f37a5630e46ef134e78b7d3828986afdfc33477f5b5776851b562ae8dc26b8<br>
+9165b9f24866c71b77654ac1c7667d93c30bbc29905e9469eb7e48f08104720c<br>
+91ccd22f96c1b407da7825ce155e6685765235aa6525c09f2f632429ce79512b<br>
+90674a2a4c31a65afc7dc986bae5da45342e2d6a20159c01587a8e0494c87371<br>
+82bd8e28f81160039e462330daee5190d7f474e76723aea057ddeadb201bc55c<br>
+24332968eb4cc46982b807d76da02fd1ad36235f04bc1e4962924355c9828733<br>
+e3e91d69f464752c243cd40661334291be12466aa3d9294b86b419dae1f17c7e<br>
+d5f37a5630e46ef134e78b7d3828986afdfc33477f5b5776851b562ae8dc26b8<br>
+9165b9f24866c71b77654ac1c7667d93c30bbc29905e9469eb7e48f08104720c</p>
+<!--kg-card-end: markdown--><h3 id="njrat">njRAT</h3><!--kg-card-begin: markdown--><p>0cf9e86a1db39f106933ed31fc94cd318fab33d5f000e1fce80b2e5827a1adfc<br>
+418b71760c6de41ed293744610e252c7474decd221371ffa449411dde751be46<br>
+dedb66e5c1313f5952cfa1b1280546c625d5b759cedb87e28950f1c18ef3caf7<br>
+43175b875ea94a762963d8b15d84b8c1b0882fa850343a5ce75325fb63612519<br>
+17506df03d616598708a6520f901b46bb1624a9f27dfc8a3875ce2c3f8c94fc2</p>
+<!--kg-card-end: markdown--><h3 id="asyncrat">AsyncRAT</h3><!--kg-card-begin: markdown--><p>b9520bacbd60af9792b105232d453b8b7e4e6b0b1e9e505fb50435d46c97b6e7<br>
+5a3bf8a7e4c103a834f08854a13e67ee4f176611be01bf27f3c7def0c988c768<br>
+5df520408cef3d532d41136ed3a2ac24f7a18d060bcf85778aa157c938b6e2dd<br>
+2a9edc18b10a532f7632d6b44f2610ca3a823c2b2be7a3fd3126b55af2c68ede<br>
+a88857a647d4f0443d67c9d6b025abf76e16e05c0d1499eb2be67a10cd025745<br>
+1b3d41d44659ff038cf8aafdc5ff021646771106d957783aecdff725158c216c<br>
+991a6446da94bb297078bd1031019395b5ed58bd4a878df0cf8707448028b6ed<br>
+a6007d0497b7b79206b7a32dd30ca1d7f4d36e5c548c34be44b7cbf35393e7e2<br>
+e31247241e58720b205eeedd3184923641fea7f027245d6896e54ae5538b4f52<br>
+806a9803d28f2cdbbe98c4b86865c64be25e2c85e043ae7d76ed04018fd7c8f0<br>
+542a389b63f586e36063cc6dc72337955951013f1684386e1d2b325c0510daf7<br>
+143f92ade0221b8104c0add0ecbf5f75c84840ec2b9ceb2b1a3317f99d98a863<br>
+cd889b56855cffe94ba55d0f4ea6ef13a4ea03e115a49788b1f073098541c83d<br>
+b725efa51eafa756f41c4dcd43d01e28c15e90caf19df5bd615fcae8c5b1a1f0</p>
+<!--kg-card-end: markdown--><h3 id="infection-chain-builder-crypter">Infection Chain Builder/Crypter</h3><p>839703f5db34e54afdd9a691516cd986bcbecd9856f202d26ca312d9214487d0<br></p><h2 id="network-iocs-">Network IOCs:<br></h2><p>Maldoc URLs</p><!--kg-card-begin: markdown--><p>hxxp://updatewin32[.]xyz/office365/1.doc<br>
+hxxp://updatewin32[.]xyz/office365/10.doc<br>
+hxxp://updatewin32[.]xyz/office365/11.doc<br>
+hxxp://updatewin32[.]xyz/office365/12.doc<br>
+hxxp://updatewin32[.]xyz/office365/13.doc<br>
+hxxp://updatewin32[.]xyz/office365/14.doc<br>
+hxxp://updatewin32[.]xyz/office365/15.doc<br>
+hxxp://updatewin32[.]xyz/office365/16.doc<br>
+hxxp://updatewin32[.]xyz/office365/2.doc<br>
+hxxp://updatewin32[.]xyz/office365/3.doc<br>
+hxxp://updatewin32[.]xyz/office365/4.doc<br>
+hxxp://updatewin32[.]xyz/office365/5.doc<br>
+hxxp://updatewin32[.]xyz/office365/6.doc<br>
+hxxp://updatewin32[.]xyz/office365/7.doc<br>
+hxxp://updatewin32[.]xyz/office365/8.doc<br>
+hxxp://updatewin32[.]xyz/office365/9.doc</p>
+<!--kg-card-end: markdown--><h3 id="stage-1a">Stage 1A</h3><!--kg-card-begin: markdown--><p>hxxps://updatewin32[.]xyz/async/paste.mp3<br>
+hxxps://updatewin32[.]xyz/async/msgbox.txt<br>
+hxxp://updatewin32[.]xyz/office365/msg.txt<br>
+hxxp://updatewin32[.]xyz/office365/chile.mp3<br>
+hxxps://www[.]diamantesviagens[.]com[.]br/terca.hta<br>
+hxxps://www[.]diamantesviagens[.]com[.]br/<br>
+hxxps://www[.]diamantesviagens[.]com[.]br/Clean.hta<br>
+hxxps://www[.]diamantesviagens[.]com[.]br/scanner.hta<br>
+hxxps://www[.]diamantesviagens[.]com[.]br/sexta.hta<br>
+hxxps://www[.]diamantesviagens[.]com[.]br/rei2.hta<br>
+hxxps://www[.]diamantesviagens[.]com[.]br/qpq.hta<br>
+hxxps://www[.]diamantesviagens[.]com[.]br/tv.hta<br>
+hxxps://www[.]diamantesviagens[.]com[.]br/fd.hta<br>
+hxxp://updatewin32[.]xyz/injext.mp3<br>
+hxxp://updatewin32[.]xyz/kilabword.mp3</p>
+<!--kg-card-end: markdown--><h3 id="stage-2">Stage 2</h3><!--kg-card-begin: markdown--><p>hxxp://updatewin32[.]xyz/3.txt<br>
+hxxps://updatewin32[.]xyz/async/oms3.txt<br>
+hxxps://updatewin32[.]xyz/async/async3.txt<br>
+hxxps://elmerfloyd[.]com/wp/4.txt<br>
+hxxps://acscompany[.]com[.]br/33.txt<br>
+hxxps://celulosa-corp[.]com/3ASYNC.txt<br>
+hxxp://updatewin32[.]xyz/office365/chile3.txt<br>
+hxxp://updatewin32[.]xyz/n3.txt</p>
+<!--kg-card-end: markdown--><h3 id="stage-2a">Stage 2A</h3><!--kg-card-begin: markdown--><p>hxxp://edc[.]com[.]ly/index/wp.txt<br>
+hxxps://bestbue-sec[.]com/VVpost2.txt</p>
+<!--kg-card-end: markdown--><h3 id="stage-2-mini-scripts">Stage 2 mini scripts</h3><!--kg-card-begin: markdown--><p>hxxp://wh890850[.]ispot[.]cc/~invoixec/kill/dInjector.png<br>
+hxxp://wh890850[.]ispot[.]cc/~invoixec/kill/test.ps1<br>
+hxxp://wh890850[.]ispot[.]cc/~invoixec/kill/run.ps1<br>
+hxxp://wh890850[.]ispot[.]cc/~invoixec/kill/vb.txt</p>
+<!--kg-card-end: markdown--><h3 id="stage-3">Stage 3</h3><!--kg-card-begin: markdown--><p>hxxps://updatewin32[.]xyz/async/oms2.txt<br>
+hxxps://updatewin32[.]xyz/async/oms1.txt<br>
+hxxps://updatewin32[.]xyz/async/async2.txt<br>
+hxxps://updatewin32[.]xyz/async/async1.txt<br>
+hxxp://updatewin32[.]xyz/2.txt<br>
+hxxp://updatewin32[.]xyz/1.txt<br>
+hxxps://acscompany[.]com.br/22.txt<br>
+hxxps://acscompany[.]com.br/11.txt<br>
+hxxps://elmerfloyd[.]com/wp/1.txt<br>
+hxxps://elmerfloyd[.]com/wp/2.txt<br>
+hxxps://elmerfloyd[.]com/wp/3.txt<br>
+hxxps://celulosa-corp[.]com/1ASYNC.txt<br>
+hxxps://celulosa-corp[.]com/2ASYNC.txt<br>
+hxxps://updatewin32[.]xyz/office365/chile2.txt<br>
+hxxps://updatewin32[.]xyz/office365/chile1.txt<br>
+hxxps://www[.]diamantesviagens[.]com[.]br/terca.jpg<br>
+hxxps://www[.]diamantesviagens[.]com[.]br/RunPE.jpg<br>
+hxxps://www[.]diamantesviagens[.]com[.]br/scanner.jpg<br>
+hxxps://www[.]diamantesviagens[.]com[.]br/sexta.jpg<br>
+hxxps://www[.]diamantesviagens[.]com[.]br/rei2.jpg<br>
+hxxps://www[.]diamantesviagens[.]com[.]br/qap.jpg<br>
+hxxps://www[.]diamantesviagens[.]com[.]br/tv.jpg<br>
+hxxps://www[.]diamantesviagens[.]com[.]br/fd.jpg<br>
+hxxp://updatewin32[.]xyz/n2.txt<br>
+hxxp://updatewin32[.]xyz/n1.txt</p>
+<!--kg-card-end: markdown--><h3 id="njrat-c2">njRAT C2</h3><!--kg-card-begin: markdown--><p>111234cdt[.]ddns[.]net:4782<br>
+googleservice64[.]ddns[.]net:5155<br>
+potenzax63[.]linkpc[.]net</p>
+<!--kg-card-end: markdown--><h3 id="asyncrat-c2">AsyncRAT C2</h3><!--kg-card-begin: markdown--><p>111234cdt[.].ddns[.]net:6606<br>
+111234cdt[.].ddns[.]net:7707<br>
+111234cdt[.].ddns[.]net:8808<br>
+cdtpitbull[.]hopto[.]org:6606<br>
+cdtpitbull[.]hopto[.]org:7707<br>
+cdtpitbull[.]hopto[.]org:8808<br>
+googleservice64[.]ddns[.]net:6606<br>
+googleservice64[.]ddns[.]net:7707<br>
+googleservice64[.]ddns[.]net:8808<br>
+aliveafterguard[.]tech:5553<br>
+111234[.]ddns[.]net:6606<br>
+111234[.]ddns[.]net:7707<br>
+111234[.]ddns[.]net:8808<br>
+cdt2021[.]hopto[.]org:6606<br>
+cdt2021[.]hopto[.]org:7707<br>
+cdt2021[.]hopto[.]org:8808<br>
+micomico[.]ddns[.]net:4000</p>
+<!--kg-card-end: markdown--><h3 id="malicious-google-drive-url-hosting-the-ppam-">Malicious Google Drive URL hosting the PPAM:</h3><!--kg-card-begin: markdown--><p>hxxps://drive[.]google[.]com/u/1/uc?id=1cU-jSCI6bT-yXlWCkJgay-xWb8KUYRVC&amp;export=download</p>
+<!--kg-card-end: markdown--><h3 id="archive-org-abuse-urls">archive[.]org abuse URLs</h3><!--kg-card-begin: markdown--><p>hxxps://archive[.]org/details/firasZIGGSNEW1<br>
+hxxps://archive[.]org/download/firasZIGGSNEW1/firasZIGGSNEW1.txt<br>
+hxxps://archive[.]org/details/firasZIGGSNEW<br>
+hxxps://archive[.]org/details/firasZIGGSNEW/firasZIGGSNEW.txt<br>
+hxxps://archive[.]org/details/startilyasasync<br>
+hxxps://archive[.]org/details/4ilyasasync<br>
+hxxps://archive[.]org/details/3ilyasasync<br>
+hxxps://archive[.]org/details/2ilyasasync<br>
+hxxps://archive[.]org/details/1ilyasasync<br>
+hxxps://archive[.]org/details/4ilyas-normal<br>
+hxxps://archive[.]org/details/3ilyas-normal<br>
+hxxps://archive[.]org/details/2ilyas-normal<br>
+hxxps://archive[.]org/details/1ilyas-normal<br>
+hxxps://archive[.]org/details/4ilyascartgpu.<br>
+hxxps://archive[.]org/details/3ilyascartgpu.<br>
+hxxps://archive[.]org/details/2ilyascartgpu.<br>
+hxxps://archive[.]org/details/1ilyascartgpu<br>
+hxxps://archive[.]org/details/4ilyas<br>
+hxxps://archive[.]org/details/3ilyas<br>
+hxxps://archive[.]org/details/2ilyas<br>
+hxxps://archive[.]org/details/1ilyas<br>
+hxxps://archive[.]org/details/startupbasg<br>
+hxxps://archive[.]org/details/Encodingbash<br>
+hxxps://archive[.]org/details/encoding-voice<br>
+hxxps://archive[.]org/details/1-voice<br>
+hxxps://archive[.]org/details/2jack-voice<br>
+hxxps://archive[.]org/details/encodingh-2firas<br>
+hxxps://archive[.]org/details/Allbash<br>
+hxxps://archive[.]org/details/startbash<br>
+hxxps://archive[.]org/details/serverbash<br>
+hxxps://archive[.]org/details/startupVoice<br>
+hxxps://archive[.]org/details/@3losh-rat<br>
+hxxps://archive[.]org/details/@alo0ch0011</p>
+<!--kg-card-end: markdown--><h3 id="attacker-email-id">Attacker Email ID</h3><p>alo0ch[at]outlook[.]com<br></p>
+
+            
+        </div>
+    </section>
+    <div class="social-media-wrapper">
+    <h5>Share this post</h5>
+    <ul class="social-media-share-list">
+        <li>
+            <a class="share-facebook" title="Share this on Facebook" data-text="Malicious Campaign Targets Latin America: The seller, The operator and a curious link" data-href="https://blog.talosintelligence.com/rat-campaign-targets-latin-america/" rel="nofollow" target="_blank" href="https://www.facebook.com/sharer.php?u=https://blog.talosintelligence.com/rat-campaign-targets-latin-america/"></a>
+        </li>
+        <li>
+            <a class="share-x" title="Post This" data-text="Malicious Campaign Targets Latin America: The seller, The operator and a curious link" data-href="https://blog.talosintelligence.com/rat-campaign-targets-latin-america/" rel="nofollow" target="_blank" href="https://x.com/share?url=https://blog.talosintelligence.com/rat-campaign-targets-latin-america/"></a>
+        </li>
+        <li>
+            <a class="share-linkedin" title="Share this on LinkedIn" data-text="Malicious Campaign Targets Latin America: The seller, The operator and a curious link" data-href="https://blog.talosintelligence.com/rat-campaign-targets-latin-america/" rel="nofollow" target="_blank" href="https://www.linkedin.com/sharing/share-offsite/?url=https://blog.talosintelligence.com/rat-campaign-targets-latin-america/"></a>
+        </li>
+        <li>
+            <a class="share-reddit" title="Reddit This" data-text="Malicious Campaign Targets Latin America: The seller, The operator and a curious link" data-href="https://blog.talosintelligence.com/rat-campaign-targets-latin-america/" rel="nofollow" target="_blank" href="https://www.reddit/submit?url=https://blog.talosintelligence.com/rat-campaign-targets-latin-america/"></a>
+        </li>
+        <li>
+            <a class="share-email" title="Email This" href="mailto:?body=Malicious Campaign Targets Latin America: The seller, The operator and a curious linkhttps://blog.talosintelligence.com/rat-campaign-targets-latin-america/"></a>
+        </li>
+    </ul>
+</div></article>
+                    </div>
+                </div>
+                <div class="alt-layout-row-dk sidebar" id="side-bar">
+                            <h4>Related Content</h4>
+
+                                <div class="sidebar-snippet-wrapper">
+                                    <a href="/chaos-msarat-living-off-the-browser-to-build-covert-c2-channel/">
+                                        <h3>Chaos ransomware&#x27;s msaRAT: Living off the browser to build a covert C2 channel</h3>
+                                        <span  class="preview-attributes">July 23, 2026 06:00</span>
+                                        <p>The Chaos ransomware group uses new malware &quot;msaRAT&quot; that hijacks browsers. The malware doesn&#39;t communicate directly with C2 but connects through the browser. It enables arbitrary command execution while hiding the attacker&#39;s IP from victims via WebRTC over TURN.</p>
+                                    </a>
+                                </div>
+                                <div class="sidebar-snippet-wrapper">
+                                    <a href="/uat-11795-deploys-novel-starland-rat-and-bespoke-wldr-c2-implant-in-financially-motivated-campaign/">
+                                        <h3>UAT-11795 deploys novel Starland RAT and bespoke WLDR C2 implant in financially motivated campaign</h3>
+                                        <span  class="preview-attributes">July 16, 2026 06:00</span>
+                                        <p>Cisco Talos is disclosing UAT-11795, a sophisticated, Russian-speaking, financially motivated adversary that has been conducting a malicious campaign targeting users in the U.S. and Europe since at least June 2025.</p>
+                                    </a>
+                                </div>
+                                <div class="sidebar-snippet-wrapper">
+                                    <a href="/cloudz-pheno-infostealer/">
+                                        <h3>CloudZ RAT potentially steals OTP messages using Pheno plugin</h3>
+                                        <span  class="preview-attributes">May 5, 2026 06:00</span>
+                                        <p>Cisco Talos discovered an intrusion, active since at least January 2026, where an unknown attacker implanted a CloudZ remote access tool (RAT) and a previously undocumented plugin called “Pheno.”</p>
+                                    </a>
+                                </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <footer id="footer">
+    <div class="container-fluid px-0">
+        <div class="row footer_nav_wrapper mx-0">
+            <div class="col-xl-10 col-12">
+                <div class="multi-col-list-wrapper">
+                    <ul class="footer-parent-list">
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6><a href="https://talosintelligence.com/reputation">Intelligence Center</a></h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/reputation_center">Intelligence Search</a></li>
+                                <li><a href="https://talosintelligence.com/reputation_center/email_rep">Email &amp; Spam Trends</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6><a href="https://talosintelligence.com/vulnerability_info">Vulnerability Research</a></h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/vulnerability_reports">Vulnerability Reports</a></li>
+                                <li><a href="https://talosintelligence.com/ms_advisories">Microsoft Advisories</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                             <ul>
+                                <li>
+                                    <h6><a href="https://talosintelligence.com/incident_response">Incident Response</a></h6>
+                                </li>
+                                <li>
+                                    <a href="https://talosintelligence.com/incident_response/services#reactive-services">Reactive Services</a>
+                                </li>
+                                <li>
+                                    <a href="https://talosintelligence.com/incident_response/services#proactive-services">Proactive Services</a>
+                                </li>
+                                <li>
+                                    <a href="https://talosintelligence.com/incident_response/contact">Emergency Support</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Security Resources</h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/software">Open Source Security Tools</a></li>
+                                <li><a href="https://talosintelligence.com/categories">Intelligence Categories Reference</a></li>
+                                <li><a href="https://talosintelligence.com/secure-endpoint-naming">Secure Endpoint Naming Reference</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Media</h6>
+                                </li>
+                                <li><a href="https://blog.talosintelligence.com">Talos Intelligence Blog</a></li>
+                                <li><a href="https://blog.talosintelligence.com/category/threat-source-newsletter/">Threat Source Newsletter</a></li>
+                                <li><a href="https://talosintelligence.com/podcasts/shows/beers_with_talos">Beers with Talos Podcast</a></li>
+                                <li><a href="https://talosintelligence.com/podcasts/shows/talos_takes">Talos Takes Podcast</a></li>
+                                <li><a target="_blank" href="https://www.youtube.com/channel/UCPZ1DtzQkStYBSG3GTNoyfg/featured">Talos Videos</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Support</h6>
+                                </li>
+                                <li><a href="https://support.talosintelligence.com">Support Documentation</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Company</h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/about">About Talos</a></li>
+                                <li><a href="https://talosintelligence.com/careers">Careers</a></li>
+                                <li><a target="_blank" href="https://www.cisco.com/c/en/us/products/security/product-listing.html">Cisco Security</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xl-2 col-12 connect_social">
+                <div class="connect-footer-section-wrapper">
+                    <h6>Follow us</h6>
+                    <ul>
+                        <li>
+                            <a target="_blank" href="https://x.com/talossecurity"><div class="footer-media-icon" id="footer-media-icon-x"></div>
+                            </a></li>
+                        <li>
+                            <a target="_blank" href="https://www.youtube.com/channel/UCPZ1DtzQkStYBSG3GTNoyfg/featured"><div class="footer-media-icon" id="footer-media-icon-youtube"></div>
+                            </a></li>
+                        <li>
+                            <a target="_blank" href="https://www.linkedin.com/company/cisco-talos-intelligence-group/"><div class="footer-media-icon" id="footer-media-icon-linkedin"></div>
+                            </a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row mx-0">
+            <div class="col-12 footer_corporate">
+                <a target="_blank" href="http://tools.cisco.com/security/center/home.x"><img alt="Cisco" src="https://blog.talosintelligence.com/assets/images/logo_cisco_white.svg">
+                </a><p class="copyright">
+                ©
+                <span id='current-year'></span>
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                <a target="_blank" class="underline" href="http://www.cisco.com/web/siteassets/legal/privacy_full.html">Privacy Policy.</a>
+            </p>
+            </div>
+        </div>
+    </div>
+</footer>
+    <script>
+  function coverageView() {
+    const coverageTable = document.getElementById('coverage-block');
+    const sidebar = document.getElementById('side-bar');
+    const postContent = document.getElementById('post-content');
+    const currentWidth = window.innerWidth;  
+  
+    if (coverageTable && sidebar && postContent) {
+      if (currentWidth < 1000) {
+        // For viewport less than 1000px, append to post content
+        postContent.appendChild(coverageTable);
+      } else {
+        // For viewport 1000px and wider, check for subscribe button
+        const subscribeButton = sidebar.querySelector('.subscribe-button');
+        
+        if (subscribeButton) {
+          // Insert coverage block after the subscribe button
+          subscribeButton.insertAdjacentElement('afterend', coverageTable);
+        } else {
+          // No subscribe button found, prepend to top of sidebar
+          sidebar.prepend(coverageTable);
+        }
+      }
+    }
+  }
+  
+  window.addEventListener("resize", coverageView);
+  window.addEventListener("load", coverageView);
+
+
+  (function() {
+    Array.from(document.querySelectorAll("a")).filter(a => {
+        return a.hostname && a.hostname !== location.hostname
+    }).forEach(a => a.setAttribute('target', '_blank'))
+})();
+</script>
+
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://blog.talosintelligence.com/assets/js/jquery-3.6.0.min.js?v=_xUj-3OJU5yExlq6"></script>
+<script src="https://blog.talosintelligence.com/assets/js/popper.min.js?v=ZvOgfh-ptkpoa2Y4"></script>
+<script src="https://blog.talosintelligence.com/assets/js/resize-styles.js?v=iB-0rQKwd6f_Dllp"></script>
+<script src="https://blog.talosintelligence.com/assets/js/bootstrap.bundle.min.js?v=JRXjfu4x9e89ZZsh"></script>
+<script src="https://blog.talosintelligence.com/assets/js/date.js?v=TlJWK1qtzFQeV9lL"></script>
+<script src="https://blog.talosintelligence.com/assets/js/prism.js?v=roQly8fYXhzQ4Osd"></script>
+<script src="https://cdn.jsdelivr.net/npm/ghost-theme-utils@latest/dist/js/ghost-theme-utils.min.js" async defer></script>
+<script src="https://blog.talosintelligence.com/assets/js/chart.min.js?v=dEAdc43T4D7l37O2"></script>
+<script src="https://blog.talosintelligence.com/assets/js/x-scroll.js?v=DuV8f5nlfWlGIAUr"></script>
+<script src="https://blog.talosintelligence.com/assets/js/2025_yir_chart.js?v=OSqUj45x6XXKWbZW"></script>
+
+
+</body>
+
+</html>

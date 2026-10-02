@@ -1,0 +1,1347 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The Desert Falcons targeted attacks | Securelist
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Solutions for:
+
+Home Products
+Small Business 1-50 employees
+Medium Business 51-999 employees
+Enterprise 1000+ employees
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+by Kaspersky
+
+
+CompanyAccount
+Get In Touch
+Dark mode off
+EnglishRussianSpanishBrazil
+
+
+
+
+
+
+
+
+
+
+
+
+
+Solutions
+
+
+
+Internet of Things & Embedded SecurityLearn More
+Industrial CybersecurityLearn More
+Fraud PreventionLearn More
+KasperskyOS-based solutionsLearn More
+
+
+
+Other solutions
+Kaspersky for Security Operations Center
+Kaspersky IoT Infrastructure Security
+Kaspersky Secure Remote Workspace
+
+
+Industries
+
+
+
+National CybersecurityLearn More
+Industrial CybersecurityLearn More
+Finance Services CybersecurityLearn More
+Healthcare CybersecurityLearn More
+Transportation CybersecurityLearn More
+Retail CybersecurityLearn More
+
+
+
+Other Industries
+Telecom Cybersecurity
+View all
+
+
+Products
+
+
+
+Kaspersky Next NEW!Learn More
+KasperskyXDRLearn More
+KasperskyEndpoint Security for BusinessLearn More
+KasperskyEDR ExpertLearn More
+KasperskyEDR OptimumLearn More
+KasperskyAnti Targeted Attack PlatformLearn More
+KasperskyHybrid Cloud SecurityLearn More
+KasperskySD-WANLearn More
+KasperskyIndustrial CyberSecurityLearn More
+KasperskyContainer SecurityLearn More
+
+
+
+Other Products
+Kaspersky Security for Internet Gateway
+Kaspersky Embedded Systems Security
+Kaspersky IoT Infrastructure Security
+Kaspersky Secure Remote Workspace
+Kaspersky Security for Mail Server
+View All
+
+
+Services
+
+
+
+KasperskyCybersecurity ServicesLearn More
+KasperskySecurity AwarenessLearn More
+KasperskyPremium SupportLearn More
+KasperskyThreat IntelligenceLearn More
+KasperskyManaged Detection and ResponseLearn More
+KasperskyCompromise AssessmentLearn More
+KasperskySOC ConsultingLearn More
+
+
+
+Other Services
+Kaspersky Professional Services
+Kaspersky Incident Response
+Kaspersky Cybersecurity Training
+View All
+
+
+Resource Center
+
+Case Studies
+White Papers
+Datasheets
+Technologies
+MITRE ATT&CK
+
+About Us
+
+Transparency
+Corporate News
+Press Center
+Careers
+Sponsorship
+Policy Blog
+Contacts
+
+GDPR
+ 
+
+
+
+
+
+
+ Dark mode off
+
+
+
+Securelist menu
+
+EnglishRussianSpanishBrazil
+Existing Customers
+
+Personal
+
+My Kaspersky
+Renew your product
+Update your product
+Customer support
+
+Business
+
+KSOS portal
+Kaspersky Business Hub
+Technical Support
+Knowledge Base
+Renew License
+
+
+Home
+
+Products
+Trials&Update
+Resource Center
+
+Business
+
+Kaspersky Next
+Small Business (1-50 employees)
+Medium Business (51-999 employees)
+Enterprise (1000+ employees)
+
+
+Securelist
+Threats
+
+Financial threats
+Mobile threats
+Web threats
+Secure environment (IoT)
+Vulnerabilities and exploits
+Spam and Phishing
+Industrial threats
+
+Categories
+
+APT reports
+Incidents
+Research
+Malware reports
+Spam and phishing reports
+Publications
+Kaspersky Security Bulletin
+
+Archive
+All Tags
+APT Logbook
+Webinars
+Statistics
+Encyclopedia
+Threats descriptions
+KSB 2021
+
+About Us
+
+Company
+Transparency
+Corporate News
+Press Center
+Careers
+Sponsorships
+Policy Blog
+Contacts
+
+Partners
+
+Find a Partner
+Partner Program
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Content menu
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+Subscribe
+
+
+
+
+
+Threat Response
+
+
+
+
+
+
+
+
+
+
+
+by Kaspersky
+
+ Dark mode off
+
+
+
+
+ThreatsThreats
+
+APT (Targeted attacks)
+Secure environment (IoT)
+Mobile threats
+Financial threats
+Spam and phishing
+Industrial threats
+Web threats
+Vulnerabilities and exploits
+All threats
+
+CategoriesCategories
+
+APT reports
+Malware descriptions
+Security Bulletin
+Malware reports
+Spam and phishing reports
+Security technologies
+Research
+Publications
+All categories
+
+Other sections
+
+Threat Response
+All tags
+Webinars
+APT Logbook
+Statistics
+Encyclopedia
+Threats descriptions
+KSB 2025
+Kaspersky ICS CERT
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+ 
+
+APT reports
+
+The Desert Falcons targeted attacks 
+
+APT reports
+
+17 Feb 2015
+
+  minute read								
+
+
+
+
+
+
+Ghareeb Saad
+
+
+
+
+Mohamad Amin Hasbini
+
+
+
+
+
+
+
+
+
+
+ 
+
+Authors
+
+
+
+
+Ghareeb Saad
+
+
+
+
+Mohamad Amin Hasbini
+
+
+
+
+
+Download Full Report PDF
+The Desert  Falcons are a new group of Cyber Mercenaries operating in the Middle East and carrying  out Cyber Espionage across that region. The group uses an arsenal of homemade  malware tools and techniques to execute and conceal its campaigns on PC and  Mobile OS.
+#FalconsAPT is the 1st known campaign to be fully developed by Arabic #hackers to target the Middle East #TheSAS2015Tweet
+The first Desert Falcons  operations were seen in 2011 and the group made its first infections in 2013.  By the end of 2014 and beginning of 2015 the group was very active.
+Full report
+The full  report can be found here.
+FAQ
+Where  are the Victims Located?
+There are  more than 3,000 victims in 50+ countries. Most of them are found in Palestine,  Egypt, Israel and Jordan, but others have been discovered in Saudi Arabia, the  UAE, the US, South Korea, Morocco, Qatar and others.
+
+Who are the Victims?
+The attacks targeted several classes of victim, including Military and Government organizations, employees responsible for health organizations, combating money  laundering, economic and financial institutions, leading media entities, research and educational institutions, energy and utilities providers, activists and political leaders, physical security companies and other targets that have access to important geopolitical information.
+
+How  are the victims infected?
+Malware  writers use a variety of technical and social engineering methods to deliver  their files and encourage victims to run them, creating an effective infection  vector. Examples include a fake website that promises to publish censored  political information and asks users to download a plugin to view a video (the  plugin contains the malware). Another example involves the use of spear  phishing emails or social network messages to deliver malicious files using an extension  override (e.g. malicious files ending with .fdp.scr would appear .rcs.pdf).
+
+Sample of documents and videos used in spear phishing
+What are the goals of the operations?
+The attackers  are looking for sensitive intelligence information that could help them in  further operations or even extortion. The victims are targeted for the secrets  in their possession or intelligence information relating to their positions in governments  or important organizations.
+More than 1  million files were stolen from victims. Stolen files include diplomatic communications  from embassies, military plans and documents, financial documents, VIP and  Media contact lists and files.
+
+Who  are the attackers and what do we know about them?
+The Desert Falcons operators are native Arabic speakers. There are about 30 of them  working in three teams. Some of their identities are already known. The  attackers are running three campaigns to target different types of victim.
+Where  are the attackers based?
+The attackers  are based in Palestine, Egypt and Turkey.
+Which  malware do they use to infect their victims?
+
+There are  three main backdoors used to infect victim devices:
+Computer backdoors
+
+The Main  Falcons Trojan
+The DHS* Spyware Trojan
+
+Computer  Backdoors give the attackers full scope to use keyloggers and screenshotters,  access files and even make audio recordings. DHS naming is used by the  attackers to describe the nickname initials of one of the developers (D**  H*** Spyware).
+Mobile Backdoor
+
+A mobile  backdoor targeting Android devices.
+Mobile  Backdoors give attackers access to Call and SMS logs
+
+
+How did you become  aware of this threat? Who reported it?
+We became aware of the threat during an incident  investigation in the Middle East.
+Is it still  active?
+
+The operation is very active and is currently in  peak condition. We are continuously identifying new samples and victims for all  related campaigns.
+How is this  different from any other Cyber espionage attacks?
+Desert Falcons are the first known Cyber  espionage attacks to be fully developed and operated by Arabic speakers to target  the Middle East. It has affected a stunning range of victims, stealing more  than 1 million special files.
+Is this a  nation-state sponsored attack?
+The profiles of the targeted victims and the  apparent political motives behind the attacks make it possible that Desert  Falcons operations could be nation state sponsored. At present, though, this  cannot be confirmed.
+Why this name?
+The falcon is a rare bird that has been highly  prized for a centuries in desert countries in the Arab world.  It is a  symbol of hunting and sharp vision. The Desert Falcons are proficient  cyberhunters with carefully chosen targets, all of whom are thoroughly  investigated before the attack and closely watched after being infected.
+How  can users protect themselves?
+Kaspersky Lab products detect and  block all variants of the malware used in this campaign:
+     Trojan.Win32.DesertFalcons
+     Trojan-Spy.Win32.Agent.cncc
+     Trojan-Spy.Win32.Agent.ctcr
+     Trojan-Spy.Win32.Agent.ctcv
+     Trojan-Spy.Win32.Agent.ctcx
+     Trojan-Spy.Win32.Agent.cree
+     Trojan-Spy.Win32.Agent.ctbz
+     Trojan-Spy.Win32.Agent.comn
+     Trojan.Win32.Bazon.a
+
+
+
+
+
+
+Desert Falcons
+Arabic Malware
+Mobile security
+Cyber espionage
+Targeted attacks
+
+
+
+
+The Desert Falcons targeted attacks 
+ Your email address will not be published. Required fields are marked *Name * 
+Email * 
+Captcha validation failed. Please confirm you are not a robot and try again.Cancel 
+
+Δ 
+This site uses Akismet to reduce spam. Learn how your comment data is processed. 
+
+
+
+
+
+
+Ivan 
+
+
+							Posted on							March 15, 2015. 2:23 pm 
+
+
+
+Are you going to provide further technical details about the backdoors? Thanks.
+Reply 
+
+
+
+
+
+
+
+
+E K 
+
+
+							Posted on							April 6, 2015. 12:05 pm 
+
+
+
+There are some details in the full report https://media.kasperskycontenthub.com/wp-content/uploads/sites/43/2018/03/08064309/The-Desert-Falcons-targeted-attacks.pdf
+If you want some additional information, please, write an e-mail to “intelreports [at] kaspersky.com”
+Reply 
+
+
+
+
+
+
+
+
+
+
+Lazarus 
+
+
+							Posted on							April 27, 2015. 12:38 am 
+
+
+
+Any thoughts on whether this is associated with the “MoleRats”, previously identified by FireEye?
+Reply 
+
+
+
+
+
+
+
+
+GReAT webinars
+
+
+
+
+
+
+																		13 May 2021, 1:00pm								
+GReAT Ideas. Balalaika Edition 
+
+
+
+
+
+Boris Larin
+
+
+
+Denis Legezo
+
+
+
+
+
+
+
+
+
+
+																		26 Feb 2021, 12:00pm								
+GReAT Ideas. Green Tea Edition 
+
+
+
+
+
+John Hultquist
+
+
+
+Brian Bartholomew
+
+
+
+Suguru Ishimaru
+
+
+
+Vitaly Kamluk
+
+
+
+Seongsu Park
+
+
+
+Yusuke Niwa
+
+
+
+Motohiko Sato
+
+
+
+
+
+
+
+
+
+
+																		17 Jun 2020, 1:00pm								
+GReAT Ideas. Powered by SAS: malware attribution and next-gen IoT honeypots 
+
+
+
+
+
+Marco Preuss
+
+
+
+Denis Legezo
+
+
+
+Costin Raiu
+
+
+
+Kurt Baumgartner
+
+
+
+Dan Demeter
+
+
+
+Yaroslav Shmelev
+
+
+
+
+
+
+
+
+
+
+																		26 Aug 2020, 2:00pm								
+GReAT Ideas. Powered by SAS: threat actors advance on new fronts 
+
+
+
+
+
+Ivan Kwiatkowski
+
+
+
+Maher Yamout
+
+
+
+Noushin Shabab
+
+
+
+Pierre Delcher
+
+
+
+Félix Aime
+
+
+
+Giampaolo Dedola
+
+
+
+Santiago Pontiroli
+
+
+
+
+
+
+
+
+
+
+																		22 Jul 2020, 2:00pm								
+GReAT Ideas. Powered by SAS: threat hunting and new techniques 
+
+
+
+
+
+Dmitry Bestuzhev
+
+
+
+Costin Raiu
+
+
+
+Pierre Delcher
+
+
+
+Brian Bartholomew
+
+
+
+Boris Larin
+
+
+
+Ariel Jungheit
+
+
+
+Fabio Assolini
+
+
+
+
+
+
+
+
+
+
+
+
+From the same authors
+
+
+
+
+ 
+
+
+Finding a needle in a haystack: Machine learning at the forefront of threat hunting research 
+
+ 
+
+
+
+ 
+
+
+5G technology predictions 2020 
+
+ 
+
+
+
+ 
+
+
+5G security and privacy for smart cities 
+
+ 
+
+
+
+ 
+
+
+Gaza Cybergang – updated activity in 2017: 
+
+ 
+
+
+
+ 
+
+
+Operation Ghoul: targeted attacks on industrial and engineering organizations 
+
+ 
+
+
+
+
+
+In the same category
+
+
+
+
+ 
+
+
+Mirage Kitten targeting aviation and FinTech sectors across the Middle East and Africa with a new malware set 
+
+ 
+
+
+
+ 
+
+
+ToddyCat: your hidden email assistant. Part 2 
+
+ 
+
+
+
+ 
+
+
+Cloud Atlas activity in the first half of 2025: what changed 
+
+ 
+
+
+
+ 
+
+
+Mem3nt0 mori – The Hacking Team is back! 
+
+ 
+
+
+
+ 
+
+
+EAGERBEE, with updated and novel components, targets the Middle East 
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Latest Posts
+
+
+
+
+ 
+
+
+NightEagle targets Russian companies 
+
+
+
+
+
+Stanislav Larinsky
+
+
+
+Kaspersky Security Services
+
+
+
+
+
+ 
+
+
+
+ 
+
+
+
+SOC, TI and IR posts
+
+Angry Birds: Toy Ghouls’ new toys 
+
+
+
+
+
+Kaspersky GERT
+
+
+
+Kaspersky Security Services
+
+
+
+
+
+ 
+
+
+
+ 
+
+
+
+APT reports
+
+Mirage Kitten targeting aviation and FinTech sectors across the Middle East and Africa with a new malware set 
+
+
+
+
+
+Omar Amin
+
+
+
+
+
+ 
+
+
+
+ 
+
+
+
+Malware descriptions
+
+ValleyRAT masquerading as adware 
+
+
+
+
+
+Pavel Bukhtenko
+
+
+
+
+
+ 
+
+
+
+
+
+Latest Webinars
+
+
+
+
+
+ 
+
+
+
+
+Trainings and workshops
+
+
+
+												04 Aug 2026, 5:00pm					
+67 min
+
+SOC maturity model. What suits your business the most?
+
+
+
+
+
+
+Roman Nazarov
+
+
+
+Mateus Salgado
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+Cyberthreat talks
+
+
+
+												16 Jul 2026, 5:00pm					
+45 min
+
+From easy target to ready business: A practical SMB cybersecurity guide
+
+
+
+
+
+
+Igor Kuznetsov
+
+
+
+Maria Stepina
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+Cyberthreat talks
+
+
+
+												11 Jun 2026, 5:00pm					
+43 min
+
+The dark side of mobile: Threats targeting Android & iOS
+
+
+
+
+
+
+Fabio Assolini
+
+
+
+Tatyana Shishkova
+
+
+
+Dmitry Kalinin
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+Cyberthreat talks
+
+
+
+												25 Jun 2026, 5:00pm					
+29 min
+
+Securing the pipeline: 2026 supply chain threats
+
+
+
+
+
+
+Victoria Vlasova
+
+
+
+Yaroslav Kikel
+
+
+
+
+
+
+
+
+
+
+
+
+Reports
+
+
+
+
+
+
+
+Mirage Kitten targeting aviation and FinTech sectors across the Middle East and Africa with a new malware set 
+
+Kaspersky researchers have discovered new Mirage Kitten attacks using previously undocumented malware families: NodeRabbit in Node.js and PollCat in JavaScript.
+
+
+ 
+
+
+
+
+APT group HoneyMyte upgrades CoolClient: the backdoor gets a kernel-level Windows rootkit 
+
+Our experts discovered a new CoolClient backdoor variant with a kernel-mode rootkit driver that hides malicious processes, files, and network connections from security tools and threat analysts.
+
+
+ 
+
+
+
+
+Armored Likho expands its cyber-espionage toolkit 
+
+Kaspersky experts break down a new Armored Likho campaign that poses as a fundraising efforts and delivers a new Still Toolkit aimed at stealing Telegram data and eavesdropping on victims.
+
+
+ 
+
+
+
+
+Mirage Kitten targets Middle East and Africa region with new malware 
+
+Kaspersky researchers reveal previously undocumented malware attributed to Mirage Kitten (UNC1549, Smoke Sandstorm, Nimbus Manticore): NightLedger backdoor, ArcBridge, and BridgeHead tunneling tools.
+
+
+ 
+
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+ThreatsThreats
+
+APT (Targeted attacks)
+Secure environment (IoT)
+Mobile threats
+Financial threats
+Spam and phishing
+Industrial threats
+Web threats
+Vulnerabilities and exploits
+All threats
+
+CategoriesCategories
+
+APT reports
+Malware descriptions
+Security Bulletin
+Malware reports
+Spam and phishing reports
+Security technologies
+Research
+Publications
+All categories
+
+Other sections
+
+Threat Response
+All tags
+Webinars
+APT Logbook
+Statistics
+Encyclopedia
+Threats descriptions
+KSB 2025
+Kaspersky ICS CERT
+
+ 
+
+
+
+
+
+
+
+
+
+© 2026 AO Kaspersky Lab. All Rights Reserved.
+Registered trademarks and service marks are the property of their respective owners.
+
+
+
+Privacy Policy
+Terms of use
+License Agreement
+Cookies
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

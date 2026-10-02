@@ -1,0 +1,868 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Lemon Duck brings cryptocurrency miners back into the spotlight</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/bootstrap.min.css?v=-xdjtZ-fV2QpS1r5">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/navigation.css?v=PhzoiGnw4ldwozL1">
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/footer.css?v=sVEdldiwj6rF6gHP">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/pagination.css?v=HruyeF1JUFuoy6Wu">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/banners.css?v=vI3KT68RWE95HKDs">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/style.css?v=idjnUZoOumC94rdj">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/prism.css?v=jqyaOB6z6CqMaOT4">
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/prism-vsc-dark-plus.css?v=xoEFwaYF1JkH_sqf">
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/prism-talos.css?v=kn8aYcNhO045nXac">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/landing-page.css?v=EPtrK0eJwYLqD25v">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/coverage-block.css?v=vBgCqINSTHrSh9PX">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/ghost-theme-utils@latest/dist/css/style.min.css" rel="stylesheet">
+
+
+    <link rel="icon" href="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w256h256/2022/07/talos_o_square.png" type="image/png">
+    <link rel="canonical" href="https://blog.talosintelligence.com/lemon-duck-brings-cryptocurrency-miners/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta property="og:site_name" content="Cisco Talos Blog">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Lemon Duck brings cryptocurrency miners back into the spotlight">
+    <meta property="og:description" content="By Vanja Svajcer, with contributions from Caitlin Huey.
+
+ * We are used to ransomware attacks and big-game hunting making headlines, but there are still methods adversaries use to monetize their efforts in less intrusive ways.
+ * Cisco Talos recently recorded increased activity of the Lemon Duck cryptocurrency-mining botnet using several">
+    <meta property="og:url" content="https://blog.talosintelligence.com/lemon-duck-brings-cryptocurrency-miners/">
+    <meta property="og:image" content="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-PtCdCGtmHe0/X3rtUqOFQeI/AAAAAAAAAfs/4ON2C4s08k8jSY9Fs_ud2hAx3ybY37q3ACLcBGAsYHQ/w1200-h630-p-k-no-nu/image8.jpg">
+    <meta property="article:published_time" content="2020-10-13T14:59:00.000Z">
+    <meta property="article:modified_time" content="2022-08-24T15:20:04.000Z">
+    <meta property="article:tag" content="Cryptocurrency">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Lemon Duck brings cryptocurrency miners back into the spotlight">
+    <meta name="twitter:description" content="By Vanja Svajcer, with contributions from Caitlin Huey.
+
+ * We are used to ransomware attacks and big-game hunting making headlines, but there are still methods adversaries use to monetize their efforts in less intrusive ways.
+ * Cisco Talos recently recorded increased activity of the Lemon Duck cryptocurrency-mining botnet using several">
+    <meta name="twitter:url" content="https://blog.talosintelligence.com/lemon-duck-brings-cryptocurrency-miners/">
+    <meta name="twitter:image" content="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-PtCdCGtmHe0/X3rtUqOFQeI/AAAAAAAAAfs/4ON2C4s08k8jSY9Fs_ud2hAx3ybY37q3ACLcBGAsYHQ/w1200-h630-p-k-no-nu/image8.jpg">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Vanja Svajcer">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="Cryptocurrency">
+    <meta name="twitter:site" content="@TalosSecurity">
+    <meta name="twitter:creator" content="@vanjasvajcer">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Cisco Talos Blog",
+        "url": "https://blog.talosintelligence.com/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/11/TalosBrand_ukraine.svg"
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Vanja Svajcer",
+        "url": "https://blog.talosintelligence.com/author/vanja-svajcer/",
+        "sameAs": [
+            "https://x.com/vanjasvajcer"
+        ]
+    },
+    "headline": "Lemon Duck brings cryptocurrency miners back into the spotlight",
+    "url": "https://blog.talosintelligence.com/lemon-duck-brings-cryptocurrency-miners/",
+    "datePublished": "2020-10-13T14:59:00.000Z",
+    "dateModified": "2022-08-24T15:20:04.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-PtCdCGtmHe0/X3rtUqOFQeI/AAAAAAAAAfs/4ON2C4s08k8jSY9Fs_ud2hAx3ybY37q3ACLcBGAsYHQ/w1200-h630-p-k-no-nu/image8.jpg",
+        "width": 1200,
+        "height": 630
+    },
+    "keywords": "Cryptocurrency",
+    "description": "\nBy Vanja Svajcer, with contributions from Caitlin Huey.\n\n * We are used to ransomware attacks and big-game hunting making headlines, but there are still methods adversaries use to monetize their efforts in less intrusive ways.\n * Cisco Talos recently recorded increased activity of the Lemon Duck cryptocurrency-mining botnet using several techniques likely to be spotted by defenders, but are not immediately obvious to end-users.\n * These threats demonstrate several techniques of the MITRE ATT&CK",
+    "mainEntityOfPage": "https://blog.talosintelligence.com/lemon-duck-brings-cryptocurrency-miners/"
+}
+    </script>
+
+    <meta name="generator" content="Ghost 6.68">
+    <link rel="alternate" type="application/rss+xml" title="Cisco Talos Blog" href="https://blog.talosintelligence.com/rss/">
+    
+    <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/sodo-search.min.js" data-key="4ffb0139d74ada998f4b141e4d" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/main.css" data-sodo-search="https://cisco-talos-blog.ghost.io/" data-locale="en" crossorigin="anonymous"></script>
+    
+    <link href="https://blog.talosintelligence.com/webmentions/receive/" rel="webmention">
+    <script defer src="/public/cards.min.js?v=ShRHxgy4po8zN-Wf"></script>
+    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=WwnU9jw5ancNC8Gc">
+    <script defer src="/public/ghost-stats.min.js?v=vFcCUf6ZQ0Hyhc8h" data-stringify-payload="false" data-datasource="analytics_events" data-storage="localStorage" data-host="https://blog.talosintelligence.com/.ghost/analytics/api/v1/page_hit"  tb_site_uuid="afa04ee3-414f-4481-8d23-7e7c146f192e" tb_post_uuid="deb36f51-2cbd-4e10-94f0-40e505688399" tb_post_type="post" tb_member_uuid="undefined" tb_member_status="undefined" tb_gift_link=""></script><style>:root {--ghost-accent-color: #006db6;}</style>
+    <style type='text/css'>
+    img[src*="icon_check_white.svg"] { width: 20px; margin-left: 0px; margin-right: auto; }
+    
+    #ghost-portal-root { display: none; }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F45RVJG3BK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-F45RVJG3BK');
+</script>
+</head>
+
+<body class="post-template tag-cryptocurrency">
+
+    <div id="mobile-page-header" class="desktop-hide mobile-page-header">
+    <a class="mobile-nav-home-link" href="/">
+        <div class="mobile-logo-wrapper">
+        </div>
+        <div class="mobile-home-title">Blog</div>
+    </a>
+    <div id="mobile-search-wrapper">
+        <button class="search-button mobile-search-button" data-ghost-search>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        </button>
+    </div>
+</div>
+
+<nav id="nav">
+    <input id="nav-trigger" class="nav-trigger" type="checkbox"/>
+    <label for="nav-trigger">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="22px" height="16px" viewBox="0 0 22 16">
+            <g id="menu-icon">
+                <path fill="#FFFFFF" d="M20.5,3h-19C0.672,3,0,2.329,0,1.5S0.672,0,1.5,0h19C21.328,0,22,0.671,22,1.5S21.328,3,20.5,3z"></path>
+                <path fill="#FFFFFF" d="M20.5,9.5h-19C0.672,9.5,0,8.828,0,8c0-0.829,0.672-1.5,1.5-1.5h19C21.328,6.5,22,7.171,22,8   C22,8.828,21.328,9.5,20.5,9.5z"></path>
+                <path fill="#FFFFFF" d="M20.5,16h-19C0.672,16,0,15.328,0,14.5S0.672,13,1.5,13h19c0.828,0,1.5,0.672,1.5,1.5S21.328,16,20.5,16z"></path>
+            </g>
+        </svg>
+    </label>
+    <div id="top-nav-bar">
+    </div>
+
+    <div id="navigation">
+        <div class="navigation-logos-wrapper">
+            <div id="talos-logo-wrapper">
+                <a class="navbar-brand" href="https://talosintelligence.com">
+                </a>
+            </div>
+        </div>
+        <div class="navigation-links-wrapper">
+            <ul class="main-nav-list">
+                <li class="nav-item">
+                    <div class="primary-link-wrapper">
+                        <a class="primary_nav_link" href="https://talosintelligence.com/reputation">
+                            <div class="mobile-nav-icon"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" height="20px" width="20px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                            <style type="text/css">
+                                .white{fill:#FFFFFF;}
+                            </style>
+                            <g>
+                                <path class="white" d="M19.5,9.5h-1.1c-0.3-4.2-3.6-7.6-7.8-7.8V0.5C10.5,0.2,10.3,0,10,0l0,0C9.7,0,9.5,0.2,9.5,0.5l0,0v1.1   C5.3,1.9,1.9,5.3,1.6,9.5H0.5C0.2,9.5,0,9.7,0,10s0.2,0.5,0.5,0.5l0,0h1.1c0.3,4.2,3.6,7.6,7.8,7.8v1.1c0,0.3,0.2,0.5,0.5,0.5l0,0   c0.3,0,0.5-0.2,0.5-0.5l0,0v-1.1c4.2-0.3,7.6-3.6,7.8-7.8h1.1c0.3,0,0.5-0.2,0.5-0.5C20,9.7,19.8,9.5,19.5,9.5 M16.6,10.5h0.7   c-0.3,3.6-3.2,6.5-6.8,6.8v-0.8c0-0.3-0.2-0.5-0.5-0.5l0,0c-0.3,0-0.5,0.2-0.5,0.5v0.8C5.8,17,3,14.2,2.7,10.5h0.8   C3.8,10.5,4,10.3,4,10S3.8,9.5,3.5,9.5l0,0H2.7C3,5.8,5.8,3,9.5,2.7v0.8C9.5,3.7,9.7,4,10,4l0,0c0.3,0,0.5-0.2,0.5-0.5V2.7   C14.2,3,17,5.8,17.3,9.5h-0.7c-0.3,0-0.5,0.2-0.5,0.5C16.1,10.3,16.3,10.5,16.6,10.5L16.6,10.5"></path>
+                                                            <circle class="white" cx="10" cy="10" r="3.2"></circle>
+                            </g>
+                            </svg>
+                            </div>
+                            <span class="top-nav-link-text">
+                                Intelligence Center
+                            </span>
+                        </a>
+                    </div>
+                    <input class="sub-nav-trigger" id="intelligence-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="intelligence-sub-trigger">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+
+                    </label>
+                    <ul class="sub-nav sub-nav-single-list">
+                        <li class="desktop-hide">
+                            <a class="mobile_nav_link" href="https://talosintelligence.com/reputation"><h1>Intelligence Center</h1>
+                            </a></li>
+                        <li class="desktop-hide">
+                            <label class="subnav-back-button" for="intelligence-sub-trigger">BACK</label>
+                        </li>
+                        <li><a class="secondary_nav_link" href="https://talosintelligence.com/reputation_center">Intelligence Search</a></li>
+                        <li><a class="secondary_nav_link" href="https://talosintelligence.com/reputation_center/email_rep">Email &amp; Spam Trends</a></li>
+                    </ul>
+                    <div class="desktop-hide subnav-overlay"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" height="20px" width="20px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                        <style type="text/css">
+                            .white{fill:#FFFFFF;}
+                        </style>
+                                                <g>
+                            <path class="white" d="M19.5,9.5h-1.1c-0.3-4.2-3.6-7.6-7.8-7.8V0.5C10.5,0.2,10.3,0,10,0l0,0C9.7,0,9.5,0.2,9.5,0.5l0,0v1.1   C5.3,1.9,1.9,5.3,1.6,9.5H0.5C0.2,9.5,0,9.7,0,10s0.2,0.5,0.5,0.5l0,0h1.1c0.3,4.2,3.6,7.6,7.8,7.8v1.1c0,0.3,0.2,0.5,0.5,0.5l0,0   c0.3,0,0.5-0.2,0.5-0.5l0,0v-1.1c4.2-0.3,7.6-3.6,7.8-7.8h1.1c0.3,0,0.5-0.2,0.5-0.5C20,9.7,19.8,9.5,19.5,9.5 M16.6,10.5h0.7   c-0.3,3.6-3.2,6.5-6.8,6.8v-0.8c0-0.3-0.2-0.5-0.5-0.5l0,0c-0.3,0-0.5,0.2-0.5,0.5v0.8C5.8,17,3,14.2,2.7,10.5h0.8   C3.8,10.5,4,10.3,4,10S3.8,9.5,3.5,9.5l0,0H2.7C3,5.8,5.8,3,9.5,2.7v0.8C9.5,3.7,9.7,4,10,4l0,0c0.3,0,0.5-0.2,0.5-0.5V2.7   C14.2,3,17,5.8,17.3,9.5h-0.7c-0.3,0-0.5,0.2-0.5,0.5C16.1,10.3,16.3,10.5,16.6,10.5L16.6,10.5"></path>
+                                                    <circle class="white" cx="10" cy="10" r="3.2"></circle>
+                        </g>
+                        </svg>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="primary-link-wrapper">
+                        <a class="primary_nav_link" href="https://talosintelligence.com/vulnerability_info"><div class="mobile-nav-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px" height="20px" viewBox="0 0 26 20">
+                            <g id="vuln-icon" class="nav-icon">
+                                <path fill="#FFFFFF" d="M24.256,18.49L13.872,0.503C13.692,0.192,13.36,0,13,0c-0.359,0-0.692,0.192-0.872,0.503L1.744,18.49  c-0.18,0.312-0.18,0.695,0,1.006C1.924,19.809,2.257,20,2.616,20h20.769c0.359,0,0.691-0.191,0.871-0.504  C24.436,19.186,24.436,18.803,24.256,18.49 M14.268,18.215h-2.533v-1.85h2.533V18.215z M14.268,15.441h-2.533L10.89,6.515h4.222  L14.268,15.441z"></path>
+                            </g>
+                        </svg>
+                        </div>
+                            <span class="top-nav-link-text">
+                            Vulnerability Research
+                            </span>
+                        </a></div>
+                    <input class="sub-nav-trigger" id="vuln-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="vuln-sub-trigger">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+                        </div>
+                    </label>
+                    <ul class="sub-nav sub-nav-single-list">
+                        <li class="desktop-hide">
+                            <a href="https://talosintelligence.com/vulnerability_info"><h1>Vulnerability Research</h1>
+                            </a></li>
+                        <li class="desktop-hide">
+                            <label class="subnav-back-button" for="vuln-sub-trigger">BACK</label>
+                        </li>
+                        <li><a class="vulnerabilty-info-nav-link" href="https://talosintelligence.com/vulnerability_reports">Vulnerability Reports</a></li>
+                        <li><a class="vulnerabilty-info-nav-link" href="https://talosintelligence.com/ms_advisories">Microsoft Advisories</a></li>
+                    </ul>
+                    <div class="desktop-hide subnav-overlay">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px" height="20px" viewBox="0 0 26 20">
+                        <g id="vuln-icon" class="nav-icon">
+                            <path fill="#FFFFFF" d="M24.256,18.49L13.872,0.503C13.692,0.192,13.36,0,13,0c-0.359,0-0.692,0.192-0.872,0.503L1.744,18.49  c-0.18,0.312-0.18,0.695,0,1.006C1.924,19.809,2.257,20,2.616,20h20.769c0.359,0,0.691-0.191,0.871-0.504  C24.436,19.186,24.436,18.803,24.256,18.49 M14.268,18.215h-2.533v-1.85h2.533V18.215z M14.268,15.441h-2.533L10.89,6.515h4.222  L14.268,15.441z"></path>
+                        </g>
+                        </svg>
+                    </div>
+                </li>
+
+
+               <li class="nav-item">
+                   <div class="primary-link-wrapper">
+                        <a class="primary_nav_link" href="https://talosintelligence.com/incident_response">
+                           <div class="mobile-nav-icon">
+                               <svg xmlns="http://www.w3.org/2000/svg" width="111.588" height="148.311" viewBox="0 0 111.588 148.311">
+                                    <path d="M1.181,128.446v15.7a4.167,4.167,0,0,0,4.167,4.167h100.9a4.167,4.167,0,0,0,4.167-4.167v-15.7a4.167,4.167,0,0,0-4.167-4.167H5.348a4.167,4.167,0,0,0-4.167,4.166M55.8,63.109a3.277,3.277,0,1,1,0,6.553c-10.344,0-20.755,8.578-20.755,18.57a3.277,3.277,0,1,1-6.554,0C28.489,73.947,41.93,63.109,55.8,63.109Zm0-12.016c-21.787,0-39.325,17.81-39.325,39.937v26.7H95.122V91.03c0-22.128-17.537-39.937-39.324-39.937m52.365-38.3a3.291,3.291,0,0,0-2.254,1.024L88.432,31.294a3.283,3.283,0,0,0,4.642,4.644l17.478-17.479a3.278,3.278,0,0,0-2.389-5.666m-105.138,0a3.276,3.276,0,0,0-1.98,5.666L18.522,35.938a3.283,3.283,0,0,0,4.643-4.644L5.687,13.817A3.255,3.255,0,0,0,3.025,12.793ZM55.389.026a3.276,3.276,0,0,0-2.867,3.345V19.642a3.277,3.277,0,1,0,6.554,0V3.371A3.283,3.283,0,0,0,55.389.026Z" fill="#fff"></path>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text">
+                                Incident Response
+                            </span>
+                       </a>
+                   </div>
+                   <input class="sub-nav-trigger" id="ir-sub-trigger" type="checkbox">
+                   <label class="sub-nav-trigger-label" for="ir-sub-trigger">
+                       <div class="mobile-nav-icon">
+                           <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                                <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                               <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                               </g>
+                           </svg>
+                       </div>
+                   </label>
+                   <ul class="sub-nav sub-nav-single-list">
+                       <li class="desktop-hide">
+                           <a href="/incident_response">
+                               <h1>Incident Response</h1>
+                           </a>
+                        </li>
+                       <li class="desktop-hide">
+                           <label class="subnav-back-button" for="ir-sub-trigger">BACK</label>
+                       </li>
+                       <li>
+                           <a class="secondary_nav_link" href="https://talosintelligence.com/incident_response/services#reactive-services">Reactive Services</a>
+                       </li>
+                       <li>
+                           <a class="secondary_nav_link" href="https://talosintelligence.com/incident_response/services#proactive-services">Proactive Services</a></li>
+                       <li>
+                           <a href="https://talosintelligence.com/incident_response/contact">Emergency Support</a>
+                        </li>
+                   </ul>
+                   <div class="desktop-hide subnav-overlay"><svg xmlns="http://www.w3.org/2000/svg" width="111.588" height="148.311" viewBox="0 0 111.588 148.311">
+                     <path d="M1.181,128.446v15.7a4.167,4.167,0,0,0,4.167,4.167h100.9a4.167,4.167,0,0,0,4.167-4.167v-15.7a4.167,4.167,0,0,0-4.167-4.167H5.348a4.167,4.167,0,0,0-4.167,4.166M55.8,63.109a3.277,3.277,0,1,1,0,6.553c-10.344,0-20.755,8.578-20.755,18.57a3.277,3.277,0,1,1-6.554,0C28.489,73.947,41.93,63.109,55.8,63.109Zm0-12.016c-21.787,0-39.325,17.81-39.325,39.937v26.7H95.122V91.03c0-22.128-17.537-39.937-39.324-39.937m52.365-38.3a3.291,3.291,0,0,0-2.254,1.024L88.432,31.294a3.283,3.283,0,0,0,4.642,4.644l17.478-17.479a3.278,3.278,0,0,0-2.389-5.666m-105.138,0a3.276,3.276,0,0,0-1.98,5.666L18.522,35.938a3.283,3.283,0,0,0,4.643-4.644L5.687,13.817A3.255,3.255,0,0,0,3.025,12.793ZM55.389.026a3.276,3.276,0,0,0-2.867,3.345V19.642a3.277,3.277,0,1,0,6.554,0V3.371A3.283,3.283,0,0,0,55.389.026Z" fill="#fff"></path>
+                   </svg>
+                </div>
+               </li>
+
+
+
+
+
+                <li class="nav-item">
+                    <a class="primary_nav_link" href="https://blog.talosintelligence.com">
+                        <div class="mobile-nav-icon">
+                        <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="260px" height="296.5px" viewBox="0 0 260 296.5" enable-background="new 0 0 260 296.5" xml:space="preserve">
+                        <path fill="#FFFFFF" d="M243.586,42.404h-14.448c-0.943-4.513-3.143-8.813-6.616-12.33L201.793,9.098  c-4.7-4.757-10.972-7.377-17.66-7.377c-6.578,0-12.777,2.547-17.457,7.173l-33.875,33.511H17.586c-6.6,0-12,5.399-12,12V226.28  c0,6.6,5.4,12,12,12H153.83l84.21,56.278l-27.448-56.278h32.994c6.6,0,12-5.4,12-12V54.404  C255.586,47.804,250.186,42.404,243.586,42.404z M214.662,48.045c-0.01,0.2-0.021,0.399-0.044,0.599  c-0.008,0.069-0.021,0.139-0.031,0.207c-0.046,0.345-0.113,0.688-0.196,1.026c-0.034,0.137-0.063,0.273-0.103,0.408  c-0.039,0.135-0.087,0.267-0.133,0.399c-0.051,0.151-0.102,0.302-0.16,0.45c-0.049,0.126-0.105,0.249-0.16,0.373  c-0.068,0.153-0.139,0.307-0.216,0.457c-0.059,0.116-0.12,0.23-0.184,0.345c-0.088,0.157-0.181,0.312-0.278,0.465  c-0.065,0.104-0.13,0.206-0.2,0.308c-0.115,0.168-0.239,0.33-0.366,0.492c-0.064,0.081-0.124,0.165-0.19,0.244  c-0.199,0.238-0.409,0.472-0.635,0.694L82.458,182.308l-47.932,12.871l13.427-47.74L177.223,19.561  c1.917-1.895,4.414-2.84,6.911-2.84c2.534,0,5.068,0.975,6.99,2.92l20.726,20.974c0.545,0.552,1.002,1.156,1.39,1.79  c0.574,0.938,0.975,1.951,1.206,2.993c0.004,0.021,0.01,0.04,0.014,0.06c0.049,0.226,0.086,0.453,0.119,0.682  c0.008,0.06,0.017,0.118,0.024,0.178c0.026,0.211,0.045,0.424,0.058,0.636c0.004,0.077,0.007,0.153,0.009,0.23  c0.007,0.203,0.011,0.407,0.005,0.61C214.673,47.877,214.666,47.961,214.662,48.045z"></path>
+                        </svg>
+                    </div>
+                        <span class="top-nav-link-text">Blog</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="primary_nav_link" href="https://support.talosintelligence.com">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26px" height="20px" viewBox="0 0 123.17 159.292">
+                            <path d="M61.59,0,0,17.069v85.32c0,23.472,61.59,56.9,61.59,56.9s61.58-36.288,61.58-56.9V17.069Zm-.433,149.746C38.314,136.662,8.128,114.3,8.128,102.389V23.239l53.029-14.7Z" fill="#fff"></path>
+                        </svg>
+                        </div>
+                        <span class="top-nav-link-text">Support</span>
+                    </a>
+                </li>
+            </ul>
+
+
+<!--                <li class="nav-item desktop-hide">-->
+<!--                    <button class="search-button" data-ghost-search><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg> <span>Search Blog</span></button>-->
+<!--                </li>-->
+
+            <ul class="secondary-nav-list">
+                <div class="more-desktop-link">
+                    <div class="more-link-wrapper">
+                        <span class="more-nav-link">
+                            <div class="desktop-nav-icon more-menu-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="22px" height="16px" viewBox="0 0 22 16">
+                                <g id="menu-icon">
+                                    <path fill="#FFFFFF" d="M20.5,3h-19C0.672,3,0,2.329,0,1.5S0.672,0,1.5,0h19C21.328,0,22,0.671,22,1.5S21.328,3,20.5,3z"></path>
+                                    <path fill="#FFFFFF" d="M20.5,9.5h-19C0.672,9.5,0,8.828,0,8c0-0.829,0.672-1.5,1.5-1.5h19C21.328,6.5,22,7.171,22,8   C22,8.828,21.328,9.5,20.5,9.5z"></path>
+                                    <path fill="#FFFFFF" d="M20.5,16h-19C0.672,16,0,15.328,0,14.5S0.672,13,1.5,13h19c0.828,0,1.5,0.672,1.5,1.5S21.328,16,20.5,16z"></path>
+                                </g>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            More
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <li class="nav-item more-text-link">
+                    <div class="more-link-wrapper more-link-wrapper-mobile">
+                        <span class="more-nav-link">
+                            <div class="mobile-nav-icon"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" style="enable-background:new 0 0 20 20;" width="25px" height="25px" xml:space="preserve">
+                                <style type="text/css">
+                                    .white{fill:#FFFFFF;}
+                                </style>
+                                <path class="white" d="M19.4,17.1c0,0.1-0.1,0-0.2,0c0,0-1.3-0.9-2-1.4c-0.2-0.1-0.5-0.1-0.6,0.1c-0.3,0.3-0.6,0.8-0.9,1.3  c-0.1,0.2-0.1,0.5,0.1,0.6l2,1.5c0.1,0,0,0.1,0.1,0.2c0,0.1,0,0.1-0.1,0.2c-1.2,0.5-2.6,0.2-3.5-0.7c-0.8-0.9-1-2-0.7-3.1L4.5,6.5  c-1,0.3-2.3,0-3-0.9c-0.8-0.9-1.1-1.7-1-2.7c0-0.1,0-0.1,0.1-0.2c0.1,0,0.2,0.1,0.2,0.1l2,1.5C3,4.4,3.3,4.5,3.4,4.2  c0,0,0.5-0.8,0.9-1.3c0.1-0.2,0.1-0.5-0.1-0.6L2.3,0.9c-0.1,0,0-0.1-0.1-0.3c0-0.1,0-0.1,0.1-0.2C3.5-0.1,5,0.2,5.8,1.1  c0.8,0.9,1,2,0.7,3.1l9.1,9.3c1-0.3,2.3,0,3,0.9c0.7,0.7,0.9,1.5,0.9,2.5C19.5,16.9,19.5,17,19.4,17.1z"></path>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            Security Resources
+                            </span>
+                        </span>
+                    </div>
+                    <input class="sub-nav-trigger" id="security-resources-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="security-resources-sub-trigger">
+                        <div class="mobile-nav-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+                        </div>
+                    </label>
+                    <div class="sub-nav sub-nav-multiple-list sub-nav-multiple-list-left">
+                        <div class="sub-nav-multiple-wrapper">
+                            <div class="sub-nav-list-top-of-mobile-wrapper">
+                                <h1 class="sub-nav-list-header sub-nav-list-top-of-mobile">Security Resources</h1>
+                                <ul class="sub-nav-list">
+                                    <li class="desktop-hide">
+                                        <label class="subnav-back-button" for="security-resources-sub-trigger">BACK</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sub-nav-list-item-wrapper">
+                                <span class="sub-nav-desktop-header uppercase">Security Resources</span>
+                                <ul class="sub-nav-list">
+                                    <li>
+                                        <a href="https://talosintelligence.com/software"><span>Open Source Security Tools</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/categories"><span>Intelligence Categories Reference</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/secure-endpoint-naming"><span>Secure Endpoint Naming Reference</span>
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="desktop-hide subnav-overlay"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" style="enable-background:new 0 0 20 20;" width="25px" height="25px" xml:space="preserve">
+                        <style type="text/css">
+                            .white{fill:#FFFFFF;}
+                        </style>
+                                                <path class="white" d="M19.4,17.1c0,0.1-0.1,0-0.2,0c0,0-1.3-0.9-2-1.4c-0.2-0.1-0.5-0.1-0.6,0.1c-0.3,0.3-0.6,0.8-0.9,1.3  c-0.1,0.2-0.1,0.5,0.1,0.6l2,1.5c0.1,0,0,0.1,0.1,0.2c0,0.1,0,0.1-0.1,0.2c-1.2,0.5-2.6,0.2-3.5-0.7c-0.8-0.9-1-2-0.7-3.1L4.5,6.5  c-1,0.3-2.3,0-3-0.9c-0.8-0.9-1.1-1.7-1-2.7c0-0.1,0-0.1,0.1-0.2c0.1,0,0.2,0.1,0.2,0.1l2,1.5C3,4.4,3.3,4.5,3.4,4.2  c0,0,0.5-0.8,0.9-1.3c0.1-0.2,0.1-0.5-0.1-0.6L2.3,0.9c-0.1,0,0-0.1-0.1-0.3c0-0.1,0-0.1,0.1-0.2C3.5-0.1,5,0.2,5.8,1.1  c0.8,0.9,1,2,0.7,3.1l9.1,9.3c1-0.3,2.3,0,3,0.9c0.7,0.7,0.9,1.5,0.9,2.5C19.5,16.9,19.5,17,19.4,17.1z"></path>
+                        </svg>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="more-link-wrapper more-link-wrapper-mobile">
+                        <span class="more-nav-link">
+                            <div class="mobile-nav-icon"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" width="25px" height="25px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                                <style type="text/css">
+                                    .sticoncomment{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+                                </style>
+                                <path class="sticoncomment" d="M13.6,7.1H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,6.8,13.9,7.1,13.6,7.1L13.6,7.1z M13.6,9.4H6.4c-0.3,0-0.6-0.3-0.6-0.6s0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,9.2,13.9,9.4,13.6,9.4L13.6,9.4z M11.5,11.7H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6h5.1c0.3,0,0.6,0.3,0.6,0.6  C12.1,11.5,11.8,11.7,11.5,11.7z M15.8,3H4.2C3.5,3,3,3.5,3,4.2V17l2.8-2.3h10c0.6,0,1.2-0.5,1.2-1.2V4.2C17,3.5,16.5,3,15.8,3  L15.8,3z"></path>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            Media
+                            </span>
+                        </span>
+                    </div>
+                    <input class="sub-nav-trigger" id="media-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="media-sub-trigger">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                            </svg>
+                        </div>
+                    </label>
+                    <div class="sub-nav sub-nav-multiple-list sub-nav-multiple-list-middle">
+                        <div class="sub-nav-multiple-wrapper">
+                            <div class="sub-nav-list-top-of-mobile-wrapper">
+                                <h1 class="sub-nav-list-header sub-nav-list-top-of-mobile">Media</h1>
+                                <ul class="sub-nav-list">
+                                    <li class="desktop-hide">
+                                        <label class="subnav-back-button" for="media-sub-trigger">BACK</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sub-nav-list-item-wrapper">
+                                <span class="sub-nav-desktop-header uppercase">Media</span>
+                                <ul class="sub-nav-list">
+                                    <li>
+                                        <a href="https://blog.talosintelligence.com"><span>Talos Intelligence Blog</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://blog.talosintelligence.com/category/threat-source-newsletter/"><span>Threat Source Newsletter</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/podcasts/shows/beers_with_talos"><span>Beers with Talos Podcast</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/podcasts/shows/talos_takes"><span>Talos Takes Podcast</span>
+                                        </a></li>
+                                    <li>
+                                        <a target="_blank" href="https://www.youtube.com/channel/UCPZ1DtzQkStYBSG3GTNoyfg/featured"><span>Talos Videos</span>
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="desktop-hide subnav-overlay"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" width="25px" height="25px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                        <style type="text/css">
+                            .sticoncomment{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+                        </style>
+                        <path class="sticoncomment" d="M13.6,7.1H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,6.8,13.9,7.1,13.6,7.1L13.6,7.1z M13.6,9.4H6.4c-0.3,0-0.6-0.3-0.6-0.6s0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,9.2,13.9,9.4,13.6,9.4L13.6,9.4z M11.5,11.7H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6h5.1c0.3,0,0.6,0.3,0.6,0.6  C12.1,11.5,11.8,11.7,11.5,11.7z M15.8,3H4.2C3.5,3,3,3.5,3,4.2V17l2.8-2.3h10c0.6,0,1.2-0.5,1.2-1.2V4.2C17,3.5,16.5,3,15.8,3  L15.8,3z"></path>
+                        </svg>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="more-link-wrapper more-link-wrapper-mobile">
+                        <span class="more-nav-link">
+                            <div class="mobile-nav-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="25px" viewBox="0 0 55 55">
+                                <g>
+                                    <g class="mobile-nav-home">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M45.201,12.343c0.378,0.48,0.758,0.925,1.096,1.401    c2.975,4.207,4.543,8.876,4.494,14.044c-0.05,5.452-1.643,10.386-5.186,14.593c-3.484,4.133-7.929,6.73-13.182,7.895    c-6.313,1.398-12.216,0.275-17.695-3.131c-0.441-0.273-0.847-0.6-1.266-0.904c-0.11-0.078-0.208-0.174-0.337-0.287    c0.127-0.141,0.246-0.27,0.366-0.398c0.887-0.949,1.765-1.904,2.663-2.844c0.114-0.119,0.321-0.217,0.485-0.217    c3.658-0.006,7.318,0,10.975,0.008c3.458,0.006,6.913,0.02,10.369,0.02c0.957,0,1.871-0.193,2.62-0.844    c0.797-0.693,1.157-1.596,1.157-2.643c0.001-7.533,0.003-15.067-0.005-22.601c-0.002-0.309,0.088-0.524,0.3-0.743    C43.098,14.598,44.127,13.49,45.201,12.343"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M41.402,8.822c-0.99,1.027-1.994,2.021-2.935,3.072    c-0.312,0.35-0.616,0.416-1.036,0.415c-6.98-0.009-13.957-0.007-20.938-0.007c-2.039,0-3.561,1.514-3.561,3.557    c0,6.504,0.002,13.008,0.006,19.512c0.002,0.973,0.011,1.943,0.004,2.914c0,0.133-0.04,0.301-0.127,0.393    c-1.069,1.162-2.15,2.314-3.229,3.469c-0.021,0.023-0.052,0.039-0.109,0.08c-0.159-0.188-0.323-0.369-0.471-0.562    c-2.535-3.348-4.119-7.102-4.605-11.268c-0.61-5.229,0.194-10.229,2.835-14.839c2.669-4.664,6.655-7.805,11.618-9.75    c3.205-1.257,6.533-1.852,9.977-1.621c4.478,0.298,8.553,1.754,12.227,4.325c0.101,0.072,0.197,0.151,0.291,0.229    C41.364,8.755,41.374,8.778,41.402,8.822"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M39.799,12.47c0.873-0.911,1.749-1.829,2.676-2.797    c0.605,0.564,1.195,1.112,1.816,1.691c-0.941,0.985-1.817,1.903-2.703,2.83c-0.276-0.339-0.511-0.688-0.807-0.975    C40.492,12.941,40.145,12.728,39.799,12.47"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M10.35,43.279c0.969-1.016,1.885-1.977,2.76-2.893    c0.213,0.369,0.376,0.762,0.639,1.072c0.265,0.312,0.627,0.539,0.98,0.832c-0.853,0.891-1.713,1.791-2.624,2.746    C11.513,44.445,10.939,43.869,10.35,43.279"></path>
+                                    </g>
+                                </g>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            Company
+                            </span>
+                        </span>
+                    </div>
+                    <input class="sub-nav-trigger" id="company-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="company-sub-trigger">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+                        </div>
+                    </label>
+                    <div class="sub-nav sub-nav-multiple-list sub-nav-multiple-list-right">
+                        <div class="sub-nav-multiple-wrapper">
+                            <div class="sub-nav-list-top-of-mobile-wrapper">
+                                <h1 class="sub-nav-list-header sub-nav-list-top-of-mobile">Company</h1>
+                                <ul class="sub-nav-list">
+                                    <li class="desktop-hide">
+                                        <label class="subnav-back-button" for="company-sub-trigger">BACK</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sub-nav-list-item-wrapper">
+                                <span class="sub-nav-desktop-header uppercase">Company</span>
+                                <ul class="sub-nav-list">
+                                    <li>
+                                        <a href="https://talosintelligence.com/about"><span>About Talos</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/careers"><span>Careers</span>
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="desktop-hide subnav-overlay"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="25px" viewBox="0 0 55 55">
+                        <g>
+                            <g class="mobile-nav-home">
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M45.201,12.343c0.378,0.48,0.758,0.925,1.096,1.401    c2.975,4.207,4.543,8.876,4.494,14.044c-0.05,5.452-1.643,10.386-5.186,14.593c-3.484,4.133-7.929,6.73-13.182,7.895    c-6.313,1.398-12.216,0.275-17.695-3.131c-0.441-0.273-0.847-0.6-1.266-0.904c-0.11-0.078-0.208-0.174-0.337-0.287    c0.127-0.141,0.246-0.27,0.366-0.398c0.887-0.949,1.765-1.904,2.663-2.844c0.114-0.119,0.321-0.217,0.485-0.217    c3.658-0.006,7.318,0,10.975,0.008c3.458,0.006,6.913,0.02,10.369,0.02c0.957,0,1.871-0.193,2.62-0.844    c0.797-0.693,1.157-1.596,1.157-2.643c0.001-7.533,0.003-15.067-0.005-22.601c-0.002-0.309,0.088-0.524,0.3-0.743    C43.098,14.598,44.127,13.49,45.201,12.343"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M41.402,8.822c-0.99,1.027-1.994,2.021-2.935,3.072    c-0.312,0.35-0.616,0.416-1.036,0.415c-6.98-0.009-13.957-0.007-20.938-0.007c-2.039,0-3.561,1.514-3.561,3.557    c0,6.504,0.002,13.008,0.006,19.512c0.002,0.973,0.011,1.943,0.004,2.914c0,0.133-0.04,0.301-0.127,0.393    c-1.069,1.162-2.15,2.314-3.229,3.469c-0.021,0.023-0.052,0.039-0.109,0.08c-0.159-0.188-0.323-0.369-0.471-0.562    c-2.535-3.348-4.119-7.102-4.605-11.268c-0.61-5.229,0.194-10.229,2.835-14.839c2.669-4.664,6.655-7.805,11.618-9.75    c3.205-1.257,6.533-1.852,9.977-1.621c4.478,0.298,8.553,1.754,12.227,4.325c0.101,0.072,0.197,0.151,0.291,0.229    C41.364,8.755,41.374,8.778,41.402,8.822"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M39.799,12.47c0.873-0.911,1.749-1.829,2.676-2.797    c0.605,0.564,1.195,1.112,1.816,1.691c-0.941,0.985-1.817,1.903-2.703,2.83c-0.276-0.339-0.511-0.688-0.807-0.975    C40.492,12.941,40.145,12.728,39.799,12.47"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M10.35,43.279c0.969-1.016,1.885-1.977,2.76-2.893    c0.213,0.369,0.376,0.762,0.639,1.072c0.265,0.312,0.627,0.539,0.98,0.832c-0.853,0.891-1.713,1.791-2.624,2.746    C11.513,44.445,10.939,43.869,10.35,43.279"></path>
+                            </g>
+                        </g>
+                    </svg>
+                    </div>
+                </li>
+            </ul>
+            <div class="nav-search-wrapper" id="desktop-search-wrapper">
+                <button class="search-button desktop-search-button" data-ghost-search>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </button>
+            </div>
+        </div>
+
+
+
+    </div>
+</nav>
+
+    
+
+    <main id="site-main">
+        <div class="container-fluid px-0">
+            <div class="main-content-row">
+                <div class="main-content-col px-0">
+                    <div class="post-full-content">
+                        
+<article class="post tag-cryptocurrency ">
+        <div class="feature-image-wrapper my-5">
+            <figure>
+                <img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-PtCdCGtmHe0/X3rtUqOFQeI/AAAAAAAAAfs/4ON2C4s08k8jSY9Fs_ud2hAx3ybY37q3ACLcBGAsYHQ/w1200-h630-p-k-no-nu/image8.jpg" alt="" class="img-fluid" />
+            </figure>
+        </div>
+
+    <h1 class="text-center">Lemon Duck brings cryptocurrency miners back into the spotlight</h1>
+
+    <div class="text-center m-1">
+        <div class="post-author">
+            <span>By </span>
+                <a href="https://blog.talosintelligence.com/author/vanja-svajcer/">Vanja Svajcer</a>
+        </div>
+
+        <br/>
+        <time class="post-datetime" datetime="October 13, 2020 10:59">
+            Tuesday, October 13, 2020 10:59
+        </time>
+
+        <div class="m-3">
+                            <a href="/category/cryptocurrency/" class="category primary-category">
+                                Cryptocurrency
+                            </a>
+                                </div>
+    </div>
+
+    <section class="post-content-wrapper mt-5">
+        <div class="post-content" id="post-content">
+            <p><br> By <a href="https://twitter.com/vanjasvajcer">Vanja Svajcer</a>, with contributions from <a href="https://twitter.com/hueylittle_er">Caitlin Huey</a>.</p><ul><li>We are used to ransomware attacks and big-game hunting making headlines, but there are still methods adversaries use to monetize their efforts in less intrusive ways.</li><li>Cisco Talos recently recorded increased activity of the Lemon Duck cryptocurrency-mining botnet using several techniques likely to be spotted by defenders, but are not immediately obvious to end-users.</li><li>These threats demonstrate several techniques of the <a href="https://attack.mitre.org/">MITRE ATT&amp;CK framework</a>, most notably <a href="https://attack.mitre.org/techniques/T1203/">T1203</a> (Exploitation for Client Execution), <a href="https://attack.mitre.org/techniques/T1089/">T1089</a> (Disabling Security Tools), <a href="https://attack.mitre.org/techniques/T1105/">T1105</a> (Remote File Copy), <a href="https://attack.mitre.org/techniques/T1027/">T1027</a> (Obfuscated Files or Information), <a href="https://attack.mitre.org/techniques/T1086/">T1086</a> (PowerShell), <a href="https://attack.mitre.org/techniques/T1035/">T1035</a> (Service Execution), <a href="https://attack.mitre.org/techniques/T1021/002/">T1021.002</a> (Remote Services: SMB/Windows Admin Shares), <a href="https://attack.mitre.org/techniques/T1053/">T1053</a> (Scheduled Task), <a href="https://attack.mitre.org/techniques/T1562/004/">T1562.004</a> (Impair Defenses: Disable or Modify System Firewall) and <a href="https://attack.mitre.org/techniques/T1218/005/">T1218.005</a> (Signed Binary Proxy Execution: Mshta).</li></ul><p>Attackers are constantly reinventing ways of monetizing their tools. Cisco Talos recently discovered a complex campaign employing a multi-modular botnet with multiple ways to spread. This threat, known as "Lemon Duck," has a cryptocurrency mining payload that steals computer resources to mine the Monero virtual currency. The actor employs various methods to spread across the network, like sending infected RTF files using email, psexec, WMI and SMB exploits, including the infamous <a href="https://docs.microsoft.com/en-us/security-updates/securitybulletins/2017/ms17-010">Eternal Blue</a> and <a href="https://us-cert.cisa.gov/ncas/current-activity/2020/06/05/unpatched-microsoft-systems-vulnerable-cve-2020-0796">SMBGhost</a> threats that affect Windows 10 machines. Some variants also support RDP brute-forcing. In recent attacks we observed, this functionality was omitted. The adversary also uses tools such as Mimikatz, that help the botnet increase the amount of systems participating in its mining pool.</p><h4 id="what-s-new-although-this-threat-has-been-active-since-at-least-the-end-of-december-2018-we-have-noticed-an-increase-in-its-activity-at-the-end-of-august-2020-">What's new? <br> Although this threat has been active since at least the end of December 2018, we have noticed an increase in its activity at the end of August 2020.</h4><h4 id="how-did-it-work-the-infection-starts-with-a-powershell-loading-script-which-is-copied-from-other-infected-systems-with-smb-email-or-external-usb-drives-the-actor-also-employs-several-exploits-for-vulnerabilities-such-as-smbghost-and-eternal-blue-the-code-exploiting-the-bluekeep-vulnerability-is-also-present-but-it-is-disabled-in-the-version-we-analysed-">How did it work? <br> The infection starts with a PowerShell loading script, which is copied from other infected systems with SMB, email or external USB drives. The actor also employs several exploits for vulnerabilities such as <a href="https://us-cert.cisa.gov/ncas/current-activity/2020/06/05/unpatched-microsoft-systems-vulnerable-cve-2020-0796">SMBGhost</a> and <a href="https://docs.microsoft.com/en-us/security-updates/securitybulletins/2017/ms17-010">Eternal Blue</a>. The code exploiting the <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name%3DCVE-2019-0708">Bluekeep</a> vulnerability is also present but it is disabled in the version we analysed.</h4><p>The botnet has executable modules that get downloaded and driven by the main module, which communicates with the command and control (C2) server over HTTP.</p><p>The email-spreading module uses COVID-19-related subject lines and text, with an infected attachment sent using Outlook automation to every contact in the affected user's address book.</p><h4 id="so-what-defenders-need-to-be-constantly-vigilant-and-monitor-the-behavior-of-systems-within-their-network-to-spot-new-resource-stealing-threats-such-as-cryptominers-cryptocurrency-mining-botnets-can-be-costly-in-terms-of-the-stolen-computing-cycles-and-power-consumption-costs-while-organizations-need-to-be-focused-on-protecting-their-most-valuable-assets-they-should-not-ignore-threats-that-are-not-particularly-targeted-toward-their-infrastructure-">So what? <br> Defenders need to be constantly vigilant and monitor the behavior of systems within their network to spot new resource-stealing threats such as cryptominers. Cryptocurrency-mining botnets can be costly in terms of the stolen computing cycles and power consumption costs. While organizations need to be focused on protecting their most valuable assets, they should not ignore threats that are not particularly targeted toward their infrastructure.</h4><h3 id="technical-case-overview">Technical case overview <br></h3><h4 id="introduction-lemon-duck-is-a-botnet-with-automated-spreading-capabilities-its-final-delivered-payload-is-a-variant-of-the-monero-cryptocurrency-mining-software-xmr-it-is-one-of-the-more-complex-mining-botnets-with-several-interesting-tricks-up-its-sleeve-although-it-has-been-documented-before-we-have-recently-seen-a-resurgence-in-the-number-of-dns-requests-connected-with-its-command-and-control-and-mining-servers-">Introduction <br> Lemon Duck is a botnet with automated spreading capabilities. Its final delivered payload is a variant of the Monero cryptocurrency mining software XMR. It is one of the more complex mining botnets with several interesting tricks up its sleeve. Although it has been documented before, we have recently seen a resurgence in the number of DNS requests connected with its command and control and mining servers.</h4><p>We have decided to take a deeper look at its functionality with a particular emphasis on previously less documented modules such as the Linux branch and C# modules reflectively loaded by the main PowerShell component.</p><h4 id="infection-vectors-the-lemon-duck-botnet-has-more-ways-to-spread-across-a-network-than-most-malware-we-see-during-our-research-we-recorded-12-independent-infection-vectors-ranging-from-standard-copying-over-smb-shares-to-attempts-using-vulnerabilities-in-redis-and-the-yarn-hadoop-resource-manager-and-job-scheduler-">Infection vectors <br> The Lemon Duck botnet has more ways to spread across a network than most malware we see. During our research, we recorded 12 independent infection vectors, ranging from standard copying over SMB shares to attempts using vulnerabilities in Redis and the YARN Hadoop resource manager and job scheduler.</h4><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-etjHg2UgzKI/X3rt_1YbLWI/AAAAAAAAAgA/Pzy0jhUCHBE0sAziHq4uWVLQW-ximiWpQCLcBGAsYHQ/s16000/image2.jpg" class="kg-image" alt loading="lazy"></figure><p><i>Lemon Duck infection vectors</i> <br> Talos researchers noticed an increase in the amount of DNS requests connected with Lemon Duck C2 and mining servers toward the end of August 2020.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-OcWlIaaR6nY/X3ruTDRK00I/AAAAAAAAAgQ/E9kuAUs2fbgxNOe9MNdGJL0xGEI6law9QCLcBGAsYHQ/s16000/image18.jpg" class="kg-image" alt loading="lazy"></figure><p><i>Increase of activity to t.amynx.com C2, caused by Lemon Duck activity.</i> <br> The requests are geographically spread but the majority originates in Asia as it is visible in the map, with the top five countries being Iran, Egypt, Philippines, Vietnam and India.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-BU4Zldnmrbk/X3ruv6-nRUI/AAAAAAAAAgY/o22eCXGiOOQDY_Sko6M5lR9OdWMntsmBgCLcBGAsYHQ/s16000/image14.jpg" class="kg-image" alt loading="lazy"></figure><p><i>Geographic distribution of requests for t.amynx.com as seen by Cisco Umbrella.</i> <br> We decided to drill down into our endpoint telemetry and quickly spotted one of the culprits, a system with a mshta.exe LoLBin command line quickly switching to PowerShell, referencing the Lemon Duck C2 server.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-2xidA4rk3NY/X3rvAM72B-I/AAAAAAAAAgg/4-9mMMq6j4kWAHeEtTYrxp6gbnMB6YyFQCLcBGAsYHQ/s16000/image3.png" class="kg-image" alt loading="lazy"></figure><p><i>AMP telemetry showing suspicious mshta.exe invocation</i> <br> The DownloadString function call downloads PowerShell containing script with function 'bpu' which is later called to download and execute the main PowerShell installer component. The function bpu is a wrapper to download and execute functionality coupled with disabling of Windows Defender real-time detection and putting powershell.exe on the list of processes excluded from scanning. The function first checks if the script is running with administrative privileges and, if it does, the payload is downloaded and run using the Invoke-Expression cmdlet.</p><p>If the script is not running with the administrative privileges, it leverages existing system executables to launch the next stage. The loader modifies the registry value under HKCU\Software\Classes\ms-settings\shell\open\command or HKCU\Software\Classes\mscfile\shell\open\command to launch the PowerShell payload so that the payload is executed indirectly by launching either "ComputerDefaults.exe" (for Windows 10) or "CompMgmtLauncher.exe" for earlier Windows versions, which may bypass the <a href="https://docs.microsoft.com/en-us/windows/security/identity-protection/user-account-control/how-user-account-control-works">UAC</a>.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-1wbF4XYNHi4/X3rvPOAEHCI/AAAAAAAAAgk/HWDJVgm6qyEvDvj6memwJAfdq6s_gDPywCLcBGAsYHQ/s16000/image7.png" class="kg-image" alt loading="lazy"></figure><p><i>LoLBin-style side loading of PowerShell payload as a UAC bypass.</i> This is a good starting point for analysis and retrieval of additional modules. Almost all PowerShell modules are obfuscated with four or five layers of obfuscation likely generated by the Invoke-Obfuscation module. Although they are relatively easy to remove, they still slow down the analysis process and make detection using regular signatures more difficult.</p><h4 id="main-modules-the-majority-of-lemon-duck-functionality-is-delivered-as-powershell-scripts-with-multiple-levels-of-loaders-which-eventually-install-one-or-more-of-cryptocurrency-mining-payloads-the-main-spreading-module-the-pyinstaller-spreading-module-or-the-email-spreading-module-">Main modules <br> The majority of Lemon Duck functionality is delivered as PowerShell scripts, with multiple levels of loaders which eventually install one or more of cryptocurrency-mining payloads, the main spreading module, the Pyinstaller spreading module or the email-spreading module.</h4><h5 id="powershell-components-the-initial-stage-is-a-simple-downloader-that-first-downloads-the-code-containing-the-function-required-to-download-and-execute-the-main-loader-as-described-above-">PowerShell components <br> The initial stage is a simple downloader that first downloads the code containing the function required to download and execute the main loader as described above.</h5><p>The main loader is also simple and conducts several checks for the type of infected system, the level of user privileges and components relevant for mining, such as the type of the available graphic card. If the name of the card contains one of the following strings, the load downloads and launches the xmrig-cuda variant for mining using the GPU:</p><ul><li>GTX</li><li>NVIDIA</li><li>GEFORCE</li><li>AMD</li><li>RADEON</li></ul><p>If not, the standard xmrig for CPU based mining will be downloaded and run.</p><p>Apart from the mining payload the loader will attempt to download and launch other modules, including the main spreading module, the email sending module, the Python-based module packaged using <a href="https://www.pyinstaller.org/">Pyinstaller</a> and the killer module designed to disable known competing mining botnets.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-CBe4hrecb70/X3rvbOFPj_I/AAAAAAAAAgs/kb-N1ot1HNkZzp32D5TXI6OZbNdMWVH3gCLcBGAsYHQ/s16000/image16.jpg" class="kg-image" alt loading="lazy"></figure><p><i>Lemon Duck Infection stages and modules.</i> <br> Before downloading and activating the mass mailing module, the loader attempts to modify the Microsoft Outlook security configuration in the registry to enable the botnet to send emails without the warning message from Outlook. For that, several registry paths are checked for the value ObjectModelGuard and the value is changed to dword 2, which corresponds to the setting "Never warn me about suspicious activity."</p><p>The registry paths checked are:</p><pre><code>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Office\{OfficeVersionNumber}\Outlook\Security
+HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Office\{OfficeVersionNumber}\Outlook\Security
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Office\ClickToRun\REGISTRY\MACHINE\Software\Microsoft\Office\{OfficeVersionNumber}\Outlook\Security
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Office\ClickToRun\REGISTRY\MACHINE\Wow6432Node\Software\Microsoft\Office\{OfficeVersionNumber}\Outlook\Security
+</code></pre><p><br></p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-mYY61zhfx8Q/X3rvotJCvCI/AAAAAAAAAgw/WM5eWqh3qkc5hk-eiN_AaXeJQ4MKxzQTACLcBGAsYHQ/s16000/image4.png" class="kg-image" alt loading="lazy"></figure><p><i>Changing Outlook security settings</i> <br> The PowerShell spreading module is a rather ambitious piece of code containing myriad functions that allow the bot to spread around the network. Overall, there are more than 10,000 lines of code. The code is partially copied from various open-source projects and partially custom-made, which shows a moderate level of the author's programming skills.</p><p>The code is a mix of PowerShell code and C# source code that gets compiled into DLL-based assemblies just-in-time and loaded into memory for convenience and execution speed.</p><p>Mimikatz is downloaded as mimi.dat in the user's temporary folder. The downloaded Mimikatz is DLL-encoded with base64, which is then decoded and executed using a modified variant of Invoke-Mimikatz module, with results saved and added to the list of hardcoded passwords for brute-forcing SMB, RDP and SSH.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-dvEN0zrT3eQ/X3rvy8tNh1I/AAAAAAAAAg0/r9urkwRG6vwoXPdFN80H2RSwfTT7QzIrgCLcBGAsYHQ/s16000/image5.png" class="kg-image" alt loading="lazy"></figure><p><i>Initial list of passwords used to brute force access to MSSQL, SSH and SMB.</i> <br> Apart from password brute-forcing, the main spreading module contains the functionality to spread using several vulnerabilities. Internal private networks are scanned using a hard-coded list of subnets.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-_UtmuI1gP5c/X3rv7YoDO5I/AAAAAAAAAg8/rH1IyPW8pmI-PTinH6Lp9RmhaZ94XSiagCLcBGAsYHQ/s16000/image6.png" class="kg-image" alt loading="lazy"></figure><p><i>Hardcoded list of subnets used for lateral spreading.</i> <br> Eternal Blue vulnerability (CVE-2017-0144) was disclosed in a Shadow Brokers leak more than three years ago, but it remains a staple of malware attempting to laterally spread over SMB protocol. The Lemon Duck spreader contains a PowerShell variant of the exploit.</p><p>The SSH spread is driven by the list of known passwords to attempt with the addition of the Plink component of the Putty SSH client. Plink is a scriptable command-line SSH client used to target Linux-based SSH servers using the root username. Plink can often be detected as a potentially unwanted application by antimalware software. Lemon Duck appends 100 randomly generated bytes to the downloaded Plink executable, likely to break the cryptographic checksum based detections.</p><p>The remote command will download and launch the first stage of the bash script Lemon Duck loader for Linux systems.</p><p>A similar strategy is used for targeting systems running YARN and Redis. With YARN, the actors attempt to exploit a vulnerability from 2018 that does not have a CVE number attached. If the exploitation is successful, a script to download and launch the Linux loader is executed.</p><p>Lemon Duck targets incorrectly configured Redis key-value database installations that do not require a password for connections. Once successfully connected, the spreader creates a cron job to automatically run the same Linux download and execute code for the main Linux loader module.</p><p>The malware then attempts to connect to a Microsoft SQL database using the list of hardcoded candidate passwords and passwords retrieved by Mimikatz using the username "sa" (System Administrator). If the login is successful, the database server will be configured to allow execution of the xp_cmdshell stored procedure and launch the procedure to download and run the main Lemon Duck spreader.</p><p>A new .NET assembly, evilclr, will also be added to the database server together with a new stored procedure dbo.execcommand, which is called to download the initial Lemon Duck loader. This newly added assembly and the procedure may allow the attacker to connect to the compromised database server even if it is reconfigured to prevent the usage of xp_cmdshell.</p><p>Last but not least, the spreader connects to remote systems using the list of passwords. The connection is first made to the system using a list of precalculated NTLM hashes from the available passwords. If the connection is successful, the spreader will find all the users by listing the contents of the folder c:\users on the remote drive and create a batch file run.bat in the AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\ of each user so that the script is launched when a user logs into the system. The batch file downloads and runs a PowerShell script that attempts to disable various anti-malware products and then creates scheduled tasks to download and run the main loader module.</p><h5 id="mailer-module-the-email-spreader-module-is-another-powershell-script-that-uses-com-automation-to-automate-microsoft-outlook-and-send-an-email-message-to-every-contact-in-the-user-address-book-as-well-as-all-email-addresses-from-which-the-current-user-received-messages-and-all-email-addresses-to-which-the-current-user-has-already-sent-messages-">Mailer module <br> The email spreader module is another PowerShell script that uses COM Automation to automate Microsoft Outlook and send an email message to every contact in the user address book as well as all email addresses from which the current user received messages and all email addresses to which the current user has already sent messages.</h5><p>For all collected email addresses only a single combination of email subject and the body text is chosen. Note: All spelling and grammar mistakes are intentional and copied directly from the infection documents.</p><!--kg-card-begin: html--><table><tbody><tr><td>Subject
+</td><td>Text
+</td></tr><tr><td>The Truth of COVID-19
+</td><td>Virus actually comes from United States of America
+</td></tr><tr><td>COVID-19 nCov Special info WHO
+</td><td>very important infomation for Covid-19see attached document for your action and discretion.
+</td></tr><tr><td>HALTH ADVISORY:CORONA VIRUS
+</td><td>the outbreak of CORONA VIRUS is cause of concern especially where forign personal have recently arrived or will be arriving at various intt in near future.see attached document for your action and discretion.
+</td></tr><tr><td>WTF
+</td><td>what's wrong with you?are you out of your mind!!!!!
+</td></tr><tr><td>What the fcuk
+</td><td>are you out of your mind!!!!!what 's wrong with you?
+</td></tr><tr><td>good bye
+</td><td>good bye, keep in touch
+</td></tr><tr><td>farewell letter
+</td><td>good bye, keep in touch
+</td></tr><tr><td>broken file
+</td><td>can you help me to fix the file,i can't read it
+</td></tr><tr><td>This is your order?
+</td><td>file is brokened, i can't open it
+</td></tr></tbody></table><!--kg-card-end: html--><p>Generated email messages will have two attachments. The first one is an RTF document with the name readme.doc exploiting the remote code execution vulnerability in Microsoft Office, <a href="https://nvd.nist.gov/vuln/detail/CVE-2017-8570">CVE-2017-8570</a>, and the second is the file readme.zip. Readme.zip contains a JScript that downloads and runs the first-stage Lemon Duck loader.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-e7djsQeVrJU/X3rwIkqNItI/AAAAAAAAAhE/Lcsh-Xw0BIshY551mmCXP4ktOwhQXkKwACLcBGAsYHQ/s16000/image15.png" class="kg-image" alt loading="lazy"></figure><p><i>An example of a Lemon Duck-generated email message.</i> <br> Like other Lemon Duck modules, we can also see the usage of the embedded C# code compiled and loaded in real-time by msbuild.exe. The code in the email spreader module is used only if the mailer is running with administrative privileges. The module contains the functionality to enumerate Windows Terminal Services sessions and impersonate the user running the session.</p><p>This functionality is most likely implemented in case the affected system is an RDP server. For every session, a listening named pipe "\\.\pipe\HHyeuqi7" is created. Its server-side code calls the PowerShell Invoke-Expression cmdlet for the supplied string sent by the named pipe client, which is the full mailer code for automating Outlook.</p><h5 id="competition-killer-module-the-killer-module-is-downloaded-by-the-main-lemon-duck-loader-as-kr-bin-it-contains-a-list-of-service-names-and-process-names-to-terminate-as-well-as-a-list-of-scheduled-task-names-to-delete-">Competition Killer module <br> The killer module is downloaded by the main Lemon Duck Loader as kr.bin. It contains a list of service names and process names to terminate as well as a list of scheduled task names to delete.</h5><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-usp98Eg13YM/X3rwS41-wZI/AAAAAAAAAhM/8r6SlVB3tesW5lJuOXUnFEapmgCPiCHoACLcBGAsYHQ/s16000/image9.png" class="kg-image" alt loading="lazy"></figure><p><i>A hardcoded list of service names is used to stop competing cryptocurrency miners.</i> <br> The killer also makes sure that it does not terminate any processes connected with any of the IP addresses used for mining by Lemon Duck and other associated cryptocurrency miners. Before checking for potential mining proxies, the killer module first downloads a clean variant of the OpenSSL executable and uses it as a tool for connecting over TLS.</p><h5 id="executable-dropper-we-identified-an-older-version-of-the-lemon-duck-executable-dropper-developed-using-the-net-framework-the-main-spreading-module-is-stored-as-a-resource-in-the-executable-file-dropped-on-the-hard-drive-and-loaded-as-a-powershell-script-vip-ps1-">Executable dropper <br> We identified an older version of the Lemon Duck executable dropper developed using the .NET framework. The main spreading module is stored as a resource in the executable file, dropped on the hard drive and loaded as a PowerShell script vip.ps1.</h5><p>The script is obfuscated with Invoke-Obfuscation as all other modules but it is also encrypted 100 times using AES. Of course, this is done to make analysis more difficult rather than protecting the malicious content. The layer decryption key is stored in a randomly named variable, while the next layer is stored as a Base64-encoded DeflateStream assigned to another randomly named variable.</p><p>Removing 100 layers of encryption when the decryption keys are available within each layer is just a matter of writing a script which automates the task of decryption to the point when there are no additional decryption layers.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-9hoA-QJDg2I/X3rwdDxRZbI/AAAAAAAAAhU/aH_qlfbHRSAp0eRgiZ6VDUj6uvIWc8K0ACLcBGAsYHQ/s16000/image17.png" class="kg-image" alt loading="lazy"></figure><p><i>One of the hundred AES decryption layers.</i></p><h5 id="python-pyinstaller-executable-the-python-module-is-downloaded-by-the-main-loader-and-its-functionality-is-similar-to-the-main-spreading-module-the-executable-is-created-with-pyinstaller-which-packages-a-python-distribution-including-all-the-required-binaries-python-modules-compiled-into-the-python-p-code-and-user-defined-components-">Python pyinstaller executable <br> The Python module is downloaded by the main loader and its functionality is similar to the main spreading module. The executable is created with Pyinstaller, which packages a Python distribution including all the required binaries, Python modules compiled into the Python p-code and user-defined components.</h5><p>The main Python component of Lemon Duck contains the functionality to spread within the local network by attempting to exploit the Eternal Blue vulnerability and by copying the Pyinstaller executable to the target system. The Python code creates a scheduled task on the remote system to launch the copied executable on schedule.</p><p>The shellcode used in SMB exploits with both Python and PowerShell spreaders is the same shellcode which attempts to download and execute the initial Lemon Duck loader from hxxp://t[.]amynx[.]com/gim[.]jsp and to change the administrator's password to "k8d3j9SjfS7."</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-T6Y9ZeoHzTE/X3rwo4JMO3I/AAAAAAAAAhY/DzxG1HQogq8k47S5V1-O4inYLHrEOCafACLcBGAsYHQ/s16000/image12.png" class="kg-image" alt loading="lazy"></figure><p><i>SMB exploit shellcode string detail — download and execute the initial PowerShell loader.</i> <br> The Python spreader also attempts to connect to the IPC share of the computers in local networks with a combination of hardcoded passwords combined with the credentials retrieved by running an embedded copy of Mimikatz, dropped and launched using PowerShell.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-mcyedhyxb-M/X3rwybeB3MI/AAAAAAAAAhg/8tuFSV6EHW0_vCUTvL7Wagnj8ATAIllcACLcBGAsYHQ/s16000/image13.png" class="kg-image" alt loading="lazy"></figure><p><i>Mimikatz reloaded by the Python spreader with results saved into mkatz.ini.</i> <br> Additional functionality includes the Microsoft SQL database spreading code which is a Python implementation of the code described above in the PowerShell main spreader section. The script attempts to add a new .NET assembly evilclr to the database system to allow the attacker to run commands remotely through a newly stored procedure.</p><h5 id="linux-modules-lemon-duck-bash-scripts-are-executed-after-a-successful-compromise-of-a-linux-host-through-redis-yarn-or-ssh-there-are-two-main-bash-scripts-the-first-one-collects-some-information-about-the-infected-host-and-attempts-to-download-a-linux-version-of-the-xmrig-miner-to-launch-it-to-connect-to-lplp-ackng-com-444-finally-it-attempts-to-delete-various-system-logs-">Linux modules <br> Lemon Duck bash scripts are executed after a successful compromise of a Linux host through Redis, YARN or SSH. There are two main bash scripts. The first one collects some information about the infected host and attempts to download a Linux version of the XMRig miner to launch it to connect to lplp[.]ackng[.]com:444. Finally, it attempts to delete various system logs.</h5><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-qaCtxhF2sYE/X3rw7QzJaQI/AAAAAAAAAho/CIwSMC3zK14teSZeoeL58yWCwJU66C1wACLcBGAsYHQ/s16000/image10.jpg" class="kg-image" alt loading="lazy"></figure><p><i>DNS requests for the Lemon Duck Linux mining server lplp[.]ackng[.]com.</i> <br> The other script is more complex, with the focus on terminating and removing competing cryptocurrency miners already present on the system. The script attempts to find processes with connections to known mining hosts, processes with known miner process names and files associated with these processes.</p><p>The script also attempts to terminate and uninstall processes related to Alibaba and Tencent cloud security agents. The script seems to be shared between several Linux-based cryptomining botnets.</p><h5 id="runtime-compiled-c-assemblies-compiled-lemon-duck-makes-an-extensive-use-of-c-modules-that-get-compiled-and-run-by-the-bot-as-required-some-of-the-modules-are-taken-from-the-open-source-repositories-while-some-such-as-the-module-for-spreading-over-external-usb-storage-devices-and-the-module-for-windows-terminal-services-enumeration-and-user-impersonation-seem-to-be-programmed-specifically-for-lemon-duck-">Runtime compiled C# assemblies compiled  <br> Lemon Duck makes an extensive use of C# modules that get compiled and run by the bot as required. Some of the modules are taken from the open source repositories while some, such as the module for spreading over external USB storage devices and the module for Windows Terminal Services enumeration and user impersonation seem to be programmed specifically for Lemon Duck.</h5><p>The C# components are:</p><ul><li>Ping Castle Eternal Blue vulnerability scanner used in PowerShell spreader.</li><li>RDP Brute forcer with passwords, not used in this variant, otherwise in PowerShell spreader.</li><li>LZNT1 implementation, taken likely from public LZNT1 source code.</li><li>USB Spreader, with creation of .lnk files used with a <a href="https://www.rapid7.com/db/vulnerabilities/msft-cve-2017-8464%23:~:text%3DA%2520remote%2520code%2520execution%2520vulnerability,rights%2520as%2520the%2520local%2520user.">CVE-2017-8464</a> exploit.</li><li>BCrypt wrapper for password hashing - used in the PowerShell spreader.</li><li>WTSEnumerateSessions, used in the PowerShell mailer module for Outlook automation in Windows Remote Desktop services.</li></ul><h5 id="usb-spreader-the-usb-spreader-drops-a-32-or-64-bit-variant-of-a-malicious-dll-an-associated-lnk-file-with-cve-2017-8464-exploit-that-launches-the-dll-without-user-interaction-on-vulnerable-systems-">USB spreader <br> The USB spreader drops a 32 or 64-bit variant of a malicious DLL, an associated .LNK file with<a href="https://portal.msrc.microsoft.com/en-US/security-guidance/advisory/CVE-2017-8464"> CVE-2017-8464</a> exploit that launches the DLL without user interaction on vulnerable systems.</h5><p>The module also creates a readme.js file whose contents are identical to the readme.js file that is spread by the email spreading module.</p><p>USB spreader enumerates all removable and network drives and attempts to infect them. If the infection is successful, a file inf_data will be created to prevent future reinfections with the same mechanism.</p><p>The malicious DLLs create a named mutex "MGYnGYPf" used to ensure only a single copy is running in memory. After creating the mutex, the DLL code launches runDLL32.exe and injects code into its process space.</p><p>The initial thread context is then changed so that the shellcode runs when the thread continues its execution. The shell code's functionality is to download and run the first PowerShell Loader stage using mshta.exe in the same fashion as seen in our initial telemetry entry. This indicates that the infection source was likely a removable drive. <br></p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-3-uxwHEIB5Y/X3rxFfk2wWI/AAAAAAAAAhw/SB0ix5tmQ_4kTd5Iw5UU1ruAzHUyWuzfQCLcBGAsYHQ/s16000/image1.png" class="kg-image" alt loading="lazy"></figure><p><i>USB DLL shellcode fragment for downloading the initial loader using mshta.exe.</i> <br></p><h4 id="origins-of-lemon-duck-code-lemon-duck-is-a-combination-of-the-code-taken-from-the-open-source-projects-and-the-code-specifically-crafted-for-the-botnet-by-combining-the-two-the-author-shows-a-moderate-level-of-technical-skills-and-understanding-of-security-issues-in-windows-and-various-network-protocols-this-approach-yields-code-that-s-more-difficult-to-maintain-but-the-objectives-can-be-achieved-very-quickly-">Origins of Lemon Duck code <br> Lemon Duck is a combination of the code taken from the open-source projects and the code specifically crafted for the botnet. By combining the two, the author shows a moderate level of technical skills and understanding of security issues in Windows and various network protocols. This approach yields code that's more difficult to maintain but the objectives can be achieved very quickly.</h4><p>The list of open-source PowerShell projects code included in Lemon Duck includes:</p><ul><li><a href="https://github.com/Kevin-Robertson/Invoke-TheHash">Invoke-TheHash</a> by Kevin Robertson</li><li><a href="https://raw.githubusercontent.com/EmpireProject/Empire/master/data/module_source/exploitation/Exploit-EternalBlue.ps1">Invoke-EternalBlue PowerShell EternalBlue port</a></li><li>BlueKeep RCE exploit (<a href="https://portal.msrc.microsoft.com/en-US/security-guidance/advisory/CVE-2019-0708">CVE- 2019-0708</a>) PowerShell port</li><li><a href="https://github.com/PowerShellMafia/PowerSploit/blob/master/CodeExecution/Invoke-ReflectivePEInjection.ps1">Powersploit's reflective loader</a> by Matt Graeber</li><li>Modified <a href="https://github.com/PowerShellMafia/PowerSploit/blob/master/Exfiltration/Invoke-Mimikatz.ps1">Invoke-Mimikatz</a> PowerShell module</li></ul><h4 id="payloads-whether-considering-linux-or-windows-branches-of-lemon-duck-botnet-the-final-goal-is-the-same-which-is-to-mine-monero-using-a-linux-or-a-windows-variant-of-the-xmrig-miner-we-are-only-mentioning-the-payloads-for-the-sake-of-completeness-of-the-analysis-">Payloads <br> Whether considering Linux or Windows branches of Lemon Duck botnet, the final goal is the same, which is to mine Monero using a Linux or a Windows variant of the XMRig miner. We are only mentioning the payloads for the sake of completeness of the analysis.</h4><h4 id="observed-activity-and-overlap-with-other-crypto-mining-botnets-cisco-talos-has-identified-activity-in-our-endpoint-telemetry-associated-with-lemon-duck-cryptocurrency-mining-malware-affecting-three-different-companies-in-the-government-retail-and-technology-sectors-we-observed-the-activity-spanning-from-late-march-2020-to-present-">Observed activity and overlap with other crypto mining botnets <br> Cisco Talos has identified activity in our endpoint telemetry associated with Lemon Duck cryptocurrency mining malware affecting three different companies in the government, retail, and technology sectors. We observed the activity spanning from late March 2020 to present.</h4><p>Through the course of our research, we identified a number of overlaps between Lemon Duck and another cryptocurrency mining malware dubbed, <a href="https://symantec-enterprise-blogs.security.com/blogs/threat-intelligence/beapy-cryptojacking-worm-china">Beapy</a> (aka Pcastle). According to Cisco Umbrella, awcna[.]com was registered with the email address robertcooper1983[@]protonmail[.]com, which also registered only one other domain, bddp[.]net, a part of infrastructure leveraged by Beapy targeting East Asia in June 2019.</p><p>Most of the Lemon Duck modules make HTTP GET requests to URLs to a subdomain ackng[.]com, which was also observed in the Beapy infrastructure. Based on previous malware analysis by Talos, Lemon Duck exhibits propagation methods that are similar to Beapy.</p><p>We will continue to monitor our data for additional activity pointing to similarities between these botnets. Our findings also suggest several more similarities in infrastructure and behavior, namely between Beapy, DLTMiner and MyKings. These campaigns share similar tactics, techniques, and procedures (TTPs), making it difficult to distinguish between them.</p><p>The Lemon Duck activity we recorded is consistent with a general uptick in cryptocurrency miners observed by Talos over the last several months, including a resurgence in PowerGhost, <a href="https://blog.talosintelligence.com/prometei-botnet-and-its-quest-for-monero/">Prometei</a> and <a href="https://blog.talosintelligence.com/tor2mine-is-up-to-their-old-tricks-and_11/">Tor2Mine</a>.</p><h3 id="coverage-ways-our-customers-can-detect-and-block-this-threat-are-listed-below-">Coverage <br> Ways our customers can detect and block this threat are listed below.<br></h3><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-7OHLh38d7nw/X3rxQlSj_rI/AAAAAAAAAh4/qz5L9Gms0bUzSA76NFUjTMUGwM7FN-rDACLcBGAsYHQ/s16000/image11.png" class="kg-image" alt loading="lazy"></figure><p><br></p><p>Advanced Malware Protection (<a href="https://www.cisco.com/c/en/us/products/security/advanced-malware-protection">AMP</a>) is ideally suited to prevent the execution of the malware used by these threat actors. Exploit Prevention present within AMP is designed to protect customers from unknown attacks such as this automatically.</p><p>Cisco Cloud Web Security (<a href="https://www.cisco.com/c/en/us/products/security/cloud-web-security/index.html">CWS</a>) or<a href="https://www.cisco.com/c/en/us/products/security/web-security-appliance/index.html">Web Security Appliance (WSA</a>) web scanning prevents access to malicious websites and detects malware used in these attacks.</p><p><a href="https://www.cisco.com/c/en/us/products/security/email-security-appliance/index.html">Email Security</a> can block malicious emails sent by threat actors as part of their campaign.</p><p>Network Security appliances such as Next-Generation Firewall (<a href="https://www.cisco.com/c/en/us/products/security/firewalls/index.html">NGFW</a>), Next-Generation Intrusion Prevention System (<a href="https://www.cisco.com/c/en/us/products/security/intrusion-prevention-system-ips/index.html">NGIPS</a>),<a href="https://www.cisco.com/c/en/us/products/routers/branch-routers/index.html">Cisco ISR</a>, and<a href="https://meraki.cisco.com/products/appliances">Meraki MX</a> can detect malicious activity associated with this threat.</p><p><a href="https://www.cisco.com/c/en/us/solutions/enterprise-networks/amp-threat-grid/index.html">AMP Threat Grid</a> helps identify malicious binaries and build protection into all Cisco Security products.</p><p><a href="https://umbrella.cisco.com/">Umbrella</a>, our secure internet gateway (SIG), blocks users from connecting to malicious domains, IPs, and URLs, whether users are on or off the corporate network.</p><p>Open Source Snort Subscriber Rule Set customers can stay up to date by downloading the latest rule pack available for purchase on<a href="https://www.snort.org/products">Snort.org</a>.</p><h4 id="osquery">OSQuery</h4><p>Cisco AMP users can use Orbital Advanced Search to run complex OSqueries to see if their endpoints are infected with this specific threat. For specific OSqueries on this threat, click below:</p><p><a href="https://github.com/Cisco-Talos/osquery_queries/blob/master/win_malware/malware_lemonduck_filepath.yaml">Lemon Duck OSQuery</a></p><h4 id="snort">SNORT</h4><p>[SID] 55926-55928 <br></p><h3 id="iocs">IOCs</h3><h4 id="windows-samples-605ac25ebe8ab41ba291b467281e4f361e87df26fb0085636060d4972725958d-32-bit-dlle783b5235868d8f32f8656218f89ee24138a52e13d91ab5d5950cce1fa25f673-64-bit-dlldf154c314609c61ab33eea7f5d3d959fe3dacee35c8575741e96dfe27b2bd55e-earlier-executable-net-droppere72b656b15dca5b2dde4784bb113ca7c9768eeb731264fe10d057fc7909ef9c4-xmrig-cuda38ffc65ba9896583ba8c8f98dd36c0b391ee590e2011be7f715351965b7bed8c-evilclr-module5dd1c44610d038e0e8e3f572964f4be09ee3e7718d73bcd4c8684c3efea8ff2b-lnk-exploitaea17e712d9a25e37d0ce3af6adff733e89edd6416b5c4a6a9b95dd5faf13612-rtf-exploit-readme-doc-27040edd4917b6963f89d1d80073d20713dcea439a5b0f9a0cdaca655c1b4322-earlier-version-of-the-main-powershell-spreader1d6153f93539fbc7bdd2389120c9f8967197ea81fffaf3df28417bdf2fe1252b-main-powershell-spreader5beb8128b269067186c5ce002423e1de33fd52986bf0696d5664ac278eae1993-killer-module80eb16604550f9a115470acfa300b95d62ae856245666637afa00f8fb9e4808d-mailing-moduled7d0f18071899c81ee90a7f8b266bd2cf22e988da7d0e991213f5fb4c8864e77-pyinstaller-moduleb660aa7aca644ba880fdee75f0f98b2db3b9b55978cc47a26b3f42e7d0869fff-powershell-miner-dropperce4ba5d544e566a4a83b5edd7e42e6783c2b03187f834913cdd185b3d453fb10-mimikatz27e94c3f27539d0ed5c5267914860ff97a438acd1ace560e0a746a6d04b39718-readme-js-javascript">Windows samples <br> 605ac25ebe8ab41ba291b467281e4f361e87df26fb0085636060d4972725958d - 32 bit Dll<br>e783b5235868d8f32f8656218f89ee24138a52e13d91ab5d5950cce1fa25f673 - 64 bit DLL<br>df154c314609c61ab33eea7f5d3d959fe3dacee35c8575741e96dfe27b2bd55e - earlier executable .NET dropper<br>e72b656b15dca5b2dde4784bb113ca7c9768eeb731264fe10d057fc7909ef9c4 - xmrig-cuda<br>38ffc65ba9896583ba8c8f98dd36c0b391ee590e2011be7f715351965b7bed8c - evilclr module<br>5dd1c44610d038e0e8e3f572964f4be09ee3e7718d73bcd4c8684c3efea8ff2b - lnk exploit<br>aea17e712d9a25e37d0ce3af6adff733e89edd6416b5c4a6a9b95dd5faf13612 - RTF exploit (readme.doc)<br>27040edd4917b6963f89d1d80073d20713dcea439a5b0f9a0cdaca655c1b4322 - earlier version of the main PowerShell spreader<br>1d6153f93539fbc7bdd2389120c9f8967197ea81fffaf3df28417bdf2fe1252b - main Powershell spreader<br>5beb8128b269067186c5ce002423e1de33fd52986bf0696d5664ac278eae1993 - killer module<br>80eb16604550f9a115470acfa300b95d62ae856245666637afa00f8fb9e4808d - mailing module<br>d7d0f18071899c81ee90a7f8b266bd2cf22e988da7d0e991213f5fb4c8864e77 - Pyinstaller module<br>b660aa7aca644ba880fdee75f0f98b2db3b9b55978cc47a26b3f42e7d0869fff - Powershell miner dropper<br>ce4ba5d544e566a4a83b5edd7e42e6783c2b03187f834913cdd185b3d453fb10 - Mimikatz<br>27e94c3f27539d0ed5c5267914860ff97a438acd1ace560e0a746a6d04b39718 - readme.js Javascript</h4><h4 id="linux-bash-and-elf-9e0c65e28bf2539966364468a5fba8bf8bbcbc76b84aa37348b3bad19047c73a-xmrig7850f7ccba97d37bb89447f04dac93757b96d7270d1ee9797c12034f22363038-linux-killer-script7de4497ed46e9e96f66ad0135c018d006a85bbd0c0202da6f0f1bd2030932a30-linux-miner-downloader">Linux (Bash and ELF)9e0c65e28bf2539966364468a5fba8bf8bbcbc76b84aa37348b3bad19047c73a - xmrig<br>7850f7ccba97d37bb89447f04dac93757b96d7270d1ee9797c12034f22363038 - Linux killer script<br>7de4497ed46e9e96f66ad0135c018d006a85bbd0c0202da6f0f1bd2030932a30 - Linux miner downloader</h4><h4 id="hostnames-t-amynx-comt-zer9g-comp-b69kq-comlplp-ackng-comd-ackng-comw-zz3r0-cominfo-amynx-cominfo-ackng-cominfo-zz3r0-comt-jdjdcjq-topp-awcna-comt-zer2-comt-tr2q-com">Hostnames <br>t[.]amynx[.]com<br>t[.]zer9g[.]com<br>p[.]b69kq[.]com<br>lplp[.]ackng[.]com<br>d[.]ackng[.]com<br>w[.]zz3r0[.]com<br>info[.]amynx[.]com<br>info[.]ackng[.]com<br>info[.]zz3r0[.]com<br>t[.]jdjdcjq[.]top<br>p[.]awcna[.]com<br>t[.]zer2[.]com<br>t[.]tr2q[.]com</h4><h4 id="ip-addresses-172-104-7-8566-42-43-37207-154-225-82161-35-107-193167-99-154-202139-162-80-221128-199-183-160128-199-188-255167-71-158-207">IP Addresses <br>172[.]104[.]7[.]85<br>66[.]42[.]43[.]37<br>207[.]154[.]225[.]82<br>161[.]35[.]107[.]193<br>167[.]99[.]154[.]202<br>139[.]162[.]80[.]221<br>128[.]199[.]183[.]160<br>128[.]199[.]188[.]255<br>167[.]71[.]158[.]207<br><br><br><br><br></h4>
+
+            
+        </div>
+    </section>
+    <div class="social-media-wrapper">
+    <h5>Share this post</h5>
+    <ul class="social-media-share-list">
+        <li>
+            <a class="share-facebook" title="Share this on Facebook" data-text="Lemon Duck brings cryptocurrency miners back into the spotlight" data-href="https://blog.talosintelligence.com/lemon-duck-brings-cryptocurrency-miners/" rel="nofollow" target="_blank" href="https://www.facebook.com/sharer.php?u=https://blog.talosintelligence.com/lemon-duck-brings-cryptocurrency-miners/"></a>
+        </li>
+        <li>
+            <a class="share-x" title="Post This" data-text="Lemon Duck brings cryptocurrency miners back into the spotlight" data-href="https://blog.talosintelligence.com/lemon-duck-brings-cryptocurrency-miners/" rel="nofollow" target="_blank" href="https://x.com/share?url=https://blog.talosintelligence.com/lemon-duck-brings-cryptocurrency-miners/"></a>
+        </li>
+        <li>
+            <a class="share-linkedin" title="Share this on LinkedIn" data-text="Lemon Duck brings cryptocurrency miners back into the spotlight" data-href="https://blog.talosintelligence.com/lemon-duck-brings-cryptocurrency-miners/" rel="nofollow" target="_blank" href="https://www.linkedin.com/sharing/share-offsite/?url=https://blog.talosintelligence.com/lemon-duck-brings-cryptocurrency-miners/"></a>
+        </li>
+        <li>
+            <a class="share-reddit" title="Reddit This" data-text="Lemon Duck brings cryptocurrency miners back into the spotlight" data-href="https://blog.talosintelligence.com/lemon-duck-brings-cryptocurrency-miners/" rel="nofollow" target="_blank" href="https://www.reddit/submit?url=https://blog.talosintelligence.com/lemon-duck-brings-cryptocurrency-miners/"></a>
+        </li>
+        <li>
+            <a class="share-email" title="Email This" href="mailto:?body=Lemon Duck brings cryptocurrency miners back into the spotlighthttps://blog.talosintelligence.com/lemon-duck-brings-cryptocurrency-miners/"></a>
+        </li>
+    </ul>
+</div></article>
+                    </div>
+                </div>
+                <div class="alt-layout-row-dk sidebar" id="side-bar">
+                            <h4>Related Content</h4>
+
+                                <div class="sidebar-snippet-wrapper">
+                                    <a href="/how-do-cryptocurrency-drainer-phishing-scams-work/">
+                                        <h3>How do cryptocurrency drainer phishing scams work?</h3>
+                                        <span  class="preview-attributes">July 9, 2024 08:00</span>
+                                        <p>In recent months, a surge in cryptodrainer phishing attacks has been observed, targeting cryptocurrency holders with sophisticated schemes aimed at tricking them into divulging their valuable credentials.</p>
+                                    </a>
+                                </div>
+                                <div class="sidebar-snippet-wrapper">
+                                    <a href="/cryptomining-analysis/">
+                                        <h3>Following the Money: Comparing cryptocurrency value to illicit mining activity</h3>
+                                        <span  class="preview-attributes">July 14, 2021 08:20</span>
+                                        <p>By Nick Biasini
+
+In the age of meme stocks, Robinhood and Elon Musk&#39;s tweets influencing the global economy, cryptocurrency mining has not seemed as fringe as it once did. Mining has been around as long as these crytocurrencies have, but only really started to gather the attention of</p>
+                                    </a>
+                                </div>
+                                <div class="sidebar-snippet-wrapper">
+                                    <a href="/panda-evolution/">
+                                        <h3>Cryptocurrency miners aren’t dead yet: Documenting the voracious but simple “Panda”</h3>
+                                        <span  class="preview-attributes">September 17, 2019 11:09</span>
+                                        <p>By Christopher Evans and David Liebenberg.
+
+
+
+Executive summary A new threat actor named &quot;Panda&quot; has generated thousands of dollars worth of the Monero cryptocurrency through the use of remote access tools (RATs) and illicit cryptocurrency-mining malware. This is far from the most sophisticated actor we&#39;ve</p>
+                                    </a>
+                                </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <footer id="footer">
+    <div class="container-fluid px-0">
+        <div class="row footer_nav_wrapper mx-0">
+            <div class="col-xl-10 col-12">
+                <div class="multi-col-list-wrapper">
+                    <ul class="footer-parent-list">
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6><a href="https://talosintelligence.com/reputation">Intelligence Center</a></h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/reputation_center">Intelligence Search</a></li>
+                                <li><a href="https://talosintelligence.com/reputation_center/email_rep">Email &amp; Spam Trends</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6><a href="https://talosintelligence.com/vulnerability_info">Vulnerability Research</a></h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/vulnerability_reports">Vulnerability Reports</a></li>
+                                <li><a href="https://talosintelligence.com/ms_advisories">Microsoft Advisories</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                             <ul>
+                                <li>
+                                    <h6><a href="https://talosintelligence.com/incident_response">Incident Response</a></h6>
+                                </li>
+                                <li>
+                                    <a href="https://talosintelligence.com/incident_response/services#reactive-services">Reactive Services</a>
+                                </li>
+                                <li>
+                                    <a href="https://talosintelligence.com/incident_response/services#proactive-services">Proactive Services</a>
+                                </li>
+                                <li>
+                                    <a href="https://talosintelligence.com/incident_response/contact">Emergency Support</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Security Resources</h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/software">Open Source Security Tools</a></li>
+                                <li><a href="https://talosintelligence.com/categories">Intelligence Categories Reference</a></li>
+                                <li><a href="https://talosintelligence.com/secure-endpoint-naming">Secure Endpoint Naming Reference</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Media</h6>
+                                </li>
+                                <li><a href="https://blog.talosintelligence.com">Talos Intelligence Blog</a></li>
+                                <li><a href="https://blog.talosintelligence.com/category/threat-source-newsletter/">Threat Source Newsletter</a></li>
+                                <li><a href="https://talosintelligence.com/podcasts/shows/beers_with_talos">Beers with Talos Podcast</a></li>
+                                <li><a href="https://talosintelligence.com/podcasts/shows/talos_takes">Talos Takes Podcast</a></li>
+                                <li><a target="_blank" href="https://www.youtube.com/channel/UCPZ1DtzQkStYBSG3GTNoyfg/featured">Talos Videos</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Support</h6>
+                                </li>
+                                <li><a href="https://support.talosintelligence.com">Support Documentation</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Company</h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/about">About Talos</a></li>
+                                <li><a href="https://talosintelligence.com/careers">Careers</a></li>
+                                <li><a target="_blank" href="https://www.cisco.com/c/en/us/products/security/product-listing.html">Cisco Security</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xl-2 col-12 connect_social">
+                <div class="connect-footer-section-wrapper">
+                    <h6>Follow us</h6>
+                    <ul>
+                        <li>
+                            <a target="_blank" href="https://x.com/talossecurity"><div class="footer-media-icon" id="footer-media-icon-x"></div>
+                            </a></li>
+                        <li>
+                            <a target="_blank" href="https://www.youtube.com/channel/UCPZ1DtzQkStYBSG3GTNoyfg/featured"><div class="footer-media-icon" id="footer-media-icon-youtube"></div>
+                            </a></li>
+                        <li>
+                            <a target="_blank" href="https://www.linkedin.com/company/cisco-talos-intelligence-group/"><div class="footer-media-icon" id="footer-media-icon-linkedin"></div>
+                            </a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row mx-0">
+            <div class="col-12 footer_corporate">
+                <a target="_blank" href="http://tools.cisco.com/security/center/home.x"><img alt="Cisco" src="https://blog.talosintelligence.com/assets/images/logo_cisco_white.svg">
+                </a><p class="copyright">
+                ©
+                <span id='current-year'></span>
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                <a target="_blank" class="underline" href="http://www.cisco.com/web/siteassets/legal/privacy_full.html">Privacy Policy.</a>
+            </p>
+            </div>
+        </div>
+    </div>
+</footer>
+    <script>
+  function coverageView() {
+    const coverageTable = document.getElementById('coverage-block');
+    const sidebar = document.getElementById('side-bar');
+    const postContent = document.getElementById('post-content');
+    const currentWidth = window.innerWidth;  
+  
+    if (coverageTable && sidebar && postContent) {
+      if (currentWidth < 1000) {
+        // For viewport less than 1000px, append to post content
+        postContent.appendChild(coverageTable);
+      } else {
+        // For viewport 1000px and wider, check for subscribe button
+        const subscribeButton = sidebar.querySelector('.subscribe-button');
+        
+        if (subscribeButton) {
+          // Insert coverage block after the subscribe button
+          subscribeButton.insertAdjacentElement('afterend', coverageTable);
+        } else {
+          // No subscribe button found, prepend to top of sidebar
+          sidebar.prepend(coverageTable);
+        }
+      }
+    }
+  }
+  
+  window.addEventListener("resize", coverageView);
+  window.addEventListener("load", coverageView);
+
+
+  (function() {
+    Array.from(document.querySelectorAll("a")).filter(a => {
+        return a.hostname && a.hostname !== location.hostname
+    }).forEach(a => a.setAttribute('target', '_blank'))
+})();
+</script>
+
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://blog.talosintelligence.com/assets/js/jquery-3.6.0.min.js?v=_xUj-3OJU5yExlq6"></script>
+<script src="https://blog.talosintelligence.com/assets/js/popper.min.js?v=ZvOgfh-ptkpoa2Y4"></script>
+<script src="https://blog.talosintelligence.com/assets/js/resize-styles.js?v=iB-0rQKwd6f_Dllp"></script>
+<script src="https://blog.talosintelligence.com/assets/js/bootstrap.bundle.min.js?v=JRXjfu4x9e89ZZsh"></script>
+<script src="https://blog.talosintelligence.com/assets/js/date.js?v=TlJWK1qtzFQeV9lL"></script>
+<script src="https://blog.talosintelligence.com/assets/js/prism.js?v=roQly8fYXhzQ4Osd"></script>
+<script src="https://cdn.jsdelivr.net/npm/ghost-theme-utils@latest/dist/js/ghost-theme-utils.min.js" async defer></script>
+<script src="https://blog.talosintelligence.com/assets/js/chart.min.js?v=dEAdc43T4D7l37O2"></script>
+<script src="https://blog.talosintelligence.com/assets/js/x-scroll.js?v=DuV8f5nlfWlGIAUr"></script>
+<script src="https://blog.talosintelligence.com/assets/js/2025_yir_chart.js?v=OSqUj45x6XXKWbZW"></script>
+
+
+</body>
+
+</html>

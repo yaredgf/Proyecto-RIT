@@ -1,0 +1,691 @@
+
+
+
+The democratisation of business email compromise fraud
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The democratisation of business email compromise fraud
+
+
+By 
+Martin Lee
+
+
+
+            Thursday, April 2, 2026 14:00
+        
+
+
+                            Threat Source newsletter
+                        
+
+
+
+
+Welcome to this week’s edition of the Threat Source newsletter.Last weekend, I witnessed a crime. Not a notable crime that you might read about in the press, but an unremarkable fraud attempt that nevertheless illustrates how new threat actor capabilities are emerging.I imagine that most people reading this probably field IT questions from friends, family, and your local community. I assist with the IT provision for a local community association. It’s not a wealthy, large association — just your typical volunteer-run nonprofit like many others in the region providing community services.This weekend, the chair emailed the treasurer requesting a bank transfer. The treasurer replied asking for the recipient's details, and the chair promptly responded. The emails appeared authentic: correct names, a sum consistent with the association's regular expenditure. Yet something made the treasurer pause. The reason for the transfer felt vague, and the tone seemed slightly off. They picked up the phone to verify. The chair had no idea what they were talking about. The emails and the request were an attempted fraud by a third party.This is a variant of the business email compromise (BEC) scam in which an attacker impersonates a trusted individual and requests a fund transfer to an account they control. The attacker relies on social engineering to trick someone with payment authority to send the money. Once received, funds typically pass through money mules or compromised personal accounts before being rapidly shuffled through multiple transfers, obscuring the trail and drastically reducing the chances of recovery.The initial email is often sent from a plausible email address. Closely scrutinising the sender’s email address may not help, since the attack may originate from the sender’s genuine account that has previously been compromised.Historically, BEC targeted large organisations where anticipated payouts justified the time investment required to research key personnel and craft targeted attacks. The anticipated payout would more than cover the costs involved.However, the fact that attackers are willing to target a small community organisation for a relatively small sum of money shows that the economics of the attack have changed.AI has fundamentally altered the economics of BEC. Attackers can now reconnoitre many small organisations rapidly and cheaply. AI-generated content can be tailored to each target: referencing specific projects, using appropriate terminology, matching organisational tone.The attack no longer needs to be labour-intensive or highly targeted. It's become democratised, and an accessible playbook for targeting any organisation. Community associations, local charities, or small businesses can now be targeted, both because the attack is easier to execute, but also because scamming smaller sums from many victims can be as profitable as scamming large sums from few victims. Unfortunately, because this profile of organisation may never have encountered this threat before, they may be unaware and consequently more vulnerable.For every treasurer who pauses when something doesn’t quite feel right, there are others who will accept an apparently legitimate email at face value. Protection begins with awareness of how the fraud operates. Be suspicious of any unexpected request for payment, especially if there is a sense of urgency or reasons why a phone call "isn't possible" right now. Verify through separate channels before any transfer occurs. Call a known number for your contact, not one provided in the suspicious email. Enforce strict procurement rules that prevent any last-minute urgent payments.Above all, recognise the democratisation of business email compromise scams. They’re no longer something that only happens to large corporations with complex supply chains and international operations. They’re for everyone now.The one big thing Cisco Talos has identified a large-scale automated credential harvesting campaign that exploits React2Shell, a remote code execution vulnerability in Next.js applications (CVE-2025-55182). Using a custom framework called "NEXUS Listener," the attackers automatically extract and aggregate sensitive data — including cloud tokens, database credentials, and SSH keys — from hundreds of compromised hosts to facilitate further malicious activity. Why do I care? This campaign uses high-speed automation to exploit React2Shell, enabling attackers to rapidly harvest high-value credentials and establish persistent, unauthenticated access. This creates significant risks for lateral movement and supply chain integrity. Furthermore, the centralized aggregation of stolen data allows attackers to map infrastructure for targeted follow-on attacks and potential data breaches. So now what? Organizations should immediately audit Next.js applications for the React2Shell vulnerability and rotate all potentially compromised credentials, including API keys and SSH keys. Enforce IMDSv2 on AWS instances and implement RASP or tuned WAF rules to detect malicious payloads. Finally, apply strict least-privilege access controls within container environments to limit the potential impact of a compromise. Read the full blog for coverage and indicators of compromise (IOCs).Top security headlines of the week F5 BIG-IP DoS flaw upgraded to critical RCE, now exploited in the wild The US cybersecurity agency CISA on Friday warned that threat actors have been exploiting a critical-severity F5 BIG-IP vulnerability in the wild. (SecurityWeek) European Commission investigating breach after Amazon cloud account hack The threat actor told BleepingComputer that they will not attempt to extort the Commission using the allegedly stolen data, but intend to leak it online at a later date. (BleepingComputer) Google fixes fourth Chrome zero-day exploited in attacks in 2026 As detailed in the Chromium commit history, this vulnerability stems from a use-after-free weakness in Dawn, the underlying cross-platform implementation of the WebGPU standard used by the Chromium project. (BleepingComputer) Anthropic inadvertently leaks source code for Claude Code CLI tool Anthropic quickly removed the source code, but users have already posted mirrors on GitHub. They are actively dissecting the code to understand the tool's inner workings. (Cybernews) Can’t get enough Talos? Qilin EDR killer infection chain Take a deep dive into the malicious “msimg32.dll” used in Qilin ransomware attacks, which is a multi-stage infection chain targeting EDR systems. It can terminate over 300 different EDR drivers from almost every vendor in the market. An overview of 2025 ransomware threats in Japan In 2025, the number of ransomware incidents increased compared to 2024. Notably, it was a year in which attacks leveraging Qilin ransomware were observed most frequently. A discussion on what the data means for defenders To unpack the biggest Year in Review takeaways and what they mean for security teams, we brought together Christopher Marshall, VP of Cisco Talos, and Peter Bailey, SVP and GM of Cisco Security. When attackers become trusted users The latest TTP draws on 2025 Year in Review data to explore how identity is being used to gain, extend, and maintain access inside environments.Upcoming events where you can find Talos OffensiveCon (May 15 – 16) Berlin, Germany Most prevalent malware files from Talos telemetry over the past week SHA256: 96fa6a7714670823c83099ea01d24d6d3ae8fef027f01a4ddac14f123b1c9974 MD5: aac3165ece2959f39ff98334618d10d9 Talos Rep: https://talosintelligence.com/talos_file_reputation?s=96fa6a7714670823c83099ea01d24d6d3ae8fef027f01a4ddac14f123b1c9974 Example Filename: d4aa3e7010220ad1b458fac17039c274_63_Exe.exe Detection Name: W32.Injector:Gen.21ie.1201 SHA256: 9f1f11a708d393e0a4109ae189bc64f1f3e312653dcf317a2bd406f18ffcc507 MD5: 2915b3f8b703eb744fc54c81f4a9c67f Talos Rep: https://talosintelligence.com/talos_file_reputation?s=9f1f11a708d393e0a4109ae189bc64f1f3e312653dcf317a2bd406f18ffcc507 Example Filename: 9f1f11a708d393e0a4109ae189bc64f1f3e312653dcf317a2bd406f18ffcc507.exe Detection Name: Win.Worm.Coinminer::1201 SHA256: 90b1456cdbe6bc2779ea0b4736ed9a998a71ae37390331b6ba87e389a49d3d59 MD5: c2efb2dcacba6d3ccc175b6ce1b7ed0a Talos Rep: https://talosintelligence.com/talos_file_reputation?s=90b1456cdbe6bc2779ea0b4736ed9a998a71ae37390331b6ba87e389a49d3d59 Example Filename: APQ9305.dll Detection Name: Auto.90B145.282358.in02 SHA256: 38d053135ddceaef0abb8296f3b0bf6114b25e10e6fa1bb8050aeecec4ba8f55 MD5: 41444d7018601b599beac0c60ed1bf83 Talos Rep: https://talosintelligence.com/talos_file_reputation?s=38d053135ddceaef0abb8296f3b0bf6114b25e10e6fa1bb8050aeecec4ba8f55 Example Filename: content.js Detection Name: W32.38D053135D-95.SBX.TG SHA256: 5e6060df7e8114cb7b412260870efd1dc05979454bd907d8750c669ae6fcbcfe MD5: a2cf85d22a54e26794cbc7be16840bb1 Talos Rep: https://talosintelligence.com/talos_file_reputation?s=5e6060df7e8114cb7b412260870efd1dc05979454bd907d8750c669ae6fcbcfe Example Filename: a2cf85d22a54e26794cbc7be16840bb1.exe Detection Name: W32.5E6060DF7E-100.SBX.TG SHA256: e303ac1a9b378382830fc6a0b5a9574eca415d14d9282e2b4aced725db9cfbc5 MD5: 48a4f5fb6dc4633a41e6fe0aa65b4fa6 Talos Rep: https://talosintelligence.com/talos_file_reputation?s=e303ac1a9b378382830fc6a0b5a9574eca415d14d9282e2b4aced725db9cfbc5 Example Filename: 48a4f5fb6dc4633a41e6fe0aa65b4fa6.exe Detection Name: W32.E303AC1A9B-95.SBX.TG 
+
+
+
+Share this post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Subscribe to Threat Source
+Related Content
+
+
+Give yourself room to be human
+October 1, 2026 14:00
+In this week’s edition, Amy reflects on the importance of prioritizing family and personal well-being over the pressure to remain constantly productive.
+
+
+
+
+Trust and the enticing consultancy offer
+September 24, 2026 14:00
+In this week’s newsletter Martin muses over a very suspicious elicitation over social media and the true value of trust within the cyber ecosystem. Hubris might be the real vulnerability that the cyber industry must worry about.
+
+
+
+
+Should you care about an “AI slowdown?”
+September 17, 2026 14:00
+In this week's Threat Source, David talks about why focusing on your security basics is still your best bet, even in a world with rapid AI advancements.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

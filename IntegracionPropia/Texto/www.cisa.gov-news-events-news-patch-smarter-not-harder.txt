@@ -1,0 +1,827 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Patch Smarter, Not Harder | CISA
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+ 
+
+
+
+
+
+An official website of the United States government
+Here’s how you know
+
+Here’s how you know
+
+
+
+
+
+
+
+
+
+Official websites use .gov
+ A .gov website belongs to an official government organization in the United States.
+              
+
+
+
+
+
+
+Secure .gov websites use HTTPS
+ A lock (LockA locked padlock) or https:// means you’ve safely connected to the .gov website. Share sensitive information only on official, secure websites.
+              
+
+
+
+
+
+
+
+
+
+
+
+Staying Secure at Eventsno-cost Cyber ServicesCybersecurity Awareness MonthKEV CatalogReport A Cyber Issue 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Search
+
+
+
+ 
+
+
+Menu
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Close
+
+
+ 
+
+
+
+
+Topics
+
+
+
+Topics
+
+
+
+
+
+Cybersecurity Best Practices
+
+
+
+
+
+
+Cyber Threats and Response
+
+
+
+
+
+
+Critical Infrastructure Security and Resilience
+
+
+
+
+
+
+Election Security
+
+
+
+
+
+
+Emergency Communications
+
+
+
+
+
+
+Industrial Control Systems
+
+
+
+
+
+
+Information and Communications Technology Supply Chain Security
+
+
+
+
+
+
+Partnerships and Collaboration
+
+
+
+
+
+
+Physical Security
+
+
+
+
+
+
+Risk Management
+
+
+
+
+
+
+        How can we help?
+       
+GovernmentEducational InstitutionsIndustryState, Local, Tribal, and TerritorialIndividuals and FamiliesSmall and Medium BusinessesFind Help LocallyFaith-Based CommunityExecutivesHigh-Risk Communities
+
+
+
+
+
+Spotlight
+
+
+
+
+Resources & Tools
+
+
+
+Resources & Tools
+
+
+
+
+
+All Resources & Tools
+
+
+
+
+
+
+Services
+
+
+
+
+
+
+Programs
+
+
+
+
+
+
+Resources
+
+
+
+
+
+
+Training
+
+
+
+
+
+
+Groups
+
+
+
+
+
+
+
+
+News & Events
+
+
+
+News & Events
+
+
+
+
+
+Directives
+
+
+
+
+
+
+News
+
+
+
+
+
+
+Events
+
+
+
+
+
+
+Cybersecurity Alerts & Advisories
+
+
+
+
+
+
+Request a CISA Speaker
+
+
+
+
+
+
+Congressional Testimony
+
+
+
+
+
+
+CISA Conferences
+
+
+
+
+
+
+CISA Live!
+
+
+
+
+
+
+
+
+Careers
+
+
+
+Careers
+
+
+
+
+
+Benefits & Perks
+
+
+
+
+
+
+Hiring and Recruitment
+
+
+
+
+
+
+New Employee Orientation & Onboarding
+
+
+
+
+
+
+Students & Recent Graduates
+
+
+
+
+
+
+Veteran and Military Spouses
+
+
+
+
+
+
+
+
+About
+
+
+
+About
+
+
+
+
+
+Divisions & Offices
+
+
+
+
+
+
+Regions
+
+
+
+
+
+
+Leadership
+
+
+
+
+
+
+Doing Business with CISA
+
+
+
+
+
+
+Site Links
+
+
+
+
+
+
+CISA GitHub
+
+
+
+
+
+
+CISA Central
+
+
+
+
+
+
+Contact Us 
+
+
+
+
+
+
+Subscribe
+
+
+
+
+
+
+Transparency and Accountability
+
+
+
+
+
+
+Policies & Plans
+
+
+
+
+
+
+
+
+
+
+Staying Secure at Eventsno-cost Cyber ServicesCybersecurity Awareness MonthKEV CatalogReport A Cyber Issue 
+
+
+
+
+
+
+
+
+
+
+Breadcrumb
+
+
+Home
+
+
+News & Events
+
+
+News
+
+
+
+              Patch Smarter, Not Harder
+            
+
+
+
+
+
+
+
+Share:
+
+
+
+
+
+
+
+    Opens in a new window
+  
+
+
+
+
+
+
+    Opens in a new window
+  
+
+
+
+
+
+
+    Opens in a new window
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+Patch Smarter, Not Harder
+
+
+
+ReleasedJune 10, 2026
+
+
+
+By Chris Butera, Acting Executive Assistant Director for Cybersecurity, and Dr. Jonathan Spring , Senior Technical Advisor
+
+
+
+								Related topics:
+							
+
+Cybersecurity Best Practices
+										,
+																																																							Organizations and Cyber Safety
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Artificial intelligence is assisting both researchers and adversaries in identifying flaws in software, vastly increasing the pace at which new vulnerabilities are discovered. Defenders are already struggling to keep up. Per Verizon’s 2026 Data Breach Investigations Report, only 26% of vulnerabilities on CISA’s Known Exploited Vulnerabilities (KEV) Catalog were fully remediated by organizations in 2025, a drop from the previous year’s 38%. The median time for full resolution rose to 43 days. Defenders need greater clarity and speed to patch systems in today’s threat landscape. We must flip the script on patching prioritization: patch smarter, not harder.CISA's Binding Operational Directive (BOD) 26-04, “Prioritizing Security Updates Based on Risk” presents a new framework for patching prioritization and incident management best practices. Under this directive, agencies are empowered to defer lower priority vulnerabilities and focus efforts on the areas of highest risk. From CISA’s vantage point as the Nation’s cyber defense agency, it has become clear that the greatest risk stems from vulnerabilities displaying four characteristics: Public exposure, Ability for an attacker to fully automate exploitation, Whether exploitation gives an attacker full control of a system, and Evidence of real-world exploitation (i.e., a KEV).Using this criteria, only the highest risk vulnerabilities must be patched within three days, while vulnerabilities presenting less risk may be remediated over longer timelines, even possibly deferred until the next system upgrade.Some may notice that this patching framework mostly prioritizes vulnerabilities sitting at the network’s edge, which may seem to overlook the network’s core. However, in practice, CISA does not observe threat actors primarily compromising core networks through product vulnerabilities. Instead, threat actors often use exploitable configurations and valid credentials -- a technique known as living off the land (LOTL). LOTL is better addressed through other means, such as hardening system configurations, network segmentation, and phishing-resistant multi-factor authentication (MFA) enforcement.This new approach to vulnerability prioritization has already had proven success in focusing and strengthening Federal government vulnerability management. In an initial analysis at one large civilian agency, only 1% of vulnerability instances fall into the three-day category, with over 60% of the vulnerability instances deferred to the next system upgrade. This more aggressive tiering of vulnerabilities ensures that the most critical vulnerabilities are addressed first, and more quickly.BOD 26-04 is a major stride toward addressing the cybersecurity risks posed by AI advancements as the cybersecurity community strives to automate and scale vulnerability management and bolster software engineering security practices to counter the evolving threat landscape.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Articles
+
+
+
+
+
+
+Jul 15, 2025
+
+Blog
+
+
+
+Securing Core Cloud Identity Infrastructure: Addressing Advanced Threats through Public-Private Collaboration
+ 
+
+
+
+
+
+
+
+May 02, 2024
+
+Blog
+
+
+
+Under the Digital Radar: Defending Against People’s Republic of China’s Nation-State Cyber Threats to America’s Small Businesses
+ 
+
+
+
+
+
+
+
+Apr 29, 2024
+
+Blog
+
+
+
+During National Small Business Week, Take Steps to Secure Your Business 
+ 
+
+
+
+
+
+
+
+Apr 26, 2024
+
+Blog
+
+
+
+CISA’s Efforts Towards Software Understanding
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Return to top
+
+
+
+
+
+
+Topics
+
+
+Spotlight
+
+
+Resources & Tools
+
+
+News & Events
+
+
+Careers
+
+
+About
+
+
+
+
+
+
+
+
+
+Cybersecurity & Infrastructure Security Agency
+ 
+
+
+
+Facebook
+
+
+X
+
+
+LinkedIn
+
+
+YouTube
+
+
+Instagram
+
+
+RSS
+
+
+
+CISA Central
+1-844-Say-CISA
+contact@cisa.dhs.gov
+
+
+
+
+
+
+
+
+
+
+DHS Seal
+
+CISA.gov
+An official website of the U.S. Department of Homeland Security
+
+
+
+
+About CISA
+
+
+Budget and Performance
+
+
+DHS.gov
+
+
+FOIA Requests
+
+
+No FEAR Act
+
+
+Office of Inspector General
+
+
+Privacy Policy
+
+
+Subscribe
+
+
+The White House
+
+
+USA.gov
+
+
+Website Feedback
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

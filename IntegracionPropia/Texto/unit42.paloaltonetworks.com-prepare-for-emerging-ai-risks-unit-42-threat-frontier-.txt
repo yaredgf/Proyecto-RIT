@@ -1,0 +1,1287 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Unit 42 Looks Toward the Threat Frontier: Preparing for Emerging AI Risks
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Menu
+
+
+
+
+
+
+Tools
+ATOMs
+Security Consulting
+About Us
+Under Attack?
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  Threat Research CenterTrend ReportsLearning Hub 
+ 
+Learning Hub
+Unit 42 Looks Toward the Threat Frontier: Preparing for Emerging AI Risks
+
+
+  3  min read              
+
+
+Related ProductsAdvanced DNS SecurityAdvanced URL FilteringCloud-Delivered Security ServicesUnit 42 Incident Response 
+
+
+
+
+
+
+
+
+By:Michael J. Graven 
+
+Published:October 16, 2024 Categories:Learning HubTrend Reports
+ Tags:GenAIJavaScriptLLMRed teaming toolShadow AI
+ 
+
+
+ 
+ 
+
+
+Share
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+Executive Summary
+The Unit 42 Threat Frontier report is our look forward to the future. Today, we see a lot of threat actor activity. But, tomorrow… What should security leaders expect and prepare for?
+Our first Threat Frontier topic is generative AI (GenAI). In this report, we share our observations and recommendations around a technology that’s seized the limelight. We discuss whether attackers are using GenAI, how defenders should use it, a few encounters of our own, and some foundational educational material, from a threat-informed perspective.
+Key Findings on GenAI in Security
+Let’s take the good news first. Conventional cybersecurity tactics are still relevant when defending against AI-enabled attackers. You can use Zero Trust network architecture, comprehensive policy and technical controls, and existing security tools to begin countering GenAI threats today.
+That said, it’s hard to say exactly how much attackers are using AI at this time. We have seen evidence of a threat group using AI-enabled tools in attacks. And we have seen attacks that occur at a scale that suggest the presence of AI. But individual attacks don’t come with a “Powered by AI” label.
+We do know that attackers have historically innovated with whatever tools are available, and we see signs that they’re interested in learning the potential of AI. However, at this time, AI-powered changes in attacks seem to be evolutionary, not revolutionary. This means attackers are enhancing techniques they already knew to use, rather than using AI to create attacks that have never been seen before.
+We’ve seen a rapid rise in “Shadow AI,” just like the rise of Shadow IT in the past. Most organizations we’ve worked with use AI tools, whether or not they have controls in place.
+Savvy defenders are beginning to implement AI-specific defenses against the unique aspects of GenAI. And they’re doing this work early in the software development lifecycle. Security that’s bolted on just before launch isn’t as effective as thoughtful design decisions early in the process.
+Defending in the AI Era
+In our security advisory and incident response work, we have seen a few trends among defenders.
+Three Critical Capabilities
+Organizations need three critical capabilities to enable safer GenAI adoption:
+
+Identifying when, where and who is using AI applications
+Real-time visibility lets you keep up with rapid adoption, especially in areas that lack strong governance controls.
+Detecting when sensitive data is used
+ Knowing when confidential information, secrets and intellectual property are being used, shared and transmitted means you can make informed risk decisions about them.
+Creating and managing granular access control
+Including user identity, data provenance and policy compliance in access control decisions helps limit the affected area of potential incidents.
+
+Real Examples
+Because it’s difficult to know if and how attackers are using GenAI – unless you are one of the attackers – we describe how Unit 42 red teams are using AI in our proactive security engagements. We are simulating the tactics we believe attackers are, or will be, using at several stages of the attack lifecycle.
+And in one fun proof of concept… we deep faked our boss.
+GenAI is also helping improve Palo Alto Networks products. For example, we used GenAI to boost our ability to detect malicious JavaScript, in the same ways that attackers are evolving.
+Learning and Development
+Learning isn’t just for machines. There are many new terms and concepts in GenAI, so in this report we explain some of the current techniques to exploit large language models (LLMs).
+This Threat Frontier topic draws on Unit 42’s security consulting and incident response experience as well as from across the Palo Alto Networks organization, from cloud-delivered security services through AI-specific teams.
+Conclusion
+GenAI has attracted immense attention and adoption in very little time. While there is some evidence that attackers are already using it, defenders can, too. Our first Unit 42 Threat Frontier topic addresses this important new capability. Thus we extend our current understanding to the likely future and recommend ways that defenders can keep up with, or perhaps even outpace, attackers using AI.
+How Palo Alto Networks and Unit 42 Can Help
+Palo Alto Networks customers are better protected from the threats discussed in this article through our solutions powered by Precision AI: AI Runtime Security™ for AI-specific attacks, AI Access Security™ to protect sensitive data and Prisma Cloud AI Security Posture Management to gain visibility and control over the AI supply chain, as well as Advanced DNS Security and Advanced URL Filtering.
+You can take preventative steps by requesting any of our cyber risk management services. The AI Security Assessment is aimed squarely at the issues we discuss in this report.
+If you think you may have been impacted by a cyber incident or would like to explore how you could better protect your organization, please contact Unit 42 to connect with a team member. The Unit 42 Incident Response team is available 24/7/365. If you have cyber insurance, you can request Unit 42 by name.
+Our world-renowned incident response team and security consulting experts will guide you with an intelligence-driven approach before, during, and after an incident. By partnering with us, you'll gain strategic guidance for bolstering your defenses and safeguarding your organization.
+Additional Resources
+
+Unit 42 2024 Incident Response Report – Palo Alto Networks
+
+Updated Oct. 16, 2024, at 7:09 a.m. PT to update protections information. 
+
+
+Back to top
+
+TagsGenAIJavaScriptLLMRed teaming toolShadow AI
+
+
+
+Threat Research Center
+
+
+Next: Lynx Ransomware: A Rebranding of INC Ransomware
+
+
+
+
+
+
+
+Table of Contents
+
+
+
+
+
+
+Related Articles
+
+
+
+                      Perturbation Probing: A New Diagnostic for the Fragility of LLM Safety                  
+
+
+
+                      Russian Global Webmail Espionage                  
+
+
+
+                      AI, Automation and Attacks: Unpacking the Unit 42 2026 Global Incident Response Report                  
+
+
+
+
+
+
+
+
+
+Related Trend Reports Resources
+
+
+
+
+ 
+
+
+
+Trend Reports July 30, 2025
+
+2025 Unit 42 Global Incident Response Report: Social Engineering Edition
+
+
+
+Agent Serpens
+
+
+Agentic AI
+
+
+ClickFix
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Trend Reports April 23, 2025
+
+Extortion and Ransomware Trends January-March 2025
+
+
+
+BianLian
+
+
+Akira ransomware
+
+
+Muddled Libra
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Trend Reports April 9, 2025
+
+How Prompt Attacks Exploit GenAI and How to Fight Back
+
+
+
+LLM
+
+
+GenAI
+
+
+Prompt injection
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Trend Reports August 14, 2024
+
+Unit 42 Attack Surface Threat Research: Over 23% of Internet-Connected Exposures Involve Critical IT and Security Infrastructure
+
+
+
+Attack analysis
+
+
+Media
+
+
+Attack surface management
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Trend Reports August 9, 2024
+
+Ransomware Review: First Half of 2024
+
+
+
+Healthcare
+
+
+LockBit
+
+
+RansomHub
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research June 18, 2024
+
+Attack Paths Into VMs in the Cloud
+
+
+
+AWS
+
+
+IaaS
+
+
+Virtual machines
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Trend Reports February 20, 2024
+
+2024 Unit 42 Incident Response Report: Navigating the Shift in Cybersecurity Threat Tactics
+
+
+
+AWS
+
+
+Microsoft Azure
+
+
+Muddled Libra
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research February 5, 2024
+
+Ransomware Retrospective 2024: Unit 42 Leak Site Analysis
+
+
+
+Ambitious Scorpius
+
+
+Ignoble Scorpius
+
+
+Leak site
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Trend Reports December 29, 2023
+
+From DarkGate to AsyncRAT: Malware Detected and Shared As Unit 42 Timely Threat Intelligence
+
+
+
+DarkGate
+
+
+PikaBot
+
+
+Wireshark
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
+				Get updates from Unit 42			
+Peace of mind comes from staying ahead of threats. Subscribe today.
+
+
+
+
+
+
+
+
+
+
+Your Email
+
+
+Subscribe for email updates to all Unit 42 threat research.
+By submitting this form, you agree to our Terms of Use and acknowledge our Privacy Statement.
+
+                    This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.                            
+  
+
+Invalid captcha!
+ 
+					Subscribe					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Get the latest news, invites to events, and threat alerts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Enter your email now to subscribe!
+
+
+
+
+
+Sign up 
+
+
+
+
+                                
+                                
+                                
+                                    By submitting this form, I understand my personal data will be processed in accordance with
+                                        Palo Alto Networks Privacy Statement and Terms of Use.
+
+
+
+Sign up 
+
+
+
+
+
+
+
+
+
+
+
+
+Products and Services
+
+
+
+
+
+                                    AI-Powered Network Security Platform
+                                
+
+
+
+                                    Secure AI by Design
+                                
+
+
+
+                                    Prisma AIRS
+                                
+
+
+
+                                    AI Access Security
+                                
+
+
+
+                                    Cloud Delivered Security Services
+                                
+
+
+
+                                    Advanced Threat Prevention
+                                
+
+
+
+                                    Advanced URL Filtering
+                                
+
+
+
+                                    Advanced WildFire
+                                
+
+
+
+                                    Advanced DNS Security
+                                
+
+
+
+                                    Enterprise Data Loss Prevention
+                                
+
+
+
+                                    Enterprise IoT Security
+                                
+
+
+
+                                    Medical IoT Security
+                                
+
+
+
+                                    Industrial OT Security
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    Next-Generation Firewalls
+                                
+
+
+
+                                    Hardware Firewalls
+                                
+
+
+
+                                    Software Firewalls
+                                
+
+
+
+                                    Strata Cloud Manager
+                                
+
+
+
+                                    SD-WAN for NGFW
+                                
+
+
+
+                                    PAN-OS
+                                
+
+
+
+                                    Panorama
+                                
+
+
+
+                                    Secure Access Service Edge
+                                
+
+
+
+                                    Prisma SASE
+                                
+
+
+
+                                    Application Acceleration
+                                
+
+
+
+                                    Autonomous Digital Experience Management
+                                
+
+
+
+                                    Enterprise DLP
+                                
+
+
+
+                                    Prisma Access
+                                
+
+
+
+                                    Prisma Browser
+                                
+
+
+
+                                    Prisma SD-WAN
+                                
+
+
+
+                                    Remote Browser Isolation
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    AI-Driven Security Operations Platform
+                                
+
+
+
+                                    Cloud Security
+                                
+
+
+
+                                    Cortex Cloud
+                                
+
+
+
+                                    Application Security
+                                
+
+
+
+                                    Cloud Posture Security
+                                
+
+
+
+                                    Cloud Runtime Security
+                                
+
+
+
+                                    Prisma Cloud
+                                
+
+
+
+                                    AI-Driven SOC
+                                
+
+
+
+                                    Cortex XSIAM
+                                
+
+
+
+                                    Cortex XDR
+                                
+
+
+
+                                    Cortex XSOAR
+                                
+
+
+
+                                    Cortex Xpanse
+                                
+
+
+
+                                    Unit 42 Managed Detection & Response
+                                
+
+
+
+                                    Managed XSIAM
+                                
+
+
+
+                                    Observability
+                                
+
+
+
+                                    Cortex XCOR
+                                
+
+
+
+
+
+                                    Next-Generation Identity Security
+                                
+
+
+
+                                    Privileged Access Management
+                                
+
+
+
+                                    Identity and Access Management 
+                                
+
+
+
+                                    Endpoint Privilege Manager
+                                
+
+
+
+                                    Identity Governance
+                                
+
+
+
+                                    Workforce Password Management
+                                
+
+
+
+                                    Agentic Identities
+                                
+
+
+
+                                    Secrets Management
+                                
+
+
+
+                                    Unified Secrets Governance
+                                
+
+
+
+                                    Application Credentials Delivery
+                                
+
+
+
+                                    Vendor Privileged Access
+                                
+
+
+
+                                    Threat Intel and Incident Response Services
+                                
+
+
+
+                                    Prepare for Emerging Risks
+                                
+
+
+
+                                    Strengthen Your Defenses
+                                
+
+
+
+                                    Build Your Security Strategy
+                                
+
+
+
+                                    Understand the Adversary
+                                
+
+
+
+                                    Respond to a Cyber Attack
+                                
+
+
+
+
+
+
+Company
+
+
+
+
+
+                                    About Us
+                                
+
+
+
+                                    Careers
+                                
+
+
+
+                                    Contact Us
+                                
+
+
+
+                                    Corporate Responsibility
+                                
+
+
+
+                                    Customers
+                                
+
+
+
+                                    Investor Relations
+                                
+
+
+
+                                    Location
+                                
+
+
+
+                                    Newsroom
+                                
+
+
+
+
+
+
+Popular Links
+
+
+
+
+
+                                    Blog
+                                
+
+
+
+                                    Communities
+                                
+
+
+
+                                    Content Library
+                                
+
+
+
+                                    Cyberpedia
+                                
+
+
+
+                                    Event Center
+                                
+
+
+
+                                    Manage Email Preferences
+                                
+
+
+
+                                    Products A-Z
+                                
+
+
+
+                                    Product Certifications
+                                
+
+
+
+                                    Report a Vulnerability
+                                
+
+
+
+                                    Sitemap
+                                
+
+
+
+                                    Tech Docs
+                                
+
+
+
+                                    Unit 42
+                                
+
+
+
+                                    Do Not Sell or Share My Personal Information
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Privacy
+                            
+
+
+
+                                Trust Center
+                            
+
+
+
+                                Terms of Use
+                            
+
+
+
+                                Documents
+                            
+
+
+Copyright © 2026 Palo Alto Networks. All Rights Reserved
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+EN
+
+
+
+Select your language
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Your browser does not support the video tag.
+          
+
+Default Heading
+Read the article
+              
+
+
+
+
+Seekbar
+
+
+
+
+
+
+
+
+
+
+
+
+
+Volume
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

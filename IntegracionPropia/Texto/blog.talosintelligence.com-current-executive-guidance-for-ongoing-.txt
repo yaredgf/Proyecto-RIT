@@ -1,0 +1,693 @@
+
+
+
+Talos on the developing situation in Ukraine
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Talos on the developing situation in Ukraine
+
+
+By 
+Cisco Talos
+
+
+
+            Thursday, February 24, 2022 17:00
+        
+
+
+                            Threat Advisory
+                        
+
+                            Ukraine
+                        
+
+
+
+
+This post is also available in:日本語 (Japanese)Українська (Ukrainian)In the last month, Talos has seen a shift in activity in response to the unjust invasion of Ukraine. This post is meant to serve as our executive overview of the situation and provide you with the most up-to-date information and security content from Talos. As with any highly fluid or dynamic situation, we are doing our best to provide our customers with highly accurate and timely intelligence and information.Content related to Ukrainian activity:Current executive guidance for ongoing cyberattacks in UkraineThreat Advisory: HermeticWiperThreat Advisory: Cyclops BlinkCrowd-sourced attacks present new risk of crisis escalationUkraine Campaign Delivers Defacement and Wipers, in Continued EscalationCisco stands beside its customers in UkraineThousandEyes internet analysis of UkraineThreat Advisory: Cybercriminals compromise users with malware disguised as pro-Ukraine cyber toolsThreat Advisory: Opportunistic cyber criminals take advantage of Ukraine invasionThreat Advisory: CaddyWiperThreat Advisory: DoubleZeroPlease note that indicators of compromise (IOCs) related to the activity are available in the HermeticWiper and WhisperKill blogs.General guidanceOur  general and primary guidance for companies and individuals alike continues to echo the recommendations from the U.S. Cybersecurity and Infrastructure Security Agency (CISA) "Shields Up" guidance.Talos is proud of not only our team's cybersecurity response but also a volunteer OSINT force of over 500 motivated Cisco teammates.  Even more are undertaking humanitarian refugee relief efforts to make life just a little safer and easier in a part of the world many have never been. Teams have set aside their normal tasks, and now watch over Ukrainian networks, others have focused on caring for and protecting refugees and still, others have turned their obsession with social media into a critical component of our open-source intelligence work.
+
+
+
+Share this post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Content
+
+
+Active exploitation of Cisco Secure Firewall Management Center vulnerabilities
+September 9, 2026 12:08
+Cisco Talos is actively tracking the exploitation of two vulnerabilities in Cisco’s Secure Firewall Management Center (FMC) Software.
+
+
+
+
+ARToken: Inside an EvilTokens affiliate panel targeting Microsoft 365
+July 1, 2026 06:00
+Talos has identified "ARToken," a phishing-as-a-service platform that targets Microsoft 365. The ARToken panel exposes 80+ API endpoints for device code phishing, Primary Refresh Token persistence, email access, BEC operations, and SharePoint exfiltration.
+
+
+
+
+Ongoing exploitation of Cisco Catalyst SD-WAN vulnerabilities
+May 14, 2026 12:02
+Cisco Talos is tracking the active exploitation of CVE-2026-20182, an authentication bypass vulnerability in Cisco Catalyst SD-WAN Controller, formerly SD-WAN vSmart, and Cisco Catalyst SD-WAN Manager, formerly SD-WAN vManage.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

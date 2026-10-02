@@ -1,0 +1,690 @@
+
+
+
+Microsoft Patch Tuesday for July 2026 — Snort rules and prominent vulnerabilities
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Microsoft Patch Tuesday for July 2026 — Snort rules and prominent vulnerabilities
+
+
+By 
+Cisco Talos
+
+
+
+            Tuesday, July 14, 2026 16:27
+        
+
+
+                            Patch Tuesday
+                        
+
+
+
+
+Microsoft has released its monthly security update for July 2026, which includes 622 vulnerabilities affecting a range of products, including 57 that Microsoft marked as "critical."Microsoft notes that two of the vulnerabilities disclosed this month have been exploited in the wild.CVE-2026-56155 is an important-severity elevation of privilege vulnerability in Active Directory Federation Services (AD FS) caused by insufficient granularity of access control. An authorized attacker could use it to elevate privileges locally.CVE-2026-56164 is a moderate-severity vulnerability in Microsoft SharePoint Server caused by missing authentication for a critical function. An unauthorized attacker could exploit it to perform spoofing over a network.The 57 "critical" entries break down by vulnerability type as follows: 48 remote code execution (RCE), seven elevation of privilege (EoP), 1 spoofing and 1 security feature bypass vulnerability.The 48 critical RCE vulnerabilities affect a range of Microsoft Windows services and applications, including Windows Media and Media Foundation, the Windows DHCP client and DHCP Server service, Microsoft Office, Word, Excel and PowerPoint, Windows GDI and GDI+, the DirectX Graphics Kernel, Microsoft SharePoint, Microsoft SQL Server, the Windows Reliable Multicast Transport Driver (RMCAST), Windows TCP/IP, the Windows Server Network driver, the Windows Print Spooler, the Windows Secure Socket Tunneling Protocol (SSTP), Windows Active Directory Domain Services, Microsoft Defender, Microsoft Copilot, Microsoft Message Queuing (MSMQ), the Remote Desktop Client, Microsoft Dynamics NAV and Microsoft Dynamics 365 Business Central (on-premises), and the Minecraft Bedrock Dedicated Server.Eleven of the critical RCE vulnerabilities are rated "more likely" to be exploited. CVE-2026-50370 and CVE-2026-50518 are heap-based buffer overflows in the Windows DHCP Server service, exploitable by an unauthorized attacker over an adjacent network and over a network, respectively. CVE-2026-54128 is a use-after-free in the Windows DHCP client that allows an unauthorized attacker to execute code locally. CVE-2026-50327 and CVE-2026-50655 are heap-based buffer overflows in Windows Media and Windows Media Foundation. CVE-2026-54992 is a heap-based buffer overflow in the Microsoft Message Queuing Queue Manager. CVE-2026-56188 is a race condition in the Windows Server Network driver, and CVE-2026-55010 is a heap-based buffer overflow in the Minecraft Bedrock Dedicated Server that an unauthorized attacker could exploit over a network. CVE-2026-50522 and CVE-2026-58644 are deserialization vulnerabilities in Microsoft SharePoint that allow an unauthorized attacker to execute code over a network. CVE-2026-55944 is a deserialization vulnerability in Microsoft Dynamics NAV and Microsoft Dynamics 365 Business Central (on-premises) that allows an unauthorized attacker to execute code over a network.The remaining critical RCE vulnerabilities are rated "less likely" or "unlikely" to be exploited, or were not assigned an exploitation-likelihood rating by Microsoft. Microsoft Office and its applications account for a large share: CVE-2026-50314, CVE-2026-50467, CVE-2026-55018, CVE-2026-55022, CVE-2026-55045, CVE-2026-55049, CVE-2026-55056, CVE-2026-55129 and CVE-2026-55140 are in Microsoft Office; CVE-2026-55033, CVE-2026-55127 and CVE-2026-55132 are in Microsoft Word; and CVE-2026-55043, CVE-2026-55120 and CVE-2026-55123 are in Microsoft PowerPoint. These are typically triggered by opening a specially crafted document.The remaining critical RCE vulnerabilities affect Windows Media and Media Foundation (CVE-2026-56189, CVE-2026-57087, CVE-2026-57090, CVE-2026-57094 and CVE-2026-58542), the Windows DHCP Server service (CVE-2026-48564 and CVE-2026-56159), Windows GDI+ and GDI (CVE-2026-49796, CVE-2026-50380 and CVE-2026-54122), the DirectX Graphics Kernel (CVE-2026-50382), the Remote Desktop Client (CVE-2026-50474), Microsoft SQL Server (CVE-2026-54117 and CVE-2026-54118), the Windows Reliable Multicast Transport Driver (CVE-2026-54982 and CVE-2026-54995), Windows TCP/IP (CVE-2026-54999), the Windows Print Spooler (CVE-2026-58608), the Windows SSTP (CVE-2026-50694), Windows Active Directory Domain Services (CVE-2026-49164), Microsoft Defender (CVE-2026-55011 and CVE-2026-55012) and Microsoft Copilot (CVE-2026-48561).The seven critical elevation of privilege vulnerabilities are CVE-2026-42982 and CVE-2026-50392 in Windows Secure Kernel Mode; CVE-2026-50444 in the Windows Server Update Service (WSUS); CVE-2026-50680 and CVE-2026-54127 in Windows Hyper-V; CVE-2026-54121 in Active Directory Certificate Services; and CVE-2026-57092 in Microsoft Windows VMSwitch.The single critical spoofing vulnerability is CVE-2026-55008 in Microsoft Exchange Server, caused by a cross-site scripting condition. The single critical security feature bypass is CVE-2026-55040 in Microsoft SharePoint Server, caused by weak authentication. Both are rated "more likely" to be exploited.Several of the critical entries above — including the Copilot, Azure Synapse, Azure OpenAI, Exchange Online and Entra items — affect Microsoft cloud services, for which Microsoft has not assigned an exploitation-likelihood rating.Talos would also like to highlight the following "important" vulnerabilities as Microsoft has determined that their exploitation is "more likely:"·       CVE-2026-49170: Windows StateRepository API Server file Elevation of Privilege Vulnerability·       CVE-2026-49795: Windows Kernel Elevation of Privilege Vulnerability·       CVE-2026-49798: Windows Kernel Elevation of Privilege Vulnerability·       CVE-2026-49805: Win32k Elevation of Privilege Vulnerability·       CVE-2026-50297: Win32k Elevation of Privilege Vulnerability·       CVE-2026-50325: Win32k Elevation of Privilege Vulnerability·       CVE-2026-50329: Microsoft DWM Core Library Elevation of Privilege Vulnerability·       CVE-2026-50332: Windows Kernel Elevation of Privilege Vulnerability·       CVE-2026-50343: Microsoft Install Service Elevation of Privilege Vulnerability·       CVE-2026-50351: Windows Audio Compression Manager (ACM) Elevation of Privilege Vulnerability·       CVE-2026-50375: DirectX Graphics Kernel Elevation of Privilege Vulnerability·       CVE-2026-50387: Windows GDI Elevation of Privilege Vulnerability·       CVE-2026-50390: Windows Kernel Elevation of Privilege Vulnerability·       CVE-2026-50423: Windows Kernel Elevation of Privilege Vulnerability·       CVE-2026-50433: Windows Media Elevation of Privilege Vulnerability·       CVE-2026-50436: Windows Kernel Elevation of Privilege Vulnerability·       CVE-2026-50454: Windows User Interface Core Elevation of Privilege Vulnerability·       CVE-2026-50475: Windows Kernel Information Disclosure Vulnerability·       CVE-2026-50476: Windows Network Connections Service Elevation of Privilege Vulnerability·       CVE-2026-50489: Win32k Elevation of Privilege Vulnerability·       CVE-2026-50509: Wireless Wide Area Network Service (WwanSvc) Elevation of Privilege Vulnerability·       CVE-2026-50667: Windows Common Log File System Driver Elevation of Privilege Vulnerability·       CVE-2026-50688: Windows Win32k Elevation of Privilege Vulnerability·       CVE-2026-54114: Windows Win32k Elevation of Privilege Vulnerability·       CVE-2026-54986: Windows Win32k Elevation of Privilege Vulnerability·       CVE-2026-57091: Windows File History Service Elevation of Privilege Vulnerability·       CVE-2026-58531: Windows SMB Elevation of Privilege Vulnerability·       CVE-2026-58536: Windows Cloud Files Mini Filter Driver Elevation of Privilege Vulnerability·       CVE-2026-58596: Microsoft Edge (Chromium-based) Elevation of Privilege Vulnerability·       CVE-2026-58631: Windows Admin Center (WAC) Remote Code Execution Vulnerability·       CVE-2026-58633: Desktop Window Manager Elevation of Privilege Vulnerability·       CVE-2026-58638: Windows Boot Loader Security Feature Bypass VulnerabilityA complete list of all the other vulnerabilities Microsoft disclosed this month is available on its update page.In response to these vulnerability disclosures, Talos is releasing a new Snort ruleset that detects attempts to exploit some of them. Please note that additional rules may be released at a future date, and current rules are subject to change pending additional information. Cisco Security Firewall customers should use the latest update to their ruleset by updating their SRU. Open-source Snort Subscriber Ruleset customers can stay up to date by downloading the latest rule pack available for purchase on Snort.org.Snort 2 rules included in this release that protect against the exploitation of many of these vulnerabilities are: 1:66733 - 1:66743, 1:66745 - 1:66785, 1:66791 - 1:66793, 1:66800 - 1:66807The following Snort 3 rules are also available: 1:301555 - 1:301579, 1:301581 - 1:301583
+
+
+
+Share this post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Content
+
+
+Microsoft Patch Tuesday for September 2026 — Snort rules and prominent vulnerabilities
+September 8, 2026 18:16
+Microsoft has released its monthly security update for September 2026, which includes 973 vulnerabilities affecting a range of products, including 113 that Microsoft marked as "critical."
+
+
+
+
+Microsoft Patch Tuesday for August 2026 — Snort rules and prominent vulnerabilities
+August 11, 2026 18:21
+Microsoft has released its monthly security update for August 2026, which includes 421 vulnerabilities affecting a range of products, including 62 that Microsoft marked as "critical."
+
+
+
+
+Microsoft Patch Tuesday for June 2026 — Snort rules and prominent vulnerabilities
+June 9, 2026 17:21
+Microsoft Patch Tuesday details for June 2026.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

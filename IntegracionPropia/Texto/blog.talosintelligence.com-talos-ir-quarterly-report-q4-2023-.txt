@@ -1,0 +1,695 @@
+
+
+
+IR Q4 2023 trends: Significant increase in ransomware activity found in engagements, while education remains one of the most-targeted sectors
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+IR Q4 2023 trends: Significant increase in ransomware activity found in engagements, while education remains one of the most-targeted sectors
+
+
+By 
+Nicole Hoffman
+
+
+
+            Wednesday, January 24, 2024 08:00
+        
+
+
+                                Cisco Talos Incident Response
+                            
+
+                                Talos IR trends
+                            
+
+
+
+
+First time ransomware was the top threat in 2023, according to Q4 2023 Talos Incident Response reportRansomware, including pre-ransomware activity, was the top observed threat in the fourth quarter of 2023, accounting for 28 percent of engagements, according to Cisco Talos Incident Response (Talos IR), notably a 17 percent increase from the previous quarter. Talos IR observed operations involving Play, Cactus, BlackSuit and NoEscape ransomware for the first time this quarter. Talos Incident Response Quarterly Report one-pagerA brief overview of the threats, actors and tactics that Talos IR saw in the wild in Q4 2023.011924 IR Q423.pdf179 KBdownload-circleAs reflected in Talos IR’s quarterly report for the third quarter of 2024, the team responded to many incidents with miscellaneous post-compromise activity, though these attacks were limited in scale and contained by security efforts early in the attack chain before the adversary’s objectives could be fully determined. Other substantial threats this quarter included an insider threat attack and phishing campaigns, including a phishing cluster using malicious QR codes. Education and manufacturing were tied for the most targeted verticals, together accounting for nearly 50 percent of the total number of incident response engagements, closely followed by healthcare and public administration. Compared to last quarter, we observed only a slight increase in engagements targeting the education sector while there was a 10 percent increase in engagements affecting the manufacturing vertical.Adversaries commonly target entities in the education sector to conduct ransomware attacks or access sensitive student and faculty personally identifiable information (PII), such as financial data and credentials. Schools with limited cybersecurity capabilities and constrained resources are often the most vulnerable, as security remains a cost center. However, the opportunistic targeting employed by adversaries can still put school districts with robust cybersecurity programs at risk. Exfiltrated PII data remains an attractive target that is leveraged for follow-on attacks, sold on dark web forums, or used for monetary theft. The manufacturing sector faces unique challenges due to its inherently low tolerance for operational downtime. The sector's crucial role in producing goods fundamental to various other critical infrastructure sectors means that any disruption in manufacturing processes not only affects the industry itself but may have cascading effects on the supply chain and dependent sectors. Supply chain attacks are a concern for the manufacturing sector, as such incidents can create unstable supply chain conditions that require immediate attention and action to protect assets, operations and/or reputation.Ransomware activity increasesPlay ransomwareTalos IR responded to a Play ransomware attack for the first time this quarter where adversaries used the legitimate remote access software AnyDesk to deepen their access and remain persistent. The adversaries used PsExec, an IT administration utility that allows users to execute programs on another computer, to disable security tools across multiple endpoints, likely to evade detection. After collecting credentials from various locations such as the Windows Registry, the attackers were able to compromise multiple domain controllers which were used to deploy ransomware across the environment. In another Play ransomware engagement, Talos IR assessed with low confidence that after obtaining user credentials, the attackers attempted to bypass multi-factor authentication (MFA) by calling the organization’s help desk to register a new MFA device. This is an example of “vishing,” a social engineering technique in which attackers try to trick victims over the phone. While Talos is aware of other ransomware and cybercriminal groups who use vishing to gain initial access, it is not a technique we had previously associated with Play ransomware affiliates. Attackers also leveraged the open-source Windows password spraying tool SharpSpray and IP addresses associated with SurfShark and BlueVPS virtual private network (VPN) and virtual private server (VPS) providers. These methods and tools leveraged by Play affiliates are not well-documented in open-source reporting, suggesting these may be newly adopted techniques.  🎥Want to hear these insights directly from our Talos Incident Responders? Watch the latest On Air video below!
+
+
+
+Once inside the network, the adversaries executed several enumeration commands, such as "whoami" and "net group /domain," which provide information about the system owner and permission groups. Next, they dumped credentials from the memory of the Local Security Authority Subsystem Service (LSASS) and moved laterally by abusing Remote Desktop Protocol (RDP). A combination of the archive tool WinRAR and the open-source file transfer protocol (FTP) tool WinSCP was used for data exfiltration. Talos IR identified several persistence mechanisms deployed by the threat actors, including scheduled tasks and registry startup items. Before the execution of the ransomware binary, the attackers disabled several security tools and deleted the volume shadow copies to evade detection and inhibit system recovery. First discovered in June 2022, Play (also known as Playcrypt) ransomware group has targeted over 300 organizations across the globe within the public and private sectors. Play affiliates typically compromise victim networks and append the “.PLAY” extension when encrypting files. Initial access vectors leveraged in Play attacks vary from social engineering to exploiting vulnerabilities in public-facing applications.BlackSuit ransomwareIn a ransomware engagement, Talos IR responded to a BlackSuit ransomware incident for the first time where threat actors used stolen VPN credentials to gain access to an account that did not have MFA enabled. Attackers enumerated the network and permission groups before dumping credentials from memory with the credential harvesting tool Mimikatz. Attackers exploited the privilege escalation vulnerability dubbed "ZeroLogon," tracked as CVE-2020-1472, which allows remote unauthenticated attackers to access domain controllers and obtain domain administrator access. The legitimate remote access software ScreenConnect was also used for command and control (C2) communication throughout the attack. First discovered in May 2023, BlackSuit ransomware is suspected to be a rebrand of the Royal ransomware operation. Royal, first discovered in September 2022, was hypothesized to be the successor to the Conti ransomware operation that voluntarily shut down in May 2022. Royal and Conti were known for heavily targeting several critical infrastructure sectors, including manufacturing, healthcare and public health (HPH), and education. The BlackSuit ransomware operation has followed this pattern and has been heavily targeting the education sector throughout 2023, which will likely continue into 2024 as the group has already posted a victim in the education industry since the start of the new year. Cactus ransomwareTalos IR responded to a Cactus ransomware attack for the first time this quarter in an engagement where the adversaries gained access using compromised credentials for a VPN account that was not secured with MFA. Throughout the attack, the adversaries created multiple accounts and added them to the administrator's group, which were then used to evade detection, escalate privileges, and remain persistent in the environment. Attackers moved laterally in the environment by abusing RDP, scheduled tasks, and Windows Management Instrumentation Command (WMIC), techniques commonly observed across similar ransomware attacks. The security registry key file, which contains account policies, user permissions, and encrypted versions of passwords, was duplicated by the threat actors but renamed backward to “ytiruces.” By copying this file, attackers might be trying to maintain access to the credentials, which they can decrypt and use later. Talos IR observed a few other duplicate registry files with reverse names, which could have been a tactic used to mark files that have already been exfiltrated or analyzed.First discovered in March 2023, Cactus works as a ransomware-as-a-service (RaaS) and is known to exploit vulnerabilities and leverage malvertising lures for initial access. Cactus ransomware targeting and victimology appear to be opportunistic and indiscriminate, appending the file extension “.cts1” to the end of encrypted files, with the numerical value varying between victims. Talos IR observed Cactus ransomware affiliates using custom scripts to disable security tools and distribute the ransomware. NoEscape ransomwareTalos IR also responded to NoEscape ransomware for the first time this quarter in an engagement in which threat actors leveraged the “Citrix Bleed” authentication bypass vulnerability in Citrix NetScaler web application delivery control (ADC) and Gateway appliances, which Citrix released a patch for in October 2023. Tracked as CVE-2023-4966, this vulnerability allows attackers to bypass password and MFA requirements by obtaining session tokens. While exploitation of CVE-2023-4966 represents a new vulnerability leveraged by NoEscape ransomware affiliates, the targeting of Citrix Bleed is consistent with the group’s previous attacks against virtual desktop infrastructure, and appears to be part of a broader mass campaign initially led by LockBit 3.0 ransomware affiliates. In addition to patching affected systems, Talos also recommends invalidating all active session tokens because if any of the session tokens are stolen they can still be abused by attackers leaving the organization vulnerable to attacks. After the NoEscape affiliate gained access to the environment, they installed several persistence mechanisms including the ITarian remote monitoring and management (RMM) solution, a remote access utility Talos IR has not previously seen ransomware affiliates use. The adversary leveraged the access granted by ITarian and other tools to steal additional privileged credentials and lay the groundwork for future ransomware deployment. ITarian is highly similar to other RMMs commonly seen in Talos IR ransomware engagements such as TeamViewer, Atera, AnyDesk and Syncro that can access files or workstations remotely. The affiliate also used several other tools commonly seen in pre-ransomware activities, including Cobalt Strike and Sliver, two penetration testing and red team toolkits frequently used for persistence, code execution and lateral movement. The use of Sliver is interesting in that Talos IR has not seen it used in ransomware attack chains since late 2022. The Sliver implants were packed using PEzor, a tool that obfuscates the executables’ contents to prevent anti-virus detection and blocking. Attackers leveraged PsExec to copy and execute two ransomware payloads across the network. NoEscape is a RaaS that emerged in May 2023 and has used multiple extortion tactics including data theft and distributed denial-of-service (DDoS) attacks to coerce payments from victims. NoEscape operates a profit-sharing model where the ransom proceeds are split between the ransomware’s developers and the affiliates/customers who pay to use it. Consistent with many RaaS groups, NoEscape has indiscriminately targeted organizations of all sizes across many different industries. In December 2023, Talos began monitoring claims on the dark web that NoEscape’s developers executed an “exit scam” in which they stole several of their affiliates' deposits and ransom payouts before possibly shutting down their operation. NoEscape’s leak site was taken down on Dec. 9, 2023, and continues to be offline. On Dec. 19, 2023, the Federal Bureau of Investigation (FBI) announced a disruption campaign against the ALPHV (BlackCat) ransomware operation, which had been active since late 2021. Although not observed by Talos IR this quarter, ALPHV was one of the most prolific ransomware groups in 2023 following LockBit ransomware. Talos assesses recent law enforcement efforts that may divert additional resources to the LockBit ransomware group, significantly improving their capabilities. Notably, the LockBit ransomware group posted on a Russian-speaking dark web forum in December 2023 offering to recruit ALPHV and NoEscape affiliates as well as any of the ALPHV developers. With a current lack of intelligence regarding this new strategy, it is too early to determine if any of the prospective ALPHV affiliates considered, or moved over to LockBit. However, if ALPHV and LockBit were to collaborate, this potential amalgamation of tactics, techniques and operational capabilities would likely result in more potent and evasive ransomware variants, complicating detection and mitigation efforts, and likely significantly altering the ransomware landscape as we move through the new year. Other observed threatsIn an insider threat engagement, a disgruntled former employee whose account was not properly decommissioned remotely removed all configurations on a network switch before rebooting it, which functionally restored the switch to its factory default configuration. A switch is a piece of hardware that connects network devices and helps manage all of the traffic. When a switch fails, it can lead to network downtime, loss of productivity, and potentially expose the network to security risks. Talos recommends organizations implement secure off-boarding procedures to protect the confidentiality, integrity and availability of sensitive data. In one cluster of phishing activity, several employees received spear phishing emails with malicious QR codes that, when scanned, led to a fake Microsoft 365 sign-in page, consistent with a growing trend in public reporting. Once the attackers obtained stolen credentials, they proceeded to use an MFA exhaustion attack that resulted in some employees approving the push notifications on their mobile devices. In an MFA exhaustion attack, an adversary hopes to overwhelm users with MFA push notifications in hopes they will inadvertently grant access. Phishing attacks leveraging QR codes are concerning because if successful, employees will likely use their mobile devices, which leads defenders to lose visibility. Additionally, most email security solutions, such as secure email gateways (SEGs), cannot detect malicious QR codes. With remote work expanding after the COVID-19 pandemic, more employees are accessing business information from their mobile devices. According to a 2023 report, by cybersecurity firm Agency, 97 percent of respondents access their work accounts from their devices. Talos recommends organizations deploy a mobile device management (MDM) platform or similar mobile security tool, such as Cisco Umbrella, to all unmanaged mobile devices that have access to business information. There was a significant increase in QR code phishing in 2023, according to public reporting. Talos IR responded to a QR code phishing campaign for the first time in an engagement where threat actors tricked victims into scanning malicious QR codes embedded in phishing emails with their mobile devices, thereby leading to malware being executed on the mobile devices. As a result, the attack surface shifts as enterprise security protocols and monitoring systems have less control and visibility over personal devices compared to corporate-managed hardware outside of corporate networks. Additionally, most email security solutions, such as secure email gateways (SEGs) are currently unable to detect malicious QR codes.Initial access The top observed means of gaining initial access was tied between using compromised credentials on valid accounts and exploiting public-facing applications, each accounting for 28 percent of engagements, closely followed by phishing. In the phishing engagements this quarter, Talos IR observed a mix of malicious links and QR codes leading to fake login sites crafted to steal credentials. Security weaknessesA lack of MFA or proper MFA implementation across all user accounts as well as misconfigured or unpatched systems each played a part in 36 percent of the engagements Talos IR responded to this quarter. Talos IR frequently observes attacks that could have been prevented if MFA was enabled on critical services, such as RDP. Talos IR recommends expanding MFA for all user accounts (e.g., employees, contractors, business partners, etc.). In some engagements, adversaries attempted to bypass MFA with MFA exhaustion, or fatigue, attacks. Users must have a clear understanding of the appropriate business response protocols when their devices are overwhelmed with an excessive volume of push notifications. We recommend organizations educate their employees about the specific channels and points of contact for reporting these incidents. Prompt and accurate reporting enables security teams to quickly identify the nature of the issue, and implement the necessary measures to address the situation effectively.Staying up to date with software updates is a crucial aspect of an organization’s security posture, as outdated systems present exploitable avenues for attackers to leverage. Attackers often exploit these software vulnerabilities to achieve a multitude of post-compromise objectives, such as privilege escalation and lateral movement. While vulnerability and patch management are critical, it is not always possible to immediately apply every security patch due to the complexity of enterprise networks. Talos IR recommends prioritizing vulnerabilities that pose the biggest threats to prevent exploitation. Top observed MITRE ATT&CK techniquesThe table below represents the MITRE ATT&CK techniques observed in this quarter’s Talos IR engagements and includes relevant examples. Given that some techniques can fall under multiple tactics, we grouped them under the most relevant tactic based on the way they were leveraged. Please note, this is not an exhaustive list. Key findings from the MITRE ATT&CK framework include: Exploitation of public-facing applications was one of the top observed means of gaining initial access this quarter, accounting for 28 percent of total engagements, a slight increase from the previous quarter.Remote access software, such as ScreenConnect, SplashTop and AnyDesk were used in nearly a fourth of engagements this quarter. Indicator removal, such as clearing Windows event logs and file deletion, was the top defense evasion technique observed.In 24 percent of engagements, attackers abused remote services, such as RDP, SSH, and SMB, to move laterally.  
+
+ Initial Access (TA0001) ExampleT1190 Exploit Public-Facing ApplicationAttackers successfully exploited a vulnerable application that was publicly exposed to the Internet  T1078 Valid AccountsAdversary leveraged stolen or compromised credentialsT1566 PhishingMalicious email sent to trick users into downloading malware Execution (TA0002) ExampleT1059.001 Command and Scripting Interpreter: PowerShellExecutes PowerShell code to retrieve information about the client’s Active Directory environmentT1059.003 Command and Control Scripting Interpreter: Windows Command ShellWeb shells can run commands on the compromised machine Persistence (TA0003) ExampleT1053.005 Scheduled Task / Job: Scheduled TaskScheduled tasks were created on a compromised serverT1136 Create AccountCreated a user to add to the local administrator’s groupT1133 External Remote ServicesAdversaries use compromised credentials to log into VPNs Defense Evasion (TA0005) ExampleT1218.011 System Binary Proxy Execution: Rundll32Attackers can execute malicious DLL files with Rundll32T1134.002 Access Token Manipulation: Create Process with TokenAttackers created a new process using the command “run as”T1562.001 Impair Defenses: Disable or Modify ToolsAttackers can disable Windows Defender Credential Access (TA0006) ExampleT1003.001 OS Credential Dumping: LSASS MemoryUse “lsass.exe” for stealing password hashes from memoryT1003.003 OS Credential DumpingUse NTDSDump to gather credentials Discovery (TA0007) ExampleT1018 Remote System DiscoveryAdversaries may use ping to discover remote systemsT1482 Domain Trust DiscoveryAttackers may obtain information on domain trust relationships Lateral Movement (TA0008) ExampleT1210 Exploitation of Remote ServicesAttackers can abuse remote services, such as RDPT1021.004 Remote Services: SSHAdversary made attempts to move laterally using SSH Collection (TA0009) ExampleT1005 Data from Local SystemAttackers can collect and stage data for later exfiltration from infected machinesT1560 Archive Collected DataAttackers can archive staged data using WinRAR Command and Control (TA0011) ExampleT1219 Remote Access SoftwareRemote access tools found on the compromised system  T1105 Ingress Tool TransferAttackers can use PowerShell commands, such as “Invoke-WebRequest” to transfer tools from an external system Exfiltration (TA0010) ExampleT1048.003 Exfiltration Over Alternative Protocol: Exfiltration Over Unencrypted Non-C2 ProtocolUsing FTP for file exfiltrationT1041 Exfiltration Over C2 ChannelAdversaries may steal data over existing C2 channels Impact (TA0040) ExampleT1486 Data Encrypted for ImpactDeploy Cactus ransomware and encrypt critical systemsT1486 Inhibit System RecoveryDeleting shadow volume copies before ransomware execution
+
+
+
+
+Share this post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Content
+
+
+Securing the keys to the kingdom: Announcing Executive Threat Detection
+September 29, 2026 06:00
+This new proactive service joins the suite of retainer offerings to provide dedicated, intelligence-led hunting specifically for your organization’s most high-value IT assets.
+
+
+
+
+[Webinar] Tales from the Frontlines: An exclusive briefing on Q2 incidents
+August 3, 2026 12:00
+Register for an exclusive, unrecorded 30-minute webinar to review the most high-impact incidents Talos IR faced in Q2.
+
+
+
+
+IR Trends Q2 2026: Phishing and weaponized remote management tools drive attack chains
+July 28, 2026 06:00
+Talos IR's Q2 report highlights a significant surge in phishing-based initial access and the weaponization of legitimate remote management tools. Learn how to sharpen your defenses.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

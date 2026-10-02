@@ -1,0 +1,1347 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Unit 42 Attack Surface Threat Research: Constant Change in Cloud Contributes to 45% of New High/Critical Exposures Per Month
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Menu
+
+
+
+
+
+
+Tools
+ATOMs
+Security Consulting
+About Us
+Under Attack?
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+English
+
+
+
+
+
+English
+
+
+Japanese
+
+
+
+
+
+  Threat Research CenterTrend ReportsCloud Cybersecurity Research 
+ 
+Cloud Cybersecurity Research
+Unit 42 Attack Surface Threat Research: Constant Change in Cloud Contributes to 45% of New High/Critical Exposures Per Month
+
+
+  4  min read              
+
+
+Related ProductsCortex XDRCortex XpanseCortex XSIAM 
+
+
+
+
+
+
+
+
+By:Unit 42 
+
+Published:September 14, 2023 Categories:Cloud Cybersecurity ResearchMalwareTrend Reports
+ Tags:Attack surface managementCloud Infrastructure ProtectionCloud Security
+ 
+
+
+ 
+ 
+
+
+Share
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+Introduction
+It’s challenging to ensure proper protection for your organization in an ever-changing, vulnerable environment. In our survey of over 250 organizations, we found that 80% of security exposures are found in cloud environments and 20% of cloud services change every month. Trying to get a handle on this sort of volatility is not easy, but it is vitally important.
+Our 2023 Unit 42 Attack Surface Threat Report explores the global attack surface landscape based on observable data on exposures that are publicly accessible over the internet. It also offers recommendations on how organizations should approach active attack surface management.
+Key Findings From the 2023 Unit 42 Attack Surface Threat Report
+Constant Change in the Cloud Creates New Risk
+Unit 42 studied the composition of new and existing services running in different cloud providers used by organizations over a period of six months. Cloud-based IT infrastructure is always in a state of flux. On average, over 20% of externally accessible cloud services change monthly across the 250 organizations. Figure 1 shows how this breaks down across different industries.
+Figure 1. Median proportion of changed services introduced by a typical company in a certain industry during a given month.
+Consequently, Unit 42 investigated the impact on the number of new security risks introduced within an organization, which is illustrated in Figure 2. Over 45% of most organizations’ high-risk, cloud-hosted exposures in a given month were observed on new services that hadn’t been present on their organization's attack surface in the month prior. Thus, the creation of new, publicly accessible cloud services (both intended and unauthorized) is a risk factor related to nearly half of all high-criticality exposures at a given time.
+Figure 2. Median proportion of high-risk cloud-hosted exposures observed on a typical company’s attack surface in each industry during a given month.
+Cloud Exposures Dominate Most Organizations’ Security Risks
+According to our analysis, 80% of security exposures were observed in cloud environments, as shown in Figure 3 below. This higher distribution of exposures in the cloud can be attributed to the following causes:
+
+Frequent misconfigurations
+Shared responsibilities
+Shadow IT
+Inherent connection to the internet
+Lack of visibility into cloud assets
+
+Figure 3. Proportion of cloud vs. on-premises security exposures.
+Three Causes Account for 60% of All Exposure on the Global Attack Surface
+Figure 4 shows that across the more than 250 organizations we analyzed, web framework takeover exposures like insecure versions of Apache web servers, insecure versions of PHP and insecure versions of jQuery account for over 22% of the exposures. Poorly configured remote access services like Remote Desktop Protocol (RDP), Secure Shell (SSH), or virtual network computing (VNC) make up 20% of the exposures.
+Figure 4. Exposures of the global attack surface.
+Unit 42 also observed that IT security and networking infrastructure exposures make up nearly 17% of all the exposures of the global attack surface. The exposures in this category consisted of internet-accessible administrative login pages of the following assets:
+
+Routers
+Firewalls
+Virtual private networks (VPNs)
+Other core networking and security appliances
+
+Compromise of these assets can have substantial consequences for organizations, including the compromise of core business functions and applications, and the data they contain.
+Recommendations to Actively Manage Your Attack Surface
+Most organizations are unprepared for an attack through an unknown or unmanaged exposure. We found eight of the nine organizations we studied had internet-accessible RDP vulnerable to brute-force attacks for at least 25% of the month.
+To protect against these types of attack surface vulnerabilities, organizations should:
+
+Achieve continuous visibility
+Maintain a comprehensive, real-time understanding of all internet-accessible assets, including cloud-based systems and services. This helps to actively discover, learn and respond to risks more quickly.
+Address cloud misconfigurations
+Regularly review and update cloud configurations, aligning with best practices to mitigate security risks. Foster collaboration between security and DevOps teams to secure cloud-native application development and deployment.
+Prioritize remediation
+Focus on addressing the most critical vulnerabilities and exposures, such as those with a high Common Vulnerability Scoring System (CVSS) score – which accounts for severity – and an Exploit Prediction Scoring System (EPSS) score – which accounts for likelihood – to reduce the chance of successful cyberattacks.
+
+Organizations should consider an attack surface management program to continuously discover, prioritize and remediate exposures on their attack surface. This ensures that opportunistic attackers cannot exploit any unknown or unmanaged asset.
+How Palo Alto Networks Can Help
+Get the full 2023 Unit 42 Attack Surface Threat Report for more global attack surface insights, trends and recommendations for best practices.
+If attack surface management is new to your organization, or you’d like help with improving your program, Cortex Xpanse and Unit 42 Attack Surface Assessment can jump-start your journey. This assessment service gives you better visibility into your on-premises and cloud-based internet-connected assets and recommendations on prioritized actions to help you defend your organization.
+Additional Resources
+
+Cortex Xpanse Datasheet — Palo Alto Networks
+CISO’s Guide to Attack Surface Management — Palo Alto Networks
+2022 Attack Surface Threat Report — Palo Alto Networks
+Video: Top Attack Surface Use Case — Palo Alto Networks
+
+
+
+Back to top
+
+TagsAttack surface managementCloud Infrastructure ProtectionCloud Security
+
+
+
+Threat Research Center
+
+
+Next: Wireshark Tutorial: Display Filter Expressions
+
+
+
+
+
+
+
+Table of Contents
+
+
+
+
+
+
+Related Articles
+
+
+
+                      Essential Data Sources for Detection Beyond the Endpoint                  
+
+
+
+                      The Browser Defense Playbook: Stopping the Attacks That Start on Your Screen                  
+
+
+
+                      "Shai-Hulud" Worm Compromises npm Ecosystem in Supply Chain Attack (Updated November 26)                  
+
+
+
+
+
+
+
+
+
+Related  Resources
+
+
+
+
+ 
+
+
+
+Threat Research September 29, 2026
+
+OperTraitors: How Kubernetes Operators Betray Your Security Posture
+
+
+
+AI
+
+
+AI agents
+
+
+API
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research September 21, 2026
+
+From Exposure to Lockdown: How AWS Neutralizes Compromised IAM Credentials through Managed Policies
+
+
+
+AWS
+
+
+AWS CloudTrail
+
+
+Bedrock
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research September 18, 2026
+
+A Vault with a Heap-View: The Uncomfortable Space Between AgentCore Harness and Identity
+
+
+
+Agentic AI
+
+
+AWS
+
+
+Cloud
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights September 16, 2026
+
+Atomic macOS (AMOS) Stealer Activity
+
+
+
+MacOS
+
+
+Threat intelligence
+
+
+Unit 42
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research September 14, 2026
+
+Unmasking Cloud Identities: From Behavioral Clustering to Automated Detection
+
+
+
+AWS CloudTrail
+
+
+Cloud detection
+
+
+DevOps
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research September 10, 2026
+
+The Machine With Many Faces: Post-Exploitation Identity Misuse in SPIFFE/SPIRE
+
+
+
+API
+
+
+Cryptographic
+
+
+JSON
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research September 9, 2026
+
+Untracked Nightmares: The Threats Hiding Behind Commodity Infrastructure
+
+
+
+ARKTunnel
+
+
+C2
+
+
+CL-CRI-1171
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research September 3, 2026
+
+Attackers Expose Ongoing AI Tool Use Targeting Organizations in Latin America
+
+
+
+Agentic AI
+
+
+ChatGPT
+
+
+CL-CRI-1131
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research August 31, 2026
+
+Spring Ring: An Inside Look at Voice Phishing Campaigns in Microsoft Teams
+
+
+
+Cloaked Ursa
+
+
+Entra ID
+
+
+Microsoft Teams
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research August 25, 2026
+
+The State of AI-Enabled Malware August 2026: From Brand Abuse to Agentic Execution
+
+
+
+Backdoor
+
+
+Bitcoin
+
+
+DLL hijacking
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
+				Get updates from Unit 42			
+Peace of mind comes from staying ahead of threats. Subscribe today.
+
+
+
+
+
+
+
+
+
+
+Your Email
+
+
+Subscribe for email updates to all Unit 42 threat research.
+By submitting this form, you agree to our Terms of Use and acknowledge our Privacy Statement.
+
+                    This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.                            
+  
+
+Invalid captcha!
+ 
+					Subscribe					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Get the latest news, invites to events, and threat alerts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Enter your email now to subscribe!
+
+
+
+
+
+Sign up 
+
+
+
+
+                                
+                                
+                                
+                                    By submitting this form, I understand my personal data will be processed in accordance with
+                                        Palo Alto Networks Privacy Statement and Terms of Use.
+
+
+
+Sign up 
+
+
+
+
+
+
+
+
+
+
+
+
+Products and Services
+
+
+
+
+
+                                    AI-Powered Network Security Platform
+                                
+
+
+
+                                    Secure AI by Design
+                                
+
+
+
+                                    Prisma AIRS
+                                
+
+
+
+                                    AI Access Security
+                                
+
+
+
+                                    Cloud Delivered Security Services
+                                
+
+
+
+                                    Advanced Threat Prevention
+                                
+
+
+
+                                    Advanced URL Filtering
+                                
+
+
+
+                                    Advanced WildFire
+                                
+
+
+
+                                    Advanced DNS Security
+                                
+
+
+
+                                    Enterprise Data Loss Prevention
+                                
+
+
+
+                                    Enterprise IoT Security
+                                
+
+
+
+                                    Medical IoT Security
+                                
+
+
+
+                                    Industrial OT Security
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    Next-Generation Firewalls
+                                
+
+
+
+                                    Hardware Firewalls
+                                
+
+
+
+                                    Software Firewalls
+                                
+
+
+
+                                    Strata Cloud Manager
+                                
+
+
+
+                                    SD-WAN for NGFW
+                                
+
+
+
+                                    PAN-OS
+                                
+
+
+
+                                    Panorama
+                                
+
+
+
+                                    Secure Access Service Edge
+                                
+
+
+
+                                    Prisma SASE
+                                
+
+
+
+                                    Application Acceleration
+                                
+
+
+
+                                    Autonomous Digital Experience Management
+                                
+
+
+
+                                    Enterprise DLP
+                                
+
+
+
+                                    Prisma Access
+                                
+
+
+
+                                    Prisma Browser
+                                
+
+
+
+                                    Prisma SD-WAN
+                                
+
+
+
+                                    Remote Browser Isolation
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    AI-Driven Security Operations Platform
+                                
+
+
+
+                                    Cloud Security
+                                
+
+
+
+                                    Cortex Cloud
+                                
+
+
+
+                                    Application Security
+                                
+
+
+
+                                    Cloud Posture Security
+                                
+
+
+
+                                    Cloud Runtime Security
+                                
+
+
+
+                                    Prisma Cloud
+                                
+
+
+
+                                    AI-Driven SOC
+                                
+
+
+
+                                    Cortex XSIAM
+                                
+
+
+
+                                    Cortex XDR
+                                
+
+
+
+                                    Cortex XSOAR
+                                
+
+
+
+                                    Cortex Xpanse
+                                
+
+
+
+                                    Unit 42 Managed Detection & Response
+                                
+
+
+
+                                    Managed XSIAM
+                                
+
+
+
+                                    Observability
+                                
+
+
+
+                                    Cortex XCOR
+                                
+
+
+
+
+
+                                    Next-Generation Identity Security
+                                
+
+
+
+                                    Privileged Access Management
+                                
+
+
+
+                                    Identity and Access Management 
+                                
+
+
+
+                                    Endpoint Privilege Manager
+                                
+
+
+
+                                    Identity Governance
+                                
+
+
+
+                                    Workforce Password Management
+                                
+
+
+
+                                    Agentic Identities
+                                
+
+
+
+                                    Secrets Management
+                                
+
+
+
+                                    Unified Secrets Governance
+                                
+
+
+
+                                    Application Credentials Delivery
+                                
+
+
+
+                                    Vendor Privileged Access
+                                
+
+
+
+                                    Threat Intel and Incident Response Services
+                                
+
+
+
+                                    Prepare for Emerging Risks
+                                
+
+
+
+                                    Strengthen Your Defenses
+                                
+
+
+
+                                    Build Your Security Strategy
+                                
+
+
+
+                                    Understand the Adversary
+                                
+
+
+
+                                    Respond to a Cyber Attack
+                                
+
+
+
+
+
+
+Company
+
+
+
+
+
+                                    About Us
+                                
+
+
+
+                                    Careers
+                                
+
+
+
+                                    Contact Us
+                                
+
+
+
+                                    Corporate Responsibility
+                                
+
+
+
+                                    Customers
+                                
+
+
+
+                                    Investor Relations
+                                
+
+
+
+                                    Location
+                                
+
+
+
+                                    Newsroom
+                                
+
+
+
+
+
+
+Popular Links
+
+
+
+
+
+                                    Blog
+                                
+
+
+
+                                    Communities
+                                
+
+
+
+                                    Content Library
+                                
+
+
+
+                                    Cyberpedia
+                                
+
+
+
+                                    Event Center
+                                
+
+
+
+                                    Manage Email Preferences
+                                
+
+
+
+                                    Products A-Z
+                                
+
+
+
+                                    Product Certifications
+                                
+
+
+
+                                    Report a Vulnerability
+                                
+
+
+
+                                    Sitemap
+                                
+
+
+
+                                    Tech Docs
+                                
+
+
+
+                                    Unit 42
+                                
+
+
+
+                                    Do Not Sell or Share My Personal Information
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Privacy
+                            
+
+
+
+                                Trust Center
+                            
+
+
+
+                                Terms of Use
+                            
+
+
+
+                                Documents
+                            
+
+
+Copyright © 2026 Palo Alto Networks. All Rights Reserved
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+EN
+
+
+
+Select your language
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Your browser does not support the video tag.
+          
+
+Default Heading
+Read the article
+              
+
+
+
+
+Seekbar
+
+
+
+
+
+
+
+
+
+
+
+
+
+Volume
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

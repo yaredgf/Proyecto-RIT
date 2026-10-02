@@ -1,0 +1,875 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Sowing Discord: Reaping the benefits of collaboration app abuse</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/bootstrap.min.css?v=-xdjtZ-fV2QpS1r5">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/navigation.css?v=PhzoiGnw4ldwozL1">
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/footer.css?v=sVEdldiwj6rF6gHP">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/pagination.css?v=HruyeF1JUFuoy6Wu">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/banners.css?v=vI3KT68RWE95HKDs">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/style.css?v=idjnUZoOumC94rdj">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/prism.css?v=jqyaOB6z6CqMaOT4">
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/prism-vsc-dark-plus.css?v=xoEFwaYF1JkH_sqf">
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/prism-talos.css?v=kn8aYcNhO045nXac">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/landing-page.css?v=EPtrK0eJwYLqD25v">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/coverage-block.css?v=vBgCqINSTHrSh9PX">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/ghost-theme-utils@latest/dist/css/style.min.css" rel="stylesheet">
+
+
+    <link rel="icon" href="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w256h256/2022/07/talos_o_square.png" type="image/png">
+    <link rel="canonical" href="https://blog.talosintelligence.com/collab-app-abuse/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta property="og:site_name" content="Cisco Talos Blog">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Sowing Discord: Reaping the benefits of collaboration app abuse">
+    <meta property="og:description" content="As telework has become the norm throughout the COVID-19 pandemic, attackers are modifying their tactics to take advantage of the changes to employee workflows.
+
+ * Attackers are leveraging collaboration platforms, such as Discord and Slack, to stay under the radar and evade organizational defenses.
+ * Collaboration platforms enable adversaries to conduct">
+    <meta property="og:url" content="https://blog.talosintelligence.com/collab-app-abuse/">
+    <meta property="og:image" content="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-ZwEHsWbpya8/YGyROkAuJYI/AAAAAAAABzA/emsKO584O_Q2BmTvUbSXfnAD6UP5F8j0QCLcBGAsYHQ/w1200-h630-p-k-no-nu/image6.jpg">
+    <meta property="article:published_time" content="2021-04-07T12:06:00.000Z">
+    <meta property="article:modified_time" content="2022-10-27T14:19:48.000Z">
+    <meta property="article:tag" content="Headlines">
+    <meta property="article:tag" content="SecureX">
+    <meta property="article:tag" content="Threats">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Sowing Discord: Reaping the benefits of collaboration app abuse">
+    <meta name="twitter:description" content="As telework has become the norm throughout the COVID-19 pandemic, attackers are modifying their tactics to take advantage of the changes to employee workflows.
+
+ * Attackers are leveraging collaboration platforms, such as Discord and Slack, to stay under the radar and evade organizational defenses.
+ * Collaboration platforms enable adversaries to conduct">
+    <meta name="twitter:url" content="https://blog.talosintelligence.com/collab-app-abuse/">
+    <meta name="twitter:image" content="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-ZwEHsWbpya8/YGyROkAuJYI/AAAAAAAABzA/emsKO584O_Q2BmTvUbSXfnAD6UP5F8j0QCLcBGAsYHQ/w1200-h630-p-k-no-nu/image6.jpg">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Nick Biasini">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="Headlines, SecureX, Threats">
+    <meta name="twitter:site" content="@TalosSecurity">
+    <meta name="twitter:creator" content="@infosec_nick">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Cisco Talos Blog",
+        "url": "https://blog.talosintelligence.com/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/11/TalosBrand_ukraine.svg"
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Nick Biasini",
+        "url": "https://blog.talosintelligence.com/author/nick-biasini/",
+        "sameAs": [
+            "https://x.com/infosec_nick"
+        ]
+    },
+    "contributor": [
+        {
+            "@type": "Person",
+            "name": "Edmund Brumaghin",
+            "url": "https://blog.talosintelligence.com/author/edmund-brumaghin/",
+            "sameAs": []
+        },
+        {
+            "@type": "Person",
+            "name": "Chris Neal",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/11/ultraman.jpeg"
+            },
+            "url": "https://blog.talosintelligence.com/author/chris-neal/",
+            "sameAs": []
+        },
+        {
+            "@type": "Person",
+            "name": "Paul Eubanks",
+            "url": "https://blog.talosintelligence.com/author/paul/",
+            "sameAs": []
+        }
+    ],
+    "headline": "Sowing Discord: Reaping the benefits of collaboration app abuse",
+    "url": "https://blog.talosintelligence.com/collab-app-abuse/",
+    "datePublished": "2021-04-07T12:06:00.000Z",
+    "dateModified": "2022-10-27T14:19:48.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-ZwEHsWbpya8/YGyROkAuJYI/AAAAAAAABzA/emsKO584O_Q2BmTvUbSXfnAD6UP5F8j0QCLcBGAsYHQ/w1200-h630-p-k-no-nu/image6.jpg",
+        "width": 1200,
+        "height": 630
+    },
+    "keywords": "Headlines, SecureX, Threats",
+    "description": "As telework has become the norm throughout the COVID-19 pandemic, attackers are modifying their tactics to take advantage of the changes to employee workflows.\n\n * Attackers are leveraging collaboration platforms, such as Discord and Slack, to stay under the radar and evade organizational defenses.\n * Collaboration platforms enable adversaries to conduct campaigns using legitimate infrastructure that may not be blocked in many network environments.\n * RATs, information stealers, internet-of-thin",
+    "mainEntityOfPage": "https://blog.talosintelligence.com/collab-app-abuse/"
+}
+    </script>
+
+    <meta name="generator" content="Ghost 6.68">
+    <link rel="alternate" type="application/rss+xml" title="Cisco Talos Blog" href="https://blog.talosintelligence.com/rss/">
+    
+    <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/sodo-search.min.js" data-key="4ffb0139d74ada998f4b141e4d" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/main.css" data-sodo-search="https://cisco-talos-blog.ghost.io/" data-locale="en" crossorigin="anonymous"></script>
+    
+    <link href="https://blog.talosintelligence.com/webmentions/receive/" rel="webmention">
+    <script defer src="/public/cards.min.js?v=ShRHxgy4po8zN-Wf"></script>
+    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=WwnU9jw5ancNC8Gc">
+    <script defer src="/public/ghost-stats.min.js?v=vFcCUf6ZQ0Hyhc8h" data-stringify-payload="false" data-datasource="analytics_events" data-storage="localStorage" data-host="https://blog.talosintelligence.com/.ghost/analytics/api/v1/page_hit"  tb_site_uuid="afa04ee3-414f-4481-8d23-7e7c146f192e" tb_post_uuid="48aca930-efbf-4179-9772-5d6e7d127d53" tb_post_type="post" tb_member_uuid="undefined" tb_member_status="undefined" tb_gift_link=""></script><style>:root {--ghost-accent-color: #006db6;}</style>
+    <style type='text/css'>
+    img[src*="icon_check_white.svg"] { width: 20px; margin-left: 0px; margin-right: auto; }
+    
+    #ghost-portal-root { display: none; }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F45RVJG3BK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-F45RVJG3BK');
+</script>
+</head>
+
+<body class="post-template tag-headlines tag-securex-3 tag-threats">
+
+    <div id="mobile-page-header" class="desktop-hide mobile-page-header">
+    <a class="mobile-nav-home-link" href="/">
+        <div class="mobile-logo-wrapper">
+        </div>
+        <div class="mobile-home-title">Blog</div>
+    </a>
+    <div id="mobile-search-wrapper">
+        <button class="search-button mobile-search-button" data-ghost-search>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        </button>
+    </div>
+</div>
+
+<nav id="nav">
+    <input id="nav-trigger" class="nav-trigger" type="checkbox"/>
+    <label for="nav-trigger">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="22px" height="16px" viewBox="0 0 22 16">
+            <g id="menu-icon">
+                <path fill="#FFFFFF" d="M20.5,3h-19C0.672,3,0,2.329,0,1.5S0.672,0,1.5,0h19C21.328,0,22,0.671,22,1.5S21.328,3,20.5,3z"></path>
+                <path fill="#FFFFFF" d="M20.5,9.5h-19C0.672,9.5,0,8.828,0,8c0-0.829,0.672-1.5,1.5-1.5h19C21.328,6.5,22,7.171,22,8   C22,8.828,21.328,9.5,20.5,9.5z"></path>
+                <path fill="#FFFFFF" d="M20.5,16h-19C0.672,16,0,15.328,0,14.5S0.672,13,1.5,13h19c0.828,0,1.5,0.672,1.5,1.5S21.328,16,20.5,16z"></path>
+            </g>
+        </svg>
+    </label>
+    <div id="top-nav-bar">
+    </div>
+
+    <div id="navigation">
+        <div class="navigation-logos-wrapper">
+            <div id="talos-logo-wrapper">
+                <a class="navbar-brand" href="https://talosintelligence.com">
+                </a>
+            </div>
+        </div>
+        <div class="navigation-links-wrapper">
+            <ul class="main-nav-list">
+                <li class="nav-item">
+                    <div class="primary-link-wrapper">
+                        <a class="primary_nav_link" href="https://talosintelligence.com/reputation">
+                            <div class="mobile-nav-icon"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" height="20px" width="20px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                            <style type="text/css">
+                                .white{fill:#FFFFFF;}
+                            </style>
+                            <g>
+                                <path class="white" d="M19.5,9.5h-1.1c-0.3-4.2-3.6-7.6-7.8-7.8V0.5C10.5,0.2,10.3,0,10,0l0,0C9.7,0,9.5,0.2,9.5,0.5l0,0v1.1   C5.3,1.9,1.9,5.3,1.6,9.5H0.5C0.2,9.5,0,9.7,0,10s0.2,0.5,0.5,0.5l0,0h1.1c0.3,4.2,3.6,7.6,7.8,7.8v1.1c0,0.3,0.2,0.5,0.5,0.5l0,0   c0.3,0,0.5-0.2,0.5-0.5l0,0v-1.1c4.2-0.3,7.6-3.6,7.8-7.8h1.1c0.3,0,0.5-0.2,0.5-0.5C20,9.7,19.8,9.5,19.5,9.5 M16.6,10.5h0.7   c-0.3,3.6-3.2,6.5-6.8,6.8v-0.8c0-0.3-0.2-0.5-0.5-0.5l0,0c-0.3,0-0.5,0.2-0.5,0.5v0.8C5.8,17,3,14.2,2.7,10.5h0.8   C3.8,10.5,4,10.3,4,10S3.8,9.5,3.5,9.5l0,0H2.7C3,5.8,5.8,3,9.5,2.7v0.8C9.5,3.7,9.7,4,10,4l0,0c0.3,0,0.5-0.2,0.5-0.5V2.7   C14.2,3,17,5.8,17.3,9.5h-0.7c-0.3,0-0.5,0.2-0.5,0.5C16.1,10.3,16.3,10.5,16.6,10.5L16.6,10.5"></path>
+                                                            <circle class="white" cx="10" cy="10" r="3.2"></circle>
+                            </g>
+                            </svg>
+                            </div>
+                            <span class="top-nav-link-text">
+                                Intelligence Center
+                            </span>
+                        </a>
+                    </div>
+                    <input class="sub-nav-trigger" id="intelligence-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="intelligence-sub-trigger">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+
+                    </label>
+                    <ul class="sub-nav sub-nav-single-list">
+                        <li class="desktop-hide">
+                            <a class="mobile_nav_link" href="https://talosintelligence.com/reputation"><h1>Intelligence Center</h1>
+                            </a></li>
+                        <li class="desktop-hide">
+                            <label class="subnav-back-button" for="intelligence-sub-trigger">BACK</label>
+                        </li>
+                        <li><a class="secondary_nav_link" href="https://talosintelligence.com/reputation_center">Intelligence Search</a></li>
+                        <li><a class="secondary_nav_link" href="https://talosintelligence.com/reputation_center/email_rep">Email &amp; Spam Trends</a></li>
+                    </ul>
+                    <div class="desktop-hide subnav-overlay"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" height="20px" width="20px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                        <style type="text/css">
+                            .white{fill:#FFFFFF;}
+                        </style>
+                                                <g>
+                            <path class="white" d="M19.5,9.5h-1.1c-0.3-4.2-3.6-7.6-7.8-7.8V0.5C10.5,0.2,10.3,0,10,0l0,0C9.7,0,9.5,0.2,9.5,0.5l0,0v1.1   C5.3,1.9,1.9,5.3,1.6,9.5H0.5C0.2,9.5,0,9.7,0,10s0.2,0.5,0.5,0.5l0,0h1.1c0.3,4.2,3.6,7.6,7.8,7.8v1.1c0,0.3,0.2,0.5,0.5,0.5l0,0   c0.3,0,0.5-0.2,0.5-0.5l0,0v-1.1c4.2-0.3,7.6-3.6,7.8-7.8h1.1c0.3,0,0.5-0.2,0.5-0.5C20,9.7,19.8,9.5,19.5,9.5 M16.6,10.5h0.7   c-0.3,3.6-3.2,6.5-6.8,6.8v-0.8c0-0.3-0.2-0.5-0.5-0.5l0,0c-0.3,0-0.5,0.2-0.5,0.5v0.8C5.8,17,3,14.2,2.7,10.5h0.8   C3.8,10.5,4,10.3,4,10S3.8,9.5,3.5,9.5l0,0H2.7C3,5.8,5.8,3,9.5,2.7v0.8C9.5,3.7,9.7,4,10,4l0,0c0.3,0,0.5-0.2,0.5-0.5V2.7   C14.2,3,17,5.8,17.3,9.5h-0.7c-0.3,0-0.5,0.2-0.5,0.5C16.1,10.3,16.3,10.5,16.6,10.5L16.6,10.5"></path>
+                                                    <circle class="white" cx="10" cy="10" r="3.2"></circle>
+                        </g>
+                        </svg>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="primary-link-wrapper">
+                        <a class="primary_nav_link" href="https://talosintelligence.com/vulnerability_info"><div class="mobile-nav-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px" height="20px" viewBox="0 0 26 20">
+                            <g id="vuln-icon" class="nav-icon">
+                                <path fill="#FFFFFF" d="M24.256,18.49L13.872,0.503C13.692,0.192,13.36,0,13,0c-0.359,0-0.692,0.192-0.872,0.503L1.744,18.49  c-0.18,0.312-0.18,0.695,0,1.006C1.924,19.809,2.257,20,2.616,20h20.769c0.359,0,0.691-0.191,0.871-0.504  C24.436,19.186,24.436,18.803,24.256,18.49 M14.268,18.215h-2.533v-1.85h2.533V18.215z M14.268,15.441h-2.533L10.89,6.515h4.222  L14.268,15.441z"></path>
+                            </g>
+                        </svg>
+                        </div>
+                            <span class="top-nav-link-text">
+                            Vulnerability Research
+                            </span>
+                        </a></div>
+                    <input class="sub-nav-trigger" id="vuln-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="vuln-sub-trigger">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+                        </div>
+                    </label>
+                    <ul class="sub-nav sub-nav-single-list">
+                        <li class="desktop-hide">
+                            <a href="https://talosintelligence.com/vulnerability_info"><h1>Vulnerability Research</h1>
+                            </a></li>
+                        <li class="desktop-hide">
+                            <label class="subnav-back-button" for="vuln-sub-trigger">BACK</label>
+                        </li>
+                        <li><a class="vulnerabilty-info-nav-link" href="https://talosintelligence.com/vulnerability_reports">Vulnerability Reports</a></li>
+                        <li><a class="vulnerabilty-info-nav-link" href="https://talosintelligence.com/ms_advisories">Microsoft Advisories</a></li>
+                    </ul>
+                    <div class="desktop-hide subnav-overlay">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px" height="20px" viewBox="0 0 26 20">
+                        <g id="vuln-icon" class="nav-icon">
+                            <path fill="#FFFFFF" d="M24.256,18.49L13.872,0.503C13.692,0.192,13.36,0,13,0c-0.359,0-0.692,0.192-0.872,0.503L1.744,18.49  c-0.18,0.312-0.18,0.695,0,1.006C1.924,19.809,2.257,20,2.616,20h20.769c0.359,0,0.691-0.191,0.871-0.504  C24.436,19.186,24.436,18.803,24.256,18.49 M14.268,18.215h-2.533v-1.85h2.533V18.215z M14.268,15.441h-2.533L10.89,6.515h4.222  L14.268,15.441z"></path>
+                        </g>
+                        </svg>
+                    </div>
+                </li>
+
+
+               <li class="nav-item">
+                   <div class="primary-link-wrapper">
+                        <a class="primary_nav_link" href="https://talosintelligence.com/incident_response">
+                           <div class="mobile-nav-icon">
+                               <svg xmlns="http://www.w3.org/2000/svg" width="111.588" height="148.311" viewBox="0 0 111.588 148.311">
+                                    <path d="M1.181,128.446v15.7a4.167,4.167,0,0,0,4.167,4.167h100.9a4.167,4.167,0,0,0,4.167-4.167v-15.7a4.167,4.167,0,0,0-4.167-4.167H5.348a4.167,4.167,0,0,0-4.167,4.166M55.8,63.109a3.277,3.277,0,1,1,0,6.553c-10.344,0-20.755,8.578-20.755,18.57a3.277,3.277,0,1,1-6.554,0C28.489,73.947,41.93,63.109,55.8,63.109Zm0-12.016c-21.787,0-39.325,17.81-39.325,39.937v26.7H95.122V91.03c0-22.128-17.537-39.937-39.324-39.937m52.365-38.3a3.291,3.291,0,0,0-2.254,1.024L88.432,31.294a3.283,3.283,0,0,0,4.642,4.644l17.478-17.479a3.278,3.278,0,0,0-2.389-5.666m-105.138,0a3.276,3.276,0,0,0-1.98,5.666L18.522,35.938a3.283,3.283,0,0,0,4.643-4.644L5.687,13.817A3.255,3.255,0,0,0,3.025,12.793ZM55.389.026a3.276,3.276,0,0,0-2.867,3.345V19.642a3.277,3.277,0,1,0,6.554,0V3.371A3.283,3.283,0,0,0,55.389.026Z" fill="#fff"></path>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text">
+                                Incident Response
+                            </span>
+                       </a>
+                   </div>
+                   <input class="sub-nav-trigger" id="ir-sub-trigger" type="checkbox">
+                   <label class="sub-nav-trigger-label" for="ir-sub-trigger">
+                       <div class="mobile-nav-icon">
+                           <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                                <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                               <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                               </g>
+                           </svg>
+                       </div>
+                   </label>
+                   <ul class="sub-nav sub-nav-single-list">
+                       <li class="desktop-hide">
+                           <a href="/incident_response">
+                               <h1>Incident Response</h1>
+                           </a>
+                        </li>
+                       <li class="desktop-hide">
+                           <label class="subnav-back-button" for="ir-sub-trigger">BACK</label>
+                       </li>
+                       <li>
+                           <a class="secondary_nav_link" href="https://talosintelligence.com/incident_response/services#reactive-services">Reactive Services</a>
+                       </li>
+                       <li>
+                           <a class="secondary_nav_link" href="https://talosintelligence.com/incident_response/services#proactive-services">Proactive Services</a></li>
+                       <li>
+                           <a href="https://talosintelligence.com/incident_response/contact">Emergency Support</a>
+                        </li>
+                   </ul>
+                   <div class="desktop-hide subnav-overlay"><svg xmlns="http://www.w3.org/2000/svg" width="111.588" height="148.311" viewBox="0 0 111.588 148.311">
+                     <path d="M1.181,128.446v15.7a4.167,4.167,0,0,0,4.167,4.167h100.9a4.167,4.167,0,0,0,4.167-4.167v-15.7a4.167,4.167,0,0,0-4.167-4.167H5.348a4.167,4.167,0,0,0-4.167,4.166M55.8,63.109a3.277,3.277,0,1,1,0,6.553c-10.344,0-20.755,8.578-20.755,18.57a3.277,3.277,0,1,1-6.554,0C28.489,73.947,41.93,63.109,55.8,63.109Zm0-12.016c-21.787,0-39.325,17.81-39.325,39.937v26.7H95.122V91.03c0-22.128-17.537-39.937-39.324-39.937m52.365-38.3a3.291,3.291,0,0,0-2.254,1.024L88.432,31.294a3.283,3.283,0,0,0,4.642,4.644l17.478-17.479a3.278,3.278,0,0,0-2.389-5.666m-105.138,0a3.276,3.276,0,0,0-1.98,5.666L18.522,35.938a3.283,3.283,0,0,0,4.643-4.644L5.687,13.817A3.255,3.255,0,0,0,3.025,12.793ZM55.389.026a3.276,3.276,0,0,0-2.867,3.345V19.642a3.277,3.277,0,1,0,6.554,0V3.371A3.283,3.283,0,0,0,55.389.026Z" fill="#fff"></path>
+                   </svg>
+                </div>
+               </li>
+
+
+
+
+
+                <li class="nav-item">
+                    <a class="primary_nav_link" href="https://blog.talosintelligence.com">
+                        <div class="mobile-nav-icon">
+                        <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="260px" height="296.5px" viewBox="0 0 260 296.5" enable-background="new 0 0 260 296.5" xml:space="preserve">
+                        <path fill="#FFFFFF" d="M243.586,42.404h-14.448c-0.943-4.513-3.143-8.813-6.616-12.33L201.793,9.098  c-4.7-4.757-10.972-7.377-17.66-7.377c-6.578,0-12.777,2.547-17.457,7.173l-33.875,33.511H17.586c-6.6,0-12,5.399-12,12V226.28  c0,6.6,5.4,12,12,12H153.83l84.21,56.278l-27.448-56.278h32.994c6.6,0,12-5.4,12-12V54.404  C255.586,47.804,250.186,42.404,243.586,42.404z M214.662,48.045c-0.01,0.2-0.021,0.399-0.044,0.599  c-0.008,0.069-0.021,0.139-0.031,0.207c-0.046,0.345-0.113,0.688-0.196,1.026c-0.034,0.137-0.063,0.273-0.103,0.408  c-0.039,0.135-0.087,0.267-0.133,0.399c-0.051,0.151-0.102,0.302-0.16,0.45c-0.049,0.126-0.105,0.249-0.16,0.373  c-0.068,0.153-0.139,0.307-0.216,0.457c-0.059,0.116-0.12,0.23-0.184,0.345c-0.088,0.157-0.181,0.312-0.278,0.465  c-0.065,0.104-0.13,0.206-0.2,0.308c-0.115,0.168-0.239,0.33-0.366,0.492c-0.064,0.081-0.124,0.165-0.19,0.244  c-0.199,0.238-0.409,0.472-0.635,0.694L82.458,182.308l-47.932,12.871l13.427-47.74L177.223,19.561  c1.917-1.895,4.414-2.84,6.911-2.84c2.534,0,5.068,0.975,6.99,2.92l20.726,20.974c0.545,0.552,1.002,1.156,1.39,1.79  c0.574,0.938,0.975,1.951,1.206,2.993c0.004,0.021,0.01,0.04,0.014,0.06c0.049,0.226,0.086,0.453,0.119,0.682  c0.008,0.06,0.017,0.118,0.024,0.178c0.026,0.211,0.045,0.424,0.058,0.636c0.004,0.077,0.007,0.153,0.009,0.23  c0.007,0.203,0.011,0.407,0.005,0.61C214.673,47.877,214.666,47.961,214.662,48.045z"></path>
+                        </svg>
+                    </div>
+                        <span class="top-nav-link-text">Blog</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="primary_nav_link" href="https://support.talosintelligence.com">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26px" height="20px" viewBox="0 0 123.17 159.292">
+                            <path d="M61.59,0,0,17.069v85.32c0,23.472,61.59,56.9,61.59,56.9s61.58-36.288,61.58-56.9V17.069Zm-.433,149.746C38.314,136.662,8.128,114.3,8.128,102.389V23.239l53.029-14.7Z" fill="#fff"></path>
+                        </svg>
+                        </div>
+                        <span class="top-nav-link-text">Support</span>
+                    </a>
+                </li>
+            </ul>
+
+
+<!--                <li class="nav-item desktop-hide">-->
+<!--                    <button class="search-button" data-ghost-search><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg> <span>Search Blog</span></button>-->
+<!--                </li>-->
+
+            <ul class="secondary-nav-list">
+                <div class="more-desktop-link">
+                    <div class="more-link-wrapper">
+                        <span class="more-nav-link">
+                            <div class="desktop-nav-icon more-menu-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="22px" height="16px" viewBox="0 0 22 16">
+                                <g id="menu-icon">
+                                    <path fill="#FFFFFF" d="M20.5,3h-19C0.672,3,0,2.329,0,1.5S0.672,0,1.5,0h19C21.328,0,22,0.671,22,1.5S21.328,3,20.5,3z"></path>
+                                    <path fill="#FFFFFF" d="M20.5,9.5h-19C0.672,9.5,0,8.828,0,8c0-0.829,0.672-1.5,1.5-1.5h19C21.328,6.5,22,7.171,22,8   C22,8.828,21.328,9.5,20.5,9.5z"></path>
+                                    <path fill="#FFFFFF" d="M20.5,16h-19C0.672,16,0,15.328,0,14.5S0.672,13,1.5,13h19c0.828,0,1.5,0.672,1.5,1.5S21.328,16,20.5,16z"></path>
+                                </g>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            More
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <li class="nav-item more-text-link">
+                    <div class="more-link-wrapper more-link-wrapper-mobile">
+                        <span class="more-nav-link">
+                            <div class="mobile-nav-icon"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" style="enable-background:new 0 0 20 20;" width="25px" height="25px" xml:space="preserve">
+                                <style type="text/css">
+                                    .white{fill:#FFFFFF;}
+                                </style>
+                                <path class="white" d="M19.4,17.1c0,0.1-0.1,0-0.2,0c0,0-1.3-0.9-2-1.4c-0.2-0.1-0.5-0.1-0.6,0.1c-0.3,0.3-0.6,0.8-0.9,1.3  c-0.1,0.2-0.1,0.5,0.1,0.6l2,1.5c0.1,0,0,0.1,0.1,0.2c0,0.1,0,0.1-0.1,0.2c-1.2,0.5-2.6,0.2-3.5-0.7c-0.8-0.9-1-2-0.7-3.1L4.5,6.5  c-1,0.3-2.3,0-3-0.9c-0.8-0.9-1.1-1.7-1-2.7c0-0.1,0-0.1,0.1-0.2c0.1,0,0.2,0.1,0.2,0.1l2,1.5C3,4.4,3.3,4.5,3.4,4.2  c0,0,0.5-0.8,0.9-1.3c0.1-0.2,0.1-0.5-0.1-0.6L2.3,0.9c-0.1,0,0-0.1-0.1-0.3c0-0.1,0-0.1,0.1-0.2C3.5-0.1,5,0.2,5.8,1.1  c0.8,0.9,1,2,0.7,3.1l9.1,9.3c1-0.3,2.3,0,3,0.9c0.7,0.7,0.9,1.5,0.9,2.5C19.5,16.9,19.5,17,19.4,17.1z"></path>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            Security Resources
+                            </span>
+                        </span>
+                    </div>
+                    <input class="sub-nav-trigger" id="security-resources-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="security-resources-sub-trigger">
+                        <div class="mobile-nav-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+                        </div>
+                    </label>
+                    <div class="sub-nav sub-nav-multiple-list sub-nav-multiple-list-left">
+                        <div class="sub-nav-multiple-wrapper">
+                            <div class="sub-nav-list-top-of-mobile-wrapper">
+                                <h1 class="sub-nav-list-header sub-nav-list-top-of-mobile">Security Resources</h1>
+                                <ul class="sub-nav-list">
+                                    <li class="desktop-hide">
+                                        <label class="subnav-back-button" for="security-resources-sub-trigger">BACK</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sub-nav-list-item-wrapper">
+                                <span class="sub-nav-desktop-header uppercase">Security Resources</span>
+                                <ul class="sub-nav-list">
+                                    <li>
+                                        <a href="https://talosintelligence.com/software"><span>Open Source Security Tools</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/categories"><span>Intelligence Categories Reference</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/secure-endpoint-naming"><span>Secure Endpoint Naming Reference</span>
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="desktop-hide subnav-overlay"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" style="enable-background:new 0 0 20 20;" width="25px" height="25px" xml:space="preserve">
+                        <style type="text/css">
+                            .white{fill:#FFFFFF;}
+                        </style>
+                                                <path class="white" d="M19.4,17.1c0,0.1-0.1,0-0.2,0c0,0-1.3-0.9-2-1.4c-0.2-0.1-0.5-0.1-0.6,0.1c-0.3,0.3-0.6,0.8-0.9,1.3  c-0.1,0.2-0.1,0.5,0.1,0.6l2,1.5c0.1,0,0,0.1,0.1,0.2c0,0.1,0,0.1-0.1,0.2c-1.2,0.5-2.6,0.2-3.5-0.7c-0.8-0.9-1-2-0.7-3.1L4.5,6.5  c-1,0.3-2.3,0-3-0.9c-0.8-0.9-1.1-1.7-1-2.7c0-0.1,0-0.1,0.1-0.2c0.1,0,0.2,0.1,0.2,0.1l2,1.5C3,4.4,3.3,4.5,3.4,4.2  c0,0,0.5-0.8,0.9-1.3c0.1-0.2,0.1-0.5-0.1-0.6L2.3,0.9c-0.1,0,0-0.1-0.1-0.3c0-0.1,0-0.1,0.1-0.2C3.5-0.1,5,0.2,5.8,1.1  c0.8,0.9,1,2,0.7,3.1l9.1,9.3c1-0.3,2.3,0,3,0.9c0.7,0.7,0.9,1.5,0.9,2.5C19.5,16.9,19.5,17,19.4,17.1z"></path>
+                        </svg>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="more-link-wrapper more-link-wrapper-mobile">
+                        <span class="more-nav-link">
+                            <div class="mobile-nav-icon"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" width="25px" height="25px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                                <style type="text/css">
+                                    .sticoncomment{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+                                </style>
+                                <path class="sticoncomment" d="M13.6,7.1H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,6.8,13.9,7.1,13.6,7.1L13.6,7.1z M13.6,9.4H6.4c-0.3,0-0.6-0.3-0.6-0.6s0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,9.2,13.9,9.4,13.6,9.4L13.6,9.4z M11.5,11.7H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6h5.1c0.3,0,0.6,0.3,0.6,0.6  C12.1,11.5,11.8,11.7,11.5,11.7z M15.8,3H4.2C3.5,3,3,3.5,3,4.2V17l2.8-2.3h10c0.6,0,1.2-0.5,1.2-1.2V4.2C17,3.5,16.5,3,15.8,3  L15.8,3z"></path>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            Media
+                            </span>
+                        </span>
+                    </div>
+                    <input class="sub-nav-trigger" id="media-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="media-sub-trigger">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                            </svg>
+                        </div>
+                    </label>
+                    <div class="sub-nav sub-nav-multiple-list sub-nav-multiple-list-middle">
+                        <div class="sub-nav-multiple-wrapper">
+                            <div class="sub-nav-list-top-of-mobile-wrapper">
+                                <h1 class="sub-nav-list-header sub-nav-list-top-of-mobile">Media</h1>
+                                <ul class="sub-nav-list">
+                                    <li class="desktop-hide">
+                                        <label class="subnav-back-button" for="media-sub-trigger">BACK</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sub-nav-list-item-wrapper">
+                                <span class="sub-nav-desktop-header uppercase">Media</span>
+                                <ul class="sub-nav-list">
+                                    <li>
+                                        <a href="https://blog.talosintelligence.com"><span>Talos Intelligence Blog</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://blog.talosintelligence.com/category/threat-source-newsletter/"><span>Threat Source Newsletter</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/podcasts/shows/beers_with_talos"><span>Beers with Talos Podcast</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/podcasts/shows/talos_takes"><span>Talos Takes Podcast</span>
+                                        </a></li>
+                                    <li>
+                                        <a target="_blank" href="https://www.youtube.com/channel/UCPZ1DtzQkStYBSG3GTNoyfg/featured"><span>Talos Videos</span>
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="desktop-hide subnav-overlay"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" width="25px" height="25px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                        <style type="text/css">
+                            .sticoncomment{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+                        </style>
+                        <path class="sticoncomment" d="M13.6,7.1H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,6.8,13.9,7.1,13.6,7.1L13.6,7.1z M13.6,9.4H6.4c-0.3,0-0.6-0.3-0.6-0.6s0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,9.2,13.9,9.4,13.6,9.4L13.6,9.4z M11.5,11.7H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6h5.1c0.3,0,0.6,0.3,0.6,0.6  C12.1,11.5,11.8,11.7,11.5,11.7z M15.8,3H4.2C3.5,3,3,3.5,3,4.2V17l2.8-2.3h10c0.6,0,1.2-0.5,1.2-1.2V4.2C17,3.5,16.5,3,15.8,3  L15.8,3z"></path>
+                        </svg>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="more-link-wrapper more-link-wrapper-mobile">
+                        <span class="more-nav-link">
+                            <div class="mobile-nav-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="25px" viewBox="0 0 55 55">
+                                <g>
+                                    <g class="mobile-nav-home">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M45.201,12.343c0.378,0.48,0.758,0.925,1.096,1.401    c2.975,4.207,4.543,8.876,4.494,14.044c-0.05,5.452-1.643,10.386-5.186,14.593c-3.484,4.133-7.929,6.73-13.182,7.895    c-6.313,1.398-12.216,0.275-17.695-3.131c-0.441-0.273-0.847-0.6-1.266-0.904c-0.11-0.078-0.208-0.174-0.337-0.287    c0.127-0.141,0.246-0.27,0.366-0.398c0.887-0.949,1.765-1.904,2.663-2.844c0.114-0.119,0.321-0.217,0.485-0.217    c3.658-0.006,7.318,0,10.975,0.008c3.458,0.006,6.913,0.02,10.369,0.02c0.957,0,1.871-0.193,2.62-0.844    c0.797-0.693,1.157-1.596,1.157-2.643c0.001-7.533,0.003-15.067-0.005-22.601c-0.002-0.309,0.088-0.524,0.3-0.743    C43.098,14.598,44.127,13.49,45.201,12.343"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M41.402,8.822c-0.99,1.027-1.994,2.021-2.935,3.072    c-0.312,0.35-0.616,0.416-1.036,0.415c-6.98-0.009-13.957-0.007-20.938-0.007c-2.039,0-3.561,1.514-3.561,3.557    c0,6.504,0.002,13.008,0.006,19.512c0.002,0.973,0.011,1.943,0.004,2.914c0,0.133-0.04,0.301-0.127,0.393    c-1.069,1.162-2.15,2.314-3.229,3.469c-0.021,0.023-0.052,0.039-0.109,0.08c-0.159-0.188-0.323-0.369-0.471-0.562    c-2.535-3.348-4.119-7.102-4.605-11.268c-0.61-5.229,0.194-10.229,2.835-14.839c2.669-4.664,6.655-7.805,11.618-9.75    c3.205-1.257,6.533-1.852,9.977-1.621c4.478,0.298,8.553,1.754,12.227,4.325c0.101,0.072,0.197,0.151,0.291,0.229    C41.364,8.755,41.374,8.778,41.402,8.822"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M39.799,12.47c0.873-0.911,1.749-1.829,2.676-2.797    c0.605,0.564,1.195,1.112,1.816,1.691c-0.941,0.985-1.817,1.903-2.703,2.83c-0.276-0.339-0.511-0.688-0.807-0.975    C40.492,12.941,40.145,12.728,39.799,12.47"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M10.35,43.279c0.969-1.016,1.885-1.977,2.76-2.893    c0.213,0.369,0.376,0.762,0.639,1.072c0.265,0.312,0.627,0.539,0.98,0.832c-0.853,0.891-1.713,1.791-2.624,2.746    C11.513,44.445,10.939,43.869,10.35,43.279"></path>
+                                    </g>
+                                </g>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            Company
+                            </span>
+                        </span>
+                    </div>
+                    <input class="sub-nav-trigger" id="company-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="company-sub-trigger">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+                        </div>
+                    </label>
+                    <div class="sub-nav sub-nav-multiple-list sub-nav-multiple-list-right">
+                        <div class="sub-nav-multiple-wrapper">
+                            <div class="sub-nav-list-top-of-mobile-wrapper">
+                                <h1 class="sub-nav-list-header sub-nav-list-top-of-mobile">Company</h1>
+                                <ul class="sub-nav-list">
+                                    <li class="desktop-hide">
+                                        <label class="subnav-back-button" for="company-sub-trigger">BACK</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sub-nav-list-item-wrapper">
+                                <span class="sub-nav-desktop-header uppercase">Company</span>
+                                <ul class="sub-nav-list">
+                                    <li>
+                                        <a href="https://talosintelligence.com/about"><span>About Talos</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/careers"><span>Careers</span>
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="desktop-hide subnav-overlay"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="25px" viewBox="0 0 55 55">
+                        <g>
+                            <g class="mobile-nav-home">
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M45.201,12.343c0.378,0.48,0.758,0.925,1.096,1.401    c2.975,4.207,4.543,8.876,4.494,14.044c-0.05,5.452-1.643,10.386-5.186,14.593c-3.484,4.133-7.929,6.73-13.182,7.895    c-6.313,1.398-12.216,0.275-17.695-3.131c-0.441-0.273-0.847-0.6-1.266-0.904c-0.11-0.078-0.208-0.174-0.337-0.287    c0.127-0.141,0.246-0.27,0.366-0.398c0.887-0.949,1.765-1.904,2.663-2.844c0.114-0.119,0.321-0.217,0.485-0.217    c3.658-0.006,7.318,0,10.975,0.008c3.458,0.006,6.913,0.02,10.369,0.02c0.957,0,1.871-0.193,2.62-0.844    c0.797-0.693,1.157-1.596,1.157-2.643c0.001-7.533,0.003-15.067-0.005-22.601c-0.002-0.309,0.088-0.524,0.3-0.743    C43.098,14.598,44.127,13.49,45.201,12.343"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M41.402,8.822c-0.99,1.027-1.994,2.021-2.935,3.072    c-0.312,0.35-0.616,0.416-1.036,0.415c-6.98-0.009-13.957-0.007-20.938-0.007c-2.039,0-3.561,1.514-3.561,3.557    c0,6.504,0.002,13.008,0.006,19.512c0.002,0.973,0.011,1.943,0.004,2.914c0,0.133-0.04,0.301-0.127,0.393    c-1.069,1.162-2.15,2.314-3.229,3.469c-0.021,0.023-0.052,0.039-0.109,0.08c-0.159-0.188-0.323-0.369-0.471-0.562    c-2.535-3.348-4.119-7.102-4.605-11.268c-0.61-5.229,0.194-10.229,2.835-14.839c2.669-4.664,6.655-7.805,11.618-9.75    c3.205-1.257,6.533-1.852,9.977-1.621c4.478,0.298,8.553,1.754,12.227,4.325c0.101,0.072,0.197,0.151,0.291,0.229    C41.364,8.755,41.374,8.778,41.402,8.822"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M39.799,12.47c0.873-0.911,1.749-1.829,2.676-2.797    c0.605,0.564,1.195,1.112,1.816,1.691c-0.941,0.985-1.817,1.903-2.703,2.83c-0.276-0.339-0.511-0.688-0.807-0.975    C40.492,12.941,40.145,12.728,39.799,12.47"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M10.35,43.279c0.969-1.016,1.885-1.977,2.76-2.893    c0.213,0.369,0.376,0.762,0.639,1.072c0.265,0.312,0.627,0.539,0.98,0.832c-0.853,0.891-1.713,1.791-2.624,2.746    C11.513,44.445,10.939,43.869,10.35,43.279"></path>
+                            </g>
+                        </g>
+                    </svg>
+                    </div>
+                </li>
+            </ul>
+            <div class="nav-search-wrapper" id="desktop-search-wrapper">
+                <button class="search-button desktop-search-button" data-ghost-search>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </button>
+            </div>
+        </div>
+
+
+
+    </div>
+</nav>
+
+    
+
+    <main id="site-main">
+        <div class="container-fluid px-0">
+            <div class="main-content-row">
+                <div class="main-content-col px-0">
+                    <div class="post-full-content">
+                        
+<article class="post tag-headlines tag-securex-3 tag-threats ">
+        <div class="feature-image-wrapper my-5">
+            <figure>
+                <img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-ZwEHsWbpya8/YGyROkAuJYI/AAAAAAAABzA/emsKO584O_Q2BmTvUbSXfnAD6UP5F8j0QCLcBGAsYHQ/w1200-h630-p-k-no-nu/image6.jpg" alt="" class="img-fluid" />
+            </figure>
+        </div>
+
+    <h1 class="text-center">Sowing Discord: Reaping the benefits of collaboration app abuse</h1>
+
+    <div class="text-center m-1">
+        <div class="post-author">
+            <span>By </span>
+                <a href="https://blog.talosintelligence.com/author/nick-biasini/">Nick Biasini</a>, 
+                <a href="https://blog.talosintelligence.com/author/edmund-brumaghin/">Edmund Brumaghin</a>, 
+                <a href="https://blog.talosintelligence.com/author/chris-neal/">Chris Neal</a>, 
+                <a href="https://blog.talosintelligence.com/author/paul/">Paul Eubanks</a>
+        </div>
+
+        <br/>
+        <time class="post-datetime" datetime="April 7, 2021 08:06">
+            Wednesday, April 7, 2021 08:06
+        </time>
+
+        <div class="m-3">
+                            <a href="/category/headlines/" class="category primary-category">
+                                Headlines
+                            </a>
+                                                    <a href="/category/securex-3/" class="category primary-category">
+                                SecureX
+                            </a>
+                                                    <a href="/category/threats/" class="category primary-category">
+                                Threats
+                            </a>
+                                </div>
+    </div>
+
+    <section class="post-content-wrapper mt-5">
+        <div class="post-content" id="post-content">
+            <p>As telework has become the norm throughout the COVID-19 pandemic, attackers are modifying their tactics to take advantage of the changes to employee workflows.</p><ul><li>Attackers are leveraging collaboration platforms, such as Discord and Slack, to stay under the radar and evade organizational defenses.</li><li>Collaboration platforms enable adversaries to conduct campaigns using legitimate infrastructure that may not be blocked in many network environments.</li><li>RATs, information stealers, internet-of-things malware and other threats are leveraging collaboration platforms for delivery, component retrieval and command and control communications.</li></ul><h2 id="executive-summary">Executive summary <br> </h2><p>Abuse of collaboration applications is not a new phenomenon and dates back to the early days of the internet. As new platforms and applications gain in popularity, attackers often develop ways to use them to achieve their mission objectives. Communications platforms like Telegram, Signal, WhatsApp and others have been abused over the past several years to spread malware, used for command and control communications, and otherwise leveraged for nefarious purposes.</p><p>As the COVID-19 pandemic spread across the globe in 2020, organizations made significant changes to their work routines across virtually every industry. One major shift was the move to remote working arrangements which coincided with increased reliance on new interactive communications platforms like <a href="https://discord.com/">Discord</a> and <a href="https://slack.com/">Slack</a>. While both of these platforms have existed for some time, recent changes to employee workflows have led to an increased reliance upon them for conducting business. In many cases, these platforms provide rich environments that can be used for communication and collaboration professionally and personally. As the pandemic continued, we observed several threat actors changing their tactics, techniques and procedures to compensate for these new enterprise workflows. We previously described how many threat actors began taking advantage of public interest in COVID-19 related information <a href="https://blog.talosintelligence.com/coronavirus-themed-malware/">here</a> and <a href="https://blog.talosintelligence.com/covid-19-pandemic-threats/">here</a>. Over the past year, we have also observed a significant increase in the abuse of many of these collaboration platforms to facilitate malware attacks against various organizations. Attackers are looking to spread ransomware via these rooms and use the platforms to spread traditional malspam lures used to infect victims.</p><h2 id="collaboration-platforms-for-malware-distribution">Collaboration platforms for malware distribution</h2><p> <br> Attackers are increasingly abusing the communications platforms that many organizations use to facilitate employee communications. This allows them to circumvent perimeter security controls and maximize infection capabilities. Over the past year, adversaries are increasingly relying on these platforms as part of the infection process. In this blog, we will describe how these platforms are being used across three major phases of malware attacks: <br></p><ul><li>Delivery</li><li>Component retrieval</li><li>C2 and data exfiltration These platforms provide an attractive option for hosting malicious content, exfiltrating sensitive information, and otherwise facilitating malicious attacks. In many cases, these platforms may be required for legitimate corporate activity and, as such, hosting malicious contents or using them to collect sensitive information may allow attackers to bypass content filtering mechanisms.</li></ul><p>The use of applications like Discord and Slack may also provide an additional means to perform the social engineering required to convince potential victims to open malicious attachments. Potential targets who see a link in a chat room they're used to interacting in on a regular basis may be more likely to open any files that are attached to those rooms or click on links that seem like they're from colleagues. These rooms may also provide a direct communications pathway between adversaries and employees that can be abused to facilitate the delivery process. This itself is not a new phenomena — Discord's been used in the past to <a href="https://blog.talosintelligence.com/ThanatosDecryptor/">deliver the Thanatos ransomware</a>. More recently, this mechanism has been used to deliver a variety of RATs, stealers and other malware including:</p><ul><li><a href="https://blog.talosintelligence.com/rats-and-stealers-rush-through-heavens/">Agent Tesla</a></li><li><a href="https://malpedia.caad.fkie.fraunhofer.de/details/win.asyncrat">AsyncRAT</a></li><li><a href="https://blog.talosintelligence.com/my-little-formbook/">Formbook</a></li><li><a href="https://www.fortinet.com/blog/threat-research/adversary-playbook-javascript-rat-looking-for-that-government-cheese">JSProxRAT</a></li><li><a href="https://malpedia.caad.fkie.fraunhofer.de/details/win.limerat">LimeRAT</a></li><li><a href="https://blog.talosintelligence.com/a-deep-dive-into-lokibot-infection-chain/">Lokibot</a></li><li><a href="https://malpedia.caad.fkie.fraunhofer.de/details/win.nanocore">Nanocore RAT</a></li><li><a href="https://malpedia.caad.fkie.fraunhofer.de/details/win.phoenix_keylogger">Phoenix Keylogger</a></li><li><a href="https://blog.talosintelligence.com/picking-apart-remcos/">Remcos</a></li><li><a href="https://malpedia.caad.fkie.fraunhofer.de/details/win.houdini">WSHRAT</a> Let's look at ways these platforms are now being used throughout the attack lifecycle.</li></ul><h2 id="malware-delivery">Malware delivery </h2><p><br> Some of these apps, including Discord, support file attachments, which makes them a target for adversaries. And if these apps are being used in a corporate environment, they become more attractive to adversaries. One of the key challenges associated with malware delivery is making sure that the files, domains, or systems don't get taken down or blocked. By leveraging these chat applications that are likely allowed, they are removing several of those hurdles and greatly increase the likelihood that the attachment reaches the end user. Since these files are uploaded and linked via a URL, there are a lot of different ways they can get these links in front of users. These can include more traditional means like URLs in emails, but they can be sent via any messaging or chat service. They could also link to websites or be placed in any number of places. The versatility of having a malicious URL that is hosted on a domain unlikely to get blocked is obviously attractive to malicious actors.</p><p>On many collaboration platforms such as Discord and Slack, files are transmitted between users by attaching them in channels. Files are stored within the Content Delivery Network (CDN) that the platform provider operates, allowing server members to access these files as they appeared when they were originally attached. As an example, this is what it looks like when a file is uploaded directly to a channel in a Discord server:</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-n_Nj6uQsuTs/YGyTs2gAeaI/AAAAAAAABzY/wy5ONneEyfsnvxC4qi8S9E1agkGovo10wCLcBGAsYHQ/s400/image27.png" class="kg-image" alt loading="lazy"></figure><p>When files are uploaded and stored within the Discord CDN, they can be accessed using the hardcoded CDN URL by any system, regardless of whether Discord has been installed, simply by browsing to the CDN URL where the content is hosted.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-b-BoI1dKgQE/YGyT8OWcAiI/AAAAAAAABzk/34apSWtZH5A9yV3BUdjejin1CiiHc1_YQCLcBGAsYHQ/w640-h366/image1.png" class="kg-image" alt loading="lazy"></figure><p>This functionality is not specific to Discord. Other collaboration platforms like Slack have similar features. Files can be uploaded to Slack, and users can create external links that allow the files to be accessed, regardless of whether the recipient even has Slack installed.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-G0Yhke3Qzxc/YGyUAoigeMI/AAAAAAAABzo/9zSWSrs24sk1ovQ1ZK67m_0v3Xso35joACLcBGAsYHQ/w640-h267/image13.png" class="kg-image" alt loading="lazy"></figure><p>Once an external link has been created, the file is now accessible in much the same way as files uploaded to Discord.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-Rjd4RY3j4Zg/YGyUT9ArdnI/AAAAAAAABz0/LcdI_wG5tKEPkTlp-ap4fsAdRy_JSvYEACLcBGAsYHQ/s600/image2.png" class="kg-image" alt loading="lazy"></figure><p>Adversaries have begun taking advantage of this functionality, using it to host their malicious content and then directing victims to the content using the CDN location within various formats like malspam emails. Over the course of 2020, we observed an increase in the volume of malicious email campaigns containing links to files hosted across these CDNs. The graph below shows the volume of emails observed using this technique to facilitate the delivery of various files used to initiate malware infections on victim systems.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-01Z8zoei-OI/YGyUYGG-qpI/AAAAAAAABz4/PB143KP_4MMhrL0odNvs-cvQSbzYOntZwCLcBGAsYHQ/w640-h345/image26.png" class="kg-image" alt loading="lazy"></figure><p>The delivery of malicious content in this manner offers two attractive mechanisms that attackers can leverage to evade defenses.<br></p><ol><li>The content is delivered over HTTPS, meaning that the communications are encrypted between the endpoint accessing the content and the Discord CDN delivering it.</li><li>A natural byproduct of the compression process is obfuscation of the contents of the compressed archive. It is easy to see why this is an attractive mechanism to adversaries. A variety of different file types have been observed being delivered in this manner. In most cases, these files are compressed archives. Over the past 12 months, we have observed a variety of compression algorithms used, including uncommon formats such as LZH. Below is a list of several of the most common compression types we have observed leveraged across these campaigns.<br></li></ol><ul><li>ACE</li><li>GZ</li><li>IMG</li><li>ISO</li><li>LZH</li><li>RAR</li><li>TAR</li><li>ZIP</li><li>7Z The graph below shows a breakdown of how frequently each type of compression was used throughout these malspam campaigns.</li></ul><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-t0eZV64jnv4/YGyUcj8K5SI/AAAAAAAABz8/TqdwgOnSS8YYqqfHlh_FJFMGFt45Tx72wCLcBGAsYHQ/w640-h466/image5.png" class="kg-image" alt loading="lazy"></figure><p>In most cases, the emails themselves are consistent with what we have grown accustomed to seeing from malspam in recent years. Many of the emails purport to be associated with various financial transactions and contain links to files claiming to be invoices, purchase orders and other documents of interest to potential victims.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-VqT4yz9JUTE/YGyU-mgkoAI/AAAAAAAAB0M/A67OD8VJnZEJ9c0nha48p37lZEVBMzaUwCLcBGAsYHQ/w640-h135/image15.png" class="kg-image" alt loading="lazy"></figure><p>The message above was one of the stranger examples we found. It was a COVID-themed email purportedly from the World Health Organization (WHO) requesting the target download a new COVID prevention document. This document was hosted on Discord for some reason. When we followed the link, we found a ZIP file containing a batch, or .bat, file. This batch file then downloaded a word document from Google Drive. When opened, the document triggered a macro that activated on close that went out and downloaded the Nymaim trojan from a compromised website. This is an incredibly convoluted infection process that involved multiple services, including Discord and Google Drive, but also required the victim to open multiple files before the final infection occurred.</p><p>One additional thing to note is the wide variety of languages we found when looking at the email messages leveraging Discord, including English, Spanish, French, German and Portuguese. One example of the German language campaigns we saw is shown below.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-Br-evvsN7fw/YGyVHmX0DRI/AAAAAAAAB0Q/m8ZpilxP7NMjUb9DB1hypsyNM-9-6U_zwCLcBGAsYHQ/w640-h326/image23.png" class="kg-image" alt loading="lazy"></figure><p>In this example, the sender offers a 30 percent deposit in the attachment. However, the attachment is actually an image made to look like an attachment. The message source provides some additional insight into what the adversary wants to accomplish.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-L_d2siFJb8A/YGyVMO6UGII/AAAAAAAAB0U/GcrDjzkKgdIxrERhNEQtAfKraQadVgRBgCLcBGAsYHQ/w640-h207/image24.png" class="kg-image" alt loading="lazy"></figure><p>The bolded text shows that the image is actually a link to an ISO file being hosted on Discord. When the user clicks the image thinking they are opening it locally, it will be downloaded using a web browser. The ISO file, when downloaded, contained a PE32 payload named "30 Percento,pdf .exe", which resulted in the download of the Formbook malware. What is additionally confusing, and potentially lazy on the actor's part, is the filename itself. The email is in German but the attachment uses the Italian word "percento" and not "prozent," to mean "percent," as would be expected if the file were named in German. These are just a few of the many examples we found abusing Discord, most of which were the usual invoice, shipping and fax campaigns we observe constantly.</p><p>As previously mentioned, the hyperlinks present within these emails typically point to compressed archives hosted within the CDNs of various collaboration platforms like Discord and Slack. These compressed archives contain PE32 files, JavaScript droppers and other malicious components that are used to initiate the infection process, retrieve additional payloads, provide remote access capabilities for adversaries, and gather sensitive information that can be exfiltrated and subsequently monetized by adversaries.</p><h2 id="component-retrieval">Component retrieval </h2><p><br> We also observed adversaries leveraging CDNs for the retrieval of additional malicious content during and after the initial infection process occurs. In many malware infections nowadays, the initial executable or script delivered to victims is the first part of a multi-stage infection process that often includes the delivery of additional binaries that function as modules to carry out various portions of the malware's overall functionality.</p><p>We observed several instances of these CDNs being used to host malicious binaries that are pulled down during various phases of the infection process. Various examples of this behavior can be identified across malware repositories. For example, simply searching for samples that reach out to the Discord CDN results in almost 20,000 results in VirusTotal.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-PAx_OI25XJ0/YGyVnXAz58I/AAAAAAAAB0k/71Gpd_QsaOcw6EJsFyUhRhz-hYu1vyYtgCLcBGAsYHQ/s600/image7.png" class="kg-image" alt loading="lazy"></figure><p>This technique was frequently used across malware distribution campaigns associated with RATs, stealers and other types of malware typically used to retrieve sensitive information from infected systems. In one example, the first stage payload was responsible for retrieving an ASCII blob from the Discord CDN as shown in the screenshot below.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-fZAqBLV2GJQ/YGyVr7RtbaI/AAAAAAAAB0o/zLx1wXUMjaMkT_hiZEOf6Iax5wsHEY6SQCLcBGAsYHQ/w640-h211/image12.png" class="kg-image" alt loading="lazy"></figure><p>The data that is retrieved from the Discord CDN is then converted and the final payload is injected into a remote process, in this case created from "C:\Program Files (x86)\Internet Explorer\ieinstal.exe".</p><p>The final malware in this instance was <a href="https://blog.talosintelligence.com/picking-apart-remcos/">Remcos</a>, a commercially available RAT that is frequently used by attackers to gain unauthorized access to systems.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-N9fCoDtbvhc/YGyVy10IaiI/AAAAAAAAB0s/XCq_jChzqjsnH2oOCC2uTrmRfwjk-QItgCLcBGAsYHQ/w640-h151/image10.png" class="kg-image" alt loading="lazy"></figure><p>As is common with Remcos infections, the malware communicated with a C2 and exfiltrated data via an attacker-controlled DDNS server. The attackers achieved persistence through the creation of registry run entries to invoke the malware following system restarts.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-izAYQ3eTckM/YGyV36TmE7I/AAAAAAAAB00/4jAHBiPAs5kQdq0vezh1A-wG_PlMVVNdgCLcBGAsYHQ/w640-h289/image28.png" class="kg-image" alt loading="lazy"></figure><p>Another example of this behavior was observed across <a href="https://malpedia.caad.fkie.fraunhofer.de/details/win.asyncrat">AsyncRAT</a> campaigns. In this instance, the initial malware downloader took the form of a Microsoft Word document titled "Word_Nitro_Kodlari", likely purporting to be associated with <a href="https://discord.com/nitro">Discord Nitro codes</a> — access to a premium version of the service — a common theme across the various malware campaigns we analyzed. In this case, the Word document did not contain any visible contents when opened, but contained embedded macros.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-HdBtUpAqbvo/YGyV8xy3YOI/AAAAAAAAB08/8i98xmH_mxsDulzq3m4Jx4rR0XjZeuZbACLcBGAsYHQ/w640-h304/image17.png" class="kg-image" alt loading="lazy"></figure><p>The Word document contains a macro that executes when the document is opened. This macro is shown below.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-_79-o1h0MQI/YGyWAVhXA_I/AAAAAAAAB1A/rLjSUCeoC8sLebxqd9aGhRN0FJzOtA4agCLcBGAsYHQ/s600/image3.png" class="kg-image" alt loading="lazy"></figure><p>This macro deobfuscates and executes PowerShell that is responsible for retrieving the next stage payload.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-eHEhTPHjvTs/YGyWESomwCI/AAAAAAAAB1I/jw_Ga-VBZxU5LmTBCG0nl8rb1f_qaxIowCLcBGAsYHQ/w640-h53/image11.png" class="kg-image" alt loading="lazy"></figure><p>In this case, the payload was AsyncRAT hosted within the Discord CDN. An example of the payload retrieval can be found in the screenshot below:</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-qM8Z3YOti_U/YGyWI4RCuwI/AAAAAAAAB1Q/zQS8d5PhNDcliu20Wlnz0KigDXRkNHk9wCLcBGAsYHQ/w640-h431/image18.png" class="kg-image" alt loading="lazy"></figure><p>Another way that we've seen Discord abused is payloads being retrieved from threat actors leveraging active exploitation of vulnerabilities. One of the larger botnets that is active today is Mirai, which is constructed primarily of internet-of-things (IoT) devices that overwhelmingly run Linux. This botnet is well known and has been associated with a variety of DDoS and other campaigns. Mirai may be the most well known, but they are not the only botnet or threat operating in this space,<a href="https://www.alibabacloud.com/blog/the-qakbot-family-extends-introducing-a-new-qbot-variant_594191"> including Qbot</a>. This IoT variant of Qbot behaves much like other IoT malicious threats providing capabilities to conduct DDoS attacks, download additional payloads, or be used as processing power for things like SSH brute forcing.</p><p>We recently saw an uptick in what appeared to be Mirai activity, but upon further inspection, it was actually the IoT-focused QBot variant that affects multiple operating systems. The piece that drew our attention was where the x86 version was being stored.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-u3nkOHEzbF0/YGyWNT-03yI/AAAAAAAAB1U/7EgIPtlulQYOhTWPyHj9tcys1TU4UGU1gCLcBGAsYHQ/w640-h112/image21.png" class="kg-image" alt loading="lazy"></figure><p>These types of commands should look familiar to anyone who has been hunting Mirai activity and is consistent with the other campaigns we've seen before that have been taking advantage of an unauthenticated command execution vulnerability in YARN. What makes this applicable to our current investigation is yet another abuse of Discord to share or distribute malware, in this case the x86 version of Qbot. This shows yet another avenue adversaries can take advantage of Discord to distribute malware, even to non-standard operating systems like Linux, and more specifically, IoT devices.</p><h2 id="c2-and-data-exfiltration">C2 and data exfiltration</h2><p><br> Discord and Slack are also platforms that are being leveraged for the exfiltration of sensitive information and the transmission of information from infected systems. In many cases, this activity is conducted via the Discord API which provides a robust mechanism that adversaries can take advantage of. Let's take a look at how the Discord API is being used by attackers and some examples of what sort of malware is using it.</p><h3 id="webhooks">Webhooks </h3><p><br> Malware samples that abuse Discord typically rely on the webhook functionality of the Discord API for C2 communications. <a href="https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks">Webhooks</a> were designed for sending alerts or automated messages to a specified Discord server, commonly integrated with other services such as GitHub or DataDog. Webhooks are essentially a URL that a client can send a message to, which in turn posts that message to the specified channel — all without using the actual Discord application.</p><p>Webhooks can be used for more than just C2 communications. However, any data can be sent to a webhook, allowing for data exfiltration. Using the webhook functionality to exfiltrate data has several benefits, the most apparent being ease of use. The other important advantage to webhooks is the use of the Discord domain for exfiltration over HTTPS, allowing the attacker to blend in with other Discord network traffic. The format of a webhook would appear fairly innocuous to most users:</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-Uk3DRohAgGg/YGyWaDnV8_I/AAAAAAAAB1k/h6sxOk3ha9QAZ4PXIQ7P2gKK0Y-doXwnACLcBGAsYHQ/s600/image4.png" class="kg-image" alt loading="lazy"></figure><p>The versatility and accessibility of Discord webhooks makes them a clear choice for some threat actors. With merely a few stolen access tokens, an attacker can employ a truly effective malware campaign infrastructure with very little effort. The level of anonymity is too tempting for some threat actors to pass up.</p><h3 id="status-updates">Status updates </h3><p><br> In some cases, we observed malware leveraging Discord to send alerts to the attacker when new systems are infected. In one example, the malware was communicating via Discord to alert the attacker that a new system was available and providing the details where the system was attempting to communicate to establish a C2 channel. In this case, the adversaries used the Portmap service for C2 communications. As highlighted in previous publications <a href="https://blog.talosintelligence.com/rat-ratatouille-revrat-orcus/">here</a> and <a href="https://blog.talosintelligence.com/lodarat-update-alive-and-well/">here</a>, Portmap is a common mechanism used by attackers to obfuscate their C2 infrastructure.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-Tu7PJg2qVU4/YGyWgs3i8oI/AAAAAAAAB1s/ytJgTyPHqFwNQnIMvByFCvLyPVmkrwuUACLcBGAsYHQ/w640-h170/image8.png" class="kg-image" alt loading="lazy"></figure><h3 id="system-enumeration">System enumeration </h3><p><br> In many cases, malware uses the Discord API to send information about the infected system back to the attacker, similar to what is seen in post-compromise C2 traffic during the bot registration process. One example of this was observed where the attacker was executing WMI commands on the system, then transmitting the command-line output to the attacker's Discord server, line-by-line, using the Webhook API.</p><p>First, the malware writes a batch file and an executable called "DiscordSendWebhook" into the %TEMP% directory on the infected system. An example of one of the batch files is shown below.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-lU4N7cwE_zM/YGyWlC6nZcI/AAAAAAAAB1w/xpZ2sKPG9CMVQNiBF9J9zpzmhi8_U9vMACLcBGAsYHQ/w640-h324/image19.png" class="kg-image" alt loading="lazy"></figure><p>Next, the malware executes the batch file, and writes the output of the various commands into text-based log files. It then sends the contents of the log files to the attacker using "DiscordSendWebhook.exe" which was previously created and executed.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-KGe_Q-DrS9s/YGyWpAnmhxI/AAAAAAAAB10/YsXX8SVHFo4ChHBfRy6dLp0U8LGRTddYQCLcBGAsYHQ/w640-h186/image9.png" class="kg-image" alt loading="lazy"></figure><p>The example below shows one of the API requests made by the infected system. This process repeats for each line in the WMI command output.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-SCOpnAgAtvE/YGyWslHUJ7I/AAAAAAAAB18/yx313ldXKowBVxZIpDTbn6-yzZytR8tWgCLcBGAsYHQ/w640-h162/image14.png" class="kg-image" alt loading="lazy"></figure><p>This demonstrates how abusing the Discord API can provide robust C2 functionality for adversaries making use of it in their malware. Additionally, this removes the cost of running the C2 server infrastructure independently and minimizes the resources required to facilitate this activity.</p><h3 id="pay2decrypt-ransomware">Pay2Decrypt ransomware </h3><p><br> We also observed ransomware samples leveraging the Discord API for different purposes including bot registration, data exfiltration and post-infection C2 communications. One example is with a series of campaigns associated with LEAKGAP, a variant of Pay2Decrypt ransomware that communicates with the attacker using Discord Webhooks. During the infection process, the system is registered with the attacker's Discord instance using an API request/response similar to the one shown in the screenshot below.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-Noj8PGx9XZM/YGyWzkHFuJI/AAAAAAAAB2E/8bhHe7Kpo9w1FKL9dbrhdCDV8TSUvqsVgCLcBGAsYHQ/w640-h130/image29.png" class="kg-image" alt loading="lazy"></figure><p>Status updates regarding the malware's operation on the infected system are also sent back to the attacker using the same API.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-o5x_A9AYpiE/YGyW3Sqln9I/AAAAAAAAB2M/AY1EdML227YinK5Lt50e_0w4yjo-AooigCLcBGAsYHQ/w640-h253/image20.png" class="kg-image" alt loading="lazy"></figure><p>Following successful infection, the data stored on the system is no longer available to the victim and the following ransom note is displayed.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-RpJo05A1ZEk/YGyW7pRc5zI/AAAAAAAAB2Q/r_3HzmpcMGoWxYJVmtxsMdDjBJNlr3QkwCLcBGAsYHQ/w640-h181/image25.png" class="kg-image" alt loading="lazy"></figure><p>New samples that are leveraging the Discord API for C2 communications are being observed regularly, with some RATs being designed specifically to facilitate remote access to infected systems using this same mechanism. This trend will likely continue as more attackers leverage these channels to blend in with legitimate network traffic and evade detection in corporate environments.</p><h3 id="token-stealing">Token stealing  </h3><p><br> One of the most critical tasks while operating a malware campaign is to stay anonymous. One of the most effective ways to remain anonymous while abusing Discord is to hijack another user's account.</p><p>A Discord access token is a unique alphanumeric string that is generated for each user and is essentially the "key" to that user's account. If another party were to have access to this token it would allow them to have full control over that account.</p><p>At the time of writing, Discord does not implement client verification to prevent impersonation by way of a stolen access token. This has led to a large amount of Discord token stealers being implemented and distributed on GitHub and other forums. In many cases, the token stealers pose as useful utilities related to online gaming, as Discord is one of the most prevalent chat and collaboration platforms in use in the gaming community. Below is a non-exhaustive list of some token stealers hosted on GitHub at the time of this writing:</p><ul><li><a href="https://github.com/notkohlrexo/Discord-Token-Stealer">https://github.com/notkohlrexo/Discord-Token-Stealer</a></li><li><a href="https://github.com/Cazcez/AnarchyGrabber">https://github.com/Cazcez/AnarchyGrabber</a></li><li><a href="https://github.com/iklevente/WebhookDiscordTokenGrabber">https://github.com/iklevente/WebhookDiscordTokenGrabber</a></li><li><a href="https://github.com/Itroublve/Token-Browser-Password-Stealer-Creator">https://github.com/Itroublve/Token-Browser-Password-Stealer-Creator</a></li><li><a href="https://github.com/wodxgod/Discord-Token-Grabber">https://github.com/wodxgod/Discord-Token-Grabber</a> These token stealers are written in several different languages including C# and Python. They can be implemented in script form or a compiled binary, depending on the attacker's choice of language. Creating these stealers is relatively easy as the process for stealing the access token is very simple. All that is required for stealing a token is locating it in the appropriate directory, and sending it back to the attacker via a webhook, as discussed in the "Webhooks" section above. Additionally, well-known information stealers like Masslogger have been observed <a href="https://blog.talosintelligence.com/masslogger-cred-exfil/">implementing Discord token-stealing</a>.</li></ul><p>Once a token has been stolen, the attacker now has the ability to impersonate its owner. Typically, these compromised accounts are used in a malware campaign to add a level of anonymity to the operation. Common abuses of stolen accounts include uploading payloads to the Discord CDN, social engineering of other users and generating webhooks.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-nuDW-Iyt2UA/YGyXBNSdBsI/AAAAAAAAB2Y/2YZ62kJdDNYSBPS0QCv-IPolRZa71_bvgCLcBGAsYHQ/w640-h209/image16.png" class="kg-image" alt loading="lazy"></figure><p><i><b>Growtopia-themed stealer in action.</b></i> <br></p><h2 id="conclusion">Conclusion </h2><p><br> Malicious threat actors are always trying to find new and effective ways to get malware executing on systems and one of the biggest challenges is distribution. As chat apps like Discord, Slack and many others rise in popularity, organizations need to assess how these applications can be abused by adversaries and how many of them should be allowed to operate inside your enterprise. As we've shown repeatedly in this blog, these types of applications require content delivery networks (CDNs) to ensure their content is available to people everywhere and malicious actors have noticed. It's likely the abuse of these chat apps will only increase in the near and long term. As more applications become available and some rise and fall in popularity, new avenues will continually be opened for adversaries.</p><p>As defenders, we need to decide what chat applications are allowed and why, while clearly communicating to management the risk associated with each. If you don't use a chat app internally for business purposes, it may be worth considering blocking some of the domains that can be abused for content delivery or putting other mitigations in place to help reduce the risk. We've continually seen adversaries evolve from including attachments directly in email, to hosting it on their own infrastructure, to using filing sharing services, and now abusing chat applications and that is just from email based threats. The name of the game is getting malware onto end systems and as we've seen repeatedly the bad guys will do whatever is necessary to achieve these goals.</p><h2 id="coverage">Coverage </h2><p><br> Ways our customers can detect and block this threat are listed below.</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-K6x4Ky3ENLk/YGyXGg_IP7I/AAAAAAAAB2c/MpX8eCFL80As1tdNgqeH9XkReocxsY93wCLcBGAsYHQ/w308-h400/image22.jpg" class="kg-image" alt loading="lazy"></figure><p><br></p><!--kg-card-begin: html--><blockquote><p>Advanced Malware Protection
+(<a target="_blank" href="https://www.cisco.com/c/en/us/products/security/advanced-malware-protection">AMP</a>) is ideally suited to prevent the execution of the malware detailed in this post. Below is a screenshot showing how AMP can protect customers from this threat. Try AMP for free <a target="_blank" href="http://cisco.com/go/tryamp">here.</a></p>
+</blockquote><!--kg-card-end: html--><p><br> Cisco Cloud Web Security (<a href="https://www.cisco.com/c/en/us/products/security/cloud-web-security/index.html">CWS</a>) or Web Security Appliance (<a href="https://www.cisco.com/c/en/us/products/security/web-security-appliance/index.html">WSA</a>) web scanning prevents access to malicious websites and detects malware used in these attacks.</p><p>Cisco Secure <a href="https://www.cisco.com/c/en/us/products/security/email-security-appliance/index.html">Email Security</a> can block malicious emails sent by threat actors as part of their campaign.</p><p>Network Security appliances such as Next-Generation Firewall (<a href="https://www.cisco.com/c/en/us/products/security/firewalls/index.html">NGFW</a>), Next-Generation Intrusion Prevention System (<a href="https://www.cisco.com/c/en/us/products/security/intrusion-prevention-system-ips/index.html">NGIPS</a>), and <a href="https://meraki.cisco.com/products/appliances">Meraki MX</a> can detect malicious activity associated with this threat.</p><p><a href="https://www.cisco.com/c/en/us/solutions/enterprise-networks/amp-threat-grid/index.html">Threat Grid</a> helps identify malicious binaries and build protection into all Cisco Security products.</p><p><a href="https://umbrella.cisco.com/">Umbrella</a>, our secure internet gateway (SIG), blocks users from connecting to malicious domains, IPs, and URLs, whether users are on or off the corporate network.</p><p>Additional protections with context to your specific environment and threat data are available from the <a href="https://www.cisco.com/c/en/us/products/security/firepower-management-center/index.html">Firepower Management Center</a>.</p><h2 id="indicators-of-compromise-iocs-">Indicators of Compromise (IOCs) </h2><p>The following indicators of compromise have been observed as being associated with malware campaigns.<br></p><h3 id="hashes-sha256-">Hashes (SHA256) </h3><p>A list of the SHA256 hashes of files associated with these malware campaigns can be found <a href="https://talosintelligence.com/resources/192">here</a>.<br></p><h3 id="domains">Domains </h3><p>A list of the domains associated with these malware campaigns can be found <a href="https://talosintelligence.com/resources/200">here</a>.<br><br><br></p>
+
+            
+        </div>
+    </section>
+    <div class="social-media-wrapper">
+    <h5>Share this post</h5>
+    <ul class="social-media-share-list">
+        <li>
+            <a class="share-facebook" title="Share this on Facebook" data-text="Sowing Discord: Reaping the benefits of collaboration app abuse" data-href="https://blog.talosintelligence.com/collab-app-abuse/" rel="nofollow" target="_blank" href="https://www.facebook.com/sharer.php?u=https://blog.talosintelligence.com/collab-app-abuse/"></a>
+        </li>
+        <li>
+            <a class="share-x" title="Post This" data-text="Sowing Discord: Reaping the benefits of collaboration app abuse" data-href="https://blog.talosintelligence.com/collab-app-abuse/" rel="nofollow" target="_blank" href="https://x.com/share?url=https://blog.talosintelligence.com/collab-app-abuse/"></a>
+        </li>
+        <li>
+            <a class="share-linkedin" title="Share this on LinkedIn" data-text="Sowing Discord: Reaping the benefits of collaboration app abuse" data-href="https://blog.talosintelligence.com/collab-app-abuse/" rel="nofollow" target="_blank" href="https://www.linkedin.com/sharing/share-offsite/?url=https://blog.talosintelligence.com/collab-app-abuse/"></a>
+        </li>
+        <li>
+            <a class="share-reddit" title="Reddit This" data-text="Sowing Discord: Reaping the benefits of collaboration app abuse" data-href="https://blog.talosintelligence.com/collab-app-abuse/" rel="nofollow" target="_blank" href="https://www.reddit/submit?url=https://blog.talosintelligence.com/collab-app-abuse/"></a>
+        </li>
+        <li>
+            <a class="share-email" title="Email This" href="mailto:?body=Sowing Discord: Reaping the benefits of collaboration app abusehttps://blog.talosintelligence.com/collab-app-abuse/"></a>
+        </li>
+    </ul>
+</div></article>
+                    </div>
+                </div>
+                <div class="alt-layout-row-dk sidebar" id="side-bar">
+                            <h4>Related Content</h4>
+
+                                <div class="sidebar-snippet-wrapper">
+                                    <a href="/hypotheses-telemetry-and-human-judgment-inside-cisco-talos-threat-hunting/">
+                                        <h3>Hypotheses, telemetry, and human judgment: Inside Cisco Talos Threat Hunting</h3>
+                                        <span  class="preview-attributes">June 4, 2026 08:05</span>
+                                        <p>Learn how Cisco Talos Threat Hunting uses hypothesis-driven methods and multi-domain telemetry correlation to find stealthy threats operating below automated detection thresholds.</p>
+                                    </a>
+                                </div>
+                                <div class="sidebar-snippet-wrapper">
+                                    <a href="/backdoors-breaches-how-talos-is-helping-humanitarian-aid-ngos-prepare-for-cyber-attacks/">
+                                        <h3>Backdoors &amp; Breaches: How Talos is helping humanitarian aid NGOs prepare for cyber attacks</h3>
+                                        <span  class="preview-attributes">August 4, 2025 12:00</span>
+                                        <p>In 2023, Cisco Talos and partners created a special Backdoors &amp; Breaches card deck to help NGOs improve their cybersecurity skills with practical, easy-to-use training tailored to their needs.</p>
+                                    </a>
+                                </div>
+                                <div class="sidebar-snippet-wrapper">
+                                    <a href="/talos-cisa-jcdc-collaboration/">
+                                        <h3>Talos joins CISA to counter cyber threats against non-profits, activists and other at-risk communities</h3>
+                                        <span  class="preview-attributes">May 14, 2024 08:42</span>
+                                        <p>Commercial spyware tools can threaten democratic values by enabling governments to conduct covert surveillance on citizens, undermining privacy rights and freedom of expression.</p>
+                                    </a>
+                                </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <footer id="footer">
+    <div class="container-fluid px-0">
+        <div class="row footer_nav_wrapper mx-0">
+            <div class="col-xl-10 col-12">
+                <div class="multi-col-list-wrapper">
+                    <ul class="footer-parent-list">
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6><a href="https://talosintelligence.com/reputation">Intelligence Center</a></h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/reputation_center">Intelligence Search</a></li>
+                                <li><a href="https://talosintelligence.com/reputation_center/email_rep">Email &amp; Spam Trends</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6><a href="https://talosintelligence.com/vulnerability_info">Vulnerability Research</a></h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/vulnerability_reports">Vulnerability Reports</a></li>
+                                <li><a href="https://talosintelligence.com/ms_advisories">Microsoft Advisories</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                             <ul>
+                                <li>
+                                    <h6><a href="https://talosintelligence.com/incident_response">Incident Response</a></h6>
+                                </li>
+                                <li>
+                                    <a href="https://talosintelligence.com/incident_response/services#reactive-services">Reactive Services</a>
+                                </li>
+                                <li>
+                                    <a href="https://talosintelligence.com/incident_response/services#proactive-services">Proactive Services</a>
+                                </li>
+                                <li>
+                                    <a href="https://talosintelligence.com/incident_response/contact">Emergency Support</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Security Resources</h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/software">Open Source Security Tools</a></li>
+                                <li><a href="https://talosintelligence.com/categories">Intelligence Categories Reference</a></li>
+                                <li><a href="https://talosintelligence.com/secure-endpoint-naming">Secure Endpoint Naming Reference</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Media</h6>
+                                </li>
+                                <li><a href="https://blog.talosintelligence.com">Talos Intelligence Blog</a></li>
+                                <li><a href="https://blog.talosintelligence.com/category/threat-source-newsletter/">Threat Source Newsletter</a></li>
+                                <li><a href="https://talosintelligence.com/podcasts/shows/beers_with_talos">Beers with Talos Podcast</a></li>
+                                <li><a href="https://talosintelligence.com/podcasts/shows/talos_takes">Talos Takes Podcast</a></li>
+                                <li><a target="_blank" href="https://www.youtube.com/channel/UCPZ1DtzQkStYBSG3GTNoyfg/featured">Talos Videos</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Support</h6>
+                                </li>
+                                <li><a href="https://support.talosintelligence.com">Support Documentation</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Company</h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/about">About Talos</a></li>
+                                <li><a href="https://talosintelligence.com/careers">Careers</a></li>
+                                <li><a target="_blank" href="https://www.cisco.com/c/en/us/products/security/product-listing.html">Cisco Security</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xl-2 col-12 connect_social">
+                <div class="connect-footer-section-wrapper">
+                    <h6>Follow us</h6>
+                    <ul>
+                        <li>
+                            <a target="_blank" href="https://x.com/talossecurity"><div class="footer-media-icon" id="footer-media-icon-x"></div>
+                            </a></li>
+                        <li>
+                            <a target="_blank" href="https://www.youtube.com/channel/UCPZ1DtzQkStYBSG3GTNoyfg/featured"><div class="footer-media-icon" id="footer-media-icon-youtube"></div>
+                            </a></li>
+                        <li>
+                            <a target="_blank" href="https://www.linkedin.com/company/cisco-talos-intelligence-group/"><div class="footer-media-icon" id="footer-media-icon-linkedin"></div>
+                            </a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row mx-0">
+            <div class="col-12 footer_corporate">
+                <a target="_blank" href="http://tools.cisco.com/security/center/home.x"><img alt="Cisco" src="https://blog.talosintelligence.com/assets/images/logo_cisco_white.svg">
+                </a><p class="copyright">
+                ©
+                <span id='current-year'></span>
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                <a target="_blank" class="underline" href="http://www.cisco.com/web/siteassets/legal/privacy_full.html">Privacy Policy.</a>
+            </p>
+            </div>
+        </div>
+    </div>
+</footer>
+    <script>
+  function coverageView() {
+    const coverageTable = document.getElementById('coverage-block');
+    const sidebar = document.getElementById('side-bar');
+    const postContent = document.getElementById('post-content');
+    const currentWidth = window.innerWidth;  
+  
+    if (coverageTable && sidebar && postContent) {
+      if (currentWidth < 1000) {
+        // For viewport less than 1000px, append to post content
+        postContent.appendChild(coverageTable);
+      } else {
+        // For viewport 1000px and wider, check for subscribe button
+        const subscribeButton = sidebar.querySelector('.subscribe-button');
+        
+        if (subscribeButton) {
+          // Insert coverage block after the subscribe button
+          subscribeButton.insertAdjacentElement('afterend', coverageTable);
+        } else {
+          // No subscribe button found, prepend to top of sidebar
+          sidebar.prepend(coverageTable);
+        }
+      }
+    }
+  }
+  
+  window.addEventListener("resize", coverageView);
+  window.addEventListener("load", coverageView);
+
+
+  (function() {
+    Array.from(document.querySelectorAll("a")).filter(a => {
+        return a.hostname && a.hostname !== location.hostname
+    }).forEach(a => a.setAttribute('target', '_blank'))
+})();
+</script>
+
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://blog.talosintelligence.com/assets/js/jquery-3.6.0.min.js?v=_xUj-3OJU5yExlq6"></script>
+<script src="https://blog.talosintelligence.com/assets/js/popper.min.js?v=ZvOgfh-ptkpoa2Y4"></script>
+<script src="https://blog.talosintelligence.com/assets/js/resize-styles.js?v=iB-0rQKwd6f_Dllp"></script>
+<script src="https://blog.talosintelligence.com/assets/js/bootstrap.bundle.min.js?v=JRXjfu4x9e89ZZsh"></script>
+<script src="https://blog.talosintelligence.com/assets/js/date.js?v=TlJWK1qtzFQeV9lL"></script>
+<script src="https://blog.talosintelligence.com/assets/js/prism.js?v=roQly8fYXhzQ4Osd"></script>
+<script src="https://cdn.jsdelivr.net/npm/ghost-theme-utils@latest/dist/js/ghost-theme-utils.min.js" async defer></script>
+<script src="https://blog.talosintelligence.com/assets/js/chart.min.js?v=dEAdc43T4D7l37O2"></script>
+<script src="https://blog.talosintelligence.com/assets/js/x-scroll.js?v=DuV8f5nlfWlGIAUr"></script>
+<script src="https://blog.talosintelligence.com/assets/js/2025_yir_chart.js?v=OSqUj45x6XXKWbZW"></script>
+
+
+</body>
+
+</html>

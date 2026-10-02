@@ -1,0 +1,1934 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Supplemental Direction ED 25-03: Core Dump and Hunt Instructions | CISA
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+ 
+
+
+
+
+
+An official website of the United States government
+Here’s how you know
+
+Here’s how you know
+
+
+
+
+
+
+
+
+
+Official websites use .gov
+ A .gov website belongs to an official government organization in the United States.
+              
+
+
+
+
+
+
+Secure .gov websites use HTTPS
+ A lock (LockA locked padlock) or https:// means you’ve safely connected to the .gov website. Share sensitive information only on official, secure websites.
+              
+
+
+
+
+
+
+
+
+
+
+
+Staying Secure at Eventsno-cost Cyber ServicesCybersecurity Awareness MonthKEV CatalogReport A Cyber Issue 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Search
+
+
+
+ 
+
+
+Menu
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Close
+
+
+ 
+
+
+
+
+Topics
+
+
+
+Topics
+
+
+
+
+
+Cybersecurity Best Practices
+
+
+
+
+
+
+Cyber Threats and Response
+
+
+
+
+
+
+Critical Infrastructure Security and Resilience
+
+
+
+
+
+
+Election Security
+
+
+
+
+
+
+Emergency Communications
+
+
+
+
+
+
+Industrial Control Systems
+
+
+
+
+
+
+Information and Communications Technology Supply Chain Security
+
+
+
+
+
+
+Partnerships and Collaboration
+
+
+
+
+
+
+Physical Security
+
+
+
+
+
+
+Risk Management
+
+
+
+
+
+
+        How can we help?
+       
+GovernmentEducational InstitutionsIndustryState, Local, Tribal, and TerritorialIndividuals and FamiliesSmall and Medium BusinessesFind Help LocallyFaith-Based CommunityExecutivesHigh-Risk Communities
+
+
+
+
+
+Spotlight
+
+
+
+
+Resources & Tools
+
+
+
+Resources & Tools
+
+
+
+
+
+All Resources & Tools
+
+
+
+
+
+
+Services
+
+
+
+
+
+
+Programs
+
+
+
+
+
+
+Resources
+
+
+
+
+
+
+Training
+
+
+
+
+
+
+Groups
+
+
+
+
+
+
+
+
+News & Events
+
+
+
+News & Events
+
+
+
+
+
+Directives
+
+
+
+
+
+
+News
+
+
+
+
+
+
+Events
+
+
+
+
+
+
+Cybersecurity Alerts & Advisories
+
+
+
+
+
+
+Request a CISA Speaker
+
+
+
+
+
+
+Congressional Testimony
+
+
+
+
+
+
+CISA Conferences
+
+
+
+
+
+
+CISA Live!
+
+
+
+
+
+
+
+
+Careers
+
+
+
+Careers
+
+
+
+
+
+Benefits & Perks
+
+
+
+
+
+
+Hiring and Recruitment
+
+
+
+
+
+
+New Employee Orientation & Onboarding
+
+
+
+
+
+
+Students & Recent Graduates
+
+
+
+
+
+
+Veteran and Military Spouses
+
+
+
+
+
+
+
+
+About
+
+
+
+About
+
+
+
+
+
+Divisions & Offices
+
+
+
+
+
+
+Regions
+
+
+
+
+
+
+Leadership
+
+
+
+
+
+
+Doing Business with CISA
+
+
+
+
+
+
+Site Links
+
+
+
+
+
+
+CISA GitHub
+
+
+
+
+
+
+CISA Central
+
+
+
+
+
+
+Contact Us 
+
+
+
+
+
+
+Subscribe
+
+
+
+
+
+
+Transparency and Accountability
+
+
+
+
+
+
+Policies & Plans
+
+
+
+
+
+
+
+
+
+
+Staying Secure at Eventsno-cost Cyber ServicesCybersecurity Awareness MonthKEV CatalogReport A Cyber Issue 
+
+
+
+
+
+
+
+
+
+
+Breadcrumb
+
+
+Home
+
+
+News & Events
+
+
+Cybersecurity Directives
+
+
+
+              Supplemental Direction ED 25-03: Core Dump and Hunt Instructions
+            
+
+
+
+
+
+
+
+Share:
+
+
+
+
+
+
+
+    Opens in a new window
+  
+
+
+
+
+
+
+    Opens in a new window
+  
+
+
+
+
+
+
+    Opens in a new window
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Emergency Directives
+
+Supplemental Direction ED 25-03: Core Dump and Hunt Instructions
+
+September 25, 2025
+
+
+
+								Related topics:
+							
+
+Cybersecurity Best Practices
+
+
+
+
+
+
+
+
+
+
+
+
+News & Events
+
+
+
+
+Directives
+
+
+
+
+News
+
+
+
+
+Events
+
+
+
+
+Cybersecurity Alerts & Advisories
+
+
+
+
+Request a CISA Speaker
+
+
+
+
+Congressional Testimony
+
+
+
+
+CISA Conferences
+
+
+
+
+CISA Live!
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+Core Dump and Hunt Guidance for Cisco Devices
+Original Issuance Date: September 25, 2025
+Updated April 24, 2026
+Note: CISA updated this Supplemental Direction on April 23, 2026, to accommodate instructions for Cisco Firepower and Secure Firewall devices.
+
+Emergency Directive (ED) 25-03: Identify and Mitigate Potential Compromise of Cisco Devices directs Federal Civilian Executive Branch (FCEB) agencies to identify, hunt for, update, and remediate in‑scope Cisco Adaptive Security Appliance (ASA), Cisco Firepower, and Cisco Secure Firewall devices. Exploitation activities linked to CVE-2025-20333 (remote code execution), CVE-2025-20362 (privilege escalation), and observed persistence mechanisms pose an unacceptable risk to FCEB information systems, necessitating immediate action to mitigate remote code execution, privilege escalation, and long‑term unauthorized access.
+CISA is providing this Supplemental Direction to help organizations detect and eradicate persistence and harden affected Cisco devices. ED 25-03 requires FCEB agencies to implement the measures below—including core dump collection and analysis, patching, hard resets, and reporting—and to report any indications of compromise or unusual activity to CISA. Though Emergency Directives apply only to federal agencies, CISA strongly encourages all organizations to use this guidance to reduce the risk surface of their networks.
+
+Background
+CISA is aware of an ongoing campaign by a sophisticated threat actor exploiting Cisco products exposed via web services, specifically:
+
+Cisco ASA
+Cisco Firepower products with ASA or Firepower Threat Defense (FTD) software
+Cisco Secure Firewall products with ASA or FTD software
+
+Note: CISA did not initially have evidence that the threat actor exploited Firepower and Secure Firewall devices when ED 25-03 was released in September 2025; however, this updated Supplemental Direction accompanies the updated ED due to evidence that now suggests exploitation of these devices.
+The threat actor gains initial access to these devices by exploiting CVE-2025-20333 [CWE-862: Missing Authorization] and/or CVE-2025-20362 [CWE-120: Classic Buffer Overflow]. Cisco has released updates to address both CVEs, and the updates specific to these CVEs appear to successfully prevent initial compromise. However, CISA is aware of an advanced persistence mechanism—referred to as “FIRESTARTER” —that the threat actor uses on Cisco Firepower and Secure Firewall devices to persist through these updates. This mechanism remains on affected devices, enabling continued exploitation. The below guidance provides mitigations to address the FIRESTARTER persistence mechanism, as well as links to Cisco’s latest software release that also aims to mitigate the persistence.
+Cisco ASA devices are not vulnerable to the FIRESTARTER persistence mechanism; however, they remain vulnerable to initial exploitation if unpatched.
+Additionally, software versions after 9.17.1.40, 9.18.4.41, 9.19.1.32, and 9.20+ are not vulnerable to the overflow because the handler was removed. However, if a device previously ran a software version that predates these releases, it may still be compromised, even if it has since been updated.
+
+This Supplemental Direction contains three main sections:
+
+
+
+Guidance for Cisco Firepower and Secure Firewall Devices With FTD Software
+Guidance for Cisco Firepower and Secure Firewall Devices With ASA Software
+Guidance for Cisco ASA Devices
+
+
+
+It is imperative that organizations follow the correct guidance for each device category, as instructions and commands vary. If your device does not fall into these categories, no further artifact collection is required; proceed with the remaining steps in ED 25-03. If you are unsure about the hardware or software version of your device, use the “show version” command to determine the version.
+
+Within each section, complete the steps in the exact order listed. Any deviation may trigger threat actor anti-forensics measures, which will destroy forensic data and disrupt ongoing investigations. To avoid activating threat actor anti-forensics measures:
+
+
+
+Do NOT use the “tab” autocomplete or any other autocomplete function. The threat actor has hooked these commands to crash the device.
+
+
+
+
+Do NOT take any remediation actions beyond what is described below (i.e., blocking IPs) without consulting with CISA first. The threat actor is closely monitoring for changes and can pivot rapidly to new infrastructure.
+
+According to recent reporting, malicious activity likely began before or as early as 2024. For additional information related to this malicious activity, see:
+
+CISA’s FIRESTARTER Backdoor Malware Analysis Report
+United Kingdom National Cyber Security Centre’s RayInitiator & LINE VIPER Malware Analysis Report
+The Cisco Talos Blog: FIRESTARTER
+
+Note: This guidance reflects CISA’s current understanding of the threat. Related investigations are ongoing, and there are still unknown elements to the malicious activity. CISA encourages all organizations to report findings to CISA, especially if new malicious activity or detection methods are observed.
+
+
+Guidance for Cisco Firepower and Secure Firewall Devices With FTD Software
+The guidance in this section is specific to Cisco Firepower and Secure Firewall devices with FTD software. In conjunction with Cisco’s released guidance, use the steps below to collect artifacts, obtain and submit a core dump to CISA’s Malware Next Generation (MNG) platform, apply Cisco’s latest software updates, perform a hard restart, and conduct follow-on threat hunting.
+
+A: Collect Device Artifacts
+
+
+
+
+Confirm Device Information
+Identify and document device model type, serial number, and firmware version.
+
+
+
+
+
+
+Run Initial Commands and Collect Output
+Before collecting a core dump, run the below commands in the FTD Command Line Interface (CLI). The output is crucial for analysis; CISA may request it at a later date. Save the output in a location off the device. If your device crashes as a result of running any command in this step (excluding the expected reload during core dump collection), stop all actions and contact CISA immediately.
+
+
+Access the FTD CLI.
+Note: FTD CLI access method varies by product and channel (Secure Shell [SSH] vs console).
+
+From the FTD CLI, execute the following commands:
+
+system support diagnostic-cli
+enable
+
+
+
+
+Run “show checkheaps” command.
+
+Record the time of the last successful checkheaps command shown in the output.
+Copy and save the full output off the device (preferably to an isolated system).
+Wait at least five minutes, then run “show checkheaps” again. Review the last row for “Total number of runs.”
+
+Expect an increase of approximately one per 60 seconds elapsed (i.e., if the command is executed five minutes apart, the number should increase by approximately five).
+Note the value and whether it increased.
+
+
+
+If there is no positive change in “Total number of runs,” this is evidence of a potential compromise.
+
+
+
+
+Note: The command output displays the following:
+
+ 
+
+
+
+
+
+
+
+
+
+Run “show tech-support detail” command.
+
+This command aggregates device information by running a broad set of show commands. From this output, make sure to capture:
+
+Uptime
+ROMMON version
+Firmware version
+Last crashinfo
+
+
+Save the full output off the device (preferably to an isolated system).
+
+
+
+
+
+Collect Core Dump
+Note: The steps below trigger an immediate reload of the device and may cause network degradation or outages.
+
+Soft reboot the device to maximize the likelihood of a clean core dump.
+Collect a core dump and save a copy.
+
+
+Follow model-specific instructions:
+
+For Firepower 1000/2100 and Secure Firewalls (all models), follow step 6 in the Cisco Firepower 1000/2100 Series Forensic Data Collection Procedures
+Firepower 4100/9300 follow step 7 in the Cisco Firepower 4100 Series and 9300 Series Appliances Forensic Data Collection Procedures
+
+Note: FCEB agencies should contact CISA if they encounter any issues.
+
+
+
+If nothing is written (i.e., no file appears in the file system):
+
+Record this condition.
+Review the command output for errors (i.e., “disk0: free space is too full to write a coredump.”)
+
+Run the commands again.
+
+If successful on the second attempt, inform CISA.
+If there is still no output, document and inform CISA; this may indicate an error or possible compromise.
+
+Note: Core dump files typically follow a naming pattern similar to: “core_1756308546_firepower_lina_11.3692.gz”
+
+
+
+
+
+
+
+
+B. Upload Core Dump in CISA’s Malware Next Generation (MNG) Platform
+
+To upload a core dump to CISA’s MNG platform, see the Annex below.
+
+C. Apply Patch per CISA’s ED 25-03 and Cisco’s Security Advisory
+
+
+After device artifact and core dump collection, apply Cisco’s latest software updates and consult the instructions in ED 25-03 and Cisco’s Security Advisory. These updates address:
+
+
+CVE-2025-20333
+CVE-2025-20362
+FIRESTARTER persistence mechanism
+
+
+
+To confirm the correct updated version (with the relevant hotfix), review the software tables included in Cisco’s Security Advisory. Ensure you notate which version you upgrade to, as this will need to be reported to CISA.
+Note:
+
+For Firepower 4100 and 9300 devices, entities must upgrade the Firepower eXtensible Operating System (FXOS) before upgrading the FTD software.
+For Secure Firewall 3100 and 4200 devices in multi-instance mode, entities should consult Cisco’s Firewall Management Center, which provides guidance on upgrading FXOS and the FTD software.
+
+
+
+After implementing the latest software updates:
+
+
+
+If core dump results do not indicate compromise, proceed to step D (Perform a Hard Restart of Cisco Firepower and Cisco Secure Firewall Devices).
+If core dump results indicate compromise, keep the device powered on, immediately disconnect the device from the network, and contact CISA for further guidance. Do not take any additional actions without coordinating with CISA.
+
+
+
+
+
+
+D. Perform a Hard Restart of Cisco Firepower and Cisco Secure Firewall Devices
+
+
+Note: If the core dump analysis indicates potential compromise, do not proceed with this section or take any additional action until coordinating with CISA.
+
+
+CISA has determined that the only method to confidently remove the FIRESTARTER persistence mechanism is to physically unplug the device from its power source, forcing a hard restart. As a precaution, all organizations should take the below steps immediately after implementing the latest software updates, even if the core dump analysis does not indicate compromise. If an organization patches a device but cannot perform a hard restart immediately after, CISA recommends obtaining a new core dump and analyzing it for compromise before hard restarting.
+
+
+To perform a hard restart:
+
+
+
+Locate physical device.
+
+
+
+
+
+While the device is running, physically unplug it from all power sources.
+Note: A standard reboot is insufficient. Fully remove power, including any redundant power sources.
+
+
+
+
+
+Leave the device fully disconnected from power for one minute.
+
+
+
+
+Reconnect power and allow device to boot.
+
+
+
+E. Conduct Further Threat Hunting
+
+
+If CISA’s MNG platform results show malicious indicators of compromise:
+
+
+
+FCEB agencies should follow ED 25-03 and contact CISA immediately.
+Other U.S. organizations should contact CISA via the Incident Reporting System or through CISA’s 24/7 Operations Center (contact@cisa.dhs.gov or 888-282-0870).
+Cisco customers should open a Cisco Technical Assistance Center (TAC) case and include the output of the “show tech-support detail” command.
+
+
+
+In conjunction with Cisco’s released guidance, use the steps below to detect additional malicious activity, as the threat actor may have pivoted from the compromised device to other areas of the network. Organizations do not need to complete these steps strictly in order; however, begin with identifying compromised user accounts, which has proven the most reliable starting point.
+
+
+
+Identify Compromised Accounts
+Begin by identifying potentially compromised accounts. Based on current investigations, one reliable method is monitoring and searching for impossible-travel logins; scrutinize all logins traversing the compromised device.
+
+Monitor and search for impossible-travel logins.
+
+
+Detect suspicious logins from geographically distant IP addresses using the following Splunk Search Processing Language (SPL) query (tailor it to the security information and event management [SIEM] solution in place):
+index=<NDR/Appliance> sourcetype=<log_source>
+| search event_type="authentication"
+| iplocation src_ip
+| stats earliest(_time) AS first_login latest(_time) AS last_login by user, src_ip, City, Country
+| where first_login != last_login AND distance_between(first_login_location, last_login_location) > 1000
+| table user, src_ip, first_login, last_login, City, Country
+
+
+
+Review syslog message IDs.
+
+Informational level:
+
+WebVPN session terminated: Idle Timeout : %FTD-6-716002
+
+
+
+Debug level:
+
+SVC Service Termination: %FTD-7-722029
+SVC Service Termination: %FTD-7-722030
+SVC Service Termination: %FTD-7-722031
+
+Note: Informational-level syslogs should be enabled by default; enable if disabled. Debug-level syslogs are not enabled by default; enable if feasible.
+
+
+
+
+
+
+
+
+
+
+Review Compromised Account Activity
+Monitor and search for the below known threat actor activities conducted after obtaining account access.
+
+Check for credential reuse.
+
+If a compromised device contains user or service account credentials (i.e., usernames and passwords), assess those accounts for lateral movement, especially where credentials are reused across the enterprise or follow predictable patterns (e.g., “Password12 > Password23”).
+If only account names (no passwords) are present, enable enhanced monitoring (i.e., login sources, actions performed) and review for suspicious activity.
+If a compromised device provides virtual private network (VPN) access, search for login attempts from the assigned VPN pool address and compare against all authentication sources, regardless of the account used.
+
+
+Check for credential harvesting.
+
+Run a “show capture” command to check for evidence of unauthorized packet captures configured to target:
+
+Terminal Access Controller Access-Control System Plus (TACACS+)
+Remote Authentication Dial-In User Service (RADIUS)
+Lightweight Directory Access Protocol (LDAP)
+Server Message Block (SMB)
+
+
+Determine whether shared keys between the compromised device and the centralized authentication server could enable decryption of captured traffic; if so, monitor for unauthorized use of any exposed service, network administrator, or other account credentials.
+
+
+Look for widespread scans of printers, largely across TCP port 443, after the threat actor establishes a foothold.
+Review for LDAP queries attempting to enumerate domain controller objects and services, including:
+
+servicePrincipalName=*cert*
+servicePrincipalName=*pki*
+servicePrincipalName=*public*
+objectclass=*
+
+
+Review for tampering with informational syslogs.
+
+Review for tampering or suppression of the following informational syslogs:
+
+302013 (VPN connection established)
+302014 (VPN connection terminated)
+710005
+609002
+
+
+If 302013 and 302014 are absent when expecting VPN activity, treat this as suspicious and investigate for potential threat actor malware.
+Examine historical trends for 302013 and 302014 (i.e., sudden gaps or cessation) to establish a potential tampering timeline.
+
+
+
+
+
+
+
+
+
+Guidance for Cisco Firepower and Secure Firewall Devices With ASA Software
+The guidance in this section is specific to Cisco Firepower and Cisco Secure Firewall devices with ASA software. In conjunction with Cisco’s released guidance, use the steps below to collect artifacts, obtain and submit a core dump to CISA’s Malware Next Generation (MNG) platform, apply Cisco’s latest software updates, perform a hard restart, and conduct follow-on threat hunting.
+
+A. Collect Device Artifacts
+
+
+
+
+Confirm Device Information
+Identify and document device model type, serial number, and firmware version.
+
+
+
+
+
+
+Run Initial Commands and Collect Output
+Before collecting a core dump, run the below commands. The output is crucial for analysis; CISA may request it at a later date. Save the output in a location off the device. If your device crashes as a result of running any command in this step (excluding the expected reload during core dump collection), stop all actions and contact CISA immediately.
+
+Run “show checkheaps” command.
+
+Confirm and notate the time of the last successful checkheaps command.
+Copy and save the full output and off the device (preferably to an isolated system).
+Wait at least five minutes, then run “show checkheaps” again. Review the last row for “Total number of runs.”
+
+Expect an increase of approximately one per 60 seconds elapsed (i.e., if the command is executed five minutes apart, the number should increase by approximately five).
+Note the value and whether it increased.
+
+
+
+If there is no positive change in “Total number of runs,” this is evidence of a potential compromise.
+
+
+
+
+Note: The command output displays the following:
+
+ 
+
+
+
+
+
+
+
+
+
+Run “show tech-support detail” command.
+
+This command aggregates device information by running a broad set of show commands. From this output, make sure to capture:
+
+Uptime
+ROMMON version
+Firmware version
+Last crashinfo
+
+
+Save the full output off the device (preferably to an isolated system).
+
+
+
+
+
+Collect Core Dump
+Note: The steps below trigger an immediate reload of the device and may cause network degradation or outages.
+
+Soft reboot the device to maximize the likelihood of a clean core dump.
+Prepare to collect a core dump.
+
+Run the following commands to configure the device to generate a core dump:
+
+config t
+
+coredump enable filesystem <filesystem>
+Note: <filesystem> is typically “disk0:”
+However, not all Firepower devices will have the ability to run the coredump enable filesystem command. In those cases, entities should skip and proceed to the next step.
+
+
+
+
+
+Collect a core dump and save a copy.
+
+
+See Appendix A in the Cisco Firepower 1000/2100 Series Forensic Data Collection Procedures for consistent, model-agnostic instructions to obtain a core dump from Firepower 1000/2100/4100/9300 and Secure Firewall devices with ASA software.
+Note: FCEB agencies should contact CISA with any issues; for Firepower 4100/9300 devices removed from the network, coordinate with CISA to obtain the core dump.
+
+
+
+If nothing is written (i.e., no file appears in the file system):
+
+Record this condition.
+Review the command output for errors (i.e., “disk0: free space is too full to write a coredump.”)
+
+Run the commands again.
+
+If successful on the second attempt, inform CISA.
+If there is still no output, document and inform CISA; this may indicate an error or possible compromise.
+
+Note: Core dump files typically follow a naming pattern similar to: 
+
+“core_smp.2025Sep16_165718.1575.11.gz”
+“core.lina.16412.1756344191.gz”
+
+A “coredumpfsysimage.bin” file may also appear; however, this is not a core dump. It is a binary used during the process of dumping the memory out to a file and should not be uploaded.
+
+
+
+Run the following commands to capture the text segment memory dump, compute its SHA-512 hash, and transfer it off the device:
+
+show version | inc Version
+verify /sha-512 system:memory/text
+copy system:memory/text ftp
+
+
+After transferring the file from the device, CISA recommends recalculating the SHA-512 hash and comparing it to the value generated by command ii (verify /sha-512 system:memory/text).
+If the device crashes after running these commands, document the incident and inform CISA, as this behavior could be an indicator of compromise.
+
+
+
+
+
+B. Upload Core Dump in CISA’s Malware Next Generation (MNG) Platform
+
+To upload a core dump to CISA’s MNG platform, see the Annex below.
+
+C. Apply Patch per CISA’s ED 25-03 and Cisco’s Security Advisory
+
+After device artifact and core dump collection, apply Cisco’s latest software updates and consult the instructions in ED 25-03 and Cisco’s Security Advisory. These updates address:
+
+
+CVE-2025-20333
+CVE-2025-20362
+FIRESTARTER persistence mechanism
+
+
+To confirm the correct updated version (with the relevant hotfix), review the software tables included in Cisco’s Security Advisory. Ensure you notate which version you upgrade to, as this will need to be reported to CISA.
+Note:
+
+For Firepower 4100 and 9300 devices, entities must upgrade the FXOS before upgrading the ASA software.
+For Secure Firewall 3100 and 4200 devices in multi-instance mode, entities should consult Cisco’s Firewall Management Center, which provides guidance on upgrading FXOS and the ASA software.
+
+
+After implementing the latest software updates:
+
+
+
+If core dump results do not indicate compromise, proceed to step D (Perform a Hard Restart of Cisco Firepower and Secure Firewall Devices).
+If core dump results indicate compromise, keep the device powered on, immediately disconnect the device from the network, and contact CISA for further guidance. Do not take any additional actions without coordinating with CISA.
+
+
+
+
+
+D. Perform a Hard Restart of Cisco Firepower and Secure Firewall Devices
+
+
+Note: If the core dump analysis indicates potential compromise, do not proceed with this section or take any additional action until coordinating with CISA.
+
+
+CISA determined that the only method to confidently remove the FIRESTARTER persistence mechanism is to physically unplug the device from its power source, forcing a hard restart. As a precaution, all organizations should take the below steps immediately after implementing the latest software updates, even if the core dump analysis does not indicate compromise. If an organization patches a device but cannot perform a hard restart immediately after, CISA recommends obtaining a new core dump and analyzing it for compromise before hard restarting.
+
+
+To perform a hard restart:
+
+
+
+Locate physical device.
+
+
+
+
+
+While the device is running, physically unplug it from all power sources.
+Note: A standard reboot is insufficient. Fully remove power, including any redundant power sources.
+
+
+
+
+
+Leave the device fully disconnected from power for one minute.
+
+
+
+
+Reconnect power and allow device to boot.
+
+
+
+E. Conduct Further Threat Hunting
+
+
+
+If CISA’s MNG platform results show malicious indicators of compromise:
+
+
+
+FCEB agencies should follow ED 25-03 and contact CISA immediately.
+Other U.S. organizations should contact CISA via the Incident Reporting System or through CISA’s 24/7 Operations Center (contact@cisa.dhs.gov or 888-282-0870).
+Cisco customers should open a Cisco Technical Assistance Center (TAC) case and include the output of the “show tech-support detail” command.
+
+
+
+In conjunction with Cisco’s released guidance, use the steps below to detect additional malicious activity, as the threat actor may have pivoted from the compromised device to other areas of the network. Organizations do not need to complete these steps strictly in order; however, begin with identifying compromised user accounts, which has proven the most reliable starting point.
+
+
+
+Identify Compromised Accounts
+Begin by identifying potentially compromised accounts. Based on current investigations, one reliable method is monitoring and searching for impossible-travel logins; scrutinize all logins traversing the compromised device.
+
+Monitor and search for impossible-travel logins.
+
+
+Detect suspicious logins from geographically distant IP addresses using the following Splunk Search Processing Language (SPL) query (tailor it to the security information and event management [SIEM] solution in place):
+index=<NDR/Appliance> sourcetype=<log_source>
+| search event_type="authentication"
+| iplocation src_ip
+| stats earliest(_time) AS first_login latest(_time) AS last_login by user, src_ip, City, Country
+| where first_login != last_login AND distance_between(first_login_location, last_login_location) > 1000
+| table user, src_ip, first_login, last_login, City, Country
+
+
+
+Review syslog message IDs.
+
+Informational level:
+
+WebVPN session terminated: Idle Timeout : %ASA-6-716002
+
+
+
+Debug level:
+
+SVC Service Termination: %ASA-7-722029
+SVC Service Termination: %ASA-7-722030
+SVC Service Termination: %ASA-7-722031
+
+Note: Informational-level syslogs should be enabled by default; enable if disabled. Debug-level syslogs are not enabled by default; enable if feasible.
+
+
+
+
+
+
+
+
+
+
+Review Compromised Account Activity
+Monitor and search for the below known threat actor activities conducted after obtaining account access.
+
+Check for credential reuse.
+
+If a compromised device contains user or service account credentials (i.e., usernames and passwords), assess those accounts for lateral movement, especially where credentials are reused across the enterprise or follow predictable patterns (e.g., “Password12 > Password23”).
+If only account names (no passwords) are present, enable enhanced monitoring (i.e., login sources, actions performed) and review for suspicious activity.
+If a compromised device provides virtual private network (VPN) access, search for login attempts from the assigned VPN pool address and compare against all authentication sources, regardless of the account used.
+
+
+Check for credential harvesting.
+
+Run a “show capture” command to check for evidence of unauthorized packet captures configured to target:
+
+Terminal Access Controller Access-Control System Plus (TACACS+)
+Remote Authentication Dial-In User Service (RADIUS)
+Lightweight Directory Access Protocol (LDAP)
+Server Message Block (SMB)
+
+
+Determine whether shared keys between the compromised device and the centralized authentication server could enable decryption of captured traffic; if so, monitor for unauthorized use of any exposed service, network administrator, or other account credentials.
+
+
+Look for widespread scans of printers, largely across TCP port 443, after the threat actor establishes a foothold.
+Review for LDAP queries attempting to enumerate domain controller objects and services, including:
+
+servicePrincipalName=*cert*
+servicePrincipalName=*pki*
+servicePrincipalName=*public*
+objectclass=*
+
+
+Review for tampering with informational syslogs.
+
+Review for tampering or suppression of the following informational syslogs:
+
+302013 (VPN connection established)
+302014 (VPN connection terminated)
+710005
+609002
+
+
+If 302013 and 302014 are absent when expecting VPN activity, treat this as suspicious and investigate for potential threat actor malware.
+Examine historical trends for 302013 and 302014 (i.e., sudden gaps or cessation) to establish a potential tampering timeline.
+
+
+
+
+
+
+
+
+
+
+
+Guidance for Cisco ASA Devices
+The guidance in this section is specific to Cisco ASA devices. In conjunction with Cisco’s released guidance, use the steps below to collect artifacts, obtain and submit a core dump to CISA’s Malware Next Generation (MNG) platform, apply Cisco’s latest software updates, perform a hard restart, and conduct follow-on threat hunting.
+
+
+A. Collect Device Artifacts
+
+
+
+
+Confirm Device Information
+Identify and document device model type, serial number, and firmware version.
+
+
+
+
+
+
+Run Initial Commands and Collect Output
+Before collecting a core dump, run the below commands. The output is crucial for analysis; CISA may request it at a later date. Save the output in a location off of the device. If your device crashes as a result of running any command in this step (excluding the expected reload during core dump collection), stop all actions and contact CISA immediately.
+
+Run “show checkheaps” command.
+
+Confirm and notate the time of the last successful checkheaps command.
+Copy and save the full output off the device (preferably to an isolated system).
+Wait at least five minutes, then run “show checkheaps” again. Review the last row for “Total number of runs.”
+
+Expect an increase of approximately one per 60 seconds elapsed (i.e., if the command is executed five minutes apart, the number should increase by approximately five).
+Note the value and whether it increased.
+
+
+
+If there is no positive change in “Total number of runs,” this is evidence of a potential compromise.
+
+
+
+
+Note: The command output displays the following:
+
+ 
+
+
+
+
+
+
+
+
+
+Run “show tech-support detail” command.
+
+This command aggregates device information by running a broad set of show commands. From this output, make sure to capture:
+
+Uptime
+ROMMON version
+Firmware version
+Last crashinfo
+
+
+Save the full output off the device (preferably to an isolated system).
+
+
+Check for the presence of the threat actor’s implant by running the following command: more /binary system:/text | grep 55534154 41554156 41575756 488bb3a0.
+
+Copy and save the full output off the device (preferably to an isolated system).
+Any output from this command is an indicator of compromise.
+
+
+
+
+
+Collect Core Dump
+Note: The steps below trigger an immediate reload of the device and may cause network degradation or outages.
+
+Soft reboot the device to maximize the likelihood of a clean core dump.
+Prepare to collect a core dump.
+
+Run the following commands to configure the device to generate a core dump:
+
+config t
+
+coredump enable filesystem <filesystem>
+Note: <filesystem> is typically “disk0:”
+
+
+
+
+
+Collect a core dump and save a copy.
+
+Initiate a core dump using the following command:
+
+crashinfo force page-fault
+
+
+Once the device reboots, transfer the zipped core dump file from the system to an external storage using one of the below commands.
+
+
+If the device is still connected to the network, use:
+copy disk0:/coredumpfsys/<filename.gz> [scp:/ftp:/tftp:]
+
+If the device has been disconnected or isolated from the network, save on a removable storage device or external laptop or device.
+
+
+To save on a removable storage device, use:
+copy disk0:/coredumpfsys/<filename.gz>disk1:/<filename.gz> 
+Note: The storage device must be FAT32 formatted for the Cisco device to utilize it properly.
+
+
+To save on an external laptop or device, use: 
+copy disk0:/coredumpfsys/<filename.gz> scp://username@192.168.0.1/path/to/file/<filename.gz> 
+
+
+
+
+
+
+
+If nothing is written (i.e., no file appears in the file system):
+
+Record this condition.
+Review the command output for errors (i.e., “disk0: free space is too full to write a coredump.”)
+
+Run the commands again.
+
+If successful on the second attempt, inform CISA.
+If there is still no output, document and inform CISA; this may indicate an error or possible compromise.
+
+Note: Core dump files typically follow a naming pattern similar to: 
+
+“core_smp.2025Sep16_165718.1575.11.gz”
+“core.lina.16412.1756344191.gz” 
+
+A “coredumpfsysimage.bin” file may also appear; however, this is not a core dump. It is a binary used during the process of dumping the memory out to a file and should not be uploaded.
+
+
+
+
+Run the following commands to capture the text segment memory dump, compute its SHA-512 hash, and transfer it off the device:
+
+show version | inc Version
+verify /sha-512 system:memory/text
+copy system:memory/text ftp
+
+Note: After transferring the file from the device, CISA recommends recalculating the SHA-512 hash and comparing it to the value generated by command ii (verify /sha-512 system:memory/text). If the device crashes after running these commands, document the incident and inform CISA, as this behavior could be an indicator of compromise.
+
+
+
+
+
+
+B. Upload Core Dump in CISA’s Malware Next Generation (MNG) Platform
+
+To upload a core dump to CISA’s MNG platform, see the Annex below.
+
+C. Apply Patch per CISA’s ED 25-03 and Cisco’s Public Release and Security Advisory
+
+
+After device artifact and core dump collection, apply Cisco’s latest software updates and consult the instructions in ED 25-03, Cisco's previous Public Release, and latest Security Advisory.
+
+
+
+
+In alignment with Cisco’s guidance, organizations applying the patch to Cisco ASA devices should take the following actions: 
+
+
+
+Monitor console output during the device’s initial boot (as part of the update).
+
+
+Expected messages:
+
+
+
+Message #113 : Verifying bootloader: Message #114 : .Message#115 : .Message #116 : .Message #117 :Bootloader verification succeeded.Message #118 : Verifying ROMMON: Message #119 : .Message #120 :.Message #121 :.Message #122 : .Message #123 :ROMMON verification succeeded.
+
+
+
+
+If the expected “verification succeeded” messages appear, the persistence mechanism associated with this threat activity is likely not present.
+If the messages differ (i.e., “Bootloader verification failed at address” or “ROMMON verification failed at address”), this may indicate the persistence mechanism is present.
+
+
+Conduct a post-update check.
+
+For ASA 5512-X, 5515-X, 5525-X, 5545-X, 5555-X, or 5585-X devices updated to ASA 9.12.4.72 or 9.14.4.28, check disk0: for a file named firmware_update.log.
+The presence of firmware_update.log may indicate the threat actor compromised the device prior to the update.
+
+
+
+
+
+
+
+D. Conduct Further Threat Hunting
+
+
+If CISA’s MNG platform results show malicious indicators of compromise, disk0: contains the firmware_update.log file, or device messages during the update varied from the expected messages:
+
+
+
+FCEB agencies should follow ED 25-03 and contact CISA immediately.
+Other U.S. organizations should contact CISA via the Incident Reporting System or through CISA’s 24/7 Operations Center (contact@cisa.dhs.gov or 888-282-0870).
+Cisco customers should open a Cisco Technical Assistance Center (TAC) case and include the output of the “show tech-support detail” command and the content of the firmware_update.log file.
+
+
+
+In conjunction with Cisco’s released guidance, use the steps below to detect additional malicious activity, as the threat actor may have pivoted from the compromised device to other areas of the network. Organizations do not need to complete these steps strictly in order; however, begin with identifying compromised user accounts, which has proven the most reliable starting point.
+
+
+
+Identify Compromised Accounts
+Begin by identifying potentially compromised accounts. Based on current investigations, one reliable method is monitoring and searching for impossible-travel logins; scrutinize all logins traversing the compromised device.
+
+Monitor and search for impossible-travel logins.
+
+
+Detect suspicious logins from geographically distant IP addresses using the following Splunk Search Processing Language (SPL) query (tailor it to the security information and event management [SIEM] solution in place):
+index=<NDR/Appliance> sourcetype=<log_source>
+| search event_type="authentication"
+| iplocation src_ip
+| stats earliest(_time) AS first_login latest(_time) AS last_login by user, src_ip, City, Country
+| where first_login != last_login AND distance_between(first_login_location, last_login_location) > 1000
+| table user, src_ip, first_login, last_login, City, Country
+
+
+
+Review syslog message IDs.
+
+Informational level:
+
+WebVPN session terminated: Idle Timeout : %ASA-6-716002
+
+
+
+Debug level:
+
+SVC Service Termination: %ASA-7-722029
+SVC Service Termination: %ASA-7-722030
+SVC Service Termination: %ASA-7-722031
+
+Note: Informational-level syslogs should be enabled by default; enable if disabled. Debug-level syslogs are not enabled by default; enable if feasible.
+
+
+
+
+
+
+
+
+
+
+Review Compromised Account Activity
+Monitor and search for the below known threat actor activities conducted after obtaining account access.
+
+Check for credential reuse.
+
+If a compromised device contains user or service account credentials (i.e., usernames and passwords), assess those accounts for lateral movement, especially where credentials are reused across the enterprise or follow predictable patterns (e.g., “Password12 > Password23”).
+If only account names (no passwords) are present, enable enhanced monitoring (i.e., login sources, actions performed) and review for suspicious activity.
+If a compromised device provides virtual private network (VPN) access, search for login attempts from the assigned VPN pool address and compare against all authentication sources, regardless of the account used.
+
+
+Check for credential harvesting.
+
+Run a “show capture” command to check for evidence of unauthorized packet captures configured to target:
+
+Terminal Access Controller Access-Control System Plus (TACACS+)
+Remote Authentication Dial-In User Service (RADIUS)
+Lightweight Directory Access Protocol (LDAP)
+Server Message Block (SMB)
+
+
+Determine whether shared keys between the compromised device and the centralized authentication server could enable decryption of captured traffic; if so, monitor for unauthorized use of any exposed service, network administrator, or other account credentials.
+
+
+Look for widespread scans of printers, largely across TCP port 443, after the threat actor establishes a foothold.
+Review for LDAP queries attempting to enumerate domain controller objects and services, including:
+
+servicePrincipalName=*cert*
+servicePrincipalName=*pki*
+servicePrincipalName=*public*
+objectclass=*
+
+
+Review for tampering with informational syslogs.
+
+Review for tampering or suppression of the following informational syslogs:
+
+302013 (VPN connection established)
+302014 (VPN connection terminated)
+710005
+609002
+
+
+If 302013 and 302014 are absent when expecting VPN activity, treat this as suspicious and investigate for potential threat actor malware.
+Examine historical trends for 302013 and 302014 (i.e., sudden gaps or cessation) to establish a potential tampering timeline.
+
+
+
+
+
+
+
+
+
+Annex: CISA MNG Platform Submission Instructions
+
+MNG Submission Instructions
+
+To upload a core dump to CISA’s Malware Next Generation (MNG) platform, you must have a login.gov account and MNG account.
+
+User Types 
+
+
+
+Government users: registering with an email ending in .gov or .mil.
+Non-government users: registering with an email not ending in .gov or .mil. 
+
+
+
+If you do not have a login.gov account, complete Create Your MNG Account below. If you are an existing MNG user, proceed to Submit a Core Dump Sample for Analysis.
+
+Create Your MNG Account
+
+Using a web browser, go to https://malware.cisa.gov.
+Select “Create an Account” and follow instructions to create a login.gov account. Your login.gov account is used to access MNG and submit core dump samples for analysis.
+After creating your login.gov account, the webpage will redirect you to the MNG registration page. Provide your contact information. CISA uses this information only to provide support, if needed. It will not be shared outside of CISA.
+
+
+After registration, the webpage will redirect you to the MNG homepage, where you can view submissions and submit samples. It may take a moment for the system to assign permissions to your account. If you see a message stating you do not have permission to access the webpage, wait briefly and refresh.
+
+
+
+Submit a Core Dump Sample for Analysis
+
+Click “Submit” in the blue banner at the top of the page.
+In “Upload Type,” select “File.”
+Click “Browse,” navigate to the saved core dump file, and select it.
+
+Core dumps from Firepower or Secure Firewall devices must remain in compressed GZ file format to avoid exceeding file size limits.
+Do not package the core dump in additional archive formats.
+Submit one core dump per submission. To submit multiple core dumps, repeat these steps for each file.
+
+
+Verify the selected file name appears next to the file selector.
+If you are registered with .gov or .mil account, check the “Core dump” box.
+
+Non-government users can only submit core dumps and will not see a sample-type selection.
+
+
+Select the device type (ASA or Firepower/Secure Firewall) from “Select Device Type.”
+Select the model series from “Model Series #.”
+For government users, select the appropriate Traffic Light Protocol (TLP) category.
+
+CISA treats all non-government submissions as TLP:AMBER+STRICT and will not share the submissions outside of CISA.
+
+
+In the “Comments Section,” include:
+
+Device serial number.
+Any errors or issues encountered during core dump collection.
+Any additional relevant comments.
+
+
+Check the box to agree to the MNG Terms of Service, Privacy Act Statement, and CISA’s Privacy Policy.
+Check the box to acknowledge submission agreement.
+Click “Submit.” Upload time will vary with file size and network speed. Upon completion, you will receive an on-screen confirmation:
+
+
+ 
+
+
+
+Once submitted, analysis may take several minutes to complete.
+
+
+To submit another core dump, select “Submit Another” and repeat the process. To review submissions, select “View all Samples” to return to the homepage and see analysis results.
+
+Viewing Analysis Results
+
+The MNG homepage lists each submission with the date and time of submission.
+For valid core dumps, the “Verdict” column will display “Clean” or “Malicious.”
+
+If the scan failed, the “Status” column will display “Failed” and the “Verdict” column will display an “N/A” result.
+
+
+For detailed results, expand the entry (arrow to the left of the timestamp) and click the Transaction ID (TID).
+Under “Download Reports,” review the COREANALYSIS_RESULT file.
+
+If the report indicates “CLEAN: 1,” FCEB agencies should refer back to the relevant section and CISA’s ED 25-03.
+If the report indicates “DETECTED RAYINITIATOR: 1” or “DETECTED FIRESTARTER: 1,” contact CISA immediately. Do not proceed or take further action until you receive guidance from CISA Threat Hunting.
+If the report indicates “FAILED: 1,” results are inconclusive. FCEB agencies should contact CISA for assistance. Users can find additional details on failed scans in the COREANALYSIS_LOG file.
+
+
+
+After completing MNG submissions, refer to the relevant sections of this document based on your device type(s).
+
+
+
+
+
+
+Disclaimer
+The information in this report is being provided “as is” for informational purposes only. CISA does not endorse any commercial entity, product, company, or service, including any entities, products, or services linked within this document. Any reference to specific commercial entities, products, processes, or services by service mark, trademark, manufacturer, or otherwise, does not constitute or imply endorsement, recommendation, or favoring by CISA.
+
+
+
+
+
+
+
+
+
+
+Tags
+
+Topics:
+                                                                                                                                                                                                                                                                                                                                                Cybersecurity Best Practices
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Directives
+
+
+
+
+
+
+Apr 23, 2026
+
+Emergency Directive
+
+
+
+V1: ED 25-03: Identify and Mitigate Potential Compromise of Cisco Devices
+ 
+
+
+
+
+
+
+
+Mar 11, 2026
+
+Emergency Directive
+
+
+
+V1: ED 26-03: Mitigate Vulnerabilities in Cisco SD-WAN Systems
+ 
+
+
+
+
+
+
+
+Feb 25, 2026
+
+Emergency Directive
+
+
+
+Supplemental Direction ED 26-03: Hunt and Hardening Guidance for Cisco SD-WAN Systems
+ 
+
+
+
+
+
+
+
+Feb 25, 2026
+
+Emergency Directive
+
+
+
+ED 26-03: Mitigate Vulnerabilities in Cisco SD-WAN Systems
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Return to top
+
+
+
+
+
+
+Topics
+
+
+Spotlight
+
+
+Resources & Tools
+
+
+News & Events
+
+
+Careers
+
+
+About
+
+
+
+
+
+
+
+
+
+Cybersecurity & Infrastructure Security Agency
+ 
+
+
+
+Facebook
+
+
+X
+
+
+LinkedIn
+
+
+YouTube
+
+
+Instagram
+
+
+RSS
+
+
+
+CISA Central
+1-844-Say-CISA
+contact@cisa.dhs.gov
+
+
+
+
+
+
+
+
+
+
+DHS Seal
+
+CISA.gov
+An official website of the U.S. Department of Homeland Security
+
+
+
+
+About CISA
+
+
+Budget and Performance
+
+
+DHS.gov
+
+
+FOIA Requests
+
+
+No FEAR Act
+
+
+Office of Inspector General
+
+
+Privacy Policy
+
+
+Subscribe
+
+
+The White House
+
+
+USA.gov
+
+
+Website Feedback
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

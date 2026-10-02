@@ -1,0 +1,1312 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Bring the Fight to the Edge: Turning Time Into an Advantage in OT Security
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Menu
+
+
+
+
+
+
+Tools
+ATOMs
+Security Consulting
+About Us
+Under Attack?
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  Threat Research CenterInsightsGeneral 
+ 
+General
+Bring the Fight to the Edge: Turning Time Into an Advantage in OT Security
+
+
+  6  min read              
+
+
+Related ProductsIndustrial and Operational Technology 
+
+
+
+
+
+
+
+
+By:Adam Robbie 
+
+Published:February 24, 2026 Categories:GeneralInsights
+ Tags:DefenseOperational TechnologyThreat detection
+ 
+
+
+ 
+ 
+
+
+Share
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+Why OT Defenses Often Start Too Late
+Industrial organizations are facing a growing paradox in cybersecurity. While operational technology (OT) environments are increasingly connected, most security strategies still assume threats will only materialize once attackers reach the plant floor. In reality, attacks that disrupt industrial operations rarely begin in OT environments. They originate upstream, progress over time and frequently exploit the persistent assumption of isolation. This shift fundamentally changes how defenders must think about visibility, detection and response across Information Technology (IT) and OT domains.
+Recent joint research by Palo Alto Networks OT Threat Research Lab, Siemens Cybersecurity Lab and the Idaho National Laboratory challenges several long-held assumptions about how OT attacks originate, evolve and can be stopped. By analyzing global OT network telemetry alongside decades of historical incident data, the research shows that defenders often have far more time and visibility than commonly believed — if they know where to look.
+This blog explores how focusing on the network edge, predictive threat behavior and an edge-driven OT security operations model can transform time from a liability into a strategic advantage. Our full findings are detailed in our joint whitepaper, “Intelligence-Driven Active Defense: Securing Operational Technology Environments.”
+Threats That Disrupt OT Operations Are Rarely OT-Centric
+One of the most persistent myths in industrial security is that OT attacks are fundamentally different from IT attacks. While industrial systems do have unique safety and availability requirements, the paths adversaries use to reach them are often familiar.
+Across manufacturing, energy and other critical infrastructure incidents, production shutdowns frequently originate from common IT compromises that occur well before attackers ever interact with industrial systems. This boundary — the network edge between IT and OT — is where attackers often expose themselves through anomalous access patterns, protocol misuse or reconnaissance activity.
+Understanding this shift reframes OT defense. The question is no longer whether threats will reach OT systems, but whether defenders can detect and disrupt them before they do.
+The Edge Is Where Time Still Exists
+In some technology contexts, the term “edge” could refer to digital transformation, analytics or industrial IoT architectures. In OT security, however, the edge is best understood as a strategic control point: the network and security layer where external connectivity, IT systems and OT environments converge.
+Our joint research shows that this convergence layer plays a far more critical role in OT incidents than commonly assumed. Internet-exposed OT assets continue to expand, with a 332% increase between 2023-2024 in unique, exposed OT devices and services and nearly 20 million OT-related assets observable on the public internet. Exposure increases risk, but it does not equate to successful disruption. In many cases, it instead creates opportunities for earlier detection and more effective defense.
+The data reveals a more consistent pattern: approximately 70% of attacks impacting OT operations originate within IT environments. Across incidents, adversaries frequently begin with familiar enterprise-focused techniques such as credential abuse, brute force attempts and exploitation of IT-facing services. They then progress across shared identity systems, remote access pathways and management infrastructure before executing OT-specific actions.This progression is what makes the edge strategically decisive.
+Adversaries rarely move directly from initial compromise to operational impact. They must traverse multiple control layers, generating detectable signals through authentication anomalies, session deviations, protocol misuse and reconnaissance activity.
+Time exists at the edge because adversaries must cross it. The edge is therefore not simply where networks connect. It is where defenders retain their greatest advantage: the opportunity to detect and disrupt threats before safety-critical OT functions are affected.
+But the edge is not only important because attackers must traverse it. Its true strategic value lies in something even more powerful: the remarkable consistency of adversary behavior.
+Predictable Adversary Behavior Creates a Window for Defense
+Analysis of more than two decades of OT incidents reveals a striking reality: adversaries rarely operate with the randomness often attributed to them.
+Across observed incidents, 82.8% of adversary activity occurred during extended precursor phases, long before operational disruption. On average, attackers remained present for approximately 185 days prior to initiating impact-level activity. This extended dwell time fundamentally reshapes the OT security narrative.
+In this context, dwell time refers to the period between an adversary’s initial compromise and the point of disruptive or impact-level activity. It captures how long attackers remain active within an environment while conducting reconnaissance, credential abuse, lateral movement and staging activities prior to operational consequences.
+OT disruptions are not typically sudden events. They are the result of gradual progression — reconnaissance, credential abuse, lateral movement, staging — all of which produce detectable signals. While adversaries may differ in tooling, targets or intent, the structure of their behavior remains remarkably consistent.
+This consistency is what creates a defensive advantage. When early-stage behaviors are observed at the IT–OT edge, defenders are not reacting to an inevitable outcome — they are interrupting a progression already in motion. The implication is critical: exposure does not automatically translate to disruption.
+Rather than treating OT defense as a race against impact, organizations can treat it as a problem of earlier detection and intervention. Techniques such as attack-chain analysis and adversary progression modeling can further support this shift by helping defenders anticipate likely attacker pathways. But the central insight remains clear:
+Attackers spend far more time preparing than executing disruption. For defenders, this transforms time from a constraint into a strategic asset.
+From Passive Monitoring to Active Defense in OT Environments
+The extended dwell times and observable precursor behaviors described earlier create a critical opportunity for defenders. Yet many industrial security programs remain heavily focused on asset inventories and passive monitoring alone. While visibility is essential, it is insufficient by itself. Visibility without response capability does not prevent disruption. This is where OT SecOps becomes essential.
+OT SecOps (Operational Technology Security Operations) can be understood as the disciplined practice of detecting, analyzing and safely responding to cyber threats in industrial environments. Unlike traditional IT security operations, OT SecOps is designed around operational continuity, safety constraints and process integrity.
+Effective OT SecOps evolves through a progressive security maturity model aligned with established industrial security principles, such as IEC 62443 (an internationally recognized framework for securing industrial automation and control systems.):
+
+Architectural Defense establishes secure zones, conduits and segmentation, creating the structural foundation for control and containment.
+Passive Defense provides the telemetry needed to observe abnormal behavior across industrial protocols and network flows.
+Active Defense builds on this foundation by enabling pre-approved, OT-specific response actions at the edge, before process impact occurs.
+
+Active Defense capabilities can be implemented through multiple operational mechanisms, including structured response playbooks, threat hunting, containment strategies and OT-specific security operations models such as OT Security Operations Center (OT SOC).
+The OT SOC provides a coordinated framework for detection, analysis and controlled intervention, transforming architectural stability and passive visibility into operational defense. By aligning telemetry, analytics and response workflows, the OT SOC enables organizations to disrupt adversary progression while preserving operational continuity and safety constraints.
+Without architectural controls and passive visibility, OT SecOps cannot function effectively. Without Active Defense, detection remains reactive and late.
+IT–OT SOC Convergence Without Compromise
+While the OT SOC strengthens Active Defense within industrial environments, it cannot operate in isolation. The same research that highlights extended dwell times and precursor behaviors also shows that a majority of OT-impacting incidents originate within IT environments.
+This creates a structural reality for modern security operations: effective defense requires coordination across both domains. IT–OT SOC convergence is often misunderstood as consolidation, replacement or the absorption of OT security into traditional enterprise workflows. In practice, convergence does not imply collapse.
+IT–OT SOC convergence maintains clear separation of duties while enabling coordinated detection and response across zones and trust boundaries. IT teams often identify the early indicators of compromise, while OT teams apply operational context and execute domain-appropriate response actions.
+This model allows organizations to manage cyber risk holistically without forcing industrial environments into enterprise security frameworks that may overlook critical safety and availability requirements.
+The Key: Stopping Threats Early
+OT security has often been framed as a problem of isolation — keeping industrial systems separate from external threats. The reality is more complex. As connectivity increases, isolation alone is no longer sufficient, nor is it realistic.
+Our research shows that defenders are not as late as they think. Adversaries leave observable traces long before operational impact occurs, and these traces most often surface at the network edge. Time, in this context, becomes a measurable security variable rather than an uncontrollable constraint. Extended attacker dwell times create windows for detection, decision-making and controlled intervention. By combining edge-focused threat intelligence, predictive analysis and an OT-specific security operations model, organizations can turn time into a defensive advantage.
+For leaders, this means OT security strategy should focus on where threats can be detected and stopped early, not on how far control systems can be isolated.
+“Bring the fight to the edge” is not a slogan — it is a strategic shift. In OT environments, defense is about time, and the edge is where defenders still have it.
+Additional Resources
+
+Joint OT Threat Research White Paper – Palo Alto Networks, Siemens, Idaho National Laboratory
+* CyOTE™ and Attack Chain Estimator (ACE) ©2026 Battelle Energy Alliance, LLC ALL RIGHTS RESERVED Prepared by Battelle Energy Alliance, LLC Under Contract No. DE-AC07-05ID14517 With the U. S. Department of Energy
+
+
+
+Back to top
+
+TagsDefenseOperational TechnologyThreat detection
+
+
+
+Threat Research Center
+
+
+Next: VShell and SparkRAT Observed in Exploitation of BeyondTrust Critical Vulnerability (CVE-2026-1731)
+
+
+
+
+
+
+
+Table of Contents
+
+
+
+
+
+
+Related Articles
+
+
+
+                      Essential Data Sources for Detection Beyond the Endpoint                  
+
+
+
+                      The Browser Defense Playbook: Stopping the Attacks That Start on Your Screen                  
+
+
+
+                      Keys to the Kingdom: Erlang/OTP SSH Vulnerability Analysis and Exploits Observed in the Wild                  
+
+
+
+
+
+
+
+
+
+Related General Resources
+
+
+
+
+ 
+
+
+
+Insights September 16, 2026
+
+Atomic macOS (AMOS) Stealer Activity
+
+
+
+MacOS
+
+
+Threat intelligence
+
+
+Unit 42
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights September 2, 2026
+
+An AI-Assisted Cyber Attack: Inside a Unit 42 Investigation
+
+
+
+Agentic AI
+
+
+Frontier AI
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights August 28, 2026
+
+Perturbation Probing: A New Diagnostic for the Fragility of LLM Safety
+
+
+
+AI
+
+
+Jailbreak
+
+
+LLM
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights August 21, 2026
+
+Connecting the Dots: Securing the Overlooked Corners of the Software Development Lifecycle (SDLC) Supply Chain
+
+
+
+ChainDrop
+
+
+Npm packages
+
+
+Software supply-chain attack
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+High Profile Threats August 18, 2026
+
+Threat Brief: Mitigating Large-Scale Credential Attacks (Updated August 18)
+
+
+
+Credential theft
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights August 4, 2026
+
+The Frontier AI Vulnerability Burst: Industrializing Autonomous Zero-Day Discovery in Open-Source Software
+
+
+
+AI
+
+
+Frontier AI
+
+
+Vulnerability Exploitation
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights July 2, 2026
+
+How We Added WebAuthn to a Browser-Based RDP Client
+
+
+
+IDA Pro
+
+
+Microsoft
+
+
+RDP
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights June 12, 2026
+
+Tracing Digital Intent: New MacOS Tahoe 26 Artifact Discovered
+
+
+
+Digital forensics
+
+
+MacOS
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights June 8, 2026
+
+When “Hi, This Is IT” Comes Through Microsoft Teams
+
+
+
+Cloaked Ursa
+
+
+Identity
+
+
+Phishing
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights May 28, 2026
+
+2026 World Cup: Discussing The World’s Biggest Game’s Attack Surface
+
+
+
+Fiddling Scorpius
+
+
+Fighting Ursa
+
+
+Muddled Libra
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
+				Get updates from Unit 42			
+Peace of mind comes from staying ahead of threats. Subscribe today.
+
+
+
+
+
+
+
+
+
+
+Your Email
+
+
+Subscribe for email updates to all Unit 42 threat research.
+By submitting this form, you agree to our Terms of Use and acknowledge our Privacy Statement.
+
+                    This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.                            
+  
+
+Invalid captcha!
+ 
+					Subscribe					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Get the latest news, invites to events, and threat alerts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Enter your email now to subscribe!
+
+
+
+
+
+Sign up 
+
+
+
+
+                                
+                                
+                                
+                                    By submitting this form, I understand my personal data will be processed in accordance with
+                                        Palo Alto Networks Privacy Statement and Terms of Use.
+
+
+
+Sign up 
+
+
+
+
+
+
+
+
+
+
+
+
+Products and Services
+
+
+
+
+
+                                    AI-Powered Network Security Platform
+                                
+
+
+
+                                    Secure AI by Design
+                                
+
+
+
+                                    Prisma AIRS
+                                
+
+
+
+                                    AI Access Security
+                                
+
+
+
+                                    Cloud Delivered Security Services
+                                
+
+
+
+                                    Advanced Threat Prevention
+                                
+
+
+
+                                    Advanced URL Filtering
+                                
+
+
+
+                                    Advanced WildFire
+                                
+
+
+
+                                    Advanced DNS Security
+                                
+
+
+
+                                    Enterprise Data Loss Prevention
+                                
+
+
+
+                                    Enterprise IoT Security
+                                
+
+
+
+                                    Medical IoT Security
+                                
+
+
+
+                                    Industrial OT Security
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    Next-Generation Firewalls
+                                
+
+
+
+                                    Hardware Firewalls
+                                
+
+
+
+                                    Software Firewalls
+                                
+
+
+
+                                    Strata Cloud Manager
+                                
+
+
+
+                                    SD-WAN for NGFW
+                                
+
+
+
+                                    PAN-OS
+                                
+
+
+
+                                    Panorama
+                                
+
+
+
+                                    Secure Access Service Edge
+                                
+
+
+
+                                    Prisma SASE
+                                
+
+
+
+                                    Application Acceleration
+                                
+
+
+
+                                    Autonomous Digital Experience Management
+                                
+
+
+
+                                    Enterprise DLP
+                                
+
+
+
+                                    Prisma Access
+                                
+
+
+
+                                    Prisma Browser
+                                
+
+
+
+                                    Prisma SD-WAN
+                                
+
+
+
+                                    Remote Browser Isolation
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    AI-Driven Security Operations Platform
+                                
+
+
+
+                                    Cloud Security
+                                
+
+
+
+                                    Cortex Cloud
+                                
+
+
+
+                                    Application Security
+                                
+
+
+
+                                    Cloud Posture Security
+                                
+
+
+
+                                    Cloud Runtime Security
+                                
+
+
+
+                                    Prisma Cloud
+                                
+
+
+
+                                    AI-Driven SOC
+                                
+
+
+
+                                    Cortex XSIAM
+                                
+
+
+
+                                    Cortex XDR
+                                
+
+
+
+                                    Cortex XSOAR
+                                
+
+
+
+                                    Cortex Xpanse
+                                
+
+
+
+                                    Unit 42 Managed Detection & Response
+                                
+
+
+
+                                    Managed XSIAM
+                                
+
+
+
+                                    Observability
+                                
+
+
+
+                                    Cortex XCOR
+                                
+
+
+
+
+
+                                    Next-Generation Identity Security
+                                
+
+
+
+                                    Privileged Access Management
+                                
+
+
+
+                                    Identity and Access Management 
+                                
+
+
+
+                                    Endpoint Privilege Manager
+                                
+
+
+
+                                    Identity Governance
+                                
+
+
+
+                                    Workforce Password Management
+                                
+
+
+
+                                    Agentic Identities
+                                
+
+
+
+                                    Secrets Management
+                                
+
+
+
+                                    Unified Secrets Governance
+                                
+
+
+
+                                    Application Credentials Delivery
+                                
+
+
+
+                                    Vendor Privileged Access
+                                
+
+
+
+                                    Threat Intel and Incident Response Services
+                                
+
+
+
+                                    Prepare for Emerging Risks
+                                
+
+
+
+                                    Strengthen Your Defenses
+                                
+
+
+
+                                    Build Your Security Strategy
+                                
+
+
+
+                                    Understand the Adversary
+                                
+
+
+
+                                    Respond to a Cyber Attack
+                                
+
+
+
+
+
+
+Company
+
+
+
+
+
+                                    About Us
+                                
+
+
+
+                                    Careers
+                                
+
+
+
+                                    Contact Us
+                                
+
+
+
+                                    Corporate Responsibility
+                                
+
+
+
+                                    Customers
+                                
+
+
+
+                                    Investor Relations
+                                
+
+
+
+                                    Location
+                                
+
+
+
+                                    Newsroom
+                                
+
+
+
+
+
+
+Popular Links
+
+
+
+
+
+                                    Blog
+                                
+
+
+
+                                    Communities
+                                
+
+
+
+                                    Content Library
+                                
+
+
+
+                                    Cyberpedia
+                                
+
+
+
+                                    Event Center
+                                
+
+
+
+                                    Manage Email Preferences
+                                
+
+
+
+                                    Products A-Z
+                                
+
+
+
+                                    Product Certifications
+                                
+
+
+
+                                    Report a Vulnerability
+                                
+
+
+
+                                    Sitemap
+                                
+
+
+
+                                    Tech Docs
+                                
+
+
+
+                                    Unit 42
+                                
+
+
+
+                                    Do Not Sell or Share My Personal Information
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Privacy
+                            
+
+
+
+                                Trust Center
+                            
+
+
+
+                                Terms of Use
+                            
+
+
+
+                                Documents
+                            
+
+
+Copyright © 2026 Palo Alto Networks. All Rights Reserved
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+EN
+
+
+
+Select your language
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Your browser does not support the video tag.
+          
+
+Default Heading
+Read the article
+              
+
+
+
+
+Seekbar
+
+
+
+
+
+
+
+
+
+
+
+
+
+Volume
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

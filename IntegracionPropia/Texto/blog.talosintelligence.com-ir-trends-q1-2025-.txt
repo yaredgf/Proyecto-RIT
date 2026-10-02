@@ -1,0 +1,699 @@
+
+
+
+IR Trends Q1 2025: Phishing soars as identity-based attacks persist
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+IR Trends Q1 2025: Phishing soars as identity-based attacks persist
+
+
+By 
+Lexi DiScola
+
+
+
+            Monday, April 28, 2025 06:00
+        
+
+
+                            Talos IR trends
+                        
+
+                            Cisco Talos Incident Response
+                        
+
+
+
+
+Phishing attacks spiked this quarter as threat actors leveraged this method of initial access in half of all engagements, a vast increase from previous quarters. Conversely, the use of valid accounts for initial access was rarely seen this quarter, despite being the top observed method in 2024, according to our Year in Review report. Nevertheless, valid accounts played a prominent role in the attack chains Cisco Talos Incident Response (Talos IR) observed as actors predominately used phishing to gain access to a user account, then leveraged this access to establish persistence in targeted networks.Ransomware and pre-ransomware incidents made up a slightly larger portion of threats observed this quarter, with most incidents falling into the latter category. Talos IR’s investigations into pre-ransomware events provided unique insight into defensive measures that successfully stopped these attacks before a ransomware executable could be deployed, including early engagement with the incident response team and robust monitoring of certain threat actor tactics, techniques and procedures (TTPs).Watch a discussion on the biggest trends on this latest reportActors leverage access to valid accounts via phishing to establish persistenceThreat actors used phishing to achieve initial access in 50 percent of engagements, a notable increase from less than 10 percent last quarter. Vishing was the most common type of phishing attack seen, accounting for over 60 percent of all phishing engagements, though we also observed malicious attachment, malicious link and business email compromise (BEC) attacks.Adversaries predominately leveraged phishing to gain access to a valid account, pivot deeper into the targeted network, and expand their foothold, contrasting other phishing objectives we have seen in the past such as eliciting sensitive information or monetary transfers. For example, in an observed vishing campaign — described in further detail in the ransomware section below — adversaries deceived users over the phone into establishing remote access sessions to the user’s workstation, then used this access to load tooling, establish persistence mechanisms and disable endpoint protections.In some engagements, actors leveraged phishing attacks to steal users’ legitimate access tokens, enabling them to maintain persistent access to the targeted networks. In one engagement, adversaries deployed a phishing email with a malicious link to successfully steal a user’s multi-factor authentication (MFA) session token along with their credentials. From there, the actors gained unauthorized access to the target’s Microsoft Office 365 environment and deployed enterprise applications with the likely goal of gaining further access into additional accounts. In another phishing engagement, upon gaining access to a user’s valid account, the actors cloned their active access token and specified new credentials for outbound connections. They then sought to expand their access by running commands to gather system information and creating a scheduled task to execute a malicious JavaScript file upon user login.Ransomware trendsVishing campaign leveraging BlackBasta and Cactus TTPs hits manufacturing and construction organizations Ransomware and pre-ransomware incidents made up over 50 percent of engagements this quarter, an increase from nearly 30 last quarter. A robust campaign leveraging BlackBasta and Cactus TTPs that targeted manufacturing and construction organizations accounted for over 60 percent of pre-ransomware and ransomware engagements and was consistent with public reporting on likely related incidents.  The attack chain we observed begins with the threat actors flooding users’ mailboxes at targeted organizations with a large volume of benign spam emails. After a few days, the actors call the victim, usually via Microsoft Teams, and direct them to initiate a Microsoft Quick Assist remote access session, helping them with installation of the program if not already present on the user’s system. Once a Quick Assist session is established, the adversary loads tooling to collect information about the target system and establish persistence. The actors create the TitanPlus registry key and embed IP addresses to enable command and control (C2) communication, using character substitution to obfuscate the infrastructure. After completing the TitanPlus registry key persistence process, the adversary then performs subsequent privilege escalation and lateral movement, seemingly with the ultimate goal of deploying ransomware. We initially observed the threat actors leveraging BlackBasta ransomware and pivoting to Cactus ransomware after public reporting on their use of the former was released. Our analysis of engagements involving Cactus led us to identify a previously undocumented variant of the ransomware, which builds upon previous functionality with new command-line arguments that provide the threat actors with greater control over the binary's function, likely to prioritize efficiency and maximum impact.Looking forward: The threat actors responsible for this campaign have proven to be agile, modifying their TTPs as more public reporting on this campaign emerges, which leads us to assess they will continue to adjust their TTPs and/or incorporate a different ransomware family or tooling into their attack chain moving forward to evade detection. We published our findings on this campaign in our Year in Review report in late March 2025 and will be tracking this activity to see if the threat actors modify their operations moving forward.Early detection of pre-ransomware TTPs halts attacks before encryptionOut of all ransomware and pre-ransomware engagements this quarter, 75 percent of incidents fell into the latter category, providing insight into defensive measures that successfully stopped these attacks before a ransomware executable could be deployed.One tactic that proved effective was early engagement with the incident response team. For example, in one engagement, Talos IR was contacted directly after the organization’s users experienced a flood of spam email. Given this TTP was consistent with the vishing campaign we had already observed affecting other organizations, we were able to advise that this was very likely pre-ransomware activity and share actionable indicators of compromise (IOCs) and mitigation recommendations.    Another defensive measure that was effective in containing pre-ransomware activity was robust monitoring and endpoint detection and response (EDR) solutions, particularly those configured to alert on unauthorized remote access connections and suspicious file execution. In one engagement, Cisco XDR was configured to flag certain TTPs that the security team identified were consistent with pre-ransomware activity, and soon after the alerts were triggered, they moved quickly to focus on eradication of the threat. The TTPs included use of remote access tools, disabling of the volume shadow copy service (VSS), and use of a local account to deploy a vulnerable driver. In another engagement, the organization’s monitoring tools alerted them of unauthorized remote access and they acted swiftly to respond to the affected system, resulting in the threat actor only having access to the targeted system for three minutes. In a different incident, suspicious file execution was flagged, leading the customer to identify the threat and isolate the system within hours of initial access.Crytox becomes latest ransomware group to leverage HRSword to disable EDR protectionsCrytox appeared in a Talos IR engagement for the first time this quarter, with affiliates leveraging HRSword as part of their attack chain — a tool that has not previously been publicly associated with the ransomware group. According to public reporting, Crytox is a ransomware family first seen in 2020 that typically encrypts local disks and network drives and drops a ransom note with a five-day ultimatum. Affiliates are known to leverage the uTox messenger application so victims can communicate with the threat actors. Talos IR responded to an engagement in which adversaries exploited a public-facing application that was not protected by MFA to gain initial access, then launched a ransomware attack that encrypted two hypervisors hosting numerous VM servers. The actors used TTPs that aligned with known Crytox TTPs, including using uTox for communication and dropping a ransomware note that matches publicly shared Crytox ransom notes. Of note, we also observed the affiliates using HRSword to disable the target’s EDR solution. We first reported on ransomware actors’ use of HRSword in FY24 Q1, specifically highlighting a Phobos incident, and observed additional threat groups leverage the tool throughout the remainder of the year.TargetingThe manufacturing industry vertical was the most affected this quarter, accounting for 25 percent of engagements. Notably, though education was the most targeted vertical for the second half of 2024, we did not respond to any incidents targeting education entities this quarter.Initial accessAs mentioned, the most observed means of gaining initial access this quarter was phishing, followed by use of valid accounts and exploitation of public facing applications. The increase in phishing attacks this quarter is likely due in part to the robust vishing campaign we observed that accounted for over 60 percent of all phishing engagements.Recommendations for addressing top security weaknesses Implement properly configured MFA and other access control solutionsHalf of the engagements this quarter involved MFA issues, including misconfigured MFA, lack of MFA and MFA bypass. As mentioned in the above ransomware section, token theft played a role in several incidents this quarter, enabling threat actors to bypass authentication controls and establish trusted connections. We also observed threat actors adding malicious secondary MFA devices to compromised accounts as well as taking advantage of a lack of MFA on remote access services, the latter of which is a tactic we have consistently observed in previous quarters. Talos IR recommends monitoring and alerting on the following for effective MFA deployment: abuse of bypass codes, creation of accounts designed to bypass or be exempt from MFA and removal of accounts from MFA.Enforce user education on phishing and social engineering attacksHalf of the engagements this quarter involved social engineering, potentially highlighting insufficient user education. This security weakness corresponds with the surge in phishing attacks, as users were manipulated to grant attackers access to their environments, with vishing proving to be particularly effective. Talos IR recommends raising awareness of phishing and social engineering techniques, as user education is a key part of spotting phishing attempts, countering MFA bypass techniques and knowing where to report suspicious activity.Protect endpoint security solutionsAlmost 20 percent of incidents involved organizations that did not have protections in place to prevent uninstallation of EDR solutions, enabling actors to disable these defenses. Talos IR strongly recommends ensuring endpoint solutions are protected with an agent or connector password and customizing their configurations beyond the default settings. Additional recommendations for hardening EDR solutions against this threat can be found in our 2024 Year in Review report.Top-observed MITRE ATT&CK techniquesThe table below represents the MITRE ATT&CK techniques observed in this quarter’s Talos IR engagement. Given that some techniques can fall under multiple tactics, we grouped them under the most relevant tactic in which they were leveraged. Please note this is not an exhaustive list.Key findings from the MITRE ATT&CK framework include:  This was the first quarter since January to March of 2024 (Q1 FY24) in which phishing was the top initial access technique, with actors leveraging vishing, malicious links, malicious attachments and BEC attacks.   We observed actors leveraging a wider variety of commercial and open-source remote access tools this quarter, including SplashTop, Atera, TeamViewer, AnyDesk, LogMeIn, ScreenConnect, QuickAssist, TightVNC and Level’s RMM platform. These tools appeared in 50 percent of engagements, a slight increase from almost 40 percent last quarter.
+
+Tactic  Technique  Example  Reconnaissance (TA0043)  T1590 Gather Victim Network Information Adversaries may gather information about the victim's networks that can be used during targeting. Information may include a variety of details, including administrative data as well as specifics regarding its topology and operations.  T1595.002 Active Scanning: Vulnerability Scanning Adversaries may run vulnerability scans against an organization’s public-facing infrastructure to identify potential vulnerabilities to exploit.   Initial Access (TA0001) T1598.004  Phishing for Information: Spearphishing Voice   In an observed campaign, users received calls from the adversary posing as IT support and were prompted to initiate a QuickAssist session.  T1598.003 Phishing for Information: Spearphishing Link Adversaries may send spearphishing messages with a malicious link to elicit sensitive information that can be used during targeting.  T1598 Phishing for Information: Spearphishing Attachment Adversaries may send spearphishing messages with a malicious attachment to elicit sensitive information that can be used during targeting.  T1190 Exploit in Public-Facing Application Adversaries may exploit a vulnerability to gain access to a target system.  T1078 Valid Accounts Adversaries may use compromised credentials to access valid accounts during their attack. Execution (TA0002)  T1059.001 Command and Scripting Interpreter: PowerShell Adversaries may abuse PowerShell to execute commands or scripts throughout their attack.  T1047 Windows Management Instrumentation Adversaries may use Windows Management Instrumentation (WMI) to execute malicious commands during the attack.  T1053 Scheduled Task/Job Adversaries may abuse task scheduling functionality to facilitate initial or recurring execution of malicious code. Persistence (TA0003) T1098 Account Manipulation Adversaries may manipulate accounts to maintain and/or elevate access to victim systems.   T1136.001 Create Account: Local Account Adversaries may create a local account to maintain access to victim systems.  T1547.001 Persistence: Boot or Logon Autostart Execution: Registry Run Keys / Startup Folder Adversaries established persistence by embedding IP addresses in the TitanPlus registry key.   T1133 External Remote Services Adversaries may leverage external-facing remote services to initially access and/or persist within a network.  T1546.008 Event Triggered Execution: Accessibility Features Adversaries may establish persistence and/or elevate privileges by executing malicious content triggered by accessibility features. Privilege Escalation (TA0004)   T1134 Access Token Manipulation Adversaries may modify access tokens to operate under a different user or system security context to perform actions and bypass access controls. Defense Evasion (TA0005)  T1562.001 Impair Defenses: Disable or Modify Tools Adversaries may disable or uninstall security tools to evade detection.  T1562.004 Impair Defenses: Disable or Modify System Firewall   Adversaries may disable or modify system firewalls to bypass controls limiting network usage.    T1564.008 Hide Artifacts: Email Hiding Rules Adversaries may use email rules to hide inbound or outbound emails in a compromised user's mailbox.  T1070.001 Indicator Removal: Clear Windows Event Logs Adversaries may clear the Windows event logs to cover their tracks and impair forensic analysis.  T1112 Modify Registry Adversary used some registry modifications to get privilege escalation. Credential Access (TA0006)  T1003 OS Credential Dumping Adversaries may dump credentials from various sources to enable lateral movement.  T1528 Steal Application Access Token Adversaries can steal application access tokens as a means of acquiring credentials to access remote systems and resources. Discovery (TA0007) T1046 Network Service Discovery Adversaries may use tools like Advanced Port Scanner for network scanning.  T1057 Process Discovery Adversaries may attempt to get information about running processes on a system.    T1018 Remote System Discovery Adversaries may attempt to discover information about remote systems with commands, such as “net view”.  T1082 System Information Discovery An adversary may attempt to get detailed information about the operating system and hardware.  T1016 System Network Configuration Discovery Adversaries may use commands, such as ifconfig and net use, to identify network connections.  T1087.001 Account Discovery: Local Account Enumerate user accounts on the system. Lateral Movement (TA0008)  T1021.001 Remote Services: Remote Desktop Protocol Adversaries may abuse valid accounts using RDP to move laterally in a target environment.  T1021.006 Remote Services: Windows Remote Management Adversaries may use Valid Accounts to interact with remote systems using Windows Remote Management (WinRM). Command and Control (TA0011)  T1219 Remote Access Software An adversary may use legitimate desktop support and remote access software to establish an interactive command and control channel to target systems within networks.  T1105 Ingress Tool Transfer Adversaries may transfer tools from an external system to a compromised system.  T1572 Protocol Tunneling Adversaries may tunnel network communications to and from a victim system within a separate protocol, such as SMB, to avoid detection and/or enable access. Exfiltration (TA0010)  T1048 Exfiltration Over Alternative Protocol Adversaries may steal data by exfiltrating it over a different protocol than that of the existing command and control channel, such as WinSCP.   Impact (TA0040)  T1486 Data Encrypted for Impact Adversaries may use ransomware to encrypt data on a target system.  T1490 Inhibit System Recovery Adversaries may disable system recovery features, such as volume shadow copies.  T1489 Service Stop Adversaries may stop or disable services on a system to render those services unavailable to legitimate users. Software/Tool  S0029 PsExec Free Microsoft tool that can remotely execute programs on a target system.  S0349 LaZagne A post-exploitation, open-source tool used to recover stored passwords on a system.  S0357 Impacket An open-source collection of modules written in Python for programmatically constructing and manipulating network protocols.  S0002 Mimikatz Credential dumper that can obtain plaintext Windows logins and passwords.  S0097 Ping An operating system utility commonly used to troubleshoot and verify network connections.  S0552 AdFind Freely available command-line query tool used for gathering information from Active Directory.  S1071 Rubeus   A C# toolset designed for raw Kerberos interaction.  S0057 Tasklist A utility that displays a list of applications and services with their Process IDs (PID) for all tasks running on either a local or a remote computer. 
+
+  
+
+
+
+Share this post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Content
+
+
+IR Trends Q2 2026: Phishing and weaponized remote management tools drive attack chains
+July 28, 2026 06:00
+Talos IR's Q2 report highlights a significant surge in phishing-based initial access and the weaponization of legitimate remote management tools. Learn how to sharpen your defenses.
+
+
+
+
+IR Trends Q1 2026: Phishing reemerges as top initial access vector, as attacks targeting public administration persist
+April 22, 2026 06:00
+Phishing reemerged as the most observed means of gaining initial access, accounting for over a third of the engagements where initial access could be determined. Phishing has not been the top vertical for initial access since Q2 2025.
+
+
+
+
+IR Trends Q4 2025: Exploitation remains dominant, phishing campaign targets Native American tribal organizations
+January 29, 2026 06:00
+A drop in exploitation and ransomware, but a spike in phishing and credential abuse, show why timely patching and robust MFA matter more than ever.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

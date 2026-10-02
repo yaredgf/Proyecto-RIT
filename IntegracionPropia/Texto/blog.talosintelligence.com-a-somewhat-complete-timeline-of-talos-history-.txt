@@ -1,0 +1,690 @@
+
+
+
+A (somewhat) complete timeline of Talos’ history
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+A (somewhat) complete timeline of Talos’ history
+
+
+By 
+Jonathan Munshaw
+
+
+
+            Wednesday, July 24, 2024 06:00
+        
+
+
+                                Features
+                            
+
+                                Talos 10
+                            
+
+
+
+
+A lot has happened in Talos’ 10 years of existence. And to celebrate our birthday, we wanted to look back on some of the major moments in Talos’ history. Here’s an overview of some of the major events, cyber attacks, research breakthroughs and more that truly make Talos Talos. We hope this walk down memory lane inspires good times reminiscing, provides lessons learned from cyber attacks past, or PTSD from those late nights — whether you worked at Talos or not.2001: Martin Roesch, the creator of Snort, founds Sourcefire.July 2013: Cisco Systems announces an agreement to buy Sourcefire for $2.7 billion.April 2014: Stakeholders from Sourcefire, Cisco Threat Research, Analysis and Communications (TRAC), and Security Applications (SecApps) start meeting to discuss the formation of Talos — including what the name would be!August 2014: Talos is formally launched at the BlackHat cybersecurity conference.March 2015: Talos publishes breaking research on the POSeidon point-of-sale malware, one of the first major coordinated cyber attacks found under the Talos banner.Oct. 2015: Talos helped to shut down the Angler exploit kit by shutting down access for customers by updating Cisco products to stop redirects to the Angler proxy servers, and releasing new Snort rules to detect and block checks from the exploit kit. At the time, we estimated that Angler was targeting more than 90,000 users a day and generating $30 million annually.     May 2017: WannaCry, which to this day is one of the largest ransomware attacks ever, hits several notable victims, including FedEx and the National Health Service in the U.K. Attackers exploited the NSA-created EternalBlue exploit.May 2017: The first-ever episode of Beers with Talos goes live.June 2017: EternalBlue pops up again, this time with the Nyetya ransomware attack. The attackers primarily deployed the malware via a fake update to the Ukrainian-made MeDoc tax software.June 2017: A team of Talosians comes first in the Fake News Challenge after creating a tool that uses advanced machine learning and artificial intelligence technology to detect fake headlines and misleading “facts.”Feb. 2018: Talos’ discovered samples of malware used to disrupt various technologies at the Olympic Games in South Korea, including ticket-taking operations during the Opening Ceremony. OlympicDestroyer would have ripple effects for months as we tried to figure out who exactly was (or wasn’t) behind the attack.May 2018: Talos publishes our findings on VPNFilter, a massive malware campaign from Russian state-sponsored actors. At the time of publishing, we estimated that VPNFilter affected more than 500,000 internet-connected devices.Nov. 2018: DNSpionage, a previously undiscovered malware, makes headlines for targeting a Lebanese airline and companies in the United Arab Emirates. Adversaries set up fake job application phishing pages hoping to infect targets with malicious Microsoft Word applications.Feb. 2019: Talos releases our 3-D printed model of an oil pumpjack into the wild to demonstrate how an attacker could overload it if it exploits the human-machine interface the pump relies on.Oct. 2019: Cisco Talos Incident Response is officially launched. Merging Incident Response from Cisco’s CX organization with Talos’ threat intelligence, Talos IR offers proactive and reactive assistance to customers around the world.May 2020: Talos’ Vulnerability Research team takes part in the Microsoft Azure Sphere Research Challenge, eventually discovering 16 security vulnerabilities in the popular application platform. Talos was one of only a handful of teams selected for the challenge. Specifically, a vulnerability the team discovered made headlines for potentially allowing an adversary to acquire Azure Sphere Capabilities, the most valuable Linux normal-world permissions in the Azure Sphere context.Nov. 2020: The infamous “pig couch” goes viral after a fake Craigslist ad for it spreads on social media. This somehow ended up with the Snort Twitter account also going viral, and Marty Roesch making it into The New York Times.Via CraigslistDec. 2020: Capping off a string of major supply chain attacks, adversaries compromise the legitimate SolarWinds Orion IT management software to deploy malware via a fake software update.Jan. 2021: Snort 3, the first major release for Snort in more than a decade, goes open-source.Dec. 2021: Just days before the winter holidays, the internet nearly catches on fire with the infamous Log4shell vulnerability in Log4j.Feb. 2022: The Russian military launches an offensive assault against Ukraine. Talos immediately responds to assist Ukraine, capitalizing on yearslong partnerships to help keep critical infrastructure online and users protected from a barrage of cyber attacks. We would also assist Talos teammates in staying protected, supporting them in moving to other countries.May 2022: ClamAV, Sourcefire’s original anti-virus detection solution, turns 20 (and will finally go 1.0 a few months later!)April 2023: Cisco and Talos help to launch the Network Resilience Coalition, a group of technology companies working to ensure users and companies upgrade and update their network infrastructure. The effort was launched after the discovery of JaguarTooth, a massive campaign targeting unpatched wireless routers.May 2023: Talos enters the world of private sector offensive actors (PSOAs) by disclosing new technical details about the Predator spyware and its creator, Intellexa. Spyware from these so-called “mercenary groups” is still spreading, often being used to target potentially sensitive users like journalists, activists and politicians.December 2023: Talos discloses the details of Project PowerUp, a cross-team effort to help protect Ukraine’s power grid and the GPS positioning it relies on. Spearheaded by Joe Marshall, the multi-national, multi-company global team of power grid security practitioners, who had never worked together before, built a device to help Ukraine keep the lights on.March 2024: Talos releases SnortML, a machine learning-based detection engine for the Snort Intrusion prevention system.August 2024: Talos celebrates its 10th anniversary — cheers to many more!
+
+
+
+Share this post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Content
+
+
+"There is no business school class that would ever sit down and design Talos"
+July 31, 2024 07:55
+We look back on 10 years of Talos, in multiple interviews with Talos' leaders.
+
+
+
+
+Badgerboard: A PLC backplane network visibility module
+March 5, 2024 15:30
+Analysis of the traffic between networked devices has always been of interest since devices could even communicate with one another. 
+
+As the complexity of networks grew, the more useful dedicated traffic analysis tools became. Major advancements have been made over the years with tools like Snort or Wireshark, but these
+
+
+
+
+Exploring malicious Windows drivers (Part 1): Introduction to the kernel and drivers
+January 18, 2024 08:00
+Malicious drivers are difficult to detect and successfully leveraging one can give an attacker full access to a system.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

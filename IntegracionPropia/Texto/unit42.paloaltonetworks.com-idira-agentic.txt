@@ -1,0 +1,1388 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+OperTraitors: How Kubernetes Operators Betray Your Security Posture
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Menu
+
+
+
+
+
+
+Tools
+ATOMs
+Security Consulting
+About Us
+Under Attack?
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  Threat Research CenterThreat ResearchMalware 
+ 
+Malware
+OperTraitors: How Kubernetes Operators Betray Your Security Posture
+
+
+  8  min read              
+
+
+Related ProductsCortexCortex CloudUnit 42 AI Security AssessmentUnit 42 Frontier AI DefenseUnit 42 Incident Response 
+
+
+
+
+
+
+
+
+By:Lior Yakim 
+
+Published:September 29, 2026 Categories:MalwareThreat Research
+ Tags:AIAI agentsAPIGitHubIdentityVulnerabilities
+ 
+
+
+ 
+ 
+
+
+Share
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+Executive Summary
+Kubernetes operators are coded to drastically reduce operational toil by acting as automated site reliability engineers. However, their reliance on highly privileged service accounts introduces a severe, often overlooked security weak spot.
+To quantify and combat threats aiming to take advantage of this weak spot, we have released OperTraitor, an open-source, large language model (LLM)-powered analysis engine. OperTraitor ingests raw role-based access control (RBAC) configurations directly from locally installed operators and the OperatorHub catalog. Upon doing so, it calculates the difference between an operator's documented functionality and its actual granted privileges.
+In using this tool, we discovered problems lingering in default registries like OperatorHub (e.g., abandoned, overly permissive software components). To ensure smooth deployments, developers frequently grant these Kubernetes operators broad, wildcard RBAC permissions, unintentionally transforming trusted components into silent backdoors.
+OperTraitor empowers defenders by generating a normalized risk score to help visualize the potential impact of third-party operators. Defenders can then effectively downscope the operators’ underlying service accounts before they can be exploited.
+This article analyzes the shifting threat landscape as the industry transitions toward AI-driven agentic operators, a development that will turn these passive RBAC misconfigurations into active threat vectors.
+
+We detail the real-world impact of these excessive permissions through two case studies:
+
+Using our tool, we identified a High-severity vulnerability (CVE-2026-6389, CVSS 8.8) in IBM's Turbonomic platform
+OperTraitor also flagged an overly privileged configuration that included cluster-wide access to secrets and various actions on RBAC resources
+
+
+We examine the complex trade-offs vendors face between operational flexibility and strict security
+We demonstrate how to hunt for and mitigate similar risks in your own environment using OperTraitor
+
+Palo Alto Networks customers are better protected from the threats discussed in this article through the following products:
+
+Cortex Cloud
+
+The Unit 42 AI Security Assessment and Unit 42 Frontier AI Defense service can help identify and mitigate complex AI-enabled risks.
+If you think you might have been compromised or have an urgent matter, contact the Unit 42 Incident Response team.
+
+
+
+Related Unit 42 Topics
+Kubernetes, LLM, Agentic AI
+
+
+
+Kubernetes Automation Mechanisms
+Before we can secure Kubernetes infrastructure, we must understand its foundational automation mechanisms. When we discuss Kubernetes operators, we refer to two core components working in tandem, a custom resource definition (CRD) and a controller:
+
+CRD: A user-defined extension of the Kubernetes API that allows engineers to treat specific business logic (like a database cluster or a firewall policy) as a native Kubernetes object.
+Controller: A non-terminating control loop that continuously monitors the actual state of these custom resources and reconciles them against the desired state defined in the configuration files. To execute this reconciliation loop, the controller requires a Kubernetes service account bound to specific Roles or ClusterRoles.
+
+If a threat actor compromises an operator, the scope of the compromise is entirely defined by its RBAC permissions. An overly privileged operator functions as a silent backdoor ripe for exploitation, regardless of whether the compromise stems from a container image supply chain attack, a dependency vulnerability or the hijacking of its underlying node.
+The Amplification of Risk: AI and the Agentic Era
+While the fundamental issue is RBAC, the stakes are rising. The industry is currently shifting toward agentic operators, which are autonomous systems that manage clusters using LLMs and AI reasoning.
+When we introduce AI into this ecosystem, excessive permissions become a much more serious weakness. We can observe this compounding risk in three emerging operational patterns:
+
+LLM-enhanced logic: Operators that enhance standard remediation with LLM calls (e.g., K8sGPT)
+
+If these inherit broad RBAC, they effectively become autonomous entities capable of reading sensitive data across unintended namespaces. These autonomous entities fall under two categories:
+
+External agent bridges
+Full agent runtimes
+
+
+
+
+External agent bridges: Operators serving as conduits for external agents (e.g., via Model Context Protocol)
+
+An overly privileged operator can grant an external AI unchecked control over cluster resources
+
+
+Full agent runtimes: Operators designed to manage AI agent lifecycles natively within the cluster
+
+The agents' unpredictable capabilities can impact the approach to infrastructure management
+
+
+
+Regardless of whether an operator uses an LLM or traditional deterministic logic, the defensive mandate remains the same: Secure the service account.
+Auditing the Ecosystem: The Operator Lifecycle Weak Spot
+To understand the true scale of these RBAC misconfigurations across the ecosystem and empower the community to audit them, we built OperTraitor. We designed this automated pipeline to perform the following:
+
+Collect data based on OperatorHub and locally installed operators
+Extract their raw YAML manifests
+Feed their RBAC configurations into an LLM configured for threat analysis
+
+The engine compares the permissions an operator actually possesses against its stated documentation. It then assigns a risk score from 1–10 based on the difference between required and granted privileges.
+Figure 1 illustrates OperTraitor's high-level architecture.
+Figure 1. OperTraitor architecture. Source: OperTraitor repository on GitHub.
+Figure 2 displays a screenshot of the OperTraitor user interface, showing the total number of high-risk operators alongside the post-analysis scores of two specific operators.
+Figure 2. OperTraitor main analysis dashboard showing high-risk operators.
+During this process, we uncovered a significant supply chain weakness. OperatorHub is filled with abandoned, overly permissive software components. Many vendors publish new, secure versions of their operators exclusively through Helm charts, their GitHub repositories or ArtifactHub. However, their older, vulnerable versions remain easily accessible through the Operator Lifecycle Manager (OLM).
+OLM has historically been the gold standard of the open-source community and the default in OpenShift environments. As a result, users routinely deploy outdated operators in a few simple clicks, often without realizing it. Vendors are largely not prioritizing the maintenance or deprecation of their legacy components on OperatorHub, presenting a significant attack vector.
+The Tip of the Iceberg
+The RBAC misconfigurations we discovered are not isolated incidents. During our research, we identified multiple other operators (slightly over 5%) that request excessive privileges, including implicit paths to cluster admin access.
+Unfortunately, many of the operator owners we contacted did not respond to our responsible disclosure attempts. In many cases, this lack of engagement simply indicates that the operator is no longer actively maintained.
+While we will not cover those specific cases in this article, the reality highlights a critical takeaway that security teams must be vigilant. We strongly encourage treating every component sourced from OperatorHub with caution, independently verifying both its RBAC requirements and its active maintenance status before deployment.
+To illustrate the real-world impact of these excessive permissions, we detail two specific case studies below.
+Case Study 1: Excessive Secret Access (Prometurbo Operator - IBM)
+When initially scanning OperatorHub, OperTraitor flagged the Prometurbo operator for using wildcards. Recognizing that the version on OperatorHub was severely outdated (v8.6.0, from 2022), we analyzed the recent version available via IBM’s GitHub repository (v8.17.6) to see if the posture had changed.
+OperTraitor identified a critical RBAC violation. Instead of restricting access to its own namespace, the operator's service account was bound to a ClusterRole. This ClusterRole contained an explicit rule granting get, list and watch verbs on the secrets resource within the core API group (represented by apiGroups: [""])
+Unless an operator functions explicitly as a centralized secrets manager, it rarely requires cluster-wide read access to Secret resources. Typically, an operator only needs access to specific secrets within its localized namespace.
+Possessing explicit, cluster-wide read access to all secrets, the Prometurbo operator effectively became a single point of failure. If compromised, an attacker could immediately dump administrative service account tokens, database credentials, API keys and TLS certificates from completely unrelated namespaces. This could turn a localized breach into a total environment compromise.
+Upon identifying this setting, we initiated a responsible disclosure process with IBM. The vendor responded promptly and collaboratively, quickly identifying the root cause and issuing a patch in a subsequent release that properly scoped the operator's RBAC permissions to align with the principle of least privilege (PoLP).
+Due to the importance and impact of the vulnerability, IBM published a formal security bulletin and assigned a CVE (CVE-2026-6389) with a High CVSS score (8.8/10).
+Disclosure Timeline:
+
+Nov. 5, 2025: Vulnerability reported to IBM via the Vulnerability Disclosure Program
+Feb. 3, 2026: IBM confirmed the issue is resolved
+April 24, 2026: IBM published a security bulletin with CVE-2026-6389
+
+Case Study 2: The Trade-Off Between Security and User Experience (UX) (Datadog Operator)
+In the case of the Datadog operator, OperTraitor flagged an overly privileged configuration that included cluster-wide access to secrets and various actions (verbs) on RBAC resources (ClusterRoles and ClusterRoleBindings).
+Upon our disclosure, Datadog representatives shared a detailed explanation of the reasoning behind granting these broad permissions. They noted that the names of the secrets the operator needs to access are based on user-defined values, making them impossible to predict or explicitly define before deployment. Given Datadog’s architecture, this is a valid point that highlights the complex trade-off vendors face between delivering strict security and a seamless user experience.
+Datadog recognized the importance of transparency for end users assessing cluster risk. They opted to add a detailed explanation of their RBAC settings and documented applied mitigations, allowing security teams to make informed risk-acceptance decisions.
+Mitigation: Securing the Non-Human Identity
+Securing the operator ecosystem requires a shift in how security teams evaluate and monitor Kubernetes infrastructure. We recommend implementing the following defensive strategies:
+
+Verify the source and avoid default registries: Do not implicitly trust versions available on OLM or OperatorHub. Always verify the vendor's official documentation and deploy operators via their maintained Helm charts, ArtifactHub or official GitHub repositories to ensure you are installing the most recent, patched version.
+Enforce namespace-scoped operators: Whenever architecturally possible, restrict operators to the specific namespaces they manage. Avoid deploying cluster-scoped operators (ClusterRoles and ClusterRoleBindings) unless absolutely necessary, strictly limiting the area of impact in a potential compromise.
+Continuously audit and downscope RBAC: Always validate vendor-provided YAML manifests. Assess the RBAC posture for critical production environments. There are useful open-source tools to support this task, including OperTraitor.
+Monitor service account behavior: Enable and actively monitor Kubernetes Audit Logs. Baseline the normal behavior of your operator service accounts and alert on anomalous activity. An example of anomalous activity could be an operator suddenly attempting to list secrets in an unrelated namespace or querying the API server from an unexpected IP address.
+Establish guardrails for AI agents: If you are experimenting with LLM enhanced operators or agentic frameworks, enforce strict network policies:
+
+Ensure these pods cannot reach the public internet or unauthorized internal endpoints
+Strictly limit the context and permissions passed to the underlying LLMs
+
+
+
+Conclusion
+The convenience of Kubernetes operators comes with a hidden cost: the rapid proliferation of highly privileged, non-human identities within our clusters. Our research indicates a widespread violation of the PoLP across the Kubernetes ecosystem.
+Whether driven by the difficulty of scoping permissions for dynamic environments or simply by a developer’s misconfiguration, operators are frequently granted access that far exceeds their operational requirements. This problem is exacerbated by the prevalence of outdated, abandoned components in registries like OperatorHub, creating a massive attack surface.
+The shift to agentic operators will worsen the risks this presents. An overly privileged operator today is the autonomous, uncontrolled agent of tomorrow.
+As we stand on the threshold of the agentic era, the way we manage Kubernetes is undergoing a fundamental change. AI-driven automation holds incredible promise for reducing operational overhead, but it requires a rock-solid foundation of identity and access management to ensure a secure environment.
+We can not afford to treat non-human identities as an afterthought. Security teams must scrutinize operator permissions with the same rigor they apply to human administrators. By improving the RBAC hygiene of our clusters today, we can safely embrace the autonomous operations of the future without betraying our security posture.
+Palo Alto Networks Protection and Mitigation
+Palo Alto Networks customers are better protected from the threats discussed above through the following products:
+
+Cortex Cloud can help protect cloud posture and runtime operations against identity-driven threats by pairing static permission baselines with deep behavioral context. By embedding the functional identity baselines discussed in this research into our detection engine for both cloud VM compute and serverless agents, Cortex Cloud adds a vital layer of operational context, enabling security teams to filter out noisy false positives and decisively catch threat actors attempting to masquerade, alter configurations, or execute anomalous operations in the environment.
+
+The Unit 42 AI Security Assessment and Unit 42 Frontier AI Defense service can help identify and mitigate complex AI-enabled risks.
+If you think you may have been compromised or have an urgent matter, get in touch with the Unit 42 Incident Response team or call:
+
+North America: Toll Free: +1 (866) 486-4842 (866.4.UNIT42)
+UK: +44.20.3743.3660
+Europe and Middle East: +31.20.299.3130
+Asia: +65.6983.8730
+Japan: +81.50.1790.0200
+Australia: +61.2.4062.7950
+India: 000 800 050 45107
+South Korea: +82.080.467.8774
+
+Palo Alto Networks has shared these findings with our fellow Cyber Threat Alliance (CTA) members. CTA members use this intelligence to rapidly deploy protections to their customers and to systematically disrupt malicious cyber actors. Learn more about the Cyber Threat Alliance.
+Additional Resources
+
+Security Bulletin: IBM Turbonomic Prometurbo agent used by IBM Turbonomic Application Resource Management is affected by a single vulnerability (CVE-2026-6389) - IBM Support
+Datadog Operator Kubernetes permissions - GitHub
+OperTraitor - GitHub
+
+
+
+Back to top
+
+TagsAIAI agentsAPIGitHubIdentityVulnerabilities
+
+
+
+Threat Research Center
+
+
+Next: 3 Consulting Myths Debunked by Unit 42 Experts
+
+
+
+
+
+
+
+Table of Contents
+
+
+
+
+
+
+Related Articles
+
+
+
+                      3 Consulting Myths Debunked by Unit 42 Experts                  
+
+
+
+                      From Exposure to Lockdown: How AWS Neutralizes Compromised IAM Credentials through Managed Policies                  
+
+
+
+                      Inside the Modern SOC: Defending the Cross-Environment Pivot                  
+
+
+
+
+
+
+
+
+
+Related Malware Resources
+
+
+
+
+ 
+
+
+
+Insights September 16, 2026
+
+Atomic macOS (AMOS) Stealer Activity
+
+
+
+MacOS
+
+
+Threat intelligence
+
+
+Unit 42
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research September 10, 2026
+
+The Machine With Many Faces: Post-Exploitation Identity Misuse in SPIFFE/SPIRE
+
+
+
+API
+
+
+Cryptographic
+
+
+JSON
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research September 9, 2026
+
+Untracked Nightmares: The Threats Hiding Behind Commodity Infrastructure
+
+
+
+ARKTunnel
+
+
+C2
+
+
+CL-CRI-1171
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research September 3, 2026
+
+Attackers Expose Ongoing AI Tool Use Targeting Organizations in Latin America
+
+
+
+Agentic AI
+
+
+ChatGPT
+
+
+CL-CRI-1131
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research August 31, 2026
+
+Spring Ring: An Inside Look at Voice Phishing Campaigns in Microsoft Teams
+
+
+
+Cloaked Ursa
+
+
+Entra ID
+
+
+Microsoft Teams
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research August 25, 2026
+
+The State of AI-Enabled Malware August 2026: From Brand Abuse to Agentic Execution
+
+
+
+Backdoor
+
+
+Bitcoin
+
+
+DLL hijacking
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research August 20, 2026
+
+Identity Abuse Through Trusted Communication Channels
+
+
+
+Authentication
+
+
+Identity theft
+
+
+Malware
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research August 11, 2026
+
+Kimwolf v7: An Evolution of the Kimwolf Botnet
+
+
+
+Android APK
+
+
+Ethereum
+
+
+HTTP
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research August 10, 2026
+
+The Permanent Threat: Analyzing Aeternum’s Blockchain-Based C2 Operations and Communications
+
+
+
+Aeternum
+
+
+Infection chain
+
+
+JSON
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
+				Get updates from Unit 42			
+Peace of mind comes from staying ahead of threats. Subscribe today.
+
+
+
+
+
+
+
+
+
+
+Your Email
+
+
+Subscribe for email updates to all Unit 42 threat research.
+By submitting this form, you agree to our Terms of Use and acknowledge our Privacy Statement.
+
+                    This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.                            
+  
+
+Invalid captcha!
+ 
+					Subscribe					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Get the latest news, invites to events, and threat alerts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Enter your email now to subscribe!
+
+
+
+
+
+Sign up 
+
+
+
+
+                                
+                                
+                                
+                                    By submitting this form, I understand my personal data will be processed in accordance with
+                                        Palo Alto Networks Privacy Statement and Terms of Use.
+
+
+
+Sign up 
+
+
+
+
+
+
+
+
+
+
+
+
+Products and Services
+
+
+
+
+
+                                    AI-Powered Network Security Platform
+                                
+
+
+
+                                    Secure AI by Design
+                                
+
+
+
+                                    Prisma AIRS
+                                
+
+
+
+                                    AI Access Security
+                                
+
+
+
+                                    Cloud Delivered Security Services
+                                
+
+
+
+                                    Advanced Threat Prevention
+                                
+
+
+
+                                    Advanced URL Filtering
+                                
+
+
+
+                                    Advanced WildFire
+                                
+
+
+
+                                    Advanced DNS Security
+                                
+
+
+
+                                    Enterprise Data Loss Prevention
+                                
+
+
+
+                                    Enterprise IoT Security
+                                
+
+
+
+                                    Medical IoT Security
+                                
+
+
+
+                                    Industrial OT Security
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    Next-Generation Firewalls
+                                
+
+
+
+                                    Hardware Firewalls
+                                
+
+
+
+                                    Software Firewalls
+                                
+
+
+
+                                    Strata Cloud Manager
+                                
+
+
+
+                                    SD-WAN for NGFW
+                                
+
+
+
+                                    PAN-OS
+                                
+
+
+
+                                    Panorama
+                                
+
+
+
+                                    Secure Access Service Edge
+                                
+
+
+
+                                    Prisma SASE
+                                
+
+
+
+                                    Application Acceleration
+                                
+
+
+
+                                    Autonomous Digital Experience Management
+                                
+
+
+
+                                    Enterprise DLP
+                                
+
+
+
+                                    Prisma Access
+                                
+
+
+
+                                    Prisma Browser
+                                
+
+
+
+                                    Prisma SD-WAN
+                                
+
+
+
+                                    Remote Browser Isolation
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    AI-Driven Security Operations Platform
+                                
+
+
+
+                                    Cloud Security
+                                
+
+
+
+                                    Cortex Cloud
+                                
+
+
+
+                                    Application Security
+                                
+
+
+
+                                    Cloud Posture Security
+                                
+
+
+
+                                    Cloud Runtime Security
+                                
+
+
+
+                                    Prisma Cloud
+                                
+
+
+
+                                    AI-Driven SOC
+                                
+
+
+
+                                    Cortex XSIAM
+                                
+
+
+
+                                    Cortex XDR
+                                
+
+
+
+                                    Cortex XSOAR
+                                
+
+
+
+                                    Cortex Xpanse
+                                
+
+
+
+                                    Unit 42 Managed Detection & Response
+                                
+
+
+
+                                    Managed XSIAM
+                                
+
+
+
+                                    Observability
+                                
+
+
+
+                                    Cortex XCOR
+                                
+
+
+
+
+
+                                    Next-Generation Identity Security
+                                
+
+
+
+                                    Privileged Access Management
+                                
+
+
+
+                                    Identity and Access Management 
+                                
+
+
+
+                                    Endpoint Privilege Manager
+                                
+
+
+
+                                    Identity Governance
+                                
+
+
+
+                                    Workforce Password Management
+                                
+
+
+
+                                    Agentic Identities
+                                
+
+
+
+                                    Secrets Management
+                                
+
+
+
+                                    Unified Secrets Governance
+                                
+
+
+
+                                    Application Credentials Delivery
+                                
+
+
+
+                                    Vendor Privileged Access
+                                
+
+
+
+                                    Threat Intel and Incident Response Services
+                                
+
+
+
+                                    Prepare for Emerging Risks
+                                
+
+
+
+                                    Strengthen Your Defenses
+                                
+
+
+
+                                    Build Your Security Strategy
+                                
+
+
+
+                                    Understand the Adversary
+                                
+
+
+
+                                    Respond to a Cyber Attack
+                                
+
+
+
+
+
+
+Company
+
+
+
+
+
+                                    About Us
+                                
+
+
+
+                                    Careers
+                                
+
+
+
+                                    Contact Us
+                                
+
+
+
+                                    Corporate Responsibility
+                                
+
+
+
+                                    Customers
+                                
+
+
+
+                                    Investor Relations
+                                
+
+
+
+                                    Location
+                                
+
+
+
+                                    Newsroom
+                                
+
+
+
+
+
+
+Popular Links
+
+
+
+
+
+                                    Blog
+                                
+
+
+
+                                    Communities
+                                
+
+
+
+                                    Content Library
+                                
+
+
+
+                                    Cyberpedia
+                                
+
+
+
+                                    Event Center
+                                
+
+
+
+                                    Manage Email Preferences
+                                
+
+
+
+                                    Products A-Z
+                                
+
+
+
+                                    Product Certifications
+                                
+
+
+
+                                    Report a Vulnerability
+                                
+
+
+
+                                    Sitemap
+                                
+
+
+
+                                    Tech Docs
+                                
+
+
+
+                                    Unit 42
+                                
+
+
+
+                                    Do Not Sell or Share My Personal Information
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Privacy
+                            
+
+
+
+                                Trust Center
+                            
+
+
+
+                                Terms of Use
+                            
+
+
+
+                                Documents
+                            
+
+
+Copyright © 2026 Palo Alto Networks. All Rights Reserved
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+EN
+
+
+
+Select your language
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Your browser does not support the video tag.
+          
+
+Default Heading
+Read the article
+              
+
+
+
+
+Seekbar
+
+
+
+
+
+
+
+
+
+
+
+
+
+Volume
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

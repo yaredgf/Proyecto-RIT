@@ -1,0 +1,879 @@
+
+
+
+Jared Rittle - Cisco Talos Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Jared Rittle
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+June 26, 2024 12:00
+Multiple vulnerabilities in TP-Link Omada system could lead to root access
+Affected devices could include wireless access points, routers, switches and VPNs.
+
+
+                    By
+                
+Jared Rittle, 
+                    Carl Hurd
+
+
+
+                            Vulnerability Deep Dive
+                        
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+March 5, 2024 15:30
+Badgerboard: A PLC backplane network visibility module
+Analysis of the traffic between networked devices has always been of interest since devices could even communicate with one another. 
+
+As the complexity of networks grew, the more useful dedicated traffic analysis tools became. Major advancements have been made over the years wit
+
+
+                    By
+                
+Carl Hurd, 
+                    Jared Rittle
+
+
+
+                            Features
+                        
+
+                            Vulnerability Spotlight
+                        
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+January 31, 2024 12:00
+OAS Engine Deep Dive: Abusing low-impact vulnerabilities to escalate privileges
+Open Automation Software recently released patches for multiple vulnerabilities in their OAS Engine. 
+
+Cisco Talos publicly disclosed these issues after working with Open Automation Software to ensure that patches were available for users. Now that a fix has been released with Ve
+
+
+                    By
+                
+Jared Rittle
+
+
+
+                            Vulnerability Deep Dive
+                        
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+September 26, 2023 08:00
+ICS protocol coverage using Snort 3 service inspectors
+Service inspectors are an evolution of Snort 2's preprocessors, providing access to additional built-in rules that look for protocol-level abnormalities.
+
+
+                    By
+                
+Jared Rittle
+
+
+
+                            Snort
+                        
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+February 23, 2023 09:03
+Vulnerability Spotlight: EIP Stack Group OpENer open to two remote code execution vulnerabilities
+Two of the vulnerabilities are considered to be considered of critical importance, with a CVSS score of a maximum 10 out of 10.
+
+
+                    By
+                
+Jared Rittle
+
+
+
+                            Vulnerability Spotlight
+                        
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+April 25, 2019 14:06
+Vulnerability Spotlight: Multiple vulnerabilities in Sierra Wireless AirLink ES450
+Several exploitable vulnerabilities exist in the Sierra Wireless AirLink ES450, an LTE gateway designed for distributed enterprise, such as retail point-of-sale or industrial control systems. These flaws present a number of attack vectors for a malicious actor, and could allow th
+
+
+                    By
+                
+Carl Hurd, 
+                    Jared Rittle
+
+
+
+                            Vulnerability Spotlight
+                        
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+January 15, 2019 15:02
+Vulnerability Deep Dive: TP-Link TL-R600VPN remote code execution vulnerabilities
+Introduction
+
+
+TP-Link recently patched three vulnerabilities in their TL-R600VPN gigabit broadband VPN router, firmware version 1.3.0. Cisco Talos publicly disclosed these issues after working with TP-Link to ensure that a patch was available. Now that a fix is out there, we wan
+
+
+                    By
+                
+Carl Hurd, 
+                    Jared Rittle
+
+
+
+                            Vulnerability Deep Dive
+                        
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+October 16, 2018 12:25
+Vulnerability Spotlight: Linksys ESeries Multiple OS Command Injection Vulnerabilities
+Cisco Talos is disclosing several vulnerabilities in the operating system on the Linksys E Series of routers.
+
+Multiple exploitable OS command injection vulnerabilities exist in the Linksys E Series line of routers. An attacker can exploit these bugs by sending an authenticated H
+
+
+                    By
+                
+Jared Rittle
+
+
+
+                            Vulnerability Spotlight
+                        
+
+                            VPNFilter
+                        
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

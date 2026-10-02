@@ -1,0 +1,690 @@
+
+
+
+Describing attacks with crime script analysis
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Describing attacks with crime script analysis
+
+
+By 
+Martin Lee
+
+
+
+            Wednesday, August 19, 2026 06:00
+        
+
+
+                            On The Radar
+                        
+
+
+
+
+Crime script analysis is a narrative-driven technique that can be used alongside, or as an alternative to, tactics, techniques, and procedures (TTPs) — creating human-readable stories that describe attacks in a way non-technical audiences can understand. By analyzing the attacker’s workflow, we can identify how AI can be used to industrialize attacks. Through considering a business email compromise (BEC) example, we demonstrate how attackers may scale the attack to target previously unprofitable victims. Deconstructing an attack into discrete steps allows defenders to pinpoint intervention points where defenses can be effectively deployed, or where strategic disruption can break the script and thwart the threat actor's operation.Effective defense against cyber attacks requires understanding how attacks are carried out and identifying where the attack can be disrupted or detected.  Lockheed Martin’s Cyber Kill Chain was one of the earliest models to describe the steps required to conduct a cyber attack. However, its seven-step linear sequence is too rigid to apply to many attacks. The Attack Flow model of the MITRE ATT&CK framework allows various tactics, techniques, and procedures (TTPs) to be chained together to describe exactly how attacks are conducted, including branches and loops if necessary. The resulting graphs are comprehensive, but can be daunting to a non-technical audience. In a world of evolving threats and shrinking budgets, defenders need techniques to communicate threats to a wider audience. Crime script analysis (CSA) is a technique originally developed in the mid-1990s as a criminology tool to understand how crimes are committed. CSA allows us to decompose an attack into a sequence of actions, decisions, and situational requirements. Describing an attack as a narrative using everyday language not only makes the description accessible to non-technical audiences, but also to identify "choke points" where the crime can be disrupted. If MITRE ATT&CK TTPs describe the building blocks that comprise an attack, Attack Flow diagrams are the structural engineering blueprints showing how the blocks fit together, and CSA is the architect’s artistic impression of the finished building. Each component has their place in providing a picture of what is happening at different levels of abstraction for different audiences. Business email compromise as a case study The business email compromise (BEC) is a common scam. Someone with financial authority receives a message purporting to be from a superior in the same organization requesting an urgent payment. If the victim is fooled, payment is released to the scammer, who acts quickly to launder the money to disguise its origin before the scam is uncovered. In April I wrote about such an attack against a small, community sports club of which I am a member. The sum requested in the attack wasn’t large, so the reason was plausible. However, the tone of the email wasn’t quite correct. The treasurer’s suspicions were raised and the attempted fraud uncovered. This incident was particularly interesting because of the small scale of the attack. Historically, the research necessary to conduct the attack — the identification of the target victim, the person spoofed, the nature of the social engineering lure — has limited its scalability. Carrying out these tasks manually takes time and has meant that it has typically been conducted against larger businesses.  The advent of AI means that the previously time-consuming preparative work can be automated. Expressing the attack as a crime script helps us understand where AI may assist the attacker and how the attack could be disrupted. Putting BEC in the crime script narrative We can imagine the crime script for the attack as follows:Figure 1. A general BEC crime script.Steps 1 – 4 are time consuming to perform manually, but can be automated with AI. This efficiency improvement allows an attacker to identify many targets and shifts the execution of the attack from a higher value fraud against a few targets to a lower value fraud against many targets. The personalization of the social engineering in Step 5 can also be conducted using AI. The attacker can generate urgent requests for payment that are relevant to the target organization and may appear credible to the victim. Identifying intervention points Considering the narrative of the attack helps with reflection on how the attack might be disrupted. Clearly, Steps 1 – 4 can be disrupted by seeding AI with fake canary organizations. These are fictitious honeypot entities that have public personas discoverable by AI agents, but otherwise serve no purpose. The source of messages sent to honeypot organizations can then be blocked, disrupting Step 6. Interactions with large language models (LLMs) leave traces that can be identified by security teams. While distinguishing malicious prompts from legitimate business inquiries is difficult, there is potential for AI providers to detect repeated patterns of reconnaissance and the generation of social engineering messages. This leaves Step 5 vulnerable to disruption by providers of AI systems. The most effective disruption point remains Step 6, the delivery mechanism. Anomalous account behavior or high volumes of outgoing mail from a single source should trigger immediate rate-limiting or reputation-based blocks by email service providers. The final point for intervention is with the victim at Step 7. Increased awareness of the scam helps victims recognise any potential attacks that do get through. Implementing strict processes such as requiring purchase orders that must be verified and implementing delays before payments are made can all help prevent losses. Conclusion Crime script analysis does not replace the ATT&CK framework; rather, it provides an alternative narrative format for documenting attacks. Describing threat actor activity using natural language opens the understanding of the attack to a wider audience and enables collaboration with other teams. The technique also helps defenders understand where attackers may be applying AI tools to automate processes, and spark ideas at how this might be thwarted. 
+
+
+
+Share this post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Content
+
+
+The Fine Art of Frustrating the Adversary
+October 1, 2026 06:00
+What really frustrates an adversary? Eight Cisco Talos researchers share practical ways to make their next move slower and riskier. From deception and behavioral detection to breaking attack dependencies and resisting manufactured urgency.
+
+
+
+
+Securing the unpatchable in an age of AI-driven vulnerabilities
+September 16, 2026 06:00
+Advances in AI technology will continue to identify vulnerabilities that in some circumstances are difficult, or effectively impossible, to patch. Appropriate network segmentation, rigorous visibility, and the deployment of NGFW/IPS combinations can provide a powerful compensatory layer.
+
+
+
+
+The safety penalty: Reclaiming operational sovereignty in the age of AI
+August 25, 2026 06:00
+As frontier AI models become increasingly restrictive, security teams are facing a "safety penalty" that hampers real-time incident response. Discover how organizations can move toward operational sovereignty to ensure their defensive AI keeps pace with unconstrained adversaries.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

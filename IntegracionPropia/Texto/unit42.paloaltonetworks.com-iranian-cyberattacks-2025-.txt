@@ -1,0 +1,1452 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Threat Brief: Escalation of Cyber Risk Related to Iran (Updated June 30)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Menu
+
+
+
+
+
+
+Tools
+ATOMs
+Security Consulting
+About Us
+Under Attack?
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+English
+
+
+
+
+
+German
+
+
+English
+
+
+Spanish (LATAM)
+
+
+French
+
+
+Japanese
+
+
+Korean
+
+
+Portuguese
+
+
+Chinese (Traditional)
+
+
+
+
+
+  Threat Research CenterHigh Profile ThreatsCybercrime 
+ 
+Cybercrime
+Threat Brief: Escalation of Cyber Risk Related to Iran (Updated June 30)
+
+
+  6  min read              
+
+
+Related ProductsAdvanced Threat PreventionCloud-Delivered Security ServicesCortexCortex CloudCortex XDRCortex XSIAM 
+
+
+
+
+
+
+
+
+By:Unit 42 
+
+Published:June 25, 2025 Categories:CybercrimeHacktivismHigh Profile ThreatsMalwareThreat Actor GroupsThreat Research
+ Tags:Agent SerpensAgonizing SerpensBoggy SerpensCurious SerpensDDoS attacksDevious SerpensEvasive SerpensGenAIIran
+ 
+
+
+ 
+ 
+
+
+Share
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+Executive Summary
+Unit 42 stopped monitoring this threat and updating the brief on Aug. 14, 2025.
+The recent conflict involving Iran, particularly its military engagements with Israel and the U.S., significantly heightens the risk of cyber spillover. This extends traditional battlegrounds into the digital realm.
+While we have not yet seen a dramatic uptick in Iranian-directed cyberattacks, further escalations could manifest as a surge in cyber operations by both state-sponsored groups and independent hacktivists. Their aim would be to disrupt, collect intelligence on or influence perceived adversaries. Iranian threat groups have a history of targeting critical infrastructure and sensitive industries across public and private enterprises globally and these attacks can have far-reaching consequences.
+Over the past two years, Unit 42 has observed Iranian-backed groups and hacktivists expanding their global cyber operations, including employing the following activities:
+
+Opportunistically leveraging generative AI (GenAI) for social engineering and influence operations
+Explicitly linking destructive attacks to geopolitical events
+
+These are in addition to activities these groups have historically been known for. It is possible these activities could further intensify in the context of recent events involving Israel and the U.S. These activities include:
+
+Destructive attacks
+Website defacements
+Distributed-denial-of-service (DDoS) attacks
+Data exfiltration and wiper attacks, reminiscent of those we previously observed from Iranian groups targeting the Israeli education and technology sectors
+
+We track threat activity across the globe, with Iran as one of four major nation-state actors we monitor, alongside China, Russia and North Korea. The primary objectives of Iranian nation-state actors frequently include espionage and disruption. These groups employ a variety of tactics, techniques and procedures (TTPs), including targeted spear-phishing campaigns and the exploitation of known vulnerabilities. Specific observations include:
+
+Covert infrastructure for espionage: A recent case identified by Unit 42 revealed suspected covert Iranian infrastructure impersonating a German modeling agency to conduct cyberespionage. These operations deploy fake websites to collect extensive visitor data, suggesting strategic intelligence-gathering objectives.
+AI-enhanced social engineering: We recently observed an Iranian threat group (Agent Serpens, aka CharmingKitten) using GenAI in a malicious PDF, which it masked as a document from the U.S. non-profit research organization RAND. The group deployed this PDF alongside targeted malware.
+Persistent destructive operations: The Iranian-backed Agonizing Serpens APT group targeted the Israeli education and technology sectors from January-October 2023, aiming to steal sensitive data like personally identifiable information (PII) and intellectual property. In these attacks, it also deployed wipers to destroy systems and hinder forensic analysis.
+
+In the context of the ongoing geopolitical situation with Iran, we've identified four key areas of potential cyberthreat activity:
+
+Iranian nation-state threat actors: In the near term, Iranian nation-state hackers are likely to leverage targeted attacks, from spear phishing emails aimed at diplomats to destructive wiper malware targeting organizations with ties to U.S. interests.
+Hacktivists: It is likely that hacktivists supporting Iran will continue to conduct disruptive attacks and influence operations targeting U.S.-based interests both domestically and abroad. This includes DDoS attacks to disrupt internet access and influence operations on social media platforms.
+Cybercriminal groups: These groups could opportunistically exploit global uncertainty to launch phishing campaigns, leveraging world events as a theme for malicious emails and attachments.
+Other nation-state actors: There is a potential for other nation-state threat actors to use events to further their interests. These attacks could include false-flag operations where actors from somewhere other than Iran disguise their attacks to appear as if they originated from Iran. This was seen when Russia previously hijacked Iran’s cyber infrastructure in 2019 to piggyback into networks already compromised by Iranian actors.
+
+Palo Alto Networks customers can receive protections from and mitigations for this threat actor activity through the following products:
+
+Next-Generation Firewalls with Advanced Threat Prevention
+Cortex XDR, XSIAM and Cortex Cloud
+
+The Unit 42 Incident Response team can also be engaged to help with a compromise or to provide a proactive assessment to lower your risk.
+
+
+
+Threat Groups Discussed
+Agent Serpens (aka APT42), Agonizing Serpens (aka Pink Sandstorm), Boggy Serpens (aka MuddyWater), Curious Serpens (aka Peach Sandstorm), Devious Serpens (aka Imperial Kitten), Evasive Serpens, Industrial Serpens
+
+
+
+Current Scope of Cyberattacks
+Unit 42 tracks various Iranian state-sponsored actors under the constellation name Serpens. These groups could increase or escalate activity in the upcoming weeks.
+State-sponsored Iranian cyber capabilities are often used to project and amplify political messaging (often using destructive and psychological tactics). These efforts are likely to focus on regional targets (e.g., Israel) as well as what they deem high-value targets (e.g., politicians, key decision-makers and other directly involved entities).
+State-sponsored campaigns might target their victim’s supply-chains, critical infrastructure, vendors or providers.
+The majority of the already-reported cyberattacks related to this event are intentionally disruptive denial-of-service (DoS) attacks. Third-party attackers such as hacktivists and proxy actors typically support one side or the other, aiming to negatively impact and influence the opposing side.
+As of June 22, 2025, 120 hacktivist groups are reportedly active in response to these events. Other public reports indicate that both cybercriminal groups and state-supported proxy groups are also active.
+DDoS appears to be the most-reported attack method, followed by destructive attacks. Samples of destructive malware like data wipers related to these events have been observed by researchers. Destructive attacks also include destroying $90 million of funds in a June 2025 crypto exchange breach.
+Other data breaches and associated data leaks are intended to damage either side. Reports also indicate the targeting of operational technology (OT). These two are sometimes related, because data breaches of energy and other utility companies have also been reported in direct relation to these events.
+Iranian Threat Groups Tracked by Unit 42
+
+Agent Serpens (aka APT42)
+
+An espionage and surveillance group focusing on Israel and the U.S., targeting dissidents, activists, journalists and other groups that are deemed to pose a risk or which protests against the Iranian government
+Initial access: Primarily spear phishing, including credential harvesting with fake login pages, also watering hole attacks
+
+
+Agonizing Serpens (aka Pink Sandstorm)
+
+This group engages in espionage, ransomware and destructive malware attacks against targets in the Middle East, with a significant focus on attacks against Israel.
+Initial access: Password attacks (e.g., brute force, password sprays) as well as exploitation of known vulnerabilities (followed by deployment of web shells)
+
+
+Boggy Serpens (aka MuddyWater)
+
+A cyberespionage group that provides stolen data and access to the Iranian government as well as other threat actors
+Initial access: Spear phishing and exploitation of known vulnerabilities
+
+
+Curious Serpens (aka Peach Sandstorm)
+
+Espionage group active since 2013 targeting the aerospace, defense and energy sectors in the U.S., Middle East and Europe. The group has leveraged cloud infrastructure including Azure for C2.
+Initial access: Broadly targeted password spray attacks or job recruitment based social engineering campaigns to deliver custom malware, including the Falsefont or Tickler backdoors. Once inside, the group is known for conducting discovery activities with tools including AzureHound and Roadtools to collect and dump data from Microsoft Entra ID.
+
+
+Devious Serpens (aka Imperial Kitten)
+
+An espionage group known for targeting IT providers in the Middle East as part of supply chain campaigns
+Initial access: Social engineering through social media, credential spear phishing and watering-hole attacks, deploying web shells
+
+
+Evasive Serpens (aka APT34)
+
+A prolific espionage group known for broad targeting that aligns with nation-state interests
+Initial access: Relies heavily on spear phishing, though it has also been associated with other more complex attacks such as credential harvesting campaigns and DNS hijacking
+
+
+Industrial Serpens (aka Chrono Kitten)
+
+An Iranian-proxy group associated with disruptive attacks (e.g., ransomware, wiper malware, hack-and-leak attacks) that align with state interests
+Initial access: Social engineering to distribute Android spyware hosted on spoofed websites, password attacks (e.g. brute force, password sprays) and exploitation of known vulnerabilities
+
+
+
+Conclusion
+Given the variety of tactics that threat actors are using, a multi-layered defense is most effective as no single tool can provide complete protection against these adaptable threats. We recommend focusing on foundational security hygiene, a proven approach that provides resilient protection against a wide range of tactics.
+We recommend taking the following precautions to help mitigate impact from possible attacks.
+Tactical Recommendations
+
+Increase response to any threat signals where possible, especially those associated with internet-facing assets such as websites, virtual private network (VPN) gateways and cloud assets
+Ensure internet-facing infrastructure is up to date with security patches and other hardening best practices
+Train employees on phishing and social engineering tactics and continuously monitor for suspicious activity
+On June 30, CISA, the FBI, DoD Cyber Crime Center and NSA published a joint fact sheet, "Iranian Cyber Actors May Target Vulnerable US Networks and Entities of Interest," urging organizations to remain vigilant against potential targeted cyber operations by Iranian state-sponsored or affiliated threat actors.
+
+Strategic Recommendations
+
+Begin or update business continuity plans for any staff or assets that digital or physical attacks could disrupt
+Prepare to validate and respond to claims of breaches or data leaks
+
+Threat actors might use claims (even if they’re untrue) to embarrass or harass victims, or to disseminate political narratives
+
+
+
+As activity is likely to continue to be intensified throughout the duration of these events, it’s important to remain vigilant to potential attacks. Hacktivists and state-supported threat actors have been opportunistic, leading to potentially unexpected sources being targeted.
+We will update this threat brief as more relevant information becomes available.
+How Palo Alto Networks and Unit 42 Can Help
+Palo Alto Networks customers can leverage a variety of product protections and updates to identify and defend against threats related to aspects of these events.
+If you think you might have been compromised or have an urgent matter, get in touch with the Unit 42 Incident Response team or call:
+
+North America: Toll Free: +1 (866) 486-4842 (866.4.UNIT42)
+UK: +44.20.3743.3660
+Europe and Middle East: +31.20.299.3130
+Asia: +65.6983.8730
+Japan: +81.50.1790.0200
+Australia: +61.2.4062.7950
+India: 00080005045107
+
+Next-Generation Firewalls and Prisma Access With Advanced Threat Prevention
+Advanced Threat Prevention has an inbuilt machine learning-based detection that can detect exploits in real time.
+Cortex
+Cortex XDR, XSIAM and Cortex Cloud are designed to prevent the execution of known malicious malware. It is also designed to prevent the execution of unknown malware and other malicious activities using Behavioral Threat Protection and machine learning based on the Local Analysis module.
+Updated June 26, 2025, at 1:34 p.m. PT to add entry on Curious Serpens to section on Iran-based threat groups tracked by Unit 42. 
+Updated June 30, 2025, at 1:20 p.m. PT to update Tactical Recommendations section. 
+
+
+Back to top
+
+TagsAgent SerpensAgonizing SerpensBoggy SerpensCurious SerpensDDoS attacksDevious SerpensEvasive SerpensGenAIIran
+
+
+
+Threat Research Center
+
+
+Next: Cybercriminals Abuse Open-Source Tools To Target Africa’s Financial Sector
+
+
+
+
+
+
+
+Table of Contents
+
+
+
+
+
+
+Related Articles
+
+
+
+                      Tracking Iranian APT Screening Serpens’ 2026 Espionage Campaigns                  
+
+
+
+                      Paved With Intent: ROADtools and Nation-State Tactics in the Cloud                  
+
+
+
+                      That AI Extension Helping You Write Emails? It’s Reading Them First                  
+
+
+
+
+
+
+
+
+
+Related  Resources
+
+
+
+
+ 
+
+
+
+Threat Research September 29, 2026
+
+OperTraitors: How Kubernetes Operators Betray Your Security Posture
+
+
+
+AI
+
+
+AI agents
+
+
+API
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights September 16, 2026
+
+Atomic macOS (AMOS) Stealer Activity
+
+
+
+MacOS
+
+
+Threat intelligence
+
+
+Unit 42
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research September 10, 2026
+
+The Machine With Many Faces: Post-Exploitation Identity Misuse in SPIFFE/SPIRE
+
+
+
+API
+
+
+Cryptographic
+
+
+JSON
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research September 9, 2026
+
+Untracked Nightmares: The Threats Hiding Behind Commodity Infrastructure
+
+
+
+ARKTunnel
+
+
+C2
+
+
+CL-CRI-1171
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research September 3, 2026
+
+Attackers Expose Ongoing AI Tool Use Targeting Organizations in Latin America
+
+
+
+Agentic AI
+
+
+ChatGPT
+
+
+CL-CRI-1131
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research August 31, 2026
+
+Spring Ring: An Inside Look at Voice Phishing Campaigns in Microsoft Teams
+
+
+
+Cloaked Ursa
+
+
+Entra ID
+
+
+Microsoft Teams
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research August 25, 2026
+
+The State of AI-Enabled Malware August 2026: From Brand Abuse to Agentic Execution
+
+
+
+Backdoor
+
+
+Bitcoin
+
+
+DLL hijacking
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research August 20, 2026
+
+Identity Abuse Through Trusted Communication Channels
+
+
+
+Authentication
+
+
+Identity theft
+
+
+Malware
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research August 11, 2026
+
+Kimwolf v7: An Evolution of the Kimwolf Botnet
+
+
+
+Android APK
+
+
+Ethereum
+
+
+HTTP
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research August 10, 2026
+
+The Permanent Threat: Analyzing Aeternum’s Blockchain-Based C2 Operations and Communications
+
+
+
+Aeternum
+
+
+Infection chain
+
+
+JSON
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
+				Get updates from Unit 42			
+Peace of mind comes from staying ahead of threats. Subscribe today.
+
+
+
+
+
+
+
+
+
+
+Your Email
+
+
+Subscribe for email updates to all Unit 42 threat research.
+By submitting this form, you agree to our Terms of Use and acknowledge our Privacy Statement.
+
+                    This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.                            
+  
+
+Invalid captcha!
+ 
+					Subscribe					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Get the latest news, invites to events, and threat alerts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Enter your email now to subscribe!
+
+
+
+
+
+Sign up 
+
+
+
+
+                                
+                                
+                                
+                                    By submitting this form, I understand my personal data will be processed in accordance with
+                                        Palo Alto Networks Privacy Statement and Terms of Use.
+
+
+
+Sign up 
+
+
+
+
+
+
+
+
+
+
+
+
+Products and Services
+
+
+
+
+
+                                    AI-Powered Network Security Platform
+                                
+
+
+
+                                    Secure AI by Design
+                                
+
+
+
+                                    Prisma AIRS
+                                
+
+
+
+                                    AI Access Security
+                                
+
+
+
+                                    Cloud Delivered Security Services
+                                
+
+
+
+                                    Advanced Threat Prevention
+                                
+
+
+
+                                    Advanced URL Filtering
+                                
+
+
+
+                                    Advanced WildFire
+                                
+
+
+
+                                    Advanced DNS Security
+                                
+
+
+
+                                    Enterprise Data Loss Prevention
+                                
+
+
+
+                                    Enterprise IoT Security
+                                
+
+
+
+                                    Medical IoT Security
+                                
+
+
+
+                                    Industrial OT Security
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    Next-Generation Firewalls
+                                
+
+
+
+                                    Hardware Firewalls
+                                
+
+
+
+                                    Software Firewalls
+                                
+
+
+
+                                    Strata Cloud Manager
+                                
+
+
+
+                                    SD-WAN for NGFW
+                                
+
+
+
+                                    PAN-OS
+                                
+
+
+
+                                    Panorama
+                                
+
+
+
+                                    Secure Access Service Edge
+                                
+
+
+
+                                    Prisma SASE
+                                
+
+
+
+                                    Application Acceleration
+                                
+
+
+
+                                    Autonomous Digital Experience Management
+                                
+
+
+
+                                    Enterprise DLP
+                                
+
+
+
+                                    Prisma Access
+                                
+
+
+
+                                    Prisma Browser
+                                
+
+
+
+                                    Prisma SD-WAN
+                                
+
+
+
+                                    Remote Browser Isolation
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    AI-Driven Security Operations Platform
+                                
+
+
+
+                                    Cloud Security
+                                
+
+
+
+                                    Cortex Cloud
+                                
+
+
+
+                                    Application Security
+                                
+
+
+
+                                    Cloud Posture Security
+                                
+
+
+
+                                    Cloud Runtime Security
+                                
+
+
+
+                                    Prisma Cloud
+                                
+
+
+
+                                    AI-Driven SOC
+                                
+
+
+
+                                    Cortex XSIAM
+                                
+
+
+
+                                    Cortex XDR
+                                
+
+
+
+                                    Cortex XSOAR
+                                
+
+
+
+                                    Cortex Xpanse
+                                
+
+
+
+                                    Unit 42 Managed Detection & Response
+                                
+
+
+
+                                    Managed XSIAM
+                                
+
+
+
+                                    Observability
+                                
+
+
+
+                                    Cortex XCOR
+                                
+
+
+
+
+
+                                    Next-Generation Identity Security
+                                
+
+
+
+                                    Privileged Access Management
+                                
+
+
+
+                                    Identity and Access Management 
+                                
+
+
+
+                                    Endpoint Privilege Manager
+                                
+
+
+
+                                    Identity Governance
+                                
+
+
+
+                                    Workforce Password Management
+                                
+
+
+
+                                    Agentic Identities
+                                
+
+
+
+                                    Secrets Management
+                                
+
+
+
+                                    Unified Secrets Governance
+                                
+
+
+
+                                    Application Credentials Delivery
+                                
+
+
+
+                                    Vendor Privileged Access
+                                
+
+
+
+                                    Threat Intel and Incident Response Services
+                                
+
+
+
+                                    Prepare for Emerging Risks
+                                
+
+
+
+                                    Strengthen Your Defenses
+                                
+
+
+
+                                    Build Your Security Strategy
+                                
+
+
+
+                                    Understand the Adversary
+                                
+
+
+
+                                    Respond to a Cyber Attack
+                                
+
+
+
+
+
+
+Company
+
+
+
+
+
+                                    About Us
+                                
+
+
+
+                                    Careers
+                                
+
+
+
+                                    Contact Us
+                                
+
+
+
+                                    Corporate Responsibility
+                                
+
+
+
+                                    Customers
+                                
+
+
+
+                                    Investor Relations
+                                
+
+
+
+                                    Location
+                                
+
+
+
+                                    Newsroom
+                                
+
+
+
+
+
+
+Popular Links
+
+
+
+
+
+                                    Blog
+                                
+
+
+
+                                    Communities
+                                
+
+
+
+                                    Content Library
+                                
+
+
+
+                                    Cyberpedia
+                                
+
+
+
+                                    Event Center
+                                
+
+
+
+                                    Manage Email Preferences
+                                
+
+
+
+                                    Products A-Z
+                                
+
+
+
+                                    Product Certifications
+                                
+
+
+
+                                    Report a Vulnerability
+                                
+
+
+
+                                    Sitemap
+                                
+
+
+
+                                    Tech Docs
+                                
+
+
+
+                                    Unit 42
+                                
+
+
+
+                                    Do Not Sell or Share My Personal Information
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Privacy
+                            
+
+
+
+                                Trust Center
+                            
+
+
+
+                                Terms of Use
+                            
+
+
+
+                                Documents
+                            
+
+
+Copyright © 2026 Palo Alto Networks. All Rights Reserved
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+EN
+
+
+
+Select your language
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Your browser does not support the video tag.
+          
+
+Default Heading
+Read the article
+              
+
+
+
+
+Seekbar
+
+
+
+
+
+
+
+
+
+
+
+
+
+Volume
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

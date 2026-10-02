@@ -1,0 +1,841 @@
+
+
+
+Matt Olney - Cisco Talos Blog (Page 2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Matt Olney
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+February 29, 2012 10:51
+Low Hanging Fruit
+We spend a lot of time watching what is going on in the world.  One of the advantages of having a customer-based intelligence sharing program as well as a distribution of our own sensors in the wild is that we are able to watch as threats change.  When new threats come into play,
+
+
+                    By
+                
+Matt Olney
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+February 16, 2012 10:35
+Agile Security
+Up until this past year, I had never included any marketing materials in my slides.  It never seemed to fit in with a technical presentation, even though I always believed in the Sourcefire product line's ability to defend our customers in the face of a rapidly changing lands
+
+
+                    By
+                
+Matt Olney
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+February 13, 2012 17:58
+Razorback 0.4.1 released
+The Razorback team has released version 0.4.1 (yeah, we would have released 0.4, but we found some critical bugs that we really needed to fix before general release).  You can find the new version of Razorback here:  http://sfi.re/zQQOQ4.  We've done a lot of work both on the
+
+
+                    By
+                
+Matt Olney
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+January 5, 2012 10:00
+A New Hope
+Rep. Mike Rogers (R-MI) and Rep. Dutch Ruppersberger (D-MD) know a secret:  The Federal government is REALLY good at watching people, much better than, say, the private sector.  So they asked themselves (at least they did in my mind), "Why not share some of that information
+
+
+                    By
+                
+Matt Olney
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+October 26, 2011 12:36
+Razorback 0.3 Released
+Yesterday we released Razorback 0.3, the result of the Q3 development run.  Q3 focused on building out the scripting nugget, reworking how the Snort-as-a-Collector nugget works and building out a VM image so you can easily tryout the Razorback system.
+
+The scripting nugget is a h
+
+
+                    By
+                
+Matt Olney
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+July 12, 2011 14:45
+Now Available -- Razorback 0.2 Release Candidate
+0.2 Release CandidateThis week we’re putting out the Razorback 0.2 release candidate.  You can find it here:
+
+http://sourceforge.net/projects/razorbacktm/files/Razorback/razorback-0.2.0-rc.tbz/download
+
+This release, and the 0.2 final release scheduled for next week, contains all
+
+
+                    By
+                
+Matt Olney
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+May 3, 2011 17:41
+Razorback Roadmap and Status Report
+In which we get our first introduction to Tom Judge, the Amish Hammer.
+
+Yep, you're right, we've been kinda quiet lately.  Some of that has been because we are the VRT in addition to the developers of Razorback and we had some big things to tackle in our other roles.  But
+
+
+                    By
+                
+Matt Olney
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+January 10, 2011 15:56
+In which kpyke looks behind the green curtain
+From an operations perspective, there is very little that is less useful and more aggravating than vendor magic. What I mean by this is anything that "happens" in the background that you have no visibility into. While many organizations enjoy the simplicity provided by
+
+
+                    By
+                
+Matt Olney
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+July 20, 2010 21:15
+Innovation -- You Keep Using That Word...
+So, this week, the OISF has been on a media blitz about Suricata, their open-source Intrusion Detection System.  As always, my preference is for you to review the information yourself, so before I give you my thoughts about the state of Suricata, here are some links:
+
+http://www.
+
+
+                    By
+                
+Matt Olney
+
+
+
+
+
+ 
+
+
+
+
+
+
+← Prev
+
+
+Next →
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

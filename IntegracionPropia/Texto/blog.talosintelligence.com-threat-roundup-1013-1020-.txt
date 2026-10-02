@@ -1,0 +1,689 @@
+
+
+
+Threat Roundup for October 13 to October 20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Threat Roundup for October 13 to October 20
+
+
+By 
+William Largent
+
+
+
+            Friday, October 20, 2023 15:38
+        
+
+
+                            Threat Roundup
+                        
+
+
+
+
+Today, Talos is publishing a glimpse into the most prevalent threats we've observed between Oct. 13 and Oct. 20. As with previous roundups, this post isn't meant to be an in-depth analysis. Instead, this post will summarize the threats we've observed by highlighting key behavioral characteristics, indicators of compromise, and discussing how our customers are automatically protected from these threats.As a reminder, the information provided for the following threats in this post is non-exhaustive and current as of the date of publication. Additionally, please keep in mind that IOC searching is only one part of threat hunting. Spotting a single IOC does not necessarily indicate maliciousness. Detection and coverage for the following threats is subject to updates, pending additional threat or vulnerability analysis. For the most current information, please refer to your Firepower Management Center, Snort.org, or ClamAV.net.For each threat described below, this blog post only lists 25 of the associated file hashes and up to 25 IOCs for each category. An accompanying JSON file can be found here that includes the complete list of file hashes, as well as all other IOCs from this post. A visual depiction of the MITRE ATT&CK techniques associated with each threat is also shown. In these images, the brightness of the technique indicates how prevalent it is across all threat files where dynamic analysis was conducted. There are five distinct shades that are used, with the darkest indicating that no files exhibited technique behavior and the brightest indicating that technique behavior was observed from 75 percent or more of the files.The most prevalent threats highlighted in this roundup are:Threat NameTypeDescriptionWin.Dropper.Zeus-10011479-0DropperZeus is a trojan that steals information such as banking credentials using methods such as key-logging and form-grabbing.Win.Downloader.Upatre-10011416-0DownloaderUpatre is a malicious downloader often used by exploit kits and phishing campaigns. Upatre downloads and executes malicious executables, such as banking malware.Win.Packed.CoinMiner-10011305-1PackedThis malware installs and executes cryptocurrency-mining software.Win.Dropper.Remcos-10011195-0DropperRemcos is a remote access trojan (RAT) that allows attackers to execute commands on the infected host, log keystrokes, interact with a webcam, and capture screenshots. This malware is commonly delivered through Microsoft Office documents with macros, sent as attachments on malicious emails.Win.Malware.Zusy-10010855-0MalwareZusy, also known as TinyBanker or Tinba, is a trojan that uses man-in-the-middle attacks to steal banking information. When executed, it injects itself into legitimate Windows processes such as "explorer.exe" and "winver.exe." When the user accesses a banking website, it displays a form to trick the user into submitting personal information.Win.Packed.AgentTesla-10010785-1PackedAgentTesla is a remote access rojan that records keystrokes and attempts to steal sensitive information from web browsers and other installed applications.Win.Trojan.Tofsee-10010766-0TrojanTofsee is multi-purpose malware that features a number of modules used to carry out various activities such as sending spam messages, conducting click fraud, mining cryptocurrency, and more. Infected systems become part of the Tofsee spam botnet and are used to send large volumes of spam messages in an effort to infect additional systems and increase the overall size of the botnet under the operator's control.Win.Dropper.Glupteba-10010808-0DropperGlupteba is a multi-purpose trojan that is known to use the infected machine to mine cryptocurrency and steals sensitive information like usernames and passwords, spreads over the network using exploits like EternalBlue, and leverages a rootkit component to remain hidden. Glupteba has also been observed using the Bitcoin blockchain to store configuration information.Win.Dropper.Nanocore-10011208-0DropperNanocore is a .NET remote access trojan. Its source code has been leaked several times, making it widely available. Like other RATs, it allows full control of the system, including recording video and audio, stealing passwords, downloading files and recording keystrokes.Win.Dropper.DarkComet-10011490-1DropperDarkComet and related variants are a family of remote access trojans designed to provide an attacker with control over an infected system. Capabilities of this malware include the ability to download files from a user's machine, mechanisms for persistence and hiding, and the ability to send back usernames and passwords from the infected system.Threat BreakdownWin.Dropper.Zeus-10011479-0Indicators of CompromiseIOCs collected from dynamic analysis of 17 samplesRegistry KeysOccurrences\SOFTWARE\MICROSOFT\INTERNET EXPLORER\PRIVACY Value Name: CleanCookies12\SOFTWARE\MICROSOFT\WINDOWS\CURRENTVERSION\ACTION CENTER\CHECKS\{E8433B72-5842-4D43-8645-BC2C35960837}.CHECK.101 Value Name: CheckSetting12\SOFTWARE\MICROSOFT\WINDOWS\CURRENTVERSION\ACTION CENTER\CHECKS\{E8433B72-5842-4D43-8645-BC2C35960837}.CHECK.103 Value Name: CheckSetting12\SOFTWARE\MICROSOFT\WINDOWS\CURRENTVERSION\ACTION CENTER\CHECKS\{E8433B72-5842-4D43-8645-BC2C35960837}.CHECK.100 Value Name: CheckSetting12\SOFTWARE\MICROSOFT\WINDOWS\CURRENTVERSION\ACTION CENTER\CHECKS\{E8433B72-5842-4D43-8645-BC2C35960837}.CHECK.102 Value Name: CheckSetting12\SOFTWARE\MICROSOFT\WINDOWS\CURRENTVERSION\ACTION CENTER\CHECKS\{E8433B72-5842-4D43-8645-BC2C35960837}.CHECK.104 Value Name: CheckSetting12\Software\Microsoft\12\SOFTWARE\MICROSOFT\WINDOWS\CURRENTVERSION\RUN Value Name: {C45BAE81-6FD8-625F-01B4-47867CA2B270}5\SOFTWARE\MICROSOFT\WINDOWS\CURRENTVERSION\RUN Value Name: {2AD245C9-6C14-D117-E84E-F21650C846A7}2\SOFTWARE\MICROSOFT\WINDOWS\CURRENTVERSION\RUN Value Name: {429DEFC0-AD95-8173-F328-FEDF80CD61A8}2\SOFTWARE\MICROSOFT\TAVIYR Value Name: Hyqafowo1\SOFTWARE\MICROSOFT\DIAQ Value Name: Tufa1\SOFTWARE\MICROSOFT\EDVA Value Name: Ruudibnir1\SOFTWARE\MICROSOFT\RAAMI Value Name: Oripxe1\SOFTWARE\MICROSOFT\HOOSS Value Name: Kuufture1\SOFTWARE\MICROSOFT\WINDOWS\CURRENTVERSION\RUN Value Name: {1B9B0642-9212-04C9-E76A-6689A279823D}1\SOFTWARE\MICROSOFT\EGNIB Value Name: Duvuoro1\SOFTWARE\MICROSOFT\WINDOWS\CURRENTVERSION\RUN Value Name: {82AFDD97-56B5-8180-6246-7EACFD9E3E11}1\SOFTWARE\MICROSOFT\OTIH Value Name: Umuz1\SOFTWARE\MICROSOFT\LUSYQO Value Name: Ecpiogtoi1\SOFTWARE\MICROSOFT\UCRUU Value Name: Yxyqnupio1\SOFTWARE\MICROSOFT\WINDOWS\CURRENTVERSION\RUN Value Name: {4DDC5D3F-09DB-40C8-8BE7-793502F0E15B}1\SOFTWARE\MICROSOFT\OSYCR Value Name: Okgeta1\SOFTWARE\MICROSOFT\WUENMU Value Name: Obyqupdot1\SOFTWARE\MICROSOFT\EQKURY Value Name: Itusri1MutexesOccurrences8548551517GLOBAL\{}12Local\{}12Local\{224FD2A9-13F0-844B-01B4-47867CA2B270}5IP Addresses contacted by malware. Does not indicate maliciousnessOccurrences34[.]98[.]99[.]305109[.]203[.]118[.]162Domain Names contacted by malware. Does not indicate maliciousnessOccurrencesconntact[.]com5cursodegnosis[.]net3wildlife-galleries[.]co[.]uk2www[.]tuguarenas[.]com1tuoitredakrlap[.]net1Files and or directories createdOccurrences%TEMP%\tmp.bat12%APPDATA%\12%APPDATA%\.exe12%APPDATA%\Agumaz\ukuvt.oqd1%APPDATA%\Rimuxy\gaka.aku1%APPDATA%\Ukomim\heyf.deg1%APPDATA%\Izxi\omly.eqe1%APPDATA%\Umudb\odmok.evr1%APPDATA%\Avke\egroo.agk1%APPDATA%\Zaopy\vemoe.ebk1%APPDATA%\Onsuca\goba.lyc1%APPDATA%\Toze\avlo.pee1%APPDATA%\Ygol\riyxd.apa1%APPDATA%\Dywib\ysah.eki1%APPDATA%\Nyyryz\muehe.avr1File Hashes0390a213c2f1e2044dc034ef69854250734d366b588e5ed56ccfd43d6e487c61182e47a72f0bef509026ffe4a99e2a55a3141b6a522418cec02306b8ec54ac221cc22b339677ca1f45d2cfde253948875a36f6ead95761d4cc00d4ec2d030896285acd4d1368f8e0c43133996656d60ed5b121beca9368fb3fb93e6eb380c10532742ef7917d53a4b04ef1b926163b1c4671151228074cccc3d998b45cb6c92f3e9402d4c401522c9f272174035ef73a6543b3a7f51e6f7678807e427acd1deb5f390a6125708cf8e7298e73b9e47ad77120052e0fcddf04be2d640120ee547d825d1887edc5ab4be8a488dddf3315778879c6c10a970e810ae96669ffd5dec984644c5a5b0ac873fbcff8d088f1a86e285a8ece5bbd540108e1d4f275e855448f676a2f5fa319d6851f636276440eac7c792e25bc41ea3158111e8670a80ff3a44304a9afb8b2483bd187c11ee178f95bc157f4675b1fc3690b838dddffa846cd74c2ab3244618836b4e9dfb6e4c751003b2262325c0d580ea70ebf353f766ecd7727e61b2dbdbd0f9f346dd86f219485268be84348431c63e14fd00e23c0a5d26420918252c8f6400f20514b4181f0b50876310652f3367b600768a4fa3828d846e714d440c4ebf5be078ab98c48d28f235cbe315cf990bacecc13fc214d98f5a105041be2e898ea346c48c4f63c5277aa11f7a07e63e01d0428d209942fe8fc0915f632bebb398389a039a278af638022bc23d9c725088d0abb4ff4485d7cCoverageProductProtectionSecure EndpointCloudlockN/ACWSEmail SecurityNetwork SecurityStealthwatchN/AStealthwatch CloudN/ASecure Malware AnalyticsUmbrellaN/AWSAN/AScreenshots of DetectionSecure EndpointSecure Malware AnalyticsMITRE ATT&CKWin.Downloader.Upatre-10011416-0Indicators of CompromiseIOCs collected from dynamic analysis of 30 samplesRegistry KeysOccurrences\SOFTWARE\MICROSOFT\WINDOWS\CURRENTVERSION\EXPLORER\STARTPAGE Value Name: StartMenu_Balloon_Time2IP Addresses contacted by malware. Does not indicate maliciousnessOccurrences185[.]211[.]22[.]2422923[.]205[.]105[.]1571023[.]205[.]105[.]1691023[.]205[.]105[.]153623[.]205[.]105[.]146223[.]219[.]154[.]1361Domain Names contacted by malware. Does not indicate maliciousnessOccurrencesapps[.]identrust[.]com29salahicorp[.]com29ren7oaks[.]co[.]uk29Files and or directories createdOccurrences%TEMP%\budha.exe30File Hashes01d39073e8023b463aeeb09d7d745b79fd4d1d570448c41e1fbe290e4c24220e03783c7ce13fa114e8f8752218adf7bfa538098a550df3364a7fd69d767f9cfd0b87dad19fb92148113f48a6b49d0023e1c34003793c1cb67850c5e2d9c587550c499d7a858682d75c7ca11ed919e44307a8f9bbd6ea91e6d7d9fcfea3d01ff80f7ab72492dfe10804ba22a630148486d137a0f8cb57c3a48a48355d6be69707123eb4da91b065d629afe30d6fc6e37465ad017abed80fe4d94d15b5324008d61f496efb45301d0a4d0a41fd8dbd998e3075bce1631c018aa943c7d3fb08396723df6b20b96ae652d532416298621da60c32cbf15762cc181d43f26ed980c1a72a3c8198840e7b55aec2f79aade39baa01f66921b2c6077b8261944bda68b8c52e9a44b5434ff209387fdd456901a679d6577874afd71208fb9c3046fef518833a7c36c7c377963e76e1192f58808c6693c92148573559f61607a07a2c24ad6f4f1ad200a563ec7ca3b1d1151fbaff7ddd695c9c056e3d98c5323e9f02d40b2554e5900083763b04504d24aeb9b5c134eac3e784eab067e07630903c16a322d957eabd449ebd30730b3a2a20958fc8faba9c2ddb7e68dd4e791df98a50eb7e08599f6ade2b8577d1020597472bb44c42b119a3b935415e7a3b55ff876ff4645d5c9d1828a67d8af3b2bd5fa9037cc64c995dda3270b60f4326acfac2e9206d8d68e9468cdf8c33bdf1c02bdb12f056a0336ea20a60891bf4678ee31faf1a76b57501fab5ff915e31cab34c5207751f5c422c3b97c53f68aa6ff7776b81a9b6a57865a38ee6cc666d6bb6f395d423aea7ded6d6a9e9da8c79c61142a2f739efa67c7c0662a8ea3f52cbd2ad44c68fcd9469b5ab1284d2366880477b45e53eb6c787f39a0275aecbd0529b84b4815ac2429da6fcbb744a684335ad6ffa650f2eab9471bedea8d8b57b875ed67abd082fe13d4fc4f795c1cdfb45dbb713505ad23aa0baa12791570d5cd7f6ebd20bd49bb7365693442096b72687fcfd3eea926970b05014f4ad4b0f6ea82236fec9030dd92c04601d5482b5cae0a3e1ded0460de4c0bf0423e9d81f5d6e3607a8f072c595c70c5549d02d3aed43d4a3fd514c6a82*See JSON for more IOCsCoverageProductProtectionSecure EndpointCloudlockN/ACWSEmail SecurityNetwork SecurityStealthwatchN/AStealthwatch CloudN/ASecure Malware AnalyticsUmbrellaWSAScreenshots of DetectionSecure EndpointSecure Malware AnalyticsMITRE ATT&CKWin.Packed.CoinMiner-10011305-1Indicators of CompromiseIOCs collected from dynamic analysis of 17 samplesRegistry KeysOccurrences\SOFTWARE\MICROSOFT\WINDOWS\CURRENTVERSION\EXPLORER\STARTPAGE Value Name: StartMenu_Balloon_Time1MutexesOccurrencesatwimjbzqckrcqbp17Global\atwimjbzqckrcqbp17IP Addresses contacted by malware. Does not indicate maliciousnessOccurrences142[.]202[.]242[.]4510142[.]202[.]242[.]437Domain Names contacted by malware. Does not indicate maliciousnessOccurrencespool[.]hashvault[.]pro17Files and or directories createdOccurrences%APPDATA%\Google17%APPDATA%\Google\Libs17%APPDATA%\Google\Libs\WR64.sys17%TEMP%\qdorobglftsq.tmp17File Hashes0418cdb7929843bb178117edceb2da83d7e5b2324102160d89b0501a2f98bbfd0b2543ca8927a890090c75074661192b96c9ab16470663c54208fa98451e84b0120fa170b822961e74e598032928a50923cb13eb47e681f10c902c7a9b3037a928c0c623b2c1ae88989303038fd8deb1a2f70e5915e309a4bfc49d98b7eec7d82effdfaaf496f107e15a40d407b340a3ef1412eaf25c8964fbdf95745f81d6a43c10a8c8a245a127c01ff4ff0fa2e5efe4fc593590b91ca6db614520a027c7bc425786ded081d2aef6df029bfa8081d55a6d1d779227de39e0a183beced35fc648b81bf6601875a79bc51a940d1f8c52e1992d02a4c82ae9918ca9caf165e9624bab91437f57be24381b09d84ff6e0f8559dd9c763d8b91f4b3658d5b8fbccb852ed438206b7d7b070a9a1cafb1a58e4bde9ba6ab38771713474274bdc425feb6ae0bd1945da4b746106d6c2f925c078fc434d7f8ab7d392ba5370f32dc02dc270f4b38d9bb380303df03ca055f4af62d784e649fc556c3d9d7c61a365eb392174e111ece66a5e72d0d2c6e208d2e4276f1e5e2d2b15dae3d7dfcda4ca62953582ccec7113295fe5ddc9eebbd5330ce9c4bce472018ef5a62980722644cd5966c5dc5e4924756efe46e5d66975f56ea421c41a49a0f7b70d8198f6f9d2648e01e78054bcf5b78d34eb871767647f180336157fac21a774b8a31f7f6dc37c21f4ee02b883db69d9401fb465800719963a5fdec877690d2cb4864a15c03bda4091CoverageProductProtectionSecure EndpointCloudlockN/ACWSEmail SecurityNetwork SecurityStealthwatchN/AStealthwatch CloudN/ASecure Malware AnalyticsUmbrellaN/AWSAN/AScreenshots of DetectionSecure EndpointSecure Malware AnalyticsMITRE ATT&CKWin.Dropper.Remcos-10011195-0Indicators of CompromiseIOCs collected from dynamic analysis of 28 samplesRegistry KeysOccurrences\SOFTWARE\MICROSOFT\WINDOWS\CURRENTVERSION\RUN Value Name: hpsupportdf6\SOFTWARE\HPSUPPORTA-3474R7 Value Name: exepath6\SOFTWARE\HPSUPPORTA-3474R7 Value Name: licence6\SOFTWARE\HPSUPPORTA-3474R76\SOFTWARE\WINRAR3\SAM\SAM\DOMAINS\ACCOUNT\USERS\000003E9 Value Name: F3\SAM\SAM\DOMAINS\ACCOUNT\USERS\000001F5 Value Name: F3\SAM\SAM\DOMAINS\ACCOUNT\USERS\000003EC Value Name: F3\SOFTWARE\WINRAR Value Name: HWID3\SOFTWARE\MICROSOFT\WINDOWS\CURRENTVERSION\RUN Value Name: remcos2\SOFTWARE\MICROSOFT\WINDOWS\CURRENTVERSION\RUN Value Name: NetWire2\SOFTWARE\MICROSOFT\WINDOWS\CURRENTVERSION\POLICIES\EXPLORER\RUN1\SOFTWARE\MICROSOFT\INTERNET EXPLORER\INTELLIFORMS\STORAGE21\SOFTWARE\WOW6432NODE\MOZILLA\MOZILLA FIREFOX1\SOFTWARE\WOW6432NODE\MOZILLA\MOZILLA FIREFOX\20.0.1 (EN-US)\MAIN1\SOFTWARE\WOW6432NODE\MOZILLA\MOZILLA THUNDERBIRD1\SOFTWARE\NETWIRE1\SOFTWARE\REMCOS_UAGFTAAWDGTKFLY Value Name: EXEpath1\SOFTWARE\WOW6432NODE\MICROSOFT\ACTIVE SETUP\INSTALLED COMPONENTS\{4KUJJ476-38ES-RCMH-QGW0-22030L368G76} Value Name: StubPath1\SOFTWARE\NETWIRE Value Name: HostId1\SOFTWARE\REMCOS_MPGOQKDCERXZZVE Value Name: EXEpath1\SOFTWARE\WOW6432NODE\MICROSOFT\ACTIVE SETUP\INSTALLED COMPONENTS\{4KUJJ476-38ES-RCMH-QGW0-22030L368G76}1\SOFTWARE\REMCOS_MPGOQKDCERXZZVE1\SOFTWARE\REMCOS_UAGFTAAWDGTKFLY1\SOFTWARE\NETWIRE Value Name: Install Date1MutexesOccurrencesRemcos_Mutex_Inj8hpsupporta-3474R768-3503835SZBFHHZ1remcos_uagftaawdgtkfly1remcos_mpgoqkdcerxzzve15-7-7D18-X4vYDyz1S-1-5-21-2580483-124428895676401S-1-5-21-2580483-158835515888701IP Addresses contacted by malware. Does not indicate maliciousnessOccurrences216[.]218[.]135[.]1186192[.]169[.]69[.]25461[.]139[.]126[.]541Domain Names contacted by malware. Does not indicate maliciousnessOccurrencesteryts1802[.]sytes[.]net6onelove03[.]duckdns[.]org1fucktoto[.]duckdns[.]org1drantvenaco[.]xyz1www[.]hydzjg[.]com1www[.]verysinr[.]com1ebuxxxxx[.]duckdns[.]org1tunedd30[.]duckdns[.]org1www[.]salesnjinn[.]com1www[.]christianroyaltyapparel[.]com1www[.]augiticmisknow[.]party1www[.]aow85[.]com1www[.]horizonenterprisediscovery[.]com1onlygoodm[.]com1Files and or directories createdOccurrences%TEMP%\install.vbs6%APPDATA%\hpsupportl6%APPDATA%\hpsupportl\logs.dat6%APPDATA%\hpsupportk6%APPDATA%\hpsupportk\hpsupportw.exe6%APPDATA%\remcos2%APPDATA%\remcos\logs.dat2%APPDATA%\remcos\remcos.exe2%APPDATA%\Install2%APPDATA%\Install\Host.exe2%TEMP%\install.bat2%HOMEPATH%\file1%HOMEPATH%\file\bin.exe1%HOMEPATH%\file\bin.vbs1%APPDATA%\5-7-7D181%APPDATA%\5-7-7D18\5-7log.ini1%APPDATA%\5-7-7D18\5-7logim.jpeg1%APPDATA%\5-7-7D18\5-7logrc.ini1%APPDATA%\5-7-7D18\5-7logri.ini1%APPDATA%\5-7-7D18\5-7logrv.ini1%ProgramFiles(x86)%\Lwbphud1%TEMP%\Lwbphud1%ProgramFiles(x86)%\Lwbphud\IconCacheojphll2x.exe1%TEMP%\Lwbphud\IconCacheojphll2x.exe1%TEMP%\1514536984.bat1*See JSON for more IOCsFile Hashes05981c05db85bd1116054ef5e99c5df384ac5c35ff79b76acffd6a99e7aca657070038fba858d93969038e1c4c7cb70512f248c9d68596c913eba08922da26a61dee5ba303986f17484fca28500b8899bbee36d86aa0f34021ec5d82519c957021439850d13a4c45e6f75caf0c149dbb15859393ac229ba6c74683777994304d2a7f24497b90c763c0714c0e1313e5dd899b85963f657bd1302a36fe4c4f55c942eaade0de6a185309d3b13a32dc351d93452dbcbdded2ab650143bf8b6cafe44ad68afeed6c18b0185e4ec793f825e734935671f4bdbb4ec9c019972ba9306451ced0fcb9d3fec5cfa3e72de7b930b6d78fc62814abbb7f1162342e8c22cbca67ec62211a942ea2b60ebb595d909f3961b70356ebf246a8a3b192309258e9e7680696d80533b37e67db64b6b5503a7b69b7a14d0ef4ce413b380566696207806a65bb7a6cde96195d50aa7b55ca5cff73d532eca0db12b626a526039e0d333f7a7060976e2908d0202c7c318be3226718cc324db2976e5423eb71b3851bad3181e497b15e18c5da4908b4d6c8fe3c76a47fb4a4135f93efe42da98f48077901839bdaa5ded4faeb3aff10352dbd93c2b22cdf954314d0a17cb4e3a48c5fef3a99231a8315c128463e6cfebd53e6c92e9112859adf6bf890839513028c008bbd9dd2edc4eb2ab7d3a1c238a0b8be7658bd2af062b6f7c03eb578c8a3ad82cdc5a288e629d848936d273fe256f841902a4f5f328e891954cdcc36ed8f2be066a1b0f25cb920e6cfacce95d66252e616d042b0260be17def122aa701ab1c005b60c50094f7f4e916f709f77d744c085077e5e36c5d9f04d3060c070c23b10af856c7a00b0bc4cff31661baa7f83d0a27c603ac0b6eef28f8f291a055d3590c5470cae3fd31e5853fb3a9650a85c94d3ee0851e03d53d82c57a49905b97c66a5f74d58673f907ab243c0a9179fb59047dd6bdce3481fe741516001c7668c8a846e7dc6b8953fa1be8082acb36898d5ed60fe016afd4b392b1b82f45b1ab0647be49e0d5d0af7e4b140d9b590e93767d36c44dc3e54fe7fc16ca069a41f8ae7d5321eb66fd13ec27e7f664138728ee6bf978115d6160a71d033602abe339808d0286*See JSON for more IOCsCoverageProductProtectionSecure EndpointCloudlockN/ACWSEmail SecurityNetwork SecurityStealthwatchN/AStealthwatch CloudN/ASecure Malware AnalyticsUmbrellaN/AWSAN/AScreenshots of DetectionSecure EndpointSecure Malware AnalyticsMITRE ATT&CKWin.Malware.Zusy-10010855-0Indicators of CompromiseIOCs collected from dynamic analysis of 25 samplesIP Addresses contacted by malware. Does not indicate maliciousnessOccurrences128[.]1[.]157[.]224/3017128[.]1[.]157[.]228461[.]170[.]77[.]234/314128[.]1[.]157[.]230/314222[.]73[.]33[.]2092114[.]80[.]179[.]242261[.]170[.]81[.]2502101[.]226[.]26[.]134/312101[.]226[.]26[.]136/31261[.]170[.]77[.]230161[.]170[.]81[.]2041101[.]226[.]26[.]1401114[.]80[.]179[.]2151114[.]80[.]179[.]211161[.]170[.]77[.]2291101[.]226[.]26[.]128161[.]170[.]81[.]215161[.]170[.]77[.]236161[.]170[.]81[.]2341222[.]73[.]33[.]2121Domain Names contacted by malware. Does not indicate maliciousnessOccurrencesbucket-ynote-online-cdn[.]note[.]youdao[.]com25note[.]youdao[.]com25Files and or directories createdOccurrences\TEMP\code.dll25%TEMP%\1063874369\....1%TEMP%\13977118451%TEMP%\1397711845\....1%TEMP%\13977117511%TEMP%\1397711751\....1%TEMP%\13977093171%TEMP%\1397709317\....1%TEMP%\13977083191%TEMP%\1397708319\....1%TEMP%\13977122501%TEMP%\1397712250\....1%TEMP%\13977093481%TEMP%\1397709348\....1%TEMP%\13977118601%TEMP%\1397711860\....1%TEMP%\13977126711%TEMP%\1397712671\....1%TEMP%\13977131391%TEMP%\1397713139\....1%TEMP%\13977138411%TEMP%\1397713841\....1%TEMP%\13977104091%TEMP%\1397710409\....1%TEMP%\13977129991*See JSON for more IOCsFile Hashes01cc53c302446a2e15a7b7a7a74916f046b4fd33065ef243fbffacd95766d45903b6b1a6c120c70724a11b2d5b4831157829d07e61a372f066398d9be23ef55c17e951cbe7d604bb2c3621c77237264c19f90a68d7c9c8024effda9c317e855e1e6e6c9475dfd79ed14ca92d7ee9dbe0b0b431bc5217e80a1d193415b4ccaa3a20d7a56937b58e204db62e45611b8a9146e95108b31fc0f5d92cbcc8ea387232263ec38f95ec125a0f8b48b3a16159130084146fdc9431abc4d7d6142d1467b32a491cde6070f6dd980d2e328d54e77cc35370e288e186c1f7c8f9f9209892b02b8a116b1809ed75ff2da6932d139166d2c12c0e8ea3e012fc297b0c70f44ab93ce95ed5e0819efbbd6442968b24c645942b2337f5ccbea435535d5d8e45a8c6448580bb338636b13ebd5598cd2f24696e2564dda300eab9a85031cbfe162ff9498d707a42657c0b7ccfdc2def9d63f4d19c145461ed8964bcd0f1c26b3228eb4ff2d0d278379eba9906ca0df0eb5a640985da45cd1ea7a4f8af1161f735b4265496e6ac7968a49bac965aca651582ce874e594592206cad548f5ef353160f1e63dcc1077304b8ff6d9a555d58cf3a4f9e0218a0246cf899897024815e951dba6d3ea1979f85f2ac65808b445cc49b3b5e04110a162e4c315169a1c59c2c0b6170cf7868355f4eacb0c97c210b7d976570764a43b02b79f9b1f659dd868350a670f6911ebc64c4fb1a25b9061a1eab4bc57b5fc0089c890f26df35f8da4cad02850fcf9865a30e415515aa4efdc73d59dc1c59ab3df5621dcf36f6ad7c2f48bc891ced20003dfe6f9c105e727ecb87ab73cceb642d91c59451630d40441ad58c8f9fa23402495fdc9c068b2b2d3c6446f4ac94eb8bfc0d411e4f2f9dd8ff82f595453ff31dc805f76874fcae507414318ac0240d226967590f18e83e8655012abc4b18edbf2b6312980b9d11c28beb597dd92312d41c87962f0c7ee90959e66cc1113ed3080862ec70c245b72c1d2914e996dbf8fa847cb7208ffd412f8793a3c580ccfd7d6e8e5afed318f8aab2ea2798bf8886dfb247beb82d6242d29347e6c7a1bc66652638a4b2b00f4c6d4d9718380462ca8bfd94242ce085fe4410723e*See JSON for more IOCsCoverageProductProtectionSecure EndpointCloudlockN/ACWSEmail SecurityNetwork SecurityN/AStealthwatchN/AStealthwatch CloudN/ASecure Malware AnalyticsUmbrellaN/AWSAN/AScreenshots of DetectionSecure EndpointSecure Malware AnalyticsMITRE ATT&CKWin.Packed.AgentTesla-10010785-1Indicators of CompromiseIOCs collected from dynamic analysis of 16 samplesRegistry KeysOccurrences\SOFTWARE\MICROSOFT\MULTIMEDIA\DRAWDIB9\SOFTWARE\MICROSOFT\MULTIMEDIA\DRAWDIB Value Name: 1152x864x32(BGR 0)9\SOFTWARE\WOW6432NODE\MICROSOFT\WINDOWS\CURRENTVERSION\RUN Value Name: AGP Manager1\SOFTWARE\WOW6432NODE\MICROSOFT\TRACING\_RASAPI32 Value Name: EnableFileTracing1\SOFTWARE\WOW6432NODE\MICROSOFT\TRACING\_RASAPI32 Value Name: EnableConsoleTracing1\SOFTWARE\WOW6432NODE\MICROSOFT\TRACING\_RASAPI32 Value Name: FileTracingMask1\SOFTWARE\WOW6432NODE\MICROSOFT\TRACING\_RASAPI32 Value Name: ConsoleTracingMask1\SOFTWARE\WOW6432NODE\MICROSOFT\TRACING\_RASAPI32 Value Name: MaxFileSize1\SOFTWARE\WOW6432NODE\MICROSOFT\TRACING\_RASAPI32 Value Name: FileDirectory1\SOFTWARE\WOW6432NODE\MICROSOFT\TRACING\_RASMANCS Value Name: EnableFileTracing1\SOFTWARE\WOW6432NODE\MICROSOFT\TRACING\_RASMANCS Value Name: EnableConsoleTracing1\SOFTWARE\WOW6432NODE\MICROSOFT\TRACING\_RASMANCS Value Name: FileTracingMask1\SOFTWARE\WOW6432NODE\MICROSOFT\TRACING\_RASMANCS Value Name: ConsoleTracingMask1\SOFTWARE\WOW6432NODE\MICROSOFT\TRACING\_RASMANCS Value Name: MaxFileSize1\SOFTWARE\WOW6432NODE\MICROSOFT\TRACING\_RASMANCS Value Name: FileDirectory1\SOFTWARE\WOW6432NODE\MICROSOFT\TRACING\_RASAPI321\SOFTWARE\WOW6432NODE\MICROSOFT\TRACING\_RASMANCS1\SOFTWARE\MICROSOFT\WINDOWS\CURRENTVERSION\RUN Value Name: MyOtApp1MutexesOccurrencesHMYAYDAVR5GSQKT8N5DJ1Global\{691d653b-e3fd-4576-a193-64407d29eeee}1IP Addresses contacted by malware. Does not indicate maliciousnessOccurrences193[.]122[.]130[.]04132[.]226[.]8[.]1694193[.]122[.]6[.]1683172[.]67[.]69[.]963162[.]213[.]251[.]1342149[.]154[.]167[.]2201185[.]199[.]111[.]133145[.]67[.]228[.]511158[.]101[.]44[.]2421104[.]26[.]10[.]891104[.]26[.]11[.]891172[.]67[.]150[.]79189[.]47[.]1[.]101Domain Names contacted by malware. Does not indicate maliciousnessOccurrencescheckip[.]dyndns[.]org9dispatchweekly[.]com5kenesrakishev[.]net2rakishev[.]net2raw[.]githubusercontent[.]com1api[.]telegram[.]org1Files and or directories createdOccurrences%APPDATA%\ScreenShot9%APPDATA%\ScreenShot\screen.jpeg9%ProgramFiles(x86)%\AGP Manager1%ProgramFiles(x86)%\AGP Manager\agpmgr.exe1%APPDATA%\D19AB989-A35F-4710-83DF-7B2DB7EFE7C51%APPDATA%\D19AB989-A35F-4710-83DF-7B2DB7EFE7C5\Logs1%APPDATA%\D19AB989-A35F-4710-83DF-7B2DB7EFE7C5\Logs\Administrator1%APPDATA%\D19AB989-A35F-4710-83DF-7B2DB7EFE7C5\run.dat1%APPDATA%\D19AB989-A35F-4710-83DF-7B2DB7EFE7C5\task.dat1%System32%\Tasks\AGP Manager1%System32%\Tasks\AGP Manager Task1\TEMP\DotNetZip.dll1%TEMP%\tmp791.tmp1%APPDATA%\Adobe\R.exe1%TEMP%\V8.exe1%APPDATA%\Adobe\2.exe1%APPDATA%\Adobe\.exe1%APPDATA%\audddd1%ProgramData%\Application Data\GL.exe1%ProgramData%\Start Menu\9H6RQHZI64J.exe1%ProgramData%\Microsoft\Windows\Start Menu\9H6RQHZI64J.exe1%ProgramData%\GL.exe1%APPDATA%\Identities\OIX.exe1%LOCALAPPDATA%\7a5d2bcb028d0c29c6ab36d358820c4b1%TEMP%\tmp6D17.tmp1*See JSON for more IOCsFile Hashes00515fe91a6b40d5c5ae851cb18d31c675ff38901edd352b3e6379087d5f2b260dc49cff6bbb27af37cb8e199f8f4122fcedf647955660d980c9944e3b58d7fc0e2e87be4f630eca53dc753711ccffd41f771e2fd9ce446a74916743292098441c95a9e24ef743ee2bd1ce1e8362ecfe500ec095812bd1a43db9e93370006e5136d939859128fd7a891258579fafa9b522ca637202b292f05acc8ee47dfd20a03e49fe819025e4a6e061584f1a596f535d8c7dae935a079121ef19e0c11b3e60488c73c88c1aeeede951446e63b9f0fced2a913f1610fc0e71ae0ab1aa826b825498127f11928bb91062949e7f2d2a140164036490563db5fcfb85c29e4d3e1f610f1d2a16f1511223b1a969ef53a772ccb2ead1fea79cf3d67eb3faf06de54062904bd3def9671a1352f9cbc0d36e1981663bbd954c2f42e1e88460517d87846b28372c408fbc0dc427b6f62aef80fd79df3d1db0c55da22468a4af442f288174e11cf2be6cd94f573a8121013c74cc93558aa8cde83780c4854d3ec3bdf1c67ce409445bd96bdda132a6c97169dfd2dcf69c1e59a526b1a6882ed154e33185a1220eb6311115d3a4a6cbf77665fb444a54f9d715ee0e5c9651459222118c95a7d7f71dd797380ee843dd5ccd9d73b898b9d8eaf25dfa8dc7be66e2c36f83a8f704722d897598af8c22bbca70c9edc3d6a69ca00568bf4150881be567ba52daCoverageProductProtectionSecure EndpointCloudlockN/ACWSEmail SecurityNetwork SecurityStealthwatchN/AStealthwatch CloudN/ASecure Malware AnalyticsUmbrellaWSAScreenshots of DetectionSecure EndpointSecure Malware AnalyticsMITRE ATT&CKWin.Trojan.Tofsee-10010766-0Indicators of CompromiseIOCs collected from dynamic analysis of 17 samplesRegistry KeysOccurrences\SYSTEM\CONTROLSET001\SERVICES\14\SYSTEM\CONTROLSET001\SERVICES\ Value Name: Type14\SYSTEM\CONTROLSET001\SERVICES\ Value Name: Start14\SYSTEM\CONTROLSET001\SERVICES\ Value Name: ErrorControl14\SYSTEM\CONTROLSET001\SERVICES\ Value Name: DisplayName14\SYSTEM\CONTROLSET001\SERVICES\ Value Name: WOW6414\SYSTEM\CONTROLSET001\SERVICES\ Value Name: ObjectName14\SYSTEM\CONTROLSET001\SERVICES\ Value Name: ImagePath14\SYSTEM\CONTROLSET001\SERVICES\ Value Name: Description12\.DEFAULT\CONTROL PANEL\BUSES11\.DEFAULT\CONTROL PANEL\BUSES Value Name: Config211\.DEFAULT\CONTROL PANEL\BUSES Value Name: Config011\.DEFAULT\CONTROL PANEL\BUSES Value Name: Config111\SOFTWARE\MICROSOFT\WINDOWS DEFENDER\EXCLUSIONS\PATHS Value Name: C:\Windows\SysWOW64\isupldcy1\SOFTWARE\MICROSOFT\WINDOWS DEFENDER\EXCLUSIONS\PATHS Value Name: C:\Windows\SysWOW64\vfhcyqpl1\SOFTWARE\MICROSOFT\WINDOWS DEFENDER\EXCLUSIONS\PATHS Value Name: C:\Windows\SysWOW64\mwytphgc1\SOFTWARE\MICROSOFT\WINDOWS DEFENDER\EXCLUSIONS\PATHS Value Name: C:\Windows\SysWOW64\fprmiazv1\SOFTWARE\MICROSOFT\WINDOWS DEFENDER\EXCLUSIONS\PATHS Value Name: C:\Windows\SysWOW64\jtvqmedz1\SOFTWARE\MICROSOFT\WINDOWS DEFENDER\EXCLUSIONS\PATHS Value Name: C:\Windows\SysWOW64\gqsnjbaw1\SOFTWARE\MICROSOFT\WINDOWS DEFENDER\EXCLUSIONS\PATHS Value Name: C:\Windows\SysWOW64\tdfawonj1\SOFTWARE\MICROSOFT\WINDOWS DEFENDER\EXCLUSIONS\PATHS Value Name: C:\Windows\SysWOW64\xhjeasrn1\SOFTWARE\MICROSOFT\WINDOWS DEFENDER\EXCLUSIONS\PATHS Value Name: C:\Windows\SysWOW64\blniewvr1\SOFTWARE\MICROSOFT\WINDOWS DEFENDER\EXCLUSIONS\PATHS Value Name: C:\Windows\SysWOW64\lvxsogfb1\SOFTWARE\MICROSOFT\WINDOWS DEFENDER\EXCLUSIONS\PATHS Value Name: C:\Windows\SysWOW64\uegbxpok1MutexesOccurrencesSlimeLoveAllTheTime1Global\439f74e1-67b1-11ee-9660-001517b0163a1Global\1352bd61-6914-11ee-9660-0015174ac6a11Global\15b95d21-6914-11ee-9660-0015175f9dd61IP Addresses contacted by malware. Does not indicate maliciousnessOccurrences176[.]113[.]115[.]1361480[.]66[.]75[.]414176[.]113[.]115[.]1351445[.]143[.]201[.]2381462[.]122[.]184[.]9214176[.]113[.]115[.]84/311462[.]122[.]184[.]5814193[.]106[.]174[.]22014142[.]250[.]80[.]681031[.]13[.]65[.]528149[.]154[.]167[.]997142[.]250[.]65[.]227793[.]115[.]25[.]49793[.]115[.]25[.]73731[.]13[.]65[.]1745142[.]250[.]80[.]67593[.]115[.]25[.]13593[.]115[.]25[.]10520[.]231[.]239[.]246593[.]115[.]25[.]110423[.]200[.]98[.]584104[.]75[.]113[.]100434[.]120[.]241[.]214434[.]117[.]59[.]813142[.]250[.]74[.]683*See JSON for more IOCsDomain Names contacted by malware. Does not indicate maliciousnessOccurrences249[.]5[.]55[.]69[.]in-addr[.]arpa14www[.]google[.]com14vanaheim[.]cn14249[.]5[.]55[.]69[.]bl[.]spamcop[.]net11249[.]5[.]55[.]69[.]cbl[.]abuseat[.]org11249[.]5[.]55[.]69[.]dnsbl[.]sorbs[.]net11249[.]5[.]55[.]69[.]sbl-xbl[.]spamhaus[.]org11249[.]5[.]55[.]69[.]zen[.]spamhaus[.]org11microsoft-com[.]mail[.]protection[.]outlook[.]com11microsoft[.]com11i[.]instagram[.]com8www[.]google[.]es7t[.]me7steamcommunity[.]com7api[.]steampowered[.]com7www[.]instagram[.]com5api[.]vk[.]com5www[.]amazon[.]co[.]uk4www[.]evernote[.]com4ok[.]ru4www[.]google[.]fr3www[.]tiktok[.]com3imap[.]rambler[.]ru3www[.]yahoo[.]com2www[.]google[.]com[.]au2*See JSON for more IOCsFiles and or directories createdOccurrences%SystemRoot%\SysWOW64\14%TEMP%\.exe13%SystemRoot%\SysWOW64\config\systemprofile11%SystemRoot%\SysWOW64\config\systemprofile:.repos11%HOMEPATH%\AppData\LocalLow\sqlite3.dll1%HOMEPATH%\AppData\LocalLow\freebl3.dll1%HOMEPATH%\AppData\LocalLow\mozglue.dll1%HOMEPATH%\AppData\LocalLow\msvcp140.dll1%HOMEPATH%\AppData\LocalLow\nss3.dll1%HOMEPATH%\AppData\LocalLow\softokn3.dll1%HOMEPATH%\AppData\LocalLow\vcruntime140.dll1%TEMP%\lualjyq.exe1%HOMEPATH%\AppData\LocalLow\1T95Ye0aeftg1%HOMEPATH%\AppData\LocalLow\1T95Ye0aeftg-shm1%HOMEPATH%\AppData\LocalLow\1T95Ye0aeftg-wal1%HOMEPATH%\AppData\LocalLow\7th8d2Q2U9801%HOMEPATH%\AppData\LocalLow\EZi3W6aEj1e51File Hashes0c018ba0c0b75323b87ec3f55c6ed7302549b56e1ebd5b7c70c8a33fc6c5a65e42b2cb14dd123186b342a9b6e7f4602e8a3e6be4464aa224f50623307b027edc5526ee913fc27725e10272fcc696ab0c7178db48dced8a9928358fb8e11b49ac57d3bf38fe4fed3bc50773533d46358be48c5e81384e380ae488b91f67e8873f61dba3ac0001f7af924d4a228306e0cd3749445ba368a77b22ba9f30f98f03796f1b7a7f4cdf4cd4263bcfa854cbf6eceb044439ffb183487458361d473db25888d59c2c9d8b4ff76d08e057d226530f5cee5abd564267656f1a1a5a6002521aad160e7bddf415b5b3ecf4c951f5d0a7e53bf3434f7b8c50713ba110f49002f2b25f931f36baf4661f2bef5bab7eaf46f159757dd6f874d98ba96f8edacccd3bc1f292d936e613e673ff96354e9f0a1e984a02996e6d92ac18291f6f310c739ac3020144db0b8288140b7f88d5909851b1aacaa3df70f8f3f2c81cae76fd7e85cc961cfe772710958620932d215481c71a931d50d5bd520a947796a1646d9405da2a7c7a129426bcfab067d91f27467ebcde5996db5fe6e69c8418aff9e0345ddc548cbbab081ed14e4805259afe55185717aa611eea409b480105f8addfa118f49986695c72d2307fb1ae3cc76fe29798a6e843bc0d0240af3c83c60da1f7ccfa569fdde5a4dcc5ca5636c8cd1294d57ab7096dddfc698be744fbeb0a70b7cafc7ca972d18acc6d5ed9c6efa7004c66902fb8d19c00d2d1fc2bed4dcad30a1aCoverageProductProtectionSecure EndpointCloudlockN/ACWSEmail SecurityNetwork SecurityStealthwatchN/AStealthwatch CloudN/ASecure Malware AnalyticsUmbrellaWSAScreenshots of DetectionSecure EndpointSecure Malware AnalyticsMITRE ATT&CKWin.Dropper.Glupteba-10010808-0Indicators of CompromiseIOCs collected from dynamic analysis of 13 samplesRegistry KeysOccurrences\SOFTWARE\MICROSOFT\A1890984 Value Name: PatchTime12\SOFTWARE\MICROSOFT\A1890984 Value Name: PGDSE12\SYSTEM\CONTROLSET001\SERVICES\VBOXWDDM Value Name: DisplayName12\SYSTEM\CONTROLSET001\SERVICES\VBOXWDDM Value Name: WOW6412\SYSTEM\CONTROLSET001\SERVICES\VBOXWDDM Value Name: ObjectName12\SYSTEM\CONTROLSET001\SERVICES\VBOXSF Value Name: Type12\SYSTEM\CONTROLSET001\SERVICES\VBOXSF Value Name: Start12\SYSTEM\CONTROLSET001\SERVICES\VBOXSF Value Name: ErrorControl12\SYSTEM\CONTROLSET001\SERVICES\VBOXSF Value Name: ImagePath12\SYSTEM\CONTROLSET001\SERVICES\VBOXSF Value Name: DisplayName12\SYSTEM\CONTROLSET001\SERVICES\VBOXSF Value Name: WOW6412\SYSTEM\CONTROLSET001\SERVICES\VBOXSF Value Name: ObjectName12\SYSTEM\CONTROLSET001\SERVICES\VBOXMOUSE Value Name: Type12\SYSTEM\CONTROLSET001\SERVICES\VBOXMOUSE Value Name: Start12\SYSTEM\CONTROLSET001\SERVICES\VBOXMOUSE Value Name: ErrorControl12\SYSTEM\CONTROLSET001\SERVICES\VBOXMOUSE Value Name: ImagePath12\SYSTEM\CONTROLSET001\SERVICES\VBOXMOUSE Value Name: DisplayName12\SYSTEM\CONTROLSET001\SERVICES\VBOXMOUSE Value Name: WOW6412\SYSTEM\CONTROLSET001\SERVICES\VBOXMOUSE Value Name: ObjectName12\SYSTEM\CONTROLSET001\SERVICES\VBOXGUEST Value Name: Type12\SYSTEM\CONTROLSET001\SERVICES\VBOXGUEST Value Name: Start12\SYSTEM\CONTROLSET001\SERVICES\VBOXGUEST Value Name: ErrorControl12\SYSTEM\CONTROLSET001\SERVICES\VBOXGUEST Value Name: ImagePath12\SYSTEM\CONTROLSET001\SERVICES\VBOXGUEST Value Name: DisplayName12\SYSTEM\CONTROLSET001\SERVICES\VBOXGUEST Value Name: WOW6412MutexesOccurrencesGlobal\SetupLog12Global\WdsSetupLogInit12Global\h48yorbq6rm87zot12WininetConnectionMutex12Global\qtxp9g8w12Global\xmrigMUTEX313372Global\923de961-62ac-11ee-9660-001517289b0f1IP Addresses contacted by malware. Does not indicate maliciousnessOccurrences204[.]79[.]197[.]21912172[.]67[.]212[.]1881020[.]150[.]38[.]2289185[.]82[.]216[.]48/31820[.]150[.]79[.]686162[.]159[.]135[.]2334172[.]253[.]120[.]1274162[.]159[.]129[.]233374[.]125[.]128[.]1273185[.]82[.]216[.]503162[.]159[.]130[.]2332162[.]159[.]134[.]233220[.]150[.]70[.]362142[.]250[.]144[.]1272104[.]21[.]23[.]1842162[.]159[.]133[.]2331142[.]250[.]15[.]1271142[.]250[.]112[.]12713[.]33[.]249[.]2481185[.]82[.]216[.]651173[.]214[.]169[.]171178[.]236[.]247[.]2321Domain Names contacted by malware. Does not indicate maliciousnessOccurrencesmsdl[.]microsoft[.]com12vsblobprodscussu5shard35[.]blob[.]core[.]windows[.]net12vsblobprodscussu5shard60[.]blob[.]core[.]windows[.]net12cdn[.]discordapp[.]com12walkinglate[.]com12stun3[.]l[.]google[.]com4stun[.]stunprotocol[.]org3stun4[.]l[.]google[.]com379102df1-5f9d-4ca9-bdf6-1fa1060285b4[.]uuid[.]mypushtimes[.]net3stun2[.]l[.]google[.]com2server9[.]mypushtimes[.]net279102df1-5f9d-4ca9-bdf6-1fa1060285b4[.]uuid[.]haoshuruzhiyou[.]co[.]in279102df1-5f9d-4ca9-bdf6-1fa1060285b4[.]uuid[.]cdntokiog[.]studio2stun[.]sipgate[.]net1stun[.]l[.]google[.]com1stun1[.]l[.]google[.]com1server1[.]zaoshanghao[.]su1server13[.]cdntokiog[.]studio179102df1-5f9d-4ca9-bdf6-1fa1060285b4[.]uuid[.]zaoshang[.]ru179102df1-5f9d-4ca9-bdf6-1fa1060285b4[.]uuid[.]zaoshanghao[.]su1server6[.]safarimexican[.]net1server6[.]haoshuruzhiyou[.]co[.]in179102df1-5f9d-4ca9-bdf6-1fa1060285b4[.]uuid[.]safarimexican[.]net1server16[.]zaoshang[.]ru1server1[.]haoshuruzhiyou[.]co[.]in1*See JSON for more IOCsFiles and or directories createdOccurrences%SystemRoot%\Logs\CBS\CBS.log12%SystemRoot%\rss12%SystemRoot%\rss\csrss.exe12%TEMP%\csrss12%TEMP%\csrss\dsefix.exe12%TEMP%\csrss\patch.exe12%System32%\drivers\Winmon.sys12%System32%\drivers\WinmonFS.sys12%System32%\drivers\WinmonProcessMonitor.sys12%SystemRoot%\windefender.exe12%TEMP%\Symbols12%TEMP%\Symbols\ntkrnlmp.pdb12%TEMP%\Symbols\ntkrnlmp.pdb\9E22A5947A15489895CE716436B45BE0212%TEMP%\Symbols\ntkrnlmp.pdb\9E22A5947A15489895CE716436B45BE02\download.error12%TEMP%\Symbols\pingme.txt12%TEMP%\Symbols\winload_prod.pdb12%TEMP%\Symbols\winload_prod.pdb\B7B16B17E078406E806A050C8BEE2E36112%TEMP%\Symbols\winload_prod.pdb\B7B16B17E078406E806A050C8BEE2E361\download.error12%TEMP%\dbghelp.dll12%TEMP%\ntkrnlmp.exe12%TEMP%\osloader.exe12%TEMP%\symsrv.dll12%TEMP%\csrss\DBG0.tmp12%System32%\Tasks\csrss12%TEMP%\csrss\injector12*See JSON for more IOCsFile Hashes086371131dd2487c7dbb05bc1e67afb2d18e85df7f54facecf8b04490fd269b208b281c516048087ec8fab4cfae4b5546e02eefdafbc95dabb55c942c4c163952754883908b96204bbb60cfa0822701549ee115eb6028555a90c0cdbe0495c7f2ffed7363cf4bc5a5ff7d27646fea7ac1ae0dd7e1332ea604a8da1f99d57e0f94feb8163d161750583d541adf29b61e3e493aa8ee474e927f0ce5d9c3c0b49a669275d573d4a65c61094b3791d93f60ce492f15d98fcffaaa081b81fcf9bd2ed84b3e26f8885900c196d3cd32c2a2b3be75351e8e3b5aea38c166dd0fa2abf47902b0087fb710e4f361248356292ecca1309f980bf00cd9d97d4d2eb5c3bbccaa6cc331a1f7b6f2e81a5edf4ff093e2c4664553e0b899592164320d71d0d2e94b819b7e697eae7d6d679790d8708d4d71e0b2e2f4dd3bc8aeca8b5522bafc8b4bd853acffcff627107f4a5222043b3b56867d41a51e7d5e069b9fe91f892feedd48dd78cfb8ac01a3f0015489a1e87e5d8d732d15d3fcc241c684e1e610be75bdfb6425a4926b59bdb800173fa75f296a8066057587e1ddf712ec9a670cce2e5CoverageProductProtectionSecure EndpointCloudlockN/ACWSEmail SecurityNetwork SecurityStealthwatchN/AStealthwatch CloudN/ASecure Malware AnalyticsUmbrellaWSAScreenshots of DetectionSecure EndpointSecure Malware AnalyticsMITRE ATT&CKWin.Dropper.Nanocore-10011208-0Indicators of CompromiseIOCs collected from dynamic analysis of 25 samplesRegistry KeysOccurrences\SOFTWARE\WINRAR6\SAM\SAM\DOMAINS\ACCOUNT\USERS\000003E9 Value Name: F6\SAM\SAM\DOMAINS\ACCOUNT\USERS\000001F5 Value Name: F6\SAM\SAM\DOMAINS\ACCOUNT\USERS\000003EC Value Name: F6\SOFTWARE\WINRAR Value Name: HWID6\SOFTWARE\MICROSOFT\WINDOWS\CURRENTVERSION\RUN Value Name: hpsupportdf4\SOFTWARE\HPSUPPORTA-0NMJO7 Value Name: exepath4\SOFTWARE\HPSUPPORTA-0NMJO7 Value Name: licence4\SOFTWARE\HPSUPPORTA-0NMJO74\SOFTWARE\WOW6432NODE\MICROSOFT\WINDOWS\CURRENTVERSION\RUN Value Name: AGP Manager3\SOFTWARE\MICROSOFT\WINDOWS\CURRENTVERSION\RUN Value Name: NetWire1\SOFTWARE\MICROSOFT\WINDOWS\CURRENTVERSION\RUN Value Name: hpsupport1\SOFTWARE\WOW6432NODE\MICROSOFT\WINDOWS NT\CURRENTVERSION\WINLOGON Value Name: Userinit1\SOFTWARE\NETWIRE1\SOFTWARE\MICROSOFT\WINDOWS\CURRENTVERSION\POLICIES\EXPLORER\RUN Value Name: 5J-XUFWH2T1\SOFTWARE\MICROSOFT\WINDOWS\CURRENTVERSION\RUN Value Name: chrome1\SOFTWARE\WOW6432NODE\MICROSOFT\ACTIVE SETUP\INSTALLED COMPONENTS\{R7881T2L-5Q6O-A6AF-YTOP-UR6LGAD671YS} Value Name: StubPath1\SOFTWARE\NETWIRE Value Name: HostId1\SOFTWARE\MICROSOFT\WINDOWS\CURRENTVERSION\RUN Value Name: Registry Key Name1\SOFTWARE\REMCOS_XOQLVKOBZX1\SOFTWARE\REMCOS_XOQLVKOBZX Value Name: EXEpath1\SOFTWARE\WOW6432NODE\MICROSOFT\ACTIVE SETUP\INSTALLED COMPONENTS\{R7881T2L-5Q6O-A6AF-YTOP-UR6LGAD671YS}1\SOFTWARE\NETWIRE Value Name: Install Date1\SOFTWARE\HPSUPPORT-14R0XW1\SOFTWARE\HPSUPPORT-14R0XW Value Name: exepath1MutexesOccurrencesRemcos_Mutex_Inj6hpsupporta-0NMJO748-3503835SZBFHHZ17433cdb324b04dd5e3c3db213381216c7c539baa1J14-9347TBE693E51remcos_xoqlvkobzx1hpsupport-14R0XW1IP Addresses contacted by malware. Does not indicate maliciousnessOccurrences203[.]170[.]80[.]2501213[.]186[.]33[.]51192[.]169[.]69[.]25191[.]195[.]240[.]12615[.]79[.]68[.]107165[.]99[.]252[.]2161204[.]152[.]219[.]98179[.]134[.]225[.]17139[.]96[.]26[.]1451198[.]187[.]30[.]1871199[.]80[.]53[.]281194[.]5[.]98[.]831194[.]5[.]98[.]81137[.]49[.]224[.]172134[.]237[.]212[.]127144[.]219[.]130[.]1551Domain Names contacted by malware. Does not indicate maliciousnessOccurrencesmanafuuh[.]ddns[.]net4checkip[.]amazonaws[.]com2www[.]gedhang[.]win1www[.]regular123[.]com1www[.]centronasser[.]com1www[.]sondcn[.]com1www[.]techotakus[.]com1www[.]oligo-le-nuton[.]com1www[.]hobonichidouga[.]com1www[.]spasence[.]online1www[.]lovendwild[.]com1www[.]urgamesim[.]com1www[.]1tzae[.]top1www[.]coincoin9[.]com1onlygoodm[.]com1rezkathryn289[.]ddns[.]net1ben1234[.]duckdns[.]org1cepastr[.]ddns[.]net1oluebebchi[.]duckdns[.]org1locash[.]hopto[.]org1Files and or directories createdOccurrences%TEMP%\install.vbs5%APPDATA%\hpsupportl4%APPDATA%\hpsupportl\logs.dat4%APPDATA%\hpsupportk4%APPDATA%\hpsupportk\hpsupportw.exe4%ProgramFiles(x86)%\AGP Manager3%ProgramFiles(x86)%\AGP Manager\agpmgr.exe3%APPDATA%\D19AB989-A35F-4710-83DF-7B2DB7EFE7C53%APPDATA%\D19AB989-A35F-4710-83DF-7B2DB7EFE7C5\Logs3%APPDATA%\D19AB989-A35F-4710-83DF-7B2DB7EFE7C5\Logs\Administrator3%APPDATA%\D19AB989-A35F-4710-83DF-7B2DB7EFE7C5\run.dat3%HOMEPATH%\subfolder\filename.exe1%HOMEPATH%\subfolder\filename.vbs1%APPDATA%\D19AB989-A35F-4710-83DF-7B2DB7EFE7C5\task.dat1%System32%\Tasks\AGP Manager1%System32%\Tasks\AGP Manager Task1%APPDATA%\Install\Host.exe1%TEMP%\install.bat1%APPDATA%\chrome1%APPDATA%\chrome\chrome.exe1%ProgramData%\7433cdb324b04dd5e3c3db213381216c7c539baa1%APPDATA%\hpsupport1%APPDATA%\hpsupport\hpsupport.exe1%APPDATA%\hpsupport\logs.dat1%ProgramFiles(x86)%\Lqdfp\systrayzt48dxy8.exe1*See JSON for more IOCsFile Hashes00c935c3cf87816fd66654a66a5e3ec1a40674eabaf05b65082190e1a1bd55e40c403455d1949c9b643d9299300fd6816c8527549cf1566e44a9f653dde909f52f79337e254db1abc0df8e59f15b97e3f6325c8118f9563ef514d569e90dee34639d23e7cfb18c85c237fda935e3a69cc105a31cb2d58fd25cb222b16e0ebc2b6edf59ab00fc8a5c0baaf2600c3deeb2c8c52fa6454541b86213521629f2225c8304a713ec50838d56a6bc1a489c87e8b1ccccdb090098ad4efed69e8012f1a492a2fb494f7dd6cd2908567b3f9d81664c0ce27532936651f85b8302dab6ea6c96670d316eec735cbb7dda69e578659260f220e3651f89d0d413c3f6044b5510a52143ab756a37bcd7de8b5869061a195d9f404dba80e5b6ee14b6d7548c1ad8aaa9888059a78dc3eff1c8939f125052ce50914b2c5149b667cfb33f2d60793bada0ca0f3efdc72e6bb70e00df6ae03411044bc50e9c2973ec3eafa73c27fe2ab56f043f756603fd39d94dc38fcd472c38014c93797eaee14851eaf9815e2801c12defeb704dbb21f54896cd1f7e0ec6ee3ed1dd4bd3ebf777b95d291f9b05edcb17955c8f1a7c7649b5a53d855898a2834f95a4bc052a249d637de20ccac17ecccbc7d541a6e9b352d2e6f52f8083b024561f71fd0b7195bfab03c9103e827bcf66700f2113d532cc65fd93d92a1aaadf58df032cb04341a99b9fd96c1cc8b9d418893a78767ea5afe08f34328232b893046f2190b6822a4a55a23cd807a88dd5c4b482c7282d1a767b7d165c47261d14959a4acd6f2bd07ccd0548d3589310da29289e269a7c5d79dbad8e5976c912beec40d77166cbc386506769c064b548de6f39611192f151bd3417c60c880356a8840d7f235a01d2f0b83206b5ccfd25f03e9ebe28c6f2ad739335ef71ec842f43b5034e94f8a1c3892491800f3145e3f5f1f247d16a00e76173edc03ecf60636ff7a9c6c898f0e048e30f02ecfc113bf7a5e4ba58c46562fa48143e2e05ae3eecc46501ae288b900e61621b56b20feefb12b01fcf79d933460bb7db24db9c4adc0e02f2efc879c495fa16bba3a562bbfb755b396eeac9da53149162551ba0a052851026f15a12b2b5240a9bc6716377CoverageProductProtectionSecure EndpointCloudlockN/ACWSEmail SecurityNetwork SecurityStealthwatchN/AStealthwatch CloudN/ASecure Malware AnalyticsUmbrellaN/AWSAScreenshots of DetectionSecure EndpointSecure Malware AnalyticsMITRE ATT&CKWin.Dropper.DarkComet-10011490-1Indicators of CompromiseIOCs collected from dynamic analysis of 27 samplesRegistry KeysOccurrences\SOFTWARE\MICROSOFT\WINDOWS\CURRENTVERSION\POLICIES\EXPLORER\RUN27\SOFTWARE\MICROSOFT\WINDOWS\CURRENTVERSION\POLICIES\EXPLORER\RUN27\SOFTWARE\LOCAL APPWIZARD-GENERATED APPLICATIONS27\SOFTWARE\WOW6432NODE\MICROSOFT\ACTIVE SETUP\INSTALLED COMPONENTS\{1ONY8XDG-DX6S-CQ0K-8R1G-272WTPXC6H5P}27\SOFTWARE\MICROSOFT\WINDOWS\CURRENTVERSION\POLICIES\EXPLORER\RUN Value Name: Policies27\SOFTWARE\MICROSOFT\WINDOWS\CURRENTVERSION\POLICIES\EXPLORER\RUN Value Name: Policies27\SOFTWARE\WOW6432NODE\MICROSOFT\WINDOWS\CURRENTVERSION\RUN Value Name: HKLM27\SOFTWARE\MICROSOFT\WINDOWS\CURRENTVERSION\RUN Value Name: HKCM27\SOFTWARE\WOW6432NODE\MICROSOFT\ACTIVE SETUP\INSTALLED COMPONENTS\{1ONY8XDG-DX6S-CQ0K-8R1G-272WTPXC6H5P} Value Name: StubPath27\SOFTWARE\NOTEPAD27\SOFTWARE\NOTEPAD Value Name: NewIdentification27\SOFTWARE\NOTEPAD Value Name: FirstExecution27\SOFTWARE\MICROSOFT Value Name: PIDprocess27MutexesOccurrences_x_X_BLOCKMOUSE_X_x_27_x_X_PASSWORDLIST_X_x_27_x_X_UPDATE_X_x_27_y_X_PASSWORDLIST_X_y_27JoKeR_MaSK_SEMUTEX27lass27lass_PERSIST27lass_SAIR27GREAME_RAT-_-MUTEX27Domain Names contacted by malware. Does not indicate maliciousnessOccurrencestigersa[.]no-ip[.]biz27Files and or directories createdOccurrences%APPDATA%\logs.dat27%TEMP%\X-GRY-X.txt27%ProgramFiles(x86)%\windows27%TEMP%\GRY-XX-X27%TEMP%\uU-GRY-Xx27%ProgramFiles(x86)%\windows\lass.exe27File Hashes01b01c090edaec7b0cfd0b6354c66e696130f484edbe71b730d63f8d941f71a11a368187dbc3d13c67f69f122f2420cd4a87bfd3d87a3efd2105d28de04eb8171d1309c1d4851b6a9c86fc17097325bfce70964548d5a9bfe700dd4c64dfbeba2c76ce0aebb7e93a981dd47e712c1461ed3f5aac5ab5c440668d00522f9418b02cd4442ad9276beaa4059620cc716572c23a52668eb1dc8374f01d5f54c52bc32d73a63f0a5c565e55661a1aef0344a26431046417c9cc15c16b8695e1f975473e69bd53a6343bb72380184dd0c8b410c42d8ae73ba06b209293c3213cff7a56471c39751ac6b560567fffea6af72fec4c169d5dbb9b4ee5c6f000d084d4f2a265af16839bf587ccc768a72388974eff49af308602588cfcbb11062311cba04d7f05a9d3b9ca35d54b542f550eb34307279922bd95b3041dd93ff52f736d522d8e618ff246cbacd3a40cb407d1930e764f924809a73fe72136a4d6f975388afc96ce4dc0acc185fce6ebf43194ee47d58e18eacb05a71eca3f389823574a38f0a487474d0476a93ca474b9874a1b3729adcbe25c2da368277b1a2cba64ccf0a0a7efeacdcf8508e36b4b917141fe37bd427995955c93617ec40d002742a9c93facbfbe381bba59151af2ac2309451d3a4850407724f58eba69eb67b98ded2004b0810d35107bc6b30cbaaa2e0dfd42f70a5e16302128a653af4ab4f7128f4bf8b6f4e980ceea8c55e78ce9d9768bfe901790f13d9e0aa1b03fabf26f3873ae54c65a2f53920f6403b649570b8b98a120a9e9db472f4a89e0d027ed345acc486cc8799d7d6f8b161b4e1b3ad06d66584da7e24ab2ef741eae73f4ad0545626559c988702baf4bae86fb2da35b5c1ab466764fffa8fc4acb6c6a5e2ff3fc56fbeeced5fffd715ac29276b0e655fc8d1b353ae3988a0fa134343a4eccd70eb94812d7743498bb6c17664b8afa43212d90653bc8a74804543af34667255bd7a3aba8d9c50f22e3c9d5dd9edb80b0857c00b6f8262053afa6643365b9918571944e80dfb79015230e4b5d5e7a32b0dbfc5193e6e65865b6b798525451027782dadc3eeacb36be8ba58d3138acded71542fb68579ba0144c15699b412196252d75da53*See JSON for more IOCsCoverageProductProtectionSecure EndpointCloudlockN/ACWSEmail SecurityNetwork SecurityN/AStealthwatchN/AStealthwatch CloudN/ASecure Malware AnalyticsUmbrellaN/AWSAN/AScreenshots of DetectionSecure EndpointSecure Malware AnalyticsMITRE ATT&CK
+
+
+
+Share this post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Content
+
+
+Threat Roundup for November 3 to November 10
+November 9, 2023 13:32
+Today, Talos is publishing a glimpse into the most prevalent threats we've observed between Nov. 3 and Nov. 10. As with previous roundups, this post isn't meant to be an in-depth analysis. Instead, this post will summarize the threats we've observed by highlighting
+
+
+
+
+Threat Roundup for October 27 to November 3
+November 3, 2023 17:15
+Today, Talos is publishing a glimpse into the most prevalent threats we've observed between Oct. 27 and Nov. 3. As with previous roundups, this post isn't meant to be an in-depth analysis. Instead, this post will summarize the threats we've observed by highlighting
+
+
+
+
+Threat Roundup for September 22 to September 29
+September 29, 2023 12:40
+Today, Talos is publishing a glimpse into the most prevalent threats we've observed between Sept. 22 and Sept. 29. As with previous roundups, this post isn't meant to be an in-depth analysis. Instead, this post will summarize the threats we've observed by highlighting
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

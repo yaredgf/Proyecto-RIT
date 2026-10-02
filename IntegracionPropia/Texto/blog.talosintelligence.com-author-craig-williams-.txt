@@ -1,0 +1,900 @@
+
+
+
+Craig Williams - Cisco Talos Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Craig Williams
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+September 20, 2017 17:57
+CCleaner Command and Control Causes Concern
+Introduction
+
+Talos recently published a technical analysis of a backdoor which was included with version 5.33 of the CCleaner application. During our investigation we were provided an archive containing files that were stored on the C2 server. Initially, we had concerns about th
+
+
+                    By
+                
+Edmund Brumaghin, 
+                    Earl Carter, 
+                    Warren Mercer, 
+                    Matt Olney, 
+                    Paul Rascagneres, 
+                    Craig Williams
+
+
+
+                            Threat Advisory
+                        
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+September 18, 2017 03:51
+CCleanup: A Vast Number of Machines at Risk
+Update 9/18: CCleaner Cloud version 1.07.3191 is also reported to be affected
+Update 9/19: This issue was discovered and reported by both Morphisec and Cisco in separate in-field cases and reported separately to Avast.
+
+Update 9/19: There has been some confusion on how the DGA do
+
+
+                    By
+                
+Edmund Brumaghin, 
+                    Warren Mercer, 
+                    Craig Williams
+
+
+
+                            Threat Advisory
+                        
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+May 2, 2016 10:19
+Cryptolocker 4 White Paper Available: The Evolution Continues
+We are pleased to announce the availability of the Cryptolocker 4 white paper. Over the past year, Talos has devoted a significant amount of time to better understanding how ransomware operates, its relation to other malware, and its economic impact. This research has proven valu
+
+
+                    By
+                
+Craig Williams
+
+
+
+                            ransomware
+                        
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+October 13, 2015 16:53
+Project Aspis
+One of the hardest jobs on the Internet is to work the abuse desk at a hosting provider.  These teams have to strike a difficult balance between protecting their customers, ensuring that their services aren’t being abused by malicious actors and delivering the service and conven
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+October 6, 2015 08:00
+Threat Spotlight: Cisco Talos Thwarts Access to Massive International Exploit Kit Generating $60M Annually From Ransomware Alone
+This post was authored by Nick Biasini with contributions from Joel Esler, Nick Hebert, Warren Mercer, Matt Olney, Melissa Taylor, and Craig Williams.
+
+
+Executive Summary Today, Cisco struck a blow to a group of hackers, disrupting a significant international revenue stream gener
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+September 30, 2015 03:59
+Down the Rabbit Hole: Botnet Analysis for Non-Reverse Engineers
+This post is authored by Earl Carter & Holger Unterbrink.
+
+
+Overview Talos is often tasked with mapping the backend network for a specific piece of malware. One approach is to first reverse engineer the sample and determine exactly how it operates. But what if there is no tim
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+September 23, 2015 04:20
+SYNful Knock Scanner
+This post was authored by William McVey.
+
+Update 2015-09-23: We updated the tool to version 1.0.1
+
+Talos is constantly researching the ways in which threat actors are evolving to exploit systems. Recently, a piece of persistent malware coined as “SYNful Knock” was discovered on C
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+September 15, 2015 05:02
+When Does Software Start Becoming Malware?
+This post was authored by Earl Carter, Alex Chiu, Joel Esler, Geoff Serrao, and Brandon Stultz.
+
+Defining what is malware relies on determining when undesirable behavior crosses the line from benign to clearly unwanted. The lack of a single standard regarding what is and what is
+
+
+                    By
+                
+Craig Williams
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+September 8, 2015 07:23
+Vulnerability Spotlight: Microsoft Windows CDD Font Parsing KernelMemory Corruption
+Discovered by Andrea Allievi and Piotr Bania of Cisco Talos.
+
+Talos, in conjunction with Microsoft’s security advisory issued on September 8th, is disclosing the discovery of a memory corruption vulnerability within the Microsoft Windows CDD Font Parsing Kernel Driver. This vulne
+
+
+                    By
+                
+Craig Williams
+
+
+
+                            Vulnerability Spotlight
+                        
+
+
+
+ 
+
+
+
+
+
+
+
+
+Next →
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

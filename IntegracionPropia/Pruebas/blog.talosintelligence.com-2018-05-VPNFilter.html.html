@@ -1,0 +1,798 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>New VPNFilter malware targets at least 500K networking devices worldwide</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/bootstrap.min.css?v=-xdjtZ-fV2QpS1r5">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/navigation.css?v=PhzoiGnw4ldwozL1">
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/footer.css?v=sVEdldiwj6rF6gHP">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/pagination.css?v=HruyeF1JUFuoy6Wu">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/banners.css?v=vI3KT68RWE95HKDs">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/style.css?v=idjnUZoOumC94rdj">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/prism.css?v=jqyaOB6z6CqMaOT4">
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/prism-vsc-dark-plus.css?v=xoEFwaYF1JkH_sqf">
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/prism-talos.css?v=kn8aYcNhO045nXac">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/landing-page.css?v=EPtrK0eJwYLqD25v">
+
+    <link rel="stylesheet" href="https://blog.talosintelligence.com/assets/css/coverage-block.css?v=vBgCqINSTHrSh9PX">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/ghost-theme-utils@latest/dist/css/style.min.css" rel="stylesheet">
+
+
+    <link rel="icon" href="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w256h256/2022/07/talos_o_square.png" type="image/png">
+    <link rel="canonical" href="https://blog.talosintelligence.com/vpnfilter/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta property="og:site_name" content="Cisco Talos Blog">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="New VPNFilter malware targets at least 500K networking devices worldwide">
+    <meta property="og:description" content="For several months, Talos has been working with public- and private-sector threat intelligence partners and law enforcement in researching an advanced, likely state-sponsored or state-affiliated actor&#x27;s widespread use of a sophisticated modular malware system we call &quot;VPNFilter.&quot; We have not completed our research, but recent events">
+    <meta property="og:url" content="https://blog.talosintelligence.com/vpnfilter/">
+    <meta property="og:image" content="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/-1OGddXBBf1s/WwTyd0k3szI/AAAAAAAAAgs/82oB9Lftark-aUd7aYp5WnpNcfiAvxKjwCLcBGAs/w1200-h630-p-k-no-nu/image2.jpg">
+    <meta property="article:published_time" content="2018-05-23T13:00:00.000Z">
+    <meta property="article:modified_time" content="2023-07-31T18:17:52.000Z">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="New VPNFilter malware targets at least 500K networking devices worldwide">
+    <meta name="twitter:description" content="For several months, Talos has been working with public- and private-sector threat intelligence partners and law enforcement in researching an advanced, likely state-sponsored or state-affiliated actor&#x27;s widespread use of a sophisticated modular malware system we call &quot;VPNFilter.&quot; We have not completed our research, but recent events">
+    <meta name="twitter:url" content="https://blog.talosintelligence.com/vpnfilter/">
+    <meta name="twitter:image" content="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1200/2022/09/vpn-filter-2x1.jpg">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="William Largent">
+    <meta name="twitter:site" content="@TalosSecurity">
+    <meta property="og:image:width" content="726">
+    <meta property="og:image:height" content="381">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Cisco Talos Blog",
+        "url": "https://blog.talosintelligence.com/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/11/TalosBrand_ukraine.svg"
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "William Largent",
+        "url": "https://blog.talosintelligence.com/author/william-largent/",
+        "sameAs": []
+    },
+    "headline": "New VPNFilter malware targets at least 500K networking devices worldwide",
+    "url": "https://blog.talosintelligence.com/vpnfilter/",
+    "datePublished": "2018-05-23T13:00:00.000Z",
+    "dateModified": "2023-07-31T18:17:52.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/size/w1200/2022/09/vpn-filter-2x1.jpg",
+        "width": 1200,
+        "height": 600
+    },
+    "description": "For several months, Talos has been working with public- and private-sector threat intelligence partners and law enforcement in researching an advanced, likely state-sponsored or state-affiliated actor's widespread use of a sophisticated modular malware system we call \"VPNFilter.\" We have not completed our research, but recent events have convinced us that the correct way forward is to now share our findings so that affected parties can take the appropriate action to defend themselves.  In partic",
+    "mainEntityOfPage": "https://blog.talosintelligence.com/vpnfilter/"
+}
+    </script>
+
+    <meta name="generator" content="Ghost 6.68">
+    <link rel="alternate" type="application/rss+xml" title="Cisco Talos Blog" href="https://blog.talosintelligence.com/rss/">
+    
+    <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/sodo-search.min.js" data-key="4ffb0139d74ada998f4b141e4d" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/main.css" data-sodo-search="https://cisco-talos-blog.ghost.io/" data-locale="en" crossorigin="anonymous"></script>
+    
+    <link href="https://blog.talosintelligence.com/webmentions/receive/" rel="webmention">
+    <script defer src="/public/cards.min.js?v=ShRHxgy4po8zN-Wf"></script>
+    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=WwnU9jw5ancNC8Gc">
+    <script defer src="/public/ghost-stats.min.js?v=vFcCUf6ZQ0Hyhc8h" data-stringify-payload="false" data-datasource="analytics_events" data-storage="localStorage" data-host="https://blog.talosintelligence.com/.ghost/analytics/api/v1/page_hit"  tb_site_uuid="afa04ee3-414f-4481-8d23-7e7c146f192e" tb_post_uuid="28aa22bc-d59f-4947-94ad-f39f4efccae0" tb_post_type="post" tb_member_uuid="undefined" tb_member_status="undefined" tb_gift_link=""></script><style>:root {--ghost-accent-color: #006db6;}</style>
+    <style type='text/css'>
+    img[src*="icon_check_white.svg"] { width: 20px; margin-left: 0px; margin-right: auto; }
+    
+    #ghost-portal-root { display: none; }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F45RVJG3BK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-F45RVJG3BK');
+</script>
+</head>
+
+<body class="post-template">
+
+    <div id="mobile-page-header" class="desktop-hide mobile-page-header">
+    <a class="mobile-nav-home-link" href="/">
+        <div class="mobile-logo-wrapper">
+        </div>
+        <div class="mobile-home-title">Blog</div>
+    </a>
+    <div id="mobile-search-wrapper">
+        <button class="search-button mobile-search-button" data-ghost-search>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        </button>
+    </div>
+</div>
+
+<nav id="nav">
+    <input id="nav-trigger" class="nav-trigger" type="checkbox"/>
+    <label for="nav-trigger">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="22px" height="16px" viewBox="0 0 22 16">
+            <g id="menu-icon">
+                <path fill="#FFFFFF" d="M20.5,3h-19C0.672,3,0,2.329,0,1.5S0.672,0,1.5,0h19C21.328,0,22,0.671,22,1.5S21.328,3,20.5,3z"></path>
+                <path fill="#FFFFFF" d="M20.5,9.5h-19C0.672,9.5,0,8.828,0,8c0-0.829,0.672-1.5,1.5-1.5h19C21.328,6.5,22,7.171,22,8   C22,8.828,21.328,9.5,20.5,9.5z"></path>
+                <path fill="#FFFFFF" d="M20.5,16h-19C0.672,16,0,15.328,0,14.5S0.672,13,1.5,13h19c0.828,0,1.5,0.672,1.5,1.5S21.328,16,20.5,16z"></path>
+            </g>
+        </svg>
+    </label>
+    <div id="top-nav-bar">
+    </div>
+
+    <div id="navigation">
+        <div class="navigation-logos-wrapper">
+            <div id="talos-logo-wrapper">
+                <a class="navbar-brand" href="https://talosintelligence.com">
+                </a>
+            </div>
+        </div>
+        <div class="navigation-links-wrapper">
+            <ul class="main-nav-list">
+                <li class="nav-item">
+                    <div class="primary-link-wrapper">
+                        <a class="primary_nav_link" href="https://talosintelligence.com/reputation">
+                            <div class="mobile-nav-icon"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" height="20px" width="20px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                            <style type="text/css">
+                                .white{fill:#FFFFFF;}
+                            </style>
+                            <g>
+                                <path class="white" d="M19.5,9.5h-1.1c-0.3-4.2-3.6-7.6-7.8-7.8V0.5C10.5,0.2,10.3,0,10,0l0,0C9.7,0,9.5,0.2,9.5,0.5l0,0v1.1   C5.3,1.9,1.9,5.3,1.6,9.5H0.5C0.2,9.5,0,9.7,0,10s0.2,0.5,0.5,0.5l0,0h1.1c0.3,4.2,3.6,7.6,7.8,7.8v1.1c0,0.3,0.2,0.5,0.5,0.5l0,0   c0.3,0,0.5-0.2,0.5-0.5l0,0v-1.1c4.2-0.3,7.6-3.6,7.8-7.8h1.1c0.3,0,0.5-0.2,0.5-0.5C20,9.7,19.8,9.5,19.5,9.5 M16.6,10.5h0.7   c-0.3,3.6-3.2,6.5-6.8,6.8v-0.8c0-0.3-0.2-0.5-0.5-0.5l0,0c-0.3,0-0.5,0.2-0.5,0.5v0.8C5.8,17,3,14.2,2.7,10.5h0.8   C3.8,10.5,4,10.3,4,10S3.8,9.5,3.5,9.5l0,0H2.7C3,5.8,5.8,3,9.5,2.7v0.8C9.5,3.7,9.7,4,10,4l0,0c0.3,0,0.5-0.2,0.5-0.5V2.7   C14.2,3,17,5.8,17.3,9.5h-0.7c-0.3,0-0.5,0.2-0.5,0.5C16.1,10.3,16.3,10.5,16.6,10.5L16.6,10.5"></path>
+                                                            <circle class="white" cx="10" cy="10" r="3.2"></circle>
+                            </g>
+                            </svg>
+                            </div>
+                            <span class="top-nav-link-text">
+                                Intelligence Center
+                            </span>
+                        </a>
+                    </div>
+                    <input class="sub-nav-trigger" id="intelligence-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="intelligence-sub-trigger">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+
+                    </label>
+                    <ul class="sub-nav sub-nav-single-list">
+                        <li class="desktop-hide">
+                            <a class="mobile_nav_link" href="https://talosintelligence.com/reputation"><h1>Intelligence Center</h1>
+                            </a></li>
+                        <li class="desktop-hide">
+                            <label class="subnav-back-button" for="intelligence-sub-trigger">BACK</label>
+                        </li>
+                        <li><a class="secondary_nav_link" href="https://talosintelligence.com/reputation_center">Intelligence Search</a></li>
+                        <li><a class="secondary_nav_link" href="https://talosintelligence.com/reputation_center/email_rep">Email &amp; Spam Trends</a></li>
+                    </ul>
+                    <div class="desktop-hide subnav-overlay"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" height="20px" width="20px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                        <style type="text/css">
+                            .white{fill:#FFFFFF;}
+                        </style>
+                                                <g>
+                            <path class="white" d="M19.5,9.5h-1.1c-0.3-4.2-3.6-7.6-7.8-7.8V0.5C10.5,0.2,10.3,0,10,0l0,0C9.7,0,9.5,0.2,9.5,0.5l0,0v1.1   C5.3,1.9,1.9,5.3,1.6,9.5H0.5C0.2,9.5,0,9.7,0,10s0.2,0.5,0.5,0.5l0,0h1.1c0.3,4.2,3.6,7.6,7.8,7.8v1.1c0,0.3,0.2,0.5,0.5,0.5l0,0   c0.3,0,0.5-0.2,0.5-0.5l0,0v-1.1c4.2-0.3,7.6-3.6,7.8-7.8h1.1c0.3,0,0.5-0.2,0.5-0.5C20,9.7,19.8,9.5,19.5,9.5 M16.6,10.5h0.7   c-0.3,3.6-3.2,6.5-6.8,6.8v-0.8c0-0.3-0.2-0.5-0.5-0.5l0,0c-0.3,0-0.5,0.2-0.5,0.5v0.8C5.8,17,3,14.2,2.7,10.5h0.8   C3.8,10.5,4,10.3,4,10S3.8,9.5,3.5,9.5l0,0H2.7C3,5.8,5.8,3,9.5,2.7v0.8C9.5,3.7,9.7,4,10,4l0,0c0.3,0,0.5-0.2,0.5-0.5V2.7   C14.2,3,17,5.8,17.3,9.5h-0.7c-0.3,0-0.5,0.2-0.5,0.5C16.1,10.3,16.3,10.5,16.6,10.5L16.6,10.5"></path>
+                                                    <circle class="white" cx="10" cy="10" r="3.2"></circle>
+                        </g>
+                        </svg>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="primary-link-wrapper">
+                        <a class="primary_nav_link" href="https://talosintelligence.com/vulnerability_info"><div class="mobile-nav-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px" height="20px" viewBox="0 0 26 20">
+                            <g id="vuln-icon" class="nav-icon">
+                                <path fill="#FFFFFF" d="M24.256,18.49L13.872,0.503C13.692,0.192,13.36,0,13,0c-0.359,0-0.692,0.192-0.872,0.503L1.744,18.49  c-0.18,0.312-0.18,0.695,0,1.006C1.924,19.809,2.257,20,2.616,20h20.769c0.359,0,0.691-0.191,0.871-0.504  C24.436,19.186,24.436,18.803,24.256,18.49 M14.268,18.215h-2.533v-1.85h2.533V18.215z M14.268,15.441h-2.533L10.89,6.515h4.222  L14.268,15.441z"></path>
+                            </g>
+                        </svg>
+                        </div>
+                            <span class="top-nav-link-text">
+                            Vulnerability Research
+                            </span>
+                        </a></div>
+                    <input class="sub-nav-trigger" id="vuln-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="vuln-sub-trigger">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+                        </div>
+                    </label>
+                    <ul class="sub-nav sub-nav-single-list">
+                        <li class="desktop-hide">
+                            <a href="https://talosintelligence.com/vulnerability_info"><h1>Vulnerability Research</h1>
+                            </a></li>
+                        <li class="desktop-hide">
+                            <label class="subnav-back-button" for="vuln-sub-trigger">BACK</label>
+                        </li>
+                        <li><a class="vulnerabilty-info-nav-link" href="https://talosintelligence.com/vulnerability_reports">Vulnerability Reports</a></li>
+                        <li><a class="vulnerabilty-info-nav-link" href="https://talosintelligence.com/ms_advisories">Microsoft Advisories</a></li>
+                    </ul>
+                    <div class="desktop-hide subnav-overlay">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px" height="20px" viewBox="0 0 26 20">
+                        <g id="vuln-icon" class="nav-icon">
+                            <path fill="#FFFFFF" d="M24.256,18.49L13.872,0.503C13.692,0.192,13.36,0,13,0c-0.359,0-0.692,0.192-0.872,0.503L1.744,18.49  c-0.18,0.312-0.18,0.695,0,1.006C1.924,19.809,2.257,20,2.616,20h20.769c0.359,0,0.691-0.191,0.871-0.504  C24.436,19.186,24.436,18.803,24.256,18.49 M14.268,18.215h-2.533v-1.85h2.533V18.215z M14.268,15.441h-2.533L10.89,6.515h4.222  L14.268,15.441z"></path>
+                        </g>
+                        </svg>
+                    </div>
+                </li>
+
+
+               <li class="nav-item">
+                   <div class="primary-link-wrapper">
+                        <a class="primary_nav_link" href="https://talosintelligence.com/incident_response">
+                           <div class="mobile-nav-icon">
+                               <svg xmlns="http://www.w3.org/2000/svg" width="111.588" height="148.311" viewBox="0 0 111.588 148.311">
+                                    <path d="M1.181,128.446v15.7a4.167,4.167,0,0,0,4.167,4.167h100.9a4.167,4.167,0,0,0,4.167-4.167v-15.7a4.167,4.167,0,0,0-4.167-4.167H5.348a4.167,4.167,0,0,0-4.167,4.166M55.8,63.109a3.277,3.277,0,1,1,0,6.553c-10.344,0-20.755,8.578-20.755,18.57a3.277,3.277,0,1,1-6.554,0C28.489,73.947,41.93,63.109,55.8,63.109Zm0-12.016c-21.787,0-39.325,17.81-39.325,39.937v26.7H95.122V91.03c0-22.128-17.537-39.937-39.324-39.937m52.365-38.3a3.291,3.291,0,0,0-2.254,1.024L88.432,31.294a3.283,3.283,0,0,0,4.642,4.644l17.478-17.479a3.278,3.278,0,0,0-2.389-5.666m-105.138,0a3.276,3.276,0,0,0-1.98,5.666L18.522,35.938a3.283,3.283,0,0,0,4.643-4.644L5.687,13.817A3.255,3.255,0,0,0,3.025,12.793ZM55.389.026a3.276,3.276,0,0,0-2.867,3.345V19.642a3.277,3.277,0,1,0,6.554,0V3.371A3.283,3.283,0,0,0,55.389.026Z" fill="#fff"></path>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text">
+                                Incident Response
+                            </span>
+                       </a>
+                   </div>
+                   <input class="sub-nav-trigger" id="ir-sub-trigger" type="checkbox">
+                   <label class="sub-nav-trigger-label" for="ir-sub-trigger">
+                       <div class="mobile-nav-icon">
+                           <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                                <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                               <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                               </g>
+                           </svg>
+                       </div>
+                   </label>
+                   <ul class="sub-nav sub-nav-single-list">
+                       <li class="desktop-hide">
+                           <a href="/incident_response">
+                               <h1>Incident Response</h1>
+                           </a>
+                        </li>
+                       <li class="desktop-hide">
+                           <label class="subnav-back-button" for="ir-sub-trigger">BACK</label>
+                       </li>
+                       <li>
+                           <a class="secondary_nav_link" href="https://talosintelligence.com/incident_response/services#reactive-services">Reactive Services</a>
+                       </li>
+                       <li>
+                           <a class="secondary_nav_link" href="https://talosintelligence.com/incident_response/services#proactive-services">Proactive Services</a></li>
+                       <li>
+                           <a href="https://talosintelligence.com/incident_response/contact">Emergency Support</a>
+                        </li>
+                   </ul>
+                   <div class="desktop-hide subnav-overlay"><svg xmlns="http://www.w3.org/2000/svg" width="111.588" height="148.311" viewBox="0 0 111.588 148.311">
+                     <path d="M1.181,128.446v15.7a4.167,4.167,0,0,0,4.167,4.167h100.9a4.167,4.167,0,0,0,4.167-4.167v-15.7a4.167,4.167,0,0,0-4.167-4.167H5.348a4.167,4.167,0,0,0-4.167,4.166M55.8,63.109a3.277,3.277,0,1,1,0,6.553c-10.344,0-20.755,8.578-20.755,18.57a3.277,3.277,0,1,1-6.554,0C28.489,73.947,41.93,63.109,55.8,63.109Zm0-12.016c-21.787,0-39.325,17.81-39.325,39.937v26.7H95.122V91.03c0-22.128-17.537-39.937-39.324-39.937m52.365-38.3a3.291,3.291,0,0,0-2.254,1.024L88.432,31.294a3.283,3.283,0,0,0,4.642,4.644l17.478-17.479a3.278,3.278,0,0,0-2.389-5.666m-105.138,0a3.276,3.276,0,0,0-1.98,5.666L18.522,35.938a3.283,3.283,0,0,0,4.643-4.644L5.687,13.817A3.255,3.255,0,0,0,3.025,12.793ZM55.389.026a3.276,3.276,0,0,0-2.867,3.345V19.642a3.277,3.277,0,1,0,6.554,0V3.371A3.283,3.283,0,0,0,55.389.026Z" fill="#fff"></path>
+                   </svg>
+                </div>
+               </li>
+
+
+
+
+
+                <li class="nav-item">
+                    <a class="primary_nav_link" href="https://blog.talosintelligence.com">
+                        <div class="mobile-nav-icon">
+                        <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="260px" height="296.5px" viewBox="0 0 260 296.5" enable-background="new 0 0 260 296.5" xml:space="preserve">
+                        <path fill="#FFFFFF" d="M243.586,42.404h-14.448c-0.943-4.513-3.143-8.813-6.616-12.33L201.793,9.098  c-4.7-4.757-10.972-7.377-17.66-7.377c-6.578,0-12.777,2.547-17.457,7.173l-33.875,33.511H17.586c-6.6,0-12,5.399-12,12V226.28  c0,6.6,5.4,12,12,12H153.83l84.21,56.278l-27.448-56.278h32.994c6.6,0,12-5.4,12-12V54.404  C255.586,47.804,250.186,42.404,243.586,42.404z M214.662,48.045c-0.01,0.2-0.021,0.399-0.044,0.599  c-0.008,0.069-0.021,0.139-0.031,0.207c-0.046,0.345-0.113,0.688-0.196,1.026c-0.034,0.137-0.063,0.273-0.103,0.408  c-0.039,0.135-0.087,0.267-0.133,0.399c-0.051,0.151-0.102,0.302-0.16,0.45c-0.049,0.126-0.105,0.249-0.16,0.373  c-0.068,0.153-0.139,0.307-0.216,0.457c-0.059,0.116-0.12,0.23-0.184,0.345c-0.088,0.157-0.181,0.312-0.278,0.465  c-0.065,0.104-0.13,0.206-0.2,0.308c-0.115,0.168-0.239,0.33-0.366,0.492c-0.064,0.081-0.124,0.165-0.19,0.244  c-0.199,0.238-0.409,0.472-0.635,0.694L82.458,182.308l-47.932,12.871l13.427-47.74L177.223,19.561  c1.917-1.895,4.414-2.84,6.911-2.84c2.534,0,5.068,0.975,6.99,2.92l20.726,20.974c0.545,0.552,1.002,1.156,1.39,1.79  c0.574,0.938,0.975,1.951,1.206,2.993c0.004,0.021,0.01,0.04,0.014,0.06c0.049,0.226,0.086,0.453,0.119,0.682  c0.008,0.06,0.017,0.118,0.024,0.178c0.026,0.211,0.045,0.424,0.058,0.636c0.004,0.077,0.007,0.153,0.009,0.23  c0.007,0.203,0.011,0.407,0.005,0.61C214.673,47.877,214.666,47.961,214.662,48.045z"></path>
+                        </svg>
+                    </div>
+                        <span class="top-nav-link-text">Blog</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="primary_nav_link" href="https://support.talosintelligence.com">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26px" height="20px" viewBox="0 0 123.17 159.292">
+                            <path d="M61.59,0,0,17.069v85.32c0,23.472,61.59,56.9,61.59,56.9s61.58-36.288,61.58-56.9V17.069Zm-.433,149.746C38.314,136.662,8.128,114.3,8.128,102.389V23.239l53.029-14.7Z" fill="#fff"></path>
+                        </svg>
+                        </div>
+                        <span class="top-nav-link-text">Support</span>
+                    </a>
+                </li>
+            </ul>
+
+
+<!--                <li class="nav-item desktop-hide">-->
+<!--                    <button class="search-button" data-ghost-search><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg> <span>Search Blog</span></button>-->
+<!--                </li>-->
+
+            <ul class="secondary-nav-list">
+                <div class="more-desktop-link">
+                    <div class="more-link-wrapper">
+                        <span class="more-nav-link">
+                            <div class="desktop-nav-icon more-menu-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="22px" height="16px" viewBox="0 0 22 16">
+                                <g id="menu-icon">
+                                    <path fill="#FFFFFF" d="M20.5,3h-19C0.672,3,0,2.329,0,1.5S0.672,0,1.5,0h19C21.328,0,22,0.671,22,1.5S21.328,3,20.5,3z"></path>
+                                    <path fill="#FFFFFF" d="M20.5,9.5h-19C0.672,9.5,0,8.828,0,8c0-0.829,0.672-1.5,1.5-1.5h19C21.328,6.5,22,7.171,22,8   C22,8.828,21.328,9.5,20.5,9.5z"></path>
+                                    <path fill="#FFFFFF" d="M20.5,16h-19C0.672,16,0,15.328,0,14.5S0.672,13,1.5,13h19c0.828,0,1.5,0.672,1.5,1.5S21.328,16,20.5,16z"></path>
+                                </g>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            More
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <li class="nav-item more-text-link">
+                    <div class="more-link-wrapper more-link-wrapper-mobile">
+                        <span class="more-nav-link">
+                            <div class="mobile-nav-icon"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" style="enable-background:new 0 0 20 20;" width="25px" height="25px" xml:space="preserve">
+                                <style type="text/css">
+                                    .white{fill:#FFFFFF;}
+                                </style>
+                                <path class="white" d="M19.4,17.1c0,0.1-0.1,0-0.2,0c0,0-1.3-0.9-2-1.4c-0.2-0.1-0.5-0.1-0.6,0.1c-0.3,0.3-0.6,0.8-0.9,1.3  c-0.1,0.2-0.1,0.5,0.1,0.6l2,1.5c0.1,0,0,0.1,0.1,0.2c0,0.1,0,0.1-0.1,0.2c-1.2,0.5-2.6,0.2-3.5-0.7c-0.8-0.9-1-2-0.7-3.1L4.5,6.5  c-1,0.3-2.3,0-3-0.9c-0.8-0.9-1.1-1.7-1-2.7c0-0.1,0-0.1,0.1-0.2c0.1,0,0.2,0.1,0.2,0.1l2,1.5C3,4.4,3.3,4.5,3.4,4.2  c0,0,0.5-0.8,0.9-1.3c0.1-0.2,0.1-0.5-0.1-0.6L2.3,0.9c-0.1,0,0-0.1-0.1-0.3c0-0.1,0-0.1,0.1-0.2C3.5-0.1,5,0.2,5.8,1.1  c0.8,0.9,1,2,0.7,3.1l9.1,9.3c1-0.3,2.3,0,3,0.9c0.7,0.7,0.9,1.5,0.9,2.5C19.5,16.9,19.5,17,19.4,17.1z"></path>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            Security Resources
+                            </span>
+                        </span>
+                    </div>
+                    <input class="sub-nav-trigger" id="security-resources-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="security-resources-sub-trigger">
+                        <div class="mobile-nav-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+                        </div>
+                    </label>
+                    <div class="sub-nav sub-nav-multiple-list sub-nav-multiple-list-left">
+                        <div class="sub-nav-multiple-wrapper">
+                            <div class="sub-nav-list-top-of-mobile-wrapper">
+                                <h1 class="sub-nav-list-header sub-nav-list-top-of-mobile">Security Resources</h1>
+                                <ul class="sub-nav-list">
+                                    <li class="desktop-hide">
+                                        <label class="subnav-back-button" for="security-resources-sub-trigger">BACK</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sub-nav-list-item-wrapper">
+                                <span class="sub-nav-desktop-header uppercase">Security Resources</span>
+                                <ul class="sub-nav-list">
+                                    <li>
+                                        <a href="https://talosintelligence.com/software"><span>Open Source Security Tools</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/categories"><span>Intelligence Categories Reference</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/secure-endpoint-naming"><span>Secure Endpoint Naming Reference</span>
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="desktop-hide subnav-overlay"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" style="enable-background:new 0 0 20 20;" width="25px" height="25px" xml:space="preserve">
+                        <style type="text/css">
+                            .white{fill:#FFFFFF;}
+                        </style>
+                                                <path class="white" d="M19.4,17.1c0,0.1-0.1,0-0.2,0c0,0-1.3-0.9-2-1.4c-0.2-0.1-0.5-0.1-0.6,0.1c-0.3,0.3-0.6,0.8-0.9,1.3  c-0.1,0.2-0.1,0.5,0.1,0.6l2,1.5c0.1,0,0,0.1,0.1,0.2c0,0.1,0,0.1-0.1,0.2c-1.2,0.5-2.6,0.2-3.5-0.7c-0.8-0.9-1-2-0.7-3.1L4.5,6.5  c-1,0.3-2.3,0-3-0.9c-0.8-0.9-1.1-1.7-1-2.7c0-0.1,0-0.1,0.1-0.2c0.1,0,0.2,0.1,0.2,0.1l2,1.5C3,4.4,3.3,4.5,3.4,4.2  c0,0,0.5-0.8,0.9-1.3c0.1-0.2,0.1-0.5-0.1-0.6L2.3,0.9c-0.1,0,0-0.1-0.1-0.3c0-0.1,0-0.1,0.1-0.2C3.5-0.1,5,0.2,5.8,1.1  c0.8,0.9,1,2,0.7,3.1l9.1,9.3c1-0.3,2.3,0,3,0.9c0.7,0.7,0.9,1.5,0.9,2.5C19.5,16.9,19.5,17,19.4,17.1z"></path>
+                        </svg>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="more-link-wrapper more-link-wrapper-mobile">
+                        <span class="more-nav-link">
+                            <div class="mobile-nav-icon"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" width="25px" height="25px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                                <style type="text/css">
+                                    .sticoncomment{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+                                </style>
+                                <path class="sticoncomment" d="M13.6,7.1H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,6.8,13.9,7.1,13.6,7.1L13.6,7.1z M13.6,9.4H6.4c-0.3,0-0.6-0.3-0.6-0.6s0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,9.2,13.9,9.4,13.6,9.4L13.6,9.4z M11.5,11.7H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6h5.1c0.3,0,0.6,0.3,0.6,0.6  C12.1,11.5,11.8,11.7,11.5,11.7z M15.8,3H4.2C3.5,3,3,3.5,3,4.2V17l2.8-2.3h10c0.6,0,1.2-0.5,1.2-1.2V4.2C17,3.5,16.5,3,15.8,3  L15.8,3z"></path>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            Media
+                            </span>
+                        </span>
+                    </div>
+                    <input class="sub-nav-trigger" id="media-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="media-sub-trigger">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                            </svg>
+                        </div>
+                    </label>
+                    <div class="sub-nav sub-nav-multiple-list sub-nav-multiple-list-middle">
+                        <div class="sub-nav-multiple-wrapper">
+                            <div class="sub-nav-list-top-of-mobile-wrapper">
+                                <h1 class="sub-nav-list-header sub-nav-list-top-of-mobile">Media</h1>
+                                <ul class="sub-nav-list">
+                                    <li class="desktop-hide">
+                                        <label class="subnav-back-button" for="media-sub-trigger">BACK</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sub-nav-list-item-wrapper">
+                                <span class="sub-nav-desktop-header uppercase">Media</span>
+                                <ul class="sub-nav-list">
+                                    <li>
+                                        <a href="https://blog.talosintelligence.com"><span>Talos Intelligence Blog</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://blog.talosintelligence.com/category/threat-source-newsletter/"><span>Threat Source Newsletter</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/podcasts/shows/beers_with_talos"><span>Beers with Talos Podcast</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/podcasts/shows/talos_takes"><span>Talos Takes Podcast</span>
+                                        </a></li>
+                                    <li>
+                                        <a target="_blank" href="https://www.youtube.com/channel/UCPZ1DtzQkStYBSG3GTNoyfg/featured"><span>Talos Videos</span>
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="desktop-hide subnav-overlay"><!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" width="25px" height="25px" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                        <style type="text/css">
+                            .sticoncomment{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+                        </style>
+                        <path class="sticoncomment" d="M13.6,7.1H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,6.8,13.9,7.1,13.6,7.1L13.6,7.1z M13.6,9.4H6.4c-0.3,0-0.6-0.3-0.6-0.6s0.3-0.6,0.6-0.6l7.2,0c0.3,0,0.6,0.3,0.6,0.6  C14.2,9.2,13.9,9.4,13.6,9.4L13.6,9.4z M11.5,11.7H6.4c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.3-0.6,0.6-0.6h5.1c0.3,0,0.6,0.3,0.6,0.6  C12.1,11.5,11.8,11.7,11.5,11.7z M15.8,3H4.2C3.5,3,3,3.5,3,4.2V17l2.8-2.3h10c0.6,0,1.2-0.5,1.2-1.2V4.2C17,3.5,16.5,3,15.8,3  L15.8,3z"></path>
+                        </svg>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="more-link-wrapper more-link-wrapper-mobile">
+                        <span class="more-nav-link">
+                            <div class="mobile-nav-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="25px" viewBox="0 0 55 55">
+                                <g>
+                                    <g class="mobile-nav-home">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M45.201,12.343c0.378,0.48,0.758,0.925,1.096,1.401    c2.975,4.207,4.543,8.876,4.494,14.044c-0.05,5.452-1.643,10.386-5.186,14.593c-3.484,4.133-7.929,6.73-13.182,7.895    c-6.313,1.398-12.216,0.275-17.695-3.131c-0.441-0.273-0.847-0.6-1.266-0.904c-0.11-0.078-0.208-0.174-0.337-0.287    c0.127-0.141,0.246-0.27,0.366-0.398c0.887-0.949,1.765-1.904,2.663-2.844c0.114-0.119,0.321-0.217,0.485-0.217    c3.658-0.006,7.318,0,10.975,0.008c3.458,0.006,6.913,0.02,10.369,0.02c0.957,0,1.871-0.193,2.62-0.844    c0.797-0.693,1.157-1.596,1.157-2.643c0.001-7.533,0.003-15.067-0.005-22.601c-0.002-0.309,0.088-0.524,0.3-0.743    C43.098,14.598,44.127,13.49,45.201,12.343"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M41.402,8.822c-0.99,1.027-1.994,2.021-2.935,3.072    c-0.312,0.35-0.616,0.416-1.036,0.415c-6.98-0.009-13.957-0.007-20.938-0.007c-2.039,0-3.561,1.514-3.561,3.557    c0,6.504,0.002,13.008,0.006,19.512c0.002,0.973,0.011,1.943,0.004,2.914c0,0.133-0.04,0.301-0.127,0.393    c-1.069,1.162-2.15,2.314-3.229,3.469c-0.021,0.023-0.052,0.039-0.109,0.08c-0.159-0.188-0.323-0.369-0.471-0.562    c-2.535-3.348-4.119-7.102-4.605-11.268c-0.61-5.229,0.194-10.229,2.835-14.839c2.669-4.664,6.655-7.805,11.618-9.75    c3.205-1.257,6.533-1.852,9.977-1.621c4.478,0.298,8.553,1.754,12.227,4.325c0.101,0.072,0.197,0.151,0.291,0.229    C41.364,8.755,41.374,8.778,41.402,8.822"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M39.799,12.47c0.873-0.911,1.749-1.829,2.676-2.797    c0.605,0.564,1.195,1.112,1.816,1.691c-0.941,0.985-1.817,1.903-2.703,2.83c-0.276-0.339-0.511-0.688-0.807-0.975    C40.492,12.941,40.145,12.728,39.799,12.47"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M10.35,43.279c0.969-1.016,1.885-1.977,2.76-2.893    c0.213,0.369,0.376,0.762,0.639,1.072c0.265,0.312,0.627,0.539,0.98,0.832c-0.853,0.891-1.713,1.791-2.624,2.746    C11.513,44.445,10.939,43.869,10.35,43.279"></path>
+                                    </g>
+                                </g>
+                                </svg>
+                            </div>
+                            <span class="top-nav-link-text top-nav-more-text">
+                            Company
+                            </span>
+                        </span>
+                    </div>
+                    <input class="sub-nav-trigger" id="company-sub-trigger" type="checkbox">
+                    <label class="sub-nav-trigger-label" for="company-sub-trigger">
+                        <div class="mobile-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.167px" height="47.75px" viewBox="0 0 48.167 47.75">
+                            <circle opacity="0.4" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="24.083" cy="23.875" r="22"></circle>
+                            <g>
+                                <circle fill="#FFFFFF" cx="24.083" cy="16.068" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="23.875" r="2.496"></circle>
+                                <circle fill="#FFFFFF" cx="24.083" cy="31.682" r="2.496"></circle>
+                            </g>
+                        </svg>
+                        </div>
+                    </label>
+                    <div class="sub-nav sub-nav-multiple-list sub-nav-multiple-list-right">
+                        <div class="sub-nav-multiple-wrapper">
+                            <div class="sub-nav-list-top-of-mobile-wrapper">
+                                <h1 class="sub-nav-list-header sub-nav-list-top-of-mobile">Company</h1>
+                                <ul class="sub-nav-list">
+                                    <li class="desktop-hide">
+                                        <label class="subnav-back-button" for="company-sub-trigger">BACK</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sub-nav-list-item-wrapper">
+                                <span class="sub-nav-desktop-header uppercase">Company</span>
+                                <ul class="sub-nav-list">
+                                    <li>
+                                        <a href="https://talosintelligence.com/about"><span>About Talos</span>
+                                        </a></li>
+                                    <li>
+                                        <a href="https://talosintelligence.com/careers"><span>Careers</span>
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="desktop-hide subnav-overlay"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="25px" viewBox="0 0 55 55">
+                        <g>
+                            <g class="mobile-nav-home">
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M45.201,12.343c0.378,0.48,0.758,0.925,1.096,1.401    c2.975,4.207,4.543,8.876,4.494,14.044c-0.05,5.452-1.643,10.386-5.186,14.593c-3.484,4.133-7.929,6.73-13.182,7.895    c-6.313,1.398-12.216,0.275-17.695-3.131c-0.441-0.273-0.847-0.6-1.266-0.904c-0.11-0.078-0.208-0.174-0.337-0.287    c0.127-0.141,0.246-0.27,0.366-0.398c0.887-0.949,1.765-1.904,2.663-2.844c0.114-0.119,0.321-0.217,0.485-0.217    c3.658-0.006,7.318,0,10.975,0.008c3.458,0.006,6.913,0.02,10.369,0.02c0.957,0,1.871-0.193,2.62-0.844    c0.797-0.693,1.157-1.596,1.157-2.643c0.001-7.533,0.003-15.067-0.005-22.601c-0.002-0.309,0.088-0.524,0.3-0.743    C43.098,14.598,44.127,13.49,45.201,12.343"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M41.402,8.822c-0.99,1.027-1.994,2.021-2.935,3.072    c-0.312,0.35-0.616,0.416-1.036,0.415c-6.98-0.009-13.957-0.007-20.938-0.007c-2.039,0-3.561,1.514-3.561,3.557    c0,6.504,0.002,13.008,0.006,19.512c0.002,0.973,0.011,1.943,0.004,2.914c0,0.133-0.04,0.301-0.127,0.393    c-1.069,1.162-2.15,2.314-3.229,3.469c-0.021,0.023-0.052,0.039-0.109,0.08c-0.159-0.188-0.323-0.369-0.471-0.562    c-2.535-3.348-4.119-7.102-4.605-11.268c-0.61-5.229,0.194-10.229,2.835-14.839c2.669-4.664,6.655-7.805,11.618-9.75    c3.205-1.257,6.533-1.852,9.977-1.621c4.478,0.298,8.553,1.754,12.227,4.325c0.101,0.072,0.197,0.151,0.291,0.229    C41.364,8.755,41.374,8.778,41.402,8.822"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M39.799,12.47c0.873-0.911,1.749-1.829,2.676-2.797    c0.605,0.564,1.195,1.112,1.816,1.691c-0.941,0.985-1.817,1.903-2.703,2.83c-0.276-0.339-0.511-0.688-0.807-0.975    C40.492,12.941,40.145,12.728,39.799,12.47"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M10.35,43.279c0.969-1.016,1.885-1.977,2.76-2.893    c0.213,0.369,0.376,0.762,0.639,1.072c0.265,0.312,0.627,0.539,0.98,0.832c-0.853,0.891-1.713,1.791-2.624,2.746    C11.513,44.445,10.939,43.869,10.35,43.279"></path>
+                            </g>
+                        </g>
+                    </svg>
+                    </div>
+                </li>
+            </ul>
+            <div class="nav-search-wrapper" id="desktop-search-wrapper">
+                <button class="search-button desktop-search-button" data-ghost-search>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </button>
+            </div>
+        </div>
+
+
+
+    </div>
+</nav>
+
+    
+
+    <main id="site-main">
+        <div class="container-fluid px-0">
+            <div class="main-content-row">
+                <div class="main-content-col px-0">
+                    <div class="post-full-content">
+                        
+<article class="post ">
+        <div class="feature-image-wrapper my-5">
+            <figure>
+                <img src="https://storage.ghost.io/c/af/a0/afa04ee3-414f-4481-8d23-7e7c146f192e/content/images/2022/09/vpn-filter-2x1.jpg" alt="" class="img-fluid" />
+            </figure>
+        </div>
+
+    <h1 class="text-center">New VPNFilter malware targets at least 500K networking devices worldwide</h1>
+
+    <div class="text-center m-1">
+        <div class="post-author">
+            <span>By </span>
+                <a href="https://blog.talosintelligence.com/author/william-largent/">William Largent</a>
+        </div>
+
+        <br/>
+        <time class="post-datetime" datetime="May 23, 2018 09:00">
+            Wednesday, May 23, 2018 09:00
+        </time>
+
+        <div class="m-3">
+        </div>
+    </div>
+
+    <section class="post-content-wrapper mt-5">
+        <div class="post-content" id="post-content">
+            <p>For several months, Talos has been working with public- and private-sector threat intelligence partners and law enforcement in researching an advanced, likely state-sponsored or state-affiliated actor's widespread use of a sophisticated modular malware system we call "VPNFilter." We have not completed our research, but recent events have convinced us that the correct way forward is to now share our findings so that affected parties can take the appropriate action to defend themselves.  In particular, the code of this malware overlaps with versions of the BlackEnergy malware — which was responsible for multiple large-scale attacks that targeted devices in Ukraine. While this isn't definitive by any means, we have also observed VPNFilter, a potentially destructive malware, actively infecting Ukrainian hosts at an alarming rate, utilizing a command and control (C2) infrastructure dedicated to that country. Weighing these factors together, we felt it was best to publish our findings so far prior to completing our research. Publishing early means that we don't yet have all the answers — we may not even have all the questions — so this blog represents our findings as of today, and we will update our findings as we continue our investigation.<br><br>Both the scale and the capability of this operation are concerning. Working with our partners, we estimate the number of infected devices to be at least 500,000 in at least 54 countries. The known devices affected by VPNFilter are Linksys, MikroTik, NETGEAR and TP-Link networking equipment in the small and home office (SOHO) space, as well at QNAP network-attached storage (NAS) devices. No other vendors, including Cisco, have been observed as infected by VPNFilter, but our research continues. The behavior of this malware on networking equipment is particularly concerning, as components of the VPNFilter malware allows for theft of website credentials and monitoring of Modbus SCADA protocols. Lastly, the malware has a destructive capability that can render an infected device unusable, which can be triggered on individual victim machines or en masse, and has the potential of cutting off internet access for hundreds of thousands of victims worldwide.<br><br>The type of devices targeted by this actor are difficult to defend. They are frequently on the perimeter of the network, with no intrusion protection system (IPS) in place, and typically do not have an available host-based protection system such as an anti-virus (AV) package. We are unsure of the particular exploit used in any given case, but most devices targeted, particularly in older versions, have known public exploits or default credentials that make compromise relatively straightforward. All of this has contributed to the quiet growth of this threat since at least 2016.<br><br>This post provides the technical findings you would normally see in a Talos blog. In addition, we will detail some thoughts on the tradecraft behind this threat, using our findings and the background of our analysts, to discuss the possible thought process and decisions made by the actor. We will also discuss how to defend against this threat and how to handle a device that may be infected. Finally, we will share the IOCs that we have observed to this point, although we are confident there are more that we have not seen.</p><h3 id="brief-technical-breakdown">Brief technical breakdown</h3><p><br>The VPNFilter malware is a multi-stage, modular platform with versatile capabilities to support both intelligence-collection and destructive cyber attack operations.<br><br>The stage 1 malware persists through a reboot, which sets it apart from most other malware that targets internet-of-things devices because malware normally does not survive a reboot of the device. The main purpose of stage 1 is to gain a persistent foothold and enable the deployment of the stage 2 malware. Stage 1 utilizes multiple redundant command and control (C2) mechanisms to discover the IP address of the current stage 2 deployment server, making this malware extremely robust and capable of dealing with unpredictable C2 infrastructure changes.<br><br>The stage 2 malware, which does not persist through a reboot, possesses capabilities that we have come to expect in a workhorse intelligence-collection platform, such as file collection, command execution, data exfiltration and device management. However, some versions of stage 2 also possess a self-destruct capability that overwrites a critical portion of the device's firmware and reboots the device, rendering it unusable. Based on the actor's demonstrated knowledge of these devices, and the existing capability in some stage 2 versions, we assess with high confidence that the actor could deploy this self-destruct command to most devices that it controls, regardless of whether the command is built into the stage 2 malware.<br><br>In addition, there are multiple stage 3 modules that serve as plugins for the stage 2 malware. These plugins provide stage 2 with additional functionality. As of this writing, we are aware of two plugin modules: a packet sniffer for collecting traffic that passes through the device, including theft of website credentials and monitoring of Modbus SCADA protocols, and a communications module that allows stage 2 to communicate over Tor. We assess with high confidence that several other plugin modules exist, but we have yet to discover them.</p><figure class="kg-card kg-image-card"><img src="https://4.bp.blogspot.com/-IvGAKgTghuk/WwT1mTgI31I/AAAAAAAAAhE/TaZFBk8b-Jwyv0cYS6uITcWdNjq3V8jZQCLcBGAs/s640/image5.jpg" class="kg-image" alt loading="lazy" width="640" height="468"></figure><h3 id="tradecraft-discussion">Tradecraft discussion</h3><p><br>We assess with high confidence that this malware is used to create an expansive, hard-to-attribute infrastructure that can be used to serve multiple operational needs of the threat actor. Since the affected devices are legitimately owned by businesses or individuals, malicious activity conducted from infected devices could be mistakenly attributed to those who were actually victims of the actor. The capabilities built into the various stages and plugins of the malware are extremely versatile and would enable the actor to take advantage of devices in multiple ways.<br><br>Advanced threat actors, including nation-states, will try to make attribution of their cyber activities extremely difficult, unless it is in their interest for it to be openly known that they conducted a specific act. To this end, advanced threat actors use multiple techniques, including co-opting infrastructure owned by someone else to conduct their operations. The actor could easily use devices infected with this malware as hop points before connecting to their final victim in order to obfuscate their true point of origin.<br><br>The malware can also be leveraged to collect data that flows through the device. This could be for straightforward data-collection purposes, or to assess the potential value of the network that the device serves. If the network was deemed as having information of potential interest to the threat actor, they may choose to continue collecting content that passes through the device or to propagate into the connected network for data collection. At the time of this posting, we have not been able to acquire a third-stage plugin that would enable further exploitation of the network served by the device. However, we have seen indications that it does exist, and we assess that it is highly likely that such an advanced actor would naturally include that capability in malware that is this modular.<br><br>Finally, this malware could be used to conduct a large-scale destructive attack by using the "kill" command, which would render some or all of the physical devices unusable. This command is present in many of the stage 2 samples we've observed, but could also be triggered by utilizing the "exec" command available in all stage 2 samples. In most cases, this action is unrecoverable by most victims, requiring technical capabilities, know-how, or tools that no consumer should be expected to have. We are deeply concerned about this capability, and it is one of the driving reasons we have been quietly researching this threat over the past few months.</p><h3 id="observed-activities-of-concern">Observed activities of concern</h3><p><br>As we have researched this threat, we have put into place monitoring and scanning to gain an understanding of the scope of this threat and the behaviors of infected devices. Our analysis has shown that this is a global, broadly deployed threat that is actively seeking to increase its footprint. While our research continues, we have also observed activity potentially associated with this actor that indicates possible data exfiltration activity.<br><br>In early May, we observed infected devices conducting TCP scans on ports 23, 80, 2000 and 8080. These ports are indicative of scanning for additional Mikrotik and QNAP NAS devices, which can be found using these ports. These scans targeted devices in more than 100 countries.<br><br>We also used our telemetry to discover potentially infected devices globally. We evaluated their collective behavior to try and identify additional features of the C2 infrastructure. Many of these victim IPs appeared to demonstrate behavior that strongly indicated data exfiltration.<br><br>Finally, on May 8, we observed a sharp spike in VPNFilter infection activity. Almost all of the newly acquired victims were located in Ukraine. Also of note, a majority of Ukrainian infections shared a separate stage 2 C2 infrastructure from the rest of the world, on IP 46.151.209[.]33. By this point, we were aware of the code overlap between BlackEnergy and VPNFilter and that the timing of previous attacks in Ukraine suggested that an attack could be imminent. Given each of these factors, and in consultation with our partners, we immediately began the process to go public before completing our research.<br><br>As we continued to move forward with the public disclosure, we observed another substantial increase in newly acquired VPNFilter victims focused in Ukraine on May 17. This continued to drive our decision to publish our research as soon as possible.</p><!--kg-card-begin: html--><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" data-original-attrs="{&quot;style&quot;:&quot;&quot;}" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td data-original-attrs="{&quot;style&quot;:&quot;&quot;}" style="text-align: center;"><a data-original-attrs="{&quot;data-original-href&quot;:&quot;https://1.bp.blogspot.com/-5XzNgdjggXc/WwT1t4aZPPI/AAAAAAAAAhI/lkD4GBHPwK4CKoyUTBOV8rB6stqI_fwpwCLcBGAs/s1600/image4.png&quot;,&quot;style&quot;:&quot;&quot;}" href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/8747922687130206090#" style="margin-left: auto; margin-right: auto;"><img border="0" data-original-height="662" data-original-width="1065" height="396" src="https://1.bp.blogspot.com/-5XzNgdjggXc/WwT1t4aZPPI/AAAAAAAAAhI/lkD4GBHPwK4CKoyUTBOV8rB6stqI_fwpwCLcBGAs/s640/image4.png" width="640" style="cursor: move;"></a></td></tr><tr><td class="tr-caption" data-original-attrs="{&quot;style&quot;:&quot;&quot;}" style="text-align: center;"><font data-keep-original-tag="false" data-original-attrs="{&quot;style&quot;:&quot;&quot;}" size="3" style="text-align: start;">Diagram 1. New observed VPNFilter infections over time</font></td></tr></tbody></table><!--kg-card-end: html--><h3 id="defending-against-this-threat">Defending against this threat</h3><p><br>Defending against this threat is extremely difficult due to the nature of the affected devices. The majority of them are connected directly to the internet, with no security devices or services between them and the potential attackers. This challenge is augmented by the fact that most of the affected devices have publicly known vulnerabilities which are not convenient for the average user to patch. Additionally, most have no built-in anti-malware capabilities. These three facts together make this threat extremely hard to counter, resulting in extremely limited opportunities to interdict malware, remove vulnerabilities, or block threats.<br><br>Despite these challenges, Talos has released protections for this threat from multiple angles, to try to take advantage of the limited options that exist. We developed and deployed more than 100 Snort signatures for the publicly known vulnerabilities for the devices that are associated with this threat. These rules have been deployed in the public Snort set, and can be used by anyone to help defend their devices. In addition, we have done the usual blocklisting of domains/IPs as appropriate and convicting of the hashes associated with this threat to cover those who are protected by the Cisco Security ecosystem. We have reached out to Linksys, Mikrotik, Netgear, TP-Link and QNAP regarding this issue. (Note: QNAP has been aware of certain aspects of VPNFilter and previously done work to counter the threat.) Finally, we have also shared these indicators and our research with international law enforcement and our fellow members of the <a href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/8747922687130206090#">Cyber Threat Alliance</a> in advance of this publication so they could move quickly to help counter this threat more broadly.</p><h3 id="recommendations">Recommendations</h3><p><br>We recommend that:</p><ul><li>Users of SOHO routers and/or NAS devices reset them to factory defaults and reboot them in order to remove the potentially destructive, non-persistent stage 2 and stage 3 malware.</li><li>Internet service providers that provide SOHO routers to their users reboot the routers on their customers' behalf.</li><li>If you have any of the devices known or suspected to be affected by this threat, it is extremely important that you work with the manufacturer to ensure that your device is up to date with the latest patch versions. If not, you should apply the updated patches immediately.</li><li>ISPs work aggressively with their customers to ensure their devices are patched to the most recent firmware/software versions.</li></ul><p><br>Due to the potential for destructive action by the threat actor, we recommend out of an abundance of caution that these actions be taken for all SOHO or NAS devices, whether or not they are known to be affected by this threat.</p><h3 id="multi-stage-technical-details">Multi-Stage Technical Details</h3><h4 id="exploitation">Exploitation</h4><p><br>At the time of this publication, we do not have definitive proof on how the threat actor is exploiting the affected devices. However, all of the affected makes/models that we have uncovered had well-known, public vulnerabilities. Since advanced threat actors tend to only use the minimum resources necessary to accomplish their goals, we assess with high confidence that VPNFilter required no zero-day exploitation techniques.</p><h4 id="stage-1-persistent-loader-">Stage 1 (persistent loader)</h4><p><br>VPNFilter's stage 1 malware infects devices running firmware based on Busybox and Linux, and is compiled for several CPU architectures. The main purpose of these first-stage binaries is to locate a server providing a more fully featured second stage, and to download and maintain persistence for this next stage on infected devices. It is capable of modifying non-volatile configuration memory (NVRAM) values and adds itself to crontab, the Linux job scheduler, to achieve persistence. This is a departure from previous IoT malware, like Mirai, which is ephemeral and disappears with a simple device reboot.<br><br>Talos analyzed samples for MIPS and x86 processors. The C2 communication and additional malware downloads occur over Tor or SSL-encrypted connections. While the binaries themselves are not obfuscated beyond being stripped, some strings are stored in an encrypted form, and are only decrypted at runtime. The decryption routine looked suspiciously similar to RC4 in the static analysis, but it looks like the malware authors got the initialization of the S-boxes wrong. During the permutation step, values are XOR’d, but not swapped. Analysis of this RC4 implementation shows that it is identical to the implementation used in BlackEnergy, which is <a href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/8747922687130206090#">believed by law enforcement agencies to originate with a state actor.</a></p><figure class="kg-card kg-image-card"><img src="https://4.bp.blogspot.com/-6WjeSR1zw6o/WwT16Bkvr7I/AAAAAAAAAhQ/a3-fhs7V2hE4uOcg5c6WF-iozv2zFA7WQCLcBGAs/s640/image3.png" class="kg-image" alt loading="lazy" width="600" height="640"></figure><p><br>The RC4 initialization XORs the values in the permutation phase of the internal state initialization. As you can see in the last basic block, the code doesn't swap the values of S[i] and S[j] (compared to the RC4 pseudo code below).</p><figure class="kg-card kg-image-card"><a href="https://www.blogger.com/u/1/blog/post/edit/1029833275466591797/8747922687130206090#"><img src="https://3.bp.blogspot.com/-jX5UWqKOnMw/WwT2AvCFgFI/AAAAAAAAAhY/I_eOmL18YNAmOoK_R5oUCdv87sWGKLRVwCLcBGAs/s400/image1.png" class="kg-image" alt loading="lazy" width="400" height="148"></a></figure><p>Once the malware has completed initialization, it starts to download pages from the seed URLs. In the MIPS sample cache and all but one URL of the x86 sample, the URLs pointed to Photobucket.com, an image-sharing host. The malware downloads the first image from the gallery the URL is referencing, and then proceeds to extract the download server's IP address. The IP address is extracted from six integer values for GPS latitude and longitude in the EXIF information.<br><br>If stage 1 fails to connect to, download an image from, or successfully acquire an IP address via an image from Photobucket, the malware reaches out to a backup domain, toknowall[.]com, to download an image and attempt the same process.<br><br>If the attempt to the backup domain fails, stage 1 opens a listener that waits for a specific trigger packet to open a connection for the actor to connect interactively to the device. When the listener opens, it checks its public IP from api.ipify[.]org and stores it for later comparison. Then, when any packet arrives on any port, the listener performs a series of checks to identify a trigger packet. If the packet meets a predefined set of criteria, it will extract an IP address from the packet and attempt a stage 2 download.</p><h4 id="listener-actions-">Listener actions:</h4><ol><li>Inspects all TCP/IPv4 packets with a SYN flag set</li><li>Checks that the destination IP matches what it found when the listener opened (Note: if the listener failed to get an IP from api.ipify[.]org it will skip this check)</li><li>Makes sure the packet has eight or more bytes</li><li>Scans the data for the bytes \x0c\x15\x22\x2b</li><li>The bytes directly after that 4-byte marker are interpreted as an IP so \x01\x02\x03\x04 becomes -&gt; 1.2.3[.]4</li><li>Calls out to the newly received IP as usual for stage 2</li><li>Confirms that stage 2 is at least 1,001 bytes (Note: this is much smaller than the other callout methods which require the stage 2 to be 100,000 or more)<br></li></ol><h4 id="stage-2-non-persistent-">Stage 2 (non-persistent)</h4><p><br>The stage 2 malware first sets up the working environment by creating a modules folder (/var/run/vpnfilterm) and a working directory (/var/run/vpnfilterw). Afterward, it will run in a loop, where it first reaches out to a C2 server, and then executes commands retrieved from the C2. The command names are encrypted with the same broken RC4 function as in stage 1. Fortunately, older versions of x86 stage 2 sample were very verbose, and debug printed all the steps it performed. Newer versions of the x86 stage 2 did not contain the debug prints, nor did the MIPS sample.<br><br>The x86 sample can perform the following operations:</p><ul><li>kill: Overwrites the first 5,000 bytes of /dev/mtdblock0 with zeros, and reboots the device (effectively bricking it).</li><li>exec: Executes a shell command or plugin.</li><li>tor: Sets the Tor configuration flag (0 or 1).</li><li>copy: Copies a file from the client to the server.</li><li>seturl: Sets the URL of the current configuration panel.</li><li>proxy: Sets the current proxy URL.</li><li>port: Sets the current proxy port.</li><li>delay: Sets the delay between main loop executions.</li><li>reboot: Reboots the device if it has been up for more than 256 seconds, and the build name is specified in the parameter.</li><li>download: Downloads a URL to a file. This can be applied to all devices or just a certain build name.</li></ul><p><br>The MIPS sample has the following additional operations:</p><ul><li>stop: Terminate the malware process.</li><li>relay: A misspelled version of the `delay` command from the x86 version.</li></ul><p><br><br>Until the Tor module is installed, stage 2 will use one or more IPs stored in its configuration as SOCKS5 proxies to Tor and attempt to communicate with a control panel also found in its configuration. Like in stage 1, the communication between the malware and the proxy will connect over a verified SSL connection. When the Tor module is installed, it will connect to .onion domains through the local SOCKS5 proxy provided by the module over plain HTTP instead. We used a fake SOCKS5 proxy, which redirects all traffic to INetSim for analysis.<br><br>An example request from the malware to the server:</p><p>The malware encodes this request into a JSON object, which is then base64-encoded and sent to the path /bin32/update.php in the HTTP POST parameter "me". The user agent used in the request is peculiar (Mozilla/6.1 (compatible; MSIE 9.0; Windows NT 5.3; Trident/5.0)), as a version "Windows NT 5.3" doesn't exist.</p><ul><li>uq: A unique ID for the infected device (the MAC address of the malware's network interface).</li><li>pv: The platform version the malware is running on</li><li>ad: The public IP address of the malware's device</li><li>bv: Version of the stage 1 loader (0.3.9qa) and the stage 2 binary (0.11.1a)</li><li>nn: The node name</li><li>tn: The Tor flag</li><li>on: The onion flag<br><br>The server's response to the message:<br><br><em>{<br><br>"tr":3060<br><br>"pxs":["217.12.202.40","94.242.222.68","91.121.109.209"],<br><br>"tor":"tor 1",<br><br>"mds":[]<br><br>}<br></em></li><li>tr: Sets the delay for the main loop.</li><li>pxs: List of panels to connect to. These are the C2 servers.</li><li>tor: Sets the name and version of the Tor module.</li><li>mds: A list of modules to fetch. Each entry is in the format "&lt;command_id&gt; &lt;module_id&gt; &lt;module_name&gt; &lt;module_args (base64-encoded)&gt;". The malware will download the module from /bin32/update.php by setting the POST form parameter me to the module name with the architecture appended, e.g., tor_i686 for the Tor module, and execute it in each iteration. A blank list of commands (as in the example response above) will clear any existing commands by deactivating them and killing any running processes associated with them.</li></ul><h4 id="stage-3-non-persistent-">Stage 3 (non-persistent)</h4><p><br>We have analyzed two plugin modules for the malware, a packet sniffer and a communication plugin that allows the malware to communicate over Tor. We assess with high confidence that there are likely several more that we have not yet discovered. Among the initial samples Talos acquired, there was a plugin for the MIPS stage 2, which is a packet sniffer. It intercepts all network traffic through a raw socket and looks for strings used in HTTP basic authentications. Further, it specifically tracks Modbus TCP/IP packets. The resulting log file is placed in the stage 2 working directory, /var/run/vpnfilterw. This allows the attackers to understand, capture, and track the traffic flowing through the device.<br><br>The Tor plugin module is partially linked into stage 2, but has a separate Tor executable, which is downloaded to /var/run/tor and run in a process separate from stage 2. The Tor binary looks like the standard Tor client, in the form of a statically linked and stripped binary. It creates a configuration file in /var/run/torrc and a working directory in /var/run/tord.</p><h2 id="conclusion">Conclusion</h2><p><br><br>VPNFilter is an expansive, robust, highly capable, and dangerous threat that targets devices that are challenging to defend. Its highly modular framework allows for rapid changes to the actor's operational infrastructure, serving their goals of misattribution, intelligence collection, and finding a platform to conduct attacks.<br><br>The destructive capability particularly concerns us. This shows that the actor is willing to burn users' devices to cover up their tracks, going much further than simply removing traces of the malware. If it suited their goals, this command could be executed on a broad scale, potentially rendering hundreds of thousands of devices unusable, disabling internet access for hundreds of thousands of victims worldwide or in a focused region where it suited the actor's purposes.<br><br>While the threat to IoT devices is nothing new, the fact that these devices are being used by advanced nation-state actors to conduct cyber operations, which could potentially result in the destruction of the device, has greatly increased the urgency of dealing with this issue. We call on the entire security community to join us in aggressively countering this threat.<br><br>We will continue to monitor VPNFilter and work with our partners to understand the threat as it continues to evolve in order to ensure that our customers remain protected and the public is informed.</p><h3 id="iocs">IOCs</h3><p><br>As stated previously, we highly suspect that there are additional IOCs and versions of this malware that we are not currently aware of. The following list of IOCs comprises what we know as of this date.</p><h3 id="known-c2-domains-and-ips">Known C2 Domains and IPs</h3><h4 id="associated-with-the-1st-stage">Associated with the 1st Stage</h4><p><br>photobucket[.]com/user/nikkireed11/library<br>photobucket[.]com/user/kmila302/library<br>photobucket[.]com/user/lisabraun87/library<br>photobucket[.]com/user/eva_green1/library<br>photobucket[.]com/user/monicabelci4/library<br>photobucket[.]com/user/katyperry45/library<br>photobucket[.]com/user/saragray1/library<br>photobucket[.]com/user/millerfred/library<br>photobucket[.]com/user/jeniferaniston1/library<br>photobucket[.]com/user/amandaseyfried1/library<br>photobucket[.]com/user/suwe8/library<br>photobucket[.]com/user/bob7301/library<br>toknowall[.]com</p><h4 id="associated-with-the-2nd-stage">Associated with the 2nd Stage</h4><p><br>91.121.109[.]209<br>217.12.202[.]40<br>94.242.222[.]68<br>82.118.242[.]124<br>46.151.209[.]33<br>217.79.179[.]14<br>91.214.203[.]144<br>95.211.198[.]231<br>195.154.180[.]60<br>5.149.250[.]54<br>91.200.13[.]76<br>94.185.80[.]82<br>62.210.180[.]229<br>zuh3vcyskd4gipkm[.]onion/bin32/update.php</p><h3 id="known-file-hashes">Known File Hashes</h3><h4 id="1st-stage-malware">1st Stage Malware</h4><p><br>50ac4fcd3fbc8abcaa766449841b3a0a684b3e217fc40935f1ac22c34c58a9ec<br>0e0094d9bd396a6594da8e21911a3982cd737b445f591581560d766755097d92</p><h4 id="2nd-stage-malware">2nd Stage Malware</h4><p><br>9683b04123d7e9fe4c8c26c69b09c2233f7e1440f828837422ce330040782d17<br>d6097e942dd0fdc1fb28ec1814780e6ecc169ec6d24f9954e71954eedbc4c70e<br>4b03288e9e44d214426a02327223b5e516b1ea29ce72fa25a2fcef9aa65c4b0b<br>9eb6c779dbad1b717caa462d8e040852759436ed79cc2172692339bc62432387<br>37e29b0ea7a9b97597385a12f525e13c3a7d02ba4161a6946f2a7d978cc045b4<br>776cb9a7a9f5afbaffdd4dbd052c6420030b2c7c3058c1455e0a79df0e6f7a1d<br>8a20dc9538d639623878a3d3d18d88da8b635ea52e5e2d0c2cce4a8c5a703db1<br>0649fda8888d701eb2f91e6e0a05a2e2be714f564497c44a3813082ef8ff250b</p><h4 id="3rd-stage-plugins">3rd Stage Plugins</h4><p><br>f8286e29faa67ec765ae0244862f6b7914fcdde10423f96595cb84ad5cc6b344<br>afd281639e26a717aead65b1886f98d6d6c258736016023b4e59de30b7348719</p><h4 id="self-signed-certificate-fingerprints">Self-Signed Certificate Fingerprints</h4><p><br>d113ce61ab1e4bfcb32fb3c53bd3cdeee81108d02d3886f6e2286e0b6a006747<br>c52b3901a26df1680acbfb9e6184b321f0b22dd6c4bb107e5e071553d375c851<br>f372ebe8277b78d50c5600d0e2af3fe29b1e04b5435a7149f04edd165743c16d<br>be4715b029cbd3f8e2f37bc525005b2cb9cad977117a26fac94339a721e3f2a5<br>27af4b890db1a611d0054d5d4a7d9a36c9f52dffeb67a053be9ea03a495a9302<br>110da84f31e7868ad741bcb0d9f7771a0bb39c44785055e6da0ecc393598adc8<br>fb47ba27dceea486aab7a0f8ec5674332ca1f6af962a1724df89d658d470348f<br>b25336c2dd388459dec37fa8d0467cf2ac3c81a272176128338a2c1d7c083c78<br>cd75d3a70e3218688bdd23a0f618add964603736f7c899265b1d8386b9902526<br>110da84f31e7868ad741bcb0d9f7771a0bb39c44785055e6da0ecc393598adc8<br>909cf80d3ef4c52abc95d286df8d218462739889b6be4762a1d2fac1adb2ec2b<br>044bfa11ea91b5559f7502c3a504b19ee3c555e95907a98508825b4aa56294e4<br>c0f8bde03df3dec6e43b327378777ebc35d9ea8cfe39628f79f20b1c40c1b412<br>8f1d0cd5dd6585c3d5d478e18a85e7109c8a88489c46987621e01d21fab5095d<br>d5dec646c957305d91303a1d7931b30e7fb2f38d54a1102e14fd7a4b9f6e0806<br>c0f8bde03df3dec6e43b327378777ebc35d9ea8cfe39628f79f20b1c40c1b412<br></p><h3 id="known-affected-devices">Known Affected Devices</h3><p><br>The following devices are known to be affected by this threat. Based on the scale of this research, much of our observations are remote and not on the device, so it is difficult to determine specific version numbers and models in many cases. It should be noted that all of these devices have publicly known vulnerabilities associated with them.<br><br>Given our observations with this threat, we assess with high confidence that this list is incomplete and other devices could be affected.</p><h4 id="linksys-devices-">Linksys Devices:</h4><p>E1200<br>E2500<br>WRVS4400N</p><h4 id="mikrotik-routeros-versions-for-cloud-core-routers-">Mikrotik RouterOS Versions for Cloud Core Routers:</h4><p>1016<br>1036<br>1072</p><h4 id="netgear-devices-">Netgear Devices:</h4><p>DGN2200<br>R6400<br>R7000<br>R8000<br>WNR1000<br>WNR2000</p><h4 id="qnap-devices-">QNAP Devices:</h4><p>TS251<br>TS439 Pro<br>Other QNAP NAS devices running QTS software</p><h4 id="tp-link-devices-">TP-Link Devices:</h4><p>R600VPN</p><h2 id="coverage">Coverage</h2><p><br>Cisco customers are protected by this threat by Cisco Advanced Malware Protection (AMP), Cloud Web Security (CWS), Network Security, ThreatGrid, Umbrella, and Web Security Appliance (WSA). Additionally, StealthWatch and StealthWatch Cloud can be utilized to find devices communicating with the known C2 IP addresses and domains.<br><br>In StealthWatch, two items need to be configured to send an alert that there are communications to nefarious IP addresses.</p><ul><li>The first step is to create a new Host Group named "VPNFilter C2" under Outside Hosts using the Java user interface.</li><li>Once this is created, you will likely want to validate that there are no active communications presently occurring.</li><li>This validation can be achieved by right-clicking on the recently created "VPNFilter C2" Host Group and navigating to Top -&gt; Conversations -&gt; Total.</li><li>Once you are viewing these top conversations, you will easily be able to see if there is active traffic.</li><li>In the event that there is no active traffic, an alarm can be created to generate alerts in the event that traffic to or from any of the "VPNFilter C2" hosts is observed.</li><li>This alarm can be configured by creating a custom event and selecting the appropriate hosts or objects in the web user interface.</li></ul><figure class="kg-card kg-image-card"><img src="https://4.bp.blogspot.com/-_ogPmjz76jU/WNV3hnWGDuI/AAAAAAAAALo/eomUxs4Xgg8HjpgVutgDiFovJk_pqBAmACPcBGAYYCw/s320/no-email-security.png" class="kg-image" alt loading="lazy" width="320" height="238"></figure><h4 id="vpnfilter-specific-snort-detection-">VPNFilter-specific Snort detection:</h4><p><br>45563 45564 46782 46783</p><h4 id="snort-rules-that-protect-against-known-vulnerabilities-in-affected-devices-">Snort rules that protect against known vulnerabilities in affected devices:</h4><p><br>25589 26276 26277 26278 26279 29830 29831 44743 46080 46081 46082 46083 46084 46085 46086 46287 46121 46122 46123 46124 41445 44971 46297 46298 46299 46300 46301 46305 46306 46307 46308 46309 46310 46315 46335 46340 46341 46342 46376 46377 37963 45555 46076 40063 44643 44790 26275 35734 41095 41096 41504 41698 41699 41700 41748 41749 41750 41751 44687 44688 44698 44699 45001 46312 46313 46314 46317 46318 46322 46323 40866 40907 45157</p><h4 id="clamav-signatures-">ClamAV Signatures:</h4><p><br>Unix.Trojan.Vpnfilter-6425811-0<br>Unix.Trojan.Vpnfilter-6425812-0<br>Unix.Trojan.Vpnfilter-6550590-0<br>Unix.Trojan.Vpnfilter-6550591-0<br>Unix.Trojan.Vpnfilter-6550592-0</p>
+
+            
+        </div>
+    </section>
+    <div class="social-media-wrapper">
+    <h5>Share this post</h5>
+    <ul class="social-media-share-list">
+        <li>
+            <a class="share-facebook" title="Share this on Facebook" data-text="New VPNFilter malware targets at least 500K networking devices worldwide" data-href="https://blog.talosintelligence.com/vpnfilter/" rel="nofollow" target="_blank" href="https://www.facebook.com/sharer.php?u=https://blog.talosintelligence.com/vpnfilter/"></a>
+        </li>
+        <li>
+            <a class="share-x" title="Post This" data-text="New VPNFilter malware targets at least 500K networking devices worldwide" data-href="https://blog.talosintelligence.com/vpnfilter/" rel="nofollow" target="_blank" href="https://x.com/share?url=https://blog.talosintelligence.com/vpnfilter/"></a>
+        </li>
+        <li>
+            <a class="share-linkedin" title="Share this on LinkedIn" data-text="New VPNFilter malware targets at least 500K networking devices worldwide" data-href="https://blog.talosintelligence.com/vpnfilter/" rel="nofollow" target="_blank" href="https://www.linkedin.com/sharing/share-offsite/?url=https://blog.talosintelligence.com/vpnfilter/"></a>
+        </li>
+        <li>
+            <a class="share-reddit" title="Reddit This" data-text="New VPNFilter malware targets at least 500K networking devices worldwide" data-href="https://blog.talosintelligence.com/vpnfilter/" rel="nofollow" target="_blank" href="https://www.reddit/submit?url=https://blog.talosintelligence.com/vpnfilter/"></a>
+        </li>
+        <li>
+            <a class="share-email" title="Email This" href="mailto:?body=New VPNFilter malware targets at least 500K networking devices worldwidehttps://blog.talosintelligence.com/vpnfilter/"></a>
+        </li>
+    </ul>
+</div></article>
+                    </div>
+                </div>
+                <div class="alt-layout-row-dk sidebar" id="side-bar">
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <footer id="footer">
+    <div class="container-fluid px-0">
+        <div class="row footer_nav_wrapper mx-0">
+            <div class="col-xl-10 col-12">
+                <div class="multi-col-list-wrapper">
+                    <ul class="footer-parent-list">
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6><a href="https://talosintelligence.com/reputation">Intelligence Center</a></h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/reputation_center">Intelligence Search</a></li>
+                                <li><a href="https://talosintelligence.com/reputation_center/email_rep">Email &amp; Spam Trends</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6><a href="https://talosintelligence.com/vulnerability_info">Vulnerability Research</a></h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/vulnerability_reports">Vulnerability Reports</a></li>
+                                <li><a href="https://talosintelligence.com/ms_advisories">Microsoft Advisories</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                             <ul>
+                                <li>
+                                    <h6><a href="https://talosintelligence.com/incident_response">Incident Response</a></h6>
+                                </li>
+                                <li>
+                                    <a href="https://talosintelligence.com/incident_response/services#reactive-services">Reactive Services</a>
+                                </li>
+                                <li>
+                                    <a href="https://talosintelligence.com/incident_response/services#proactive-services">Proactive Services</a>
+                                </li>
+                                <li>
+                                    <a href="https://talosintelligence.com/incident_response/contact">Emergency Support</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Security Resources</h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/software">Open Source Security Tools</a></li>
+                                <li><a href="https://talosintelligence.com/categories">Intelligence Categories Reference</a></li>
+                                <li><a href="https://talosintelligence.com/secure-endpoint-naming">Secure Endpoint Naming Reference</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Media</h6>
+                                </li>
+                                <li><a href="https://blog.talosintelligence.com">Talos Intelligence Blog</a></li>
+                                <li><a href="https://blog.talosintelligence.com/category/threat-source-newsletter/">Threat Source Newsletter</a></li>
+                                <li><a href="https://talosintelligence.com/podcasts/shows/beers_with_talos">Beers with Talos Podcast</a></li>
+                                <li><a href="https://talosintelligence.com/podcasts/shows/talos_takes">Talos Takes Podcast</a></li>
+                                <li><a target="_blank" href="https://www.youtube.com/channel/UCPZ1DtzQkStYBSG3GTNoyfg/featured">Talos Videos</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Support</h6>
+                                </li>
+                                <li><a href="https://support.talosintelligence.com">Support Documentation</a></li>
+                            </ul>
+                        </li>
+                        <li class="footer-links-group">
+                            <ul>
+                                <li>
+                                    <h6>Company</h6>
+                                </li>
+                                <li><a href="https://talosintelligence.com/about">About Talos</a></li>
+                                <li><a href="https://talosintelligence.com/careers">Careers</a></li>
+                                <li><a target="_blank" href="https://www.cisco.com/c/en/us/products/security/product-listing.html">Cisco Security</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xl-2 col-12 connect_social">
+                <div class="connect-footer-section-wrapper">
+                    <h6>Follow us</h6>
+                    <ul>
+                        <li>
+                            <a target="_blank" href="https://x.com/talossecurity"><div class="footer-media-icon" id="footer-media-icon-x"></div>
+                            </a></li>
+                        <li>
+                            <a target="_blank" href="https://www.youtube.com/channel/UCPZ1DtzQkStYBSG3GTNoyfg/featured"><div class="footer-media-icon" id="footer-media-icon-youtube"></div>
+                            </a></li>
+                        <li>
+                            <a target="_blank" href="https://www.linkedin.com/company/cisco-talos-intelligence-group/"><div class="footer-media-icon" id="footer-media-icon-linkedin"></div>
+                            </a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row mx-0">
+            <div class="col-12 footer_corporate">
+                <a target="_blank" href="http://tools.cisco.com/security/center/home.x"><img alt="Cisco" src="https://blog.talosintelligence.com/assets/images/logo_cisco_white.svg">
+                </a><p class="copyright">
+                ©
+                <span id='current-year'></span>
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                <a target="_blank" class="underline" href="http://www.cisco.com/web/siteassets/legal/privacy_full.html">Privacy Policy.</a>
+            </p>
+            </div>
+        </div>
+    </div>
+</footer>
+    <script>
+  function coverageView() {
+    const coverageTable = document.getElementById('coverage-block');
+    const sidebar = document.getElementById('side-bar');
+    const postContent = document.getElementById('post-content');
+    const currentWidth = window.innerWidth;  
+  
+    if (coverageTable && sidebar && postContent) {
+      if (currentWidth < 1000) {
+        // For viewport less than 1000px, append to post content
+        postContent.appendChild(coverageTable);
+      } else {
+        // For viewport 1000px and wider, check for subscribe button
+        const subscribeButton = sidebar.querySelector('.subscribe-button');
+        
+        if (subscribeButton) {
+          // Insert coverage block after the subscribe button
+          subscribeButton.insertAdjacentElement('afterend', coverageTable);
+        } else {
+          // No subscribe button found, prepend to top of sidebar
+          sidebar.prepend(coverageTable);
+        }
+      }
+    }
+  }
+  
+  window.addEventListener("resize", coverageView);
+  window.addEventListener("load", coverageView);
+
+
+  (function() {
+    Array.from(document.querySelectorAll("a")).filter(a => {
+        return a.hostname && a.hostname !== location.hostname
+    }).forEach(a => a.setAttribute('target', '_blank'))
+})();
+</script>
+
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://blog.talosintelligence.com/assets/js/jquery-3.6.0.min.js?v=_xUj-3OJU5yExlq6"></script>
+<script src="https://blog.talosintelligence.com/assets/js/popper.min.js?v=ZvOgfh-ptkpoa2Y4"></script>
+<script src="https://blog.talosintelligence.com/assets/js/resize-styles.js?v=iB-0rQKwd6f_Dllp"></script>
+<script src="https://blog.talosintelligence.com/assets/js/bootstrap.bundle.min.js?v=JRXjfu4x9e89ZZsh"></script>
+<script src="https://blog.talosintelligence.com/assets/js/date.js?v=TlJWK1qtzFQeV9lL"></script>
+<script src="https://blog.talosintelligence.com/assets/js/prism.js?v=roQly8fYXhzQ4Osd"></script>
+<script src="https://cdn.jsdelivr.net/npm/ghost-theme-utils@latest/dist/js/ghost-theme-utils.min.js" async defer></script>
+<script src="https://blog.talosintelligence.com/assets/js/chart.min.js?v=dEAdc43T4D7l37O2"></script>
+<script src="https://blog.talosintelligence.com/assets/js/x-scroll.js?v=DuV8f5nlfWlGIAUr"></script>
+<script src="https://blog.talosintelligence.com/assets/js/2025_yir_chart.js?v=OSqUj45x6XXKWbZW"></script>
+
+
+</body>
+
+</html>

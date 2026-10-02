@@ -1,0 +1,1375 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+La prochaine évolution des attaques par assemblage à l’exécution : exploiter les LLM pour générer des scripts JavaScript d’hameçonnage en temps réel
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Menu
+
+
+
+
+
+
+ATOMs
+Security Consulting
+Under Attack?
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+French
+
+
+
+
+
+English
+
+
+Spanish (LATAM)
+
+
+French
+
+
+Japanese
+
+
+
+
+
+  Threat Research CenterRecherche sur les menacesMalware 
+ 
+Malware
+La prochaine évolution des attaques par assemblage à l’exécution : exploiter les LLM pour générer des scripts JavaScript d’hameçonnage en temps réel
+
+
+  11  minutes de lecture              
+
+
+Related ProductsAdvanced URL FilteringCloud-Delivered Security ServicesCode to Cloud PlatformUnit 42 AI Security AssessmentUnit 42 Incident Response 
+
+
+
+
+
+
+
+
+Par:Shehroze FarooqiAlex StarovDiva-Oriane MartyBilly Melicher 
+
+Publié:22 janvier 2026 CatégoriesMalwareRecherche sur les menaces
+ Tags:APIDeepSeekGoogleJavaScriptLLMPhishing
+ 
+
+
+ 
+ 
+
+
+Partager
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+Synthèse
+Imaginez visiter une page web qui semble parfaitement sûre. Elle ne contient aucun code malveillant, aucun lien suspect. Pourtant, en quelques secondes, elle devient une page d’hameçonnage personnalisée.
+Ce n’est pas une simple illusion. Il s’agit de la prochaine évolution des menaces web, où les attaquants exploitent l’IA générative (GenAI) pour créer une menace qui se charge après la visite de la victime sur une page web apparemment inoffensive.
+En d’autres termes, cet article décrit une technique d’attaque inédite dans laquelle une page web en apparence inoffensive utilise des appels API côté client vers des services fiables de grands modèles de langage (LLM) afin de générer dynamiquement et en temps réel du JavaScript malveillant. Les attaquants peuvent utiliser des instructions (prompts) soigneusement conçus pour contourner les garde-fous de l’IA et inciter le LLM à renvoyer des fragments de code (snippets) malveillants. Ces snippets sont récupérés via l’API du service LLM, puis assemblés et exécutés dans le navigateur de la victime à l’exécution, ce qui donne une page d’hameçonnage entièrement fonctionnelle.
+Cette technique d’assemblage à l’exécution enrichie par l’IA est conçue pour être furtive :
+
+Le code de la page d’hameçonnage est polymorphe, produisant à chaque visite une variante unique, différente sur le plan syntaxique.
+Le contenu malveillant est diffusé à partir d’un domaine LLM fiable, ce qui permet de contourner les mécanismes d’analyse du réseau.
+Le code est assemblé et exécuté à l’exécution.
+
+La défense la plus efficace contre cette nouvelle catégorie de menaces consiste en une analyse comportementale à l’exécution, capable de détecter et de bloquer les activités malveillantes en temps réel, directement dans le navigateur.
+Les clients de Palo Alto Networks sont mieux protégés grâce aux produits suivants :
+
+Advanced URL Filtering
+Prisma AIRS
+Prisma Browser combiné à Advanced Web Protection
+
+Le bilan de sécurité de l’IA d’Unit 42 peut contribuer à promouvoir une utilisation et un développement sûrs de l’IA au sein de votre organisation.
+Si vous pensez que votre entreprise a pu être compromise ou si vous faites face à une urgence, contactez l’équipe Unit 42 de réponse à incident.
+
+
+
+Sujets Unit 42 associés
+JavaScript, LLMs, Phishing
+
+
+
+Modèle d’attaque par assemblage à l’exécution assisté par des LLM
+Nos recherches précédentes démontrent que les attaquants peuvent exploiter des LLM pour obfusquer efficacement, hors ligne, leurs échantillons JavaScript malveillants. Des rapports provenant d’autres sources ont documenté des campagnes exploitant des LLM pendant leur exécution sur des machines compromises afin d’adapter les attaques (par exemple, des logiciels malveillants (malwares) et ransomwares alimentés par LLM). 
+Des chercheurs chez Anthropic ont également publié des rapports indiquant que les LLM ont aidé des cybercriminels et ont joué un rôle important dans des campagnes de cyberespionnage orchestrées par l’IA. Motivés par ces récentes découvertes, nous avons étudié la manière dont les acteurs de la menace pouvaient exploiter des LLM pour générer, assembler et exécuter des charges utiles (payloads) d’attaque par hameçonnage dans une page web à l’exécution, rendant leur détection difficile par l’analyse réseau. Nous présentons ci-dessous notre preuve de concept (POC) pour ce scénario d’attaque et proposons des mesures visant à en atténuer l’impact potentiel.
+Modèle d’attaque de notre preuve de concept
+Le scénario d’attaque commence par une page en apparence inoffensive. Une fois chargée dans le navigateur de la victime, la page web initiale effectue des requêtes afin de récupérer du JavaScript côté client depuis des services LLM populaires et fiables (par exemple, DeepSeek et Google Gemini, bien que la preuve de concept puisse fonctionner avec de nombreux autres modèles).
+Les attaquants peuvent alors tromper le LLM au moyen de prompts soigneusement élaborés, contournant les garde‑fous de sécurité, afin d’obtenir des snippets de JavaScript malveillant. Ces snippets sont ensuite assemblés et exécutés dans le navigateur pour créer une page d’hameçonnage entièrement fonctionnelle. Cette approche ne laisse derrière elle aucun payload statique détectable.
+La figure 1 illustre la manière dont nous avons développé notre preuve de concept pour exploiter les LLM afin d’améliorer les attaques existantes et contourner les mécanismes de défense. Les deux premières étapes concernent la phase de préparation initiale, tandis que la dernière détaille la génération et l’exécution du code d’hameçonnage à l’exécution, directement dans le navigateur.
+Figure 1. Workflow de la preuve de concept. Les deux premières étapes correspondent à la phase de préparation initiale, tandis que la troisième illustre un exemple de génération de contenu malveillant destiné à être affiché dans le navigateur.
+Étape 1 : Sélection d’une page web malveillante ou d’hameçonnage
+La première étape pour l’attaquant consiste à sélectionner une page web issue d’une campagne active d’hameçonnage ou malveillante afin de l’utiliser comme modèle pour le type de code malveillant qui exécuterait la fonction souhaitée. À partir de là, il peut créer des snippets de code JavaScript qui seront générés en temps réel afin de construire dynamiquement la page finale affichée à l’utilisateur.
+Étape 2 : Conversion d’un code JavaScript malveillant en prompts LLM
+L’étape suivante pour l’attaquant consiste à rédiger, en langage naturel, des prompts décrivant la fonctionnalité du code JavaScript à destination du LLM. Il peut ainsi affiner ces prompts de manière itérative, en générant du code malveillant qui contourne les garde-fous existants des LLM. Ces snippets générés peuvent différer sur le plan structurel et syntaxique, ce qui permet aux attaquants de créer du code polymorphe offrant une fonctionnalité identique.
+Étape 3 : Génération et exécution des scripts malveillants à l’exécution
+À partir de là, les attaquants peuvent intégrer ces prompts conçus directement dans une page web, qui se chargera dans le navigateur de la victime. La page web utilise ensuite ces prompts pour demander à un terminal API LLM légitime et populaire afin de générer des snippets de code malveillant. Ces snippets peuvent ensuite être transmis via des domaines populaires et fiables, contournant ainsi les mécanismes d’analyse du réseau. Enfin, ces scripts générés sont assemblés et exécutés pour rendre du code malveillant ou du contenu d’hameçonnage.
+Mécanismes d’évasion de cette technique d’attaque
+Cette technique s’appuie sur des comportements d’assemblage à l’exécution furtifs que nous observons fréquemment sur des URL de diffusion d’hameçonnage et de malwares. Par exemple, 36 % des pages web malveillantes que nous détectons chaque jour présentent des comportements d’assemblage à l’exécution, tels que l’exécution de scripts enfants construits avec une fonction eval (par exemple, des payloads récupérés, décodés ou assemblés). Avec l’exploitation des LLM à l’exécution au sein d’une page web, les attaquants bénéficient des avantages suivants :
+
+Contournement de l’analyse réseau : le code malveillant généré par un LLM peut être transmis sur le réseau à partir d’un domaine fiable, l’accès aux domaines des terminaux API LLM populaires étant souvent autorisé du côté client.
+Augmentation de la diversité des scripts malveillants à chaque visite : un LLM peut générer de nouvelles variantes du code d’hameçonnage, augmentant ainsi le niveau de polymorphisme et rendant la détection plus difficile.
+Utilisation d’assemblage et exécution de code JavaScript à l’exécution pour compliquer la détection : l’assemblage et l’exécution de ces snippets de code au moment de l’exécution permettent d’adapter davantage les campagnes d’hameçonnage, par exemple en sélectionnant une marque à usurper en fonction de la localisation de la victime ou de son adresse e‑mail.
+Obfuscation du code en texte : la conversion du code en texte en vue de sa dissimulation ultérieure au sein d’une page web peut être considérée comme une forme d’obfuscation. Les attaquants utilisent généralement diverses techniques conventionnelles (par exemple, l’encodage, le chiffrement et la fragmentation du code) pour dissimuler visuellement le code malveillant et échapper à la détection. Bien que des analyses avancées parviennent souvent à identifier ces méthodes d’obfuscation classiques en évaluant les expressions, il sera plus difficile pour les équipes de sécurité d’analyser du texte comme du code exécutable sans soumettre chaque snippet à un LLM.
+
+Exemple de preuve de concept
+Dans le cadre de nos recherches sur cette preuve de concept, nous avons pu démontrer comment cette augmentation peut être appliquée à une campagne d’hameçonnage réelle, en illustrant sa capacité à améliorer les techniques d’évasion par le biais des étapes décrites ci-dessus. Un bref aperçu de cette preuve de concept est fourni ci-après.
+Étape 1 : Sélection d’une page web malveillante ou d’hameçonnage
+Pour notre preuve de concept, nous avons reproduit une page web issue d’une campagne d’hameçonnage avancée dans le monde réel, connue sous le nom de LogoKit. L’attaque d’hameçonnage d’origine utilise un payload JavaScript statique qui transforme un formulaire web d’apparence inoffensive en un leurre d’hameçonnage convaincant. Ce script remplit deux fonctions essentielles : il personnalise la page en fonction de l’adresse e-mail de la victime figurant dans la barre d’adresse et exfiltre les identifiants saisis vers le serveur web de l’attaquant.
+Étape 2 : Conversion d’un code JavaScript malveillant en prompts LLM
+Notre preuve de concept s’appuie sur un service LLM populaire, accessible via une requête API de type chat depuis le JavaScript du navigateur. Afin de limiter les risques d’utilisation abusive par des attaquants, nous ne divulguons pas le nom de cette API spécifique. Nous avons utilisé cette API LLM pour générer dynamiquement le code nécessaire à la collecte d’identifiants et à l’usurpation de pages web ciblées. Le payload malveillant étant généré dynamiquement dans le navigateur, la page initiale transmise sur le réseau est inoffensive, ce qui lui permet de contourner les mécanismes de détection de sécurité basés sur le réseau.
+Le succès de l’attaque repose sur une ingénierie minutieuse des prompts visant à contourner les mécanismes de protection intégrés du LLM. Nous avons constaté qu’une simple reformulation était remarquablement efficace.
+Par exemple, une demande portant sur une fonction générique de type $AJAX POST a été autorisée (voir figure 2), alors qu’une requête explicite visant à obtenir du « code pour exfiltrer des identifiants » a été bloquée. En outre, les indicateurs de compromission (IoC), tels que des URL d’exfiltration codées en Base64, pouvaient également être dissimulés dans le prompt, afin de conserver une page initiale propre.
+Figure 2. Exemple d’ingénierie de prompts pour contourner les garde-fous des LLM et générer du code JavaScript pour un contenu d’hameçonnage.
+La sortie non déterministe du modèle a permis un haut degré de polymorphisme, chaque requête renvoyant une variante du code malveillant unique sur le plan syntaxique, tout en restant fonctionnellement identique. Par exemple, la figure 3 met en évidence, en rouge, les différences entre les snippets de code. Cette mutation constante rend la détection plus complexe.
+Figure 3. Le polymorphisme permet de créer plusieurs variantes du code JavaScript généré dynamiquement.
+Il convient de noter que le code généré par les LLM peut inclure des hallucinations, mais nous avons atténué ce phénomène en affinant des prompts et en augmentant la spécificité, réduisant ainsi les erreurs de syntaxe. Par conséquent, le prompt final, très spécifique, a permis de générer un code fonctionnel dans la plupart des cas.
+Étape 3 : Exécution de scripts malveillants à l’exécution
+Le script généré a été assemblé et exécuté à l’exécution sur la page web pour rendre le contenu d’hameçonnage. Ce processus a permis de créer une page d’hameçonnage fonctionnelle usurpant une marque, validant ainsi la viabilité de l’attaque (voir la figure 4). L’exécution réussie du code généré, qui a rendu la page d’hameçonnage sans erreur, a confirmé l’efficacité de notre preuve de concept.
+Figure 4. Exemple d’une page d’hameçonnage rendue par l’assemblage, au moment de l’exécution dans le navigateur, de code JavaScript généré dynamiquement.
+Généralisation de la menace et expansion de la surface d’attaque
+Méthodes alternatives pour interroger l’API LLM
+Notre modèle d’attaque, démontré au moyen d’une preuve de concept, peut être mis en œuvre de différentes manières. Cependant, chacune des méthodologies décrites dans la preuve de concept illustre la façon dont un attaquant peut se connecter à des API LLM afin de transférer du code malveillant sous forme de snippets exécutés dans le navigateur à l’exécution.
+Comme montré dans notre preuve de concept, les attaquants peuvent contourner les mesures de sécurité en se connectant directement à un terminal API d’un service LLM bien connu à partir d’un navigateur pour exécuter des prompts de génération de code. À titre alternatif, ils peuvent recourir à un serveur proxy backend hébergé sur des domaines de confiance ou sur des réseaux de diffusion de contenu (CDN) afin d’interagir avec le service LLM pour l’exécution des prompts. Une autre tactique pourrait consister à se connecter à ce serveur proxy backend par le biais de connexions non HTTP, telles que les WebSockets, une méthode que nous avons déjà observée et signalée dans des campagnes d’hameçonnage.
+Exploitation abusive d’autres domaines de confiance
+Par le passé, les attaquants ont déjà abusé de la confiance accordée à des domaines légitimes pour contourner les mécanismes de détection, comme on l’a observé dans des cas tels que EtherHiding. Dans le cas d’EtherHiding, les attaquants ont dissimulé des payloads malveillants sur des blockchains publiques associées à des plateformes de contrats intelligents réputées et fiables.
+L’attaque décrite dans cet article utilise une combinaison de divers snippets de code malveillant générés par LLM variés et polymorphes, ainsi que la transmission de ce code via un domaine approuvé afin d’échapper à la détection.
+Conversion de codes malveillants en prompts textuels pour multiplier les attaques
+Cet article porte sur la conversion de code JavaScript malveillant en prompts textuels afin de faciliter le rendu d’une page web d’hameçonnage. Cette méthodologie ouvre un vecteur potentiel permettant à des acteurs malveillants de générer diverses formes de code hostile. Par exemple, ils pourraient développer des malwares ou mettre en place un canal de commande et de contrôle (C2) sur une machine compromise qui génère et transmet du code malveillant via des domaines de confiance associés à des LLM populaires.
+Attaques exploitant les comportements d’assemblage à l’exécution dans le navigateur
+Le modèle d’attaque présenté ici illustre des comportements d’assemblage à l’exécution, où les pages web malveillantes sont construites dynamiquement au sein du navigateur. Des recherches antérieures ont également mis en évidence différentes variantes d’assemblages à l’exécution pour la création de pages d’hameçonnage ou la diffusion de malwares. Par exemple, cet article décrit une technique consistant pour un attaquant à fragmenter le code malveillant en composants plus petits, puis à les réassembler pour les exécuter à l’exécution dans le navigateur (une approche qualifiée par SquareX d’attaque de réassemblage du dernier kilomètre). Différents rapports décrivent des attaquants utilisant des techniques de contrebande HTML pour diffuser des malwares.
+Le modèle d’attaque présenté dans cet article va plus loin, car il implique la génération, à l’exécution, de nouvelles variantes de scripts qui sont ensuite assemblées et exécutées, ce qui représente un défi de détection nettement plus élevé.
+Recommandations pour les équipes de sécurité
+La nature dynamique de cette attaque, combinée à l’assemblage à l’exécution dans le navigateur, en fait un défi redoutable pour les mécanismes de défense. Ce modèle d’attaque génère une variante unique pour chaque victime. Chaque payload malveillant est généré de manière dynamique et unique, et transmis via un domaine de confiance.
+Ce scénario marque un tournant décisif dans le paysage de la cybersécurité. La détection de ces attaques, bien que possible grâce à des crawlers améliorés côté navigateur, ​nécessite une analyse comportementale à l’exécution directement dans le navigateur.
+Les équipes de sécurité devraient également restreindre l’utilisation de services LLM non autorisés sur les lieux de travail. Bien qu’il ne s’agisse pas d’une solution complète, cela peut constituer une mesure préventive importante.
+Enfin, nos travaux soulignent la nécessité de mettre en place des garde-fous de sécurité plus robustes sur les plateformes LLM, car nous avons démontré comment une ingénierie minutieuse des prompts peut contourner les protections existantes et permettre une utilisation malveillante.
+Conclusion
+Cet article présente une approche innovante, enrichie par l’IA, dans laquelle une page web malveillante exploite des services LLM pour générer dynamiquement de nombreuses variantes de code malveillant en temps réel directement dans le navigateur. Pour contrer ce type de menace, la stratégie la plus efficace consiste à procéder à une analyse comportementale à l’exécution, via des mécanismes de protection intégrés au navigateur, complétée par des analyses hors ligne à l’aide des sandbox basés sur le navigateur capables de rendre la page finale.
+Protection et atténuation des risques par Palo Alto Networks
+Les clients de Palo Alto Networks sont mieux protégés contre les menaces mentionnées ci-dessus grâce aux produits et services suivants :
+Les clients de Prisma AIRS peuvent sécuriser leurs applications d’IA générative, développées en interne contre les entrées visant à contourner les garde-fous.
+Les clients utilisant Advanced URL Filtering et Prisma Browser (avec Advanced Web Protection) bénéficient d’une meilleure protection contre diverses attaques basées sur l’assemblage à l’exécution.
+Les clients de Prisma Browser dotés d’Advanced Web Protection sont protégés contre les attaques par réassemblage à l’exécution dès la première tentative, ou « patient zéro », car la défense repose sur une analyse comportementale à l’exécution directement dans le navigateur, permettant de détecter et de bloquer l’activité malveillante au point d’exécution.
+Le bilan de sécurité de l’IA d’Unit 42 peut contribuer à promouvoir une utilisation et un développement sûrs de l’IA au sein de votre organisation.
+Si vous pensez que votre entreprise a pu être compromise ou si vous faites face à une urgence, contactez l’équipe Unit 42 de réponse à incident ou composez l’un des numéros suivants :
+
+Amérique du Nord : Gratuit : +1 (866) 486-4842 (866.4.UNIT42)
+Royaume-Uni : +44 20 3743 3660
+Europe et Moyen-Orient : +31.20.299.3130
+Asie : +65.6983.8730
+Japon : +81 50 1790 0200
+Australie : +61.2.4062.7950
+Inde : 000 800 050 45107
+Corée du Sud : +82.080.467.8774
+
+Palo Alto Networks a partagé ces conclusions avec les autres membres de la Cyber Threat Alliance (CTA). Les membres de la CTA s’appuient sur ces renseignements pour déployer rapidement des mesures de protection auprès de leurs clients et perturber de manière coordonnée les activités des cybercriminels. Cliquez ici pour en savoir plus sur la Cyber Threat Alliance.
+Pour aller plus loin
+
+Now You See Me, Now You Don’t: Using LLMs to Obfuscate Malicious JavaScript – Unit 42, Palo Alto Networks
+First known AI-powered ransomware uncovered by ESET Research – ESET
+First Known LLM-Powered Malware From APT28 Hackers Integrates AI Capabilities into Attack Methodology – Cybersecurity News
+UAC-0001 Cyberattacks on Security/Defense Sector Using LLM-Based LAMEHUG Tool – CERT-UA [Ukrainien]
+AI-orchestrated cyber espionage campaigns [PDF] – Rapport publié par Anthropic
+Attackers break malware into tiny pieces and bypass your Secure Web Gateway – Rapport SecurityBrief Australie
+What are Last Mile Reassembly Attacks? – SquareX
+“EtherHiding:” Hiding Web2 Malicious Code in Web3 Smart Contracts – Guardio
+
+
+
+Retour en haut de page
+
+ÉtiquettesAPIDeepSeekGoogleJavaScriptLLMPhishing
+
+
+
+Threat Research Center
+
+
+SuivantDNS OverDoS : Les points de terminaison privés sont-ils trop privés ?
+
+
+
+
+
+
+
+SOMMAIRE
+
+
+
+
+
+
+Sur le même thème
+
+
+
+                      L’IA peut-elle s’attaquer au cloud ? Enseignements tirés de la construction d’un système multi-agents offensif autonome dans le cloud                  
+
+
+
+                      Bulletin sécurité : Hausse du cyber-risque lié à l’Iran en 2026 (mis à jour le 17 avril)                  
+
+
+
+                      Briefing sécurité : répercussions majeures de l’attaque contre la supply chain d’Axios                  
+
+
+
+
+
+
+
+
+
+Associé Malware Ressources
+
+
+
+
+ 
+
+
+
+Menaces de grande envergure 17 avril 2026
+
+Bulletin sécurité : Hausse du cyber-risque lié à l’Iran en 2026 (mis à jour le 17 avril)
+
+
+
+APK
+
+
+DDoS attacks
+
+
+GenAI
+ 
+
+
+                    Lire l’article                    
+
+
+
+
+
+
+
+ 
+
+
+
+Menaces de grande envergure 1 avril 2026
+
+Briefing sécurité : répercussions majeures de l’attaque contre la supply chain d’Axios
+
+
+
+API attacks
+
+
+JavaScript
+
+
+PowerShell
+ 
+
+
+                    Lire l’article                    
+
+
+
+
+
+
+
+ 
+
+
+
+Menaces de grande envergure 31 mars 2026
+
+Quand les remparts deviennent des armes : l’attaque multi-étapes de TeamPCP contre l’infrastructure de sécurité
+
+
+
+CVE-2025-55182
+
+
+GitHub
+
+
+Infostealer
+ 
+
+
+                    Lire l’article                    
+
+
+
+
+
+
+
+ 
+
+
+
+Recherche sur les menaces 24 mars 2026
+
+Briefing sécurité : un stratagème de recrutement usurpe l’identité de l’équipe d’acquisition des talents de Palo Alto Networks
+
+
+
+Email scam
+
+
+Phishing
+
+
+Recruiter
+ 
+
+
+                    Lire l’article                    
+
+
+
+
+
+
+
+ 
+
+
+
+Menaces de grande envergure 11 février 2026
+
+Des acteurs étatiques exploitent la chaîne d'approvisionnement de Notepad++
+
+
+
+Backdoor
+
+
+Cobalt Strike
+
+
+DLL Sideloading
+ 
+
+
+                    Lire l’article                    
+
+
+
+
+
+
+
+ 
+
+
+
+Groupes cybercriminels 5 février 2026
+
+Les Campagnes de l'ombre : Révélation d'un espionnage mondial
+
+
+
+Espionage
+
+
+Government
+
+
+Phishing
+ 
+
+
+                    Lire l’article                    
+
+
+
+
+
+
+
+ 
+
+
+
+Recherche sur les menaces 2 janvier 2026
+
+Le VVS Discord Stealer utilise Pyarmor pour l'offuscation et l'évasion de détection
+
+
+
+Discord
+
+
+Infostealer
+
+
+Python
+ 
+
+
+                    Lire l’article                    
+
+
+
+
+
+
+
+ 
+
+
+
+Groupes cybercriminels 11 décembre 2025
+
+Ashen Lepus, un groupe affilié au Hamas, cible des entités diplomatiques du Moyen-Orient avec AshTag, sa nouvelle suite de malwares
+
+
+
+Ashen Lepus
+
+
+Espionage
+
+
+WIRTE
+ 
+
+
+                    Lire l’article                    
+
+
+
+
+
+
+
+ 
+
+
+
+Menaces de grande envergure 25 novembre 2025
+
+Attaque de la supply chain : le ver « Shai-Hulud » frappe l’écosystème npm (Mis à jour le 26 novembre)
+
+
+
+Cloud Security
+
+
+Credential Harvesting
+
+
+JavaScript
+ 
+
+
+                    Lire l’article                    
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
+				Abonnez-vous aux infos d’Unit 42			
+Gardez un coup d’avance sur les menaces pour évoluer en toute sérénité. Contactez-nous
+
+
+
+
+
+
+
+
+
+
+Your Email
+
+
+Abonnez-vous aux infos par e-mail sur les travaux de recherche Unit 42.L’envoi de ce formulaire implique l’acceptation de nos Conditions d’utilisation et de notre Politique de confidentialité.
+
+                    Ce site est protégé par reCAPTCHA et est soumis à la Politique de confidentialité et aux Conditions générales de Google.                            
+  
+
+Invalid captcha!
+ 
+					Je m’abonne					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Recevez toutes les dernières infos, invitations à des évènements et alertes de sécurité
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Saisissez votre adresse e-mail...
+
+
+
+
+
+Je m’abonne  
+
+
+
+
+                                
+                                
+                                
+                                    
+                                    
+                                        
+                                        En soumettant ce formulaire, j’accepte que mes données personnelles soient traitées conformément à la politique de confidentialité et aux conditions d’utilisation de Palo Alto Networks.
+                                    
+                                
+
+                                
+                                
+
+
+Je m’abonne  
+
+
+
+
+
+
+
+
+
+
+
+
+Produits et services
+
+
+
+
+
+                                    Plateforme de sécurité du réseau pilotée par IA 
+                                
+
+
+
+                                    Sécuriser l’IA à la conception 
+                                
+
+
+
+                                    Prisma AIRS
+                                
+
+
+
+                                    AI Access Security 
+                                
+
+
+
+                                    Services de sécurité cloud (CDSS) 
+                                
+
+
+
+                                    Advanced Threat Prevention 
+                                
+
+
+
+                                    Advanced URL Filtering 
+                                
+
+
+
+                                    Advanced WildFire 
+                                
+
+
+
+                                    Advanced DNS Security 
+                                
+
+
+
+                                    Enterprise Data Loss Prevention 
+                                
+
+
+
+                                    Sécurité IoT d’entreprise 
+                                
+
+
+
+                                    Sécurité IoT médical 
+                                
+
+
+
+                                    Industrial OT Security 
+                                
+
+
+
+                                     Sécurité SaaS 
+                                
+
+
+
+
+
+                                    Pare-feu nouvelle génération 
+                                
+
+
+
+                                    Pare-feu matériels 
+                                
+
+
+
+                                    Logiciels pare-feu 
+                                
+
+
+
+                                    Strata Cloud Manager 
+                                
+
+
+
+                                    SD-WAN pour NGFW 
+                                
+
+
+
+                                    PAN-OS 
+                                
+
+
+
+                                    Panorama 
+                                
+
+
+
+                                    Secure Access Service Edge 
+                                
+
+
+
+                                    Prisma SASE 
+                                
+
+
+
+                                    Accélération des applications 
+                                
+
+
+
+                                    Autonomous Digital Experience Management (ADEM) 
+                                
+
+
+
+                                    DLP d’entreprise 
+                                
+
+
+
+                                    Prisma Access 
+                                
+
+
+
+                                    Prisma Browser 
+                                
+
+
+
+                                    Prisma SD-WAN 
+                                
+
+
+
+                                    Isolation de navigateur à distance (RBI) 
+                                
+
+
+
+                                    Sécurité SaaS 
+                                
+
+
+
+
+
+                                    Plateforme SecOps pilotée par IA
+                                
+
+
+
+                                    Sécurité cloud
+                                
+
+
+
+                                    Cortex Cloud 
+                                
+
+
+
+                                    Sécurité des applications 
+                                
+
+
+
+                                    Posture de sécurité dans le cloud 
+                                
+
+
+
+                                    Sécurité du Runtime dans le cloud 
+                                
+
+
+
+                                    Prisma Cloud 
+                                
+
+
+
+                                    SOC piloté par IA 
+                                
+
+
+
+                                    Cortex XSIAM 
+                                
+
+
+
+                                    Cortex XDR 
+                                
+
+
+
+                                    Cortex XSOAR 
+                                
+
+
+
+                                    Cortex Xpanse 
+                                
+
+
+
+                                    Services managés détection et réponse Unit 42 
+                                
+
+
+
+                                    XSIAM managé 
+                                
+
+
+
+
+
+                                    Sécurité des identités nouvelle génération
+                                
+
+
+
+                                    Gestion des accès privilégiés (PAM)
+                                
+
+
+
+                                    Gestion des identités et des accès (IAM)
+                                
+
+
+
+                                    Endpoint Privilege Manager
+                                
+
+
+
+                                    Gouvernance des identités
+                                
+
+
+
+                                    Workforce Password Management
+                                
+
+
+
+                                    Identités agentiques
+                                
+
+
+
+                                    Gestion des secrets
+                                
+
+
+
+                                    Gouvernance unifiée des secrets
+                                
+
+
+
+                                    Déploiement d’identifiants applicatifs
+                                
+
+
+
+                                    Accès privilégiés des prestataires
+                                
+
+
+
+                                    Services de Threat Intelligence et de réponse à incident
+                                
+
+
+
+                                    Évaluations proactives
+                                
+
+
+
+                                    Réponse à incident
+                                
+
+
+
+                                    Transformez votre stratégie de sécurité
+                                
+
+
+
+                                    Découvrez la Threat Intelligence Entreprise Notre entreprise Carrières Nous contacter Responsabilité d’entreprise Clients Relations investisseurs Présence dans le monde
+                                
+
+
+
+
+
+
+Entreprise
+
+
+
+
+
+                                    Notre entreprise
+                                
+
+
+
+                                    Carrières
+                                
+
+
+
+                                    Nous contacter 
+                                
+
+
+
+                                    Responsabilité d’entreprise
+                                
+
+
+
+                                    Clients
+                                
+
+
+
+                                    Relations investisseurs
+                                
+
+
+
+                                    Présence dans le monde
+                                
+
+
+
+                                    Presse
+                                
+
+
+
+
+
+
+Pages les plus visitées
+
+
+
+
+
+                                    Article
+                                
+
+
+
+                                    Communautés
+                                
+
+
+
+                                    Bibliothèque de contenu
+                                
+
+
+
+                                    Cyberpedia
+                                
+
+
+
+                                    Évènements
+                                
+
+
+
+                                    Préférences de communication
+                                
+
+
+
+                                    Produits de A à Z
+                                
+
+
+
+                                    Certifications produits
+                                
+
+
+
+                                    Signaler une vulnérabilité
+                                
+
+
+
+                                    Plan du site
+                                
+
+
+
+                                    Documentation technique
+                                
+
+
+
+                                    Unit 42
+                                
+
+
+
+                                    Ne pas autoriser la vente ou le partage de mes données personnelles
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Politique de confidentialité
+                            
+
+
+
+                                Trust Center
+                            
+
+
+
+                                Conditions générales d'utilisation
+                            
+
+
+
+                                Documents
+                            
+
+
+Copyright © 2026 Palo Alto Networks. Tous droits réservés
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+FR
+
+
+
+Select your language
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Your browser does not support the video tag.
+          
+
+Default Heading
+Read the article
+              
+
+
+
+
+Seekbar
+
+
+
+
+
+
+
+
+
+
+
+
+
+Volume
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

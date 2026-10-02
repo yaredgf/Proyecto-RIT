@@ -1,0 +1,1710 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ChainDropの脅威の概要:自己増殖型npmワームの内部
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Menu
+
+
+
+
+
+
+セキュリティ コンサルティング
+現在、攻撃を受けていますか?
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Japanese
+
+
+
+
+
+English
+
+
+Japanese
+
+
+
+
+
+  Threat Research Center主なサイバー脅威マルウェア 
+ 
+マルウェア
+ChainDropの脅威の概要:自己増殖型npmワームの内部
+
+
+  5  分で読めます              
+
+
+Related ProductsAdvanced DNS SecurityAdvanced URL FilteringAdvanced WildFireCloud-Delivered Security ServicesCortexCortex CloudCortex XDRCortex XSIAMUnit 42 Incident Response 
+
+
+
+
+
+
+
+
+著者:Unit 42 
+
+公開日:2026年8月6日 カテゴリーマルウェア主なサイバー脅威
+ タグ:BlockchainChainDropClaude codeDeveloper toolingGitHub
+ 
+
+
+ 
+ 
+
+
+共有
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+エグゼクティブ サマリー
+ChainDropというニックネームを持つ自己増殖型のnpmワームは、毎週数億回一括ダウンロードされる400超のパッケージに感染しました。これには、keyvやcacheable-requestなど広く使われているパッケージの悪意のあるバージョンも含まれます。Unit 42は、この攻撃に対してユニークな観察結果を持っています。
+ChainDropの背後にいる攻撃者は、開発者ワークステーション、継続的インテグレーション(CI)パイプライン、クラウド環境、下流のソフトウェアユーザーを多数の組織にわたって危険にさらす可能性があります。
+ChainDropをインストールすると、以下が盗まれます。
+
+クラウドの認証情報
+npmトークンとGitHubトークン
+SSH鍵
+その他の開発者の機密データ
+
+また、GitHub Actionsのランナーメモリから一時的な認証情報を抽出し、盗んだnpmパブリッシング トークンを使用して、正規の機能を保持したまま追加パッケージに感染して再公開することもできます。
+アクティブな試行操作が確認されています。これらの操作は、既存の製品ですぐに検出されました。
+この攻撃に関する調査で、ワームの流出パターンと一致する5つのアカウントにわたる453の公開GitHubリポジトリを特定しました。また、10の異なる環境でChainDropの実行を検出しました。公開時には、これらのリポジトリは削除されました。
+マルウェアを解読し、次のことを確認しました。
+
+開発者とAIコーディングツールによる永続化
+ブロックチェーンベースのコマンド&コントロール(C2)解決
+追加の攻撃者から提供されたコードを実行する能力
+
+さらに、2026年8月4日の夜遅くには、攻撃者が、展開されたマルウェアにアップデートを必要とせずに、1回のイーサリアム トランザクションでワームのC2インフラストラクチャ全体をサイレントに再構成するのを観測しました。
+この攻撃は、npmエコシステムのセキュリティに対する一連の脅威の最新のものです。
+Unit 42の推奨事項:
+
+影響を受けるnpmパッケージのバージョンのインストールの特定
+影響を受けるパッケージのバージョンの削除
+開発者ワークステーションとCIランナーに侵害の兆候がないかの調査
+予想外のnpmの公開とGitHubリポジトリのアクティビティのレビュー
+公開される可能性のあるnpm、GitHub、クラウド、SSH、オートメーションの資格情報の無効化とローテーション
+特定された永続性メカニズムの削除
+ドメインベースとGitHubベースの両方の流出経路のブロック
+
+Koi Agentic Endpoint Securityリスクエンジンは、攻撃の展開に合わせて悪意のあるパッケージ アクティビティにフラグを付けました。Cortex XDRは、標準装備の動作検出機能を使用して、ワームの実行を検出し、警告しました。
+パロアルトネットワークスのお客様は、Koi Agentic Endpoint Securityを使用して、開発者のエンドポイント全体で悪意のあるパッケージを識別および制御できます。
+Cortex Cloud Endpoint Protectionは、AI対応の分析を活用して、Linuxエンドポイント、コンテナ、および関連するクラウドIAMポリシーを標的とする脅威の検出と防止を支援します。
+Cortex XDRとXSIAMは、開発環境で実行されるChainDropアクティビティに組織が対処するのに役立つ行動の検出、調査、対応を行います。
+Cortex AgentiX Threat Intelエージェントは、アナリストが自然言語を使用してIoCを抽出、拡充、検索し、組織への影響を迅速に判断できるように支援します。
+Idira Secrets ManagerとSecrets Hubは、ダウンタイムなしのローテーションを自動化し、マルチクラウド環境とDevOps環境全体で人間以外のIDへのジャストインタイム アクセスを動的に提供することにより、設定ファイルとソースコードからハードコードされた認証情報を排除します。
+Unit 42 Cloud Security Assessmentは、クラウド インフラストラクチャをレビューして、設定ミスやセキュリティ ギャップを特定する評価サービスです。
+Unit 42インシデント レスポンス チームは、お客様のリスク軽減のために、危殆化を受けた際の支援だけでなくプロアクティブな評価を提供しています。
+
+
+
+関連するUnit 42のトピック
+AI, マルウェア, サプライチェーン, npm パッケージ
+
+
+
+ChainDrop npmワームの詳細
+ChainDropワームの兆候と振る舞い
+感染したパッケージの1つから内容を分析し、攻撃チェーン全体を把握しました。
+パッケージには、ソース、依存関係、ドキュメントなど、ユーザーが期待する正当なソフトウェア開発キット(SDK)コードが含まれていましたた。しかし、そこにはChainDropワームの小さな兆候として、トップレベルのファイルが2つ追加され、ライフサイクルフックが1つ含まれていました。
+ワームの兆候は、次の例に示すように微妙な場合があります。
+兆候の1つは、図1に示すように、感染したnpmパッケージのpackage.jsonファイルに、preinstallコマンドを含むコードが含まれていることです。
+図1.npmパッケージのpackage.jsonファイル内のワームの兆候。
+このpreinstall行は、ワームがこのパッケージのマニフェストに対して行う唯一の変更です。Bun (Node.jsに代わる軽量なJavaScriptランタイムおよびパッケージ マネージャー)がPATH上にあるかどうかをチェックするドロッパーであるsetup.mjsを指しています。正規のOven GitHubリポジトリが存在しない場合、Bun 1.3.13をダウンロードします。そして、2つのソース行に圧縮された727KBの難読化されたJavaScriptペイロード(math_init.js)をBunに与えます。
+明らかなのは、文が損なわれることはないということです。攻撃者は正規のランタイムをポータブルな実行手段として使用しています。
+ペイロードはデタッチされたバックグラウンドプロセスを生成し、再帰的な再起動を防ぐために_NODE_RUNTIME_INIT=1を設定し、インストールをきれいに終了させます。エラーはありません。警告もありません。
+ほとんどの開発者は、重要な詳細情報に気づかずに先に進むでしょう。ワームはすでに実行中です。
+CIに入っていないと、ワームは解除されます。CI環境を検出すると、代わりにジョブでインライン実行されます。つまり、独自のデバッグ出力がワークフローログに記録されます。ワームは会話体なので、これは兆候を探している防御側にとって便利です。
+ワームが何らかの収集を行う前に、さらに1つのゲートが実行されます。このゲートは、ロシア語のホストでは「ロシア語として終了を検出しました!」と出力し、きれいに終了するロケールチェックです。ワームはそれらのマシンを惜しみません。
+ワームが盗みつくすもの
+バックグラウンド ペイロードは、感染したマシンのスイープを開始し、環境から資格情報を収集します。これには次のカテゴリが含まれます。
+
+クラウドの認証情報:
+
+複数の主要なクラウド インフラストラクチャ プラットフォーム
+
+このワームは、コンピューティング インスタンスとコンテナ サービスの両方にわたってメタデータ エンドポイントとトークン エンドポイントを照会し、一時的なIDおよびアクセス管理(IAM)ロールの資格情報を収集します。これにより、自動統合ランナーが使用する寿命の短いIDトークンに範囲が拡張されます。
+
+
+
+
+開発者向けツール:
+
+DockerとHelmの設定
+Git認証情報
+マウント リスト
+npmトークンとGitHubトークン
+PoetryとPyPIの資格情報
+RubyGemsトークン
+SSH鍵
+Terraform状態
+ボールト トークン
+
+
+AIツール:
+
+AI支援コーディング ツール
+クラウドベースの開発プラットフォーム
+オープンソースのコーディング アシスタントの設定と認証アーティファクト
+
+
+その他すべて:
+
+.envファイル
+.netrc
+ホームディレクトリに散在するアプリケーション設定
+BitcoinとElectrumのウォレットファイル
+Jenkins暗号化認証情報資料
+Kubernetesのサービスアカウント トークンとkubeconfig
+シェルの歴史
+
+
+
+ChainDropは認証情報だけでなく、実行中のシステムや環境に関する多種多様な情報を収集します。
+盗まれた情報の中には、ワームの生存に必要不可欠なものもあります。見つかったnpmトークンとGitHubトークンは、ワームが拡散し続けるために必要なものです。
+CIランナーメモリを読み取る
+ペイロード内の暗号化されたBlob内に隠された埋め込みPythonヘルパーは、GitHub Actionsランナー上のRunner.Workerプロセスを特定し、/proc/<pid>/mapsと/proc/<pid>/memを開き、ライブ プロセス メモリでOpenID Connect(OIDC)トークンとランナー シークレットを検索します。
+このGitHub Actionsランナーのメモリ スクレイピングの流れを図2に示します。
+図2.GitHub Actions のランナーのメモリスクレイピングフローを示す図。
+このワームは、ファイルがディスクに書き込まれるのを待つのではなく、メモリを検索します。その過程で、ジョブが終了すると消えてしまうように仕組まれていたかもしれないシークレットを捉えます。
+組織は、CIランナーが資格情報のターゲットであり、プロセスメモリへの攻撃によって不正侵入される可能性があることを認識する必要があります。
+永続性メカニズム
+ワームはいくつかの永続性メカニズムを確立しますが、そのうちの2つは特に注意を払う必要があります。
+
+VS CodeとClaude Codeによる相互リンクされた永続性
+OSレベルの永続性を実現する潜在能力
+
+.vscode/tasks.jsonファイルに「Environment Setup」というラベルの付いたタスクを記述し、フォルダーが開いたときに実行されるように設定します。つまり、開発者がVS Codeでプロジェクトを開くたびに自動的に実行されます。そのタスクはノード.claude/setup.mjsを実行します。これは、パッケージ自体に同梱されているsetup.mjsとバイトが同じドロッパーのコピーです。
+また、SessionStartコマンドフックを持つ.claude/settings.jsonファイルも書き込まれます。つまり、Claude Codeがプロジェクトでセッションを開始するたびに実行されます。そのフックは同じドロッパーの2番目のコピーであるノード.vscode/setup.mjsを実行します。
+図3は、.vscode/tasks.jsonと.claude/settings.jsonの両方のファイルによる相互リンクされた永続性を示しています。
+図3.相互リンクされた永続性。
+どちらのファイルも他方のファイルをトリガーしません。それぞれが、相手のディレクトリに存在するドロッパー コピーを実行します。どちらの場合も、実際のトリガーは開発者アクションです。フォルダを開くか、Claude Codeセッションを開始します。相互参照は、各アーティファクトが他のツールに属するように見せかける命名トリックです。
+ペイロードは.claude/math_init.jsとしか書かれておらず、setup.mjsは自身の位置からの相対パスで math_init.jsを解決します。.vscode/setup.mjsはマルウェアがドロップしなかった.vscode/math_init.jsを探しに行きます。このビルドでは、VS Codeのパスだけがペイロードにまったく到達しません。
+ドロップされたファイルのフルセットは次のとおりです。
+
+.claude/math_init.js
+.claude/settings.json
+.claude/setup.mjs
+.vscode/setup.mjs
+.vscode/tasks.json
+
+どちらかのディレクトリを完全に削除すると、両方のパスが壊れます。ただし、防御側はワームが無効になっていることを確認するために、5つのファイルをすべて削除する必要があります。
+このワームには、macOS LaunchAgent (com.user.gh-token-monitor)とLinuxシステムのユーザー サービス(gh-token-monitor.service)のインストーラーも含まれています。このサンプルでは、インストーラは復号化されましたが、起動されることはありません。bashにパイプするルーチンはコール サイトを持たないため、OSレベルの永続性は観察された動作ではなく潜在能力として扱います。
+攻撃者は、信頼できる開発者とAIツールの設定を実行インフラに変えています。ほとんどの開発者が監査対象だとみなすファイルではありません。
+伝播とデータ窃取
+ワームがnpmトークンを取得すると、ワームは次のことを行います。
+
+アカウントが発行できるすべてのパッケージを識別する
+各パッケージをダウンロードまたは再構築する
+package.jsonファイルにpreinstall: node setup.mjsを追加する
+ドロッパー(setup.mjs)と難読化されたペイロード(math_init.js)を書き込む
+パッチ バージョンをインクリメントする
+感染したパッケージを現在のnpmパッケージとして再公開する
+
+感染したパッケージはまだ機能します。元のソース コードはそのままです。分析したサンプルと同様に、追加されたのはトップレベルの2つのファイルとライフサイクル フックのみです。
+また、このワームは${ toJSON(secrets) }をシリアル化する.github/workflows/codeql_analysis.ymlファイルを仕掛け、リポジトリのシークレットを流出させる別のパスであるActionsアーティファクトとしてアップロードします。そして、被害者のGitHubアカウントの下に、Shai-Hulud:Here We Go Againと砂丘をテーマにした名前で、公開リポジトリを作成し、追加の脱出チャンネルとして使用します。
+単一の特定のリポジトリを待っていた
+上記のものはすべて比較的大きく、より明らかな伝播経路です。2つ目のタイポスクワッティング法は、ずっと静かで、1か所にしか現れません。
+ワームは、何かを収集する前に、3つの環境変数をチェックします。この3つの変数が設定されている場合、
+
+GITHUB_ACTIONS
+/opensearch-jsを含むGITHUB_REPOSITORY
+GITHUB_WORKFLOW_REFで release-drafter.ymlを含めます。
+
+ワームはリポジトリを再公開する静的ルーチンを実行して終了します。収集は行われません。
+また、ワームが/opensearch-jsを含んでいるがrelease-drafter.ymlを含んでいないリポジトリに置かれた場合、ワームは終了し、何も盗みません。メンテナーが読んでいる可能性が高い実行においては、サイレント状態になります。
+この2番目のメソッドの内部では、ワームは盗まれたnpmトークンを必要としません。ランナーにオーディエンスnpm:registry.npmjs.orgとともにOIDCトークンを要求し、npm自身の信頼できる発行交換エンドポイントで実際の発行認証情報と交換します。リポジトリの正当なリリースIDが攻撃者のものになります。
+そして、パッケージを変更するだけで、他はすべて変更されません。このパスがスクリプトに触れることはありません。最新の@opensearch-project/opensearch tarballをダウンロードし、パッチ バージョンをバンピングして、図4に示すpackage.jsonファイルに1行を追加します。
+図4.@opensearch-project/opensearch tarballのpackage.jsonファイルに追加された行。
+依存関係名は、プロジェクト自身の@opensearch-projectスコープのタイポスクワッティングを行い、プロジェクト自身のリポジトリのピン留めされたコミットを指しています。diffでは内部ヘルパーのように読み込まれます。プレインストール フックを中心に構築された検出では、簡単に見落とされる可能性があります。
+そして、ワームはその結果に署名します。
+公開前に、ワームは以下のことを行います。
+
+2つ目のOIDCトークンを要求する(今回はaudience sigstore)
+Fulcio証明書を取得する
+tarballのSHA-512ハッシュの上にin-to-toのSLSA v1のprovenance文を構築する
+DSSEはエフェメラルなP-256鍵でそれに署名する
+エントリをRekorの透過性公開ログにアップロードする
+バンドルを<name>-<version>.sigstoreとしてパブリッシュにアタッチします。
+結果のsearch.sigstore.dev URLをログに記録する
+
+これは偽造されたものではありません。証明はtarballがそのワークフローによってそのリポジトリにビルドされたと言っており、それは本当です。
+そうなると、現在多くのチームが頼りにしているコントロールが崩れてしまいます。今日のnpmサプライチェーンの脅威の現実を考えると、パッケージが有効なnpm証明を持っているからといって、パッケージがクリーンであるとは限りません。tarballが証明書で名前付けされたワークフローから出てきたということだけです。そのワークフローが攻撃者のコードを実行している場合、有効な証明が表示されることを期待するものです。署名が正しいかどうかではなく、Rekorログ インデックスと証明書内部のワークフローIDをピボットします。
+このパスの実行は確認しておらず、opensearch-project/opensearch-jsワークフロー内のrelease-drafter.yml内以外は実行できません。でも完全に実装されていて、ペイロードのメインエントリポイントから到達可能で、文字列の層が剥がれると平文でターゲットに名前を付けます。このリポジトリはタイポスクワッティングではありません。タイポスクワッティングは注入された依存関係名@opensearch/setupで、実際の@opensearch-projectスコープを模倣しています。
+ブロックチェーン ルーター
+ワームにはハードコードされたC2ドメインは含まれていません。代わりに、イーサリアムのスマート コントラクトを呼び出して、盗まれたデータの送信先を尋ねます。
+コントラクトは0xE1f2395ee43e45A1556EC6438a88c31B83493103に位置します。このコントラクトは、すべてのドメインを返す、所有者を返す、責任者専用のセッターという3つの機能を持つ小さなStringListStoreです。イベントを送出しないため、ドメイン ローテーションはサイレント状態の書き込みです。今日のドメインをブロックする防御側は、コントラクトをポーリングしない限り、オペレーターがドメインを変更しても気付かない可能性があります。
+このワームは、約60のパブリックEthereum RPCエンドポイントを1人が答えるまでローテーションし、リクエストをブロックする1つのプロバイダーに対して耐障害性を発揮します。
+コントラクトが最初に設定されたとき、オペレーターは次の3つのドメインを書きました。
+
+npm-cache[.]com
+pypi-get[.]com
+js-mirror[.]com
+
+2時間35分後、リストをnpm-cache[.]comのみに置き換えました。分析の結果、これは依然としてアクティブなC2です。
+コントラクトで解決されたドメインが失敗した場合、ワームはバックアップ ドメインを含む署名付きレコードを期待して、マーカーthe beautifulmarchoftimeのGitHubコミットの検索にフォールバックします。クエリの間、フォールバックは武装していませんでした。有効なオペレータ レコードが存在しませんでした。しかし、その仕組みは構築され、待機しています。
+プライマリC2ドメインであるnpm-cache[.]comは、エッジ コンピューティングとリバース プロキシ サービスの背後に配置されているため、公開されているアドレスは攻撃者が所有するホストではなく共有エッジアドレスであるため、ドメインまたはSNIでブロックします。これらのIPアドレスをブロックしてもオリジンに到達せず、無関係なトラフィックに影響します。
+サーバが応答できる
+盗んだデータを送信した後、ワームはHTTP応答を読み込んでJSONとして解析し、返ってきたものを評価します。これを実現するJavaScriptのコードを図5に示します。
+図5.HTTP応答を読み取り、解析し、評価するためのワームのコード。
+ワームに組み込まれた固定の第2段ペイロードはありません。オペレーターは要求時に次のステージを選びます。各データ窃取要求にはホスト由来のUUIDが含まれるため、応答は被害者ごとに対象を絞ることができ、ディスクに書き込まれることはありません。
+解析中に、ワームの正確な暗号化スキームを使用し、ダミーデータを含む正しくフォーマットされた合成エンベロープをライブC2エンドポイントに送信しました。サーバーは空のボディでHTTP 200 OKを返しました。プローブにコードフィールドが提供されませんでした。
+つまり、リモートコード実行(RCE)チャネルは、テスト時に解除され、被害者の属性に基づいて選択的に制限されたか、非同期で制限されたかのいずれかです。
+暗号化されたデータ窃取
+盗まれたデータはJSONシリアル化が行われ、gzipされ、ランダムなAES-256-GCMキーで暗号化され、埋め込まれた公開キーを使用してRSA-OAEP-SHA256でラップされます。ワームは、図6に示すコードを送信します。
+図6.ワームが送信するコード。
+TLS経由でhxxps://npm-cache[.]com:443/routerに全て転送されます。ネットワーク キャプチャは、データがマシンから出たことを証明し、そのボリュームを推定できますが、プレーンテキストのリカバリには、オペレーターの秘密RSAキーが必要です。
+ドメインベースの送信者のみが返されたコードを評価します。ドメインをブロックすると、機能が有効になっている場合、任意のRCEステージが防止されます。しかし、GitHubフォールバックは依然として被害者が所有するリポジトリを通じてデータを抜き取ることができるため、完全な封じ込めには両方のチャネルに対応する必要があります。
+盗まれたトークンを公開コミットメッセージで公開する
+このセクションで説明する3番目の状況は、最も奇妙な状況です。GitHubの送信者が盗まれたトークンを運ぶと、ワームはそのトークンを2回Base64でエンコードし、その結果を固定マーカーでプレフィックスが付いたコミット メッセージにします。
+IfYouBlockThisAPIKeyItWillCrashTheLiveProductionServersOfAllThirdPartyClients
+同じペイロード内の別のルーチンがGitHubのコミットAPIを検索してそのマーカーを探し、マッチするごとにダブルデコードし、リポジトリスコープのチェックに合格したトークンをすべて保持します。被害者1人の盗まれた認証情報は、ワームの他の実行中のコピーすべてに使用できるリソースになります。
+マーカーの主張とは逆に、防御者はそれを検索すべきです。その内容は完全一致が誤検知である可能性が非常に低いほど長く、十分に奇妙なものです。ライブヒットとは、認証情報が公開コミット中であり、取り消しが必要であることを意味します。
+私たちはお金を追いました
+2026年5月22日、3つのC2ドメインが1つのレジストラを通じて8秒以内に登録されました。
+
+js-mirror[.]com - 13:40:28 UTC
+npm-cache[.]com - 13:40:32 UTC
+pypi-get[.]com - 13:40:36 UTC
+
+3つとも、同じネームサーバーを使用します。
+最後の登録から14分23秒後、FixedFloatはオペレーターのウォレットに0.01805723ETHを振り込みました(0x55F9780e…f31cD)。
+3日後の5月25日、ウォレットはイーサリアムのリゾルバー コントラクトをデプロイし、3つのドメインすべてをそこに書き込み、その2時間35分後にリストをnpm-cache[.]comだけに絞り込みました。翌朝、Binanceという名前のついた預金アドレスに0.00436ETHを送金しました。会計はwei単位まで一致しています。
+キャンペーン インフラストラクチャのデプロイメントを示すタイムラインを図7に示します。
+図7.キャンペーン インフラストラクチャのタイムライン。
+FixedFloatは、何百万ものトランザクションを持つ共有取引所ウォレットです。このウォレットは、オペレーターの身元ではなく、資金調達レールを教えてくれます。Binanceの預金アドレスは、最強のアイデンティティ ピボットです。
+イーサリアム スマート コントラクトを介したC2ドメインのローテーション
+2026年8月4日、攻撃者はオンチェーン トランザクション0xc55920f1bd0531b6738153068a666c080ddded47e6256f1fd980d51c0b507c91を実行し、スマート コントラクト0xE1f2395ee43e45A1556EC6438a88c31B83493103のStringListStoreを変更し、アクティブなC2ドメインをnpm-cache [ . ]comから新しく登録されたドメインawqhnjewqjkl [ . ]icuにローテーションしました。トランザクションは、2026年5月25日にC2スマート コントラクトを最初に展開したウォレットと同じウォレット0x55F9780ef31cDによって送信されました。
+新しいドメインawqhnjewqjkl[.]icuは2026年8月4日15時15分26秒(UTC)にNameSilo, LLC経由で登録され、Unit 42の研究者によって観測された最も早い接続が16時10分03秒(UTC)に発生したため、1時間以内に運用可能となりました。
+ドメインは、ドメイン生成アルゴリズム(DGA)の出力と一致する特性を示します。.icuトップレベル ドメイン(TLD)上のランダム化された12文字の文字列で、VirusTotalコミュニティによってDGAとしてフラグが立てられます。これは、開発者エコシステムを模倣した命名規則を使用し、別のレジストラ(Tucows/OpenSRS)を通じて登録された以前のC2ドメインnpm-cache.comからの移行を表しています。
+レジストラや命名規則が変更されたにもかかわらず、awqhnjewqjkl[.]icuとnpm-cache[.]comの両方がCloudflareのクラウド デリバリ ネットワーク(CDN)インフラストラクチャを介してプロキシされます。どちらのドメインも、同一のCloudflareデフォルトCDN-CGIスタイルシートd30b4ea6f68456672f5abb35e9dcf7d54226372b66e9d60a7ee26b7a52568e74を提供しており、Cloudflareプロキシ レイヤーの共有使用が確認されています。
+新しいドメインは、2026年8月4日から11月2日まで有効なGoogleトラストサービス(WE1)によってTLS証明書が発行され、サブジェクトの別名(SAN)はawqhnjewqjkl[.]icuと*.awqhnjewqjkl[.]icuの両方をカバーしています。
+ドメインがアクティブになってから約19時間以内に、被害者環境へのネットワーク トラフィックが目撃されました。影響を受けるインフラは、次の4大陸にまたがります。北米、ヨーロッパ、アジア、アフリカ。このC2ドメインの宛先IPアドレスには、104.21.91[.]101と172.67.215[.]154があります。これらの接続の地理的および組織的幅は、ChainDropの無差別なワーム駆動伝播モデルと一致します。
+このC2ローテーションは、攻撃者が1回のイーサリアム トランザクションでワームのC2インフラストラクチャ全体をサイレントに再構成する能力を示しており、展開されたマルウェアにアップデートは必要ありません。将来のsetStrings ( )呼び出しのためにスマート コントラクトを監視すると、その後のドメインのローテーションを早期に警告できます。
+これはShai-Huludなのか?
+複数の兆候は、JFrogが文書化したShai-Huludツールチェーンであることを示しています:
+
+PBKDF2ベースの文字列デコーダ
+Bun 1.3.13ピン
+_NODE_RUNTIME_INITの分離再起動パターン
+セルフアプリケーションShai-Hulud:Here We Go Againマーカー
+npmの自己伝播とGitHubのデータ窃取アーキテクチャ
+
+しかし、これらの兆候は、キャンペーンの背後に同じ攻撃者がいることを証明するものではありません。Shai-Huludのソースは2026年5月に公開されたため、実装は誰でも再利用できます。
+このサンプルでは、以前に公開されたどのバリアントとも一致しない特性も混在しています。
+
+砂丘をテーマにした名前の公共の被害者所有のデータ流出リポジトリ
+イーサリアムベースのドメイン解決、thebeautifulmarchoftimeコミットサーチ フォールバック
+ロシア語の除外チェック
+本物のSigstoreの証明を試みるリポジトリゲートされたnpmの信頼できる公開パス
+以前の波状攻撃で報告されたbinding.gyp手法ではなく、プレインストール配信
+
+ChainDropワームは明らかにShai-Huludコードの系統に属しています。しかし、TeamPCPとして知られるグループによって運営されているのか、それとも公開されているツールキットを独自の目的のために適応させている別のグループによって運営されているのかについては、まだ判断できません。
+ChainDropの検出
+JavaScriptランタイム イベントに焦点を当てた、標準装備のXDR検出を使用して、10の異なる環境にわたるChainDrop操作を検出しました。あるインスタンスでは、図8のプロセス実行に示すように、脅威アクティビティは開発者のVS Code環境内で発生しました。脅威アクターはBunを活用して、悪意のあるペイロードMath_Symbol.jsをキャッシュ可能なノードのmodulesディレクトリ内から実行しました。その後、このスクリプトはcmd.exeを生成してgh認証トークンを起動し、ユーザーのGitHub認証情報を取得しました。
+図8.開発環境でGitHub PATのChainDrop盗難。
+難読化と暗号化を突破してペイロードに到達
+727KBのペイロードは、難読化と暗号化の3つのネストされたレイヤーによって保護されていました。私たちはそれら全てを突破しました。サンプルには説明のつかないblobは残っていません。
+レイヤー1はBase91エンコーディングを使用し、73個の関数固有のアルファベットと14箇所の配列のローテーションを使用していました。4,613個の隠し文字列エントリを復旧しました。
+レイヤー2はPBKDF2-SHA256上に構築された20万回の反復とシードされたフィッシャーイェーツのシャッフルによるカスタムバイト順列暗号を使用しました。隠し文字列727個を追加で回収しました。
+レイヤー3ではAES-256-GCM暗号化に加えてgzipを使用して、10個の大きな暗号化されたblobを保護しました。これらのblobには次のものが含まれていました。
+
+BashとPythonのヘルパー
+永続化インストーラ
+GitHub Actionsのメモリ スクレイパー
+悪意のあるワークフロー テンプレート
+VS CodeとClaude永続化ファイル
+RSA公開鍵
+追加のドロッパーコピー
+
+これら3層を図9に示します。
+図9. ペイロードに対する3つの保護レイヤー。
+現在の攻撃範囲
+解析中、2026年8月4日12時20分頃(UTC)、 GitHubでワームの正確な流出マーカーと一致する公開リポジトリを検索しました。Shai-Hulud:Here We Go Again。
+5アカウントで453件の公開リポジトリが見つかりました。
+最も早いものは5月11日に作成されました。最新のものは、クエリのおよそ25分前に作成されていました。名前はワームの砂丘をテーマにしたジェネレーターにぴったり合うパターンに倣い、sardaukar-futar-421やharkonnen-ghola-669といった組み合わせで命名されました。
+この5つのアカウントは被害者候補アカウントであり、確認された被害者ではありません。453件のリポジトリは、侵害の氷山の一角に過ぎないかもしれません。パブリック マッチだけでなく、プライベート リポジトリも侵害される可能性があります。しかし、命名、説明、作成のパターンがワームの動作と一致しており、私たちが見ている間も新しいリポジトリが出現していました。
+私たちが確認したレポ取引総額の大部分は、3つの口座に集中していました。
+攻撃者はリポジトリを積極的に侵害しているだけでなく、侵害されたパッケージの新しいバージョンを急速にリリースしています。
+ある侵害されたパッケージを分析したところ、侵害されたパッケージの6分後に新しいバージョンのパッケージが現れていたことに気づきました。その70分後に別のものが出現しました。
+脅威アクターは積極的かつ迅速に新しいリポジトリ、バージョン、パッチ番号を作成し、ワームをより効率的に伝播させます。CI/CDパイプラインは最新のパッチやバージョンをプルするように設定されることが多いため、複数のラピッド ファイア バージョンが存在し、それらが侵害された場合、CIパイプラインは感染したパッケージを掴む可能性が高くなります。
+防御側は、ワームの感染を除去するための最も効果的なアプローチを行っていない可能性があります。侵害される可能性のあるシステムから、ポイズニングされたパッケージとそのファイルが完全に削除されることを確認することが重要です。Unit 42の研究者は、以前に侵害されたシステムが、最新のクリーン バージョンを指す最新のタグにロールバックされているのを発見しました。これにより、タグ付けの問題が修正されました。
+しかし、CIイメージに既に存在するポイズニングされたロックファイル、キャッシュ、ミラー、tarballは修正されませんでした。セキュリティで保護されたバージョンを指す最新のタグを更新した後でも、侵害中にパッケージをインストールしたマシンは自動的には修正プログラムを受け取りません。ロックファイルは侵害されたバージョンを保持するため、管理者がロックファイルをアクティブにクリアし、更新されたリリースを取得するまで、これらのシステムは脆弱なままです。
+中間ガイダンス
+潜在的な影響は、現在わかっている範囲よりも広いと仮定します。ワームは、侵害されたnpmトークンによって書き込み可能なパッケージを通じて自身を再公開しようとします。開発者が影響を受けるリリースをインストールした場合、npm認証情報が変更できるすべてのパッケージを列挙します。
+インフラストラクチャのブロックと監視
+npm-cache [ . ]com、pypi-get [ . ]com、js-mirror [ . ]comをDNSおよびTLS SNIブロックリストに追加します。ワームはHTTP 400と404を正常なC2レスポンスとして扱うため、HTTPブロックページよりもシンクホールを優先します。リゾルバ コントラクトを監視して、ドメインの変更がないか確認します。
+公開された認証情報のローテーション
+npmトークン、GitHub PATを無効化またはローテーションし、確認された感染ホストがアクセスできる鍵、クラウド認証情報、Kubernetesサービスアカウント トークン、Vaultトークン、SSH鍵、AIプロバイダー認証情報をデプロイします。CIランナーは、ワームがそこで実行された場合、潜在的に危険にさらされるものとして扱います。
+リポジトリ変更のハンティング
+アクセス可能なリポジトリの検索対象:
+
+.vscode/tasks.json invoking .claude/setup.mjs
+.claude/settings.json invoking .vscode/setup.mjs
+.github/workflows/codeql_analysis.yml containing toJSON(secrets)
+Math_Symbol.js
+math_init.js
+setup.mjs
+router_runtime.js
+
+潜在的なOSレベルのアーティファクトのハンティング
+インストーラは、分析されたメイン実行パスでは起動されませんでしたが、次を検索します。
+
+~/Library/LaunchAgents/com.user.gh-token-monitor.plist
+~/.config/systemd/user/gh-token-monitor.service
+~/.local/bin/gh-token-monitor.sh
+~/.config/gh-token-monitor/
+
+ネットワーク上のハンティング
+3つのC2ドメインで/routerへのHTTP GETまたはPOSTリクエスト、0xE1f2395ee43e45A1556EC6438a88c31B83493103をターゲットとするEthereum JSON-RPC eth_callリクエスト、およびthebeautifulmarchoftimeまたはIfYouBlockThisAPIKeyItWillCrashTheLiveProductionServersOfAllThirdPartyClientsを含むGitHubコミット検索を探します。
+独自のコミット履歴のハンティング 
+アクセス可能なリポジトリで、IfYouBlockThisAPIKeyItWillCrashTheLiveProductionServersOfAllThirdPartyClientsを含むコミット メッセージと、デッドドロップ レコード プレフィックスthebeautifulsnadsoftimeを検索します。
+最初の一致は、即時失効を必要とする漏洩した認証情報です。2番目の一致は植え付けられたバックアップC2ドメインです。
+サプライチェーンの監査
+新しいプレインストール フック、置き換えられたスクリプト オブジェクト、setup.mjsファイル、および大規模な縮小JavaScriptバンドルについて、最近公開されたパッチリリースを比較します。リストされているパッケージの範囲には含めないでください。このワームは、盗まれたトークンによって書き込み可能な無関係なパッケージに拡散するように設計されています。
+パイプライン強化のヒント
+AppSecのエンジニアと開発者のための実用的なプレイブックは次のとおりです。
+
+認証をワークロードにバインドする:窃取者は、npm、GitHub、AWS、Kubernetesの認証情報とともに、HashiCorp Vaultトークンを標的にしました。ボールトは、そのトークンに認証されるトークンがドットファイル内のベアラー文字列である場合には役に立ちません。SPIFFE IDを持つ相互TLS、クラウドIAMロール、オーディエンス クレームを持つ予測サービス アカウント トークンなど、ワークロード自体にバインドされた認証情報を使用するため、攻撃者のインフラストラクチャからのリプレイは失敗します。
+エフェメラルなCIランナーを使う:永続的なセルフホスト ランナーは、異なるチームに属することが多いジョブ間で認証情報とキャッシュを蓄積するため、有毒化された1つのインストールがその後実行されるすべてのものを汚染します。使い捨てランナーは、1つのジョブへの露出を制限します。
+カナリアの資格情報を埋め込む:おとりを使用すると、誤検知が少なく信頼性の高い信号が生成されます。ビルド イメージとワークステーション全体で~ / .aws/credentials、~ / . npmrc、.envファイルに機能しないキーを配置し、あらゆる用途で高いアラートを有効にします。
+
+CI/CDにおける出力フィルタリング:npmベースのマルウェアのほとんどは、~/.npmrcトークンまたは~/.sshキーをC2サーバーに送信しようとします。CIランナーに厳格な出力ネットワーク ポリシーを適用します。プライベート レジストリと既知のデプロイメント対象への接続のみを許可します。
+Unit 42マネージド脅威ハンティング用クエリ
+Unit 42のマネージド脅威ハンティングチームは、Cortex XDRと以下のXQLクエリを使用して、顧客全体でこの問題の悪用試行を継続的に追跡しています。Cortex XDRの顧客は、これらのXQLクエリで、悪用の兆候を検索することもできます。
+
+
+
+
+
+//Title: Chaindrop worm payload execution via bun runtime
+//Description: Chaindrop (Shai Hulud variant) executes math_symbol.js or math_init.js via the bun nodejs runtime to harvest credentials, plant .claude and .vscode persistence, and exfiltrate the information.
+// MITRE ATT&CK TTP ID: T1059.007
+dataset = xdr_data
+| filter event_type = ENUM.PROCESS
+| filter action_process_image_name in ("bun", "bun.exe") and (action_process_image_command_line contains "Math_Symbol.js" or action_process_image_command_line contains "math_init.js" )
+| fields agent_hostname, agent_id, causality_actor_process_command_line ,actor_process_image_name, actor_process_command_line, action_process_image_command_line, event_id, actor_effective_username
+
+
+
+
+1234567
+
+//Title: Chaindrop worm payload execution via bun runtime//Description: Chaindrop (Shai Hulud variant) executes math_symbol.js or math_init.js via the bun nodejs runtime to harvest credentials, plant .claude and .vscode persistence, and exfiltrate the information.// MITRE ATT&CK TTP ID: T1059.007dataset = xdr_data| filter event_type = ENUM.PROCESS| filter action_process_image_name in ("bun", "bun.exe") and (action_process_image_command_line contains "Math_Symbol.js" or action_process_image_command_line contains "math_init.js" )| fields agent_hostname, agent_id, causality_actor_process_command_line ,actor_process_image_name, actor_process_command_line, action_process_image_command_line, event_id, actor_effective_username
+
+
+
+
+
+
+
+
+
+
+
+//Title: Chaindrop worm GitHub credential harvesting via gh CLI
+//Description: Chaindrop (Shai Hulud variant) payload running under the bun nodejs runtime invokes "gh auth token" to extract the local GitHub CLI authentication token, used for repository persistence commits and worm propagation.
+// MITRE ATT&CK TTP ID: T1528
+dataset = xdr_data
+| filter event_type = ENUM.PROCESS
+| filter actor_process_command_line contains ".js" and actor_process_image_name in ("bun", "bun.exe") and action_process_image_command_line contains "gh auth token"
+| dedup agent_id, actor_process_command_line, action_process_image_command_line, action_file_path
+| fields agent_id, agent_hostname, actor_process_command_line, actor_process_image_name, actor_process_image_sha256, action_process_image_name, action_process_image_command_line, action_process_image_sha256, causality_actor_process_image_name, causality_actor_process_command_line, causality_actor_process_image_sha256, action_file_name, action_file_path, action_file_sha256
+| sort asc _time
+
+
+
+
+123456789
+
+//Title: Chaindrop worm GitHub credential harvesting via gh CLI//Description: Chaindrop (Shai Hulud variant) payload running under the bun nodejs runtime invokes "gh auth token" to extract the local GitHub CLI authentication token, used for repository persistence commits and worm propagation.// MITRE ATT&CK TTP ID: T1528dataset = xdr_data| filter event_type = ENUM.PROCESS| filter actor_process_command_line contains ".js" and actor_process_image_name in ("bun", "bun.exe") and action_process_image_command_line contains "gh auth token"| dedup agent_id, actor_process_command_line, action_process_image_command_line, action_file_path| fields agent_id, agent_hostname, actor_process_command_line, actor_process_image_name, actor_process_image_sha256, action_process_image_name, action_process_image_command_line, action_process_image_sha256, causality_actor_process_image_name, causality_actor_process_command_line, causality_actor_process_image_sha256, action_file_name, action_file_path, action_file_sha256| sort asc _time
+
+
+
+
+
+
+まとめ
+ChainDropは、侵害されたオープンソース パッケージが、開発者のワークステーション、CIパイプライン、クラウド環境、およびより広範なソフトウェア サプライ チェーンへの入り口になり得ることを示しています。公開認証情報を盗み、感染したパッケージを自動的に再公開することで、ワームは正規の機能を維持したまま、信頼できる依存関係を通じて拡散し続けることができます。また、CIランナーのメモリから直接エフェメラルな認証情報を抽出できるため、開発者のエンドポイントに保存されているファイルに限定した調査では、重大な情報漏えいを見逃してしまう可能性もあります。
+Unit 42の推奨事項:
+
+影響を受けるnpmパッケージのバージョンのインストールの特定
+影響を受けるパッケージのバージョンの削除
+開発者ワークステーションとCIランナーに侵害の兆候がないかの調査
+予想外のnpmの公開とGitHubリポジトリのアクティビティのレビュー
+公開される可能性のあるnpm、GitHub、クラウド、SSH、オートメーションの資格情報の無効化とローテーション
+特定された永続性メカニズムの削除
+ドメインベースとGitHubベースの両方の流出経路のブロック
+
+パロアルトネットワークスのお客様は、以下の製品を利用することにより強固な保護を構築することができます。パロアルトネットワークスおよびUnit 42は、インフラストラクチャの変更、新しい影響を受けるパッケージ、および追加の活動の証拠について、このキャンペーンを引き続き監視します。関連情報が得られ次第、この脅威の概要を更新します。
+ChainDropに関するパロアルトネットワークス製品の保護
+パロアルトネットワークスのお客様は、さまざまな製品保護、アップデートを活用して、本脅威を特定し組織を保護いただけます。
+情報漏えいの可能性がある場合、または緊急の案件がある場合はUnit 42インシデント レスポンス チームにアクセスするか電話でご連絡ください:
+
+北米:フリーダイヤル: +1 (866) 486-4842 (866.4.UNIT42)
+英国: +44.20.3743.3660
+ヨーロッパおよび中東: +31.20.299.3130
+アジア: +65.6983.8730
+日本: +81.50.1790.0200
+オーストラリア: +61.2.4062.7950
+インド: 000 800 050 45107
+韓国: +82.080.467.8774
+
+Advanced WildFire
+Advanced WildFireの機械学習モデルと分析技術は、本研究で共有されたインジケーターに照らして見直され、更新されています。
+次世代ファイアウォール向けクラウド提供型セキュリティ サービス
+Advanced URL FilteringとAdvanced DNS Securityは、この活動に関連する既知のC2ドメインを悪意のあるものとして識別することが可能です。
+Cortex
+Koi Agentic Endpoint Security
+Koi Agentic Endpoint Securityは、エージェントのエンドポイント全体にわたるすべてのAIアーティファクトとAIエージェントのアクティビティの検出、そのリスクの評価、防止およびランタイム コントロールの実施、違反の是正を支援するように設計されています。
+Cortex AgentiX
+セキュリティ アナリストは自然言語を使用してCortex AgentiX脅威インテリジェンス・エージェントに、この「脅威情報」から危殆化のインジケーター(IoC)を抽出することを促すことができます。その後、顧客は指標を拡充させ、Cortexテナント内の目撃情報や関連するアラートを確認し、組織への影響のサマリーを提供することができます。
+Cortex XDRおよびXSIAM
+Cortex XDRおよびXSIAMは、マルウェア防止エンジンを採用することで、この記事で説明されている脅威を防ぐのに役立ちます。このアプローチは、Advanced WildFire、Behavioral Threat Protection、Local Analysisモジュールなど、複数の保護レイヤーを組み合わせて、既知および未知のマルウェアがエンドポイントに害を及ぼすのを防ぐものです。具体的には、Windowsエージェントに対する攻撃が、標準対応でブロックに成功していることを確認しています。
+Cortex Cloud
+Cortex Cloud Endpoint Protectionは、この記事で取り上げられた脅威から組織を保護するのに役立ちます。Cortex Cloud 2.1では、コンテナや仮想マシンを含むLinuxエンドポイントが標的にされたことを検知するための行動分析とAI対応分析を使用して、悪意のある操作を検出し、防止できます。さらに、これらのターゲット エンドポイントに関連付けられたクラウド プラットフォームのIAMポリシーが不正に使用されていることを検出し、アセットがこれらの脅威に対して脆弱であるときにチームに警告することができます。
+パロアルトネットワークスのソフトウェア サプライチェーン セキュリティは、Cortex Cloudに統合されており、開発者ツール、コードID、レジストリ、SBOMを追跡することで、開発エコシステム全体にわたる包括的な可視性を提供します。このソリューションは、開発パイプラインを効果的に強化でき、すぐに利用可能なセキュリティ ポリシーを適用して不正な改ざんや悪意のあるコードの注入を防ぐのに役立ちます。コンプライアンス レポートとガバナンスを自動化することで、組織がアプリケーションのリスクを早期に軽減し、安全なコードを自信を持って展開できるように、より優れた支援を行うことができます。
+Idira Secrets Manager
+Idira Secrets Managerは、API、CLI、コンテナ サイドカーを介してビルド ステップまたはローカル環境に実行時に動的に注入することで、ディスク上の長寿命の静的設定ファイルを回避することで、ブラスト半径を制限します。
+Idira Privilege CloudとIdira Secrets Managerをペアリングすることで、生の認証情報は環境変数をバイパスし、メモリを完全に処理します。Secretless Managerは、データベース、クラウドAPI、レジストリへのアウトバウンド接続をプロキシし、オンザフライでネットワーク ストリームに直接資格情報を注入します。サプライ チェーン ワームがビルド ランナーをスキャンしても、メモリ上に盗むものがないだけです。
+Idira Secrets Managerは、Idira Privilege Cloudと統合されており、認証情報のポリシーベースの自動ローテーションを処理し、短命のシークレットを適用します。ビルド パイプラインによって要求されたシークレットは、ジョブの完了直後に動的に生成されるか、またはローテーションされます。
+危殆化のインジケーター
+ファイル ハッシュ(SHA-256)
+
+Math_Symbol.js / math_init.js: 9fc2570b7cef51c1b8df116d144d11ff4096357be7d2c4c6367cfc2509cf1bcc
+setup.mjs (First variant): 54dc7ea54a1317cca0e890a2770630cf7fa6c97813e0cb9d2caa93012b350668
+setup.mjs (Second variant): fd3ca4007b225fdf8de7af4345a19179d5efa8c4bb9205f88cda806e5684b1eb
+setup.mjs.malicious (Variant of setup.mjs based on TLSH pivot): b27b82afa5f15512f3856e549fb83d873fd0049759a4b62ce64c8d7d4dc2c678
+
+悪意のあるドメイン
+
+awqhnjewqjkl.icu - イーサリアム コントラクトから引き出された新しいC2ドメイン
+npm-cache[.]com - 分析中にアクティブ
+pypi-get[.]com - 過去のイーサリアム コントラクトから返された過去のC2
+js-mirror[.]com - 過去のイーサリアム コントラクトから返された過去のC2
+
+C2エンドポイント
+
+hxxps://npm-cache[.]com:443/router
+hxxp://awqhnjewqjkl[.]icu/cdn-cgi/rum?
+
+イーサリアム
+
+リゾルバ コントラクト: 0xE1f2395ee43e45A1556EC6438a88c31B83493103
+変更されたC2トランザクション:0xc55920f1bd0531b6738153068a666c080ddded47e6256f1fd980d51c0b507c91
+オーナー ウォレット:0x55f9780e1492344b7417fa723aedc4d0b97f31cd
+Binanceデポジット ピボット：0x35477b7b2df3174B9FE8A681750A7E3fbA20F39B
+ゲッター セレクター:0x53ed5143
+セッター セレクター:0xd3c159e5
+
+GitHubマーカー
+
+リポジトリの説明:Shai-Hulud:Here We Go Again
+コミット検索トークン: the beautifulmarchoftime
+符号付きレコード プレフィックス:thebeautifulsnadsoftime
+砂丘をテーマにした名前の用語: sardaukar、mentat、fremen、atreides、harkonnen
+
+潜在的な永続性アーティファクト
+サンプルでは、これらのアーティファクトのインストーラが埋め込まれていますが、そのメインの実行パスにコール サイトを特定していません。
+
+~/.local/bin/gh-token-monitor.sh
+~/.config/gh-token-monitor/
+~/Library/LaunchAgents/com.user.gh-token-monitor.plist
+~/.config/systemd/user/gh-token-monitor.service
+
+妥協したパッケージ
+侵害されたパッケージのリストは、GitHubリポジトリのページで入手できます。
+
+
+トップに戻る
+
+タグBlockchainChainDropClaude codeDeveloper toolingGitHub
+
+
+
+Threat Research Center
+
+
+次ページ:npmの脅威の状況: アタックサーフェスと緩和策(6月2日更新)
+
+
+
+
+
+
+
+目次
+
+
+
+
+
+
+関連記事
+
+
+
+                      npmの脅威の状況: アタックサーフェスと緩和策(6月2日更新)                  
+
+
+
+                      プロテクターを武器として利用する:セキュリティ インフラにおけるTeamPCPの多段階サプライ チェーン攻撃                  
+
+
+
+                      GitHub Actionsサプライチェーン攻撃: Coinbaseへの標的型攻撃が拡大し、tj-actions/changed-files事件が多発: 脅威評価（4/2更新）                  
+
+
+
+
+
+
+
+
+
+関連項目 マルウェア リソース
+
+
+
+
+ 
+
+
+
+主なサイバー脅威 2026年6月2日
+
+npmの脅威の状況: アタックサーフェスと緩和策(6月2日更新)
+
+
+
+Credential Harvesting
+
+
+GitHub
+
+
+Npm packages
+ 
+
+
+                    今すぐ読む                    
+
+
+
+
+
+
+
+ 
+
+
+
+脅威アクター グループ 2026年5月22日
+
+イランAPT Screening Serpensによる2026年スパイ キャンペーンの追跡
+
+
+
+Advanced Persistent Threat
+
+
+AppDomainManager
+
+
+DLL Sideloading
+ 
+
+
+                    今すぐ読む                    
+
+
+
+
+
+
+
+ 
+
+
+
+主なサイバー脅威 2026年4月17日
+
+脅威情報: 2026年イランに関するサイバー リスクの激化(4月17日更新)
+
+
+
+APK
+
+
+DDoS attacks
+
+
+GenAI
+ 
+
+
+                    今すぐ読む                    
+
+
+
+
+
+
+
+ 
+
+
+
+主なサイバー脅威 2026年4月1日
+
+脅威概要:Axiosサプライ チェーン攻撃で広範に及ぶ影響
+
+
+
+API attacks
+
+
+JavaScript
+
+
+Powershell
+ 
+
+
+                    今すぐ読む                    
+
+
+
+
+
+
+
+ 
+
+
+
+主なサイバー脅威 2026年3月31日
+
+プロテクターを武器として利用する:セキュリティ インフラにおけるTeamPCPの多段階サプライ チェーン攻撃
+
+
+
+CVE-2025-55182
+
+
+GitHub
+
+
+Infostealer
+ 
+
+
+                    今すぐ読む                    
+
+
+
+
+
+
+
+ 
+
+
+
+脅威リサーチ 2026年3月24日
+
+脅威情報: パロアルトネットワークスの人材獲得チームになりすました採用スキーム
+
+
+
+Email scam
+
+
+Lure
+
+
+Phishing
+ 
+
+
+                    今すぐ読む                    
+
+
+
+
+
+
+
+ 
+
+
+
+主なサイバー脅威 2026年2月11日
+
+国家支援型の脅威アクターがNotepad++のサプライチェーンを悪用
+
+
+
+Backdoor
+
+
+Cobalt Strike
+
+
+DLL Sideloading
+ 
+
+
+                    今すぐ読む                    
+
+
+
+
+
+
+
+ 
+
+
+
+脅威リサーチ 2026年1月22日
+
+ランタイムアセンブリ攻撃の新たなフロンティア：LLMを活用したフィッシング用JavaScriptのリアルタイム生成
+
+
+
+API
+
+
+Google
+
+
+JavaScript
+ 
+
+
+                    今すぐ読む                    
+
+
+
+
+
+
+
+ 
+
+
+
+脅威リサーチ 2026年1月2日
+
+Pyarmorを利用して難読化と検知回避を行うVVS Discord Stealer
+
+
+
+Discord
+
+
+Infostealer
+
+
+Python
+ 
+
+
+                    今すぐ読む                    
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
+				Unit 42 からの最新情報を取得			
+進化する脅威の状況を常に先取り
+
+
+
+
+
+
+
+
+
+
+メール アドレス
+
+
+本フォームを送信することにより、利用規約に同意し、プライバシー ポリシーを承認したことになります。
+
+                     本サイトは reCAPTCHA で保護されており、Googleのプライバシー ポリシー とサービス利用規約が適用されます。                            
+  
+
+Invalid captcha!
+ 
+					サブスクライブ					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+最新ニュース、イベント情報、脅威アラートを配信
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+登録にはメールアドレスをご入力ください。
+
+
+
+
+
+お申込み 
+
+
+
+
+                                
+                                
+                                
+                                    
+                                    
+                                        
+                                        このフォームを送信することにより、個人情報がパロアルトネットワークスのプライバシーポリシーおよび利用規約に従って処理されることを理解します。
+                                    
+                                
+
+                                
+                                
+
+
+お申込み 
+
+
+
+
+
+
+
+
+
+
+
+
+製品とサービス
+
+
+
+
+
+                                    AI利用ネットワーク セキュリティ プラットフォーム
+                                
+
+
+
+                                    AIのセキュア バイ デザイン
+                                
+
+
+
+                                    Prisma AIRS
+                                
+
+
+
+                                    AI Access Security
+                                
+
+
+
+                                    クラウド提供型セキュリティ サービス
+                                
+
+
+
+                                    Advanced Threat Prevention
+                                
+
+
+
+                                    Advanced URL Filtering
+                                
+
+
+
+                                    Advanced WildFire
+                                
+
+
+
+                                    Advanced DNS Security
+                                
+
+
+
+                                    Enterprise Data Loss Prevention
+                                
+
+
+
+                                    Enterprise IoT Security
+                                
+
+
+
+                                    Medical IoT Security
+                                
+
+
+
+                                    Industrial OT Security
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    次世代ファイアウォール
+                                
+
+
+
+                                    ハードウェア ファイアウォール
+                                
+
+
+
+                                    ソフトウェア ファイアウォール
+                                
+
+
+
+                                    Strata Cloud Manager
+                                
+
+
+
+                                    SD-WAN for NGFW
+                                
+
+
+
+                                    PAN-OS
+                                
+
+
+
+                                    Panorama
+                                
+
+
+
+                                    セキュア アクセス サービス エッジ
+                                
+
+
+
+                                    Prisma SASE
+                                
+
+
+
+                                    App Acceleration
+                                
+
+
+
+                                    自律型デジタルエクスペリエンス管理
+                                
+
+
+
+                                    Enterprise DLP
+                                
+
+
+
+                                    Prisma Access
+                                
+
+
+
+                                    Prisma Browser
+                                
+
+
+
+                                    Prisma SD-WAN 
+                                
+
+
+
+                                    リモート ブラウザ分離
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    AI駆動型セキュリティ運用プラットフォーム
+                                
+
+
+
+                                    Cloud Security
+                                
+
+
+
+                                    Cortex Cloud
+                                
+
+
+
+                                    Application Security
+                                
+
+
+
+                                    Cloud Posture Security
+                                
+
+
+
+                                    Cloud Runtime Security
+                                
+
+
+
+                                    Prisma Cloud 
+                                
+
+
+
+                                    AI駆動型SOC
+                                
+
+
+
+                                    Cortex XSIAM
+                                
+
+
+
+                                    Cortex XDR
+                                
+
+
+
+                                    Cortex XSOAR
+                                
+
+
+
+                                    Cortex Xpanse
+                                
+
+
+
+                                    Unit 42マネージド ディテクション&レスポンス
+                                
+
+
+
+                                    マネージドXSIAM
+                                
+
+
+
+
+
+                                    次世代のアイデンティティ セキュリティ
+                                
+
+
+
+                                    特権アクセス管理
+                                
+
+
+
+                                    アイデンティティ管理とアクセス管理
+                                
+
+
+
+                                    Endpoint Privilege Manager
+                                
+
+
+
+                                    アイデンティティ ガバナンス
+                                
+
+
+
+                                    従業員パスワード管理
+                                
+
+
+
+                                    エージェンティック アイデンティティ
+                                
+
+
+
+                                    シークレット管理
+                                
+
+
+
+                                    統合型シークレット ガバナンス
+                                
+
+
+
+                                    アプリケーションの認証情報配信
+                                
+
+
+
+                                    ベンダーの特権アクセス
+                                
+
+
+
+                                    脅威インテリジェンス&インシデント レスポンス サービス
+                                
+
+
+
+                                    予防評価
+                                
+
+
+
+                                    インシデント レスポンス
+                                
+
+
+
+                                    セキュリティ戦略を変革
+                                
+
+
+
+                                    脅威インテリジェンスについて
+                                
+
+
+
+
+
+
+会社名
+
+
+
+
+
+                                    パロアルトネットワークスについて
+                                
+
+
+
+                                    採用情報
+                                
+
+
+
+                                    お問合せ
+                                
+
+
+
+                                    企業責任
+                                
+
+
+
+                                    お客様向け
+                                
+
+
+
+                                    IR
+                                
+
+
+
+                                    拠点
+                                
+
+
+
+                                    ニュースルーム
+                                
+
+
+
+
+
+
+人気のあるリンク
+
+
+
+
+
+                                    ブログ
+                                
+
+
+
+                                    コミュニティ
+                                
+
+
+
+                                    コンテンツライブラリ
+                                
+
+
+
+                                    Cyberpedia
+                                
+
+
+
+                                    イベントセンター
+                                
+
+
+
+                                    電子メール設定の管理
+                                
+
+
+
+                                    製品A〜Z
+                                
+
+
+
+                                    製品認証
+                                
+
+
+
+                                    脆弱性の報告
+                                
+
+
+
+                                    サイトマップ
+                                
+
+
+
+                                    テクニカル ドキュメント
+                                
+
+
+
+                                    Unit 42
+                                
+
+
+
+                                    個人情報の販売および共有禁止
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                プライバシー
+                            
+
+
+
+                                トラスト センター
+                            
+
+
+
+                                利用規約
+                            
+
+
+
+                                ドキュメント
+                            
+
+
+Copyright © 2026 Palo Alto Networks. All Rights Reserved
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+JP
+
+
+
+Select your language
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Your browser does not support the video tag.
+          
+
+Default Heading
+Read the article
+              
+
+
+
+
+Seekbar
+
+
+
+
+
+
+
+
+
+
+
+
+
+Volume
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

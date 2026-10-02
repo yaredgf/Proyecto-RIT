@@ -1,0 +1,1649 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+That AI Extension Helping You Write Emails? It’s Reading Them First
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Menu
+
+
+
+
+
+
+Tools
+ATOMs
+Security Consulting
+About Us
+Under Attack?
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  Threat Research CenterThreat ResearchMalware 
+ 
+Malware
+That AI Extension Helping You Write Emails? It’s Reading Them First
+
+
+  13  min read              
+
+
+Related ProductsAdvanced DNS SecurityAdvanced URL FilteringAdvanced WildFireCloud-Delivered Security ServicesPrisma AIRSPrisma BrowserSecure Access Service Edge (SASE)Unit 42 Incident Response 
+
+
+
+
+
+
+
+
+By:Shresta Bellary SeetharamNabeel MohamedBilly MelicherOleksii StarovQinge XieFang Liu 
+
+Published:April 30, 2026 Categories:MalwareThreat Research
+ Tags:AI browserBrowser extensionGenAIInfostealerMalwareRemote Access TrojanSearch hijackerSpyware
+ 
+
+
+ 
+ 
+
+
+Share
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+Executive Summary
+We found 18 AI browser extensions marketed as productivity tools that are not as they seem. This group includes extensions such as:
+
+One that surveils your emails as you compose them
+Another that intercepts ChatGPT prompts
+A third that exfiltrates passwords
+
+Leveraging the rise of generative AI (GenAI), these extensions deliver remote access Trojans (RATs), meddler-in-the-middle (MitM) attacks and infostealers that target prompts, user behavior and browser sessions. Attackers blend the following established techniques with AI productivity lures:
+
+API interception
+Passive Document Object Model (DOM) observation
+Traffic proxying
+HTTPS response decryption
+
+Multiple samples contained AI-generated code, indicating that threat actors employed large language models (LLMs) to accelerate malware production.
+We specifically reported 18 high-risk extensions to Google. Google either removed the extensions or sent a warning to the owners of the extensions to address policy violations.
+Organizations and individual users should exercise caution by sourcing extensions only from trusted providers and adhering to the principle of least privilege. Users must scrutinize requested permissions, as granting broad access to browser data can authorize the interception of sensitive credentials and proprietary session information.
+Palo Alto Networks customers are better protected from the threats discussed above through the following products and services:
+
+Advanced URL Filtering
+Advanced DNS Security
+Prisma Browser
+Advanced WildFire
+Prisma AIRS
+
+If you think you might have been compromised or have an urgent matter, contact the Unit 42 Incident Response team.
+
+
+
+Related Unit 42 Topics
+GenAI, Infostealer, Remote Access Trojan
+
+
+
+Examples of Extensions Disguised as AI Tools
+We identified multiple extensions that appeared to be AI tools delivering RATs and MitM campaigns, which we disclosed via timely threat intelligence (TTI) posts. These include:
+
+AI-powered summary extensions exfiltrating sensitive data to low-reputation domains (August 2025)
+Adware campaigns using hidden iframes (August 2025)
+Cursor customization extensions delivering potentially unwanted programs (PUPs) (August 2025)
+Prompt and search hijackers redirecting queries to attacker-controlled domains (September 2025)
+Most recently, a Model Context Protocol (MCP)-themed RAT targeting AI developers (February 2026)
+
+Browser Extensions Expand the Client-Side Attack Surface
+​Browser extensions operate within the browser's trusted process with user-granted permissions. They can read and modify web content, intercept network requests, access cookies and communicate with external servers. These capabilities are shared with legitimate tools like ad blockers, password managers and developer tools.
+Deceptive extensions exploit this privileged position. An extension can override network request APIs before calls leave the page. It can passively monitor DOM changes in targets like Gmail or Notion. It can configure browser proxy settings to route traffic through attacker infrastructure. It can attach the Chrome Debugger Protocol to read decrypted HTTPS response bodies.
+GenAI amplifies the risk. When users type prompts into AI services, they routinely share proprietary code, draft communications and strategic plans. An extension positioned between the user and an AI service intercepts sensitive data. This data is far more valuable than the browsing metadata targeted by typical browser malware. Our retrospective analysis of detected high-risk extensions revealed the recurring techniques listed in Table 1.
+
+
+
+Technique
+Description
+Technical Characteristics
+Requires Extension Privilege
+
+
+WebSocket-based C2 channels
+Persistent bidirectional communication for command dispatch and session management
+Maintains an open connection that automatically reconnects on network interruption. Persists across browser restarts. Uses standard WebSocket protocol over HTTPS.
+No. Typical malware can establish WebSocket C2 channels. The extension advantage is appearing as legitimate browser traffic and persistence across browser restarts without process injection.
+
+
+Browser API hooking
+Intercepting JavaScript API calls before network transmission
+Replaces browser's native window.fetch or XMLHttpRequest functions. Operates in a JavaScript context before data is encrypted for transmission. No interception-layer traffic required.
+Yes. Content scripts inject code into the page context with API modification privileges. Typical malware would typically require browser process injection.
+
+
+DOM-based exfiltration
+Extracting page content through observation rather than network interception
+Reads content from the rendered page DOM. The extension generates no network requests for data collection. Operates entirely within the browser process.
+Yes. Content scripts have direct read access to the page DOM. Typical malware would require accessibility APIs, screen scraping or browser process memory access.
+
+
+Dynamic proxy configuration
+Remote proxy auto-configuration (PAC) script updates for selective traffic routing
+Downloads and applies proxy configuration from a remote server. Can be updated without extension store approval. Applies routing rules per-domain or per-URL pattern.
+Partially. Typical malware can modify system proxy settings but lacks the chrome.proxy API for programmatic, extension-scoped, dynamic updates without OS-level permissions.
+
+
+Cross-storage persistence with active restoration
+Redundant identifier storage across multiple APIs with automated recreation on deletion
+Stores identifiers in chrome.storage.sync, cookies and localStorage. Monitors storage-change events. Recreates deleted identifiers from remaining copies. Syncs across devices via Chrome profile.
+Yes. Requires chrome.storage.sync API for cross-device persistence and chrome.cookies.onChanged API for real-time monitoring. Typical malware cannot access these browser-internal storage mechanisms.
+
+
+Misuse of one-time extension events
+Install-time payload execution via chrome.runtime.onInstalled
+The code executes once when the extension installs or updates. The event fires before the user interacts with the extension. Does not repeat on subsequent browser sessions.
+Yes. The chrome.runtime.onInstalled event is extension-specific. No equivalent in typical malware.
+
+
+
+Table 1. Recurring techniques seen in GenAI high-risk extensions.
+As GenAI becomes the primary interface for professional and creative workflows, these extensions can potentially gain direct access to sensitive user information. If operated within the same execution context as the AI interface, these extensions pose a significant risk to enterprises.
+We placed detections from campaigns targeting AI users into six distinct malware categories based on their primary operational objective, as shown below in Figure 1. We derived these categories from manual analysis of extension code and network behavior.
+Figure 1. Six distinct malware categories observed across the analyzed GenAI browser extensions.
+The following sections present case studies of these six high-risk GenAI browser extensions.
+A RAT: MCP Server AI Automation Extension
+A RAT is malware that grants an attacker complete remote control over a victim's system through a persistent command and control (C2) channel. This case study is for an extension named Chrome MCP Server - AI Browser Control that acts at a RAT.
+
+Extension ID: fpeabamapgecnidibdmjoepaiehokgda
+SHA256 hash: 0cbf101e96f6d5c4146812f07105f8b89bd76dd994f540470cd1c4bc37df37d5
+
+RATs generally require victims to download and execute suspicious files, actions that security software typically detects as clear indicators of compromise. This GenAI-era adaptation disguises the RAT as an “AI browser automation tool” using the MCP framework, as shown in its Chrome Web Store listing in Figure 2. The listing deceptively states, “100% local processing - your data never leaves your browser” and “No external servers required for core functionality.”
+Figure 2. Deceptive malicious extension Chrome MCP Server listing on the Chrome Web Store.
+Attackers lead victims to believe that extreme permissions are necessary (debugger, <all_urls>, webRequest, scripting) for AI to control the browser. The extension hardcodes a WebSocket connection to a remote C2 server, as noted in the code snippet in Figure 3.
+Figure 3. Extension’s background source code showing C2 server configuration.
+From this server, it accepts over 30 remote commands, including:
+
+Executing arbitrary JavaScript via new Function()
+Chrome Debugger Protocol attachment for HTTPS traffic interception
+Filling out forms
+Capturing screenshots
+Accessing browsing history
+
+When a victim clicks Connect in the pop-up, the extension establishes a persistent WebSocket connection to a remote server, as noted from the source code snippets in Figure 4. This generates the connection to wss[:]//mcp-browser.qubecare[.]ai/chrome. Once connected, the extension reestablishes the C2 channel across network disconnections or browser restarts and the service worker restarts indefinitely.
+Figure 4. Chrome MCP Server extension source code and active WebSocket connection to the C2 server.
+The extension uses a new Function() pattern to execute JavaScript code received from the remote server over the WebSocket. It then executes the code as JavaScript in the context of the victim's active tab, as noted below in Figure 5. If the victim is logged into their bank, corporate VPN, email or any other service, the remote operator can execute code in that authenticated context.
+Figure 5. handleExecuteScript function showing remote code execution via new Function().
+Adversary in the Browser (AitB): Supersonic AI
+AitB occurs when extensions read sensitive data directly from the rendered page DOM rather than intercepting network traffic, bypassing network-level security controls entirely. This case study is for an extension named Supersonic AI that performs AitB.
+
+Extension ID: eebihieclccoidddmjcencomodomdoei
+SHA256 hash: ac0a312398b3bf6b3d7c5169687ca72f361838bc5a90f2c0dbce2dc8e2094a02
+
+Supersonic AI markets itself as an AI-powered email assistant for Gmail and Outlook. It includes features like one-click AI-generated replies and email summaries. To deliver these features, the extension needs to read email content. We examined how the extension subsequently handled this content.
+As illustrated in Figure 6, a content script is used to collect comprehensive email data and send the data to an external server. This broad data collection poses a severe security and privacy risk, as it captures and sends highly sensitive information in plaintext. This means all the emails from the victim's account, including those that are read, sent or displayed.
+Figure 6. Snippet from content script.
+Figure 7 demonstrates this in action within our sandbox environment, showing a social media platform one-time password (OTP) being exposed during the exfiltration process. Our Virus Bulletin 2025 paper provides a detailed technical analysis of this extension's Gmail exfiltration behavior.
+Figure 7. OTP exfiltration as seen in sandbox network logs.
+Infostealer: Reverse Recruiting — AI Job Application Assistant
+An infostealer is malware designed to harvest sensitive information such as credentials, authentication tokens and personal data from a victim's browser. This case study covers an extension named Reverse Recruiting - AI Job Application Assistant. In addition to stealing information such as salary expectations, it also targets a new class of credentials, AI API keys.
+
+Extension ID: iefpkdilnfhogjbkhgnliaomoldgkdlj
+SHA256 hash: 604c7aef72892b56ac23ad54744376574239c8f0651e95dd5b6cf540eb70f7c3
+
+Reverse Recruiting is an AI job application assistant, as noted in Figure 8. It autofills forms across job portals and generates tailored resumes using OpenAI, Gemini and Claude. Its permission set is consistent with a cross-site autofill and AI assistant tool, including content script injection into all page frames via <all_urls>. However, the extension uses these permissions for activities well beyond its stated purpose.
+Figure 8. Reverse Recruiting - AI Job Application Assistant extension’s listing on the Chrome store.
+When a victim provides their OpenAI, Gemini or Claude API key to power the extension's AI features, it does not use those keys locally. A component of this extension named optimized-api.js reads all three of these keys from chrome.storage.sync and forwards them to the developer's backend in custom HTTP headers on every request (Figure 9). ​
+The victim also provides information for the job application assistant. The extension's profile-sync.js script then transmits the user's name, email, phone, LinkedIn URL, salary expectations, education and resume to a remote endpoint at api.reverserecruiting[.]io/v1/profile/sync.
+Figure 9. A code snippet that reads the user's OpenAI, Gemini and Claude API keys and forwards them to a remote server.
+Search Hijacker: Chat AI for Chrome
+A search hijacker is malware that modifies browser search settings to redirect user queries through attacker-controlled servers, enabling search traffic interception and persistent tracking. This case study is for a browser extension named Chat AI for Chrome:
+
+Extension ID: jhhjbaicgmecddbaobeobkikgmfffaeg
+SHA256 hash: dfe307d957724ebe32331f92d53e366b7fa85968a9564c2285c5a0142ac9e1bb
+
+The search hijacker changes and controls the default search engine as noted in Figure 10.
+Figure 10. Chat AI for Chrome extension controlling the search engine in Chrome.
+Chat AI for Chrome generates a unique user identifier on installation and stores it in three persistence layers:
+
+chrome.cookies
+window.localStorage
+chrome.storage.sync (syncs across all Chrome instances signed into the same Google account)
+
+It then registers a listener on Chrome's cookie change events, as noted in the code snippet in Figure 11.
+Figure 11. Snippet showing extension’s persistent tracking cookie behavior.
+When the user deletes the tracking cookie, the extension recreates the deleted cookie. Because the ID is also stored in chrome.storage.sync, it persists across devices signed into the same Google account. Clearing cookies on one device does not eliminate the tracking. The identifier is restored from synced storage.
+The persistent tracking enables a parallel attack. The extension silently replaces the victim's default search engine via chrome_settings_overrides as noted in Figure 12.
+Figure 12. Manifest snippet showing search engine hijacking via chrome_settings_overrides.
+All user searches are routed through chatgptforchrome[.]com and correlated with the persistent tracking ID, building a cross-device search history profile that standard cookie-clearing practices cannot disrupt. The only effective remediation is complete uninstallation.
+Brand Impersonator: AI Photo and Video Editor
+A brand impersonator is malware that mimics legitimate software brands to exploit user trust and bypass skepticism during installation. This case study is for an extension named that impersonates a popular graphics editing brand.
+
+Extension ID: hmkcidjcpomiegnklmplkimmbcbklglb
+SHA256 hash: 4e38bee33237a8c8b17a2504013e506ca7cbf667a7f68a2d94d75db505c2149f
+
+It exploits the onInstalled listener that opens a “thank you” page immediately after installation, as noted in Figure 13. Figure 14 shows the result of the thanks.html page.
+Figure 13. Snippet showing onInstalled listener opening a forced tab for thanks.html.
+Figure 14. (Left) Impersonating graphics extension (right) Thank you page, on install it drives traffic to third-party browser install.
+Of note, the thanks.html file communicated with a URL hosted on xuix[.]top, which redirected to the newextensioninstallweb[.]com/2025 URL noted in Figure 14.
+Spyware: 会译:一站式 AI 翻译 Agent｜对照式DeepL翻译｜DeepSeek划词翻译｜免费
+Spyware is malware designed to covertly monitor and collect user activity, browsing behavior and personal data without explicit consent. This case study is for a Chinese language extension from Huiyi named 会译:一站式 AI 翻译 Agent｜对照式DeepL翻译｜DeepSeek划词翻译｜免费 that acts as spyware.
+
+Extension ID: dgeiaiglmhdhajbpfbmajaajdlfdinpi
+SHA256 hash: c9754454efede2dec2fcb856faa40424b8df378706b664a5ae4847fcd0336b53
+
+This extension provides functional Chinese-English translation. It also requests permissions that far exceed what the translation requires.
+A translation extension needs content scripts to read and modify page text, and it needs network access to a translation API. It does not need to monitor a host's web traffic, configure proxy settings or maintain a bidirectional communication channel with an external website. This extension requests all of these permissions as noted in Figure 15.
+Figure 15. Manifest snippet showing broad permissions and external connectivity to huiyiai[.]net.The extension registers chrome.webRequest.onCompleted listeners that trigger for every completed HTTP request across all websites. Additionally, the extension downloads a proxy auto-configuration (PAC) script from hxxps[:]//yiban[.]io/extension/proxy.pac?t=huiyi on startup and applies it via chrome.proxy.settings.set() as noted in Figure 16.
+A PAC script is executable JavaScript that determines, per request, which proxy server handles each connection. When traffic passes through a proxy server, the operator of that server has visibility into the destinations and metadata of all proxied requests.
+Figure 16. Snippet showing malicious proxy hijacking via dynamically fetched content.
+As noted in Figure 16, the extension fetches a PAC script (proxy.pac) from the URL at yiban[.]io. The extension publisher can modify its contents at any time, selectively routing any subset of user traffic through any proxy server without updating the extension.
+AI-Accelerated Campaigns
+Beyond malware discovery, we observed an increasing trend in threat actors using LLMs to produce high-risk extensions. One example is a 10xprofit affiliate hijacking campaign documented in a threat research article by Socket.
+The campaign runs six extensions that silently inject affiliate tags into several popular online retailers or fast fashion brands without user consent. Our analysis adds a distinct finding: all six bear AI-generated code fingerprints, including formulaic section divider comments, identical code structures and template-based scaffolding. This is despite targeting different e-commerce platforms. Figure 17 below shows an example of the code structure.
+Figure 17. Extension code showing AI-generated indicators from the 10xprofit affiliate hijacking campaign.
+Conclusion
+The extensions uncovered in our research represent more than isolated incidents. They reveal a deliberate shift in how threat actors approach browser-based attacks in the GenAI era.
+Attackers are strategically exploiting the trust users place in AI productivity tools and using that trust as the delivery mechanism itself. Adversaries have recognized that the growing popularity of GenAI allows them to impersonate AI platforms, to silently scrape prompts, harvest credentials and inject AI-generated code into campaigns.
+Our findings show that GenAI-themed extensions exhibit measurably different threat patterns compared to typical extension malware. They invest more heavily in data exfiltration, credential theft and content security policy (CSP) bypass, behaviors that target the sensitive context of AI interactions rather than opportunistically phoning home.
+Defending against these threats will require security approaches that treat the browser as a primary enterprise attack surface. Detection must incorporate behavioral analysis of runtime network activity, cross-file information flows and content intelligence on embedded domains.
+Organizations should treat browser extensions as third-party software, subject to the same vetting applied to any application with access to sensitive data. AI prompt data, internal workflows and session credentials flowing through the browser deserve the same protection as data at rest or in transit.
+Palo Alto Networks Protection and Mitigation
+Palo Alto Networks customers are better protected from the threats discussed above through the following products:
+
+Advanced URL Filtering and Advanced DNS Security identify known domains and URLs associated with this activity as malicious.
+Prisma Browser provides protection against malicious browser extensions, including examples described in this article, with the integrated advanced extension security. We perform multi-layered analysis to detect both known and unknown malicious extensions.
+Prisma AIRS is designed to provide layered, real-time protection for AI systems by detecting and blocking threats, preventing data leakage and enforcing secure usage policies across a variety of AI applications.
+The Advanced WildFire machine-learning models and analysis techniques have been reviewed and updated in light of the indicators shared in this research.
+
+If you think you may have been compromised or have an urgent matter, get in touch with the Unit 42 Incident Response team or call:
+
+North America: Toll Free: +1 (866) 486-4842 (866.4.UNIT42)
+UK: +44.20.3743.3660
+Europe and Middle East: +31.20.299.3130
+Asia: +65.6983.8730
+Japan: +81.50.1790.0200
+Australia: +61.2.4062.7950
+India: 000 800 050 45107
+South Korea: +82.080.467.8774
+
+Palo Alto Networks has shared these findings with our fellow Cyber Threat Alliance (CTA) members. CTA members use this intelligence to rapidly deploy protections to their customers and to systematically disrupt malicious cyber actors. Learn more about the Cyber Threat Alliance.
+Acknowledgments
+We’d like to thank the entire Unit 42 team for supporting us with this article. Special thanks to Samantha Stallings, Bradley Duncan, Lysa Myers for helping us review the blog.
+Indicators of Compromise
+Table 2 lists 18 high-risk Chrome extensions masquerading as AI applications.
+
+
+
+User Count
+Extension ID
+Extension Name
+Version
+Associated URL, Domain or Server
+
+
+1000
+fpeabamapgecnidibdmjoepaiehokgda
+Chrome MCP Server - AI Browser Control
+1.0.1
+mcp-browser.qubecare[.]ai
+
+
+30000
+oaldjcdohhhibelagdhoahbedekfjjjf
+browser cash
+1.0.3
+browser[.]cash
+
+
+7000
+nbflcljmdbibeoaipongjgfmbapanipm
+Anker AIME Copilot
+1.0.2
+172.16.18[.]184:5443/web-info
+
+
+4000
+ffocfibjgakneigiajpccfcdmomlbapo
+Nano Banana
+1.3.0
+banana.summarizer[.]one/quota
+
+
+5000
+npifianbfjhobabjjpfdjjihgbdnbojh
+Text Summarizer
+1.1.0
+ws[:]//158.160.66[.]115:40000/summary
+
+
+2000
+pfdmleklaejjccgfhoeafapbhkjipcnj
+Google AI
+1.2
+N/A
+
+
+20000
+dgeiaiglmhdhajbpfbmajaajdlfdinpi
+会译:一站式 AI 翻译 Agent｜对照式DeepL翻译｜DeepSeek划词翻译｜免费
+1.6.16
+N/A
+
+
+1000
+hnppehcgmflfkcdkbkaeemjfngffmeag
+AI Agent
+1.9
+199.80.55[.]27:3130
+
+
+3000
+ljlhpcabhpjdlcjhbmgjigfceppgabmk
+Notion中文版
+1.1.0
+notionapp[.]cn
+
+
+1511
+pdahnbohfcekobflehebdkoemnmmempk
+Notion中文版
+1.0.6
+N/A
+
+
+192
+jndldoeopjgmpakgmieaeeelhnjnfgkj
+NotionAI插件
+1.1.4
+N/A
+
+
+563
+bonhfflnjgdbnhcpjemkknlhimceckgb
+Agent Risk Reminder Remover - CNFans, ACBuy & More
+1.0.1
+N/A
+
+
+1
+iefpkdilnfhogjbkhgnliaomoldgkdlj
+Reverse Recruiting - AI Job Application Assistant
+0.3.0
+api.reverserecruiting[.]io/
+
+
+2000
+jhhjbaicgmecddbaobeobkikgmfffaeg
+Chat AI for Chrome
+1.1.2
+chatgptforchrome[.]com
+
+
+579
+hmkcidjcpomiegnklmplkimmbcbklglb
+[Redacted]: AI Photo, Video
+1.0
+xuix[.]top
+
+
+1000
+cjmhegifablecgkkncjddcgkjmgoacfd
+Ask AI - GPT chat
+1.1
+vomet[.]ru
+
+
+608
+dcjfbgppfdokmjgajnnkgdmkdeiloigh
+Picsart: AI Photo Video Editor
+1.1
+pic-editor-chromeextension[.]uno
+
+
+17
+eebihieclccoidddmjcencomodomdoei
+Supersonic AI
+1.0.6
+gosupersonic[.]email
+
+
+
+Table 2. Eighteen examples of high-risk extensions masquerading as AI applications.
+Additional Resources
+
+Malicious GenAI Chrome extensions: unpacking data exfiltration and malicious behaviours – Shresta B.Seetharam, Mohamed Nabeel and William Melicher, presented at Virus Bulletin 2025
+
+
+
+Back to top
+
+TagsAI browserBrowser extensionGenAIInfostealerMalwareRemote Access TrojanSearch hijackerSpyware
+
+
+
+Threat Research Center
+
+
+Next: TGR-STA-1030: New Activity in Central and South America
+
+
+
+
+
+
+
+Table of Contents
+
+
+
+
+
+
+Related Articles
+
+
+
+                      Spring Ring: An Inside Look at Voice Phishing Campaigns in Microsoft Teams                  
+
+
+
+                      Identity Abuse Through Trusted Communication Channels                  
+
+
+
+                      The Xcode Assassin Returns: A Deep Dive Into the Latest XCSSET Version                  
+
+
+
+
+
+
+
+
+
+Related Malware Resources
+
+
+
+
+ 
+
+
+
+Threat Research September 29, 2026
+
+OperTraitors: How Kubernetes Operators Betray Your Security Posture
+
+
+
+AI
+
+
+AI agents
+
+
+API
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Insights September 16, 2026
+
+Atomic macOS (AMOS) Stealer Activity
+
+
+
+MacOS
+
+
+Threat intelligence
+
+
+Unit 42
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research September 10, 2026
+
+The Machine With Many Faces: Post-Exploitation Identity Misuse in SPIFFE/SPIRE
+
+
+
+API
+
+
+Cryptographic
+
+
+JSON
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research September 9, 2026
+
+Untracked Nightmares: The Threats Hiding Behind Commodity Infrastructure
+
+
+
+ARKTunnel
+
+
+C2
+
+
+CL-CRI-1171
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research September 3, 2026
+
+Attackers Expose Ongoing AI Tool Use Targeting Organizations in Latin America
+
+
+
+Agentic AI
+
+
+ChatGPT
+
+
+CL-CRI-1131
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research August 31, 2026
+
+Spring Ring: An Inside Look at Voice Phishing Campaigns in Microsoft Teams
+
+
+
+Cloaked Ursa
+
+
+Entra ID
+
+
+Microsoft Teams
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research August 25, 2026
+
+The State of AI-Enabled Malware August 2026: From Brand Abuse to Agentic Execution
+
+
+
+Backdoor
+
+
+Bitcoin
+
+
+DLL hijacking
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research August 20, 2026
+
+Identity Abuse Through Trusted Communication Channels
+
+
+
+Authentication
+
+
+Identity theft
+
+
+Malware
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research August 11, 2026
+
+Kimwolf v7: An Evolution of the Kimwolf Botnet
+
+
+
+Android APK
+
+
+Ethereum
+
+
+HTTP
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+ 
+
+
+
+Threat Research August 10, 2026
+
+The Permanent Threat: Analyzing Aeternum’s Blockchain-Based C2 Operations and Communications
+
+
+
+Aeternum
+
+
+Infection chain
+
+
+JSON
+ 
+
+
+                    Read now                    
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
+				Get updates from Unit 42			
+Peace of mind comes from staying ahead of threats. Subscribe today.
+
+
+
+
+
+
+
+
+
+
+Your Email
+
+
+Subscribe for email updates to all Unit 42 threat research.
+By submitting this form, you agree to our Terms of Use and acknowledge our Privacy Statement.
+
+                    This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.                            
+  
+
+Invalid captcha!
+ 
+					Subscribe					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Get the latest news, invites to events, and threat alerts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Enter your email now to subscribe!
+
+
+
+
+
+Sign up 
+
+
+
+
+                                
+                                
+                                
+                                    By submitting this form, I understand my personal data will be processed in accordance with
+                                        Palo Alto Networks Privacy Statement and Terms of Use.
+
+
+
+Sign up 
+
+
+
+
+
+
+
+
+
+
+
+
+Products and Services
+
+
+
+
+
+                                    AI-Powered Network Security Platform
+                                
+
+
+
+                                    Secure AI by Design
+                                
+
+
+
+                                    Prisma AIRS
+                                
+
+
+
+                                    AI Access Security
+                                
+
+
+
+                                    Cloud Delivered Security Services
+                                
+
+
+
+                                    Advanced Threat Prevention
+                                
+
+
+
+                                    Advanced URL Filtering
+                                
+
+
+
+                                    Advanced WildFire
+                                
+
+
+
+                                    Advanced DNS Security
+                                
+
+
+
+                                    Enterprise Data Loss Prevention
+                                
+
+
+
+                                    Enterprise IoT Security
+                                
+
+
+
+                                    Medical IoT Security
+                                
+
+
+
+                                    Industrial OT Security
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    Next-Generation Firewalls
+                                
+
+
+
+                                    Hardware Firewalls
+                                
+
+
+
+                                    Software Firewalls
+                                
+
+
+
+                                    Strata Cloud Manager
+                                
+
+
+
+                                    SD-WAN for NGFW
+                                
+
+
+
+                                    PAN-OS
+                                
+
+
+
+                                    Panorama
+                                
+
+
+
+                                    Secure Access Service Edge
+                                
+
+
+
+                                    Prisma SASE
+                                
+
+
+
+                                    Application Acceleration
+                                
+
+
+
+                                    Autonomous Digital Experience Management
+                                
+
+
+
+                                    Enterprise DLP
+                                
+
+
+
+                                    Prisma Access
+                                
+
+
+
+                                    Prisma Browser
+                                
+
+
+
+                                    Prisma SD-WAN
+                                
+
+
+
+                                    Remote Browser Isolation
+                                
+
+
+
+                                    SaaS Security
+                                
+
+
+
+
+
+                                    AI-Driven Security Operations Platform
+                                
+
+
+
+                                    Cloud Security
+                                
+
+
+
+                                    Cortex Cloud
+                                
+
+
+
+                                    Application Security
+                                
+
+
+
+                                    Cloud Posture Security
+                                
+
+
+
+                                    Cloud Runtime Security
+                                
+
+
+
+                                    Prisma Cloud
+                                
+
+
+
+                                    AI-Driven SOC
+                                
+
+
+
+                                    Cortex XSIAM
+                                
+
+
+
+                                    Cortex XDR
+                                
+
+
+
+                                    Cortex XSOAR
+                                
+
+
+
+                                    Cortex Xpanse
+                                
+
+
+
+                                    Unit 42 Managed Detection & Response
+                                
+
+
+
+                                    Managed XSIAM
+                                
+
+
+
+                                    Observability
+                                
+
+
+
+                                    Cortex XCOR
+                                
+
+
+
+
+
+                                    Next-Generation Identity Security
+                                
+
+
+
+                                    Privileged Access Management
+                                
+
+
+
+                                    Identity and Access Management 
+                                
+
+
+
+                                    Endpoint Privilege Manager
+                                
+
+
+
+                                    Identity Governance
+                                
+
+
+
+                                    Workforce Password Management
+                                
+
+
+
+                                    Agentic Identities
+                                
+
+
+
+                                    Secrets Management
+                                
+
+
+
+                                    Unified Secrets Governance
+                                
+
+
+
+                                    Application Credentials Delivery
+                                
+
+
+
+                                    Vendor Privileged Access
+                                
+
+
+
+                                    Threat Intel and Incident Response Services
+                                
+
+
+
+                                    Prepare for Emerging Risks
+                                
+
+
+
+                                    Strengthen Your Defenses
+                                
+
+
+
+                                    Build Your Security Strategy
+                                
+
+
+
+                                    Understand the Adversary
+                                
+
+
+
+                                    Respond to a Cyber Attack
+                                
+
+
+
+
+
+
+Company
+
+
+
+
+
+                                    About Us
+                                
+
+
+
+                                    Careers
+                                
+
+
+
+                                    Contact Us
+                                
+
+
+
+                                    Corporate Responsibility
+                                
+
+
+
+                                    Customers
+                                
+
+
+
+                                    Investor Relations
+                                
+
+
+
+                                    Location
+                                
+
+
+
+                                    Newsroom
+                                
+
+
+
+
+
+
+Popular Links
+
+
+
+
+
+                                    Blog
+                                
+
+
+
+                                    Communities
+                                
+
+
+
+                                    Content Library
+                                
+
+
+
+                                    Cyberpedia
+                                
+
+
+
+                                    Event Center
+                                
+
+
+
+                                    Manage Email Preferences
+                                
+
+
+
+                                    Products A-Z
+                                
+
+
+
+                                    Product Certifications
+                                
+
+
+
+                                    Report a Vulnerability
+                                
+
+
+
+                                    Sitemap
+                                
+
+
+
+                                    Tech Docs
+                                
+
+
+
+                                    Unit 42
+                                
+
+
+
+                                    Do Not Sell or Share My Personal Information
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Privacy
+                            
+
+
+
+                                Trust Center
+                            
+
+
+
+                                Terms of Use
+                            
+
+
+
+                                Documents
+                            
+
+
+Copyright © 2026 Palo Alto Networks. All Rights Reserved
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+EN
+
+
+
+Select your language
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Your browser does not support the video tag.
+          
+
+Default Heading
+Read the article
+              
+
+
+
+
+Seekbar
+
+
+
+
+
+
+
+
+
+
+
+
+
+Volume
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,691 @@
+
+
+
+Largest Patch Tuesday in 3 months includes 5 critical vulnerabilities
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Intelligence Center
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+
+BACK
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Vulnerability Research
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vulnerability Research
+
+
+BACK
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Incident Response
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Incident Response
+
+
+
+BACK
+
+
+Reactive Services
+
+
+Proactive Services
+
+Emergency Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blog
+
+
+
+
+
+
+
+
+
+Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            More
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+                            Security Resources
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Security Resources
+
+
+BACK
+
+
+
+
+Security Resources
+
+
+Open Source Security Tools
+
+
+Intelligence Categories Reference
+
+
+Secure Endpoint Naming Reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Media
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Media
+
+
+BACK
+
+
+
+
+Media
+
+
+Talos Intelligence Blog
+
+
+Threat Source Newsletter
+
+
+Beers with Talos Podcast
+
+
+Talos Takes Podcast
+
+
+Talos Videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Company
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+
+BACK
+
+
+
+
+Company
+
+
+About Talos
+
+
+Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Largest Patch Tuesday in 3 months includes 5 critical vulnerabilities
+
+
+By 
+Tiago Pereira
+
+
+
+            Tuesday, July 9, 2024 14:01
+        
+
+
+                            Patch Tuesday
+                        
+
+
+
+
+Microsoft released its monthly security update on Tuesday, disclosing 142 vulnerabilities across its suite of products and software. Of those, there are five critical vulnerabilities, and every other security issue disclosed this month is considered "important."This is the largest Patch Tuesday since April when Microsoft patched 150 vulnerabilities.Of the critical vulnerabilities, two are considered more likely to be exploited:CVE-2024-38023, a remote code execution vulnerability in Microsoft SharePoint server, where an authenticated attacker with Site Owner permissions can use the vulnerability to execute arbitrary code in the context of SharePoint server.CVE-2024-38060, a remote code execution vulnerability in Microsoft Windows Codecs Library that can be exploited by an authenticated attacker who uploads a specially crafted malicious TIFF file.There are three other critical vulnerabilities listed in this advisory. All three (CVE-2024-38074, CVE-2024-38076 and CVE-2024-38077) are remote code execution vulnerabilities in Windows Remote Desktop Licensing Service. In all of them, an attacker could send a specially crafted network packet which could cause remote code execution. In the case of CVE-2024-38077, the adversary does not need to be authenticated.All the remaining vulnerabilities are considered important. Of these, CVE-2024-38080 is particularly relevant because Microsoft has acknowledged that it’s already being exploited in the wild. An adversary could exploit this elevation of privilege vulnerability in Windows Hyper-V to gain System privileges.Cisco Talos' Vulnerability Research team discovered another elevation of privilege vulnerability, CVE-2024-38062, in the kernel-mode driver. An adversary could also exploit this vulnerability to gain System privileges. Microsoft considers the complexity of this attack to be "low," though it's "less likely" to be exploited.Several other “important” vulnerabilities could lead to remote code execution and are identified by Microsoft as being “more likely” to be exploited.CVE-2024-38021 is a remote code execution vulnerability in Microsoft Office. An attacker could craft a malicious link that bypasses the Protected View Protocol, leading to the leaking of local NTLM credentials and remote code execution.CVE-2024-38024 is a remote code execution vulnerability in Microsoft SharePoint Server. An adversary could exploit this issue by uploading a specially crafted file to the targeted SharePoint Server and crafting specialized API requests to trigger the deserialization of a file's parameters, leading to arbitrary code execution in the context of the SharePoint server. However, this attacker would need to have Site Owner permissions or higher.CVE-2024-38094 is another vulnerability in SharePoint servers. Adversaries with Site Owner permissions can use this vulnerability to inject arbitrary code and execute code in the context of a SharePoint server.A complete list of all the vulnerabilities Microsoft disclosed this month is available on its update page.  In response to these vulnerability disclosures, Talos is releasing a new Snort rule set that detects attempts to exploit some of them. Please note that additional rules may be released at a future date, and current rules are subject to change pending additional information. Cisco Secure Firewall customers should use the latest update to their rule set by updating their SRU. Open-source Snort Subscriber Rule Set customers can stay up-to-date by downloading the latest rule pack available for purchase on Snort.org.  The rules included in this release that protect against the exploitation of many of these vulnerabilities are 63687 - 63690, 63693, 63694 and 63697 - 63700. There are also Snort 3 rules 300958 - 300961.
+
+
+
+Share this post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Content
+
+
+Microsoft Patch Tuesday for September 2026 — Snort rules and prominent vulnerabilities
+September 8, 2026 18:16
+Microsoft has released its monthly security update for September 2026, which includes 973 vulnerabilities affecting a range of products, including 113 that Microsoft marked as "critical."
+
+
+
+
+Microsoft Patch Tuesday for August 2026 — Snort rules and prominent vulnerabilities
+August 11, 2026 18:21
+Microsoft has released its monthly security update for August 2026, which includes 421 vulnerabilities affecting a range of products, including 62 that Microsoft marked as "critical."
+
+
+
+
+Microsoft Patch Tuesday for July 2026 — Snort rules and prominent vulnerabilities
+July 14, 2026 16:27
+Microsoft has released its monthly security update for July 2026, which includes 622 vulnerabilities affecting a range of products, including 57 that Microsoft marked as "critical."
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Intelligence Center
+
+Intelligence Search
+Email & Spam Trends
+
+
+
+
+
+Vulnerability Research
+
+Vulnerability Reports
+Microsoft Advisories
+
+
+
+
+
+Incident Response
+
+
+Reactive Services
+
+
+Proactive Services
+
+
+Emergency Support
+
+
+
+
+
+
+Security Resources
+
+Open Source Security Tools
+Intelligence Categories Reference
+Secure Endpoint Naming Reference
+
+
+
+
+
+Media
+
+Talos Intelligence Blog
+Threat Source Newsletter
+Beers with Talos Podcast
+Talos Takes Podcast
+Talos Videos
+
+
+
+
+
+Support
+
+Support Documentation
+
+
+
+
+
+Company
+
+About Talos
+Careers
+Cisco Security
+
+
+
+
+
+
+
+Follow us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ©
+                
+                Cisco Systems, Inc. and/or its affiliates. All rights
+                reserved. View our
+                Privacy Policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

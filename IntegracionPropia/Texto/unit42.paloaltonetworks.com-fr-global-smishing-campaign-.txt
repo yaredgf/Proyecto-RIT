@@ -1,0 +1,1532 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Un déluge de smishing : Une campagne chinoise inonde le monde de SMS frauduleux
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Menu
+
+
+
+
+
+
+ATOMs
+Security Consulting
+Under Attack?
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+French
+
+
+
+
+
+English
+
+
+Spanish (LATAM)
+
+
+French
+
+
+Japanese
+
+
+
+
+
+  Threat Research CenterRecherche sur les menacesMalware 
+ 
+Malware
+Un déluge de smishing : Une campagne chinoise inonde le monde de SMS frauduleux
+
+
+  13  minutes de lecture              
+
+
+Related ProductsAdvanced DNS SecurityAdvanced URL FilteringCloud-Delivered Security Services 
+
+
+
+
+
+
+
+
+Par:Reethika RameshDaiping LiuChi-Wei LiuShehroze FarooqiMoe GhasemisharifZhanhao Chen 
+
+Publié:23 octobre 2025 CatégoriesMalwareRecherche sur les menaces
+ Tags:PhishingSmishingSocial engineering
+ 
+
+
+ 
+ 
+
+
+Partager
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+Résumé exécutif
+Nous attribuons une campagne de smishing (hameçonnage par SMS) en cours, basée sur de fausses notifications d'infraction de péage et d'échec de livraison de colis, à un groupe largement connu sous le nom de "Smishing Triad". Notre analyse indique que cette campagne constitue une menace bien plus étendue et complexe que ce qui avait été rapporté précédemment. Les attaquants ont usurpé des services internationaux dans un large éventail de secteurs critiques.
+Les attaquants ciblent les résidents américains dans cette campagne depuis avril 2024. L'acteur de la menace fait évoluer ses tactiques en étendant sa portée à l'échelle mondiale et en améliorant les tactiques d'ingénierie sociale utilisées dans le smishing lié aux livraisons.
+L'acteur de la menace élargit également la gamme de services qu'il usurpe pour inclure de nombreux services internationaux dans des secteurs critiques, tels que :
+
+Services bancaires
+Plateformes de cryptomonnaies
+Plateformes d'e-commerce
+Soins de santé
+Forces de l'ordre
+Médias sociaux
+
+La campagne est hautement décentralisée, dépourvue d'un point de contrôle unique, et utilise un grand nombre de domaines ainsi qu'un ensemble diversifié d'infrastructures d'hébergement. C'est un avantage pour les attaquants, car le renouvellement de milliers de domaines chaque semaine rend la détection plus difficile.
+Grâce à notre cadre de renseignement (intelligence framework), nous avons identifié plus de 194 000 domaines malveillants liés à cette opération depuis le 1er janvier 2024. Bien que ces domaines soient enregistrés via un bureau d'enregistrement basé à Hong Kong (registrar) et utilisent des serveurs de noms (nameservers) chinois, l'infrastructure d'attaque est principalement hébergée sur des services cloud américains populaires.
+Cette campagne utilise les SMS pour l'ingénierie sociale afin de créer un sentiment d'urgence et d'inciter les victimes à une action immédiate. L'échelle mondiale de la campagne, son infrastructure complexe et ses pages d'hameçonnage réalistes suggèrent fortement qu'elle est alimentée par une opération de type PhaaS (Phishing-as-a-Service) d'envergure et dotée de ressources importantes. Cela pose une menace généralisée pour les individus à l'échelle mondiale. Ces pages d'hameçonnage visent à collecter des informations sensibles telles que les numéros d'identification nationaux (comme les numéros de sécurité sociale), les adresses postales, les détails de paiement et les identifiants de connexion.
+Les clients de Palo Alto Networks bénéficient d'une protection renforcée contre cette activité grâce aux produits et services suivants :
+
+Advanced URL Filtering et Advanced DNS Security
+
+Si vous pensez avoir été compromis ou si vous avez une question urgente, contactez l'équipe d'Intervention sur Incident de Unit 42.
+
+
+
+Sujets Unit 42 associés
+Hameçonnage (Phishing), SMS
+
+
+
+Analyse technique de la campagne étendue de "Smishing Triad"
+Plus tôt cette année, nous avons publié des posts de renseignement sur les menaces (threat intelligence) en temps opportun, rapportant notre découverte de plus de 10 000 domaines impliqués dans des arnaques par smishing. Par la suite, nous avons trouvé et bloqué plus de 91 500 domaines impliqués dans la même arnaque. Depuis la publication de ces informations, nous avons continué à suivre et analyser les acteurs de la menace et les domaines derrière ces escroqueries par smishing.
+Le fournisseur de sécurité Resecurity attribue ces attaques à la Smishing Triad, signalant que le groupe partage des kits d'hameçonnage sur Telegram et d'autres services. Cette découverte est corroborée par des rapports de suivi de Silent Push. Cependant, notre analyse révèle que la portée de la campagne est beaucoup plus large et évolue plus rapidement qu'on ne le savait auparavant.
+De nombreux indicateurs suggèrent que la campagne est en constante évolution. Un article de Fortinet a souligné le fait que les acteurs de la menace utilisent des fonctionnalités "email-to-SMS". Cet article note que des adresses email arbitraires peuvent être utilisées pour envoyer des messages via iMessage. Cependant, nous avons observé que des messages de smishing plus récents ont commencé à utiliser des numéros de téléphone.
+Beaucoup de ces messages sont reçus depuis des numéros de téléphone commençant par l'indicatif international des Philippines (+63). Cependant, un nombre croissant de messages de cette campagne est également reçu depuis des numéros de téléphone américains (+1).
+Suivre tous les domaines de cette campagne est difficile en raison de sa nature décentralisée. Les domaines d'attaque ont une vie courte et sont constamment renouvelés, avec des milliers d'enregistrements quotidiens. L'évolution rapide de la campagne souligne que le suivi des domaines racine en utilisant uniquement des schémas lexicaux (lexical patterns) n'est pas suffisant.
+Nous avons développé un cadre de renseignement à multiples facettes pour suivre cette campagne. Il synthétise les données des sources suivantes :
+
+Métriques de réputation WHOIS et DNS passif (pDNS)
+Évolution des schémas de domaines (domain patterns)
+Regroupement visuel (visual clustering) de captures d'écran
+Analyse d'infrastructure basée sur les graphes
+
+En utilisant notre cadre de renseignement à multiples facettes, nous avons trouvé un total de 194 345 noms de domaine complets (FQDN) répartis sur 136 933 domaines racine associés à cette campagne. Ces domaines racine ont été enregistrés à partir du 1er janvier 2024.
+La majorité de ces domaines est enregistrée via Dominet (HK) Limited, un bureau d'enregistrement basé à Hong Kong, et utilise des serveurs de noms chinois. Bien que l'enregistrement des domaines et l'infrastructure DNS proviennent de Chine, l'infrastructure d'attaque (les adresses IP d'hébergement) est concentrée aux États-Unis, en particulier au sein de services cloud populaires.
+Nous constatons que les domaines de cette campagne usurpent des services mondiaux dans de nombreux secteurs, notamment :
+
+Services critiques : Banque, santé et forces de l'ordre (par exemple, des sociétés multinationales de services financiers et d'investissement, des forces de police de villes du Moyen-Orient)
+Services largement utilisés : E-commerce, médias sociaux, jeux en ligne et plateformes d'échange de cryptomonnaies (par exemple, plusieurs marchés d'e-commerce et plateformes d'échange de cryptomonnaies basés en Russie)
+Services précédemment signalés : Péages et services postaux et de livraison de colis étatiques mondiaux, s'étendant au-delà des États-Unis (par exemple, Israël, Canada, France, Allemagne, Irlande, Australie, Argentine)
+
+Les attaquants créent des messages SMS pour diffuser ces URL. Ceux-ci sont hautement personnalisés pour les victimes afin de les contraindre à une action immédiate. L'utilisation de techniques d'ingénierie sociale crée un sentiment d'urgence. En employant des informations personnelles ciblées et en incorporant un jargon technique ou juridique, ils peuvent paraître plus légitimes. Ces éléments, combinés à l'étendue des services imités, suggèrent qu'une vaste opération de PhaaS est à l'origine de cette campagne.
+L'Écosystème clandestin du Phishing-as-a-Service (PhaaS)
+Dans cette section, nous discutons de l'écosystème clandestin du PhaaS et examinons le canal Telegram de la "Smishing Triad". Au cours des six derniers mois, le canal est passé d'un marché dédié aux kits d'hameçonnage à une communauté très active qui rassemble divers acteurs de la menace au sein de l'écosystème PhaaS.
+La Figure 1 montre des historiques de discussion de différents participants au sein du canal. La plupart des messages font la publicité de divers services clandestins tels que l'enregistrement de domaines, la vente de données et la livraison de messages. Soulignant la concurrence intense au sein de cet écosystème, de multiples acteurs de la menace rivalisent pour offrir les mêmes services, en particulier la livraison de messages RCS (Rich Communication Services) et IM (Instant Message).
+Figure 1. Historique des discussions Telegram de différents acteurs de la menace dans l'écosystème PhaaS.
+La Figure 2 illustre ci-dessous les différents rôles actifs sur le canal Telegram de la "Smishing Triad" et leurs interactions.
+Figure 2. L'écosystème PhaaS de la "Smishing Triad".
+Les acteurs de la menace se spécialisent dans différentes étapes de la chaîne d'approvisionnement (supply chain) du smishing, ce qui leur permet de lancer des attaques de manière plus efficace et à plus grande échelle :
+
+Amont
+
+Courtier en données (Data broker) : Vend des numéros de téléphone cibles
+Vendeur de domaines : Enregistre des domaines jetables pour héberger des sites web d'hameçonnage
+Fournisseur d'hébergement : Fournit des serveurs pour exécuter les backends d'hameçonnage
+
+
+Intermédiaire
+
+Développeur de kits d'hameçonnage : Construit les sites web d'hameçonnage (frontend et backend) et maintient la plateforme PhaaS, y compris les tableaux de bord pour récolter et gérer les identifiants volés
+
+
+Aval
+
+Spammeur SMS/RCS/IM : Délivre des messages d'hameçonnage à grande échelle pour diriger les victimes vers les sites d'hameçonnage
+
+
+Support
+
+Scanner de vivacité (Liveness scanner) : Vérifie quels numéros de téléphone cibles sont valides et actifs
+Scanner de listes de blocage (Blocklist scanner) : Vérifie les domaines d'hameçonnage par rapport aux listes de blocage pour déclencher la rotation des actifs
+
+
+
+Domaines impliqués dans la campagne
+Une majorité des domaines racine impliqués dans cette campagne a été créée avec une série de chaînes de caractères séparées par des tirets, suivie d'un domaine de premier niveau (TLD) (par exemple, [string1]-[string2].[TLD])​​Dans cette section, nous décrivons la partie avant le premier tiret comme un préfixe. En conjonction avec un sous-domaine bien connu, ces préfixes pourraient potentiellement tromper les victimes. Par exemple, une inspection rapide du domaine irs.gov-addpayment[.]info pourrait faire croire aux gens qu'ils naviguent vers irs[.]gov.
+La Figure 3 montre les préfixes les plus populaires des noms de domaine utilisés dans les 136 933 domaines racine que nous avons trouvés dans cette campagne.
+Figure 3. Les 10 préfixes les plus populaires des domaines racine trouvés dans cette campagne.
+Bien que ces domaines soient enregistrés via divers bureaux d'enregistrement, une majorité significative (68,06 % soit 93 197) des domaines racine est enregistrée sous Dominet (HK) Limited, un bureau d'enregistrement basé à Hong Kong. Les bureaux d'enregistrement suivants les plus populaires sont Namesilo avec 11,85 % (16 227) et Gname avec 7,94 % (10 873) des domaines racine.
+Tendances d'enregistrement des domaines
+Les dates de création WHOIS montrées dans la Figure 4 révèlent un changement intéressant. Nous avons sélectionné les 10 préfixes de domaine les plus populaires de cette campagne. Les domaines avec le préfixe com- étaient les plus couramment enregistrés dans cette campagne jusqu'en mai 2025. Cependant, au cours des trois derniers mois, nous avons observé une augmentation significative de l'enregistrement des domaines gov- par rapport aux domaines com-. Cela indique que la campagne évolue pour s'adapter aux types de services qu'elle usurpe.
+Figure 4. Dates de création WHOIS pour les domaines appartenant à cette campagne.
+Durée de vie des domaines
+Nous avons également évalué la durée de vie des domaines utilisés dans cette campagne à l'aide des données pDNS. La durée de vie d'un domaine est la durée entre ses premiers ("first seen") et derniers ("last seen") horodatages.
+Comme détaillé dans la Figure 5, 39 964 (29,19 %) domaines ont été actifs pendant deux jours ou moins. Nous avons vu que 71,3 % de ces domaines étaient actifs pendant moins d'une semaine et 82,6 % avaient une durée de vie de deux semaines ou moins.
+Moins de 6 % des domaines restent actifs au-delà des trois premiers mois de leur enregistrement. Ce renouvellement (churn) rapide démontre clairement que la stratégie de la campagne repose sur un cycle continu de domaines nouvellement enregistrés pour échapper à la détection.
+Figure 5. Distribution de la durée de vie des domaines à partir des données pDNS.
+Infrastructure réseau
+Comme mentionné précédemment, les domaines impliqués dans ces campagnes sont hautement décentralisés. Dans cette section, nous examinons l'infrastructure réseau de la campagne.
+Infrastructure DNS
+Les 194 345 FQDN de cette campagne se résolvent en un ensemble vaste et diversifié d'environ 43 494 adresses IP uniques. La campagne utilise une majorité d'adresses IP américaines hébergées sur le Système Autonome AS13335, en particulier dans le sous-réseau 104.21.0[.]0/16.
+En revanche, l'infrastructure des serveurs de noms (nameservers) est plus concentrée, avec seulement 837 domaines racine de serveurs de noms uniques. Une grande majorité des FQDN utilise seulement deux fournisseurs : AliDNS (45,6 %) et Cloudflare (34,6 %). Cette centralisation suggère que si l'hébergement web de la campagne est largement distribué, sa gestion DNS est consolidée sous quelques services clés.
+Graphe de l'infrastructure de la campagne
+Dans la Figure 6, nous présentons un exemple de graphe illustrant cette campagne. Nous voyons qu'il y a 90 domaines racine différents pointant vers un ensemble d'adresses IP dans le sous-réseau 104.21.0[.]0/16 appartenant à AS13335. Il existe plusieurs clusters localisés de ce type pour chaque adresse IP et serveur de noms.
+Figure 6. Graphe de la campagne illustrant 90 domaines racine différents pointant vers un ensemble d'adresses IP dans le sous-réseau 104.21.0[.]0/16.Le service postal des États-Unis (USPS) est le service le plus usurpé avec 28 045 FQDN. La catégorie plus large des services de péage est la catégorie la plus usurpée dans cette campagne, avec près de 90 000 FQDN d'hameçonnage dédiés.
+Nous présentons des exemples de domaines qui se font passer pour différents types de services dans la section Marques et Services Usurpés.
+Géolocalisation de l'infrastructure des domaines d'attaque
+Les domaines d'attaque sont hébergés sur différentes adresses IP qui sont géolocalisées dans divers pays. Pour identifier les domaines générant le plus de trafic, nous avons analysé la distribution des requêtes pDNS pour trouver le volume de requêtes DNS pour tous les domaines de la campagne.
+Nous avons agrégé le nombre de réponses DNS par domaine et géolocalisé les adresses IP dans ces réponses. Les requêtes vers des domaines situés aux États-Unis représentent plus de la moitié du volume des requêtes, comme le montre la Figure 7. L'infrastructure d'attaque pour les domaines générant le plus grand volume de trafic était située aux États-Unis, suivis de la Chine et de Singapour.
+Figure 7. Distribution des requêtes DNS vers les domaines d'attaque par géolocalisation des adresses IP.
+Marques et services usurpés
+Une grande partie de l'infrastructure d'attaque que nous avons observée était basée aux États-Unis, et les services usurpés reflétaient cela. Cependant, nous avons également identifié des attaquants usurpant des services dans d'autres pays.
+Forte concentration sur les États-Unis
+La campagne cible les individus. Elle envoie des messages qui se font passer pour diverses organisations commerciales ainsi que des bureaux gouvernementaux étatiques et fédéraux américains, tels que :
+
+Services postaux et de livraison de colis commerciaux et étatiques
+Agences nationales des véhicules et des permis de conduire
+Services ou agences fiscales étatiques et fédérales
+
+Nous avons également trouvé des mentions de noms d'États américains et de leurs abréviations à deux lettres dans les FQDN.
+Marques et services mondiaux
+
+Services critiques : Cette campagne comprend souvent des messages qui imitent ceux qui pourraient provenir de services critiques tels que les services postaux, les services de paiement de péage, les forces de l'ordre et les banques dans plusieurs pays :
+Les États-Unis (banques, services postaux et de livraison, péages)
+
+L'Allemagne (services postaux et de livraison, banques d'investissement et caisses d'épargne)
+Les Émirats arabes unis (forces de police de plusieurs villes)
+Le Royaume-Uni (services publics)
+La Malaisie, le Mexique (banques)
+L'Argentine, l'Australie, le Canada, la France, l'Irlande, Israël, la Russie (péages électroniques, ainsi que services postaux et de livraison).
+
+
+Services généraux : La campagne implique l'usurpation de messages provenant de nombreux services généraux tels que :
+Applications de covoiturage
+
+Plateformes en ligne de partage de logements et de services d'hospitalité
+Sites de médias sociaux populaires
+
+
+Typosquatting : Nous avons observé plusieurs FQDN utilisés dans cette campagne qui font du typosquatting de services populaires, y compris des applications de technologie financière et des services de cloud personnel.
+
+Plateformes d'e-commerce et de paiement en ligne : Cette campagne usurpe également plusieurs grandes plateformes d'e-commerce en :
+
+
+Russie
+
+Pologne
+Lituanie
+Autres pays à l'international
+
+
+Plateformes d'échange de cryptomonnaies : Nous avons découvert que la campagne usurpe également des plateformes d'échange de cryptomonnaies, des portefeuilles (wallets) et des plateformes Web3.
+
+Lié aux jeux vidéo : Nous avons trouvé des FQDN utilisés dans cette campagne liés à des jeux en ligne et à de faux marchés pour des skins de jeu (in-game skins).
+
+
+
+Quel contenu est hébergé ?
+Hameçonnage usurpant des banques et des services populaires
+La page de destination (landing page) la plus courante que nous avons observée contenait du contenu d'hameçonnage usurpant le service indiqué par le FQDN. La Figure 8 présente des exemples de pages d'hameçonnage conçues pour ressembler à la connexion et à la vérification d'identité d'une entreprise d'électronique grand public (5 078 FQDN) et d'une importante société de services financiers (769 FQDN). Celles-ci visent potentiellement à extraire les informations de connexion des victimes et d'autres informations sensibles telles que les numéros de sécurité sociale.
+Figure 8. Pages de destination pour les domaines usurpant des banques et des fournisseurs de services populaires.
+Hameçonnage usurpant des agences gouvernementales
+Nous avons observé des pages d'hameçonnage usurpant des services gouvernementaux tels que l'IRS (Internal Revenue Service) et les départements des véhicules des États américains, ainsi que d'autres agences liées aux transports.
+Ces pages de destination mentionnent souvent des frais de péage impayés et d'autres frais de service. Elles visent potentiellement à extraire des identifiants de connexion, des détails personnels et des informations de paiement.
+La Figure 9 montre des exemples de pages de destination de domaines usurpant des services de péage électronique spécifiques à certains États. Ils utilisent les noms des États et de leurs services dans les noms de sous-domaines et utilisent les logos et emblèmes des États dans les pages d'hameçonnage.
+Figure 9. Pages de destination pour les domaines usurpant des services de péage électronique spécifiques à certains États.
+La Figure 10 montre des exemples de pages de destination usurpant des agences gouvernementales américaines telles que l'IRS (128 FQDN). La page contient une fausse page CAPTCHA conçue pour manipuler les utilisateurs afin qu'ils exécutent des scripts malveillants sur leur machine.
+Figure 10. Pages de destination pour les domaines usurpant des agences gouvernementales.
+Échecs de livraison et faux frais de douane
+La Figure 11 montre plusieurs exemples de pages de destination contenant de faux avis d'échec de livraison, d'infraction de péage, de frais de douane internationaux associés à des services postaux et de livraison de colis populaires, et des services de péage. Celles-ci visent potentiellement à extraire des informations personnelles telles que les adresses postales, les coordonnées et les informations de paiement des victimes.
+Figure 11. Pages de destination montrant de faux échecs de livraison et de faux frais de douane.
+Conclusion
+Nous avons découvert que la campagne de smishing usurpant les services de péage américains n'est pas isolée. Il s'agit au contraire d'une campagne à grande échelle, de portée mondiale, usurpant de nombreux services dans différents secteurs. La menace est hautement décentralisée. Les attaquants enregistrent et renouvellent (churning) des milliers de domaines quotidiennement.
+Pour suivre cette activité en évolution rapide, nous avons développé un cadre de renseignement à multiples facettes qui synthétise les données des enregistrements WHOIS, du pDNS, des schémas de domaines en évolution, du regroupement visuel (visual clustering) des pages de destination et de l'analyse d'infrastructure basée sur les graphes.
+Nous conseillons au public de faire preuve de vigilance et de prudence. Les gens doivent traiter avec suspicion tout message non sollicité provenant d'expéditeurs inconnus. Nous recommandons de vérifier toute demande exigeant une action urgente en utilisant le site web ou l'application officielle du fournisseur de services. Cela doit être fait sans cliquer sur aucun lien ni appeler aucun numéro de téléphone inclus dans le message suspect.
+Protection et atténuation par Palo Alto Networks
+Les clients de Palo Alto Networks bénéficient d'une protection renforcée contre les menaces discutées ci-dessus grâce aux produits suivants :
+Advanced URL Filtering et Advanced DNS Security identifient les domaines et URL connus associés à cette activité comme malveillants.
+Si vous pensez avoir été compromis ou si vous avez une question urgente, contactez l'équipe d'Intervention sur Incident de Unit 42 ou appelez :
+
+Amérique du Nord : Numéro gratuit : +1 (866) 486-4842 (866.4.UNIT42)
+Royaume-Uni : +44.20.3743.3660
+Europe et Moyen-Orient : +31.20.299.3130
+Asie : +65.6983.8730
+Japon : +81.50.1790.0200
+Australie : +61.2.4062.7950
+Inde : 00080005045107
+
+Palo Alto Networks a partagé ces découvertes avec les autres membres de la Cyber Threat Alliance (CTA). Les membres de la CTA utilisent ces renseignements pour déployer rapidement des protections à leurs clients et pour perturber systématiquement les cyberacteurs malveillants. En savoir plus sur la Cyber Threat Alliance.
+Indicateurs de compromission (IoC)
+
+icloud.com-remove-device[.]top
+flde-lity.com-lg[.]icu
+michigan.gov-etczhh[.]cc
+utah.gov-etcfr[.]win
+irs.gov-tax[.]cfd
+irs.org.gov-tax[.]icu
+anpost.com-pay[.]online
+kveesh6.il-363[.]com
+dhl.de-yiore[.]store
+usps.com-posewxts[.]top
+e-zpass.com-etcha[.]win
+usps.com-isjjz[.]top
+flde-lity.com-jw[.]icu
+e-zpass.com-tollbiler[.]icu
+e-zpassny.com-pvbfd[.]win
+e-zpass.com-statementzz[.]world
+e-zpass.com-emea[.]top
+pikepass.com-chargedae[.]world
+e-zpass.com-etcoz[.]win
+e-zpassny.com-kien[.]top
+e-zpassny.com-xxai[.]vip
+sunpass.com-hbg[.]vip
+usps.com-hzasr[.]bid
+e-zpassny.gov-tosz[.]live
+michigan.gov-imky[.]win
+e-zpass.org-yga[.]xin
+e-zpass.org-qac[.]xin
+ezpass.org-pvwh[.]xin
+ezpassnj.gov-mhmt[.]xin
+e-zpassny.gov-hzwy[.]live
+irs.gov-addpayment[.]info
+irs.gov-mo[.]net
+israeipost.co-ykk[.]vip
+canpost.id-89b98[.]com
+anpost.id-39732[.]info
+
+Ressources supplémentaires
+
+Internet Crime Complaint Center (IC3) | Escroquerie par smishing concernant une dette pour services de péage routier – Annonce de service public du FBI, Numéro d'alerte : I-041224-PSA
+Plus de 10 000 domaines enregistrés pour du smishing usurpant des services de péage et de livraison de colis – Unit 42 Timely Threat Intelligence, GitHub
+Mise à jour sur l'activité de smishing – Unit 42 Timely Threat Intelligence, GitHub
+Smishing Triad (Acteur de la menace) – Malpedia
+Démêler les arnaques par smishing des péages routiers américains – Blog, Cisco Talos
+Smishing Triad : Un groupe d'eCrime chinois cible plus de 121 pays, introduit un nouveau kit d'hameçonnage bancaire – Silent Push
+Des arnaques par SMS ciblant le DMV (Department of Motor Vehicles) avec de faux avertissements de contravention : Ce que vous devez faire – FOX 9 KMSP
+
+
+
+Retour en haut de page
+
+ÉtiquettesPhishingSmishingSocial engineering
+
+
+
+Threat Research Center
+
+
+SuivantJingle Thief : Au cœur d'une campagne de fraude à la carte-cadeau centrée sur le cloud
+
+
+
+
+
+
+
+SOMMAIRE
+
+
+
+
+
+
+Sur le même thème
+
+
+
+                      Bulletin sécurité : Hausse du cyber-risque lié à l’Iran en 2026 (mis à jour le 17 avril)                  
+
+
+
+                      Briefing sécurité : un stratagème de recrutement usurpe l’identité de l’équipe d’acquisition des talents de Palo Alto Networks                  
+
+
+
+                      Les Campagnes de l'ombre : Révélation d'un espionnage mondial                  
+
+
+
+
+
+
+
+
+
+Associé Malware Ressources
+
+
+
+
+ 
+
+
+
+Menaces de grande envergure 17 avril 2026
+
+Bulletin sécurité : Hausse du cyber-risque lié à l’Iran en 2026 (mis à jour le 17 avril)
+
+
+
+APK
+
+
+DDoS attacks
+
+
+GenAI
+ 
+
+
+                    Lire l’article                    
+
+
+
+
+
+
+
+ 
+
+
+
+Menaces de grande envergure 1 avril 2026
+
+Briefing sécurité : répercussions majeures de l’attaque contre la supply chain d’Axios
+
+
+
+API attacks
+
+
+JavaScript
+
+
+PowerShell
+ 
+
+
+                    Lire l’article                    
+
+
+
+
+
+
+
+ 
+
+
+
+Menaces de grande envergure 31 mars 2026
+
+Quand les remparts deviennent des armes : l’attaque multi-étapes de TeamPCP contre l’infrastructure de sécurité
+
+
+
+CVE-2025-55182
+
+
+GitHub
+
+
+Infostealer
+ 
+
+
+                    Lire l’article                    
+
+
+
+
+
+
+
+ 
+
+
+
+Recherche sur les menaces 24 mars 2026
+
+Briefing sécurité : un stratagème de recrutement usurpe l’identité de l’équipe d’acquisition des talents de Palo Alto Networks
+
+
+
+Email scam
+
+
+Phishing
+
+
+Recruiter
+ 
+
+
+                    Lire l’article                    
+
+
+
+
+
+
+
+ 
+
+
+
+Menaces de grande envergure 11 février 2026
+
+Des acteurs étatiques exploitent la chaîne d'approvisionnement de Notepad++
+
+
+
+Backdoor
+
+
+Cobalt Strike
+
+
+DLL Sideloading
+ 
+
+
+                    Lire l’article                    
+
+
+
+
+
+
+
+ 
+
+
+
+Groupes cybercriminels 5 février 2026
+
+Les Campagnes de l'ombre : Révélation d'un espionnage mondial
+
+
+
+Espionage
+
+
+Government
+
+
+Phishing
+ 
+
+
+                    Lire l’article                    
+
+
+
+
+
+
+
+ 
+
+
+
+Recherche sur les menaces 22 janvier 2026
+
+La prochaine évolution des attaques par assemblage à l’exécution : exploiter les LLM pour générer des scripts JavaScript d’hameçonnage en temps réel
+
+
+
+API
+
+
+DeepSeek
+
+
+Google
+ 
+
+
+                    Lire l’article                    
+
+
+
+
+
+
+
+ 
+
+
+
+Recherche sur les menaces 2 janvier 2026
+
+Le VVS Discord Stealer utilise Pyarmor pour l'offuscation et l'évasion de détection
+
+
+
+Discord
+
+
+Infostealer
+
+
+Python
+ 
+
+
+                    Lire l’article                    
+
+
+
+
+
+
+
+ 
+
+
+
+Groupes cybercriminels 11 décembre 2025
+
+Ashen Lepus, un groupe affilié au Hamas, cible des entités diplomatiques du Moyen-Orient avec AshTag, sa nouvelle suite de malwares
+
+
+
+Ashen Lepus
+
+
+Espionage
+
+
+WIRTE
+ 
+
+
+                    Lire l’article                    
+
+
+
+
+
+
+
+ 
+
+
+
+Menaces de grande envergure 25 novembre 2025
+
+Attaque de la supply chain : le ver « Shai-Hulud » frappe l’écosystème npm (Mis à jour le 26 novembre)
+
+
+
+Cloud Security
+
+
+Credential Harvesting
+
+
+JavaScript
+ 
+
+
+                    Lire l’article                    
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
+				Abonnez-vous aux infos d’Unit 42			
+Gardez un coup d’avance sur les menaces pour évoluer en toute sérénité. Contactez-nous
+
+
+
+
+
+
+
+
+
+
+Your Email
+
+
+Abonnez-vous aux infos par e-mail sur les travaux de recherche Unit 42.L’envoi de ce formulaire implique l’acceptation de nos Conditions d’utilisation et de notre Politique de confidentialité.
+
+                    Ce site est protégé par reCAPTCHA et est soumis à la Politique de confidentialité et aux Conditions générales de Google.                            
+  
+
+Invalid captcha!
+ 
+					Je m’abonne					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Recevez toutes les dernières infos, invitations à des évènements et alertes de sécurité
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Saisissez votre adresse e-mail...
+
+
+
+
+
+Je m’abonne  
+
+
+
+
+                                
+                                
+                                
+                                    
+                                    
+                                        
+                                        En soumettant ce formulaire, j’accepte que mes données personnelles soient traitées conformément à la politique de confidentialité et aux conditions d’utilisation de Palo Alto Networks.
+                                    
+                                
+
+                                
+                                
+
+
+Je m’abonne  
+
+
+
+
+
+
+
+
+
+
+
+
+Produits et services
+
+
+
+
+
+                                    Plateforme de sécurité du réseau pilotée par IA 
+                                
+
+
+
+                                    Sécuriser l’IA à la conception 
+                                
+
+
+
+                                    Prisma AIRS
+                                
+
+
+
+                                    AI Access Security 
+                                
+
+
+
+                                    Services de sécurité cloud (CDSS) 
+                                
+
+
+
+                                    Advanced Threat Prevention 
+                                
+
+
+
+                                    Advanced URL Filtering 
+                                
+
+
+
+                                    Advanced WildFire 
+                                
+
+
+
+                                    Advanced DNS Security 
+                                
+
+
+
+                                    Enterprise Data Loss Prevention 
+                                
+
+
+
+                                    Sécurité IoT d’entreprise 
+                                
+
+
+
+                                    Sécurité IoT médical 
+                                
+
+
+
+                                    Industrial OT Security 
+                                
+
+
+
+                                     Sécurité SaaS 
+                                
+
+
+
+
+
+                                    Pare-feu nouvelle génération 
+                                
+
+
+
+                                    Pare-feu matériels 
+                                
+
+
+
+                                    Logiciels pare-feu 
+                                
+
+
+
+                                    Strata Cloud Manager 
+                                
+
+
+
+                                    SD-WAN pour NGFW 
+                                
+
+
+
+                                    PAN-OS 
+                                
+
+
+
+                                    Panorama 
+                                
+
+
+
+                                    Secure Access Service Edge 
+                                
+
+
+
+                                    Prisma SASE 
+                                
+
+
+
+                                    Accélération des applications 
+                                
+
+
+
+                                    Autonomous Digital Experience Management (ADEM) 
+                                
+
+
+
+                                    DLP d’entreprise 
+                                
+
+
+
+                                    Prisma Access 
+                                
+
+
+
+                                    Prisma Browser 
+                                
+
+
+
+                                    Prisma SD-WAN 
+                                
+
+
+
+                                    Isolation de navigateur à distance (RBI) 
+                                
+
+
+
+                                    Sécurité SaaS 
+                                
+
+
+
+
+
+                                    Plateforme SecOps pilotée par IA
+                                
+
+
+
+                                    Sécurité cloud
+                                
+
+
+
+                                    Cortex Cloud 
+                                
+
+
+
+                                    Sécurité des applications 
+                                
+
+
+
+                                    Posture de sécurité dans le cloud 
+                                
+
+
+
+                                    Sécurité du Runtime dans le cloud 
+                                
+
+
+
+                                    Prisma Cloud 
+                                
+
+
+
+                                    SOC piloté par IA 
+                                
+
+
+
+                                    Cortex XSIAM 
+                                
+
+
+
+                                    Cortex XDR 
+                                
+
+
+
+                                    Cortex XSOAR 
+                                
+
+
+
+                                    Cortex Xpanse 
+                                
+
+
+
+                                    Services managés détection et réponse Unit 42 
+                                
+
+
+
+                                    XSIAM managé 
+                                
+
+
+
+
+
+                                    Sécurité des identités nouvelle génération
+                                
+
+
+
+                                    Gestion des accès privilégiés (PAM)
+                                
+
+
+
+                                    Gestion des identités et des accès (IAM)
+                                
+
+
+
+                                    Endpoint Privilege Manager
+                                
+
+
+
+                                    Gouvernance des identités
+                                
+
+
+
+                                    Workforce Password Management
+                                
+
+
+
+                                    Identités agentiques
+                                
+
+
+
+                                    Gestion des secrets
+                                
+
+
+
+                                    Gouvernance unifiée des secrets
+                                
+
+
+
+                                    Déploiement d’identifiants applicatifs
+                                
+
+
+
+                                    Accès privilégiés des prestataires
+                                
+
+
+
+                                    Services de Threat Intelligence et de réponse à incident
+                                
+
+
+
+                                    Évaluations proactives
+                                
+
+
+
+                                    Réponse à incident
+                                
+
+
+
+                                    Transformez votre stratégie de sécurité
+                                
+
+
+
+                                    Découvrez la Threat Intelligence Entreprise Notre entreprise Carrières Nous contacter Responsabilité d’entreprise Clients Relations investisseurs Présence dans le monde
+                                
+
+
+
+
+
+
+Entreprise
+
+
+
+
+
+                                    Notre entreprise
+                                
+
+
+
+                                    Carrières
+                                
+
+
+
+                                    Nous contacter 
+                                
+
+
+
+                                    Responsabilité d’entreprise
+                                
+
+
+
+                                    Clients
+                                
+
+
+
+                                    Relations investisseurs
+                                
+
+
+
+                                    Présence dans le monde
+                                
+
+
+
+                                    Presse
+                                
+
+
+
+
+
+
+Pages les plus visitées
+
+
+
+
+
+                                    Article
+                                
+
+
+
+                                    Communautés
+                                
+
+
+
+                                    Bibliothèque de contenu
+                                
+
+
+
+                                    Cyberpedia
+                                
+
+
+
+                                    Évènements
+                                
+
+
+
+                                    Préférences de communication
+                                
+
+
+
+                                    Produits de A à Z
+                                
+
+
+
+                                    Certifications produits
+                                
+
+
+
+                                    Signaler une vulnérabilité
+                                
+
+
+
+                                    Plan du site
+                                
+
+
+
+                                    Documentation technique
+                                
+
+
+
+                                    Unit 42
+                                
+
+
+
+                                    Ne pas autoriser la vente ou le partage de mes données personnelles
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Politique de confidentialité
+                            
+
+
+
+                                Trust Center
+                            
+
+
+
+                                Conditions générales d'utilisation
+                            
+
+
+
+                                Documents
+                            
+
+
+Copyright © 2026 Palo Alto Networks. Tous droits réservés
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+FR
+
+
+
+Select your language
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Your browser does not support the video tag.
+          
+
+Default Heading
+Read the article
+              
+
+
+
+
+Seekbar
+
+
+
+
+
+
+
+
+
+
+
+
+
+Volume
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
