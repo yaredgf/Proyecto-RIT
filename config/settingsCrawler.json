@@ -34,5 +34,35 @@
     "host": "localhost",
     "port": 5432,
     "dbname": "TheSearcher"
-  }
+  },
+  "filtros": {
+    "terminos": [
+      "malware",
+      "ransomware",
+      "vulnerability",
+      "vulnerabilities",
+      "security advisory",
+      "security update",
+      "remote code execution",
+      "privilege escalation",
+      "trojan",
+      "botnet",
+      "backdoor",
+      "rootkit",
+      "exploit"
+    ],
+    "segmentos_excluidos": [
+      "contact",
+      "contact-us",
+      "privacy",
+      "privacy-policy",
+      "terms",
+      "terms-of-use",
+      "login",
+      "register",
+      " careers",
+      "about",
+      "about-us"
+    ]
+  } 
 }

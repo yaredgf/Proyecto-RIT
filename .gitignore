@@ -1,4 +1,35 @@
+# Entornos y archivos temporales de Python
 .venv/
+venv/
 __pycache__/
-*.pyc
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Dependencias de Node
+node_modules/
+
+# Credenciales locales
 .env
+.env.*
+!.env.example
+
+# Datos generados por cada arañador:
+# HTML, texto, cola e índice
+/IntegracionLibrerias/datos/
+/IntegracionPropia/datos/
+
+# Registros de ejecución
+/IntegracionLibrerias/logs/
+/IntegracionPropia/logs/
+*.log
+
+# Colección original de texto plano
+/textoplano/*
+!/textoplano/info.md
+!/textoplano/.gitkeep
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
