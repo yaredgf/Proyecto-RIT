@@ -93,6 +93,11 @@ RIT_RUTAS = {
     for nombre, ruta in CONFIG["rutas"].items()
 }
 
+# Las semillas se resuelven respecto a la carpeta del JSON compartido.
+RIT_RUTAS["semillas"] = str(
+    (CONFIG_PATH.parent / CONFIG["rutas"]["semillas"]).resolve()
+)
+
 # Docker Compose podrá sustituir estos valores.
 RIT_POSTGRES = {
     "host": os.getenv("PGHOST", CONFIG["postgres"]["host"]),

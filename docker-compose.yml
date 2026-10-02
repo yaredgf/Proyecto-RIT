@@ -41,7 +41,7 @@ services:
       PGUSER: admin
       PGPASSWORD: "123"
     volumes:
-      - ./config/settingsCrawler.json:/config/settingsCrawler.json:ro
+      - ./config:/config:ro
       - ./IntegracionLibrerias/datos:/app/datos
       - ./IntegracionLibrerias/logs:/app/logs
     command: ["python", "-m", "scrapy", "version"]
