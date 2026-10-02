@@ -1,6 +1,8 @@
 services:
   app:
-    build: .
+    build:
+      context: ./TheSearcher
+      dockerfile: Dockerfile
     container_name: node_app
     restart: always
     ports:
@@ -25,6 +27,24 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+
+  crawler_librerias:
+    build:
+      context: ./IntegracionLibrerias
+      dockerfile: Dockerfile
+    restart: "no"
+    environment:
+      RIT_CONFIG_PATH: /config/settingsCrawler.json
+      PGHOST: postgres
+      PGPORT: "5432"
+      PGDATABASE: TheSearcher
+      PGUSER: admin
+      PGPASSWORD: "123"
+    volumes:
+      - ./config:/config:ro
+      - ./IntegracionLibrerias/datos:/app/datos
+      - ./IntegracionLibrerias/logs:/app/logs
+    command: ["python", "-m", "scrapy", "version"]
 
 volumes:
   postgres_data:
