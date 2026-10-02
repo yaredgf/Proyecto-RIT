@@ -1,0 +1,99 @@
+Threat Research Center
+Insights
+Myth Busting
+Myth Busting
+3 Consulting Myths Debunked by Unit 42 Experts
+4
+min read
+Related Products
+Unit 42 Incident Response
+By:
+Unit 42
+Published:
+September 25, 2026
+Categories:
+Insights
+Myth Busting
+Tags:
+AI
+Privilege escalation
+Unit 42 Incident Response Report
+Share
+We interviewed three Unit 42 consultants to examine the most critical cybersecurity misconceptions observed in their casework across customer environments, and the strategic shifts needed to correct them.
+Myth 1: The More Security Tools, The Better
+A widespread assumption is that purchasing a new, specialized security tool for every emerging threat always results in stronger protection. In reality, continuously adding tools without a unified security strategy can lead to tool overload and create critical operational vulnerabilities.
+Some of the key challenges created by this approach include:
+Alert fatigue and high false positive rates:
+Improperly tuned security tools can overwhelm security operations center (SOC) analysts with alerts, making it difficult to distinguish real threats from false positives. AI-powered telemetry can help reduce this burden, but if it’s treated as a
+black box
+, it can complicate analysts’ efforts to understand the reasoning behind an alert.
+Feature underutilization:
+Organizations frequently fail to take advantage of the capabilities already available within their existing security platforms. Rather than leveraging features present in the tools they already have, some organizations purchase new products to address needs their current tools can already satisfy.
+Increased operational friction and overhead:
+Managing multiple, disparate platforms consumes valuable time and increases operational costs. It can also create visibility gaps at the integration points between different tools and technology suites.
+Our consultants recommend three main strategies:
+Thoroughly Audit Your Tools
+Conduct an in-depth audit of the security tools your organization already deploys. Review vendor documentation, technical manuals and product resources to identify the full range of capabilities available within each platform, not solely the most well-known or popular. Understanding a product’s full capabilities can reveal opportunities to address existing security requirements without introducing additional products.
+Conduct a Comprehensive Security Architecture Review
+Organize your security tools according to their primary function and domain. For instance, network tools should be classified under network protection while identity tools fall under identity and access management. Evaluate each security domain systematically to understand which tools are truly required and where existing platforms may already provide adequate coverage.
+Consolidate and Fine-Tune
+Align your security portfolio to your organization’s unique environment. Where possible, consolidate overlapping solutions and configure existing platforms to maximize their capabilities. The goal is not simply to reduce tools but to build a security portfolio that is streamlined, integrated and capable of providing effective coverage.
+Myth 2: Smaller or Medium Sized Organizations Are Safe From Attackers
+Unit 42 consultants have observed small and mid-sized organizations operating under the assumption that they are too insignificant to be targeted by major threat actors.
+The reality is that attackers frequently target smaller entities to provide a pathway into larger, more heavily protected organizations. This risk is particularly relevant in the public sector, where smaller agencies may maintain connections or access to larger entities and critical infrastructure.
+This assumption is compounded by overconfidence and poor implementation posture. In a majority of the cases observed, organizations failed to properly implement, leverage and enforce the tools they actually possessed. These issues can increase the odds of being compromised.
+Our consultants emphasize two main approaches for reducing this risk:
+Maintain a Zero-Trust Mindset
+An organization’s size, industry or current security practices do not make it immune from being compromised. Modern security teams should operate under an
+Assume Breach
+mindset, prioritizing proactive readiness.
+Invest in Your Security Strategy
+Gone are the days when an organization’s cybersecurity can be successfully managed by one IT administrator. Cyber risk encompasses every vector that could lead to system compromise, from unpatched software to social engineering to supply chain vulnerabilities. A thorough security strategy is essential for the long-term success of an organization, and must be prioritized as such.
+Myth 3: Security Controls and GRC Are Strictly For "Checking Boxes"
+Our consultants frequently observe organizations treating security controls and governance, risk and compliance (GRC) controls as routine checkpoints rather than essential components of active defense. Associating controls strictly with the compliance space fundamentally misinterprets their purpose. When security teams view controls as audit paperwork, they undermine their strategic value and leave severe risks unaddressed across the enterprise.
+Consider a periodic privileged access review, a control that’s designed to regulate identity and access management. If neglected, unmonitored accounts in an organization can obtain excessive permissions. If a threat actor compromises one of these accounts, they obtain increased privileges that enable rapid lateral movement and privilege escalation across the enterprise. Had the security control been administered as intended, the excessive privileges would have been revoked, therefore removing the attacker’s primary attack path.
+Our consultants offers three main key takeaways:
+Adopt a Security-First GRC Mindset
+Shift the perspective of GRC from external audit compliance to active threat mitigation. This approach enables organizations to identify risks earlier, refine controls processes and respond to emerging threats more effectively.
+Establish an Authoritative Security Framework
+Organizations should establish a recognized security framework, such as NIST SP 800-53, CIS Controls v8, or ISO 27001, as the foundation for their GRC program. Pairing a high-level control framework with technical specifications provides clear guidance on the controls that need to be implemented and monitored.
+Adopt a Risk Controls Matrix (RCM)
+Allocate the necessary time and resources to build and manage a dynamic RCM. This includes:
+Clearly designating RCM owners
+Maintaining clean data mapping across enterprise applications
+Establishing clear testing schedules
+Verifying whether controls perform as intended
+An effective RCM verifies control efficacy, eliminates ambiguity and accelerates incident response.
+Final Thoughts
+These perspectives from our consultants reinforce a key takeaway: Effective organizational security is built on foundational discipline, not on chasing industry trends and continually shifting to the next solution. Routine architecture reviews, ongoing assessment of weak points and an understanding of your true security posture delivers a stronger, more sustainable foundation for managing risk.
+The connections between these myths further demonstrate how they can reinforce one another. An increasingly complex tool stack can directly create a false sense of security, leading organizations to overestimate their defenses and underestimate their exposure. While these technologies can provide significant value and strengthen an organization’s defense, they are not a substitute for security fundamentals. Challenging these underlying assumptions and addressing the underlying gaps can fundamentally transform an organization’s security posture from passive compliance into true resilience.
+Get personalized advice from Unit 42 experts on how to
+strengthen your defenses
+.
+Additional Resources
+Alert Fatigue and False Positives: Why More Alerts Mean Less Security
+– Praetorian
+Essential Data Sources For Detection Beyond the Endpoint
+— Unit 42, Palo Alto Networks
+Global Incident Response Report 2026
+— Unit 42, Palo Alto Networks
+Back to top
+Tags
+AI
+Privilege escalation
+Unit 42 Incident Response Report
+Threat Research Center
+Next: From Exposure to Lockdown: How AWS Neutralizes Compromised IAM Credentials through Managed Policies
+Table of Contents
+Related Articles
+OperTraitors: How Kubernetes Operators Betray Your Security Posture
+Inside the Modern SOC: Defending the Cross-Environment Pivot
+Perturbation Probing: A New Diagnostic for the Fragility of LLM Safety
+Related Myth Busting Resources
+Insights
+September 16, 2025
+Myth Busting: Why "Innocent Clicks" Don't Exist in Cybersecurity
+Phishing
+QR Codes
+Smishing
+Read now

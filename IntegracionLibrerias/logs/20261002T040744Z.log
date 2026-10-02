@@ -1,0 +1,143 @@
+2026-10-02 04:07:46 [scrapy.utils.log] INFO: Scrapy 2.19.0 started (bot: crawler_rit)
+2026-10-02 04:07:46 [scrapy.utils.log] INFO: Versions:
+{'lxml': '6.1.3',
+ 'libxml2': '2.14.6',
+ 'cssselect': '1.5.0',
+ 'parsel': '1.12.1',
+ 'w3lib': '2.5.0',
+ 'Twisted': '26.4.0',
+ 'Python': '3.14.8 (main, Oct  1 2026, 21:39:21) [GCC 14.2.0]',
+ 'pyOpenSSL': '26.4.0 (OpenSSL 4.0.3 29 Sep 2026)',
+ 'cryptography': '50.0.2',
+ 'Platform': 'Linux-7.0.14-linuxkit-x86_64-with-glibc2.41'}
+2026-10-02 04:07:46 [scrapy.addons] INFO: Enabled addons:
+[]
+2026-10-02 04:07:46 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.logcount.LogCount',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.logstats.LogStats',
+ 'scrapy.extensions.remote_control.RemoteControl']
+2026-10-02 04:07:46 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'crawler_rit',
+ 'CONCURRENT_REQUESTS': 4,
+ 'CONCURRENT_REQUESTS_PER_DOMAIN': 1,
+ 'COOKIES_ENABLED': False,
+ 'DOWNLOAD_DELAY_JITTER': 0,
+ 'DOWNLOAD_MAXSIZE': 10000000,
+ 'DOWNLOAD_TIMEOUT': 30,
+ 'DOWNLOAD_VERIFY_CERTIFICATES': True,
+ 'FEED_EXPORT_ENCODING': 'utf-8',
+ 'LOG_FILE': '/app/logs/20261002T040744Z.log',
+ 'LOG_LEVEL': 'INFO',
+ 'METAREFRESH_ENABLED': False,
+ 'NEWSPIDER_MODULE': 'crawler_rit.spiders',
+ 'REDIRECT_ENABLED': False,
+ 'REDIRECT_MAX_TIMES': 5,
+ 'RETRY_ENABLED': False,
+ 'ROBOTSTXT_OBEY': True,
+ 'SPIDER_MODULES': ['crawler_rit.spiders'],
+ 'TELNETCONSOLE_ENABLED': False,
+ 'USER_AGENT': 'ProyectoRITCrawler/1.0'}
+2026-10-02 04:07:46 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'crawler_rit.politicas.PoliticasMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2026-10-02 04:07:46 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.start.StartSpiderMiddleware',
+ 'scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware',
+ 'scrapy.spidermiddlewares.metacopy.MetaCopyDetectionMiddleware']
+2026-10-02 04:07:46 [scrapy.middleware] INFO: Enabled item pipelines:
+[]
+2026-10-02 04:07:46 [scrapy.core.engine] INFO: Spider opened
+2026-10-02 04:07:46 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2026-10-02 04:07:46 [scrapy.extensions.remote_control] INFO: Remote control HTTP server listening on port 37443 (job 29-e6b9acb1b3a04a2887844d09458128a2)
+2026-10-02 04:07:47 [rit] INFO: HTTP 200 https://www.cisa.gov/robots.txt bytes=2174 robots=True
+2026-10-02 04:07:47 [rit] INFO: HTTP 200 https://www.microsoft.com/robots.txt bytes=9126 robots=True
+2026-10-02 04:07:47 [rit] INFO: HTTP 200 https://ubuntu.com/robots.txt bytes=5511 robots=True
+2026-10-02 04:07:48 [rit] INFO: HTTP 404 https://www.debian.org/robots.txt bytes=7468 robots=True
+2026-10-02 04:07:49 [rit] INFO: HTTP 200 https://www.cisa.gov/news-events/cybersecurity-advisories bytes=163874 robots=False
+2026-10-02 04:07:49 [rit] INFO: Listado consultado: https://www.cisa.gov/news-events/cybersecurity-advisories; URLs nuevas: 0
+2026-10-02 04:07:50 [rit] INFO: HTTP 200 https://www.microsoft.com/en-us/security/blog/topic/threat-intelligence/ bytes=342767 robots=False
+2026-10-02 04:07:50 [rit] INFO: Listado consultado: https://www.microsoft.com/en-us/security/blog/topic/threat-intelligence/; URLs nuevas: 0
+2026-10-02 04:07:50 [rit] INFO: HTTP 200 https://blog.talosintelligence.com/robots.txt bytes=22 robots=True
+2026-10-02 04:07:50 [rit] INFO: HTTP 200 https://ubuntu.com/security/notices bytes=110211 robots=False
+2026-10-02 04:07:50 [rit] INFO: Listado consultado: https://ubuntu.com/security/notices; URLs nuevas: 0
+2026-10-02 04:07:51 [rit] INFO: HTTP 200 https://www.debian.org/security/ bytes=93163 robots=False
+2026-10-02 04:07:51 [rit] INFO: Listado consultado: https://www.debian.org/security/; URLs nuevas: 0
+2026-10-02 04:07:51 [rit] INFO: HTTP 200 https://unit42.paloaltonetworks.com/robots.txt bytes=98 robots=True
+2026-10-02 04:07:52 [rit] INFO: HTTP 200 https://securelist.com/robots.txt bytes=2767 robots=True
+2026-10-02 04:07:53 [rit] INFO: HTTP 200 https://blog.talosintelligence.com/ bytes=83607 robots=False
+2026-10-02 04:07:53 [rit] INFO: Listado consultado: https://blog.talosintelligence.com/; URLs nuevas: 0
+2026-10-02 04:07:53 [rit] INFO: HTTP 200 https://unit42.paloaltonetworks.com/ bytes=274189 robots=False
+2026-10-02 04:07:54 [rit] INFO: Listado consultado: https://unit42.paloaltonetworks.com/; URLs nuevas: 0
+2026-10-02 04:07:54 [rit] INFO: HTTP 200 https://nvd.nist.gov/robots.txt bytes=1515 robots=True
+2026-10-02 04:07:54 [rit] INFO: HTTP 200 https://www.cisa.gov/staying-secure-large-scale-events bytes=78374 robots=False
+2026-10-02 04:07:54 [rit] INFO: Documento 12 descartado: No se encontraron términos del tema.
+2026-10-02 04:07:54 [rit] INFO: HTTP 302 https://www.microsoft.com/ bytes=0 robots=False
+2026-10-02 04:07:54 [rit] INFO: HTTP 200 https://securelist.com/ bytes=171789 robots=False
+2026-10-02 04:07:54 [rit] INFO: Listado consultado: https://securelist.com/; URLs nuevas: 0
+2026-10-02 04:07:55 [rit] INFO: HTTP 200 https://ubuntu.com/ bytes=208289 robots=False
+2026-10-02 04:07:55 [rit] INFO: Documento guardado: https://ubuntu.com/; tipo: aviso_analisis; versión: 3; nueva versión: True; URLs nuevas: 21
+2026-10-02 04:07:55 [rit] INFO: HTTP 200 https://www.debian.org/ bytes=15864 robots=False
+2026-10-02 04:07:55 [rit] INFO: Documento 419 descartado: No se encontraron términos del tema.
+2026-10-02 04:07:56 [rit] INFO: HTTP 301 https://nvd.nist.gov/vuln/detail/CVE-2017-0144 bytes=530 robots=False
+2026-10-02 04:07:56 [rit] WARNING: Solicitud fallida https://ubuntu.com/search: Acceso prohibido por robots.txt.
+2026-10-02 04:07:56 [rit] INFO: Documento 298 descartado: Acceso prohibido por robots.txt.
+2026-10-02 04:07:56 [rit] INFO: HTTP 200 https://capec.mitre.org/robots.txt bytes=274 robots=True
+2026-10-02 04:07:57 [rit] INFO: HTTP 200 https://www.microsoft.com/es-cr bytes=135259 robots=False
+2026-10-02 04:07:57 [rit] INFO: Documento 103 descartado: No se encontraron términos del tema.
+2026-10-02 04:07:58 [rit] INFO: HTTP 301 https://www.cisa.gov/resources-tools/resources/free-cybersecurity-services-and-tools bytes=514 robots=False
+2026-10-02 04:07:58 [rit] INFO: HTTP 200 https://capec.mitre.org/index.html bytes=17391 robots=False
+2026-10-02 04:07:58 [rit] INFO: Documento guardado: https://capec.mitre.org/index.html; tipo: aviso_analisis; versión: 4; nueva versión: True; URLs nuevas: 2
+2026-10-02 04:07:58 [rit] INFO: HTTP 200 https://www.debian.org/security/cve-compatibility bytes=9596 robots=False
+2026-10-02 04:07:58 [rit] INFO: Documento guardado: https://www.debian.org/security/cve-compatibility; tipo: aviso_analisis; versión: 5; nueva versión: True; URLs nuevas: 22
+2026-10-02 04:07:59 [rit] INFO: HTTP 200 https://nvd.nist.gov/vuln/detail/cve-2017-0144 bytes=2453 robots=False
+2026-10-02 04:07:59 [rit] WARNING: Documento 8: intento 1/3; espera mínima 0 s; Texto extraído vacío.
+2026-10-02 04:07:59 [rit] INFO: HTTP 301 https://blog.talosintelligence.com/incident_response bytes=0 robots=False
+2026-10-02 04:08:00 [rit] INFO: HTTP 200 https://unit42.paloaltonetworks.com/tools/ bytes=145367 robots=False
+2026-10-02 04:08:00 [rit] INFO: Documento 478 descartado: No se encontraron términos del tema.
+2026-10-02 04:08:01 [rit] INFO: HTTP 200 https://www.microsoft.com/en-us/security bytes=302648 robots=False
+2026-10-02 04:08:01 [rit] INFO: Documento guardado: https://www.microsoft.com/en-us/security; tipo: aviso_analisis; versión: 6; nueva versión: True; URLs nuevas: 17
+2026-10-02 04:08:01 [rit] INFO: HTTP 200 https://www.cisa.gov/resources-tools/resources/no-cost-cybersecurity-services-and-tools bytes=57876 robots=False
+2026-10-02 04:08:01 [rit] INFO: Documento guardado: https://www.cisa.gov/resources-tools/resources/no-cost-cybersecurity-services-and-tools; tipo: aviso_analisis; versión: 7; nueva versión: True; URLs nuevas: 7
+2026-10-02 04:08:01 [rit] INFO: HTTP 200 https://capec.mitre.org/about/new_to_capec.html bytes=26058 robots=False
+2026-10-02 04:08:01 [rit] INFO: Documento 674 descartado: Ruta excluida por la configuración.
+2026-10-02 04:08:01 [rit] INFO: HTTP 200 https://securelist.com/threat-categories/ bytes=187207 robots=False
+2026-10-02 04:08:02 [rit] INFO: Documento 595 descartado: No se encontraron términos del tema.
+2026-10-02 04:08:02 [rit] INFO: HTTP 200 https://www.debian.org/security/oval/ bytes=2334 robots=False
+2026-10-02 04:08:02 [rit] INFO: Documento 422 descartado: No se encontraron términos del tema.
+2026-10-02 04:08:02 [rit] INFO: HTTP 404 https://blog.talosintelligence.com/incident_response/ bytes=1571 robots=False
+2026-10-02 04:08:02 [rit] INFO: Documento 433 descartado: Respuesta HTTP no admitida: 404
+2026-10-02 04:08:02 [rit] INFO: HTTP 301 https://nvd.nist.gov/vuln/detail/CVE-2026-73570 bytes=531 robots=False
+2026-10-02 04:08:02 [rit] INFO: HTTP 301 https://unit42.paloaltonetworks.com/atoms/ bytes=243 robots=False
+2026-10-02 04:08:03 [rit] INFO: HTTP 200 https://cwe.mitre.org/robots.txt bytes=274 robots=True
+2026-10-02 04:08:05 [rit] INFO: HTTP 200 https://nvd.nist.gov/vuln/detail/cve-2026-73570 bytes=2453 robots=False
+2026-10-02 04:08:05 [rit] WARNING: Documento 101: intento 1/3; espera mínima 0 s; Texto extraído vacío.
+2026-10-02 04:08:05 [rit] INFO: HTTP 200 https://cwe.mitre.org/about/privacy_policy.html bytes=34798 robots=False
+2026-10-02 04:08:05 [rit] INFO: Documento 713 descartado: Ruta excluida por la configuración.
+2026-10-02 04:08:06 [rit] INFO: HTTP 200 https://unit42.paloaltonetworks.com/ bytes=274189 robots=False
+2026-10-02 04:08:06 [rit] INFO: HTTP 200 https://www.cisa.gov/cybersecurity-awareness-month bytes=61549 robots=False
+2026-10-02 04:08:06 [rit] INFO: Listado consultado: https://unit42.paloaltonetworks.com/; URLs nuevas: 0
+2026-10-02 04:08:06 [rit] INFO: Documento 14 descartado: No se encontraron términos del tema.
+2026-10-02 04:08:06 [rit] INFO: HTTP 200 https://www.microsoft.com/en-us/security/business/microsoft-defender bytes=252108 robots=False
+2026-10-02 04:08:06 [rit] INFO: HTTP 200 https://blog.talosintelligence.com/category/threat-source-newsletter/ bytes=226102 robots=False
+2026-10-02 04:08:06 [rit] INFO: Documento guardado: https://www.microsoft.com/en-us/security/business/microsoft-defender; tipo: aviso_analisis; versión: 8; nueva versión: True; URLs nuevas: 11
+2026-10-02 04:08:07 [rit] INFO: Documento guardado: https://blog.talosintelligence.com/category/threat-source-newsletter/; tipo: aviso_analisis; versión: 9; nueva versión: True; URLs nuevas: 102
+2026-10-02 04:08:07 [rit] INFO: HTTP 200 https://www.debian.org/security/faq bytes=31209 robots=False
+2026-10-02 04:08:07 [rit] INFO: Documento guardado: https://www.debian.org/security/faq; tipo: aviso_analisis; versión: 10; nueva versión: True; URLs nuevas: 3
+2026-10-02 04:08:07 [rit] INFO: HTTP 200 https://capec.mitre.org/ bytes=17391 robots=False
+2026-10-02 04:08:07 [rit] INFO: Documento guardado: https://capec.mitre.org/; tipo: aviso_analisis; versión: 11; nueva versión: True; URLs nuevas: 0
+2026-10-02 04:08:07 [rit] INFO: HTTP 200 https://securelist.com/threat-category/financial-threats/ bytes=146063 robots=False
+2026-10-02 04:08:07 [rit] INFO: Documento guardado: https://securelist.com/threat-category/financial-threats/; tipo: aviso_analisis; versión: 12; nueva versión: True; URLs nuevas: 30
+2026-10-02 04:08:15 [scrapy.crawler] INFO: Received SIGINT, shutting down gracefully. Send again to force 
+2026-10-02 04:08:15 [scrapy.core.engine] INFO: Closing spider (shutdown)

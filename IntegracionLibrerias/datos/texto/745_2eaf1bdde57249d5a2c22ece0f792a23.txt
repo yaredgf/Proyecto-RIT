@@ -1,0 +1,358 @@
+Common Weakness Enumeration
+Celebrating 20 years of community-developed cybersecurity weakness knowledge!
+Home
+>
+CWE List
+>
+CWE-621: Variable Extraction Error (4.20)
+Home
+About ▼
+Who We Are
+User Stories
+History
+Documents
+Videos
+Learn ▼
+Basics
+Root Cause Mapping ►
+Guidance
+Quick Tips
+Examples
+How to Contribute Weakness Content
+FAQs
+Glossary
+Access Content ▼
+Top-N Lists ►
+Top 25 Software
+Top Hardware
+Top 10 KEV Weaknesses
+CWE List ►
+Current Version
+Reports
+Visualizations
+Releases Archive
+Downloads
+REST API
+Community ▼
+News ►
+Current News
+Blog
+Podcast
+News Archive
+CWE Board
+Working Groups & Special Interest Groups
+Email Lists
+Search ▼
+Search CWE List
+Search Website
+CWE Glossary Definition
+CWE-621: Variable Extraction Error
+Weakness ID: 621
+Vulnerability Mapping
+:
+ALLOWED
+This CWE ID may be used to map to real-world vulnerabilities
+Abstraction:
+Variant
+Variant - a weakness that is linked to a certain type of product, typically involving a specific language or technology. More specific than a Base weakness. Variant level weaknesses typically describe issues in terms of 3 to 5 of the following dimensions: behavior, property, technology, language, and resource.
+View customized information:
+Conceptual
+For users who are interested in more notional aspects of a weakness. Example: educators, technical writers, and project/program managers.
+Operational
+For users who are concerned with the practical application and details about the nature of a weakness and how to prevent it from happening. Example: tool developers, security researchers, pen-testers, incident response analysts.
+Mapping Friendly
+For users who are mapping an issue to CWE/CAPEC IDs, i.e., finding the most appropriate CWE for a specific issue (e.g., a CVE record). Example: tool developers, security researchers.
+Complete
+For users who wish to see all available information for the CWE/CAPEC entry.
+Custom
+For users who want to customize what details are displayed.
+×
+Edit Custom Filter
+Conceptual
+Operational
+Mapping Friendly
+Select All
+Reset
+Clear
+Submit
+Cancel
+Description
+The product uses external input to determine the names of variables into which information is extracted, without verifying that the names of the specified variables are valid. This could cause the program to overwrite unintended variables.
+Extended Description
+For example, in PHP, extraction can be used to provide functionality similar to register_globals, a dangerous functionality that is frequently disabled in production systems. Calling extract() or import_request_variables() without the proper arguments could allow arbitrary global variables to be overwritten, including superglobals.
+Similar functionality is possible in other interpreted languages, including custom languages.
+Alternate Terms
+Variable overwrite
+Common Consequences
+This table specifies different individual consequences
+associated with the weakness. The Scope identifies the application security area that is
+violated, while the Impact describes the negative technical impact that arises if an
+adversary succeeds in exploiting this weakness. The Likelihood provides information about
+how likely the specific consequence is expected to be seen relative to the other
+consequences in the list. For example, there may be high likelihood that a weakness will be
+exploited to achieve a certain impact, but a low likelihood that it will be exploited to
+achieve a different impact.
+Impact
+Details
+Modify Application Data
+Scope: Integrity
+An attacker could modify sensitive data or program variables.
+Potential Mitigations
+Phase(s)
+Mitigation
+Implementation
+Strategy:
+Input Validation
+Use allowlists of variable names that can be extracted.
+Implementation
+Strategy:
+Refactoring
+Consider refactoring your code to avoid extraction routines altogether.
+Implementation
+In PHP, call extract() with options such as EXTR_SKIP and EXTR_PREFIX_ALL; call import_request_variables() with a prefix argument. Note that these capabilities are not present in all PHP versions.
+Relationships
+This table shows the weaknesses and high level categories that are related to this
+weakness. These relationships are defined as ChildOf, ParentOf, MemberOf and give insight to
+similar items that may exist at higher and lower levels of abstraction. In addition,
+relationships such as PeerOf and CanAlsoBe are defined to show similar weaknesses that the user
+may want to explore.
+Relevant to the view "Research Concepts" (View-1000)
+Nature
+Type
+ID
+Name
+ChildOf
+Base - a weakness that is still mostly independent of a resource or technology, but with sufficient details to provide specific methods for detection and prevention. Base level weaknesses typically describe issues in terms of 2 or 3 of the following dimensions: behavior, property, technology, language, and resource.
+914
+Improper Control of Dynamically-Identified Variables
+CanPrecede
+Base - a weakness that is still mostly independent of a resource or technology, but with sufficient details to provide specific methods for detection and prevention. Base level weaknesses typically describe issues in terms of 2 or 3 of the following dimensions: behavior, property, technology, language, and resource.
+471
+Modification of Assumed-Immutable Data (MAID)
+Modes
+Of Introduction
+The different Modes of Introduction provide information
+about how and when this
+weakness may be introduced. The Phase identifies a point in the life cycle at which
+introduction
+may occur, while the Note provides a typical scenario related to introduction during the
+given
+phase.
+Phase
+Note
+Implementation
+Applicable Platforms
+This listing shows possible areas for which the given
+weakness could appear. These
+may be for specific named Languages, Operating Systems, Architectures, Paradigms,
+Technologies,
+or a class of such platforms. The platform is listed along with how frequently the given
+weakness appears for that instance.
+Languages
+PHP
+(Undetermined Prevalence)
+Demonstrative Examples
+Example 1
+This code uses the credentials sent in a POST request to login a user.
+(bad code)
+Example Language:
+PHP
+//Log user in, and set $isAdmin to true if user is an administrator
+function login($user,$pass){
+$query = buildQuery($user,$pass);
+mysql_query($query);
+if(getUserRole($user) == "Admin"){
+$isAdmin = true;
+}
+}
+$isAdmin = false;
+extract($_POST);
+login(mysql_real_escape_string($user),mysql_real_escape_string($pass));
+The call to extract() will overwrite the existing values of any variables defined previously, in this case $isAdmin. An attacker can send a POST request with an unexpected third value "isAdmin" equal to "true", thus gaining Admin privileges.
+Selected Observed
+Examples
+Note: this is a curated list of examples for users to understand the variety of ways in which this
+weakness can be introduced. It is not a complete list of all CVEs that are related to this CWE entry.
+Reference
+Description
+CVE-2006-7135
+extract issue enables file inclusion
+CVE-2006-7079
+Chain: PHP app uses extract for register_globals compatibility layer (
+CWE-621
+), enabling path traversal (
+CWE-22
+)
+CVE-2007-0649
+extract() buried in include files makes post-disclosure analysis confusing; original report had seemed incorrect.
+CVE-2006-6661
+extract() enables static code injection
+CVE-2006-2828
+import_request_variables() buried in include files makes post-disclosure analysis confusing
+Weakness Ordinalities
+Ordinality
+Description
+Primary
+(where the weakness exists independent of other weaknesses)
+Memberships
+This MemberOf Relationships table shows additional CWE Categories and Views that
+reference this weakness as a member. This information is often useful in understanding where a
+weakness fits within the context of external information sources.
+Nature
+Type
+ID
+Name
+MemberOf
+View - a subset of CWE entries that provides a way of examining CWE content. The two main view structures are Slices (flat lists) and Graphs (containing relationships between entries).
+884
+CWE Cross-section
+MemberOf
+Category - a CWE entry that contains a set of other entries that share a common characteristic.
+990
+SFP Secondary Cluster: Tainted Input to Command
+MemberOf
+Category - a CWE entry that contains a set of other entries that share a common characteristic.
+1409
+Comprehensive Categorization: Injection
+Vulnerability Mapping Notes
+Usage
+ALLOWED
+(this CWE ID may be used to map to real-world vulnerabilities)
+Reason
+Acceptable-Use
+Rationale
+This CWE entry is at the Variant level of abstraction, which is a preferred level of abstraction for mapping to the root causes of vulnerabilities.
+Comments
+Carefully read both the name and description to ensure that this mapping is an appropriate fit. Do not try to 'force' a mapping to a lower-level Base/Variant simply to comply with this preferred level of abstraction.
+Notes
+Research Gap
+Probably under-reported for PHP. Seems under-studied for other interpreted languages.
+Taxonomy
+Mappings
+Mapped Taxonomy Name
+Node ID
+Fit
+Mapped Node Name
+Software Fault Patterns
+SFP24
+Tainted input to command
+Content
+History
+Submissions
+Submission Date
+Submitter
+Organization
+2007-05-07
+(CWE Draft 6, 2007-05-07)
+CWE Content Team
+MITRE
+Modifications
+Modification Date
+Modifier
+Organization
+2026-04-30
+(CWE 4.20, 2026-04-30)
+CWE Content Team
+MITRE
+updated Potential_Mitigations
+2023-10-26
+(CWE 4.13, 2023-10-26)
+CWE Content Team
+MITRE
+updated Observed_Examples
+2023-06-29
+(CWE 4.12, 2023-06-29)
+CWE Content Team
+MITRE
+updated Mapping_Notes
+2023-04-27
+(CWE 4.11, 2023-04-27)
+CWE Content Team
+MITRE
+updated Relationships, Type
+2022-04-28
+(CWE 4.7, 2022-04-28)
+CWE Content Team
+MITRE
+updated Research_Gaps
+2020-06-25
+(CWE 4.1, 2020-06-25)
+CWE Content Team
+MITRE
+updated Potential_Mitigations
+2020-02-24
+(CWE 4.0, 2020-02-24)
+CWE Content Team
+MITRE
+updated Relationships
+2014-07-30
+(CWE 2.8, 2014-07-31)
+CWE Content Team
+MITRE
+updated Relationships, Taxonomy_Mappings
+2014-06-23
+(CWE 2.7, 2014-06-23)
+CWE Content Team
+MITRE
+updated Description, Other_Notes
+2013-02-21
+(CWE 2.4, 2013-02-21)
+CWE Content Team
+MITRE
+updated Demonstrative_Examples, Relationships
+2012-10-30
+(CWE 2.3, 2012-10-30)
+CWE Content Team
+MITRE
+updated Potential_Mitigations
+2012-05-11
+(CWE 2.2, 2012-05-15)
+CWE Content Team
+MITRE
+updated Common_Consequences, Demonstrative_Examples, Relationships
+2011-06-01
+(CWE 1.13, 2011-06-01)
+CWE Content Team
+MITRE
+updated Common_Consequences
+2008-10-14
+(CWE 1.0.1, 2008-10-14)
+CWE Content Team
+MITRE
+updated Description
+2008-09-08
+(CWE 1.0, 2008-09-09)
+CWE Content Team
+MITRE
+updated Description, Relationships, Observed_Example, Other_Notes, Weakness_Ordinalities
+2008-07-01
+(CWE 1.0, 2008-09-09)
+Eric Dalci
+Cigital
+updated Time_of_Introduction
+More information is available — Please edit the custom filter or select a different filter.
+Page Last Updated:
+April 30, 2026
+Site Map
+|
+Terms of Use
+|
+Manage Cookies
+|
+Cookie Notice
+|
+Privacy Policy
+|
+Contact Us
+|
+Use of the Common Weakness Enumeration (CWE™) and the associated references from this website are subject to the
+Terms of Use
+. CWE is sponsored by the
+U.S. Department of Homeland Security
+(DHS)
+Cybersecurity and Infrastructure Security Agency
+(CISA) and managed by the
+Homeland Security Systems Engineering and Development Institute
+(HSSEDI) which is operated by
+The MITRE Corporation
+(MITRE). Copyright © 2006–2026, The MITRE Corporation. CWE, CWSS, CWRAF, and the CWE logo are trademarks of The MITRE Corporation.

@@ -1,0 +1,576 @@
+Common Weakness Enumeration
+Celebrating 20 years of community-developed cybersecurity weakness knowledge!
+Home
+>
+CWE List
+>
+CWE-184: Incomplete List of Disallowed Inputs (4.20)
+Home
+About ▼
+Who We Are
+User Stories
+History
+Documents
+Videos
+Learn ▼
+Basics
+Root Cause Mapping ►
+Guidance
+Quick Tips
+Examples
+How to Contribute Weakness Content
+FAQs
+Glossary
+Access Content ▼
+Top-N Lists ►
+Top 25 Software
+Top Hardware
+Top 10 KEV Weaknesses
+CWE List ►
+Current Version
+Reports
+Visualizations
+Releases Archive
+Downloads
+REST API
+Community ▼
+News ►
+Current News
+Blog
+Podcast
+News Archive
+CWE Board
+Working Groups & Special Interest Groups
+Email Lists
+Search ▼
+Search CWE List
+Search Website
+CWE Glossary Definition
+CWE-184: Incomplete List of Disallowed Inputs
+Weakness ID: 184
+Vulnerability Mapping
+:
+ALLOWED
+This CWE ID may be used to map to real-world vulnerabilities
+Abstraction:
+Base
+Base - a weakness that is still mostly independent of a resource or technology, but with sufficient details to provide specific methods for detection and prevention. Base level weaknesses typically describe issues in terms of 2 or 3 of the following dimensions: behavior, property, technology, language, and resource.
+View customized information:
+Conceptual
+For users who are interested in more notional aspects of a weakness. Example: educators, technical writers, and project/program managers.
+Operational
+For users who are concerned with the practical application and details about the nature of a weakness and how to prevent it from happening. Example: tool developers, security researchers, pen-testers, incident response analysts.
+Mapping Friendly
+For users who are mapping an issue to CWE/CAPEC IDs, i.e., finding the most appropriate CWE for a specific issue (e.g., a CVE record). Example: tool developers, security researchers.
+Complete
+For users who wish to see all available information for the CWE/CAPEC entry.
+Custom
+For users who want to customize what details are displayed.
+×
+Edit Custom Filter
+Conceptual
+Operational
+Mapping Friendly
+Select All
+Reset
+Clear
+Submit
+Cancel
+Description
+The product implements a protection mechanism that relies on a list of inputs (or properties of inputs) that are not allowed by policy or otherwise require other action to neutralize before additional processing takes place, but the list is incomplete.
+Alternate Terms
+Denylist / Deny List
+This is used by CWE and CAPEC instead of other commonly-used terms. Its counterpart is allowlist.
+Blocklist / Block List
+This is often used by security tools such as firewalls, email or web gateways, proxies, etc.
+Blacklist / Black List
+This term is frequently used, but usage has been declining as organizations have started to adopt other terms.
+Common Consequences
+This table specifies different individual consequences
+associated with the weakness. The Scope identifies the application security area that is
+violated, while the Impact describes the negative technical impact that arises if an
+adversary succeeds in exploiting this weakness. The Likelihood provides information about
+how likely the specific consequence is expected to be seen relative to the other
+consequences in the list. For example, there may be high likelihood that a weakness will be
+exploited to achieve a certain impact, but a low likelihood that it will be exploited to
+achieve a different impact.
+Impact
+Details
+Bypass Protection Mechanism
+Scope: Access Control
+Attackers may be able to find other malicious inputs that were not expected by the developer, allowing them to bypass the intended protection mechanism.
+Potential Mitigations
+Phase(s)
+Mitigation
+Implementation
+Strategy:
+Input Validation
+Do not rely exclusively on detecting disallowed inputs. There are too many variants to encode a character, especially when different environments are used, so there is a high likelihood of missing some variants. Only use detection of disallowed inputs as a mechanism for detecting suspicious activity. Ensure that you are using other protection mechanisms that only identify "good" input - such as lists of allowed inputs - and ensure that you are properly encoding your outputs.
+Relationships
+This table shows the weaknesses and high level categories that are related to this
+weakness. These relationships are defined as ChildOf, ParentOf, MemberOf and give insight to
+similar items that may exist at higher and lower levels of abstraction. In addition,
+relationships such as PeerOf and CanAlsoBe are defined to show similar weaknesses that the user
+may want to explore.
+Relevant to the view "Research Concepts" (View-1000)
+Nature
+Type
+ID
+Name
+ChildOf
+Pillar - a weakness that is the most abstract type of weakness and represents a theme for all class/base/variant weaknesses related to it. A Pillar is different from a Category as a Pillar is still technically a type of weakness that describes a mistake, while a Category represents a common characteristic used to group related things.
+693
+Protection Mechanism Failure
+ChildOf
+Class - a weakness that is described in a very abstract fashion, typically independent of any specific language or technology. More specific than a Pillar Weakness, but more general than a Base Weakness. Class level weaknesses typically describe issues in terms of 1 or 2 of the following dimensions: behavior, property, and resource.
+1023
+Incomplete Comparison with Missing Factors
+ParentOf
+Chain - a Compound Element that is a sequence of two or more separate weaknesses that can be closely linked together within software. One weakness, X, can directly create the conditions that are necessary to cause another weakness, Y, to enter a vulnerable condition. When this happens, CWE refers to X as "primary" to Y, and Y is "resultant" from X. Chains can involve more than two weaknesses, and in some cases, they might have a tree-like structure.
+692
+Incomplete Denylist to Cross-Site Scripting
+PeerOf
+Variant - a weakness that is linked to a certain type of product, typically involving a specific language or technology. More specific than a Base weakness. Variant level weaknesses typically describe issues in terms of 3 to 5 of the following dimensions: behavior, property, technology, language, and resource.
+86
+Improper Neutralization of Invalid Characters in Identifiers in Web Pages
+PeerOf
+Base - a weakness that is still mostly independent of a resource or technology, but with sufficient details to provide specific methods for detection and prevention. Base level weaknesses typically describe issues in terms of 2 or 3 of the following dimensions: behavior, property, technology, language, and resource.
+625
+Permissive Regular Expression
+CanPrecede
+Base - a weakness that is still mostly independent of a resource or technology, but with sufficient details to provide specific methods for detection and prevention. Base level weaknesses typically describe issues in terms of 2 or 3 of the following dimensions: behavior, property, technology, language, and resource.
+78
+Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')
+CanPrecede
+Base - a weakness that is still mostly independent of a resource or technology, but with sufficient details to provide specific methods for detection and prevention. Base level weaknesses typically describe issues in terms of 2 or 3 of the following dimensions: behavior, property, technology, language, and resource.
+79
+Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')
+CanPrecede
+Variant - a weakness that is linked to a certain type of product, typically involving a specific language or technology. More specific than a Base weakness. Variant level weaknesses typically describe issues in terms of 3 to 5 of the following dimensions: behavior, property, technology, language, and resource.
+98
+Improper Control of Filename for Include/Require Statement in PHP Program ('PHP Remote File Inclusion')
+CanPrecede
+Base - a weakness that is still mostly independent of a resource or technology, but with sufficient details to provide specific methods for detection and prevention. Base level weaknesses typically describe issues in terms of 2 or 3 of the following dimensions: behavior, property, technology, language, and resource.
+434
+Unrestricted Upload of File with Dangerous Type
+Relevant to the view "Software Development" (View-699)
+Nature
+Type
+ID
+Name
+MemberOf
+Category - a CWE entry that contains a set of other entries that share a common characteristic.
+1215
+Data Validation Issues
+Modes
+Of Introduction
+The different Modes of Introduction provide information
+about how and when this
+weakness may be introduced. The Phase identifies a point in the life cycle at which
+introduction
+may occur, while the Note provides a typical scenario related to introduction during the
+given
+phase.
+Phase
+Note
+Implementation
+Developers often try to protect their products against malicious input by checking against lists of known bad inputs, such as special characters that can invoke new commands. However, such lists often only address the most well-known bad inputs. As a quick fix, developers might rely on these lists instead of addressing the root cause of the issue. See [
+REF-141
+].
+Architecture and Design
+The design might rely solely on detection of malicious inputs as a protection mechanism.
+Applicable Platforms
+This listing shows possible areas for which the given
+weakness could appear. These
+may be for specific named Languages, Operating Systems, Architectures, Paradigms,
+Technologies,
+or a class of such platforms. The platform is listed along with how frequently the given
+weakness appears for that instance.
+Languages
+Class: Not Language-Specific
+(Undetermined Prevalence)
+Technologies
+Class: Not Technology-Specific
+(Undetermined Prevalence)
+Demonstrative Examples
+Example 1
+The following code attempts to stop XSS attacks by removing all occurences of "script" in an input string.
+(bad code)
+Example Language:
+Java
+public String removeScriptTags(String input, String mask) {
+return input.replaceAll("script", mask);
+}
+Because the code only checks for the lower-case "script" string, it can be easily defeated with upper-case script tags.
+Example 2
+This example takes user input, passes it through an encoding scheme, then lists the contents of the user's home directory based on the user name.
+(bad code)
+Example Language:
+Perl
+sub GetUntrustedInput {
+return($ARGV[0]);
+}
+sub encode {
+my($str) = @_;
+$str =~ s/\&/\&amp;/gs;
+$str =~ s/\"/\&quot;/gs;
+$str =~ s/\'/\&apos;/gs;
+$str =~ s/\</\&lt;/gs;
+$str =~ s/\>/\&gt;/gs;
+return($str);
+}
+sub doit {
+my $uname = encode(GetUntrustedInput("username"));
+print "<b>Welcome, $uname!</b><p>\n";
+system("cd /home/$uname; /bin/ls -l");
+}
+The programmer attempts to encode dangerous characters, however the denylist for encoding is incomplete (
+CWE-184
+) and an attacker can still pass a semicolon, resulting in a chain with OS command injection (
+CWE-78
+).
+Additionally, the encoding routine is used inappropriately with command execution. An attacker doesn't even need to insert their own semicolon. The attacker can instead leverage the encoding routine to provide the semicolon to separate the commands. If an attacker supplies a string of the form:
+(attack code)
+' pwd
+then the program will encode the apostrophe and insert the semicolon, which functions as a command separator when passed to the system function. This allows the attacker to complete the command injection.
+Selected Observed
+Examples
+Note: this is a curated list of examples for users to understand the variety of ways in which this
+weakness can be introduced. It is not a complete list of all CVEs that are related to this CWE entry.
+Reference
+Description
+CVE-2024-6091
+Chain: AI agent platform does not restrict pathnames containing internal "/./" sequences (
+CWE-55
+), leading to an incomplete denylist (
+CWE-184
+) that does not prevent OS command injection (
+CWE-78
+)
+CVE-2024-4315
+Chain: API for text generation using Large Language Models (LLMs) does
+not include the "\" Windows folder separator in its denylist (
+CWE-184
+)
+when attempting to prevent Local File Inclusion via path traversal
+(
+CWE-22
+), allowing deletion of arbitrary files on Windows systems.
+CVE-2024-44335
+Chain: filter only checks for some shell-injection characters (
+CWE-184
+), enabling OS command injection (
+CWE-78
+)
+CVE-2008-2309
+product uses a denylist to identify potentially dangerous content, allowing attacker to bypass a warning
+CVE-2005-2782
+PHP remote file inclusion in web application that filters "http" and "https" URLs, but not "ftp".
+CVE-2004-0542
+Programming language does not filter certain shell metacharacters in Windows environment.
+CVE-2004-0595
+XSS filter doesn't filter null characters before looking for dangerous tags, which are ignored by web browsers. MIE and validate-before-cleanse.
+CVE-2005-3287
+Web-based mail product doesn't restrict dangerous extensions such as ASPX on a web server, even though others are prohibited.
+CVE-2004-2351
+Resultant XSS when only <script> and <style> are checked.
+CVE-2005-2959
+Privileged program does not clear sensitive environment variables that are used by bash. Overlaps multiple interpretation error.
+CVE-2005-1824
+SQL injection protection scheme does not quote the "\" special character.
+CVE-2005-2184
+Detection of risky filename extensions prevents users from automatically executing .EXE files, but .LNK is accepted, allowing resultant Windows symbolic link.
+CVE-2007-1343
+Product uses list of protected variables, but accidentally omits one dangerous variable, allowing external modification
+CVE-2007-5727
+Chain: product only removes SCRIPT tags (
+CWE-184
+), enabling XSS (
+CWE-79
+)
+CVE-2006-4308
+Chain: product only checks for use of "javascript:" tag (
+CWE-184
+), allowing XSS (
+CWE-79
+) using other tags
+CVE-2007-3572
+Chain: OS command injection (
+CWE-78
+) enabled by using an unexpected character that is not explicitly disallowed (
+CWE-184
+)
+CVE-2002-0661
+"\" not in list of disallowed values for web server, allowing path traversal attacks when the server is run on Windows and other OSes.
+Weakness Ordinalities
+Ordinality
+Description
+Primary
+(where the weakness exists independent of other weaknesses)
+Detection
+Methods
+Method
+Details
+Black Box
+Exploitation of a vulnerability with commonly-used manipulations might fail, but minor variations might succeed.
+Memberships
+This MemberOf Relationships table shows additional CWE Categories and Views that
+reference this weakness as a member. This information is often useful in understanding where a
+weakness fits within the context of external information sources.
+Nature
+Type
+ID
+Name
+MemberOf
+Category - a CWE entry that contains a set of other entries that share a common characteristic.
+990
+SFP Secondary Cluster: Tainted Input to Command
+MemberOf
+Category - a CWE entry that contains a set of other entries that share a common characteristic.
+1347
+OWASP Top Ten 2021 Category A03:2021 - Injection
+MemberOf
+Category - a CWE entry that contains a set of other entries that share a common characteristic.
+1413
+Comprehensive Categorization: Protection Mechanism Failure
+Vulnerability Mapping Notes
+Usage
+ALLOWED
+(this CWE ID may be used to map to real-world vulnerabilities)
+Reason
+Acceptable-Use
+Rationale
+This CWE entry is at the Base level of abstraction, which is a preferred level of abstraction for mapping to the root causes of vulnerabilities.
+Comments
+Carefully read both the name and description to ensure that this mapping is an appropriate fit. Do not try to 'force' a mapping to a lower-level Base/Variant simply to comply with this preferred level of abstraction.
+Notes
+Relationship
+Multiple interpretation errors can indirectly introduce inputs that should be disallowed. For example, a list of dangerous shell metacharacters might not include a metacharacter that only has meaning in one particular shell, not all of them; or a check for XSS manipulations might ignore an unusual construct that is supported by one web browser, but not others.
+Taxonomy
+Mappings
+Mapped Taxonomy Name
+Node ID
+Fit
+Mapped Node Name
+PLOVER
+Incomplete Blacklist
+Related Attack Patterns
+CAPEC-ID
+Attack Pattern Name
+CAPEC-120
+Double Encoding
+CAPEC-15
+Command Delimiters
+CAPEC-182
+Flash Injection
+CAPEC-3
+Using Leading 'Ghost' Character Sequences to Bypass Input Filters
+CAPEC-43
+Exploiting Multiple Input Interpretation Layers
+CAPEC-6
+Argument Injection
+CAPEC-71
+Using Unicode Encoding to Bypass Validation Logic
+CAPEC-73
+User-Controlled Filename
+CAPEC-85
+AJAX Footprinting
+References
+[REF-140]
+Greg Hoglund and Gary McGraw.
+"Exploiting Software: How to Break Code".
+Addison-Wesley. 2004-02-27.
+<
+https://www.amazon.com/Exploiting-Software-How-Break-Code/dp/0201786958
+>.
+(
+URL validated: 2023-04-07
+)
+[REF-141]
+Steve Christey.
+"Blacklist defenses as a breeding ground for vulnerability variants".
+2006-02-03.
+<
+https://seclists.org/fulldisclosure/2006/Feb/40
+>.
+(
+URL validated: 2023-04-07
+)
+[REF-62]
+Mark Dowd, John McDonald and Justin Schuh.
+"The Art of Software Security Assessment".
+Chapter 8, "Eliminating Metacharacters", Page 435. 1st Edition. Addison Wesley. 2006.
+Content
+History
+Submissions
+Submission Date
+Submitter
+Organization
+2006-07-19
+(CWE Draft 3, 2006-07-19)
+PLOVER
+Modifications
+Modification Date
+Modifier
+Organization
+2025-12-11
+(CWE 4.19, 2025-12-11)
+CWE Content Team
+MITRE
+updated Applicable_Platforms, Demonstrative_Examples, Observed_Examples
+2024-11-19
+(CWE 4.16, 2024-11-19)
+CWE Content Team
+MITRE
+updated Common_Consequences, Description, Diagram, Modes_of_Introduction
+2024-07-16
+(CWE 4.15, 2024-07-16)
+CWE Content Team
+MITRE
+updated Observed_Examples
+2023-06-29
+(CWE 4.12, 2023-06-29)
+CWE Content Team
+MITRE
+updated Mapping_Notes, Relationships
+2023-04-27
+(CWE 4.11, 2023-04-27)
+CWE Content Team
+MITRE
+updated References, Relationships
+2021-10-28
+(CWE 4.6, 2021-10-28)
+CWE Content Team
+MITRE
+updated Relationships
+2020-06-25
+(CWE 4.1, 2020-06-25)
+CWE Content Team
+MITRE
+updated Alternate_Terms, Observed_Examples
+2020-02-24
+(CWE 4.0, 2020-02-24)
+CWE Content Team
+MITRE
+updated Alternate_Terms, Description, Detection_Factors, Modes_of_Introduction, Name, Observed_Examples, Potential_Mitigations, Relationship_Notes, Relationships
+2019-06-20
+(CWE 3.3, 2019-06-20)
+CWE Content Team
+MITRE
+updated Related_Attack_Patterns, Relationships
+2019-01-03
+(CWE 3.2, 2019-01-03)
+CWE Content Team
+MITRE
+updated Related_Attack_Patterns
+2018-03-27
+(CWE 3.1, 2018-03-27)
+CWE Content Team
+MITRE
+updated Observed_Examples, Relationships
+2017-11-08
+(CWE 3.0, 2017-11-08)
+CWE Content Team
+MITRE
+updated Applicable_Platforms, References
+2017-05-03
+(CWE 2.11, 2017-05-05)
+CWE Content Team
+MITRE
+updated Potential_Mitigations, Related_Attack_Patterns
+2015-12-07
+(CWE 2.9, 2015-12-07)
+CWE Content Team
+MITRE
+updated Relationships
+2014-07-30
+(CWE 2.8, 2014-07-31)
+CWE Content Team
+MITRE
+updated Demonstrative_Examples, Relationships
+2013-02-21
+(CWE 2.4, 2013-02-21)
+CWE Content Team
+MITRE
+updated Potential_Mitigations
+2012-05-11
+(CWE 2.2, 2012-05-15)
+CWE Content Team
+MITRE
+updated References, Related_Attack_Patterns, Relationships
+2011-06-01
+(CWE 1.13, 2011-06-01)
+CWE Content Team
+MITRE
+updated Common_Consequences
+2010-06-21
+(CWE 1.9, 2010-06-21)
+CWE Content Team
+MITRE
+updated Demonstrative_Examples
+2010-04-05
+(CWE 1.8.1, 2010-04-05)
+CWE Content Team
+MITRE
+updated Related_Attack_Patterns
+2010-02-16
+(CWE 1.8, 2010-02-16)
+CWE Content Team
+MITRE
+updated Relationships
+2009-05-27
+(CWE 1.4, 2009-05-27)
+CWE Content Team
+MITRE
+updated Description, Other_Notes, Relationship_Notes, Time_of_Introduction
+2008-11-24
+(CWE 1.1, 2008-11-25)
+CWE Content Team
+MITRE
+updated Observed_Examples
+2008-09-08
+(CWE 1.0, 2008-09-09)
+CWE Content Team
+MITRE
+updated Detection_Factors, Relationships, Other_Notes, Relationship_Notes, Taxonomy_Mappings, Weakness_Ordinalities
+2008-07-01
+(CWE 1.0, 2008-09-09)
+Sean Eidemiller
+Cigital
+added/updated demonstrative examples
+2008-07-01
+(CWE 1.0, 2008-09-09)
+Eric Dalci
+Cigital
+updated Potential_Mitigations, Time_of_Introduction
+Previous Entry Names
+Change Date
+Previous Entry Name
+2020-02-24
+Incomplete Blacklist
+More information is available — Please edit the custom filter or select a different filter.
+Page Last Updated:
+April 30, 2026
+Site Map
+|
+Terms of Use
+|
+Manage Cookies
+|
+Cookie Notice
+|
+Privacy Policy
+|
+Contact Us
+|
+Use of the Common Weakness Enumeration (CWE™) and the associated references from this website are subject to the
+Terms of Use
+. CWE is sponsored by the
+U.S. Department of Homeland Security
+(DHS)
+Cybersecurity and Infrastructure Security Agency
+(CISA) and managed by the
+Homeland Security Systems Engineering and Development Institute
+(HSSEDI) which is operated by
+The MITRE Corporation
+(MITRE). Copyright © 2006–2026, The MITRE Corporation. CWE, CWSS, CWRAF, and the CWE logo are trademarks of The MITRE Corporation.

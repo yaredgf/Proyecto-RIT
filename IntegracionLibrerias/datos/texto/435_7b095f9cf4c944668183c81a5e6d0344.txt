@@ -1,0 +1,113 @@
+The Fine Art of Frustrating the Adversary
+By
+Hazel Burton
+Thursday, October 1, 2026 06:00
+On The Radar
+For Cybersecurity Awareness Month, eight Cisco Talos researchers share practical ways defenders can frustrate adversaries at different stages of an operation.
+Deception techniques such as honeypot accounts, false infrastructure, and tarpits can slow adversaries down while giving defenders earlier opportunities to detect their activity.
+Behavioral detections, tighter control of legitimate remote-management tools, and clear boundaries around AI agents can make essential adversary actions more visible and easier to interrupt.
+Breaking dependencies between stages of an operation can prevent an adversary from reaching their next objective.
+Years ago, Cisco Talos blocked an adversary’s command-and-control (C2) traffic. The adversary responded by tweeting, “Write a rule for your a**.”
+A fine endorsement of our work, if I’ve ever heard one.
+Talos loves to see an adversary forced to change course. And if every alternative for them is slower, less stealthy, less reliable and more expensive? Chef’s kiss.
+Adversaries rely on certain advantages. They look for environments where tools and infrastructure allow them to blend in with normal activity. They also look for employees who can be pressured into acting before they have time to think.
+Strong cybersecurity defenses can change those conditions. They take away adversary choices and increase the risk attached to essential actions, forcing them to keep making new decisions. Each change of plan costs them time and resources, and may eventually cause them to give up and move to another target.
+It also creates more opportunities for defenders to spot what they are doing.
+For Cybersecurity Awareness Month, we’re exploring “the fine art of frustrating the adversary.” To kick us off, I asked researchers across Talos, covering all aspects of the attack chain, for the strongest recommendation they could give defenders to seriously frustrate a potential adversary in their environment, and what that action would prevent the adversary from doing next.
+Take away their choices
+Many adversaries use techniques that succeed against a large number of organizations. This makes a lot of economic sense: An operation that depends on every potential target having an unusual configuration will not scale particularly well.
+But it also creates an opportunity for defenders.
+“By being unique and setting things up a little differently, you may be able to better defend your environment when they come knocking,” Pierre says.
+For example, organizations can restrict which accounts are permitted to sign into their most critical servers, alert on connection attempts from unauthorized users, and closely monitor any changes to those restrictions. Different credentials or authentication methods can be required for particularly sensitive systems, while protected enclaves can provide increased monitoring around critical infrastructure.
+Pierre also recommends that defenders “monitor (and alert) for any changes to administrative users or administrative groups.”
+Of course, no amount of security measures makes an organization impenetrable, but they can make the common methods adversaries use much less dependable.
+Deception can push that uncertainty even further.
+“Affecting the attack earlier rather than later in the attack chain is best,” Martin says. “Better to stop an attack from happening than minimize the consequences after it has happened.”
+Martin suggests creating honeypot email accounts using expired domains with addresses that have previously leaked, or developing fictional employee profiles and seeding their addresses in places where spammers and other adversaries are likely to discover them. Because these accounts have no legitimate users, messages sent to them can be treated with far greater suspicion. The activity can provide early tactical intelligence about malicious infrastructure, lures, and campaigns, allowing defenders to put protections in place before the same operation reaches genuine employees.
+Martin signed off with this note: “Have fun creating some fake employees and executives.”
+Nick sees a similar role for tarpits and other forms of deception.
+“False servers, shares, user accounts and network space can all be used to confuse and slow down the attacker while providing opportunities for the defender to detect them,” he says.
+The same principle is beginning to appear in attempts to slow automated systems.
+“We’ve even seen some new movement in the tarpit space for slowing down AI by throwing huge amounts of incoherent text at scrapers to slow them down,” Nick explains.
+Deception gives the adversary another problem: they can no longer be certain that what they have found is useful, or even real.
+Plus, it can be a lot of fun.
+Detect what they cannot avoid
+“Attackers have enormous flexibility in how they operate, but far less flexibility in what they ultimately need to accomplish,” Ryan says. “Good detection engineering exploits that asymmetry.”
+Consider an adversary attempting to obtain privileged credentials. They might use Mimikatz,
+comsvcs.dll
+, direct access to LSASS memory, a custom utility or another implementation entirely. A detection focused too narrowly on one tool can be bypassed simply by replacing it. A detection built around the underlying attempt to access credential material leaves considerably less room to maneuver.
+According to Ryan, creating resilient behavioral detections requires defenders to:
+Identify the adversary techniques that would have the greatest impact in their environment
+Understand the different procedures an adversary could use to perform them;
+Find the behaviors that remain consistent when the tooling, syntax, or implementation changes
+Build analytics that account for techniques such as encoding, transformation, and obfuscation
+This is more involved than matching a known tool or indicator. It requires suitable telemetry, knowledge of normal activity in the organization, and detection engineering that reflects how adversaries operate in practice.
+“If done right, it forces an attacker into a dilemma: either abandon the objective, choose a noisier/less reliable path, or execute the action and risk detection,” Ryan says. “It is the highest leverage investment for defenders as well, because behavior-based detection is tool-agnostic.”
+Ryan also points out that organizations do not need to begin from scratch. MITRE ATT&CK provides a useful taxonomy of adversary techniques, while projects such as MITRE Center for Threat-Informed Defense’s
+Summiting the Pyramid
+, SpecterOps’ work on
+capability abstraction
+, Splunk SURGe’s
+Macro ATT&CK
+, and Cisco Foundation AI’s
+LUCID
+explore different parts of this challenge.
+Control the tools they hope to use
+Sometimes the most useful tool available to an adversary is one that already has a legitimate purpose within the target environment. Remote monitoring and management (RMM) tools are a good example. Organizations use RMM software to administer systems and maintain remote access. Ransomware operators can use the same capabilities to establish persistence and interact with compromised systems before encryption.
+“These are good tools that are being used for bad, making them not good in your environment but not bad for everyone,” Michael says. “So are they good or not good? Well, that depends on your specific environment.”
+Warlock ransomware, for example, has used Zoho Unattended Agent. The tool can provide a remote technician with elevated permissions even when the signed-in user is not an administrator, offering the adversary persistence and a relatively benign-looking route to greater privileges.
+Defenders can frustrate this activity by first inventorying the RMM products that are genuinely authorized in their environment. Application allowlisting can then permit those approved products while blocking (or producing high-confidence alerts for) unapproved tools such as AnyDesk, ScreenConnect, or Atera. Controls can be enforced through technologies such as Windows Defender Application Control, AppLocker, or endpoint detection and response (EDR) platforms.
+Removing access to a familiar RMM product forces the adversary to establish persistence or C2 another way. That change does not guarantee that the operation ends, but it creates friction and another chance to detect the activity before the ransomware encryptor is deployed.
+Slow them down
+“Attackers use urgency to create panic and to try and trick users into making bad decisions in the heat of the moment,” says Doug.
+Email, text message, and in-person scams frequently manufacture that urgency. A bill must be cancelled immediately. An executive stranded overseas needs help now. A child has been injured and the recipient must call the number in the message. The adversary always wants you to act first and think later.
+From a social engineering perspective, Doug recommends considering which events in your work or personal life would genuinely require you to drop everything and respond immediately. For most people, that list should be relatively short. Then consider how you would realistically expect to learn about each situation, what action you might need to take and how you could independently verify that it was real.
+“If you messed up your taxes, you probably don’t expect to get a single email from the IRS, and you almost certainly don’t expect the IRS needs gift cards or other forms of payment,” Doug says.
+If a text claimed that your child had been injured at school, you could call the number you already have for the school rather than relying on the contact details supplied in the message.
+Doug recommends thinking through genuine emergencies in advance to make it easier to recognize when someone is trying to manufacture one. It also provides a verification route that does not depend on trusting the message itself.
+Make every agent session identifiable and interruptible
+As organizations increasingly introduce AI agents with access to tools and applications across connected systems, defenders need to know which agent is responsible for each action, and be able to stop it.
+“The best way to frustrate an agentic adversary is to make every agent session identifiable, restricted, and interruptible,” David says.
+A recent Anthropic report described four real-world incidents involving Claude in evaluation environments. The organizations involved were not named, but the incidents shared a common weakness: the environments had inadvertently been given internet access.
+These were not conventional adversary operations and the agents had not been directed to behave maliciously. Their significance lies in what happened once the agents began operating beyond their intended boundaries.
+The reported activity crossed trusted services, relays, and short-lived infrastructure before reaching cloud metadata, Kubernetes, VPN, source-control, and data-staging systems. An agent capable of adapting its behavior can change destinations, reuse public services, and connect information or systems in ways its operators did not anticipate.
+“A simple IP or domain blocklist would not have been enough,” David says.
+Instead, David recommends that each agent run should have its own identity and short-lived credentials, with traffic routed through an independent gateway. Access to cloud metadata, Kubernetes interfaces, and other sensitive systems should be blocked unless the agent genuinely requires it.
+Defenders should also look for actions that indicate an agent is moving beyond its intended role, including:
+Unexpected writes to package registries, datasets, wikis, paste sites, or file-sharing services
+Repository creation, dataset commits, and unusual API operations
+Calls to Kubernetes APIs, VPN services and DNS-over-HTTPS relays
+Public services being used as C2 channels or dead drops
+Credential discovery followed by activity across cloud accounts or source-control platforms
+Rapid destination changes, DNS pinning, short-lived egress identities, and unusual bursts of traffic
+These controls constrain what happens after an agent takes an unexpected action. Giving each session a traceable identity makes its behavior easier to attribute. Allowlisting limits where it can go. Independent gateways provide a place to observe and stop the activity.
+“This is practical today,” David says. “It makes the agent’s next move slower, louder, and much easier to stop.”
+Break up their route
+Conventional malware operations also depend on connections that may be hidden inside services an organization would not ordinarily consider malicious. An attack chain can involve multiple tools and pieces of infrastructure. Somewhere within it may be a dependency that connects one stage to the next.
+“I cannot say with certainty which action is most effective at frustrating an adversary, but I would imagine it is discovering a dependency in the chain that, once blocked, cannot be easily replaced,” Vanja says.
+Vanja encountered this while analyzing two attack chains that used the Amatera information stealer as their primary payload.
+In the first, the adversary used a page hosted on the legitimate Telegra.ph publishing platform to conceal the location of its C2 server. This technique, known as a C2 dead-drop resolver, allows an adversary to place C2 information on a popular legitimate service that web-filtering systems may be less inclined to block or inspect closely.
+Once defenders identify and block the particular page containing that information, the handoff is interrupted. Amatera might already be running on the endpoint, but if it cannot determine where its C2 server is, it cannot receive collection instructions or download additional payloads.
+The second chain used the same primary payload but included different secondary payloads, among them the cryptocurrency stealer ZigCryptoStealer. This malware stored its C2 domain in the metadata of a BNB Smart Chain contract — an approach commonly known as EtherHiding.
+Blocking one contract does not stop an adversary from deploying another. It does break the existing operation and force them to spend time and money rebuilding part of their infrastructure.
+The appropriate response depends on how the organization uses the underlying service. Known malicious domains and URLs can generally be blocked through DNS filtering, secure web gateways, proxies, or firewalls. Published indicators can also be added to existing security tools.
+Contract-specific blocking is more complicated because defenders need visibility into blockchain remote procedure call requests and a means of distinguishing one contract from other traffic. If the organization has no legitimate requirement to access public blockchain or RPC infrastructure, blocking it may be the simpler option. Where the technology is required, defenders can allow approved services and monitor access to known contracts.
+The main requirements are visibility, timely threat intelligence, and the ability to turn that intelligence into enforcement rules. Even partial disruption can increase the cost and complexity of the operation.
+“It is particularly satisfying when a single point of failure is identified because it forces a threat actor to re-establish infrastructure, which can take time and money,” Vanja says. “In other words, the simpler the mitigation, the more satisfied we can be.”
+Keep them on their toes
+No single action in this article will frustrate every adversary or stop every attack, nor will every recommendation be equally appropriate for every environment. But the common pattern is the same: Make the adversary’s next move harder, riskier, or less reliable. If you can get them to swear at you on Twitter, even better.
+It comes down to setting your environment up to detect the behaviors that their objectives require. Know when a tool is being used for something it shouldn’t be. Slow down the moments designed to make people panic. Give every agent session an identity, boundaries, and a reliable off switch. Find the dependencies connecting one stage of an operation to the next.
+Frustrating an adversary means making them find another account, another tool, another route, another piece of infrastructure, or another way to make someone act.
+Eventually, the easier target may be somewhere else.
+For more insights into current cybercrime behavior, take a listen of this episode of Beers with Talos:
+Share this post
+Related Content
+Securing the unpatchable in an age of AI-driven vulnerabilities
+September 16, 2026 06:00
+Advances in AI technology will continue to identify vulnerabilities that in some circumstances are difficult, or effectively impossible, to patch. Appropriate network segmentation, rigorous visibility, and the deployment of NGFW/IPS combinations can provide a powerful compensatory layer.
+The safety penalty: Reclaiming operational sovereignty in the age of AI
+August 25, 2026 06:00
+As frontier AI models become increasingly restrictive, security teams are facing a "safety penalty" that hampers real-time incident response. Discover how organizations can move toward operational sovereignty to ensure their defensive AI keeps pace with unconstrained adversaries.
+Describing attacks with crime script analysis
+August 19, 2026 06:00
+Martin explores how using crime script analysis to describe an attack with everyday language makes the situation accessible to non-technical audiences and identify points where the crime can be disrupted.

@@ -1,0 +1,88 @@
+Ashley Shen
+September 30, 2026 06:00
+China-nexus UAT-11587 targets government and policy organizations across Asia with Antino backdoor
+Cisco Talos uncovered a cluster of activity we track as UAT-11587 targeting government and policy organizations across Asia, including in Taiwan, India, the Philippines, and Cambodia, to deliver a previously undocumented backdoor referred to as “Antino” in developer artifacts.
+By
+Ashley Shen
+Threat Spotlight
+April 8, 2026 06:00
+New Lua-based malware “LucidRook” observed in targeted attacks against Taiwanese organizations
+Cisco Talos uncovered a cluster of activity we track as UAT-10362 conducting spear-phishing campaigns against Taiwanese non-governmental organizations (NGOs) and suspected universities to deliver a newly identified malware family, “LucidRook.”
+By
+Ashley Shen
+Threat Spotlight
+February 5, 2026 06:00
+Knife Cutting the Edge: Disclosing a China-nexus gateway-monitoring AitM framework
+Cisco Talos uncovered “DKnife,” a fully featured gateway-monitoring and adversary-in-the-middle (AitM) framework comprising seven Linux-based implants.
+By
+Ashley Shen
+Threat Spotlight
+November 11, 2025 13:19
+Microsoft Patch Tuesday for November 2025 — Snort rules and prominent vulnerabilities
+Microsoft has released its monthly security update for November 2025, which includes 63 vulnerabilities affecting a range of products, including 5 that Microsoft marked as “critical.”
+By
+Ashley Shen
+Patch Tuesday
+May 13, 2025 06:00
+Defining a new methodology for modeling and tracking compartmentalized threats
+How do you profile actors and defend your systems when multiple threat actors are working together? In Part 2, Cisco Talos proposes an extended Diamond Model to analyze complex relationships between attackers.
+By
+Edmund Brumaghin
+,
+Asheer Malhotra
+,
+Ashley Shen
+,
+Vitor Ventura
+initial access broker
+May 13, 2025 06:00
+Redefining IABs: Impacts of compartmentalization on threat tracking and modeling
+Threat actors are teaming up, splitting attacks into stages and making defense harder than ever. In Part 1, Cisco Talos examines their tactics and defines their motivations.
+By
+Edmund Brumaghin
+,
+Asheer Malhotra
+,
+Ashley Shen
+,
+Vitor Ventura
+initial access broker
+April 23, 2025 06:00
+Introducing ToyMaker, an initial access broker working in cahoots with double extortion gangs
+Cisco Talos discovered a sophisticated attack on critical infrastructure by ToyMaker and Cactus, using the LAGTOY backdoor to orchestrate a relentless double extortion scheme.
+By
+Joey Chen
+,
+Asheer Malhotra
+,
+Ashley Shen
+,
+Vitor Ventura
+,
+Brandon White
+malware
+initial access broker
+ransomware
+September 6, 2024 06:00
+Vulnerability in Tencent WeChat custom browser could lead to remote code execution
+While this issue was disclosed and patched in the V8 engine in June 2023, the WeChat Webview component was not updated, and still remained vulnerable when Talos reported it to the vendor.
+By
+Ashley Shen
+,
+Vitor Ventura
+,
+Aleksandar Nikolic
+Threats
+Threat Spotlight
+August 1, 2024 08:00
+APT41 likely compromised Taiwanese government-affiliated research institute with ShadowPad and Cobalt Strike
+ShadowPad, widely considered the successor of PlugX, is a modular remote access trojan (RAT) only seen sold to Chinese hacking groups.
+By
+Joey Chen
+,
+Ashley Shen
+,
+Vitor Ventura
+Threat Spotlight
+APT
+RAT

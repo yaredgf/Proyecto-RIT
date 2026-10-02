@@ -1,0 +1,266 @@
+2026-10-02 04:09:19 [scrapy.utils.log] INFO: Scrapy 2.19.0 started (bot: crawler_rit)
+2026-10-02 04:09:19 [scrapy.utils.log] INFO: Versions:
+{'lxml': '6.1.3',
+ 'libxml2': '2.14.6',
+ 'cssselect': '1.5.0',
+ 'parsel': '1.12.1',
+ 'w3lib': '2.5.0',
+ 'Twisted': '26.4.0',
+ 'Python': '3.14.8 (main, Oct  1 2026, 21:39:21) [GCC 14.2.0]',
+ 'pyOpenSSL': '26.4.0 (OpenSSL 4.0.3 29 Sep 2026)',
+ 'cryptography': '50.0.2',
+ 'Platform': 'Linux-7.0.14-linuxkit-x86_64-with-glibc2.41'}
+2026-10-02 04:09:19 [scrapy.addons] INFO: Enabled addons:
+[]
+2026-10-02 04:09:19 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.logcount.LogCount',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.logstats.LogStats',
+ 'scrapy.extensions.remote_control.RemoteControl']
+2026-10-02 04:09:19 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'crawler_rit',
+ 'CONCURRENT_REQUESTS': 4,
+ 'CONCURRENT_REQUESTS_PER_DOMAIN': 1,
+ 'COOKIES_ENABLED': False,
+ 'DOWNLOAD_DELAY_JITTER': 0,
+ 'DOWNLOAD_MAXSIZE': 10000000,
+ 'DOWNLOAD_TIMEOUT': 30,
+ 'DOWNLOAD_VERIFY_CERTIFICATES': True,
+ 'FEED_EXPORT_ENCODING': 'utf-8',
+ 'LOG_FILE': '/app/logs/20261002T040917Z.log',
+ 'LOG_LEVEL': 'INFO',
+ 'METAREFRESH_ENABLED': False,
+ 'NEWSPIDER_MODULE': 'crawler_rit.spiders',
+ 'REDIRECT_ENABLED': False,
+ 'REDIRECT_MAX_TIMES': 5,
+ 'RETRY_ENABLED': False,
+ 'ROBOTSTXT_OBEY': True,
+ 'SPIDER_MODULES': ['crawler_rit.spiders'],
+ 'TELNETCONSOLE_ENABLED': False,
+ 'USER_AGENT': 'ProyectoRITCrawler/1.0'}
+2026-10-02 04:09:19 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'crawler_rit.politicas.PoliticasMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2026-10-02 04:09:19 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.start.StartSpiderMiddleware',
+ 'scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware',
+ 'scrapy.spidermiddlewares.metacopy.MetaCopyDetectionMiddleware']
+2026-10-02 04:09:19 [scrapy.middleware] INFO: Enabled item pipelines:
+[]
+2026-10-02 04:09:19 [scrapy.core.engine] INFO: Spider opened
+2026-10-02 04:09:19 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2026-10-02 04:09:19 [scrapy.extensions.remote_control] INFO: Remote control HTTP server listening on port 38121 (job 29-74fa626b3fba401ab2a5538191fd850d)
+2026-10-02 04:09:20 [rit] INFO: HTTP 301 https://www.cisa.gov/kev bytes=406 robots=False
+2026-10-02 04:09:20 [rit] INFO: HTTP 301 https://nvd.nist.gov/vuln/detail/CVE-2026-17072 bytes=531 robots=False
+2026-10-02 04:09:20 [rit] INFO: HTTP 200 https://www.microsoft.com/en-us/security/business/microsoft-entra bytes=221581 robots=False
+2026-10-02 04:09:21 [rit] INFO: Documento 106 descartado: No se encontraron términos del tema.
+2026-10-02 04:09:21 [rit] INFO: HTTP 200 https://www.debian.org/security/dsa bytes=14212 robots=False
+2026-10-02 04:09:21 [rit] INFO: Documento 424 descartado: Tipo de contenido no admitido: application/rss+xml
+2026-10-02 04:09:22 [rit] INFO: HTTP 200 https://blog.talosintelligence.com/the-fine-art-of-frustrating-the-adversary/ bytes=82321 robots=False
+2026-10-02 04:09:22 [rit] INFO: Documento guardado: https://blog.talosintelligence.com/the-fine-art-of-frustrating-the-adversary/; tipo: aviso_analisis; versión: 13; nueva versión: True; URLs nuevas: 3
+2026-10-02 04:09:22 [rit] INFO: HTTP 301 https://unit42.paloaltonetworks.com/about-unit-42/ bytes=249 robots=False
+2026-10-02 04:09:22 [rit] INFO: Documento 480 descartado: Host de redirección no autorizado: www.paloaltonetworks.com
+2026-10-02 04:09:23 [rit] INFO: HTTP 200 https://www.cisa.gov/known-exploited-vulnerabilities-catalog bytes=284940 robots=False
+2026-10-02 04:09:23 [rit] INFO: Documento guardado: https://www.cisa.gov/known-exploited-vulnerabilities-catalog; tipo: aviso_analisis; versión: 14; nueva versión: True; URLs nuevas: 350
+2026-10-02 04:09:23 [rit] INFO: HTTP 200 https://nvd.nist.gov/vuln/detail/cve-2026-17072 bytes=2453 robots=False
+2026-10-02 04:09:23 [rit] WARNING: Documento 280: intento 1/3; espera mínima 0 s; Texto extraído vacío.
+2026-10-02 04:09:23 [rit] INFO: HTTP 200 https://www.microsoft.com/en-us/security/business/microsoft-intune bytes=260041 robots=False
+2026-10-02 04:09:23 [rit] INFO: Documento guardado: https://www.microsoft.com/en-us/security/business/microsoft-intune; tipo: aviso_analisis; versión: 15; nueva versión: True; URLs nuevas: 8
+2026-10-02 04:09:24 [rit] INFO: HTTP 200 https://capec.mitre.org/data/index.html bytes=17854 robots=False
+2026-10-02 04:09:24 [rit] INFO: Documento guardado: https://capec.mitre.org/data/index.html; tipo: aviso_analisis; versión: 16; nueva versión: True; URLs nuevas: 11
+2026-10-02 04:09:24 [rit] INFO: HTTP 200 https://securelist.com/threat-category/mobile-threats/ bytes=146066 robots=False
+2026-10-02 04:09:24 [rit] INFO: Documento guardado: https://securelist.com/threat-category/mobile-threats/; tipo: aviso_analisis; versión: 17; nueva versión: True; URLs nuevas: 19
+2026-10-02 04:09:24 [rit] INFO: HTTP 200 https://cwe.mitre.org/data/definitions/184.html bytes=156785 robots=False
+2026-10-02 04:09:24 [rit] INFO: HTTP 200 https://www.debian.org/security/dsa-long bytes=21375 robots=False
+2026-10-02 04:09:25 [rit] INFO: Documento guardado: https://cwe.mitre.org/data/definitions/184.html; tipo: ficha; versión: 18; nueva versión: True; URLs nuevas: 32
+2026-10-02 04:09:25 [rit] INFO: Documento 425 descartado: Tipo de contenido no admitido: application/rss+xml
+2026-10-02 04:09:25 [rit] INFO: HTTP 200 https://blog.talosintelligence.com/author/hazel-burton/ bytes=72153 robots=False
+2026-10-02 04:09:25 [rit] INFO: Documento guardado: https://blog.talosintelligence.com/author/hazel-burton/; tipo: aviso_analisis; versión: 19; nueva versión: True; URLs nuevas: 8
+2026-10-02 04:09:50 [rit] WARNING: Solicitud fallida https://ubuntu.com/security: Getting https://ubuntu.com/security took longer than 30.0 seconds.
+2026-10-02 04:09:50 [rit] WARNING: Documento 300: intento 1/3; espera mínima 0 s; Getting https://ubuntu.com/security took longer than 30.0 seconds.
+2026-10-02 04:09:51 [rit] INFO: HTTP 301 https://www.cisa.gov/report bytes=370 robots=False
+2026-10-02 04:09:51 [rit] INFO: Documento 16 descartado: Host de redirección no autorizado: myservices.cisa.gov
+2026-10-02 04:09:51 [rit] INFO: HTTP 200 https://www.microsoft.com/en-us/security/business/ai-powered-cybersecurity/project-perception-agentic-system bytes=186179 robots=False
+2026-10-02 04:09:51 [rit] INFO: Documento 108 descartado: No se encontraron términos del tema.
+2026-10-02 04:09:51 [rit] INFO: HTTP 301 https://nvd.nist.gov/vuln/detail/CVE-2026-19387 bytes=531 robots=False
+2026-10-02 04:09:51 [rit] INFO: HTTP 200 https://blog.talosintelligence.com/category/on-the-radar/ bytes=150005 robots=False
+2026-10-02 04:09:52 [rit] INFO: Documento guardado: https://blog.talosintelligence.com/category/on-the-radar/; tipo: aviso_analisis; versión: 20; nueva versión: True; URLs nuevas: 72
+2026-10-02 04:09:52 [rit] INFO: HTTP 200 https://www.debian.org/lts/security/dla bytes=16232 robots=False
+2026-10-02 04:09:52 [rit] INFO: HTTP 200 https://ubuntu.com/security/platform-security bytes=77157 robots=False
+2026-10-02 04:09:52 [rit] INFO: Documento 426 descartado: Tipo de contenido no admitido: application/rss+xml
+2026-10-02 04:09:52 [rit] INFO: Documento guardado: https://ubuntu.com/security/platform-security; tipo: aviso_analisis; versión: 21; nueva versión: True; URLs nuevas: 6
+2026-10-02 04:09:52 [rit] INFO: HTTP 200 https://ubuntu.com/security/esm bytes=140219 robots=False
+2026-10-02 04:09:53 [rit] INFO: Documento guardado: https://ubuntu.com/security/esm; tipo: aviso_analisis; versión: 22; nueva versión: True; URLs nuevas: 6
+2026-10-02 04:09:53 [rit] INFO: HTTP 200 https://securelist.com/threat-category/web-threats/ bytes=146581 robots=False
+2026-10-02 04:09:53 [rit] INFO: Documento 598 descartado: No se encontraron términos del tema.
+2026-10-02 04:09:53 [rit] INFO: HTTP 200 https://unit42.paloaltonetworks.com/category/top-cyberthreats/ bytes=150465 robots=False
+2026-10-02 04:09:53 [rit] INFO: Documento guardado: https://unit42.paloaltonetworks.com/category/top-cyberthreats/; tipo: aviso_analisis; versión: 23; nueva versión: True; URLs nuevas: 0
+2026-10-02 04:09:53 [rit] INFO: HTTP 200 https://capec.mitre.org/about/index.html bytes=17814 robots=False
+2026-10-02 04:09:53 [rit] INFO: Documento 677 descartado: Ruta excluida por la configuración.
+2026-10-02 04:09:54 [rit] INFO: HTTP 200 https://www.cisa.gov/ bytes=72179 robots=False
+2026-10-02 04:09:54 [rit] INFO: Documento guardado: https://www.cisa.gov/; tipo: aviso_analisis; versión: 24; nueva versión: True; URLs nuevas: 30
+2026-10-02 04:09:54 [rit] INFO: HTTP 200 https://ubuntu.com/security/livepatch bytes=158433 robots=False
+2026-10-02 04:09:54 [rit] INFO: Documento guardado: https://ubuntu.com/security/livepatch; tipo: aviso_analisis; versión: 25; nueva versión: True; URLs nuevas: 9
+2026-10-02 04:09:55 [rit] INFO: HTTP 200 https://www.microsoft.com/en-us/security/business/microsoft-purview bytes=241462 robots=False
+2026-10-02 04:09:55 [rit] INFO: HTTP 200 https://cwe.mitre.org/data/definitions/20.html bytes=409921 robots=False
+2026-10-02 04:09:55 [rit] INFO: Documento 109 descartado: No se encontraron términos del tema.
+2026-10-02 04:09:55 [rit] INFO: Documento guardado: https://cwe.mitre.org/data/definitions/20.html; tipo: ficha; versión: 26; nueva versión: True; URLs nuevas: 136
+2026-10-02 04:09:55 [rit] INFO: HTTP 200 https://www.debian.org/lts/security/dla-long bytes=38476 robots=False
+2026-10-02 04:09:55 [rit] INFO: Documento 427 descartado: Tipo de contenido no admitido: application/rss+xml
+2026-10-02 04:09:56 [rit] INFO: HTTP 200 https://blog.talosintelligence.com/give-yourself-room-to-be-human/ bytes=76577 robots=False
+2026-10-02 04:09:56 [rit] INFO: Documento guardado: https://blog.talosintelligence.com/give-yourself-room-to-be-human/; tipo: aviso_analisis; versión: 27; nueva versión: True; URLs nuevas: 1
+2026-10-02 04:09:56 [rit] INFO: HTTP 200 https://ubuntu.com/security/security-standards bytes=147471 robots=False
+2026-10-02 04:09:56 [rit] INFO: HTTP 200 https://unit42.paloaltonetworks.com/netscaler-zero-days-exploited/ bytes=248186 robots=False
+2026-10-02 04:09:56 [rit] INFO: Documento guardado: https://ubuntu.com/security/security-standards; tipo: aviso_analisis; versión: 28; nueva versión: True; URLs nuevas: 24
+2026-10-02 04:09:56 [rit] INFO: Documento guardado: https://unit42.paloaltonetworks.com/netscaler-zero-days-exploited/; tipo: aviso_analisis; versión: 29; nueva versión: True; URLs nuevas: 50
+2026-10-02 04:09:56 [rit] INFO: HTTP 200 https://securelist.com/threat-category/secure-environment/ bytes=150129 robots=False
+2026-10-02 04:09:56 [rit] INFO: Documento guardado: https://securelist.com/threat-category/secure-environment/; tipo: aviso_analisis; versión: 30; nueva versión: True; URLs nuevas: 25
+2026-10-02 04:09:57 [rit] INFO: HTTP 200 https://capec.mitre.org/about/board.html bytes=293 robots=False
+2026-10-02 04:09:57 [rit] INFO: HTTP 200 https://cwe.mitre.org/data/definitions/352.html bytes=225124 robots=False
+2026-10-02 04:09:57 [rit] INFO: Documento 678 descartado: Ruta excluida por la configuración.
+2026-10-02 04:09:57 [rit] INFO: Documento guardado: https://cwe.mitre.org/data/definitions/352.html; tipo: ficha; versión: 31; nueva versión: True; URLs nuevas: 26
+2026-10-02 04:09:57 [rit] INFO: HTTP 200 https://ubuntu.com/security/cves bytes=95676 robots=False
+2026-10-02 04:09:58 [rit] INFO: Documento guardado: https://ubuntu.com/security/cves; tipo: aviso_analisis; versión: 32; nueva versión: True; URLs nuevas: 20
+2026-10-02 04:09:58 [rit] INFO: HTTP 200 https://www.cisa.gov/topics bytes=62975 robots=False
+2026-10-02 04:09:58 [rit] INFO: HTTP 200 https://www.microsoft.com/en-us/security/business/siem-and-xdr/microsoft-sentinel-siem bytes=340601 robots=False
+2026-10-02 04:09:58 [rit] INFO: Documento 18 descartado: No se encontraron términos del tema.
+2026-10-02 04:09:58 [rit] INFO: Documento 110 descartado: No se encontraron términos del tema.
+2026-10-02 04:09:58 [rit] INFO: HTTP 200 https://www.debian.org/intro/cn bytes=25271 robots=False
+2026-10-02 04:09:58 [rit] INFO: HTTP 200 https://nvd.nist.gov/vuln/detail/cve-2026-19387 bytes=2453 robots=False
+2026-10-02 04:09:58 [rit] INFO: Documento 428 descartado: No se encontraron términos del tema.
+2026-10-02 04:09:59 [rit] WARNING: Documento 281: intento 1/3; espera mínima 0 s; Texto extraído vacío.
+2026-10-02 04:09:59 [rit] INFO: HTTP 200 https://blog.talosintelligence.com/author/amy-ciminnisi/ bytes=71204 robots=False
+2026-10-02 04:09:59 [rit] INFO: Documento 439 descartado: No se encontraron términos del tema.
+2026-10-02 04:09:59 [rit] INFO: HTTP 301 https://nvd.nist.gov/vuln/detail/CVE-2026-41526 bytes=531 robots=False
+2026-10-02 04:10:00 [rit] INFO: HTTP 200 https://securelist.com/threat-category/vulnerabilities-and-exploits/ bytes=147855 robots=False
+2026-10-02 04:10:00 [rit] INFO: Documento guardado: https://securelist.com/threat-category/vulnerabilities-and-exploits/; tipo: aviso_analisis; versión: 33; nueva versión: True; URLs nuevas: 22
+2026-10-02 04:10:00 [rit] INFO: HTTP 200 https://unit42.paloaltonetworks.com/category/threat-research/ bytes=150371 robots=False
+2026-10-02 04:10:00 [rit] INFO: Documento 483 descartado: No se encontraron términos del tema.
+2026-10-02 04:10:01 [rit] INFO: HTTP 200 https://www.cisa.gov/topics/cybersecurity-best-practices bytes=72012 robots=False
+2026-10-02 04:10:01 [rit] INFO: Documento guardado: https://www.cisa.gov/topics/cybersecurity-best-practices; tipo: aviso_analisis; versión: 34; nueva versión: True; URLs nuevas: 25
+2026-10-02 04:10:01 [rit] INFO: HTTP 200 https://www.microsoft.com/en-us/security/view-all-products bytes=123523 robots=False
+2026-10-02 04:10:01 [rit] INFO: Documento 111 descartado: No se encontraron términos del tema.
+2026-10-02 04:10:01 [rit] INFO: HTTP 200 https://www.debian.org/contact bytes=14693 robots=False
+2026-10-02 04:10:01 [rit] INFO: Documento 429 descartado: Ruta excluida por la configuración.
+2026-10-02 04:10:02 [rit] INFO: HTTP 200 https://capec.mitre.org/about/glossary.html bytes=25529 robots=False
+2026-10-02 04:10:02 [rit] INFO: Documento 679 descartado: Ruta excluida por la configuración.
+2026-10-02 04:10:02 [rit] INFO: HTTP 200 https://cwe.mitre.org/data/definitions/425.html bytes=139064 robots=False
+2026-10-02 04:10:02 [rit] INFO: Documento guardado: https://cwe.mitre.org/data/definitions/425.html; tipo: ficha; versión: 35; nueva versión: True; URLs nuevas: 29
+2026-10-02 04:10:02 [rit] INFO: HTTP 200 https://nvd.nist.gov/vuln/detail/cve-2026-41526 bytes=2453 robots=False
+2026-10-02 04:10:02 [rit] WARNING: Documento 282: intento 1/3; espera mínima 0 s; Texto extraído vacío.
+2026-10-02 04:10:03 [rit] INFO: HTTP 200 https://blog.talosintelligence.com/china-nexus-uat-11587-targets-government-and-policy-organizations-across-asia-with-antino-backdoor/ bytes=346188 robots=False
+2026-10-02 04:10:03 [rit] INFO: Documento guardado: https://blog.talosintelligence.com/china-nexus-uat-11587-targets-government-and-policy-organizations-across-asia-with-antino-backdoor/; tipo: aviso_analisis; versión: 36; nueva versión: True; URLs nuevas: 4
+2026-10-02 04:10:03 [rit] INFO: HTTP 200 https://unit42.paloaltonetworks.com/agentic-ai-kubernetes-operator-risks/ bytes=228426 robots=False
+2026-10-02 04:10:04 [rit] INFO: Documento guardado: https://unit42.paloaltonetworks.com/agentic-ai-kubernetes-operator-risks/; tipo: aviso_analisis; versión: 37; nueva versión: True; URLs nuevas: 38
+2026-10-02 04:10:04 [rit] INFO: HTTP 200 https://securelist.com/threat-category/spam-and-phishing/ bytes=148312 robots=False
+2026-10-02 04:10:04 [rit] INFO: Documento 601 descartado: No se encontraron términos del tema.
+2026-10-02 04:10:04 [rit] INFO: HTTP 200 https://www.cisa.gov/topics/cyber-threats-and-response bytes=70050 robots=False
+2026-10-02 04:10:04 [rit] INFO: HTTP 200 https://www.microsoft.com/en-us/security/business/solutions/generative-ai-cybersecurity bytes=270781 robots=False
+2026-10-02 04:10:04 [rit] INFO: Documento guardado: https://www.cisa.gov/topics/cyber-threats-and-response; tipo: aviso_analisis; versión: 38; nueva versión: True; URLs nuevas: 21
+2026-10-02 04:10:05 [rit] INFO: Documento guardado: https://www.microsoft.com/en-us/security/business/solutions/generative-ai-cybersecurity; tipo: aviso_analisis; versión: 39; nueva versión: True; URLs nuevas: 6
+2026-10-02 04:10:05 [rit] INFO: HTTP 200 https://capec.mitre.org/about/use_cases.html bytes=38381 robots=False
+2026-10-02 04:10:05 [rit] INFO: Documento 680 descartado: Ruta excluida por la configuración.
+2026-10-02 04:10:05 [rit] INFO: HTTP 200 https://www.debian.org/license bytes=8677 robots=False
+2026-10-02 04:10:05 [rit] INFO: HTTP 200 https://cwe.mitre.org/data/definitions/602.html bytes=148739 robots=False
+2026-10-02 04:10:05 [rit] INFO: Documento 430 descartado: No se encontraron términos del tema.
+2026-10-02 04:10:06 [rit] INFO: Documento guardado: https://cwe.mitre.org/data/definitions/602.html; tipo: ficha; versión: 40; nueva versión: True; URLs nuevas: 28
+2026-10-02 04:10:06 [rit] INFO: HTTP 301 https://nvd.nist.gov/vuln/detail/CVE-2026-42772 bytes=531 robots=False
+2026-10-02 04:10:09 [rit] INFO: HTTP 200 https://nvd.nist.gov/vuln/detail/cve-2026-42772 bytes=2453 robots=False
+2026-10-02 04:10:09 [rit] WARNING: Documento 283: intento 1/3; espera mínima 0 s; Texto extraído vacío.
+2026-10-02 04:10:10 [rit] INFO: HTTP 200 https://www.debian.org/trademark bytes=14229 robots=False
+2026-10-02 04:10:10 [rit] INFO: Documento 431 descartado: No se encontraron términos del tema.
+2026-10-02 04:10:10 [rit] INFO: HTTP 200 https://www.microsoft.com/en-us/security/business/solutions/cloud-security bytes=285725 robots=False
+2026-10-02 04:10:10 [rit] INFO: HTTP 200 https://www.cisa.gov/topics/critical-infrastructure-security-and-resilience bytes=70749 robots=False
+2026-10-02 04:10:10 [rit] INFO: Documento guardado: https://www.microsoft.com/en-us/security/business/solutions/cloud-security; tipo: aviso_analisis; versión: 41; nueva versión: True; URLs nuevas: 4
+2026-10-02 04:10:10 [rit] INFO: Documento 21 descartado: No se encontraron términos del tema.
+2026-10-02 04:10:11 [rit] INFO: HTTP 200 https://blog.talosintelligence.com/author/ashley/ bytes=74581 robots=False
+2026-10-02 04:10:11 [rit] INFO: Documento guardado: https://blog.talosintelligence.com/author/ashley/; tipo: aviso_analisis; versión: 42; nueva versión: True; URLs nuevas: 19
+2026-10-02 04:10:11 [rit] INFO: HTTP 200 https://capec.mitre.org/about/resources.html bytes=14884 robots=False
+2026-10-02 04:10:11 [rit] INFO: Documento 681 descartado: Ruta excluida por la configuración.
+2026-10-02 04:10:11 [rit] INFO: HTTP 200 https://securelist.com/threat-category/industrial-threats/ bytes=146146 robots=False
+2026-10-02 04:10:12 [rit] INFO: Documento guardado: https://securelist.com/threat-category/industrial-threats/; tipo: aviso_analisis; versión: 43; nueva versión: True; URLs nuevas: 15
+2026-10-02 04:10:12 [rit] INFO: HTTP 200 https://cwe.mitre.org/data/definitions/621.html bytes=92411 robots=False
+2026-10-02 04:10:12 [rit] INFO: Documento guardado: https://cwe.mitre.org/data/definitions/621.html; tipo: ficha; versión: 44; nueva versión: True; URLs nuevas: 6
+2026-10-02 04:10:12 [rit] INFO: HTTP 301 https://nvd.nist.gov/vuln/detail/CVE-2026-45184 bytes=531 robots=False
+2026-10-02 04:10:13 [rit] INFO: HTTP 200 https://unit42.paloaltonetworks.com/category/insights/ bytes=247304 robots=False
+2026-10-02 04:10:13 [rit] INFO: Documento guardado: https://unit42.paloaltonetworks.com/category/insights/; tipo: aviso_analisis; versión: 45; nueva versión: True; URLs nuevas: 27
+2026-10-02 04:10:14 [rit] INFO: HTTP 200 https://www.cisa.gov/topics/election-security bytes=57953 robots=False
+2026-10-02 04:10:14 [rit] INFO: Documento 22 descartado: No se encontraron términos del tema.
+2026-10-02 04:10:14 [rit] INFO: HTTP 200 https://www.microsoft.com/en-us/security/business/solutions/data-security-governance bytes=269687 robots=False
+2026-10-02 04:10:14 [rit] INFO: Documento 114 descartado: No se encontraron términos del tema.
+2026-10-02 04:10:14 [rit] INFO: HTTP 200 https://blog.talosintelligence.com/category/threat-spotlight/ bytes=260052 robots=False
+2026-10-02 04:10:15 [rit] INFO: Documento guardado: https://blog.talosintelligence.com/category/threat-spotlight/; tipo: aviso_analisis; versión: 46; nueva versión: True; URLs nuevas: 125
+2026-10-02 04:10:15 [rit] INFO: HTTP 200 https://unit42.paloaltonetworks.com/3-consulting-myths-debunked-by-unit-42-experts/ bytes=177196 robots=False
+2026-10-02 04:10:15 [rit] INFO: Documento guardado: https://unit42.paloaltonetworks.com/3-consulting-myths-debunked-by-unit-42-experts/; tipo: aviso_analisis; versión: 47; nueva versión: True; URLs nuevas: 7
+2026-10-02 04:10:16 [rit] INFO: HTTP 200 https://nvd.nist.gov/vuln/detail/cve-2026-45184 bytes=2453 robots=False
+2026-10-02 04:10:16 [rit] INFO: HTTP 200 https://securelist.com/categories/ bytes=185378 robots=False
+2026-10-02 04:10:16 [rit] WARNING: Documento 284: intento 1/3; espera mínima 0 s; Texto extraído vacío.
+2026-10-02 04:10:16 [rit] INFO: Documento 603 descartado: No se encontraron términos del tema.
+2026-10-02 04:10:16 [rit] INFO: HTTP 200 https://capec.mitre.org/about/documents.html bytes=20697 robots=False
+2026-10-02 04:10:17 [rit] INFO: Documento 682 descartado: Ruta excluida por la configuración.
+2026-10-02 04:10:17 [rit] INFO: HTTP 200 https://cwe.mitre.org/data/definitions/89.html bytes=329040 robots=False
+2026-10-02 04:10:17 [rit] INFO: Documento guardado: https://cwe.mitre.org/data/definitions/89.html; tipo: ficha; versión: 48; nueva versión: True; URLs nuevas: 26
+2026-10-02 04:10:17 [rit] INFO: HTTP 200 https://www.cisa.gov/topics/emergency-communications bytes=69484 robots=False
+2026-10-02 04:10:17 [rit] INFO: Documento 23 descartado: No se encontraron términos del tema.
+2026-10-02 04:10:18 [rit] INFO: HTTP 200 https://www.debian.org/intro/about bytes=19306 robots=False
+2026-10-02 04:10:18 [rit] INFO: HTTP 200 https://www.microsoft.com/en-us/security/business/solutions/identity-access bytes=278366 robots=False
+2026-10-02 04:10:18 [rit] INFO: Documento 1685 descartado: Ruta excluida por la configuración.
+2026-10-02 04:10:18 [rit] INFO: Documento 115 descartado: No se encontraron términos del tema.
+2026-10-02 04:10:19 [rit] INFO: HTTP 200 https://blog.talosintelligence.com/securing-the-keys-to-the-kingdom-announcing-executive-threat-detection/ bytes=73989 robots=False
+2026-10-02 04:10:19 [rit] INFO: Documento guardado: https://blog.talosintelligence.com/securing-the-keys-to-the-kingdom-announcing-executive-threat-detection/; tipo: aviso_analisis; versión: 49; nueva versión: True; URLs nuevas: 4
+2026-10-02 04:10:19 [rit] INFO: HTTP 301 https://nvd.nist.gov/vuln/detail/CVE-2026-54873 bytes=531 robots=False
+2026-10-02 04:10:19 [scrapy.extensions.logstats] INFO: Crawled 82 pages (at 82 pages/min), scraped 0 items (at 0 items/min)
+2026-10-02 04:10:19 [rit] INFO: HTTP 200 https://securelist.com/category/apt-reports/ bytes=166231 robots=False
+2026-10-02 04:10:20 [rit] INFO: Documento guardado: https://securelist.com/category/apt-reports/; tipo: aviso_analisis; versión: 50; nueva versión: True; URLs nuevas: 26
+2026-10-02 04:10:20 [rit] WARNING: Solicitud fallida https://nvd.nist.gov/vuln/detail/cve-2026-54873: Finalizó el período de recopilación.
+2026-10-02 04:10:20 [rit] INFO: HTTP 200 https://unit42.paloaltonetworks.com/unit-42-all-articles/ bytes=194951 robots=False
+2026-10-02 04:10:20 [rit] INFO: Documento guardado: https://unit42.paloaltonetworks.com/unit-42-all-articles/; tipo: aviso_analisis; versión: 51; nueva versión: True; URLs nuevas: 0
+2026-10-02 04:10:26 [rit] INFO: HTTP 200 https://ubuntu.com/security/assurances bytes=84326 robots=False
+2026-10-02 04:10:27 [rit] INFO: Documento guardado: https://ubuntu.com/security/assurances; tipo: aviso_analisis; versión: 52; nueva versión: True; URLs nuevas: 5
+2026-10-02 04:10:27 [scrapy.core.engine] INFO: Closing spider (finished)
+2026-10-02 04:10:27 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/exception_count': 2,
+ 'downloader/exception_type_count/crawler_rit.politicas.FinRecopilacion': 1,
+ 'downloader/exception_type_count/scrapy.exceptions.DownloadTimeoutError': 1,
+ 'downloader/request_bytes': 25078,
+ 'downloader/request_count': 86,
+ 'downloader/request_method_count/GET': 86,
+ 'downloader/response_bytes': 3033092,
+ 'downloader/response_count': 85,
+ 'downloader/response_status_count/200': 76,
+ 'downloader/response_status_count/301': 9,
+ 'elapsed_time_seconds': 67.36969214099736,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2026, 10, 2, 4, 10, 27, 53894, tzinfo=datetime.timezone.utc),
+ 'httpcompression/response_bytes': 7966973,
+ 'httpcompression/response_count': 62,
+ 'items_per_minute': 0.0,
+ 'log_count/INFO': 162,
+ 'log_count/WARNING': 8,
+ 'memusage/max': 293396480,
+ 'memusage/startup': 191344640,
+ 'request_depth_max': 16,
+ 'response_received_count': 85,
+ 'responses_per_minute': 76.11940298507463,
+ 'rit/bytes_cuerpos_descomprimidos': 9607720,
+ 'rit/documentos_consultados': 80,
+ 'rit/estados_finales': {'completada': 40, 'descartada': 33, 'pendiente': 7},
+ 'rit/motivo_cierre': 'finished',
+ 'rit/solicitudes_iniciadas': 86,
+ 'scheduler/dequeued': 87,
+ 'scheduler/dequeued/memory': 87,
+ 'scheduler/enqueued': 87,
+ 'scheduler/enqueued/memory': 87,
+ 'start_time': datetime.datetime(2026, 10, 2, 4, 9, 19, 684146, tzinfo=datetime.timezone.utc)}
+2026-10-02 04:10:27 [scrapy.core.engine] INFO: Spider closed (finished)

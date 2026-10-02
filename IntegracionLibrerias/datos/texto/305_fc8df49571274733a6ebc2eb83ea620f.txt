@@ -1,0 +1,90 @@
+CVE reports
+The Common Vulnerabilities and Exposures (CVE) system is used to identify, define, and catalog publicly disclosed cybersecurity vulnerabilities. Canonical keeps track of all CVEs affecting Ubuntu, and releases a
+security notice
+when an issue is fixed. You can find additional guidance for high-profile vulnerabilities in the
+Ubuntu Vulnerability Knowledge Base
+section
+Learn more about CVEs
+Learn more about Ubuntu security coverage
+OVAL data
+Search CVEs
+By Ubuntu release
+All maintained releases
+All LTS
+26.04
+LTS
+24.04
+LTS
+22.04
+LTS
+20.04
+LTS
+Other releases
+Recent CVEs
+CVE-2026-84782
+High priority
+Some fixes available
+8 of 18
+Issue summary: The DTLS retransmission logic does not correctly handle
+a handshake message write that is suspended part-way through.
+The retransmitted message can be read past the message buffer and
+the retransmission overwrites...
+6 affected packages
+openssl,
+openssl-fips,
+openssl1.0,
+nodejs,
+edk2,
+edk2-hwe
+CVE-2026-87902
+High priority
+Needs evaluation
+An unauthenticated attacker can make `get_page_template()` page-template
+resolution include a chosen readable local `.php` file outside the active
+theme directories. If relevant pre-conditions for both the server and the
+active...
+1 affected package
+wordpress
+CVE-2026-87491
+High priority
+Not affected
+Out of bounds write in V8 in Google Chrome prior to 153.0.8010.36 allowed a
+remote attacker to execute arbitrary code inside the sandbox via a crafted
+HTML page. (Chromium security severity: Medium)
+1 affected package
+chromium-browser
+CVE-2026-85046
+High priority
+Not affected
+Type confusion in V8 in Google Chrome prior to 152.0.7977.82 allowed a
+remote attacker to execute arbitrary code inside the sandbox via a crafted
+HTML page. (Chromium security severity: High)
+1 affected package
+chromium-browser
+CVE-2026-80725
+High priority
+Vulnerable
+In the Linux kernel, the following vulnerability has been resolved:
+net: gro: properly validate BIG TCP aggregation criteria
+When GRO attempts to aggregate packets beyond GRO_LEGACY_MAX_SIZE (64KB),
+BIG TCP should only be...
+168 affected packages
+linux,
+linux-hwe,
+linux-hwe-5.4,
+linux-hwe-5.8,
+linux-hwe-5.11...
+Resources
+Join the discussion
+Ubuntu security mailing list
+Security announcements mailing list
+Ubuntu Pro
+Up to 15 years of security coverage for Ubuntu and your full stack of open-source applications and toolchains.
+Get Ubuntu Pro
+30-day free trial
+From our blog
+Ubuntu Explained: How to ensure security and stability in cloud instances—part 3
+Ubuntu Explained: How to ensure security and stability in cloud instances—part 2
+Running OpenSSL 1.1.1 after EOL? Stay secure with Ubuntu Pro.
+Restricted unprivileged user namespaces are coming to Ubuntu 23.10
+Securing open source software dependencies in the public cloud

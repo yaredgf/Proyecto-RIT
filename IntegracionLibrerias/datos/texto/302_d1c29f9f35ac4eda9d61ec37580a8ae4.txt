@@ -1,0 +1,143 @@
+Expanded Security Maintenance
+for Ubuntu and open source
+Ubuntu Pro
+Extend the lifetime of your favorite Linux and the open source you use on top with reliable security maintenance for up to 15 years.
+Speak to an expert
+What is security maintenance?
+Security maintenance is part of a continuous process that proactively protects systems. It includes regular vulnerability scanning, evaluation, and patch management. Regular security maintenance and vulnerability management is key to comply with industry regulations.
+Learn more about CVE mitigation in Ubuntu ›
+Learn more about your Ubuntu security coverage ›
+Available for every Ubuntu LTS
+Security updates in Ubuntu LTS
+Ubuntu LTS gained popularity due to a 5-year security maintenance commitment for the operating system (specifically all packages in the 'main repository'). This is done by Canonical with no subscription required. Over the 5 years of the standard security term of an Ubuntu LTS, Canonical's security team patches thousands of CVEs.
+No forced upgrades
+Canonical's security team actively backports these crucial fixes to all supported Ubuntu LTS releases, giving enterprises and end users peace of mind to keep their systems secure without requiring a major upgrade.
+Understand the Ubuntu release cadence ›
+Expanded Security Maintenance
+included with Ubuntu Pro
+Up to 15 years of security maintenance and support
+Running the latest operating system (OS) offers new features and enhanced performance, which is a good choice for new deployments. However, for large, established production systems, the transition to a new OS version presents a challenge as it may involve updating the entire software stack running on top of it.
+This complexity is amplified by modern software architectures that incorporate containerization, microservices, and extensive data management features, as well as integration with third-party APIs.
+Deployment peace of mind
+Given these multifaceted challenges, ensuring the system remains operational, secure, and supported is paramount. Organizations looking to gain peace of mind and stability while they plan and execute their migration strategy can trust Canonical.
+Ubuntu security maintenance schedule
+Released
+End of Standard Support
+End of Ubuntu Pro Support
+End of Legacy add-on coverage
+26.04 LTS (Resolute Raccoon)
+Apr 2026
+May 2031
+May 2036
+May 2041
+24.04 LTS (Noble Numbat)
+Apr 2024
+May 2029
+May 2034
+May 2039
+22.04 LTS (Jammy Jellyfish)
+Apr 2022
+May 2027
+May 2032
+May 2037
+20.04 LTS (Focal Fossa)
+Apr 2020
+May 2025
+May 2030
+May 2035
+18.04 LTS (Bionic Beaver)
+Apr 2018
+May 2023
+May 2028
+May 2033
+16.04 LTS (Xenial Xerus)
+Apr 2016
+Apr 2021
+May 2026
+May 2031
+14.04 LTS (Trusty Tahr)
+Apr 2014
+Apr 2019
+May 2024
+May 2029
+The difference between
+'Main' and 'Universe'
+The tens of thousands of Ubuntu packages are organized into a set of repositories.
+'Main' is the set of packages that we identified as our focus when we launched Ubuntu – they are packages that are either installed on every machine, or very widely used for all kinds of deployments, from desktop to cloud. When we launched Ubuntu LTS, we made a commitment to security-support these packages and their dependencies in 'Main' for five years, free of charge. There were initially about 1,000 packages in 'Main', and today that number has grown to about 2,300 per Ubuntu release.
+The 'Universe' repository holds all of the other open source packages in Ubuntu, from Debian and the Ubuntu community. Universe is a much bigger repository of over 36,000 packages per release (as of Ubuntu 24.04 LTS). This includes packages for open source toolchains and libraries like Java, Php, GO, Python and others.
+With the launch of Ubuntu Pro, all of the packages in Ubuntu Universe get the same security maintenance commitment from Canonical as packages in Ubuntu Main.
+Check out the Ubuntu Pro FAQ ›
+Benefits of Ubuntu Pro
+Gain operational stability and peace of mind
+Keep systems stable and security maintained for up to 15 years
+Reduce your need for migrations
+Get quick fixes to critical, high, and selected medium CVEs
+Get tools for monitoring, auditing, and managing patches and devices at scale
+Get hardening tools and compliance profiles to maintain compliance across your estate
+The difference between
+'esm-apps' and 'esm-infra'
+Ubuntu Pro is a broad subscription that includes many different variations of open source packages to meet different needs. For example, Ubuntu Pro includes a set of package versions that are compliant with FIPS regulations. You would want these versions only on machines that need to meet FIPS requirements, so you can choose to enable that stream specifically on those machines.
+There are two streams which cover broad-based package security updates; we label these “apps” and “infra”. The “esm-apps” stream covers all 'Universe' packages for ten years from the release of the LTS.
+The “esm-infra” stream covers 'Main' packages for the period after the standard five year security maintenance of 'Main' packages ends. We call this 'infra' because it is commonly used to build our private cloud, storage and kubernetes clusters, where 'Universe' packages are not typically deployed. You can get a lower-cost Ubuntu Pro (infra-only) subscription if you only want the infra components, which equates to our original ESM offering.
+Get in touch ›
+What is covered?
+ESM continues security updates and
+kernel livepatching
+for high and critical CVEs (Common Vulnerabilities and Exposures).
+Release
+All packages in 'main' repository
+All packages in the 'universe' repository
+Kernel Livepatch
+Architectures supported with ESM
+Ubuntu 14.04 LTS (Trusty Tahr)
+May 2029
+n/a
+amd64
+amd64
+Ubuntu 16.04 LTS (Xenial Xerus)
+May 2031
+May 2031
+amd64
+amd64, s390x
+Ubuntu 18.04 LTS (Bionic Beaver)
+May 2033
+May 2033
+amd64
+amd64, arm64, s390x, ppc64el
+Ubuntu 20.04 LTS (Focal Fossa)
+May 2035
+May 2035
+amd64
+amd64, arm64, s390x, ppc64el, RISC-V
+Ubuntu 22.04 LTS (Jammy Jellyfish)
+May 2037
+May 2037
+amd64,
+s390x
+amd64, arm64, s390x, ppc64el, RISC-V
+Ubuntu 24.04 LTS (Noble Numbat)
+May 2039
+May 2039
+amd64,
+s390x
+amd64, arm64, s390x, ppc64el, RISC-V, armhf
+What our customers say
+“Keeping all software maintained is expensive, and hiring new developers with proficiency in older versions of PHP can be very expensive and difficult.”
+Spokesperson
+Games publishing company
+Read the full case study ›
+Learn more
+Ubuntu 18.04 LTS out of standard security maintenance
+Ubuntu 18.04 LTS Bionic Beaver, one of the most popular Ubuntu releases, has reached the end of standard support. If you continue to run Ubuntu 18.04 LTS without ESM, you will not receive any security updates after 31 May 2023. Watch a webinar to explore your options.
+Watch the webinar
+How to prepare for the Ubuntu 20.04 LTS end of standard security maintenance
+It is crucial to plan out your next steps. Running Ubuntu 20.04 without ESM would mean you no longer receive security updates after May 2025. Unpatched CVEs could expose your systems to security breaches.
+Read the blog
+Ubuntu Pro service description
+Ubuntu Pro is Canonical's service package for Ubuntu. It offers tiered levels of support for desktop, server and cloud deployments.
+Read the description
+Secure your Ubuntu estate
+Get in touch to discuss ESM ›
+Close
+The Ubuntu experts
+Canonical certifies, secures and enables enterprise open source on Ubuntu. Tell us about your project so we bring the right team to the conversation.

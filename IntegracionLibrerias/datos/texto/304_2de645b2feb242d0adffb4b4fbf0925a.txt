@@ -1,0 +1,81 @@
+Security standards
+Available with Ubuntu Pro
+Run Ubuntu in high-security environments
+. Confidently deploy critical workloads while meeting rigorous cybersecurity standards like NIST 800-53, FedRAMP, and CMMC with Ubuntu Pro. As the publishers of Ubuntu, we’ve also developed automated hardening solutions enabling you to run Ubuntu in any environment.
+Contact us
+Learn more about Ubuntu Pro ›
+FIPS 140-3 is now available for Ubuntu 22.04 LTS. Learn more
+here
+.
+Supported standards
+FIPS
+FIPS 140-2 & 140-3 certified modules are available for Ubuntu.
+DISA-STIG
+Simplify your DISA-STIG hardening process by taking advantage of the automation available with Ubuntu Security Guide (USG).
+CIS
+Harden your systems to CIS benchmark standards using the automation available with USG.
+EU Cyber Resilience Act
+Learn how Canonical's security vulnerability management program enables you to comply with the requirements of the EU CRA.
+NIST 800-53
+Canonical provides hardening and compliance tools to help you meet NIST 800-53 requirements.
+CMMC
+Canonical provides hardening tools, FIPS 140 certified cryptographic modules, and timely vulnerability patching that enable CMMC compliance.
+FedRAMP
+Find security tools to help you achieve FedRAMP Authority To Operate.
+PCI-DSS
+Gain extra security and compliance guarantees needed to deploy applications in line with PCI-DSS requirements.
+HIPAA
+Canonical supports your path towards HIPAA compliance.
+NIS2
+Canonical can help you with your compliance needs related to EU NIS2.
+UK Cyber Essentials
+Achieve Cyber Essentials through our robust security patching and hardening tools.
+UK NCSC Software Security Code of Practice
+Explore how Canonical solutions align with the 14 principles laid out in the Code.
+Security compliance in action
+Ubuntu Pro helps Lucid Software meet FedRAMP compliance for government contracts
+By deploying Ubuntu Pro, Lucid acquired AWS-compatible and FIPS 140-2 certified packages and became FedRAMP compliant.
+Read the case study ›
+LaunchDarkly becomes the first FedRAMP-authorized feature management platform thanks to Ubuntu Pro
+Learn how a SaaS provider achieved effortless FIPS compliance on AWS.
+Read the case study ›
+How New Mexico State University accelerates compliant federal research with Ubuntu
+When the stakes are high and national security is on the line, every decision matters. Just ask the team at New Mexico State University’s Physical Science Laboratory (PSL).
+Read the case study ›
+Compliance everywhere
+On-prem
+Ubuntu Pro
+enables compliance on Ubuntu desktops and servers in private clouds, Virtual Machines, and air-gapped environments.
+In the cloud
+Get pre-hardened and compliant Ubuntu Pro images in the public cloud.
+Learn more ›
+Learn more ›
+Learn more ›
+On the Edge
+Take advantage of Ubuntu Core, our new immutable Ubuntu designed for IoT and Edge deployments with
+Ubuntu Pro for Devices
+.
+Automate compliance with USG
+Manual compliance is time consuming and prone to human error. Ubuntu Security Guide (USG) automates hardening and auditing for CIS Benchmarks and DISA-STIG profiles, covering hundreds of individual configuration rules that would otherwise require manual implementation, testing, and ongoing verification. Teams managing compliance across tens or hundreds of Ubuntu systems can reclaim significant engineering time, which is better spent on security improvements than repetitive audit work.
+Calculate your time savings
+Resources
+When an upstream change broke smartcard FIPS authentication – and how we fixed it
+This is the story of how Canonical’s Support team provided bug-fix support: we tracked down an upstream change in OpenSC that inadvertently broke FIPS compatibility, coordinated with...
+Announcing FIPS 140-3 for Ubuntu Core22
+FIPS compliance for IoT use cases in Federal space. In this article, we’ll explore what Ubuntu Core is, and how to use it with FIPS.
+How a missing kernel flag broke FIPS-certified containers in managed Kubernetes
+A customer building a FedRAMP-compliant deployment found that Ubuntu Pro 22.04 FIPS container images were silently failing on standard, mainline Linux kernels, the kind used by managed...
+Sovereign clouds: enhanced data security with confidential computing
+Increasingly, enterprises are interested in improving their level of control over their data, achieving digital sovereignty, and even building their own sovereign cloud. However, this means...
+A guide to Infrastructure Hardening
+Ubuntu compliance guide for US public sector
+Understand IoT security and IoT compliance across global markets
+A guide to open source vulnerability management
+Easily comply with the most
+stringent security standards
+with Ubuntu Pro
+Ubuntu Pro is Canonical’s comprehensive subscription for open source security, support, and compliance. Get access to a trusted open source repository, hardened images and compliance profiles for security standards, and up to 15 years of timely and automated vulnerability fixes for your OS, infrastructure, and applications.
+Contact us
+Learn more about Ubuntu Pro ›
+Close
+Contact us about compliance with Ubuntu Pro

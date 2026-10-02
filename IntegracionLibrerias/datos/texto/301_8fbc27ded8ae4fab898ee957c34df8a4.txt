@@ -1,0 +1,42 @@
+Ubuntu: Engineered for security.
+Built for usability
+Ubuntu's platform security features are carefully designed to enhance security while providing an intuitive user experience – from hardware roots of trust to secure boot and confidential computing.
+Download our guide
+Secure boot
+Secure boot is a security feature that enforces a chain of trust during the boot process, preventing unauthorized code from running and ensuring that only signed, trusted software is loaded. On Ubuntu, all pre-built boot binaries, except the initrd, are signed with Canonical’s UEFI certificate.
+Securing early boot software and firmware is critically important as it acts as a root of trust for the entire platform. When compromised, they allow malware to execute with the highest privileges, even before the OS security mechanisms are loaded.
+Dive deeper into Ubuntu’s secure boot implementation ›
+Full-disk encryption
+Learn more about Ubuntu upcoming TPM-backed FDE ›
+Full Disk Encryption with passphrases
+Ubuntu has designed Full Disk Encryption (FDE) to allow users to encrypt their data while stored on the device’s hard drive or storage disk.
+Today, this is achieved using the Linux Unified Key Setup (LUKS) framework, which provides disk encryption at the block level. The data is then only decrypted if the correct passphrase is provided by the user.
+TPM backed Full Disk Encryption
+Tomorrow’s next generation FDE is already underway and will be backed by a Trusted Platform Module. This eliminates the need to manually enter passphrases and lowers barriers to encryption on shared devices in enterprise environments, simplifying the boot process for large-scale deployments.
+Constrain the impact of zero day vulnerabilities with AppArmor
+AppArmor enforces Mandatory Access Control through profiles that define strict limits on what applications can access and do. This significantly restrains the attacker’s ability to move laterally within the system.
+Ubuntu comes pre-installed with a range of AppArmor profiles for common applications. But if your critical workload application doesn’t have a profile, it is straightforward to create one.
+Get started with AppArmor profiles for your applications ›
+Leading platform for confidential computing
+A new threat model
+Unlike traditional VMs, where you have to trust that the host software is also secure, confidential VMs only require you to trust the software running within it and the platform’s hardware root of trust. To achieve this, Ubuntu confidential VMs make use of the newer hardware encryption engines to keep your data encrypted in system memory.
+Public cloud portfolio
+Ubuntu offers the largest portfolio of confidential VMs across all major public cloud providers. It is also the preferred launch partner for all confidential AI offerings that leverage the confidential computing properties of Nvidia’s H100 GPUs.
+Private cloud portfolio
+For your private cloud deployment, we offer Intel TDX-optimized Ubuntu images for both guest and host. With confidential computing, you can protect your sensitive on-premises data with hardware-rooted primitives, ensuring confidentiality and integrity beyond traditional measures.
+Learn more about confidential computing ›
+Explore other security features in Ubuntu ›
+Platform security resources
+Ubuntu's defense in depth approach
+Ubuntu's security offerings are much more than just a collection of tools. They are an ecosystem of layered defenses, each tuned to address specific threat levels and attacker capabilities. By understanding the unique threats each counter measures, you can make informed choices about which defenses are most important for your environment.
+Confidential computing in the private cloud
+Your on-premises servers face risks from insider threats and run similar privileged system software as public clouds, making them vulnerable to the same security issues. To enhance confidential computing in private clouds, Canonical offers Intel® Trust Domain Extensions (TDX) on Ubuntu. Intel TDX optimized images include base host and guest operating systems, along with remote attestation capabilities.
+Confidential AI
+Organizations leveraging machine learning in the cloud face concerns over data security and model protection. Strict industry regulations frequently restrict the sharing of sensitive information, limiting AI's potential in critical sectors. Learn how confidential computing can alleviate these concerns.
+Enhance your security with vulnerability management and compliance
+Ubuntu Pro unlocks the full potential of open source for your enterprise, extending the latest in security maintenance across your entire fleet and elevating your platform security.
+Free your team from security patching for up to 15 years, with our comprehensive coverage for your platform – from your OS and infrastructure to your application stack, across desktops, servers, public clouds, and smart devices. Make your pathway to compliance easier, with full access to a trusted repository of open source toolchains and frameworks, as well as hardening configurations and compliance profiles for FIPS, DISA-STIG, and other stringent security standards.
+Learn more about Ubuntu Pro ›
+Get a 30-day free trial ›
+Do you have platform security challenges?
+Contact us for solutions ›

@@ -1,0 +1,116 @@
+Give yourself room to be human
+By
+Amy Ciminnisi
+Thursday, October 1, 2026 14:00
+Threat Source newsletter
+Welcome to this week’s edition of the Threat Source newsletter.
+Fall is officially here in Maryland, and I can’t be more relieved. I flourish in 50 degree weather, where it feels natural to burrow under blankets, knit sweaters, and listen to an audiobook.
+Beyond that, though, can I say that I’m glad fall is here because the end of summer has been a bit of a shitshow? I’m allowed to curse on here, right?
+Without going into too much detail, my uncle was diagnosed with a rare cancer, and my family decided we were going to fly out to spend a week with him. I was determined to find a way to make it work, but on top of all of the emotions, my mind was racing with trying to figure out how to request the time off and get coverage for the tasks I’d be missing.
+I was anxious to ask, but my manager’s response to me requesting the week off was:
+“Family always, always comes first at Talos. You spend as much time with your family as you need. Don’t worry, we’ll work everything out. We have your back.”
+I knew I was in such a fortunate position to have that kind of support. Yet, even with the explicit encouragement to step away, there was still a lingering weight on my shoulders that I couldn't quite set down.
+LinkedIn might be an awful, artificial place, but occasionally I’ll find a non-AI-generated think piece or quote that sticks with me. On a recent post, I read, “We’d all be better off if we gave each other a little more room to be human here without worrying it makes us look less capable.”
+Okay, ouch! That described the unsettled feeling to a T. Ever since I was laid off at my previous company, my trauma response has insisted I prove myself, make myself “indispensable” and capable of taking on any challenges thrown my way. I'm sure if you've been through a layoff, you can relate.
+If you’re scared of your team perceiving you as less capable and more dispensable, please hear this: You are not a machine, and your value to your team isn't defined by how much personal or professional weight you take on without a break. It's so easy to extend grace to others, to insist that
+they
+spend time with their ill family members, but we have to extend the same grace to ourselves.
+If your team is great, they’ll want you at your best, not just your most productive, so you can fight the good fight. Don't let this fear stop you from taking the time you need. Life is worth living
+now
+, and we’re better at what we do when we’re well in all aspects of life.
+The one big thing
+For Cybersecurity Awareness Month, Talos is
+sharing crowdsourced strategies from our researchers
+to help you master “The Fine Art of Frustrating the Adversary.” By deploying deception techniques, behavioral detections, and strict controls over legitimate tools, defenders can strip away an attacker's advantages. The goal is to make every alternative slower, less stealthy, and significantly more expensive for the threat actor. Ultimately, we want to force them to make mistakes or give up entirely.
+Why do I care?
+Threat actors rely on predictable environments, dual-use tools, and manufactured urgency to execute operations at scale. If defenders rely solely on tool-specific detections, adversaries can easily pivot by simply swapping out a payload. Shifting to behavior-based detections and introducing friction, like honeypots or strict AI boundaries, exploits the fact that attackers have rigid end goals. This approach slows down their operations and gives defenders earlier opportunities to interrupt the attack chain.
+So now what?
+Start by allowlisting approved remote monitoring and management (RMM) tools and blocking unauthorized ones to prevent dual-use abuse. Build resilient behavioral analytics that target underlying techniques rather than specific malware. Consider deploying deception tactics like fake employee profiles or false infrastructure. Ensure any AI agents in your environment have identifiable, short-lived credentials and strict network boundaries. And, of course,
+explore the blog
+to dive deeper into these strategies.
+Top security headlines of the week
+South Africa seeks help after cyber attack targets air traffic control
+The South African state-owned company that provides air traffic control and weather operations for approximately 10% of the world's airspace discovered ransomware-linked malware in an OT network. (
+Dark Reading
+)
+Automated AI agent used to breach cybersecurity nonprofit DIVD
+The Dutch Institute for Vulnerability Disclosure (DIVD) suffered an AI-driven cyber attack that the organization described as “loud and very, very messy.” Evidence uncovered during the ongoing investigation indicates the attacker exploited a vulnerability, but the attack's purpose and impact remain unclear at this stage. (
+Bleeping Computer
+)
+Citrix confirms 2 NetScaler zero-days after admins pulled the plug
+Citrix rushed out patches for two critical NetScaler zero-day vulnerabilities that have been exploited in the wild. The advisory covers eight vulnerabilities affecting NetScaler ADC and NetScaler Gateway. (
+SecurityWeek
+)
+Pentagon personnel agency data breach impacts 3 million people
+The US Defense Manpower Data Center (DMDC), which maintains personnel records for the Pentagon, has started notifying people that their personal information was exposed. Unauthorized users had access to one of its file-sharing servers for roughly nine months. (
+SecurityWeek
+)
+TeamViewer urges users to patch severe flaws “as soon as possible”
+Remote access software company TeamViewer warned customers on Tuesday to immediately patch a set of high-severity vulnerabilities affecting its client and host software. (
+Bleeping Computer
+)
+Cisco’s Relentless Defense report is available now
+Cisco asked 8,000 security leaders from across the globe how they’re coping with a threat landscape being reshaped by AI, including whether their processes can keep pace with AI’s ability to surface thousands of vulnerabilities at once, and whether they’re confident staying ahead of the volume of new threats being discovered. (
+Cisco
+)
+Can’t get enough Talos?
+China-nexus UAT-11587 targets government and policy organizations across Asia with Antino backdoor
+Cisco Talos uncovered a cluster of activity we track as UAT-11587 targeting government and policy organizations across Asia, including in Taiwan, India, the Philippines, and Cambodia, to deliver a previously undocumented backdoor referred to as “Antino” in developer artifacts.
+Securing the keys to the kingdom: Announcing Executive Threat Detection
+For a sophisticated threat actor, an executive is not only a high-ranking employee, but also a high-yield target. Talos IR’s new service offers protection for up to 10 principals, with monthly custom threat hunts and reports relevant to your organization’s most high-value IT assets.
+Beers with Talos: Your AI malware experiments are showing
+Adversaries are experimenting with AI-integrated malware, and today's guest, Talos researcher Ryan Fetterman, has been looking at their working notes.
+Upcoming events where you can find Talos
+VB
+(Oct. 14 – 16) Seville, Spain
+CAMLIS
+(Oct. 21 – 23) Arlington, VA
+SecurityOnion Conference
+(Oct. 23) Augusta, GA
+BsidesAugusta
+(Oct. 24) Augusta, GA
+SAINTCON
+(Oct. 26 – 30) Provo, UT
+Most prevalent malware files from Talos telemetry over the past week
+SHA256: 9f1f11a708d393e0a4109ae189bc64f1f3e312653dcf317a2bd406f18ffcc507
+MD5: 2915b3f8b703eb744fc54c81f4a9c67f
+Talos Rep:
+https://talosintelligence.com/talos_file_reputation?s=9f1f11a708d393e0a4109ae189bc64f1f3e312653dcf317a2bd406f18ffcc507
+Example Filename: sample.exe
+Detection Name: W32.9F1F11A708-100.SBX.TG**
+SHA256: 96fa6a7714670823c83099ea01d24d6d3ae8fef027f01a4ddac14f123b1c9974
+MD5: aac3165ece2959f39ff98334618d10d9
+Talos Rep:
+https://talosintelligence.com/talos_file_reputation?s=96fa6a7714670823c83099ea01d24d6d3ae8fef027f01a4ddac14f123b1c9974
+Example Filename: d4aa3e7010220ad1b458fac17039c274_63_Exe.exe
+Detection Name: W32.Injector:Gen.21ie.1201
+SHA256: 90b1456cdbe6bc2779ea0b4736ed9a998a71ae37390331b6ba87e389a49d3d59
+MD5: c2efb2dcacba6d3ccc175b6ce1b7ed0a
+Talos Rep:
+https://talosintelligence.com/talos_file_reputation?s=90b1456cdbe6bc2779ea0b4736ed9a998a71ae37390331b6ba87e389a49d3d59
+Example Filename: tmp00055df5.dll
+Detection Name: Auto.90B145.282358.in02
+SHA256: 540080fea97d88ed902c5e4f9a026b4fcd32ab263706c520e00728f1a29578b8
+MD5: d65c7b544a97b0c3f2773b5fcc57d30e
+Talos Rep:
+https://talosintelligence.com/talos_file_reputation?s=540080fea97d88ed902c5e4f9a026b4fcd32ab263706c520e00728f1a29578b8
+Example Filename: f_006048.exe
+Detection Name: W32.540080FEA9-95.SBX.TG
+SHA256: 9896a6fcb9bb5ac1ec5297b4a65be3f647589adf7c37b45f3f7466decd6a4a7f
+MD5: 38de5b216c33833af710e88f7f64fc98
+Talos Rep:
+https://talosintelligence.com/talos_file_reputation?s=9896a6fcb9bb5ac1ec5297b4a65be3f647589adf7c37b45f3f7466decd6a4a7f
+Example Filename: SECOH-QAD.exe
+Detection Name: W32.9896A6FCB9-95.SBX.TG
+Share this post
+Subscribe to Threat Source
+Related Content
+Trust and the enticing consultancy offer
+September 24, 2026 14:00
+In this week’s newsletter Martin muses over a very suspicious elicitation over social media and the true value of trust within the cyber ecosystem. Hubris might be the real vulnerability that the cyber industry must worry about.
+Should you care about an “AI slowdown?”
+September 17, 2026 14:00
+In this week's Threat Source, David talks about why focusing on your security basics is still your best bet, even in a world with rapid AI advancements.
+We've got one word for it, and it's usually the wrong one
+September 10, 2026 14:00
+In this week's Threat Source newsletter, Joe explores why the word "burnout" often fails to capture the true toll of working in the cybersecurity industry and why we need better language to address it.

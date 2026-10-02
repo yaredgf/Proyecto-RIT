@@ -1,0 +1,344 @@
+Forward-looking features on the issues and trends that Talos feels is affecting the current cybersecurity landscape.
+October 1, 2026 06:00
+The Fine Art of Frustrating the Adversary
+What really frustrates an adversary? Eight Cisco Talos researchers share practical ways to make their next move slower and riskier. From deception and behavioral detection to breaking attack dependencies and resisting manufactured urgency.
+By
+Hazel Burton
+On The Radar
+September 16, 2026 06:00
+Securing the unpatchable in an age of AI-driven vulnerabilities
+Advances in AI technology will continue to identify vulnerabilities that in some circumstances are difficult, or effectively impossible, to patch. Appropriate network segmentation, rigorous visibility, and the deployment of NGFW/IPS combinations can provide a powerful compensatory layer.
+By
+Martin Lee
+On The Radar
+August 25, 2026 06:00
+The safety penalty: Reclaiming operational sovereignty in the age of AI
+As frontier AI models become increasingly restrictive, security teams are facing a "safety penalty" that hampers real-time incident response. Discover how organizations can move toward operational sovereignty to ensure their defensive AI keeps pace with unconstrained adversaries.
+By
+David J. Bianco
+On The Radar
+August 19, 2026 06:00
+Describing attacks with crime script analysis
+Martin explores how using crime script analysis to describe an attack with everyday language makes the situation accessible to non-technical audiences and identify points where the crime can be disrupted.
+By
+Martin Lee
+On The Radar
+July 16, 2026 06:00
+The Hunter's Paradox: Is it time to embrace automated threat hunting?
+Humans can no longer keep up with the volume and velocity of security data on their own, but AI can't be fully trusted. David discusses the merits of both and muses on what the future might look like.
+By
+David J. Bianco
+On The Radar
+Threats
+May 6, 2026 06:00
+Insights into the clustering and reuse of phone numbers in scam emails
+Talos has recently started to collect and gather intelligence around phone numbers within emails as an additional indicator of compromise (IOC). In this blog, we discuss new insights into in-the-wild phone number reuse in scam emails.
+By
+Omid Mirzaei
+On The Radar
+April 3, 2026 13:31
+Do not get high(jacked) off your own supply (chain)
+In the span of just a few weeks, we have observed a dizzying array of major supply chain attacks. If we are all building on such shaky foundation, what can we do to keep safe?
+By
+Dave Liebenberg
+On The Radar
+December 9, 2025 06:00
+New in Snort3: Enhanced rule grouping for greater flexibility and control
+Today, Cisco Talos is introducing new capabilities for Snort3 users within Cisco Secure Firewall to give you greater flexibility in how you manage, organize, and prioritize detection rules.
+By
+Alex McDonnell
+Snort
+On The Radar
+December 4, 2025 06:00
+Spy vs. spy: How GenAI is powering defenders and attackers
+Generative AI is rapidly transforming cybersecurity for both defenders and attackers. This blog highlights current uses, emerging threats, and the evolving landscape as capabilities advance.
+By
+Nick Biasini
+On The Radar
+October 24, 2025 06:00
+Think passwordless is too complicated? Let's clear that up
+We’ve relied on passwords for years to protect our online accounts, but they’ve also become one of the easiest ways attackers get in. Cisco Duo helps clear up some of the biggest passwordless myths.
+By
+Cisco Talos
+On The Radar
+October 21, 2025 06:00
+Reducing abuse of Microsoft 365 Exchange Online’s Direct Send
+Cisco Talos has observed increased activity by malicious actors leveraging Direct Send as part of phishing campaigns. Here's how to strengthen your defenses.
+By
+Adam Katz
+On The Radar
+July 31, 2025 06:00
+Using LLMs as a reverse engineering sidekick
+LLMs may serve as powerful assistants to malware analysts to streamline workflows, enhance efficiency, and provide actionable insights during malware analysis.
+By
+Guilherme Venere
+On The Radar
+June 25, 2025 06:00
+Cybercriminal abuse of large language models
+Cybercriminals are increasingly gravitating towards uncensored LLMs, cybercriminal-designed LLMs and jailbreaking legitimate LLMs.
+By
+Jaeson Schultz
+On The Radar
+May 1, 2025 06:00
+State-of-the-art phishing: MFA bypass
+Threat actors are bypassing MFA with adversary-in-the-middle attacks via reverse proxies. Phishing-as-a-Service tools like Evilproxy make these threats harder to detect.
+By
+Jaeson Schultz
+On The Radar
+phishing
+MFA
+December 12, 2024 06:00
+The evolution and abuse of proxy networks
+Proxy and anonymization networks have been dominating the headlines, this piece discusses its origins and evolution on the threat landscape with specific focus on state sponsored abuse.
+By
+Nick Biasini
+,
+Vitor Ventura
+On The Radar
+November 20, 2024 06:00
+Malicious QR Codes: How big of a problem is it, really?
+QR codes are disproportionately effective at bypassing most anti-spam filters. Talos discovered two effective methods for defanging malicious QR codes, a necessary step to make them safe for consumption.
+By
+Jaeson Schultz
+On The Radar
+October 25, 2024 10:09
+How LLMs could help defenders write better and faster detection
+Can LLM tools actually help defenders in the cybersecurity industry write more effective detection content? Read the full research
+By
+Cisco Talos
+On The Radar
+August 13, 2024 08:20
+A refresher on Talos’ open-source tools and the importance of the open-source community
+Open-source software that is free to download, deploy and modify is a vital component in the fight for cyber security. Freely available software not only helps defend systems that would otherwise be unprotected, but it also allows people to learn and develop vital cybersecurity s
+By
+Martin Lee
+On The Radar
+July 11, 2024 06:00
+Impact of data breaches is fueling scam campaigns
+Data breaches have become one of the most crucial threats to organizations across the globe, and they’ve only become more prevalent and serious over time.
+By
+Chetan Raghuprasad
+On The Radar
+July 10, 2024 08:00
+Hidden between the tags: Insights into spammers’ evasion techniques in HTML Smuggling
+Talos is releasing a new list of CyberChef recipes that enable faster and easier reversal of encoded JavaScript code contained in the observed HTML attachments.
+By
+Omid Mirzaei
+On The Radar
+July 10, 2024 06:00
+Inside the ransomware playbook: Analyzing attack chains and mapping common TTPs
+Based on a comprehensive review of more than a dozen prominent ransomware groups, we identified several commonalities in TTPs, along with several notable differences and outliers.
+By
+James Nutland
+On The Radar
+June 27, 2024 08:01
+Snowflake isn’t an outlier, it’s the canary in the coal mine
+By Nick Biasini with contributions from Kendall McKay and Guilherme Venere
+Headlines continue to roll in about the many implications and follow-on attacks originating from leaked and/or stolen credentials for the Snowflake cloud data platform.
+Adversaries obtained stolen login
+By
+Nick Biasini
+On The Radar
+June 18, 2024 07:57
+How are attackers trying to bypass MFA?
+Exploring trends on how attackers are trying to manipulate and bypass MFA, as well as when/how attackers will try their 'push-spray' MFA attacks
+By
+Hazel Burton
+On The Radar
+April 2, 2024 08:00
+Adversaries are leveraging remote access tools now more than ever — here’s how to stop them
+While there are many legitimate uses for this software, adversaries are also finding ways to use them for command and control in their campaigns.
+By
+Nate Pors
+,
+Heather Couk
+On The Radar
+March 13, 2024 08:00
+Threat actors leverage document publishing sites for ongoing credential and session token theft
+Talos IR has responded to several recent incidents in which threat actors used legitimate digital document publishing sites such as Publuu and Marq to host phishing documents as part of ongoing credential and session harvesting attacks.
+By
+Craig Jackson
+Threats
+On The Radar
+March 7, 2024 10:00
+The 3 most common post-compromise tactics on network infrastructure
+We discuss three of the most common post-compromise tactics that Talos has observed in our threat telemetry and Cisco Talos Incident Response (Talos IR) engagements. These include modifying the device’s firmware, uploading customized/weaponized firmware, and bypassing security measures.
+By
+Hazel Burton
+On The Radar
+February 28, 2024 08:00
+Stop running security in passive mode
+As we begin a new year, we wanted to address one of the biggest issues we consistently see in our investigations: passive security.
+Incident response engagements are an important part of our work and the intelligence-gathering process and their associated reports can be a treas
+By
+Nick Biasini
+On The Radar
+February 21, 2024 08:54
+How CVSS 4.0 changes (or doesn’t) the way we see vulnerability severity
+While distilling risk down to a simple numerical score is helpful for many in the security space, it is also an imperfect system that can often leave out important context.
+By
+Jonathan Munshaw
+On The Radar
+February 6, 2024 03:30
+How are user credentials stolen and used by threat actors?
+You’ve probably heard the phrase, “Attackers don’t hack anyone these days. They log on.” In this blog, we describe the various tools and techniques bad actors are using to steal credentials so they can 'log on' with valid account details, and outline our recommendations for defense.
+By
+Hazel Burton
+On The Radar
+November 16, 2023 08:00
+7 common mistakes companies make when creating an incident response plan and how to avoid them
+Avoiding some of these common mistakes ensures your organization’s plan will be updated faster and is more thorough, so you are ready to act when, not if, an incident happens.
+By
+Gergana Karadzhova-Dangela
+,
+Thorsten Rosendahl
+On The Radar
+Cisco Talos Incident Response
+August 14, 2023 08:40
+The rise of AI-powered criminals: Identifying threats and opportunities
+A major area of impact of AI tools in cybercrime is the reduced need for human involvement in certain aspects of cybercriminal organizations.
+By
+Giannis Tziakouris
+On The Radar
+August 7, 2023 08:00
+Code leaks are causing an influx of new ransomware actors
+Cisco Talos is seeing an increasing number of ransomware variants emerge, since 2021, leading to more frequent attacks and new challenges for cybersecurity professionals, particularly regarding actor attribution.
+By
+Chetan Raghuprasad
+,
+Vitor Ventura
+,
+Kendall McKay
+On The Radar
+July 25, 2023 07:59
+What might authentication attacks look like in a phishing-resistant future?
+Even if the internet at large adopts passkeys, attackers can still find a way in.
+By
+Cisco Talos
+On The Radar
+July 18, 2023 08:00
+Implementing an ISO-compliant threat intelligence program
+The guidance within ISO 27001 identifies which security controls are appropriate, while ISO 27002 describes the controls in detail and how they can be implemented.
+By
+Martin Lee
+On The Radar
+July 6, 2023 08:00
+The growth of commercial spyware based intelligence providers without legal or ethical supervision
+Commercial spyware has become so notorious that international governments are taking notice and action against it, as evidenced by the Biden administration’s recent Executive Order on commercial spyware.
+By
+Cisco Talos
+On The Radar
+June 13, 2023 08:03
+".Zip" top-level domains draw potential for information leaks
+As a result of user applications increasingly registering actual “.zip” files as URLs, these filenames may trigger unintended DNS queries or web requests, thereby revealing possibly sensitive or internal company data in a file’s name to any actor monitoring the associated DNS server
+By
+Guilherme Venere
+On The Radar
+Threats
+June 6, 2023 08:01
+Adversaries increasingly using vendor and contractor accounts to infiltrate networks
+The software supply chain has become a key security focus for many organizations, but the risks associated with supply chain attacks are often misunderstood.
+By
+Nick Biasini
+,
+Craig Jackson
+On The Radar
+April 13, 2023 00:48
+How threat actors are using AI and other modern tools to enhance their phishing attempts
+Tools like ChatGPT aren't making social engineering attacks any more effective, but it does make it faster for actors to write up phishing emails.
+By
+Jaeson Schultz
+On The Radar
+Threats
+March 29, 2023 08:00
+How an incident response retainer can drive proactive security
+Whether it be threat hunting, an active defense posture or just improving security instrumentation alerts and logs an organization keeps, it’s best for every user — no matter the size — to be prepared for when a cybersecurity incident or breach occurs.
+By
+Brad Garnett
+Cisco Talos Incident Response
+On The Radar
+February 9, 2023 08:09
+Beyond the basics: Implementing an active defense
+An active defense posture, where the defenders actively use threat intelligence and their own telemetry to uncover potential compromises, is the next stage in the cyber security maturity road. Instead of waiting for detections to trigger, defenders can take initiative and hunt threat actors.
+By
+Vitor Ventura
+On The Radar
+January 24, 2023 07:59
+State Sponsored Attacks in 2023 and Beyond
+As 2023 begins I wanted to look forward on the future of state sponsored aggression and how we can see it change and evolve over the next year and beyond.
+By
+Nick Biasini
+On The Radar
+November 8, 2022 09:33
+The Company You Keep – Preparing for supply chain attacks with Talos IR
+Organizations must proactively limit supply chain risks through careful selection of the company they keep while preparing to respond to an incident that will invariably originate from the supply chain.
+By
+Craig Jackson
+,
+Alexis Merritt
+On The Radar
+Cisco Talos Incident Response
+October 18, 2022 08:00
+The benefits of taking an intent-based approach to detecting Business Email Compromise
+There are many ways to approach this growing threat, but here's why Talos feels intent-based protection is the best.
+By
+Abhishek Singh
+On The Radar
+October 4, 2022 08:51
+Developer account body snatchers pose risks to the software supply chain
+Cisco Talos examined several frequently used code repositories. We looked specifically at the security afforded to developer accounts, and how difficult it would be for an attacker to take over a developer account.
+By
+Jaeson Schultz
+On The Radar
+September 22, 2022 07:58
+Insider Threats: Your employees are being used against you
+Over the past six months to a year, we have seen an increasing amount of incident response engagements involving malicious insiders and unwitting assets being compromised via social engineering.
+By
+Nick Biasini
+On The Radar
+September 20, 2022 10:00
+Our current world, health care apps and your personal data
+In the wake of the U.S. Supreme Court’s ruling in Dobbs v. Jackson Women’s Health Organization that reversed previous interpretations of the 14th amendment on privacy from Roe v. Wade, users of sensitive health apps need to be mindful of the kinds of data these apps keep, sell and share.
+By
+Ashlee Benge
+,
+Jonathan Munshaw
+On The Radar
+August 29, 2022 14:45
+Small-time cybercrime is about to explode — We aren’t ready
+The cybersecurity industry tends to focus on extremely large-scale or sophisticated, state-sponsored attacks. Rightfully so, as it can be the most interesting, technically speaking.
+When most people think of cybercrime they think of large-scale breaches because that’s what domin
+By
+Nick Biasini
+On The Radar
+August 18, 2022 08:00
+Ukraine war spotlights agriculture sector's vulnerability to cyber attack
+The war in Ukraine has caused massive problems for global food supplies, underscoring the high impact of disruptive events to agriculture entities and related organizations.
+* The challenges to the Ukrainian agriculture sector imposed by the war--and global ripple effects--have
+By
+Joe Marshall
+On The Radar
+Threats
+Ukraine
+August 8, 2022 08:42
+Small-time cybercrime is about to explode — We aren't ready
+The cybersecurity industry tends to focus on extremely large-scale or sophisticated, state-sponsored attacks. Rightfully so, as it can be the most interesting, technically speaking.
+When most people think of cybercrime they think of large-scale breaches because that's what d
+By
+Nick Biasini
+On The Radar
+Threats
+March 31, 2022 16:58
+On the Radar: Is 2022 the year encryption is doomed?
+Senior managers responsible for information security should take stock of the encryption algorithms in use within their systems and plan their move to quantum-secure algorithms.
+By
+Martin Lee
+Features
+On The Radar
+March 22, 2022 08:01
+On the Radar: Securing Web 3.0, the Metaverse and beyond
+Internet technology evolves rapidly, and the World Wide Web (WWW or Web) is currently experiencing a transition into what many are calling "Web 3.0". Web 3.0 is a nebulous term. If you spend enough time Googling it, you'll find many interpretations regarding what We
+By
+Jaeson Schultz
+Features
+On The Radar

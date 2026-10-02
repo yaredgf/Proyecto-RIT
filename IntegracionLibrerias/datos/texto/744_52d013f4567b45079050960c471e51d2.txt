@@ -1,0 +1,558 @@
+Common Weakness Enumeration
+Celebrating 20 years of community-developed cybersecurity weakness knowledge!
+Home
+>
+CWE List
+>
+CWE-602: Client-Side Enforcement of Server-Side Security (4.20)
+Home
+About ▼
+Who We Are
+User Stories
+History
+Documents
+Videos
+Learn ▼
+Basics
+Root Cause Mapping ►
+Guidance
+Quick Tips
+Examples
+How to Contribute Weakness Content
+FAQs
+Glossary
+Access Content ▼
+Top-N Lists ►
+Top 25 Software
+Top Hardware
+Top 10 KEV Weaknesses
+CWE List ►
+Current Version
+Reports
+Visualizations
+Releases Archive
+Downloads
+REST API
+Community ▼
+News ►
+Current News
+Blog
+Podcast
+News Archive
+CWE Board
+Working Groups & Special Interest Groups
+Email Lists
+Search ▼
+Search CWE List
+Search Website
+CWE Glossary Definition
+CWE-602: Client-Side Enforcement of Server-Side Security
+Weakness ID: 602
+Vulnerability Mapping
+:
+ALLOWED
+This CWE ID could be used to map to real-world vulnerabilities in limited situations requiring careful review
+(with careful review of mapping notes)
+Abstraction:
+Class
+Class - a weakness that is described in a very abstract fashion, typically independent of any specific language or technology. More specific than a Pillar Weakness, but more general than a Base Weakness. Class level weaknesses typically describe issues in terms of 1 or 2 of the following dimensions: behavior, property, and resource.
+View customized information:
+Conceptual
+For users who are interested in more notional aspects of a weakness. Example: educators, technical writers, and project/program managers.
+Operational
+For users who are concerned with the practical application and details about the nature of a weakness and how to prevent it from happening. Example: tool developers, security researchers, pen-testers, incident response analysts.
+Mapping Friendly
+For users who are mapping an issue to CWE/CAPEC IDs, i.e., finding the most appropriate CWE for a specific issue (e.g., a CVE record). Example: tool developers, security researchers.
+Complete
+For users who wish to see all available information for the CWE/CAPEC entry.
+Custom
+For users who want to customize what details are displayed.
+×
+Edit Custom Filter
+Conceptual
+Operational
+Mapping Friendly
+Select All
+Reset
+Clear
+Submit
+Cancel
+Description
+The product is composed of a server that relies on the client to implement a mechanism that is intended to protect the server.
+Extended Description
+When the server relies on protection mechanisms placed on the client side, an attacker can modify the client-side behavior to bypass the protection mechanisms, resulting in potentially unexpected interactions between the client and server. The consequences will vary, depending on what the mechanisms are trying to protect.
+Common Consequences
+This table specifies different individual consequences
+associated with the weakness. The Scope identifies the application security area that is
+violated, while the Impact describes the negative technical impact that arises if an
+adversary succeeds in exploiting this weakness. The Likelihood provides information about
+how likely the specific consequence is expected to be seen relative to the other
+consequences in the list. For example, there may be high likelihood that a weakness will be
+exploited to achieve a certain impact, but a low likelihood that it will be exploited to
+achieve a different impact.
+Impact
+Details
+Bypass Protection Mechanism; DoS: Crash, Exit, or Restart
+Scope: Access Control, Availability
+Client-side validation checks can be easily bypassed, allowing malformed or unexpected input to pass into the application, potentially as trusted data. This may lead to unexpected states, behaviors and possibly a resulting crash.
+Bypass Protection Mechanism; Gain Privileges or Assume Identity
+Scope: Access Control
+Client-side checks for authentication can be easily bypassed, allowing clients to escalate their access levels and perform unintended actions.
+Potential Mitigations
+Phase(s)
+Mitigation
+Architecture and Design
+For any security checks that are performed on the client side, ensure that these checks are duplicated on the server side. Attackers can bypass the client-side checks by modifying values after the checks have been performed, or by changing the client to remove the client-side checks entirely. Then, these modified values would be submitted to the server.
+Even though client-side checks provide minimal benefits with respect to server-side security, they are still useful. First, they can support intrusion detection. If the server receives input that should have been rejected by the client, then it may be an indication of an attack. Second, client-side error-checking can provide helpful feedback to the user about the expectations for valid input. Third, there may be a reduction in server-side processing time for accidental input errors, although this is typically a small savings.
+Architecture and Design
+If some degree of trust is required between the two entities, then use integrity checking and strong authentication to ensure that the inputs are coming from a trusted source. Design the product so that this trust is managed in a centralized fashion, especially if there are complex or numerous communication channels, in order to reduce the risks that the implementer will mistakenly omit a check in a single code path.
+Relationships
+This table shows the weaknesses and high level categories that are related to this
+weakness. These relationships are defined as ChildOf, ParentOf, MemberOf and give insight to
+similar items that may exist at higher and lower levels of abstraction. In addition,
+relationships such as PeerOf and CanAlsoBe are defined to show similar weaknesses that the user
+may want to explore.
+Relevant to the view "Research Concepts" (View-1000)
+Nature
+Type
+ID
+Name
+ChildOf
+Pillar - a weakness that is the most abstract type of weakness and represents a theme for all class/base/variant weaknesses related to it. A Pillar is different from a Category as a Pillar is still technically a type of weakness that describes a mistake, while a Category represents a common characteristic used to group related things.
+693
+Protection Mechanism Failure
+ParentOf
+Base - a weakness that is still mostly independent of a resource or technology, but with sufficient details to provide specific methods for detection and prevention. Base level weaknesses typically describe issues in terms of 2 or 3 of the following dimensions: behavior, property, technology, language, and resource.
+565
+Reliance on Cookies without Validation and Integrity Checking
+ParentOf
+Base - a weakness that is still mostly independent of a resource or technology, but with sufficient details to provide specific methods for detection and prevention. Base level weaknesses typically describe issues in terms of 2 or 3 of the following dimensions: behavior, property, technology, language, and resource.
+603
+Use of Client-Side Authentication
+PeerOf
+Base - a weakness that is still mostly independent of a resource or technology, but with sufficient details to provide specific methods for detection and prevention. Base level weaknesses typically describe issues in terms of 2 or 3 of the following dimensions: behavior, property, technology, language, and resource.
+290
+Authentication Bypass by Spoofing
+PeerOf
+Class - a weakness that is described in a very abstract fashion, typically independent of any specific language or technology. More specific than a Pillar Weakness, but more general than a Base Weakness. Class level weaknesses typically describe issues in terms of 1 or 2 of the following dimensions: behavior, property, and resource.
+300
+Channel Accessible by Non-Endpoint
+PeerOf
+Base - a weakness that is still mostly independent of a resource or technology, but with sufficient details to provide specific methods for detection and prevention. Base level weaknesses typically describe issues in terms of 2 or 3 of the following dimensions: behavior, property, technology, language, and resource.
+836
+Use of Password Hash Instead of Password for Authentication
+CanPrecede
+Base - a weakness that is still mostly independent of a resource or technology, but with sufficient details to provide specific methods for detection and prevention. Base level weaknesses typically describe issues in terms of 2 or 3 of the following dimensions: behavior, property, technology, language, and resource.
+471
+Modification of Assumed-Immutable Data (MAID)
+Relevant to the view "Architectural Concepts" (View-1008)
+Nature
+Type
+ID
+Name
+MemberOf
+Category - a CWE entry that contains a set of other entries that share a common characteristic.
+1012
+Cross Cutting
+Modes
+Of Introduction
+The different Modes of Introduction provide information
+about how and when this
+weakness may be introduced. The Phase identifies a point in the life cycle at which
+introduction
+may occur, while the Note provides a typical scenario related to introduction during the
+given
+phase.
+Phase
+Note
+Architecture and Design
+COMMISSION: This weakness refers to an incorrect design related to an architectural security tactic.
+Architecture and Design
+Consider a product that consists of two or more processes or nodes that must interact closely, such as a client/server model. If the product uses protection schemes in the client in order to defend from attacks against the server, and the server does not use the same schemes, then an attacker could modify the client in a way that bypasses those schemes. This is a fundamental design flaw that is primary to many weaknesses.
+Applicable Platforms
+This listing shows possible areas for which the given
+weakness could appear. These
+may be for specific named Languages, Operating Systems, Architectures, Paradigms,
+Technologies,
+or a class of such platforms. The platform is listed along with how frequently the given
+weakness appears for that instance.
+Languages
+Class: Not Language-Specific
+(Undetermined Prevalence)
+Technologies
+Class: ICS/OT
+(Undetermined Prevalence)
+Class: Mobile
+(Undetermined Prevalence)
+Likelihood Of Exploit
+Medium
+Demonstrative Examples
+Example 1
+This example contains client-side code that checks if the user authenticated successfully before sending a command. The server-side code performs the authentication in one step, and executes the command in a separate step.
+CLIENT-SIDE (client.pl)
+(good code)
+Example Language:
+Perl
+$server = "server.example.com";
+$username = AskForUserName();
+$password = AskForPassword();
+$address = AskForAddress();
+$sock = OpenSocket($server, 1234);
+writeSocket($sock, "AUTH $username $password\n");
+$resp = readSocket($sock);
+if ($resp eq "success") {
+# username/pass is valid, go ahead and update the info!
+writeSocket($sock, "CHANGE-ADDRESS $username $address\n";
+}
+else {
+print "ERROR: Invalid Authentication!\n";
+}
+SERVER-SIDE (server.pl):
+(bad code)
+Example Language:
+Perl
+$sock = acceptSocket(1234);
+($cmd, $args) = ParseClientRequest($sock);
+if ($cmd eq "AUTH") {
+($username, $pass) = split(/\s+/, $args, 2);
+$result = AuthenticateUser($username, $pass);
+writeSocket($sock, "$result\n");
+# does not close the socket on failure; assumes the
+# user will try again
+}
+elsif ($cmd eq "CHANGE-ADDRESS") {
+if (validateAddress($args)) {
+$res = UpdateDatabaseRecord($username, "address", $args);
+writeSocket($sock, "SUCCESS\n");
+}
+else {
+writeSocket($sock, "FAILURE -- address is malformed\n");
+}
+}
+The server accepts 2 commands, "AUTH" which authenticates the user, and "CHANGE-ADDRESS" which updates the address field for the username. The client performs the authentication and only sends a CHANGE-ADDRESS for that user if the authentication succeeds. Because the client has already performed the authentication, the server assumes that the username in the CHANGE-ADDRESS is the same as the authenticated user. An attacker could modify the client by removing the code that sends the "AUTH" command and simply executing the CHANGE-ADDRESS.
+Example 2
+In 2022, the OT:ICEFALL study examined products by 10 different Operational Technology (OT) vendors. The researchers reported 56 vulnerabilities and said that the products were "insecure by design" [
+REF-1283
+]. If exploited, these vulnerabilities often allowed adversaries to change how the products operated, ranging from denial of service to changing the code that the products executed. Since these products were often used in industries such as power, electrical, water, and others, there could even be safety implications.
+Multiple vendors used client-side authentication in their OT products.
+Selected Observed
+Examples
+Note: this is a curated list of examples for users to understand the variety of ways in which this
+weakness can be introduced. It is not a complete list of all CVEs that are related to this CWE entry.
+Reference
+Description
+CVE-2024-50653
+Chain: e-commerce product has a "front-end restriction" for coupon use (
+CWE-602
+), but the server does not restrict the number of requests for the same coupon (
+CWE-799
+)
+CVE-2022-33139
+SCADA system only uses client-side authentication, allowing adversaries to impersonate other users.
+CVE-2006-6994
+ASP program allows upload of .asp files by bypassing client-side checks.
+CVE-2007-0163
+steganography products embed password information in the carrier file, which can be extracted from a modified client.
+CVE-2007-0164
+steganography products embed password information in the carrier file, which can be extracted from a modified client.
+CVE-2007-0100
+client allows server to modify client's configuration and overwrite arbitrary files.
+Weakness Ordinalities
+Ordinality
+Description
+Primary
+(where the weakness exists independent of other weaknesses)
+Detection
+Methods
+Method
+Details
+Fuzzing
+Use dynamic tools and techniques that
+interact with the software using large test suites with
+many diverse inputs, such as fuzz testing (fuzzing),
+robustness testing, and fault injection. The software's
+operation may slow down, but it should not become
+unstable, crash, or generate incorrect
+results.
+Manual Analysis
+Use tools and techniques that require manual (human) analysis, such as penetration testing, threat modeling, and interactive tools that allow the tester to record and modify an active session. These may be more effective than strictly automated techniques. This is especially the case with weaknesses that are related to design and business rules.
+Memberships
+This MemberOf Relationships table shows additional CWE Categories and Views that
+reference this weakness as a member. This information is often useful in understanding where a
+weakness fits within the context of external information sources.
+Nature
+Type
+ID
+Name
+MemberOf
+Category - a CWE entry that contains a set of other entries that share a common characteristic.
+722
+OWASP Top Ten 2004 Category A1 - Unvalidated Input
+MemberOf
+Category - a CWE entry that contains a set of other entries that share a common characteristic.
+753
+2009 Top 25 - Porous Defenses
+MemberOf
+View - a subset of CWE entries that provides a way of examining CWE content. The two main view structures are Slices (flat lists) and Graphs (containing relationships between entries).
+884
+CWE Cross-section
+MemberOf
+Category - a CWE entry that contains a set of other entries that share a common characteristic.
+975
+SFP Secondary Cluster: Architecture
+MemberOf
+Category - a CWE entry that contains a set of other entries that share a common characteristic.
+1348
+OWASP Top Ten 2021 Category A04:2021 - Insecure Design
+MemberOf
+Category - a CWE entry that contains a set of other entries that share a common characteristic.
+1413
+Comprehensive Categorization: Protection Mechanism Failure
+MemberOf
+Category - a CWE entry that contains a set of other entries that share a common characteristic.
+1441
+OWASP Top Ten 2025 Category A06:2025 - Insecure Design
+Vulnerability Mapping Notes
+Usage
+ALLOWED-WITH-REVIEW
+(this CWE ID could be used to map to real-world vulnerabilities in limited situations requiring careful review)
+Reason
+Abstraction
+Rationale
+This CWE entry is a Class and might have Base-level children that would be more appropriate
+Comments
+Examine children of this entry to see if there is a better fit
+Taxonomy
+Mappings
+Mapped Taxonomy Name
+Node ID
+Fit
+Mapped Node Name
+OWASP Top Ten 2004
+A1
+CWE More Specific
+Unvalidated Input
+Related Attack Patterns
+CAPEC-ID
+Attack Pattern Name
+CAPEC-162
+Manipulating Hidden Fields
+CAPEC-202
+Create Malicious Client
+CAPEC-207
+Removing Important Client Functionality
+CAPEC-208
+Removing/short-circuiting 'Purse' logic: removing/mutating 'cash' decrements
+CAPEC-21
+Exploitation of Trusted Identifiers
+CAPEC-31
+Accessing/Intercepting/Modifying HTTP Cookies
+CAPEC-383
+Harvesting Information via API Event Monitoring
+CAPEC-384
+Application API Message Manipulation via Man-in-the-Middle
+CAPEC-385
+Transaction or Event Tampering via Application API Manipulation
+CAPEC-386
+Application API Navigation Remapping
+CAPEC-387
+Navigation Remapping To Propagate Malicious Content
+CAPEC-388
+Application API Button Hijacking
+References
+[REF-7]
+Michael Howard and David LeBlanc.
+"Writing Secure Code".
+Chapter 23, "Client-Side Security Is an Oxymoron" Page 687. 2nd Edition. Microsoft Press. 2002-12-04.
+<
+https://www.microsoftpressstore.com/store/writing-secure-code-9780735617223
+>.
+[REF-1283]
+Forescout Vedere Labs.
+"OT:ICEFALL: The legacy of "insecure by design" and its implications for certifications and risk management".
+2022-06-20.
+<
+https://www.forescout.com/resources/ot-icefall-report/
+>.
+Content
+History
+Submissions
+Submission Date
+Submitter
+Organization
+2007-05-07
+(CWE Draft 6, 2007-05-07)
+CWE Community
+Submitted by members of the CWE community to extend early CWE versions
+Modifications
+Modification Date
+Modifier
+Organization
+2025-12-11
+(CWE 4.19, 2025-12-11)
+CWE Content Team
+MITRE
+updated Detection_Factors, Observed_Examples, Potential_Mitigations, Relationships
+2025-04-03
+(CWE 4.17, 2025-04-03)
+CWE Content Team
+MITRE
+updated Demonstrative_Examples
+2023-06-29
+(CWE 4.12, 2023-06-29)
+CWE Content Team
+MITRE
+updated Mapping_Notes
+2023-04-27
+(CWE 4.11, 2023-04-27)
+CWE Content Team
+MITRE
+updated Relationships
+2023-01-31
+(CWE 4.10, 2023-01-31)
+CWE Content Team
+MITRE
+updated Applicable_Platforms, Relationships, Type
+2022-10-13
+(CWE 4.9, 2022-10-13)
+CWE Content Team
+MITRE
+updated Demonstrative_Examples, Description, Observed_Examples, References, Relationships
+2022-04-28
+(CWE 4.7, 2022-04-28)
+CWE Content Team
+MITRE
+updated Research_Gaps
+2021-10-28
+(CWE 4.6, 2021-10-28)
+CWE Content Team
+MITRE
+updated Relationships
+2020-02-24
+(CWE 4.0, 2020-02-24)
+CWE Content Team
+MITRE
+updated Applicable_Platforms, Relationships
+2019-06-20
+(CWE 3.3, 2019-06-20)
+CWE Content Team
+MITRE
+updated Related_Attack_Patterns
+2018-03-27
+(CWE 3.1, 2018-03-27)
+CWE Content Team
+MITRE
+updated References
+2017-11-08
+(CWE 3.0, 2017-11-08)
+CWE Content Team
+MITRE
+updated Applicable_Platforms, Enabling_Factors_for_Exploitation, Modes_of_Introduction, References, Relationships
+2017-05-03
+(CWE 2.11, 2017-05-05)
+CWE Content Team
+MITRE
+updated Related_Attack_Patterns
+2014-07-30
+(CWE 2.8, 2014-07-31)
+CWE Content Team
+MITRE
+updated Relationships
+2012-05-11
+(CWE 2.2, 2012-05-15)
+CWE Content Team
+MITRE
+updated Relationships
+2011-06-01
+(CWE 1.13, 2011-06-01)
+CWE Content Team
+MITRE
+updated Common_Consequences
+2011-03-29
+(CWE 1.12, 2011-03-30)
+CWE Content Team
+MITRE
+updated Relationships
+2010-12-13
+(CWE 1.11, 2010-12-13)
+CWE Content Team
+MITRE
+updated Related_Attack_Patterns
+2010-04-05
+(CWE 1.8.1, 2010-04-05)
+CWE Content Team
+MITRE
+updated Related_Attack_Patterns
+2010-02-16
+(CWE 1.8, 2010-02-16)
+CWE Content Team
+MITRE
+updated References
+2009-10-29
+(CWE 1.6, 2009-10-29)
+CWE Content Team
+MITRE
+updated Applicable_Platforms, Common_Consequences, Description
+2009-07-27
+(CWE 1.5, 2009-07-27)
+CWE Content Team
+MITRE
+updated Related_Attack_Patterns, Relationships
+2009-05-27
+(CWE 1.4, 2009-05-27)
+CWE Content Team
+MITRE
+updated Demonstrative_Examples
+2009-03-10
+(CWE 1.3, 2009-03-10)
+CWE Content Team
+MITRE
+updated Potential_Mitigations
+2009-01-12
+(CWE 1.2, 2009-01-12)
+CWE Content Team
+MITRE
+updated Demonstrative_Examples, Description, Likelihood_of_Exploit, Name, Observed_Examples, Other_Notes, Potential_Mitigations, Relationships, Research_Gaps, Time_of_Introduction
+2008-09-08
+(CWE 1.0, 2008-09-09)
+CWE Content Team
+MITRE
+updated Relationships, Other_Notes, Taxonomy_Mappings, Weakness_Ordinalities
+2008-07-01
+(CWE 1.0, 2008-09-09)
+Eric Dalci
+Cigital
+updated Time_of_Introduction
+Previous Entry Names
+Change Date
+Previous Entry Name
+2009-01-12
+Design Principle Violation: Client-Side Enforcement of Server-Side Security
+2008-04-11
+Client-Side Enforcement of Server-Side Security
+More information is available — Please edit the custom filter or select a different filter.
+Page Last Updated:
+April 30, 2026
+Site Map
+|
+Terms of Use
+|
+Manage Cookies
+|
+Cookie Notice
+|
+Privacy Policy
+|
+Contact Us
+|
+Use of the Common Weakness Enumeration (CWE™) and the associated references from this website are subject to the
+Terms of Use
+. CWE is sponsored by the
+U.S. Department of Homeland Security
+(DHS)
+Cybersecurity and Infrastructure Security Agency
+(CISA) and managed by the
+Homeland Security Systems Engineering and Development Institute
+(HSSEDI) which is operated by
+The MITRE Corporation
+(MITRE). Copyright © 2006–2026, The MITRE Corporation. CWE, CWSS, CWRAF, and the CWE logo are trademarks of The MITRE Corporation.

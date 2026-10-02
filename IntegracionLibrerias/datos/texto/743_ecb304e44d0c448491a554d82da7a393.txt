@@ -1,0 +1,483 @@
+Common Weakness Enumeration
+Celebrating 20 years of community-developed cybersecurity weakness knowledge!
+Home
+>
+CWE List
+>
+CWE-425: Direct Request ('Forced Browsing') (4.20)
+Home
+About ▼
+Who We Are
+User Stories
+History
+Documents
+Videos
+Learn ▼
+Basics
+Root Cause Mapping ►
+Guidance
+Quick Tips
+Examples
+How to Contribute Weakness Content
+FAQs
+Glossary
+Access Content ▼
+Top-N Lists ►
+Top 25 Software
+Top Hardware
+Top 10 KEV Weaknesses
+CWE List ►
+Current Version
+Reports
+Visualizations
+Releases Archive
+Downloads
+REST API
+Community ▼
+News ►
+Current News
+Blog
+Podcast
+News Archive
+CWE Board
+Working Groups & Special Interest Groups
+Email Lists
+Search ▼
+Search CWE List
+Search Website
+CWE Glossary Definition
+CWE-425: Direct Request ('Forced Browsing')
+Weakness ID: 425
+Vulnerability Mapping
+:
+ALLOWED
+This CWE ID may be used to map to real-world vulnerabilities
+Abstraction:
+Base
+Base - a weakness that is still mostly independent of a resource or technology, but with sufficient details to provide specific methods for detection and prevention. Base level weaknesses typically describe issues in terms of 2 or 3 of the following dimensions: behavior, property, technology, language, and resource.
+View customized information:
+Conceptual
+For users who are interested in more notional aspects of a weakness. Example: educators, technical writers, and project/program managers.
+Operational
+For users who are concerned with the practical application and details about the nature of a weakness and how to prevent it from happening. Example: tool developers, security researchers, pen-testers, incident response analysts.
+Mapping Friendly
+For users who are mapping an issue to CWE/CAPEC IDs, i.e., finding the most appropriate CWE for a specific issue (e.g., a CVE record). Example: tool developers, security researchers.
+Complete
+For users who wish to see all available information for the CWE/CAPEC entry.
+Custom
+For users who want to customize what details are displayed.
+×
+Edit Custom Filter
+Conceptual
+Operational
+Mapping Friendly
+Select All
+Reset
+Clear
+Submit
+Cancel
+Description
+The web application does not adequately enforce appropriate authorization on all restricted URLs, scripts, or files.
+Alternate Terms
+forced browsing
+The "forced browsing" term could be misinterpreted to include weaknesses such as CSRF or XSS, so its use is discouraged.
+Common Consequences
+This table specifies different individual consequences
+associated with the weakness. The Scope identifies the application security area that is
+violated, while the Impact describes the negative technical impact that arises if an
+adversary succeeds in exploiting this weakness. The Likelihood provides information about
+how likely the specific consequence is expected to be seen relative to the other
+consequences in the list. For example, there may be high likelihood that a weakness will be
+exploited to achieve a certain impact, but a low likelihood that it will be exploited to
+achieve a different impact.
+Impact
+Details
+Read Application Data; Modify Application Data; Execute Unauthorized Code or Commands; Gain Privileges or Assume Identity
+Scope: Confidentiality, Integrity, Availability, Access Control
+Potential Mitigations
+Phase(s)
+Mitigation
+Architecture and Design; Operation
+Apply appropriate access control authorizations for each access to all restricted URLs, scripts or files.
+Architecture and Design
+Consider using MVC based frameworks such as Struts.
+Relationships
+This table shows the weaknesses and high level categories that are related to this
+weakness. These relationships are defined as ChildOf, ParentOf, MemberOf and give insight to
+similar items that may exist at higher and lower levels of abstraction. In addition,
+relationships such as PeerOf and CanAlsoBe are defined to show similar weaknesses that the user
+may want to explore.
+Relevant to the view "Research Concepts" (View-1000)
+Nature
+Type
+ID
+Name
+ChildOf
+Base - a weakness that is still mostly independent of a resource or technology, but with sufficient details to provide specific methods for detection and prevention. Base level weaknesses typically describe issues in terms of 2 or 3 of the following dimensions: behavior, property, technology, language, and resource.
+288
+Authentication Bypass Using an Alternate Path or Channel
+ChildOf
+Class - a weakness that is described in a very abstract fashion, typically independent of any specific language or technology. More specific than a Pillar Weakness, but more general than a Base Weakness. Class level weaknesses typically describe issues in terms of 1 or 2 of the following dimensions: behavior, property, and resource.
+424
+Improper Protection of Alternate Path
+ChildOf
+Class - a weakness that is described in a very abstract fashion, typically independent of any specific language or technology. More specific than a Pillar Weakness, but more general than a Base Weakness. Class level weaknesses typically describe issues in terms of 1 or 2 of the following dimensions: behavior, property, and resource.
+862
+Missing Authorization
+CanPrecede
+Variant - a weakness that is linked to a certain type of product, typically involving a specific language or technology. More specific than a Base weakness. Variant level weaknesses typically describe issues in terms of 3 to 5 of the following dimensions: behavior, property, technology, language, and resource.
+98
+Improper Control of Filename for Include/Require Statement in PHP Program ('PHP Remote File Inclusion')
+CanPrecede
+Base - a weakness that is still mostly independent of a resource or technology, but with sufficient details to provide specific methods for detection and prevention. Base level weaknesses typically describe issues in terms of 2 or 3 of the following dimensions: behavior, property, technology, language, and resource.
+471
+Modification of Assumed-Immutable Data (MAID)
+Relevant to the view "Software Development" (View-699)
+Nature
+Type
+ID
+Name
+MemberOf
+Category - a CWE entry that contains a set of other entries that share a common characteristic.
+417
+Communication Channel Errors
+MemberOf
+Category - a CWE entry that contains a set of other entries that share a common characteristic.
+1212
+Authorization Errors
+Relevant to the view "Weaknesses for Simplified Mapping of Published Vulnerabilities" (View-1003)
+Nature
+Type
+ID
+Name
+ChildOf
+Class - a weakness that is described in a very abstract fashion, typically independent of any specific language or technology. More specific than a Pillar Weakness, but more general than a Base Weakness. Class level weaknesses typically describe issues in terms of 1 or 2 of the following dimensions: behavior, property, and resource.
+862
+Missing Authorization
+Relevant to the view "Architectural Concepts" (View-1008)
+Nature
+Type
+ID
+Name
+MemberOf
+Category - a CWE entry that contains a set of other entries that share a common characteristic.
+1011
+Authorize Actors
+Modes
+Of Introduction
+The different Modes of Introduction provide information
+about how and when this
+weakness may be introduced. The Phase identifies a point in the life cycle at which
+introduction
+may occur, while the Note provides a typical scenario related to introduction during the
+given
+phase.
+Phase
+Note
+Implementation
+Web applications susceptible to direct request attacks often make the false assumption that such resources can only be reached through a given navigation path and so only apply authorization at certain points in the path.
+Operation
+Applicable Platforms
+This listing shows possible areas for which the given
+weakness could appear. These
+may be for specific named Languages, Operating Systems, Architectures, Paradigms,
+Technologies,
+or a class of such platforms. The platform is listed along with how frequently the given
+weakness appears for that instance.
+Languages
+Class: Not Language-Specific
+(Undetermined Prevalence)
+Technologies
+Class: Web Based
+(Undetermined Prevalence)
+Web Server
+(Undetermined Prevalence)
+Demonstrative Examples
+Example 1
+If forced browsing is possible, an attacker may be able to directly access a sensitive page by entering a URL similar to the following.
+(attack code)
+Example Language:
+JSP
+http://somesite.com/someapplication/admin.jsp
+Selected Observed
+Examples
+Note: this is a curated list of examples for users to understand the variety of ways in which this
+weakness can be introduced. It is not a complete list of all CVEs that are related to this CWE entry.
+Reference
+Description
+CVE-2022-29238
+Access-control setting in web-based document collaboration tool is not properly implemented by the code, which prevents listing hidden directories but does not prevent direct requests to files in those directories.
+CVE-2004-2144
+Bypass authentication via direct request.
+CVE-2005-1892
+Infinite loop or infoleak triggered by direct requests.
+CVE-2004-2257
+Bypass auth/auth via direct request.
+CVE-2005-1688
+Direct request leads to infoleak by error.
+CVE-2005-1697
+Direct request leads to infoleak by error.
+CVE-2005-1698
+Direct request leads to infoleak by error.
+CVE-2005-1685
+Authentication bypass via direct request.
+CVE-2005-1827
+Authentication bypass via direct request.
+CVE-2005-1654
+Authorization bypass using direct request.
+CVE-2005-1668
+Access privileged functionality using direct request.
+CVE-2002-1798
+Upload arbitrary files via direct request.
+Weakness Ordinalities
+Ordinality
+Description
+Primary
+(where the weakness exists independent of other weaknesses)
+Memberships
+This MemberOf Relationships table shows additional CWE Categories and Views that
+reference this weakness as a member. This information is often useful in understanding where a
+weakness fits within the context of external information sources.
+Nature
+Type
+ID
+Name
+MemberOf
+Category - a CWE entry that contains a set of other entries that share a common characteristic.
+721
+OWASP Top Ten 2007 Category A10 - Failure to Restrict URL Access
+MemberOf
+Category - a CWE entry that contains a set of other entries that share a common characteristic.
+722
+OWASP Top Ten 2004 Category A1 - Unvalidated Input
+MemberOf
+Category - a CWE entry that contains a set of other entries that share a common characteristic.
+723
+OWASP Top Ten 2004 Category A2 - Broken Access Control
+MemberOf
+Category - a CWE entry that contains a set of other entries that share a common characteristic.
+953
+SFP Secondary Cluster: Missing Endpoint Authentication
+MemberOf
+Category - a CWE entry that contains a set of other entries that share a common characteristic.
+1031
+OWASP Top Ten 2017 Category A5 - Broken Access Control
+MemberOf
+Category - a CWE entry that contains a set of other entries that share a common characteristic.
+1345
+OWASP Top Ten 2021 Category A01:2021 - Broken Access Control
+MemberOf
+Category - a CWE entry that contains a set of other entries that share a common characteristic.
+1396
+Comprehensive Categorization: Access Control
+MemberOf
+Category - a CWE entry that contains a set of other entries that share a common characteristic.
+1436
+OWASP Top Ten 2025 Category A01:2025 - Broken Access Control
+Vulnerability Mapping Notes
+Usage
+ALLOWED
+(this CWE ID may be used to map to real-world vulnerabilities)
+Reason
+Acceptable-Use
+Rationale
+This CWE entry is at the Base level of abstraction, which is a preferred level of abstraction for mapping to the root causes of vulnerabilities.
+Comments
+Carefully read both the name and description to ensure that this mapping is an appropriate fit. Do not try to 'force' a mapping to a lower-level Base/Variant simply to comply with this preferred level of abstraction.
+Notes
+Relationship
+Overlaps Modification of Assumed-Immutable Data (MAID), authorization errors, container errors; often primary to other weaknesses such as XSS and SQL injection.
+Theoretical
+"Forced browsing" is a step-based manipulation involving the omission of one or more steps, whose order is assumed to be immutable. The application does not verify that the first step was performed successfully before the second step. The consequence is typically "authentication bypass" or "path disclosure," although it can be primary to all kinds of weaknesses, especially in languages such as PHP, which allow external modification of assumed-immutable variables.
+Taxonomy
+Mappings
+Mapped Taxonomy Name
+Node ID
+Fit
+Mapped Node Name
+PLOVER
+Direct Request aka 'Forced Browsing'
+OWASP Top Ten 2007
+A10
+CWE More Specific
+Failure to Restrict URL Access
+OWASP Top Ten 2004
+A1
+CWE More Specific
+Unvalidated Input
+OWASP Top Ten 2004
+A2
+CWE More Specific
+Broken Access Control
+WASC
+34
+Predictable Resource Location
+Software Fault Patterns
+SFP30
+Missing endpoint authentication
+Related Attack Patterns
+CAPEC-ID
+Attack Pattern Name
+CAPEC-127
+Directory Indexing
+CAPEC-143
+Detect Unpublicized Web Pages
+CAPEC-144
+Detect Unpublicized Web Services
+CAPEC-668
+Key Negotiation of Bluetooth Attack (KNOB)
+CAPEC-87
+Forceful Browsing
+Content
+History
+Submissions
+Submission Date
+Submitter
+Organization
+2006-07-19
+(CWE Draft 3, 2006-07-19)
+PLOVER
+Modifications
+Modification Date
+Modifier
+Organization
+2026-04-30
+(CWE 4.20, 2026-04-30)
+CWE Content Team
+MITRE
+updated Description, Diagram, Modes_of_Introduction, Observed_Examples
+2025-12-11
+(CWE 4.19, 2025-12-11)
+CWE Content Team
+MITRE
+updated Applicable_Platforms, Relationships, Weakness_Ordinalities
+2023-06-29
+(CWE 4.12, 2023-06-29)
+CWE Content Team
+MITRE
+updated Mapping_Notes
+2023-04-27
+(CWE 4.11, 2023-04-27)
+CWE Content Team
+MITRE
+updated Modes_of_Introduction, Relationships, Time_of_Introduction
+2023-01-31
+(CWE 4.10, 2023-01-31)
+CWE Content Team
+MITRE
+updated Observed_Examples, Related_Attack_Patterns
+2022-10-13
+(CWE 4.9, 2022-10-13)
+CWE Content Team
+MITRE
+updated Relationships
+2021-10-28
+(CWE 4.6, 2021-10-28)
+CWE Content Team
+MITRE
+updated Relationships
+2021-07-20
+(CWE 4.5, 2021-07-20)
+CWE Content Team
+MITRE
+updated Related_Attack_Patterns
+2020-02-24
+(CWE 4.0, 2020-02-24)
+CWE Content Team
+MITRE
+updated Applicable_Platforms, Relationships
+2019-06-20
+(CWE 3.3, 2019-06-20)
+CWE Content Team
+MITRE
+updated Relationships
+2018-03-27
+(CWE 3.1, 2018-03-27)
+CWE Content Team
+MITRE
+updated Relationships
+2017-11-08
+(CWE 3.0, 2017-11-08)
+CWE Content Team
+MITRE
+updated Modes_of_Introduction, Relationships
+2014-07-30
+(CWE 2.8, 2014-07-31)
+CWE Content Team
+MITRE
+updated Relationships, Taxonomy_Mappings
+2012-10-30
+(CWE 2.3, 2012-10-30)
+CWE Content Team
+MITRE
+updated Potential_Mitigations
+2012-05-11
+(CWE 2.2, 2012-05-15)
+CWE Content Team
+MITRE
+updated Related_Attack_Patterns, Relationships
+2011-06-01
+(CWE 1.13, 2011-06-01)
+CWE Content Team
+MITRE
+updated Common_Consequences, Relationships
+2011-03-29
+(CWE 1.12, 2011-03-30)
+CWE Content Team
+MITRE
+updated Applicable_Platforms, Description, Relationships
+2010-02-16
+(CWE 1.8, 2010-02-16)
+CWE Content Team
+MITRE
+updated Relationships, Taxonomy_Mappings
+2008-10-14
+(CWE 1.0.1, 2008-10-14)
+CWE Content Team
+MITRE
+updated Description
+2008-09-08
+(CWE 1.0, 2008-09-09)
+CWE Content Team
+MITRE
+updated Alternate_Terms, Relationships, Relationship_Notes, Taxonomy_Mappings, Theoretical_Notes
+2008-08-15
+(CWE 1.0, 2008-09-09)
+Veracode
+Suggested OWASP Top Ten 2004 mapping
+2008-07-01
+(CWE 1.0, 2008-09-09)
+Sean Eidemiller
+Cigital
+added/updated demonstrative examples
+2008-07-01
+(CWE 1.0, 2008-09-09)
+Eric Dalci
+Cigital
+updated Potential_Mitigations, Time_of_Introduction
+More information is available — Please edit the custom filter or select a different filter.
+Page Last Updated:
+April 30, 2026
+Site Map
+|
+Terms of Use
+|
+Manage Cookies
+|
+Cookie Notice
+|
+Privacy Policy
+|
+Contact Us
+|
+Use of the Common Weakness Enumeration (CWE™) and the associated references from this website are subject to the
+Terms of Use
+. CWE is sponsored by the
+U.S. Department of Homeland Security
+(DHS)
+Cybersecurity and Infrastructure Security Agency
+(CISA) and managed by the
+Homeland Security Systems Engineering and Development Institute
+(HSSEDI) which is operated by
+The MITRE Corporation
+(MITRE). Copyright © 2006–2026, The MITRE Corporation. CWE, CWSS, CWRAF, and the CWE logo are trademarks of The MITRE Corporation.

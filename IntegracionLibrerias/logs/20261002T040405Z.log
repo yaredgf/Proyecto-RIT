@@ -1,0 +1,129 @@
+2026-10-02 04:04:07 [scrapy.utils.log] INFO: Scrapy 2.19.0 started (bot: crawler_rit)
+2026-10-02 04:04:07 [scrapy.utils.log] INFO: Versions:
+{'lxml': '6.1.3',
+ 'libxml2': '2.14.6',
+ 'cssselect': '1.5.0',
+ 'parsel': '1.12.1',
+ 'w3lib': '2.5.0',
+ 'Twisted': '26.4.0',
+ 'Python': '3.14.8 (main, Oct  1 2026, 21:39:21) [GCC 14.2.0]',
+ 'pyOpenSSL': '26.4.0 (OpenSSL 4.0.3 29 Sep 2026)',
+ 'cryptography': '50.0.2',
+ 'Platform': 'Linux-7.0.14-linuxkit-x86_64-with-glibc2.41'}
+2026-10-02 04:04:07 [scrapy.addons] INFO: Enabled addons:
+[]
+2026-10-02 04:04:07 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.logcount.LogCount',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.logstats.LogStats',
+ 'scrapy.extensions.remote_control.RemoteControl']
+2026-10-02 04:04:07 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'crawler_rit',
+ 'CONCURRENT_REQUESTS': 4,
+ 'CONCURRENT_REQUESTS_PER_DOMAIN': 1,
+ 'COOKIES_ENABLED': False,
+ 'DOWNLOAD_DELAY_JITTER': 0,
+ 'DOWNLOAD_MAXSIZE': 10000000,
+ 'DOWNLOAD_TIMEOUT': 30,
+ 'DOWNLOAD_VERIFY_CERTIFICATES': True,
+ 'FEED_EXPORT_ENCODING': 'utf-8',
+ 'LOG_FILE': '/app/logs/20261002T040405Z.log',
+ 'LOG_LEVEL': 'INFO',
+ 'METAREFRESH_ENABLED': False,
+ 'NEWSPIDER_MODULE': 'crawler_rit.spiders',
+ 'REDIRECT_ENABLED': False,
+ 'REDIRECT_MAX_TIMES': 5,
+ 'RETRY_ENABLED': False,
+ 'ROBOTSTXT_OBEY': True,
+ 'SPIDER_MODULES': ['crawler_rit.spiders'],
+ 'TELNETCONSOLE_ENABLED': False,
+ 'USER_AGENT': 'ProyectoRITCrawler/1.0'}
+2026-10-02 04:04:07 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'crawler_rit.politicas.PoliticasMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2026-10-02 04:04:07 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.start.StartSpiderMiddleware',
+ 'scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware',
+ 'scrapy.spidermiddlewares.metacopy.MetaCopyDetectionMiddleware']
+2026-10-02 04:04:07 [scrapy.middleware] INFO: Enabled item pipelines:
+[]
+2026-10-02 04:04:07 [scrapy.core.engine] INFO: Spider opened
+2026-10-02 04:04:07 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2026-10-02 04:04:07 [scrapy.extensions.remote_control] INFO: Remote control HTTP server listening on port 36041 (job 29-7c05b076240c46579060dbad6cd88d7b)
+2026-10-02 04:04:07 [scrapy.core.engine] ERROR: Error while reading start items and requests: name 'fila' is not defined.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.14/site-packages/scrapy/core/engine.py", line 284, in _process_start_next
+    item_or_request = await anext(self._start)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.14/site-packages/scrapy/spidermiddlewares/base.py", line 45, in process_start
+    async for o in start:
+        if (o := self._get_processed(o, None)) is not None:
+            yield o
+  File "/usr/local/lib/python3.14/site-packages/scrapy/spidermiddlewares/base.py", line 45, in process_start
+    async for o in start:
+        if (o := self._get_processed(o, None)) is not None:
+            yield o
+  File "/usr/local/lib/python3.14/site-packages/scrapy/spidermiddlewares/base.py", line 45, in process_start
+    async for o in start:
+        if (o := self._get_processed(o, None)) is not None:
+            yield o
+  [Previous line repeated 2 more times]
+  File "/app/crawler_rit/spiders/semillas.py", line 48, in start
+    self.calendarizador.iniciar()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/app/crawler_rit/calendarizador.py", line 43, in iniciar
+    self.id_ciclo = fila["id"]
+                    ^^^^
+NameError: name 'fila' is not defined
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.14/site-packages/scrapy/core/engine.py", line 284, in _process_start_next
+    item_or_request = await anext(self._start)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.14/site-packages/scrapy/spidermiddlewares/base.py", line 45, in process_start
+    async for o in start:
+        if (o := self._get_processed(o, None)) is not None:
+            yield o
+  File "/usr/local/lib/python3.14/site-packages/scrapy/spidermiddlewares/base.py", line 45, in process_start
+    async for o in start:
+        if (o := self._get_processed(o, None)) is not None:
+            yield o
+  File "/usr/local/lib/python3.14/site-packages/scrapy/spidermiddlewares/base.py", line 45, in process_start
+    async for o in start:
+        if (o := self._get_processed(o, None)) is not None:
+            yield o
+  [Previous line repeated 2 more times]
+  File "/app/crawler_rit/spiders/semillas.py", line 48, in start
+    self.calendarizador.iniciar()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/app/crawler_rit/calendarizador.py", line 43, in iniciar
+    self.id_ciclo = fila["id"]
+                    ^^^^
+NameError: name 'fila' is not defined
+2026-10-02 04:04:07 [scrapy.core.engine] INFO: Closing spider (start_error)
+2026-10-02 04:04:07 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'elapsed_time_seconds': 0.021840163000888424,
+ 'finish_reason': 'start_error',
+ 'finish_time': datetime.datetime(2026, 10, 2, 4, 4, 7, 568754, tzinfo=datetime.timezone.utc),
+ 'items_per_minute': None,
+ 'log_count/ERROR': 1,
+ 'log_count/INFO': 3,
+ 'memusage/max': 191995904,
+ 'memusage/startup': 191995904,
+ 'responses_per_minute': None,
+ 'rit/estados_finales': {},
+ 'rit/motivo_cierre': 'start_error',
+ 'spider_exceptions/NameError': 1,
+ 'spider_exceptions/count': 1,
+ 'start_time': datetime.datetime(2026, 10, 2, 4, 4, 7, 546914, tzinfo=datetime.timezone.utc)}
+2026-10-02 04:04:07 [scrapy.core.engine] INFO: Spider closed (start_error)
