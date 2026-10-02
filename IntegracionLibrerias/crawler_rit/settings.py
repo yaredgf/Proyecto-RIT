@@ -18,7 +18,10 @@ PROJECT_ROOT = BASE_DIR.parent
 
 # Permite indicar otra ubicación desde Docker Compose.
 CONFIG_PATH = Path(
-    os.getenv("RIT_CONFIG_PATH", str(PROJECT_ROOT / "settingsCrawler.json"))
+    os.getenv(
+        "RIT_CONFIG_PATH",
+        str(PROJECT_ROOT / "config" / "settingsCrawler.json")
+    )
 ).resolve()
 
 with CONFIG_PATH.open(encoding="utf-8") as archivo:
