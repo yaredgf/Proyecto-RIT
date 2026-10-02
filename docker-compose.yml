@@ -32,19 +32,25 @@ services:
     build:
       context: ./IntegracionLibrerias
       dockerfile: Dockerfile
+
     restart: "no"
+
     environment:
       RIT_CONFIG_PATH: /config/settingsCrawler.json
+      RIT_REPOSITORY_ROOT: /repositorio
       PGHOST: postgres
       PGPORT: "5432"
       PGDATABASE: TheSearcher
       PGUSER: admin
       PGPASSWORD: "123"
+
     volumes:
       - ./config:/config:ro
       - ./IntegracionLibrerias/datos:/app/datos
       - ./IntegracionLibrerias/logs:/app/logs
-    command: ["python", "-m", "scrapy", "version"]
+      - ./IntegracionPropia/datos:/repositorio/IntegracionPropia/datos:ro
+
+    command: ["python", "-m", "crawler_rit.ciclo"]
 
 volumes:
   postgres_data:
