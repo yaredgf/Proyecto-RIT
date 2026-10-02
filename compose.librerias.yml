@@ -3,7 +3,11 @@ services:
     build:
       context: ./IntegracionLibrerias
       dockerfile: Dockerfile.final
+
+    restart: "no"
+
     command: ["python", "-m", "crawler_rit.ciclo"]
+
     environment:
       RIT_CONFIG_PATH: /config/settingsCrawler.json
       RIT_REPOSITORY_ROOT: /repositorio
@@ -12,6 +16,7 @@ services:
       PGDATABASE: TheSearcher
       PGUSER: admin
       PGPASSWORD: "123"
+
     volumes:
       - ./config:/config:ro
       - ./IntegracionLibrerias/datos:/app/datos
