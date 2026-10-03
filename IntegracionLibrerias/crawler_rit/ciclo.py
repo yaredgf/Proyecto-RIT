@@ -10,20 +10,15 @@ from crawler_rit.database import conectar
 from crawler_rit.settings import RIT_RUTAS
 from crawler_rit.inicializar import inicializar
 from crawler_rit.mantenimiento import programar, conservar
-from crawler_rit.indice import construir
 
 
-def ejecutar(segundos=None, solo_indice=False):
+def ejecutar(segundos=None):
     # La implementación propia debe usar la misma clave para exclusión mutua.
     with conectar() as bloqueo:
         fila = bloqueo.execute('SELECT pg_try_advisory_lock(43022026) AS obtenido').fetchone()
         if not fila['obtenido']:
             raise RuntimeError('Otra ejecución que usa el bloqueo del proyecto está activa.')
         try:
-            if solo_indice:
-                conservar()
-                construir()
-                return
             with conectar() as c:
                 # Recuperar solo reservas del crawler con librerías.
                 c.execute('''UPDATE documentos d SET estado = 'pendiente'
@@ -53,9 +48,19 @@ def ejecutar(segundos=None, solo_indice=False):
                 raise RuntimeError('Cierre interrumpido o errores de programación: revisar el log antes de indexar.')
             try:
                 with conectar() as c:
-                    c.execute("UPDATE ciclos SET estado='indexando', inicio_indexacion=CURRENT_TIMESTAMP WHERE id=%s", (id_ciclo,))
-                conservar()
-                construir()
+                    c.execute(
+                        """
+                        UPDATE ciclos
+                        SET estado = 'completado'
+                        WHERE id = %s
+                        """,
+                        (id_ciclo,),
+                    )
+
+                print(
+                    f"Ciclo {id_ciclo} completado. "
+                    "Recopilación finalizada sin construir un índice."
+                )
                 with conectar() as c:
                     c.execute("UPDATE ciclos SET estado='completado', fin_indexacion=CURRENT_TIMESTAMP WHERE id=%s", (id_ciclo,))
             except Exception:
@@ -65,11 +70,18 @@ def ejecutar(segundos=None, solo_indice=False):
         finally:
             bloqueo.execute('SELECT pg_advisory_unlock(43022026)')
 
-if __name__ == '__main__':
-    p = argparse.ArgumentParser()
-    p.add_argument('--segundos', type=int, help='Duración corta para prueba; omitir para usar JSON.')
-    p.add_argument('--solo-indice', action='store_true')
-    a = p.parse_args()
-    if a.segundos is not None and a.segundos <= 0:
-        p.error('--segundos debe ser positivo')
-    ejecutar(a.segundos, a.solo_indice)
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument(
+        "--segundos",
+        type=int,
+        help="Duración de prueba; omitir para utilizar el JSON.",
+    )
+
+    argumentos = parser.parse_args()
+
+    if argumentos.segundos is not None and argumentos.segundos <= 0:
+        parser.error("--segundos debe ser positivo")
+
+    ejecutar(argumentos.segundos)

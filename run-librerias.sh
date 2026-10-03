@@ -3,15 +3,9 @@ set -euo pipefail
 
 cd -- "$(dirname -- "${BASH_SOURCE[0]}")"
 
-compose=(
-  docker compose
-  -f docker-compose.yml
-  -f compose.librerias.yml
-)
+docker compose config --quiet
 
-"${compose[@]}" config --quiet
-
-"${compose[@]}" run \
+docker compose run \
   --build \
   --rm \
   --no-deps \

@@ -16,12 +16,10 @@ fi
 
 archivos=(
   docker-compose.yml
-  compose.librerias.yml
   config/settingsCrawler.json
   config/semillas.txt
-  IntegracionLibrerias/Dockerfile.final
+  IntegracionLibrerias/Dockerfile
   IntegracionLibrerias/requirements.txt
-  IntegracionLibrerias/requirements-final.txt
   IntegracionLibrerias/scrapy.cfg
   IntegracionLibrerias/crawler_rit/settings.py
   IntegracionLibrerias/crawler_rit/database.py
