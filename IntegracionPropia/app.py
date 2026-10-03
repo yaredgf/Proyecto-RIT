@@ -4,8 +4,13 @@
 import requests
 
 from bs4 import BeautifulSoup 
+import threading
+import time
+import json
+from concurrent.futures import ThreadPoolExecutor
 
-
+maximo = 100000
+configuracion = [{}]
 enlacesBuscados = []
 enlacesPorBuscar = []
 urlsBase = ["https://www.cisa.gov/news-events/cybersecurity-advisories",
@@ -18,7 +23,10 @@ urlsBase = ["https://www.cisa.gov/news-events/cybersecurity-advisories",
             "https://cwe.mitre.org/data/definitions/79.html",
             "https://capec.mitre.org/data/definitions/100.html"
          ]
-baneos = ["mailto.","youtube.com","x.com","facebook.com","instagram.com","twitter.com","linkedin.com",".pdf","www.reddit"]
+baneos = ["mailto:","youtube.com","x.com","facebook.com","instagram.com","twitter.com","linkedin.com","www.reddit",
+          ".pdf", ".zip", ".gz", ".tar", ".exe", ".msi",
+              ".png", ".jpg", ".jpeg", ".gif", ".svg", ".webp",
+              ".mp4", ".mp3", ".css", ".js", ".xml", ".json"]
 whitelist = ["https://www.microsoft.com/en-us/security/blog.",
              "https://www.cisa.gov/news-events",
              "https://ubuntu.com/security/notices",
@@ -28,6 +36,20 @@ whitelist = ["https://www.microsoft.com/en-us/security/blog.",
              "https://securelist.com/",
              "https://cwe.mitre.org/data/definitions/",
              "https://capec.mitre.org/data/definitions/"]
+
+def ObtenerConfiguracion():
+    with open("settingsCrawler.json", "r", encoding="utf-8") as archivo:
+        configuracion[0] = json.load(archivo)
+
+def ObtenerListas():
+    with open("IntegracionPropia/enlacesBuscados.json", "r", encoding="utf-8") as archivo:
+        enlacesBuscados.extend(json.load(archivo)["enlacesBuscados"])
+
+def GuardarListas():
+    with open("IntegracionPropia/producto.json", "w", encoding="utf-8") as archivo:
+        json.dump({"enlacesBuscados": enlacesBuscados}, archivo, indent=4, ensure_ascii=False)
+
+
 
 
 def AgregarEnlaces(enlaces):
@@ -54,7 +76,6 @@ def AgregarEnlaces(enlaces):
                 enlacesPorBuscar.append(a)
 
 def DescargarPagina(url):
-    print("Descargando "+url)
     try:
         response = requests.get(url)
         if response.status_code == 200:
@@ -83,7 +104,8 @@ def DescargarPagina(url):
                     if a.get('href')[0] == "/":
                         base = url.split("/")
                         links.append(base[0]+"//"+base[2]+a.get('href'))
-                
+
+                print("Se descargo "+url)
                 return soup.get_text(), links, True
     except:
         print("Error en "+url)
@@ -91,11 +113,12 @@ def DescargarPagina(url):
     return "", [], False
 
 
-def Crawlear(maximo):
+def Crawlear(idHilo):
     guardarEnlaces = True
     while (len(enlacesPorBuscar) > 0):
         enlace = enlacesPorBuscar.pop()
         enlacesBuscados.append(enlace)
+        print("Hilo "+str(idHilo)+" prueba: "+enlace)
         texto, enlaces, siDescarga = DescargarPagina(enlace)
         if not siDescarga:
             continue
@@ -110,8 +133,30 @@ def Crawlear(maximo):
 
 
 def IniciarCrawler ():
-    enlacesPorBuscar.append(urlsBase[0])
-    Crawlear(1000)
+    ObtenerConfiguracion()
+    ObtenerListas()
+    enlacesPorBuscar.extend(urlsBase)
+
+    numHilos = configuracion[0]["descarga"]["concurrencia_total"]
+    hilos = []
+    '''
+    with ThreadPoolExecutor(max_workers=numHilos) as executor:
+        # executor.map ejecuta la función pasando cada elemento de la lista a un hilo
+        resultados = executor.map(Crawlear, range(numHilos))
+    '''
+    # 1. Crea e inicia los N hilos
+    for i in range(numHilos):
+        hilo = threading.Thread(target=Crawlear, args=(i,))
+        hilos.append(hilo)
+        hilo.start()
+
+    # 2. Esperar a que TODOS los hilos terminen antes de continuar
+    for hilo in hilos:
+        hilo.join()
+
+
+    GuardarListas()
+    print("Listoooo!")
     
 
 
