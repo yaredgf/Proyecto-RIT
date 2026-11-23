@@ -27,6 +27,7 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./sql/001_tablas.sql:/docker-entrypoint-initdb.d/001_tablas.sql:ro
 
   crawler_librerias:
     build:
@@ -48,7 +49,7 @@ services:
       - ./config:/config:ro
       - ./IntegracionLibrerias/datos:/app/datos
       - ./IntegracionLibrerias/logs:/app/logs
-      - ./IntegracionPropia/datos:/repositorio/IntegracionPropia/datos:ro
+      - ./Legacy/IntegracionPropia:/repositorio/Legacy/IntegracionPropia:ro
 
     command: ["python", "-m", "crawler_rit.ciclo"]
 

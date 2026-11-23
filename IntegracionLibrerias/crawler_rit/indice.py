@@ -28,6 +28,9 @@ def resolver(ruta):
     raiz = Path(os.getenv('RIT_REPOSITORY_ROOT', str(BASE_DIR.parent))).resolve()
     if relativa.is_absolute() or '..' in relativa.parts:
         raise ValueError(f'Ruta no admitida: {ruta}')
+    # Las versiones existentes pueden conservar la ruta anterior al traslado.
+    if relativa.parts and relativa.parts[0] == 'IntegracionPropia':
+        relativa = Path('Legacy') / relativa
     # Compatibilidad con el volumen /app/datos ya utilizado.
     if relativa.parts and relativa.parts[0] == 'IntegracionLibrerias':
         destino = (BASE_DIR / Path(*relativa.parts[1:])).resolve()

@@ -7,7 +7,11 @@ from bs4 import BeautifulSoup
 import threading
 import time
 import json
+from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
+
+BASE_DIR = Path(__file__).resolve().parent
+CONFIG_PATH = BASE_DIR.parents[1] / "config" / "settingsCrawler.json"
 
 maximo = 100000
 configuracion = [{}]
@@ -38,15 +42,15 @@ whitelist = ["https://www.microsoft.com/en-us/security/blog.",
              "https://capec.mitre.org/data/definitions/"]
 
 def ObtenerConfiguracion():
-    with open("settingsCrawler.json", "r", encoding="utf-8") as archivo:
+    with open(CONFIG_PATH, "r", encoding="utf-8") as archivo:
         configuracion[0] = json.load(archivo)
 
 def ObtenerListas():
-    with open("IntegracionPropia/enlacesBuscados.json", "r", encoding="utf-8") as archivo:
+    with open(BASE_DIR / "enlacesBuscados.json", "r", encoding="utf-8") as archivo:
         enlacesBuscados.extend(json.load(archivo)["enlacesBuscados"])
 
 def GuardarListas():
-    with open("IntegracionPropia/producto.json", "w", encoding="utf-8") as archivo:
+    with open(BASE_DIR / "producto.json", "w", encoding="utf-8") as archivo:
         json.dump({"enlacesBuscados": enlacesBuscados}, archivo, indent=4, ensure_ascii=False)
 
 
@@ -83,8 +87,8 @@ def DescargarPagina(url):
         
                 titulo = "-".join(url.split("//")[1].split("/")).split("?")[0]
         
-                path="IntegracionPropia/Pruebas/"+titulo+".html"
-                pathtxt="IntegracionPropia/Texto/"+titulo+".txt"
+                path=BASE_DIR / "Pruebas" / (titulo + ".html")
+                pathtxt=BASE_DIR / "Texto" / (titulo + ".txt")
         
                 with open(path, "w", encoding="utf-8") as archivo:
                     archivo.write(response.text)
@@ -133,6 +137,8 @@ def Crawlear(idHilo):
 
 
 def IniciarCrawler ():
+    (BASE_DIR / "Pruebas").mkdir(exist_ok=True)
+    (BASE_DIR / "Texto").mkdir(exist_ok=True)
     ObtenerConfiguracion()
     ObtenerListas()
     enlacesPorBuscar.extend(urlsBase)

@@ -3,11 +3,7 @@ set -euo pipefail
 
 cd -- "$(dirname -- "${BASH_SOURCE[0]}")"
 
-compose=(
-  docker compose
-  -f docker-compose.yml
-  -f compose.librerias.yml
-)
+compose=(docker compose)
 
 if ! command -v docker >/dev/null 2>&1; then
   echo "No se encontró Docker."
@@ -16,6 +12,7 @@ fi
 
 archivos=(
   docker-compose.yml
+  sql/001_tablas.sql
   config/settingsCrawler.json
   config/semillas.txt
   IntegracionLibrerias/Dockerfile
@@ -42,7 +39,7 @@ for archivo in "${archivos[@]}"; do
 done
 
 if [[ "$faltan" == 1 ]]; then
-  echo "Coloque los archivos del complemento en las rutas indicadas."
+  echo "Revise los archivos del repositorio en las rutas indicadas."
   exit 1
 fi
 
@@ -50,8 +47,7 @@ fi
 
 mkdir -p \
   IntegracionLibrerias/datos \
-  IntegracionLibrerias/logs \
-  IntegracionPropia/datos
+  IntegracionLibrerias/logs
 
 "${compose[@]}" up -d postgres
 
@@ -59,7 +55,7 @@ preparado=0
 
 for intento in {1..30}; do
   if "${compose[@]}" exec -T postgres \
-    pg_isready -U admin -d TheSearcher >/dev/null 2>&1; then
+    pg_isready -h 127.0.0.1 -U admin -d TheSearcher >/dev/null 2>&1; then
     preparado=1
     break
   fi
@@ -89,11 +85,6 @@ cantidad=$(
 )
 
 if [[ "$cantidad" == 0 ]]; then
-  if [[ ! -f sql/001_tablas.sql ]]; then
-    echo "Falta sql/001_tablas.sql para crear las tablas."
-    exit 1
-  fi
-
   "${compose[@]}" exec -T postgres \
     psql -U admin -d TheSearcher -v ON_ERROR_STOP=1 \
     < sql/001_tablas.sql
