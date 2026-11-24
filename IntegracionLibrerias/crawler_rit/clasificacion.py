@@ -31,7 +31,7 @@ for _, url, _ in leer_semillas():
         LISTADOS.add((partes.hostname, partes.path.rstrip("/")))
 
 
-def clasificar(url, extraido):
+def clasificar(url, extraido, *, admitir_listado=True):
     """
     Devuelve (tipo, motivo_descarte).
     Si tipo es None, la página se descarta.
@@ -58,7 +58,7 @@ def clasificar(url, extraido):
 
     # Las variantes de consulta de un listado, como ?page=2,
     # siguen siendo listados.
-    if (host, partes.path.rstrip("/")) in LISTADOS:
+    if admitir_listado and (host, partes.path.rstrip("/")) in LISTADOS:
         return "listado", None
 
     contenido = (

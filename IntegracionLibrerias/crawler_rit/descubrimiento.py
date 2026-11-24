@@ -6,7 +6,7 @@ from crawler_rit.inicializar import normalizar_url
 
 
 EXTENSIONES_EXCLUIDAS = (
-    ".pdf", ".zip", ".gz", ".tar", ".exe", ".msi",
+    ".zip", ".gz", ".tar", ".exe", ".msi",
     ".png", ".jpg", ".jpeg", ".gif", ".svg", ".webp",
     ".mp4", ".mp3", ".css", ".js", ".xml", ".json",
 )

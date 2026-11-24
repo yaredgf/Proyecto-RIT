@@ -8,7 +8,7 @@ from crawler_rit.calendarizador import Calendarizador
 from crawler_rit.clasificacion import clasificar
 from crawler_rit.database import conectar
 from crawler_rit.descubrimiento import registrar_descubrimientos
-from crawler_rit.extractor import extraer
+from crawler_rit.extractor import PDFInvalido, extraer, extraer_pdf
 from crawler_rit.inicializar import normalizar_url
 from crawler_rit.settings import RIT_CONFIG
 from crawler_rit.idioma import detectar_idioma
@@ -317,6 +317,11 @@ class SemillasSpider(scrapy.Spider):
                     f"Respuesta HTTP no admitida: {response.status}",
                 )
 
+            elif contenido in ("application/pdf", "application/octet-stream", "") and (
+                contenido == "application/pdf" or response.body.startswith(b"%PDF-")
+            ):
+                self.procesar_documento(response, id_doc, es_pdf=True)
+
             elif contenido not in (
                 "text/html",
                 "application/xhtml+xml",
@@ -327,7 +332,7 @@ class SemillasSpider(scrapy.Spider):
                 )
 
             else:
-                self.procesar_html(response, id_doc)
+                self.procesar_documento(response, id_doc)
 
         except Exception as error:
             self.logger.exception(
@@ -341,8 +346,19 @@ class SemillasSpider(scrapy.Spider):
 
         yield from self.siguientes()
 
-    def procesar_html(self, response, id_doc):
-        resultado = extraer(response.text, response.url)
+    def procesar_documento(self, response, id_doc, *, es_pdf=False):
+        if es_pdf:
+            try:
+                resultado = extraer_pdf(response.body, RIT_CONFIG["descarga"]["timeout_segundos"])
+            except PDFInvalido as error:
+                self.descartar(id_doc, str(error))
+                return
+
+            if not resultado["texto"]:
+                self.descartar(id_doc, "PDF sin capa de texto aprovechable.", resultado)
+                return
+        else:
+            resultado = extraer(response.text, response.url)
 
         if not resultado["texto"]:
             self.dejar_pendiente(
@@ -351,7 +367,7 @@ class SemillasSpider(scrapy.Spider):
             )
             return
 
-        tipo, motivo = clasificar(response.url, resultado)
+        tipo, motivo = clasificar(response.url, resultado, admitir_listado=not es_pdf)
 
         if tipo is None:
             self.descartar(id_doc, motivo, resultado)
@@ -412,7 +428,8 @@ class SemillasSpider(scrapy.Spider):
 
         guardado = guardar_documento(
             id_documento=id_doc,
-            html_bytes=response.body,
+            original_bytes=response.body,
+            extension_original=".pdf" if es_pdf else ".html",
             extraido=resultado,
             idioma=idioma,
             url_final=response.url,

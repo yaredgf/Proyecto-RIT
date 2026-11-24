@@ -18,16 +18,17 @@ def ruta_repositorio(archivo):
 
 def guardar_documento(
     id_documento,
-    html_bytes,
+    original_bytes,
     extraido,
     idioma,
     url_final,
     tipo,
+    extension_original=".html",
 ):
     """
     Guarda contenido ya validado y aceptado.
 
-    html_bytes: cuerpo HTML descomprimido, en bytes.
+    original_bytes: cuerpo HTML o PDF descomprimido, en bytes.
     extraido: resultado de extraer().
     idioma: idioma validado por el procesamiento.
     tipo: 'listado', 'aviso_analisis' o 'ficha'.
@@ -73,7 +74,8 @@ def guardar_documento(
             if nueva_version:
                 nombre = f"{id_documento}_{uuid4().hex}"
 
-                ruta_html = Path(RIT_RUTAS["html"]) / f"{nombre}.html"
+                # El esquema histórico usa ruta_html para el archivo original.
+                ruta_html = Path(RIT_RUTAS["html"]) / f"{nombre}{extension_original}"
                 ruta_texto = Path(RIT_RUTAS["texto"]) / f"{nombre}.txt"
 
                 ruta_html.parent.mkdir(parents=True, exist_ok=True)
@@ -84,7 +86,7 @@ def guardar_documento(
                 # Registrar las rutas antes de escribir permite limpiar
                 # también un archivo cuya escritura haya fallado.
                 archivos_creados.append(ruta_html)
-                ruta_html.write_bytes(html_bytes)
+                ruta_html.write_bytes(original_bytes)
 
                 archivos_creados.append(ruta_texto)
                 ruta_texto.write_bytes(texto_bytes)
@@ -113,7 +115,7 @@ def guardar_documento(
                         ruta_repositorio(ruta_html),
                         ruta_repositorio(ruta_texto),
                         extraido["hash_texto"],
-                        len(html_bytes),
+                        len(original_bytes),
                         len(texto_bytes),
                     ),
                 ).fetchone()

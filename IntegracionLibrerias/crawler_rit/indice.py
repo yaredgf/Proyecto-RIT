@@ -46,7 +46,7 @@ def vigentes():
     with conectar() as c:
         return c.execute('''
             SELECT DISTINCT ON (v.id_doc)
-                v.id, v.id_doc, v.ruta_texto, d.url_normalizada AS url
+                v.id, v.id_doc, v.ruta_texto, v.hash_texto, d.url_normalizada AS url
             FROM versiones v JOIN documentos d ON d.id = v.id_doc
             WHERE d.estado = 'completada'
               AND d.tipo IN ('ficha', 'aviso_analisis')
@@ -86,9 +86,18 @@ def construir():
         save_npz(temporal / 'vectores.npz', matriz)
         joblib.dump(vectorizador, temporal / 'vectorizador.joblib')
         (temporal / 'documentos.json').write_text(json.dumps(filas, ensure_ascii=False), encoding='utf-8')
-        total_bytes = sum(resolver(f['ruta_texto']).stat().st_size for f in filas)
+        total_bytes = 0
+        bytes_por_hash = {}
+        for fila in filas:
+            tamano = resolver(fila['ruta_texto']).stat().st_size
+            total_bytes += tamano
+            bytes_por_hash.setdefault(fila['hash_texto'], tamano)
+        bytes_unicos = sum(bytes_por_hash.values())
         resumen = {'documentos_vigentes': len(filas), 'bytes_texto': total_bytes,
             'GB_decimales': total_bytes / 1_000_000_000,
+            'documentos_texto_unico': len(bytes_por_hash),
+            'bytes_texto_unico': bytes_unicos,
+            'GB_decimales_texto_unico': bytes_unicos / 1_000_000_000,
             'palabras': sum(frecuencias.values()), 'palabras_distintas': len(frecuencias),
             'dimensiones_indice': list(matriz.shape)}
         (temporal / 'estadisticas.json').write_text(json.dumps(resumen, indent=2), encoding='utf-8')

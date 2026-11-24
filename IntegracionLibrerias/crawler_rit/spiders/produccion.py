@@ -35,8 +35,8 @@ class ProduccionSpider(SemillasSpider):
         self.crawler.stats.set_value('rit/documentos_consultados', len(self.consultados))
         yield from super().procesar(response)
 
-    def procesar_html(self, response, id_doc):
-        super().procesar_html(response, id_doc)
+    def procesar_documento(self, response, id_doc, *, es_pdf=False):
+        super().procesar_documento(response, id_doc, es_pdf=es_pdf)
         conservar(id_doc)
 
     def error_descarga(self, fallo):

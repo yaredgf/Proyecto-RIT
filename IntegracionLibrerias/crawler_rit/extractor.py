@@ -1,5 +1,6 @@
 import hashlib
 import re
+import subprocess
 from urllib.parse import urljoin
 
 from bs4 import BeautifulSoup
@@ -87,7 +88,33 @@ def extraer(html, url):
         if limpia:
             lineas.append(limpia)
 
-    texto = "\n".join(lineas)
+    return resultado_texto("\n".join(lineas), titulo, idioma_declarado, enlaces)
+
+
+class PDFInvalido(ValueError):
+    """El documento PDF no se pudo convertir a texto."""
+
+
+def extraer_pdf(cuerpo, timeout):
+    """Extrae la capa de texto UTF-8 de un PDF mediante Poppler."""
+    try:
+        conversion = subprocess.run(
+            ["pdftotext", "-enc", "UTF-8", "-nopgbrk", "-", "-"],
+            input=cuerpo,
+            capture_output=True,
+            timeout=timeout,
+            check=True,
+        )
+    except subprocess.TimeoutExpired as error:
+        raise PDFInvalido("Se agotó el tiempo de extracción del PDF.") from error
+    except subprocess.CalledProcessError as error:
+        raise PDFInvalido("PDF inválido, protegido o ilegible.") from error
+
+    lineas = (" ".join(linea.split()) for linea in conversion.stdout.decode("utf-8").splitlines())
+    return resultado_texto("\n".join(linea for linea in lineas if linea), None, None, [])
+
+
+def resultado_texto(texto, titulo, idioma_declarado, enlaces):
 
     identificadores = sorted({
         coincidencia.upper()
