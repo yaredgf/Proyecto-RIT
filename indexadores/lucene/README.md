@@ -17,3 +17,5 @@ mvn -f indexadores/lucene/pom.xml compile exec:java \
 El directorio de salida se publica al terminar y debe ser nuevo. Contiene el índice invertido de Lucene, `idf.jsonl` con DF e IDF por término y `normas.tsv` con la norma L2 por ID estable. Las frecuencias se conservan en las listas de apariciones de Lucene.
 
 Este comando permite probar el constructor con un corpus pequeño sin PostgreSQL. El programa que leerá el INI y ejecutará el normalizador común sobre el inventario, la recuperación por coseno y las mediciones de los tres perfiles son etapas posteriores. [Decisiones del Proyecto II](../../docs/decisiones-tomadas.md)
+
+[Guía de diseño, matemáticas y código línea por línea](../../docs/lucene/README.md)
