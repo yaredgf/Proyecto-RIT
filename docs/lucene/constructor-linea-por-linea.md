@@ -40,7 +40,7 @@ El normalizador preparará esta lista a partir de texto inglés. El constructor 
 | 25 | Importa `FSDirectory`, el directorio de Lucene en el sistema de archivos. |
 | 27 | Declara la clase principal como `final`, sin subclases. |
 | 28 | Crea una fábrica JSON reutilizable. |
-| 29 | Fija `contenido` como nombre del campo indexado. |
+| 29 | Fija `contenido` como nombre del campo indexado y lo comparte con la consulta dentro del paquete. |
 | 30 | Crea la configuración de ese campo. |
 | 32 | Abre el bloque estático, que se ejecuta al inicializar la clase. |
 | 33 | Indica que el campo se indexa como un flujo de términos. |
@@ -115,7 +115,7 @@ En el ejemplo, el cursor empieza en 0. Tres llamadas devuelven `true` y escriben
 | 159–161 | Devuelve los tres valores agrupados y cierra el parser y el método. |
 | 163–167 | Define `exigir`. Si la condición es falsa, lanza una excepción con el mensaje recibido. |
 
-## Líneas 169–204 · IDF y normas L2
+## Líneas 169–208 · IDF y normas L2
 
 | Línea | Explicación |
 | --- | --- |
@@ -127,7 +127,7 @@ En el ejemplo, el cursor empieza en 0. Tres llamadas devuelven `true` y escriben
 | 174 | Desactiva el separador automático. Cada registro recibirá un salto de línea explícito. |
 | 175–177 | Si hay términos, obtiene el iterador y avanza por el vocabulario. En el ejemplo procesa `linux` y después `patch`. |
 | 178 | Obtiene DF. Ambos términos tienen DF 1 porque aparecen en el mismo y único documento. |
-| 179 | Calcula `1 + ln((N + 1) / (DF + 1))`. Aquí ambos IDF valen 1. |
+| 179 | Llama a `calcularIdf`, que calcula `1 + ln((N + 1) / (DF + 1))`. Aquí ambos IDF valen 1. |
 | 180 | Abre un objeto JSON en la salida. |
 | 181 | Escribe el término decodificado en UTF-8. |
 | 182 | Escribe el DF. |
@@ -145,6 +145,8 @@ En el ejemplo, el cursor empieza en 0. Tres llamadas devuelven `true` y escriben
 | 198 | Recorre los documentos internos. El documento único tiene número interno 0. |
 | 199 | Lee el campo almacenado `doc_id` y recupera el ID estable 42. |
 | 200 | Escribe 42 junto a la raíz de su acumulador, aproximadamente 2,236. |
-| 201–204 | Cierran el bucle, el archivo de normas, el método y la clase. |
+| 201–203 | Cierran el bucle, el archivo de normas y el método. |
+| 205–207 | Calculan el IDF en un método común para construcción y consulta. |
+| 208 | Cierra la clase. |
 
 La salida contiene el índice invertido, dos filas en `idf.jsonl` y una fila de datos en `normas.tsv`. El número interno 0 sirve para acceder al acumulador durante esta ejecución. La norma se guarda junto al ID estable 42 para recuperarla después. [Matemáticas](matematicas.md) · [Plan de implementación](diseno.md)

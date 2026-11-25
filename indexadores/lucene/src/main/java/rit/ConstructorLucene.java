@@ -26,7 +26,7 @@ import org.apache.lucene.store.FSDirectory;
 
 public final class ConstructorLucene {
     private static final JsonFactory JSON = new JsonFactory();
-    private static final String CONTENIDO = "contenido";
+    static final String CONTENIDO = "contenido";
     private static final FieldType TIPO_CONTENIDO = new FieldType();
 
     static {
@@ -176,7 +176,7 @@ public final class ConstructorLucene {
                 var iterador = terminos.iterator();
                 for (var termino = iterador.next(); termino != null; termino = iterador.next()) {
                     int df = iterador.docFreq();
-                    double idf = 1.0 + Math.log((totalDocumentos + 1.0) / (df + 1.0));
+                    double idf = calcularIdf(totalDocumentos, df);
                     salida.writeStartObject();
                     salida.writeStringField("termino", termino.utf8ToString());
                     salida.writeNumberField("df", df);
@@ -200,5 +200,9 @@ public final class ConstructorLucene {
                 salida.write(id + "\t" + Math.sqrt(cuadrados[doc]) + "\n");
             }
         }
+    }
+
+    static double calcularIdf(int totalDocumentos, int df) {
+        return 1.0 + Math.log((totalDocumentos + 1.0) / (df + 1.0));
     }
 }

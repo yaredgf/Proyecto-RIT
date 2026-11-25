@@ -34,6 +34,6 @@ Para `patch linux`, la TF de cada término en la consulta es 1. Se usan los IDF 
 | `patch` | 0,613 | 0,362 |
 | `linux` | 0,790 | 0,932 |
 
-El coseno es la suma de los productos de la tabla. Con estos valores redondeados, D3 obtiene `0,613 × 0,362 + 0,790 × 0,932 = 0,958186`. El código usará doble precisión. En D2 solo `patch` aporta a la suma, de modo que obtiene aproximadamente 0,312. `windows` sigue afectando la norma de D2 porque es parte del vector del documento.
+El coseno es la suma de los productos de la tabla. Con estos valores redondeados, D3 obtiene `0,613 × 0,362 + 0,790 × 0,932 = 0,958186`. El código usa doble precisión. En D2 solo `patch` aporta a la suma, de modo que obtiene aproximadamente 0,312. `windows` sigue afectando la norma de D2 porque es parte del vector del documento.
 
-La construcción ya produce el IDF y las normas. El recorrido de las listas para puntuar consultas corresponde al siguiente avance. [Diseño de la consulta](diseno.md) · [Fundamentos del modelo vectorial, capítulo 6](https://nlp.stanford.edu/IR-book/html/htmledition/irbook.html)
+La construcción ya produce el IDF y las normas. La consulta ya recorre las listas de apariciones y calcula el coseno. [Prueba del paso 3](consulta-pasos.md#paso-3-puntuar-y-ordenar-documentos) [Diseño de la consulta](diseno.md) · [Fundamentos del modelo vectorial, capítulo 6](https://nlp.stanford.edu/IR-book/html/htmledition/irbook.html)
